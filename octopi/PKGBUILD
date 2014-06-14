@@ -3,7 +3,7 @@
 
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier')
-pkgver=0.4.0
+pkgver=0.4.0.612.784de21
 pkgrel=1
 pkgdesc="A pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ optdepends=('kdesu: for KDE'
             'octopi-notifier: for notifications'
             'pacmanlogviewer: to view pacman log files'
             'pkgfile: to view uninstalled pkg contents in Manjaro Linux')
-_git=No
+_git=Yes
 _snapshot=#
 
 if [ "$_git" == "Yes" ]; then
@@ -41,14 +41,15 @@ pkgver() {
    elif [ -e "$srcdir/$pkgbase.git" ]; then
       cd "$srcdir/$pkgbase.git"
    fi
-   if [ "$_git" == "yes" ]; then
+   if [ "$_git" == "Yes" ]; then
       #echo "`git tag | tail -1 | sed 's|v||g'`.`git describe --always`"
       #echo "0.3.0.$(date +%m%d).`git describe --always`"
       #echo "0.3.0$(git describe --tags | sed 's|v||g' | sed 's|-|.|g')"
-      echo 0.3.901.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+      echo 0.4.0.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
    else
       echo "$pkgver"
    fi
+   sed -i -e "s|0.4.1 (dev)|$pkgver|g" src/strconstants.h 
 }
 
 build() {
