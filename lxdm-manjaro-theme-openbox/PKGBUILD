@@ -1,12 +1,13 @@
 #Maintainer: Joshua Strot
 pkgname=lxdm-manjaro-theme-openbox
-pkgver=20$(date +%y%m%d)
-pkgrel=1
+pkgver=20140526
+pkgrel=2
 pkgdesc="Manjaro Linux LXDM Theme For OpenBox"
 url="https://github.com/dcell/artwork-lxdm-manjaro-theme-openbox"
 dependes=('manjaro-artwork')
 arch=(any)
 license=('GPL')
+conflicts=('lxdm-manjaro-theme')
 
 _git="no"
 _snapshot=1f5e997d14d59060fb0813e7a3ecb246a4708cf3
@@ -23,6 +24,6 @@ fi
 
 package () {
     mkdir -p "$pkgdir/usr/share/lxdm/themes/"
-    cp -r "$srcdir/$pkgname/Manjaro" "$pkgdir/usr/share/lxdm/themes/"
+    cp -r "$srcdir/artwork-$pkgname-$pkgver/Manjaro" "$pkgdir/usr/share/lxdm/themes/"
     ln -sf "/usr/share/backgrounds/manjaro.jpg" "$pkgdir/usr/share/lxdm/themes/Manjaro/background-image"
 }
