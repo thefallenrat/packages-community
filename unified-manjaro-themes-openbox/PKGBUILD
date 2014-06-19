@@ -17,7 +17,7 @@ if [ "$_git" == "yes" ]; then
     sha256sums=("SKIP")
 else
     source=("unified-manjaro-themes-openbox-$pkgver.tar.gz::http://github.com/manjaro/artwork-unified-manjaro-themes/archive/v$pkgver.tar.gz")
-    sha256sums=('663055f138e4a77573c45f83c82597835db55b4a488bc501cc63355b55605a17')
+    sha256sums=('fb9b345fdd8111374e109d027f2e138a89a02a9d089ad42d29e95aec3ee45671')
     #source=("unified-manjaro-themes-openbox-$pkgver.zip::http://github.com/manjaro/artwork-unified-manjaro-themes/archive/$_snapshot.zip")
     #sha256sums=('e04836da3fed017f99d2fdd93feabed96187821861913597ed6df9ab8fef4fa2')
 fi
