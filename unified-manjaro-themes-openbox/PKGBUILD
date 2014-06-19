@@ -1,9 +1,9 @@
 # Maintainer: Joshua Strot <joshua@manjaro.org>
 pkgname=unified-manjaro-themes-openbox
 pkgver=0.8.10rc1
-pkgrel=1
+pkgrel=2
 pkgdesc="Artwork to get an unified look to all our editions."
-depends=("faenza-green-icon-theme" "ttf-droid")
+depends=("faenza-green-icon-theme" "ttf-droid" "gtk-engine-murrine")
 makedepends=("git")
 url="http://manjaro.org"
 license=("GPL")
