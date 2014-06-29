@@ -1,18 +1,20 @@
+# Maintainer : Philip Müller <philm@manjaro.org>
+
 pkgname=i-nex
-pkgver=0.6.4
-_git=0.6.4
+pkgver=7.0.0
+_git=7.0.0
 pkgrel=1
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
-url="http://tuxportal.pl/"
+url="http://i-nex.linux.pl/"
 license=('LGPL3')
 depends=('procps-ng' 'gambas3-runtime' 'gambas3-gb-image' 'gambas3-gb-gtk' 'gambas3-gb-form'
          'gambas3-gb-desktop' 'gambas3-gb-settings' 'gambas3-gb-form-dialog' 'gambas3-gb-qt4'
          'gambas3-gb-form-mdi' 'gambas3-gb-form-stock' 'util-linux' 'procps' 'python2' 'libcpuid'
-         'xorg-server-utils' 'gksu' 'lsb-release' 'coreutils' 'pciutils' 'inetutils' 'mesa-demos')
+         'xorg-server-utils' 'lsb-release' 'coreutils' 'pciutils' 'inetutils' 'mesa-demos' 'curl')
 makedepends=('gambas3-devel' 'gcc' 'imagemagick')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/eloaders/I-Nex/archive/$_git.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('3f15461f3fef45ce542185ac5885f3d8d635fa4156ae178aa20c89b1f6ec1954')
 replaces=(i-nex-dev)
 provides=(i-nex-dev)
 conflicts=(i-nex-dev)
@@ -35,5 +37,6 @@ build() {
 package() {
   cd "$srcdir/I-Nex-$_git"
   mkdir -p "$pkgdir/usr/share/applications"
+  mkdir -p "$pkgdir/usr/share/i-nex/pastebinit/"
   make install DESTDIR="${pkgdir}"
 } 
