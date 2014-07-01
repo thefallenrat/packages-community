@@ -1,0 +1,18 @@
+# Maintainer : Rob McCathie <rob@manjaro.org>
+
+pkgname=lightdm-gtk2-theme-manjaro-dark
+pkgver=0.1
+pkgrel=1
+pkgdesc="A dark GTK2 theme with green highlights, intended for use with the LightDM GTK2 greeter when Menda is the post-login theme"
+arch=('any')
+url="https://forum.manjaro.org/index.php?topic=7319.0"
+license=('GPL2')
+source=("gtkrc"
+        "gtk.css")
+sha1sums=('0273865618e395a47e1b51068f1861c337eff7fc'
+          '07abcbbec88d311b412c68f889d265661d71aa00')
+
+package() {
+  install -Dm644 "$srcdir/gtkrc" "$pkgdir/usr/share/themes/LightDM-GTK2-Manjaro-dark/gtk-2.0/gtkrc"
+  install -Dm644 "$srcdir/gtk.css" "$pkgdir/usr/share/themes/LightDM-GTK2-Manjaro-dark/gtk-3.0/gtk.css"
+}
