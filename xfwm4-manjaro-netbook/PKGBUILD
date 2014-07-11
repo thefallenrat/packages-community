@@ -1,31 +1,35 @@
-# Maintainer : Rob McCathie <manjaropkg at rmcc dot com dot au>
+# Maintainer : Rob McCathie <rob@manjaro.org>
 # Contributor: Cedric Leporcq <cedric at gmail dot com>
 
 pkgname=xfwm4-manjaro-netbook
-_pkgname=xfwm4-titleless
-pkgver=4.11.1
-pkgrel=3
-pkgdesc="Xfwm4 package from the Manjaro Netbook Edition, based on xfwm4-titleless-dev, patched for maximized default placement"
+_pkgname=xfwm4-titleless-dev
+_name=${_pkgname%-*}
+pkgver=4.11.3
+pkgrel=1
+pkgdesc="Xfce window manager with hide title on maximized features, corner tiling and fixes"
 arch=('i686' 'x86_64')
 url="https://github.com/cedl38/xfwm4-titleless"
 license=('GPL2')
-depends=('libxfce4ui>=4.11' 'libwnck' 'hicolor-icon-theme')
+groups=('xfce4')
+depends=('libxfce4ui>=4.11.0' 'libwnck' 'hicolor-icon-theme')
+optdepends=('xfce4-windowck-plugin: to put the maximized window title on the panel.')
 makedepends=('intltool' 'xfce4-dev-tools' 'exo')
 provides=("xfwm4=${pkgver}")
 conflicts=('xfwm4')
+options=('!libtool')
 install=xfwm4.install
-source=("${_pkgname}-$pkgver.tar.gz::https://github.com/cedl38/${_pkgname}/archive/v${pkgver}-t.tar.gz"
+source=("${_pkgname}-$pkgver.tar.gz::https://github.com/cedl38/${_name}/archive/v${pkgver}-t.tar.gz"
         'maximized_placement.patch')
-sha1sums=('d36857d52d68a2d3c5253c8b329bb68f6c0c2012'
-          '416c519e9f1ec4c050cca1036861df59679b2b6c')
+sha256sums=('0e5a9a3e5776ff78c845f44f10f9f7c345cf2bc371a346eca6d5fa2b00bf1bd3'
+            'c4a911ab79234bf1887e4e151a4ced9c6c28da59d387d9ddd7caf8faf5518121')
 
 prepare() {
-  cd "$srcdir/${_pkgname}-${pkgver}-t"
+  cd "$srcdir/${_name}-${pkgver}-t"
   patch -Np1 -i "$srcdir"/maximized_placement.patch
 }
 
 build() {
-  cd "$srcdir/${_pkgname}-${pkgver}-t"
+  cd "$srcdir/${_name}-${pkgver}-t"
 
     ./autogen.sh \
     --prefix=/usr \
@@ -37,12 +41,12 @@ build() {
     --enable-randr \
     --enable-compositor \
     --enable-xsync \
-    --enable-debug=minimal
+    --disable-debug
 
   make
 }
 
 package() {
-  cd "$srcdir/${_pkgname}-${pkgver}-t"
+  cd "$srcdir/${_name}-${pkgver}-t"
   make DESTDIR="$pkgdir" install
 }
