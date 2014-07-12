@@ -3,8 +3,8 @@
 # Contributor: Diego Principe <cdprincipe@at@gmail@dot@com>
 
 pkgname=xfce4-whiskermenu-plugin
-pkgver=1.3.2
-pkgrel=4
+pkgver=1.4.0
+pkgrel=1
 pkgdesc="Alternate Xfce menu"
 arch=('i686' 'x86_64')
 url="http://gottcode.org/${pkgname}/"
@@ -13,7 +13,7 @@ depends=('xfce4-panel')
 options=('!makeflags')
 install=${pkgname}.install
 _git=no
-_snapshot=9f63983c596d93f6c97f11aeffc5811a9126392a
+_snapshot=1caf5fbfa02d032e68a96375706c53756939122e
 
 if [ "$_git" == "yes" ]; then
    makedepends=('cmake' 'git')
@@ -22,19 +22,30 @@ if [ "$_git" == "yes" ]; then
 else
    makedepends=('cmake')
    #source=(http://gottcode.org/${pkgname}/${pkgname}-${pkgver}-src.tar.bz2)
-   #sha256sums=('a104b2266675a3ea3c7b98aab7b075a351d813ea29098504031a62f365e5a0fc')
+   #sha256sums=('0f75f4551357a19200d14aa4df69755291a9db1b6fd49ab7ac51fd795c0a87e2')
    source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/gottcode/xfce4-whiskermenu-plugin/archive/$_snapshot.tar.gz")
-   sha256sums=('12e8db2d28eee5af6d7fcf77b417ff7bf71e7c73554237af19cf36a947b90055')
+   sha256sums=('35cec67058fc6614971a343fb0a6e8b63e94e55107da741ac017196734948318')
 fi
 
 #pkgver() {
 #  cd ${srcdir}/${pkgname} > /dev/null
 #  if [ "$_git" == "yes" ]; then
-#     echo 1.3.0.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+#     echo 1.4.0.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
 #  else
 #     echo "$pkgver"
 #  fi
 #}
+
+prepare() {
+  if [ "$_git" == "yes" ]; then
+     cd ${srcdir}/${pkgname}
+  elif [ -e ${srcdir}/${pkgname}-${pkgver} ]; then
+     cd ${srcdir}/${pkgname}-${pkgver}
+  else
+     cd ${srcdir}/${pkgname}-${_snapshot}
+  fi
+  sed -i -e 's|tag "git"|tag ""|g' CMakeLists.txt
+}
 
 build() {
   if [ "$_git" == "yes" ]; then
