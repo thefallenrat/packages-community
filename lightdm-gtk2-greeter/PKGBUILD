@@ -1,0 +1,33 @@
+# Contributor: Alucryd  <alucryd at gmail dot com>
+
+# Contributor: Rob McCathie <rob@manjaro.org>
+## We will go back to the Arch package once 1.8.6 is released. This is temporary
+
+pkgname=lightdm-gtk2-greeter
+pkgver=1.8.5.git
+pkgrel=1
+epoch=1
+pkgdesc='GTK+ greeter for LightDM'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/lightdm-gtk-greeter'
+license=('GPL3' 'LGPL3')
+depends=('gtk2' 'lightdm')
+makedepends=('exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection' 'intltool')
+backup=('etc/lightdm/lightdm-gtk-greeter.conf')
+install='lightdm-gtk-greeter.install'
+source=("lightdm-gtk-greeter-1.8.5.git.tgz::http://bazaar.launchpad.net/~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk/tarball/288")
+# stupid launchpad, we still have to SKIP even when we want a specific commit
+sha256sums=('SKIP')
+
+build() {
+  cd "~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk"
+
+  ./autogen.sh --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --libexecdir='/usr/lib/lightdm' --disable-static --with-gtk2
+  make
+}
+
+package() {
+  cd "~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk"
+
+  make DESTDIR="${pkgdir}" install
+}
