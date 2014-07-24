@@ -1,10 +1,11 @@
 # Maintainer: Philip Mueller <philm|at|manjaro|dot|org>
+# Contributor: Rob McCathie <rob@manjaro.org>
 # Contributor: Graeme Gott <graeme@gottcode.org>
 # Contributor: Diego Principe <cdprincipe@at@gmail@dot@com>
 
 pkgname=xfce4-whiskermenu-plugin
 pkgver=1.4.0
-pkgrel=2
+pkgrel=2.1
 pkgdesc="Alternate Xfce menu"
 arch=('i686' 'x86_64')
 url="http://gottcode.org/${pkgname}/"
@@ -55,7 +56,7 @@ build() {
   else
      cd ${srcdir}/${pkgname}-${_snapshot}
   fi
-  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib
   make
 }
 
@@ -68,8 +69,4 @@ package() {
      cd ${srcdir}/${pkgname}-${_snapshot}
   fi
   make install DESTDIR=${pkgdir}
-  
-  if [ "${CARCH}" = "x86_64" ]; then
-    mv ${pkgdir}/usr/lib64 ${pkgdir}/usr/lib
-  fi
 }
