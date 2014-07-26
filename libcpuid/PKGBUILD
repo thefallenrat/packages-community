@@ -11,7 +11,7 @@ url="https://github.com/eloaders/libcpuid"
 license=('BSD-2-Clause')
 makedepends=('git')
 depends=('glibc')
-provides=('libcpuid')
+conflicts=('libcpuid')
 source=("git://github.com/eloaders/${_pkgname}.git")
 sha256sums=('SKIP')
 

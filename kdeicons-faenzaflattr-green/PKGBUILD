@@ -1,0 +1,20 @@
+# Installation script for FaenzaFlattr icon theme
+# Author: tago - http://kde-look.org/usermanager/search.php?username=tago
+# Merge Flattr with FaenzaFlattr-Green and fixed missing symlinks FadeMind <fademind@gmail.com>
+
+pkgname=kdeicons-faenzaflattr-green
+pkgver=1.2pre2
+pkgrel=1
+pkgdesc="FaenzaFlattr Icons"
+arch=('any')
+url="http://kde-look.org/content/show.php/FaenzaFlattr?content=164770"
+license=('CCPL')
+depends=('kdebase-workspace')
+source=("$pkgname-$pkgver.tar.gz::https://copy.com/3ceTQMAknduH/FaenzaFlattr-Green.tar.gz?download=1")
+md5sums=('bc684926ec4bb873065add568f6e3df9')
+
+package() {
+   cd $startdir/src/FaenzaFlattr-Green
+   install -dm755  $pkgdir/usr/share/icons/FaenzaFlattr-Green
+   cp -rf  * $pkgdir/usr/share/icons/FaenzaFlattr-Green
+} 

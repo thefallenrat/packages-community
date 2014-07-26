@@ -3,7 +3,7 @@
 
 pkgname=kdeicons-faenzaflattr
 pkgver=1.0.9
-pkgrel=1
+pkgrel=2
 pkgdesc="FaenzaFlattr Icons"
 arch=('any')
 url="http://kde-look.org/content/show.php/FaenzaFlattr?content=164770"
@@ -18,4 +18,6 @@ package() {
    cd $startdir/src/FaenzaFlattr
    install -dm755  $pkgdir/usr/share/icons/FaenzaFlattr
    cp -rf  * $pkgdir/usr/share/icons/FaenzaFlattr
+   # fix small issue with kate
+   ln -s document-open.svg $pkgdir/usr/share/icons/FaenzaFlattr/actions/scalable/project-open.svg
 }

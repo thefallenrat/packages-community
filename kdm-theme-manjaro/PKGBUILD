@@ -1,0 +1,18 @@
+# Artworks:  tulliana <sonageldik@gmail.com>
+
+pkgname=kdm-theme-manjaro-style
+pkgver=1.0
+pkgrel=1
+pkgdesc="Manjaro Style KDM"
+arch=('any')
+url="http://bilgegunluk.com"
+license=('CCPL')
+depends=('kdebase-workspace')
+source=("$pkgname-$pkgver.tar.gz::https://copy.com/haji4pDgdLRk/manjaro-style-kdm.tar.gz?download=1")
+md5sums=('21e92ef06c5792dc551bc4b04fcfb005')
+
+package() {
+   cd $startdir/src/manjaro-style-kdm
+   install -dm755  $pkgdir/usr/share/apps/kdm/themes/manjaro-style-kdm
+   cp -rf  * $pkgdir/usr/share/apps/kdm/themes/manjaro-style-kdm
+}
