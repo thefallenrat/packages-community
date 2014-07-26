@@ -3,4 +3,4 @@ theme="compiz-xfce-greybird"
 titlebar-uses-system-font=true
 
 [org.mate.session.required-components]
-windowmanager=compiz
+windowmanager="compiz"
