@@ -12,7 +12,7 @@ source=("$pkgname-$pkgver.tar.gz::https://copy.com/haji4pDgdLRk/manjaro-style-kd
 md5sums=('21e92ef06c5792dc551bc4b04fcfb005')
 
 package() {
-   cd $startdir/src/manjaro-style-kdm
+   cd $srcdir/manjaro-style-kdm
    install -dm755  $pkgdir/usr/share/apps/kdm/themes/manjaro-style-kdm
    cp -rf  * $pkgdir/usr/share/apps/kdm/themes/manjaro-style-kdm
 }

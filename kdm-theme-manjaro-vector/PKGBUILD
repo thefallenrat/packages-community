@@ -12,7 +12,7 @@ source=("$pkgname-$pkgver.tar.gz::https://copy.com/RlHvIFGWdfB3/manjaro-vector-k
 sha1sums=('1b4852369e9f8b5e7350bd4ff1ce36ca88a3629b')
 
 package() {
-   cd $startdir/src/manjaro-vector-kdm
+   cd $srcdir/manjaro-vector-kdm
    install -dm755  $pkgdir/usr/share/apps/kdm/themes/manjaro-vector-kdm
    cp -rf  * $pkgdir/usr/share/apps/kdm/themes/manjaro-vector-kdm
 }

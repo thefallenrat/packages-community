@@ -15,7 +15,7 @@ source=("$pkgname-$pkgver.tar.gz::https://drive.google.com/uc?export=download&id
 sha1sums=('13634a4964dc0c086cb908870c7ddb4efffd6d4d')
 
 package() {
-   cd $startdir/src/FaenzaFlattr
+   cd $srcdir/FaenzaFlattr
    install -dm755  $pkgdir/usr/share/icons/FaenzaFlattr
    cp -rf  * $pkgdir/usr/share/icons/FaenzaFlattr
    # fix small issue with kate

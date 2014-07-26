@@ -12,7 +12,7 @@ source=("$pkgname-$pkgver.tar.gz::https://copy.com/zmeWwip8hqJ7/kadu-theme-faenz
 md5sums=('5a2d452678aa42674623a14d35e4f2e4')
 
 package() {
-   cd $startdir/src/faenza
+   cd $srcdir/faenza
    install -dm755  $pkgdir/usr/share/kadu/themes/icons/faenza/
    cp -rf  * $pkgdir/usr/share/kadu/themes/icons/faenza/
 }

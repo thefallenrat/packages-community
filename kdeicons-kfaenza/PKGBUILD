@@ -17,7 +17,7 @@ source=("$pkgname-$pkgver.tar.gz::https://copy.com/X9JtbVJw9o1d/KFaenza.tar.gz?d
 md5sums=('fde139b08ba6116c3cfa011bc5c09fdb')
 
 package() {
-   cd $startdir/src/KFaenza
+   cd $srcdir/KFaenza
    install -dm755  $pkgdir/usr/share/icons/KFaenza
    cp -rf  * $pkgdir/usr/share/icons/KFaenza
 }

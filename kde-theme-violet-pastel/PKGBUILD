@@ -13,7 +13,7 @@ source=("https://copy.com/haP0cfmsd7TW/VioletPastel.tar.gz?download=1")
 md5sums=('d53a38784adf81318497f0cb7700a391')
 
 package() {
-   cd $startdir/src/VioletPastel
+   cd $srcdir/VioletPastel
    install -dm755  $pkgdir/usr/share/apps/desktoptheme/VioletPastel
    cp -rf  * $pkgdir/usr/share/apps/desktoptheme/VioletPastel
 }
