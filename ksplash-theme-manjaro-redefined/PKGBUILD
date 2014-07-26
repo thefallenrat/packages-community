@@ -3,7 +3,7 @@
 
 pkgname=ksplash-theme-manjaro-redefined
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Manjaro Redefined KSplash based on QML by Nowardev."
 arch=('any')
 license=('GPL')
@@ -15,6 +15,7 @@ md5sums=('SKIP')
   
 package() {
   cd $srcdir
-  mkdir -p $pkgdir/usr/share/apps/ksplash/Themes/manjaro-redefined
-  cp -R Manjaro-Redefined-Splash-$pkgver/* $pkgdir/usr/share/apps/ksplash/Themes/manjaro-redefined
+  mkdir -p $pkgdir/usr/share/apps/ksplash/Themes/Manjaro-Redefined
+  cp -R Manjaro-Redefined-Splash-$pkgver/* $pkgdir/usr/share/apps/ksplash/Themes/Manjaro-Redefined
+  sed -i -e 's|-Splash-1.0||g' $pkgdir/usr/share/apps/ksplash/Themes/Manjaro-Redefined/Theme.rc
 }
