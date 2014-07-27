@@ -28,7 +28,7 @@ post_install() {
 #    echo ""
 
      echo ""
-     echo "***  Xfce (and MATE) users just log out  ***"
+     echo "***  Xfce and MATE users just log out    ***"
      echo "***  and back in, Compiz will autostart  ***"
      echo ""
 }
@@ -62,6 +62,8 @@ post_remove() {
     sed -i 's|compiz|xfwm4|' /home/*/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml 2>/dev/null
     rm /home/*/.config/autostart/compiz-xfce-autostart.desktop 2>/dev/null
     rm /home/*/.config/autostart/compiz-manjaro-decoratortheme.desktop 2>/dev/null
+    # MATE initial decoration fix removal
+    rm /home/*/.config/autostart/compiz-manjaro-mate-decoratortheme.desktop 2>/dev/null
   
     echo ""
     echo "**                     XFCE USERS                           **"  

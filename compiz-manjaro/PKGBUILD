@@ -6,7 +6,7 @@ _name=compiz
 pkgname=compiz-manjaro
 _series=0.9.11
 pkgver=${_series}.2
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${_name}"
@@ -29,6 +29,8 @@ source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         "compiz-xfce-autostart.desktop"
         "${pkgname}-decoratortheme"
         "${pkgname}-decoratortheme.desktop"
+        "${pkgname}-mate-decoratortheme"
+        "${pkgname}-mate-decoratortheme.desktop"
         "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.2.2.tar.gz")
 sha1sums=('fe94f4ee392c187679791ffeddc55fb155353f9e'
           '6b8e92ee404601b63ab7847e12232c27c2542891'
@@ -37,11 +39,13 @@ sha1sums=('fe94f4ee392c187679791ffeddc55fb155353f9e'
           'e49fce49c309bb899d51323ae48596ea1304cde7'
           '42558bc1a2ce9e0ba5d8677f7827b7195ede4835'
           '6a8f9f30becdc0713f1da0b8a1105295f1014dc2'
-          '9b3dd487e9142e826848dc6b5d95a98fbb648f3c'
+          'f7e1544f8e6987f86c1b2c3e69b70d2accf95bc9'
           'd55d2efd6e90b237e779ca5a636550d48fb380e1'
           'a790b6556695b06af4eff910e7dc409aab85f9a8'
           '36b8c620e00cfd7d9099c02589cab6906f483e53'
           '56146a4fc169f46504eaa86ca240de34c4bb1fd8'
+          '8eff3fedffb543960ebfc19b15e95d7f7a90ee50'
+          '890b02696130b8275104aaea110b9beb3a162dce'
           '57a827b34b58f03e692262a6746b394cb70149dc')
 install="${pkgname}.install"
 

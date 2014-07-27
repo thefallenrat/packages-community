@@ -7,4 +7,5 @@ Exec=compiz-gtk-decorator-theme-selector
 Terminal=false
 Type=Application
 Categories=Compiz;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-OtherSettings;
+NotShowIn=MATE;
 StartupNotify=true
