@@ -6,8 +6,8 @@ _name=compiz
 pkgname=compiz-manjaro
 _series=0.9.11
 pkgver=${_series}.2
-pkgrel=2
-pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce."
+pkgrel=3
+pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce & MATE."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${_name}"
 license=('GPL' 'LGPL' 'MIT')
@@ -37,7 +37,7 @@ sha1sums=('fe94f4ee392c187679791ffeddc55fb155353f9e'
           'be585a68eacf93a1064ea914a927623c3e774b95'
           'b74ab025a89419c23d6f01c41e414281e1a2382f'
           'e49fce49c309bb899d51323ae48596ea1304cde7'
-          '42558bc1a2ce9e0ba5d8677f7827b7195ede4835'
+          '531e915869fe058fb05f2dfbfe5e7ffe7aedc86e'
           '6a8f9f30becdc0713f1da0b8a1105295f1014dc2'
           'f7e1544f8e6987f86c1b2c3e69b70d2accf95bc9'
           'd55d2efd6e90b237e779ca5a636550d48fb380e1'
@@ -129,8 +129,8 @@ package() {
   install -Dm644 "${srcdir}/compiz-xfce-autostart.desktop" "${pkgdir}/etc/xdg/autostart/compiz-xfce-autostart.desktop"
   install -Dm755 "${srcdir}/${pkgname}-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-decoratortheme"
   install -Dm644 "${srcdir}/${pkgname}-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-decoratortheme.desktop"
-  install -Dm755 "${srcdir}/${pkgname}-mate-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-decoratortheme"
-  install -Dm644 "${srcdir}/${pkgname}-mate-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-decoratortheme.desktop"
+  install -Dm755 "${srcdir}/${pkgname}-mate-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-mate-decoratortheme"
+  install -Dm644 "${srcdir}/${pkgname}-mate-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-mate-decoratortheme.desktop"
   
   # greybird window decorations
   cd "${srcdir}/Greybird-1.2.2"
