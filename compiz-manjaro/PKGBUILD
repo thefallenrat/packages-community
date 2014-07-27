@@ -6,7 +6,7 @@ _name=compiz
 pkgname=compiz-manjaro
 _series=0.9.11
 pkgver=${_series}.2
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce & MATE."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${_name}"
@@ -15,7 +15,7 @@ depends=('boost' 'xorg-server' 'libxcomposite' 'startup-notification' 'librsvg' 
 makedepends=('cmake' 'intltool')
 #optdepends=()
 conflicts=('compiz' 'compiz09-manjaro-test' 'compiz-core-bzr' 'compiz-core-devel' 'compiz-core' 'compiz-gtk-standalone' 'compiz-xfce' 'compiz-mate' 'compiz-core-mate' 'compiz-fusion-plugins-main' 'compiz-fusion-plugins-extra' 'compiz-fusion-plugins-unsupported' 'compiz-decorator-gtk' 'compiz-decorator-kde' 'libcompizconfig' 'compizconfig-python' 'compizconfig-backend-gconf' 'compiz-bcop' 'ccsm')
-#replaces=('compiz09-manjaro-test')
+replaces=('compiz09-manjaro-test')
 provides=("${_name}=${pkgver}" "${_name}-core=${pkgver}")
 source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         'place-plugin-fix.patch'
@@ -27,17 +27,21 @@ source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         'compiz-gtk-decorator-theme.desktop'
         'compiz-xfce-autostart'
         'compiz-xfce-autostart.desktop'
+        'compiz-manjaro-decoratortheme'
+        'compiz-manjaro-decoratortheme.desktop'
         "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.2.2.tar.gz")
 sha1sums=('fe94f4ee392c187679791ffeddc55fb155353f9e'
           '6b8e92ee404601b63ab7847e12232c27c2542891'
           'be585a68eacf93a1064ea914a927623c3e774b95'
           'b74ab025a89419c23d6f01c41e414281e1a2382f'
-          'c43284dd8102a46a7b57d19a28dd54ccd04b57a9'
+          'ea13a95b79ffa7777a0c4a27f21522ba4d99cb76'
           '42558bc1a2ce9e0ba5d8677f7827b7195ede4835'
           '6a8f9f30becdc0713f1da0b8a1105295f1014dc2'
           '9b3dd487e9142e826848dc6b5d95a98fbb648f3c'
           'd55d2efd6e90b237e779ca5a636550d48fb380e1'
           'a790b6556695b06af4eff910e7dc409aab85f9a8'
+          'cc5656388aca65bd577bf28fdfffd2b0bb30543f'
+          '992ec9d8622c413c0ad196f3e268ed3dba8a6997'
           '57a827b34b58f03e692262a6746b394cb70149dc')
 install="${pkgname}.install"
 
@@ -116,9 +120,11 @@ package() {
   # Install GWD theme selector app
   install -Dm755 "${srcdir}/compiz-gtk-decorator-theme-selector" "${pkgdir}/usr/bin/compiz-gtk-decorator-theme-selector"
   install -Dm644 "${srcdir}/compiz-gtk-decorator-theme.desktop" "${pkgdir}/usr/share/applications/compiz-gtk-decorator-theme.desktop"
-  # Place autostart enablers/scripts
+  # Place autostart/theme scripts/enablers
   install -Dm755 "${srcdir}/compiz-xfce-autostart" "${pkgdir}/usr/bin/compiz-xfce-autostart"
   install -Dm644 "${srcdir}/compiz-xfce-autostart.desktop" "${pkgdir}/etc/xdg/autostart/compiz-xfce-autostart.desktop"
+  install -Dm755 "${srcdir}/compiz-manjaro-decoratortheme" "${pkgdir}/usr/bin/compiz-manjaro-decoratortheme"
+  install -Dm644 "${srcdir}/compiz-manjaro-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/compiz-manjaro-decoratortheme.desktop"
   
   # greybird window decorations
   cd "${srcdir}/Greybird-1.2.2"

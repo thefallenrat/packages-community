@@ -1,6 +1,6 @@
 diff -Naur a/metadata/core.xml.in b/metadata/core.xml.in
 --- a/metadata/core.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/metadata/core.xml.in	2014-07-27 03:19:53.670379101 +1000
++++ b/metadata/core.xml.in	2014-07-27 03:19:53.670379000 +1000
 @@ -210,7 +210,7 @@
  			<option name="window_menu_button" type="button">
  			<_short>Window Menu</_short>
@@ -29,7 +29,7 @@ diff -Naur a/metadata/core.xml.in b/metadata/core.xml.in
  			</option>
 diff -Naur a/plugins/animation/animation.xml.in b/plugins/animation/animation.xml.in
 --- a/plugins/animation/animation.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/plugins/animation/animation.xml.in	2014-07-27 03:41:50.306685380 +1000
++++ b/plugins/animation/animation.xml.in	2014-07-27 03:41:50.306685000 +1000
 @@ -168,7 +168,7 @@
  	    <extensible/>
  	    <sort start="2"/>
@@ -68,7 +68,7 @@ diff -Naur a/plugins/animation/animation.xml.in b/plugins/animation/animation.xm
            <option name="unminimize_matches" type="list">
 diff -Naur a/plugins/composite/composite.xml.in b/plugins/composite/composite.xml.in
 --- a/plugins/composite/composite.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/plugins/composite/composite.xml.in	2014-07-27 01:51:41.805532230 +1000
++++ b/plugins/composite/composite.xml.in	2014-07-27 01:51:41.805532000 +1000
 @@ -24,7 +24,7 @@
  	    <option name="unredirect_fullscreen_windows" type="bool">
  		<_short>Unredirect Fullscreen Windows</_short>
@@ -80,7 +80,16 @@ diff -Naur a/plugins/composite/composite.xml.in b/plugins/composite/composite.xm
  		<_short>Unredirect Match</_short>
 diff -Naur a/plugins/expo/expo.xml.in b/plugins/expo/expo.xml.in
 --- a/plugins/expo/expo.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/plugins/expo/expo.xml.in	2014-07-27 03:20:52.933695562 +1000
++++ b/plugins/expo/expo.xml.in	2014-07-27 04:59:34.462145712 +1000
+@@ -25,7 +25,7 @@
+ 		<option name="expo_key" type="key">
+ 		    <_short>Expo Key</_short>
+ 		    <_long>Initiate or terminate Expo mode with this keyboard shortcut.</_long>
+-		    <default>&lt;Super&gt;e</default>
++		    <default></default>
+ 		</option>
+ 		<option name="expo_button" type="button">
+ 		    <_short>Expo Button</_short>
 @@ -80,7 +80,7 @@
  		<option name="zoom_time" type="float">
  		    <_short>Animation Duration</_short>
@@ -101,7 +110,7 @@ diff -Naur a/plugins/expo/expo.xml.in b/plugins/expo/expo.xml.in
  			<_short>Ground Color (near)</_short>
 diff -Naur a/plugins/grid/grid.xml.in b/plugins/grid/grid.xml.in
 --- a/plugins/grid/grid.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/plugins/grid/grid.xml.in	2014-07-27 03:27:59.003574710 +1000
++++ b/plugins/grid/grid.xml.in	2014-07-27 03:27:59.003574000 +1000
 @@ -566,16 +566,16 @@
  		<option name="animation_duration" type="int">
  			<_short>Preview Animation Duration</_short>
@@ -138,7 +147,7 @@ diff -Naur a/plugins/grid/grid.xml.in b/plugins/grid/grid.xml.in
  		</option>
 diff -Naur a/plugins/resize/resize.xml.in b/plugins/resize/resize.xml.in
 --- a/plugins/resize/resize.xml.in	2014-07-23 23:27:59.000000000 +1000
-+++ b/plugins/resize/resize.xml.in	2014-07-27 04:35:29.389117864 +1000
++++ b/plugins/resize/resize.xml.in	2014-07-27 04:35:29.389117000 +1000
 @@ -17,7 +17,7 @@
  		<option name="initiate_button" type="button">
  		    <_short>Initiate Window Resize</_short>
