@@ -16,7 +16,7 @@ makedepends=('cmake' 'intltool')
 #optdepends=()
 conflicts=('compiz' 'compiz09-manjaro-test' 'compiz-core-bzr' 'compiz-core-devel' 'compiz-core' 'compiz-gtk-standalone' 'compiz-xfce' 'compiz-mate' 'compiz-core-mate' 'compiz-fusion-plugins-main' 'compiz-fusion-plugins-extra' 'compiz-fusion-plugins-unsupported' 'compiz-decorator-gtk' 'compiz-decorator-kde' 'libcompizconfig' 'compizconfig-python' 'compizconfig-backend-gconf' 'compiz-bcop' 'ccsm')
 replaces=('compiz09-manjaro-test')
-provides=("${_name}=${pkgver}" "${_name}-core=${pkgver}")
+provides=("${_name}=${pkgver}" "${_name}-core=${pkgver}" "${_name}-devel=${pkgver}" "${_name}-core-devel=${pkgver}")
 source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         "place-plugin-fix.patch"
         "set-gwd-default.patch"
@@ -129,6 +129,8 @@ package() {
   install -Dm644 "${srcdir}/compiz-xfce-autostart.desktop" "${pkgdir}/etc/xdg/autostart/compiz-xfce-autostart.desktop"
   install -Dm755 "${srcdir}/${pkgname}-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-decoratortheme"
   install -Dm644 "${srcdir}/${pkgname}-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-decoratortheme.desktop"
+  install -Dm755 "${srcdir}/${pkgname}-mate-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-decoratortheme"
+  install -Dm644 "${srcdir}/${pkgname}-mate-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-decoratortheme.desktop"
   
   # greybird window decorations
   cd "${srcdir}/Greybird-1.2.2"
