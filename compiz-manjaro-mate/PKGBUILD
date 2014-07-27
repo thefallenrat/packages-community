@@ -3,11 +3,11 @@
 # Contributor: Iven Hsu <ivenvd AT gmail>
 
 _name=compiz
-pkgname=compiz-manjaro
+pkgname=compiz-manjaro-mate
 _series=0.9.11
 pkgver=${_series}.2
 pkgrel=1
-pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce."
+pkgdesc="OpenGL compositing window manager. Includes friendly defaults and autostart for MATE."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${_name}"
 license=('GPL' 'LGPL' 'MIT')
@@ -15,7 +15,6 @@ depends=('boost' 'xorg-server' 'libxcomposite' 'startup-notification' 'librsvg' 
 makedepends=('cmake' 'intltool')
 #optdepends=()
 conflicts=('compiz' 'compiz09-manjaro-test' 'compiz-core-bzr' 'compiz-core-devel' 'compiz-core' 'compiz-gtk-standalone' 'compiz-xfce' 'compiz-mate' 'compiz-core-mate' 'compiz-fusion-plugins-main' 'compiz-fusion-plugins-extra' 'compiz-fusion-plugins-unsupported' 'compiz-decorator-gtk' 'compiz-decorator-kde' 'libcompizconfig' 'compizconfig-python' 'compizconfig-backend-gconf' 'compiz-bcop' 'ccsm')
-replaces=('compiz09-manjaro-test')
 provides=("${_name}=${pkgver}" "${_name}-core=${pkgver}")
 source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         "place-plugin-fix.patch"
@@ -23,26 +22,16 @@ source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         "focus-prevention-disable.patch"
         "${pkgname}-defaults.patch"
         "${pkgname}.gschema.override"
-        "compiz-gtk-decorator-theme-selector"
-        "compiz-gtk-decorator-theme.desktop"
-        "compiz-xfce-autostart"
-        "compiz-xfce-autostart.desktop"
         "${pkgname}-decoratortheme"
-        "${pkgname}-decoratortheme.desktop"
-        "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.2.2.tar.gz")
+        "${pkgname}-decoratortheme.desktop")
 sha1sums=('fe94f4ee392c187679791ffeddc55fb155353f9e'
           '6b8e92ee404601b63ab7847e12232c27c2542891'
           'be585a68eacf93a1064ea914a927623c3e774b95'
           'b74ab025a89419c23d6f01c41e414281e1a2382f'
-          'e49fce49c309bb899d51323ae48596ea1304cde7'
-          '42558bc1a2ce9e0ba5d8677f7827b7195ede4835'
-          '6a8f9f30becdc0713f1da0b8a1105295f1014dc2'
-          '9b3dd487e9142e826848dc6b5d95a98fbb648f3c'
-          'd55d2efd6e90b237e779ca5a636550d48fb380e1'
-          'a790b6556695b06af4eff910e7dc409aab85f9a8'
-          '36b8c620e00cfd7d9099c02589cab6906f483e53'
-          '56146a4fc169f46504eaa86ca240de34c4bb1fd8'
-          '57a827b34b58f03e692262a6746b394cb70149dc')
+          '7f562edcbf65c72a91eb9e31386bf9382ff6b2b2'
+          'e00e66eb4e2f36fe7cf0b61e057a6d36d2a4786e'
+          '8eff3fedffb543960ebfc19b15e95d7f7a90ee50'
+          '890b02696130b8275104aaea110b9beb3a162dce')
 install="${pkgname}.install"
 
 prepare() {
@@ -112,26 +101,11 @@ package() {
   # Remove GConf schemas
   rm -rv "${pkgdir}/usr/share/gconf/"
   
-  ## Manjaro stuff
-  # Add Manjaro dconf/gsettings schema override file
+  ## Manjaro-MATE stuff
+  # Add Manjaro-MATE dconf/gsettings schema override file
   install -Dm644 "${srcdir}/${pkgname}.gschema.override" "${pkgdir}/usr/share/glib-2.0/schemas/${pkgname}.gschema.override"
-  # Make ccsm icon appear in Xfce settings manager
-  sed -i 's|Categories=Compiz;Settings;DesktopSettings;|Categories=Compiz;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-OtherSettings;|' "${pkgdir}/usr/share/applications/ccsm.desktop"
-  # Install GWD theme selector app
-  install -Dm755 "${srcdir}/compiz-gtk-decorator-theme-selector" "${pkgdir}/usr/bin/compiz-gtk-decorator-theme-selector"
-  install -Dm644 "${srcdir}/compiz-gtk-decorator-theme.desktop" "${pkgdir}/usr/share/applications/compiz-gtk-decorator-theme.desktop"
-  # Place autostart/theme scripts/enablers
-  install -Dm755 "${srcdir}/compiz-xfce-autostart" "${pkgdir}/usr/bin/compiz-xfce-autostart"
-  install -Dm644 "${srcdir}/compiz-xfce-autostart.desktop" "${pkgdir}/etc/xdg/autostart/compiz-xfce-autostart.desktop"
+  # Place initial decoration fix
   install -Dm755 "${srcdir}/${pkgname}-decoratortheme" "${pkgdir}/usr/bin/${pkgname}-decoratortheme"
   install -Dm644 "${srcdir}/${pkgname}-decoratortheme.desktop" "${pkgdir}/etc/xdg/autostart/${pkgname}-decoratortheme.desktop"
-  
-  # greybird window decorations
-  cd "${srcdir}/Greybird-1.2.2"
-  mkdir -p "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
-  cp LICENSE* "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
-  cp -r metacity-1/ "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
-  rm "${pkgdir}/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-3.xml"
-  sed -i 's|Greybird|compiz-xfce-greybird|' "${pkgdir}/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-2.xml"
 }
 

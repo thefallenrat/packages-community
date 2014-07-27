@@ -2,10 +2,10 @@
 Encoding=UTF-8
 Version=0.9.4
 Type=Application
-Name=Compiz-Xfce autostart enabler
+Name=Compiz-Manjaro-MATE decorator theme enabler
 Comment=
-Exec=compiz-xfce-autostart
-OnlyShowIn=XFCE;
+Exec=compiz-manjaro-mate-decoratortheme
+OnlyShowIn=MATE;
 StartupNotify=false
 Terminal=false
 Hidden=false
