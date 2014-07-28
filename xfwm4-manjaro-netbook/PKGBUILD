@@ -5,12 +5,11 @@ pkgname=xfwm4-manjaro-netbook
 _pkgname=xfwm4-titleless-dev
 _name=${_pkgname%-*}
 pkgver=4.11.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Xfce window manager with hide title on maximized features, corner tiling and fixes"
 arch=('i686' 'x86_64')
 url="https://github.com/cedl38/xfwm4-titleless"
 license=('GPL2')
-groups=('xfce4')
 depends=('libxfce4ui>=4.11.0' 'libwnck' 'hicolor-icon-theme')
 optdepends=('xfce4-windowck-plugin: to put the maximized window title on the panel.')
 makedepends=('intltool' 'xfce4-dev-tools' 'exo')
