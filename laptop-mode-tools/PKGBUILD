@@ -4,7 +4,8 @@
 
 pkgname=laptop-mode-tools
 pkgver=1.65
-pkgrel=1
+pkgrel=2
+gitver=ad323f37b22ef0088dd687e0af040afe309e2dcb
 pkgdesc='A kernel mode that allows you to extend the battery life of your laptop'
 arch=('any')
 url='http://www.samwel.tk/laptop_mode/'
@@ -46,11 +47,13 @@ backup=('etc/laptop-mode/conf.d/ac97-powersave.conf'
         'etc/laptop-mode/laptop-mode.conf'
         'etc/laptop-mode/lm-profiler.conf')
 install=laptop-mode.install
-source=("http://www.samwel.tk/laptop_mode/tools/downloads/${pkgname}_${pkgver}.tar.gz")
-md5sums=('6441d6e0264be9888d84d08a9b24b12c')
+#source=("http://www.samwel.tk/laptop_mode/tools/downloads/${pkgname}_${pkgver}.tar.gz")
+#md5sums=('6441d6e0264be9888d84d08a9b24b12c')
+source=("$pkgname_$pkgver.tar.gz::https://github.com/rickysarraf/laptop-mode-tools/archive/$gitver.tar.gz")
+sha256sums=('SKIP')
 
 package() {
-	cd "${pkgname}_${pkgver}"
+	cd "${pkgname}-${gitver}"
 	make DESTDIR="${pkgdir}" MAN_D=/usr/share/man LIB_D=/usr/lib install
 	# use bin instead of sbin
 	mv "${pkgdir}/usr/sbin" "${pkgdir}/usr/bin"

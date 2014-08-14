@@ -2,53 +2,51 @@
 # Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Contributor: Krzysztof Raczkowski <raczkow@gmail.com>
 
-pkgname=open-vm-tools
-epoch=4
-pkgver=9.4.6
-_pkgsubver=1770165
+pkgbase=open-vm-tools
+pkgname=('open-vm-tools' 'open-vm-tools-dkms')
+epoch=3
+pkgver=2013.09.16
+_pkgsubver=1328054
 pkgrel=1
 pkgdesc="The Open Virtual Machine Tools (open-vm-tools) are the open source implementation of VMware Tools"
 arch=('i686' 'x86_64')
 url="http://open-vm-tools.sourceforge.net/"
 license=('LGPL')
-depends=('libdnet' 'icu' 'procps-ng' 'uriparser' 'libsigc++' 'libxss'
-         'iproute2' 'fuse' 'lsb-release')
+depends=('libdnet' 'icu' 'procps-ng' 'uriparser' 'libsigc++' 'libxss' 'iproute2')
 makedepends=('chrpath' 'doxygen' 'gtkmm' 'fuse' 'libxtst')
-optdepends=('gtkmm: DnD/CP plugin'
-	    'libxtst: DnD/CP, resolution set plugins'
+optdepends=('gtkmm' 'libnotify' 'libxtst' 'fuse' 'libsm'
+	    'open-vm-tools-modules: for linux kernel'
+	    'open-vm-tools-dkms: for linux-lts and other kernels'
 	    'netctl: suspend-resume network state'
 	    'networkmanager: suspend-resume network state')
 backup=('etc/pam.d/vmware-guestd')
-options=('docs')
+options=('docs' '!libtool')
 install=$pkgname.install
-
-source=(http://downloads.sourceforge.net/$pkgname/$pkgname-${pkgver}-${_pkgsubver}.tar.gz
+#source=(http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver-${_pkgsubver}.tar.gz
+source=("http://downloads.sourceforge.net/project/open-vm-tools/open-vm-tools/Development%20Snapshots/open-vm-tools-$pkgver-${_pkgsubver}.tar.gz"
 	network-script
 	tools.conf
-	vmtoolsd.service
 	vmware-guestd
 	xautostart.conf
-	)
-
-sha256sums=('54d7a83d8115124e4b809098b08d7017ba50828801c2f105cdadbc85a064a079'
-            'c4add159c534384eb07e5e9a0694a60c253341916eca928f85e75f77c95d2e95'
-            'f39403b884d897933d43cdd1093f308016963cf08162b21717240e37f7fd02ab'
-            '5a9403f78356873258521644068f2c9639b994d5954e5ad953934136822b2689'
-            '53dbc915fb145fd8fbabe0b8be6c5bc25bfc9f40e1be28740fdc0b8e99889b26'
-            '6ca56abad77f7d7c0507f2eb5cfb7bdfb14f34f2d392816fb7b384520f12436f')
-
+	modprobe.conf
+	vmtoolsd.service)
+md5sums=('66c63d2d447b3a91303f996372ebda71'
+         'e307f5201b2b3fe79c9e2b410d02b989'
+         'b55d15e2c4be396aad709aeca91033d3'
+         '1b9ae908fce4c623269f100ee9bdfdef'
+         '75a25d83417e683957321f97a00f8465'
+         'bc5518489077e91655489bd04b868584'
+         'a6c53243d31c765580f6dded7d5fa98f')
 
 build() {
   cd "$srcdir/$pkgname-${pkgver}-${_pkgsubver}"
-  autoreconf -i
   export CFLAGS="-DGLIB_DISABLE_DEPRECATION_WARNINGS ${CFLAGS}"
-  export CUSTOM_PROCPS_NAME="procps"
   sed -i 's|-Werror||g' configure{,.ac}
-  ./configure --prefix=/usr --without-kernel-modules --sbindir=/usr/bin
+  [ -f Makefile ] || CUSTOM_PROCPS_NAME="procps" ./configure --prefix=/usr --without-kernel-modules --sbindir=/usr/bin
   make
 }
 
-package() {
+package_open-vm-tools() {
   cd "$srcdir/$pkgname-${pkgver}-${_pkgsubver}"
 
   make install DESTDIR="$pkgdir"
@@ -75,4 +73,20 @@ package() {
   install -Dm644 ${srcdir}/vmtoolsd.service ${pkgdir}/usr/lib/systemd/system/vmtoolsd.service
 
   rm -f $pkgdir/etc/vmware-tools/scripts/vmware/*.orig
+}
+
+package_open-vm-tools-dkms() {
+  pkgdesc="kernel modules for the open source implementation of VMware Tools"
+  depends=('dkms')
+  provides=('open-vm-tools-modules')
+  conflicts=('open-vm-tools-modules')
+  optdepends=()
+  backup=()
+  install=open-vm-tools-dkms.install
+
+  install -d -m755 ${pkgdir}/usr/src/
+  sh ${srcdir}/open-vm-tools-${pkgver}-${_pkgsubver}/modules/linux/dkms.sh \
+	${srcdir}/open-vm-tools-${pkgver}-${_pkgsubver}/ \
+	${pkgdir}/usr/src/
+  install -Dm644 ${srcdir}/modprobe.conf ${pkgdir}/usr/lib/modprobe.d/${pkgname}.conf
 }
