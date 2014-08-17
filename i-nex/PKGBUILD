@@ -1,44 +1,46 @@
-# Maintainer : Philip Müller <philm@manjaro.org>
+# Maintainer: eloaders <eloaders at linux dot pl>
 
 pkgname=i-nex
-_prgname=I-Nex
-pkgver=7.2.1.1
-gitver=50c949ed309471650e8054f7aab64610c5afa85a
+pkgver=7.4.0
 pkgrel=1
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
-url="https://github.com/eloaders/I-Nex"
+url="http://i-nex.linux.pl/"
 license=('LGPL3')
-depends=('gambas3-runtime' 'gambas3-gb-image' 'gambas3-gb-form'
-         'gambas3-gb-desktop' 'gambas3-gb-settings' 'gambas3-gb-qt4'
-         'gambas3-gb-form-stock' 'python2' 'libcpuid' 'procps-ng'
-         'xorg-server-utils' 'lsb-release' 'curl' 'mesa-demos')
-makedepends=('gambas3-devel' 'gcc' 'imagemagick')
+depends=('gambas3-runtime' 
+	 'gambas3-gb-image' 
+	 'gambas3-gb-form'
+         'gambas3-gb-desktop'
+         'gambas3-gb-qt4'
+         'python2' 
+         'libcpuid'
+         'xorg-server-utils' 
+         'lsb-release' 
+         'curl'
+	 'procps-ng')
+makedepends=('gambas3-devel' 'gcc' 'imagemagick' 'git')
+source=($pkgname::'git://github.com/eloaders/I-Nex.git')
+sha256sums=('SKIP')
 provides=('i-nex-git' 'i-nex-bzr' 'i-nex-dev')
 conflicts=('i-nex-git' 'i-nex-bzr' 'i-nex-dev')
-source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/eloaders/I-Nex/archive/${gitver}.tar.gz")
-sha256sums=('5075d38770e3bf18bfa10b73f24387d1e85f4820490652ba064b194d09ed5b4f')
-
 prepare() {
-  cd "${srcdir}/${_prgname}-${gitver}"
+  cd $pkgname
   sed -i 's|python3$|python2|' pastebinit
   # make it dynamic
   sed -i -e 's|^STATIC.*|STATIC = false|' i-nex.mk
   cd I-Nex
   autoreconf -i
 }
-
-
+ 
 build() {
-  cd "${srcdir}/${_prgname}-${gitver}"
+  cd $pkgname
   cd I-Nex
   ./configure --prefix=/usr
   cd ..
   make
 }
-
+ 
 package() {
-  cd "${srcdir}/${_prgname}-${gitver}"
-  mkdir -p "$pkgdir"/usr/bin
+  cd $pkgname
   make install DESTDIR="$pkgdir"
 }
