@@ -3,7 +3,7 @@
 
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier')
-pkgver=0.4.1
+pkgver=0.4.2
 pkgrel=1
 pkgdesc="A pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ optdepends=('kdesu: for KDE'
             'pacmanlogviewer: to view pacman log files'
             'pkgfile: to view uninstalled pkg contents in Manjaro Linux')
 _git=No
-_snapshot=cfa8111533ed86d092629325a700139d3a2ccd64
+_snapshot=0cd9398b838ed38944a60619c6939a372a728728
 
 if [ "$_git" == "Yes" ]; then
    source=(git+http://github.com/aarnt/octopi.git)
@@ -28,7 +28,7 @@ else
    #source=("octopi-$pkgver.tar.gz::https://github.com/aarnt/octopi/archive/v$pkgver.tar.gz")
    #sha256sums=('07021763c99dff8f1d986622f510ce040448c8f1e88ca615ae3e0a60f44e2dfd')
    source=("octopi-$pkgver-$pkgrel.tar.gz::https://github.com/aarnt/octopi/archive/$_snapshot.tar.gz")
-   sha256sums=('72094a91b4f134eeac0b2ce82037fa43eb2c4d9196d05248612af014348b7d99')
+   sha256sums=('373f383b27071f8153245a5b3884eb01c13caaa5d215662bb1b32d238c6e3e1f')
 fi
 
 pkgver() {
@@ -43,9 +43,9 @@ pkgver() {
    fi
    if [ "$_git" == "Yes" ]; then
       #echo "`git tag | tail -1 | sed 's|v||g'`.`git describe --always`"
-      #echo "0.4.1.$(date +%m%d).`git describe --always`"
-      #echo "0.4.1$(git describe --tags | sed 's|v||g' | sed 's|-|.|g')"
-      echo 0.4.1.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+      #echo "0.4.2.$(date +%m%d).`git describe --always`"
+      #echo "0.4.2$(git describe --tags | sed 's|v||g' | sed 's|-|.|g')"
+      echo 0.4.2.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
    else
       echo "$pkgver"
    fi
