@@ -1,0 +1,19 @@
+# Maintainer: tnaker
+# X11 Mouse Theme
+
+pkgname=xcursor-breeze
+pkgver=1.0
+pkgrel=1
+pkgdesc="KDE5 cursor theme"
+url="http://kde-look.org/content/show.php/Breeze?content=165371"
+depends=('libxcursor')
+license=('GPL')
+arch=(any)
+source=("http://kde-look.org/CONTENT/content-files/165371-Breeze.tar.gz")
+
+package() {
+  mkdir -p ${pkgdir}/usr/share/icons
+  cp -R ${srcdir}/Breeze ${pkgdir}/usr/share/icons/
+}
+
+md5sums=('7deef9ac1572296be2050e467830f1bd') 

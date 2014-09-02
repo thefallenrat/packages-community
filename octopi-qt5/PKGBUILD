@@ -4,7 +4,7 @@
 pkgbase=octopi
 pkgname=('octopi-qt5' 'octopi-qt5-notifier')
 pkgver=0.4.2
-pkgrel=2
+pkgrel=3
 pkgdesc="A pacman frontend using Qt5 libs"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
@@ -16,11 +16,11 @@ optdepends=('kdesu: for KDE'
             'gnome-keyring: for password management'
             'yaourt: for AUR support'
             'octopi-qt5-notifier: for notifications'
-            'pacmanlogviewer: to view pacman log files'
-            'pkgfile: to view uninstalled pkg contents in Manjaro Linux')
+            'pacmanlogviewer: to view pacman log files')
+            #'pkgfile: to view uninstalled pkg contents in Manjaro Linux')
 conflicts=('octopi')
 _git=No
-_snapshot=0cd9398b838ed38944a60619c6939a372a728728
+_snapshot=897245766dc411a8646a0821da298ef657f97d30
 
 if [ "$_git" == "Yes" ]; then
    source=(git+http://github.com/aarnt/octopi.git)
@@ -29,12 +29,8 @@ else
    #source=("octopi-$pkgver.tar.gz::https://github.com/aarnt/octopi/archive/v$pkgver.tar.gz")
    #sha256sums=('07021763c99dff8f1d986622f510ce040448c8f1e88ca615ae3e0a60f44e2dfd')
    source=("octopi-$pkgver-$pkgrel.tar.gz::https://github.com/aarnt/octopi/archive/$_snapshot.tar.gz")
-   sha256sums=('373f383b27071f8153245a5b3884eb01c13caaa5d215662bb1b32d238c6e3e1f')
+   sha256sums=('919e7e789d02ed002673ce8e0dee5e19a2072197fdafec38739b5105a2b96e1b')
 fi
-
-source+=('kf5.patch')
-sha256sums+=('3e729704cf4a28629f09e45aacb3f10500851a0e897fbf6e23b7533d4ea764cf')
-
 
 pkgver() {
    if [ -e "$srcdir/$pkgbase-$pkgver" ]; then
@@ -54,20 +50,7 @@ pkgver() {
    else
       echo "$pkgver"
    fi
-   sed -i -e "s|0.4.2 (dev)|$pkgver|g" src/strconstants.h 
-}
-
-prepare() {
-   if [ -e "$srcdir/$pkgbase-$pkgver" ]; then
-      cd "$srcdir/$pkgbase-$pkgver"
-   elif [ -e "$srcdir/$pkgbase-$_snapshot" ]; then
-      cd "$srcdir/$pkgbase-$_snapshot"
-   elif [ -e "$srcdir/$pkgbase" ]; then
-      cd "$srcdir/$pkgbase"
-   elif [ -e "$srcdir/$pkgbase.git" ]; then
-      cd "$srcdir/$pkgbase.git"
-   fi
-   patch -Np1 -i ${srcdir}/kf5.patch
+   sed -i -e "s|0.5.0 (dev)|$pkgver|g" src/strconstants.h 
 }
 
 build() {

@@ -1,20 +1,20 @@
-# Maintainer: FadeMind <fademind@gmail.com>
+# Maintainer: FadeMind <fademind at gmail.com>
 
 pkgname=kdeicons-faenzaflattr-green
-pkgver=1.4.2
+pkgver=1.4.4
 pkgrel=1
-_git=d9a1aae5cb03d4c2f1ca8feb1d576cdd75d655f9
+_git=f9cbbdf1ce0c05ad2e533508d6aa014e099dfcd0
 pkgdesc="A mix of Faenza and Flattr icon theme. Green variant."
 arch=('any')
 url="https://github.com/fademind/faenzaflattr-green"
 license=('CCPL')
 optdepends=('kdebase-workspace: for KDE4'
-            'plasma-workspace: for KF5')
+             'plasma-workspace: for KF5')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/fademind/faenzaflattr-green/archive/$_git.tar.gz")
 sha256sums=('SKIP')
 
 package() {
-   cd faenzaflattr-green-$_git
-   install -dm755  $pkgdir/usr/share/icons/FaenzaFlattr-Green
-   cp -rf  * $pkgdir/usr/share/icons/FaenzaFlattr-Green
+    cd faenzaflattr-green-$_git
+    install -dm755 $pkgdir/usr/share/icons/FaenzaFlattr-Green
+    cp -rf  * $pkgdir/usr/share/icons/FaenzaFlattr-Green
 }
