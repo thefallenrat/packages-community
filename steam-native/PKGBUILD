@@ -2,7 +2,7 @@
 # Maintainer: Alexandru Ianu <alexandru.ianu@gmail.com>
 pkgname=steam-native
 pkgver=1.0.0.48
-pkgrel=9
+pkgrel=10
 pkgdesc="Sets a native runtime environment for Steam by default, adds a Steam runtime launcher for compatibility."
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -14,7 +14,7 @@ depends=('steam' 'libindicator-gtk2' 'libindicator-gtk3')
 
 if [[ "$CARCH" == "i686" ]]; then
 	depends+=('libxinerama' 'pango' 'openal' 'gtk2' 'dbus-glib' 'libusb' 'networkmanager' 'libnl' 'polkit' 'pam' 'cracklib' 'libtirpc' 'js17' 'libpng12' 'libgcrypt15' 'systemd' 'gconf' 'libappindicator' 'nss')
-	optdepends=('sdl' 'sdl2' 'sdl2_image' 'tcp_wrappers')
+	optdepends=('sdl' 'sdl2' 'sdl2_image' 'tcp_wrappers'  'speex')
 	provides=('libudev.so.0')
 	conflicts=('chromium-browser-bin' 'libudev.so.0')
 
