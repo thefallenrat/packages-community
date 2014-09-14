@@ -2,7 +2,7 @@
 
 pkgname=tox
 _gitname='ProjectTox-Qt-GUI'
-pkgver=0.1.0.0830.14a73cc
+pkgver=0.1.0.140915.fcc07a8
 pkgrel=1
 pkgdesc="FOSS instant messaging application aimed to replace Skype (GUI)"
 arch=('i686' 'x86_64')
@@ -20,17 +20,21 @@ md5sums=('SKIP'
 _gitroot='https://github.com/irungentoo/ProjectTox-Core.git'
 _gitname2='ProjectTox-Core'
 
+prepare() {
+  cd "$_gitname"
+  git checkout e8f89109ec4
+  git submodule update --init --recursive
+}
+
 pkgver() {
   cd $_gitname
-  echo "0.1.0.$(date +%m%d).`git describe --always | sed 's/-/./g'`"
+  echo "0.1.0.$(date +%y%m%d).`git describe --always | sed 's/-/./g'`"
   # when we reach 0.1.1
   #echo 0.1.1.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
 }
 
 build() {
 	cd "$_gitname"
-
-    git submodule update --init --recursive
 
 	if [[ -d build ]]; then
 		rm -rf build
