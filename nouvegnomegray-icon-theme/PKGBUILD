@@ -1,23 +1,26 @@
-# Maintainer: Rob McCathie <rob@manjaro.org>
+# AUR package maintainer: 3V0LU710N <db_eee at yahoo dot com>
 
 pkgname=nouvegnomegray-icon-theme
-pkgver=20140227
+pkgver=20140319
 pkgrel=1
-pkgdesc="nouveGnomeGray is a light gray icon set for GNOME, to be used with dark GTK themes"
+pkgdesc="nouveGnomeGray is a gray icon set made for dark GTK themes."
 arch=('any')
-url="http://tsujan.deviantart.com/art/nouveGnomeGray-300365158"
-license=("CCPL:cc-by-nc-sa")
-#depends=('')
-#makedepends=('')
-#optdepends=('')
-#conflicts=('')
-#provides=('')
-#replaces=('')
-#install="$pkgname".install
-source=("http://fc00.deviantart.net/fs70/f/2014/057/0/c/nouvegnomegray_by_tsujan-d4ytv8m.7z")
-sha1sums=('aab12d4c1170d9215c42ce1bdbf225789b38ac44')
+makedepends=('p7zip')
+optdepends=('gnome-icon-theme: GNOME icon theme')
+url="http://gnome-look.org/content/show.php/nouveGnome?content=125474"
+license=('GPL')
+source=('http://fc01.deviantart.net/fs70/f/2014/077/6/2/nouvegnomegray_by_tsujan-d4ytv8m.7z')
+md5sums=('f5c21522f88cecf45b31b007f69cdd9b')
 
-package() {
-  mkdir -p "$pkgdir"/usr/share/icons
-  cp -r "$srcdir"/nouveGnomeGray "$pkgdir"/usr/share/icons
+build()
+{
+ echo "Building Package..."
+}
+
+package()
+{
+ cd "$srcdir"
+ install -d "${pkgdir}/usr/share/icons/"
+ cp -rf "nouveGnomeGray" "${pkgdir}/usr/share/icons/" || return 1
+ find -type f -print0 | xargs -0 chmod 644
 }
