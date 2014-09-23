@@ -3,8 +3,8 @@
 
 pkgbase=octopi
 pkgname=('octopi-qt5' 'octopi-qt5-notifier')
-pkgver=0.4.2
-pkgrel=4
+pkgver=0.4.2.1
+pkgrel=1
 pkgdesc="A pacman frontend using Qt5 libs"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
@@ -20,7 +20,7 @@ optdepends=('kdesu: for KDE'
             #'pkgfile: to view uninstalled pkg contents in Manjaro Linux')
 conflicts=('octopi')
 _git=No
-_snapshot=ab036cc13e50cc226cb8b63498e8ec5403dd8adc
+_snapshot=5415835d760583f47aa33817449250d930d6e75e
 
 if [ "$_git" == "Yes" ]; then
    source=(git+http://github.com/aarnt/octopi.git)
