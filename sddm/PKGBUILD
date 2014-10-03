@@ -1,39 +1,45 @@
+# Maintainer : Philip Müller <philm@manjaro.org>
+
 pkgname=sddm
-pkgver=0.1.0
+pkgver=0.9.0+git20141003.ef14018
+_pkgver=0.9.0
 pkgrel=1
 pkgdesc="QML based X11 display manager"
 arch=('i686' 'x86_64')
-backup=('etc/sddm.conf')
+backup=('etc/sddm.conf' "usr/share/sddm/scripts/Xsetup")
 url="http://github.com/sddm/sddm"
 license=('GPL')
-depends=('upower' 'qt4' 'libxcb')
-makedepends=('cmake' 'git')
-
-source=(git://github.com/sddm/sddm.git 'default.png' 'root.png' 'sddm.pam')
+depends=("qt5-declarative" "upower")
+makedepends=("git" "cmake" "qt5-tools" "python-docutils")
+conflicts=('sddm-qt5')
+install=sddm.install
+source=(git://github.com/sddm/sddm.git 'sddm.conf')
+#source=(https://github.com/sddm/sddm/archive/v$pkgver.tar.gz 'sddm.conf')
 sha256sums=(SKIP
-            5e0d00e5431eccc2b7d4865324662cb2498ff3f748fbe421fdf0ec557c1cfb85
-            802b04637361148637223aac4cd50dbf0cdc17373d22d0e7b94e8841a9279d89
-            808f09654694b9da52901b646065cfb217801cdbbdfeebc1a287e748ef11bf40)
+            9a307e8fe6275180e7fb46a18c8b74358016fa7af31a35c6c618b05b9ce171f5)
 
 pkgver() {
-    cd $pkgname
-    printf "$pkgver+git`date +%Y%m%d`.%s" "$(git rev-parse --short HEAD)"
+	cd "$srcdir/sddm"
+	printf "$_pkgver+git`date +%Y%m%d`.$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd $pkgname &&
-  mkdir -p build &&
-  cd build &&
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DQT_QMAKE_EXECUTABLE=qmake-qt4 &&
-  make
+	cd "$srcdir"
+	mkdir -p build
+
+	cd build
+	cmake ../sddm \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/sddm \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DBUILD_MAN_PAGES=ON \
+		-DUSE_QT5=true
+	make
 }
 
 package() {
-  cd $pkgname/build &&
-  make DESTDIR="$pkgdir" install
-  echo "These files are created by Miguel Casas." > "$pkgdir"/usr/share/apps/sddm/faces/README
-  cp "$srcdir"/root.png "$pkgdir"/usr/share/apps/sddm/faces/root.face.icon
-  cp "$srcdir"/default.png "$pkgdir"/usr/share/apps/sddm/faces/default.face.icon
-  install -m644 $srcdir/sddm.pam $pkgdir/etc/pam.d/sddm
+	cd "$srcdir/build"
+	make DESTDIR="$pkgdir" install
+	install -m644 $srcdir/sddm.conf $pkgdir/etc/sddm.conf
+	install -d -g 136 -o 136 ${pkgdir}/var/lib/sddm
 }
-
