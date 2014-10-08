@@ -1,32 +1,32 @@
-# Maintainer: Miles Sandlar <miles at userbound.com>
+# Maintainer: Alexandru Ianu <alexandru@manjaro.org>
 pkgname=bar-aint-recursive
-pkgver=20130227
+pkgdesc='A lightweight xcb based bar'
+pkgver=20141008
 pkgrel=1
-pkgdesc='bar aint recursive by the LemonBoy. A lightweight xcb based bar.'
-arch=('i686' 'x86_64')
+license='MIT/X11'
 url='https://github.com/LemonBoy/bar'
-license=('MIT')
+source=("bar-git::git+${url}.git")
+sha512sums=('SKIP')
+arch=('x86_64' 'i686')
 depends=('libxcb')
-makedepends=('git')
+makedepends=('perl')
+options=('strip' 'zipman')
 provides=('bar')
 conflicts=('bar')
-_gitroot=https://github.com/LemonBoy/bar.git
-_gitname=bar
 
-build() {
-  cd "$srcdir"
-  if [ -d "$_gitname" ]; then
-    cd "$_gitname" && git pull origin
-  else
-    git clone "$_gitroot" "$_gitname"
-  fi
-  
-  cd "$srcdir/${_gitname}"
-  make
+pkgver () {
+	cd "${pkgname}"
+	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
 }
 
-package() {
-  cd "$srcdir/${_gitname}"
-  make PREFIX="/usr" DESTDIR="$pkgdir" install
-  install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+build () {
+	cd "${pkgname}"
+	make
+	make doc
+}
+
+package () {
+	cd "${pkgname}"
+	install -Dm755 bar "${pkgdir}/usr/bin/bar"
+	install -Dm644 bar.1 "${pkgdir}/usr/share/man/man1/bar.1"
 }

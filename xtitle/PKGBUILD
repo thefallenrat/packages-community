@@ -1,0 +1,29 @@
+# Maintainer: Alexandru Ianu <alexandru@manjaro.org>
+
+pkgname=xtitle
+pkgver=20141008
+pkgrel=1
+pkgdesc='Outputs X window titles'
+arch=('i686' 'x86_64')
+url="https://github.com/baskerville/${pkgname}"
+license=('custom:Unlicense')
+depends=('libxcb' 'xcb-util' 'xcb-util-wm')
+makedepends=('git')
+source=("git://github.com/baskerville/${pkgname}.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$pkgname"
+    git rev-list --count HEAD
+}
+
+build() {
+    cd "$srcdir/$pkgname"
+    make PREFIX=/usr
+}
+
+package() {
+    cd "$srcdir/$pkgname"
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
