@@ -14,10 +14,10 @@ options=('strip' 'zipman')
 provides=('bar')
 conflicts=('bar')
 
-pkgver () {
-	cd "${pkgname}"
-	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
-}
+#pkgver () {
+#	cd "${pkgname}"
+#	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+#}
 
 build () {
 	cd "${pkgname}"
