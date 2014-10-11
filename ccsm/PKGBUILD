@@ -8,7 +8,7 @@
 
 pkgname=ccsm
 pkgver=0.8.4.git
-pkgrel=1
+pkgrel=2
 pkgdesc="Compizconfig Settings Manager in Python2"
 arch=('any')
 url="http://opencompositing.org"
