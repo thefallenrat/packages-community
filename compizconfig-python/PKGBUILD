@@ -7,12 +7,12 @@
 
 pkgname=compizconfig-python
 pkgver=0.8.4.git
-pkgrel=1
+pkgrel=2
 pkgdesc="Compizconfig bindings for python"
 arch=('i686' 'x86_64')
 url="http://opencompositing.org"
 license=('GPL')
-depends=('compiz-core' 'libcompizconfig' 'glib2' 'python2' 'libxrandr')
+depends=('compiz-core' 'libcompizconfig' 'glib2' 'python2' 'libxrandr' 'libxdamage' 'libxslt' 'libsm')
 makedepends=('intltool' 'pkgconfig' 'pyrex')
 conflicts=('compizconfig-python-git')
 source=("http://cgit.compiz.org/compiz/compizconfig/compizconfig-python/snapshot/compizconfig-python-7d36bcb9d0c44bf1bfc905e60f809934fdee840d.tar.bz2")
