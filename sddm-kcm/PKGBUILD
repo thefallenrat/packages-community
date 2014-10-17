@@ -1,17 +1,17 @@
 # Maintainer : Philip Müller <philm@manjaro.org>
 pkgname=sddm-kcm
-pkgver=0.1.0.r85.7ff17b2
+pkgver=0.1.0.r97.e70dc43
 _pkgver=0.1.0
 pkgrel=1
 pkgdesc="SDDM configuration module for KDE"
 arch=('i686' 'x86_64')
 url="https://github.com/sddm/sddm-kcm"
 license=("GPL")
-depends=('kcoreaddons' 'sddm' 'ki18n' 'kxmlgui' 'kauth' 'kdelibs4support' 'libx11' 'libxcb' 'libxcursor')
+depends=('sddm' 'kdelibs4support' 'libxcursor')
 makedepends=('git' 'extra-cmake-modules' 'kdoctools' 'qt5-tools')
 conflicts=('sddm-kcm' 'kf5-sddm-kcm')
 replaces=('kf5-sddm-kcm')
-source=('git://github.com/sddm/sddm-kcm.git')
+source=('git://anongit.kde.org/sddm-kcm')
 md5sums=('SKIP')
 
 pkgver() {
