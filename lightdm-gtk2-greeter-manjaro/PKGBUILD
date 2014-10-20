@@ -4,12 +4,12 @@
 _name=lightdm-gtk2-greeter
 pkgname=lightdm-gtk2-greeter-manjaro
 pkgver=1.8.6
-pkgrel=1
+pkgrel=2
 pkgdesc='GTK2 greeter for LightDM with Manjaro customisations'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/lightdm-gtk-greeter'
 license=('GPL3' 'LGPL3')
-depends=('gtk2' 'lightdm' 'menda-themes' 'cantarell-fonts')
+depends=('gtk2' 'lightdm' 'menda-themes' 'cantarell-fonts' 'faenza-green-icon-theme')
 makedepends=('exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection' 'intltool')
 conflicts=("${_name}")
 provides=("${_name}=${pkgver}")
