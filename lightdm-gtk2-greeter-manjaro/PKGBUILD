@@ -1,0 +1,47 @@
+# Maintainer : Rob McCathie <rob@manjaro.org>
+# Contributor: Alucryd  <alucryd at gmail dot com>
+
+_name=lightdm-gtk2-greeter
+pkgname=lightdm-gtk2-greeter-manjaro
+pkgver=1.8.6
+pkgrel=1
+pkgdesc='GTK2 greeter for LightDM with Manjaro customisations'
+arch=('i686' 'x86_64')
+url='https://launchpad.net/lightdm-gtk-greeter'
+license=('GPL3' 'LGPL3')
+depends=('gtk2' 'lightdm' 'menda-themes' 'cantarell-fonts')
+makedepends=('exo' 'gnome-common' 'gnome-doc-utils' 'gobject-introspection' 'intltool')
+conflicts=("${_name}")
+provides=("${_name}=${pkgver}")
+backup=('etc/lightdm/lightdm-gtk-greeter.conf')
+install="${_name}.install"
+source=("${_name}-${pkgver}.tgz::http://bazaar.launchpad.net/~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk/tarball/299"
+        'panel-at-bottom-option.patch'
+        'lightdm-gtk-greeter.conf'
+        'manjaro-lightdm-gtk-greeter.jpg')
+# stupid launchpad, we still have to SKIP even when we want a specific commit
+sha1sums=('SKIP'
+          '38d5a8defefe99ad2bd06ae31e6b015fcd12cf4c'
+          '18df512d667d5cdc10d4fb1192812bf8b8cc36cc'
+          '3bcfb57e7411f5a9023396f853f480ee6812ce27')
+
+prepare() {
+  cd "~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk"
+
+  patch -p1 -i "${srcdir}/panel-at-bottom-option.patch"
+}
+
+build() {
+  cd "~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk"
+
+  ./autogen.sh --prefix='/usr' --sbindir='/usr/bin' --sysconfdir='/etc' --libexecdir='/usr/lib/lightdm' --disable-static --with-gtk2
+  make
+}
+
+package() {
+  cd "~lightdm-gtk-greeter-team/lightdm-gtk-greeter/trunk"
+
+  make DESTDIR="${pkgdir}" install
+  install -Dm644 "${srcdir}/lightdm-gtk-greeter.conf" "${pkgdir}/etc/lightdm/lightdm-gtk-greeter.conf"
+  install -Dm644 "${srcdir}/manjaro-lightdm-gtk-greeter.jpg" "${pkgdir}/usr/share/backgrounds/lightdm/manjaro-lightdm-gtk-greeter.jpg"
+}
