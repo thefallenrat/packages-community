@@ -1,0 +1,28 @@
+diff -Naur a/src/lightdm-gtk-greeter.c b/src/lightdm-gtk-greeter.c
+--- a/src/lightdm-gtk-greeter.c	2014-10-20 18:16:01.000000000 +1100
++++ b/src/lightdm-gtk-greeter.c	2014-10-20 18:49:51.916240000 +1100
+@@ -108,10 +108,11 @@
+ 
+ /* Function translate user defined coordinates to absolute value */
+ static gint get_absolute_position (const DimensionPosition *p, gint screen, gint window);
+-static const WindowPosition WINDOW_POS_CENTER   = {.x = { 50, +1, TRUE,   0}, .y = { 50, +1, TRUE,   0}};
+-static const WindowPosition WINDOW_POS_TOP_LEFT = {.x = {  0, +1, FALSE, -1}, .y = {  0, +1, FALSE, -1}};
+-static const WindowPosition ONBOARD_WINDOW_POS  = {.x = { 50, +1, TRUE,   0}, .y = {  0, -1, FALSE, +1}};
+-static const WindowPosition ONBOARD_WINDOW_SIZE = {.x = {610,  0, FALSE,  0}, .y = {210,  0, FALSE,  0}};
++static const WindowPosition WINDOW_POS_CENTER      = {.x = { 50, +1, TRUE,   0}, .y = { 50, +1, TRUE,   0}};
++static const WindowPosition WINDOW_POS_TOP_LEFT    = {.x = {  0, +1, FALSE, -1}, .y = {  0, +1, FALSE, -1}};
++static const WindowPosition WINDOW_POS_BOTTOM_LEFT = {.x = {  0, +1, FALSE, -1}, .y = {100, +1, TRUE,  -1}};
++static const WindowPosition ONBOARD_WINDOW_POS     = {.x = { 50, +1, TRUE,   0}, .y = {  0, -1, FALSE, +1}};
++static const WindowPosition ONBOARD_WINDOW_SIZE    = {.x = {610,  0, FALSE,  0}, .y = {210,  0, FALSE,  0}};
+ static WindowPosition main_window_pos;
+ static WindowPosition panel_window_pos;
+ 
+@@ -2942,7 +2943,7 @@
+ 
+         g_free (value);
+     }
+-    panel_window_pos = WINDOW_POS_TOP_LEFT;
++    panel_window_pos = WINDOW_POS_BOTTOM_LEFT;
+ 
+     gtk_builder_connect_signals(builder, greeter);
+ 
