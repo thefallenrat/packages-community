@@ -6,17 +6,16 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier')
 pkgver=0.5.0
-pkgrel=0.1
-# This is the release package so the below _git variable should (usually) be commented out.
-_git=16bb4cb5f74b6ea03e5f1cafd882a24907869a79
+pkgrel=0.2
+# This is the release package so the below _gitcommit variable should (usually) be commented out.
+_gitcommit=16bb4cb5f74b6ea03e5f1cafd882a24907869a79
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
-install=octopi.install
 makedepends=('qt5-declarative')
 
-if [ "${_git}" != "" ]; then
-  source=("https://github.com/aarnt/octopi/archive/${_git}.tar.gz")
+if [ "${_gitcommit}" != "" ]; then
+  source=("https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
 else
   source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
@@ -24,8 +23,8 @@ fi
 sha256sums=('66d1c1bf4d34c5ac4ba5be0738e0cee3fbf975bbc16e7836cbdf5955dc176398')
 
 build() {
-  if [ "${_git}" != "" ]; then
-    cd "${srcdir}/octopi-${_git}"
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/octopi-${_gitcommit}"
   else
     cd "${srcdir}/octopi-${pkgver}"
   fi
@@ -52,15 +51,17 @@ build() {
 
 package_octopi() {
   pkgdesc="A powerful Pacman frontend using Qt5 libs"
+  install="octopi.install"
   depends=('qt5-declarative' 'hicolor-icon-theme' 'desktop-file-utils' 'xterm')
   optdepends=('kdesu: for KDE'
               'gksu: for XFCE, Gnome, LXDE, Cinnamon'
               'gnome-keyring: for password management'
               'yaourt: for AUR support'
               'octopi-notifier: for notifications')
+  replaces=('octopi-qt5')
 
-  if [ "${_git}" != "" ]; then
-    cd "${srcdir}/octopi-${_git}"
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/octopi-${_gitcommit}"
   else
     cd "${srcdir}/octopi-${pkgver}"
   fi
@@ -89,9 +90,10 @@ package_octopi-notifier() {
   pkgdesc="Notifier for Octopi"
   depends=('octopi' 'libnotify')
   optdepends=('xfce4-notifyd: for notifications in XFCE')
+  replaces=('octopi-qt5-notifier')
 
-  if [ "${_git}" != "" ]; then
-    cd "${srcdir}/octopi-${_git}"
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/octopi-${_gitcommit}"
   else
     cd "${srcdir}/octopi-${pkgver}"
   fi
