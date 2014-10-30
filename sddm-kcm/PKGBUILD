@@ -1,6 +1,6 @@
 # Maintainer : Philip Müller <philm@manjaro.org>
 pkgname=sddm-kcm
-pkgver=0.1.0.r97.e70dc43
+pkgver=0.1.0.r115.9681f2f
 _pkgver=0.1.0
 pkgrel=1
 pkgdesc="SDDM configuration module for KDE"
