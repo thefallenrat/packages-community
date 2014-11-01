@@ -1,7 +1,7 @@
 # Maintainer: Joshua Strot <joshua@manjaro.org>
 pkgname=turbulence
-pkgver=0.3.5
-pkgrel=2
+pkgver=0.3.6
+pkgrel=1
 pkgdesc="System configurer at boot for KDE and OpenBox."
 url="http://manjaro.org"
 depends=('python' 'python-pyqt5' 'pyqt5-common' 'qt5-base' 'wmctrl' 'libxkbcommon-x11')
@@ -13,16 +13,16 @@ license=('GPL')
 arch=('any')
 
 _git="no"
-_snapshot=a819fb8a9d008fe477f1ac0b57d22ab9160096be
+_snapshot=19aee002b6b69ad99979152f303e24cc70a46637
 
 if [ "$_git" == "yes" ]; then
     source=(git+http://github.com/manjaro/turbulence.git)
     sha256sums=('SKIP')
 else
-    source=("turbulence-$pkgver.tar.gz::http://github.com/manjaro/turbulence/archive/v$pkgver.tar.gz")
-    sha256sums=('5c947d824160ae63815e6fd4a59b89b26b1bcd25ce6792b435fb482d15985549')
-    #source=("turbulence-$pkgver.zip::http://github.com/manjaro/turbulence/archive/$_snapshot.zip")
-    #sha256sums=('3e0137c1614ee84dd8dc756ea8324eb978f35fdcbcb3ede56113975df85bcf94')
+    #source=("turbulence-$pkgver.tar.gz::http://github.com/manjaro/turbulence/archive/v$pkgver.tar.gz")
+    #sha256sums=('5c947d824160ae63815e6fd4a59b89b26b1bcd25ce6792b435fb482d15985549')
+    source=("turbulence-$pkgver.zip::http://github.com/manjaro/turbulence/archive/$_snapshot.zip")
+    sha256sums=('SKIP')
 fi
 
 build() {
@@ -34,8 +34,8 @@ build() {
         _dir="$srcdir/$pkgname"
         cd $_dir
     fi
-    if [ -e "$srcdir/$pkgname.git" ]; then
-        _dir="$srcdir/$pkgname.git"
+    if [ -e "$srcdir/$pkgname-$_snapshot" ]; then
+        _dir="$srcdir/$pkgname-$_snapshot"
         cd $_dir
     fi
     if [ -e "$srcdir/$pkgname-$pkgver" ]; then
@@ -55,8 +55,8 @@ package() {
         _dir="$srcdir/$pkgname"
         cd $_dir
     fi
-    if [ -e "$srcdir/$pkgname.git" ]; then
-        _dir="$srcdir/$pkgname.git"
+    if [ -e "$srcdir/$pkgname-$_snapshot" ]; then
+        _dir="$srcdir/$pkgname-$_snapshot"
         cd $_dir
     fi
     if [ -e "$srcdir/$pkgname-$pkgver" ]; then

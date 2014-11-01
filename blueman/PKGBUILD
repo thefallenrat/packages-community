@@ -1,11 +1,9 @@
-# Maintainer: Martin Wimpress <code@flexion.org>
-
-_ver=1.2.3
+_ver=1.9.9
 _pkgname=blueman
 pkgname=${_pkgname}
-pkgver=1.2.3.20140421.3f44bf5
+pkgver=1.9.9.20141005.873022f
 pkgrel=1
-pkgdesc="A GTK+ Bluetooth Manager (BlueZ 5)"
+pkgdesc="A GTK+ Bluetooth Manager (BlueZ 5) - git"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/blueman-project/blueman"
@@ -14,9 +12,9 @@ depends=('bluez' 'dbus-glib' 'gconf' 'gtk3' 'notification-daemon'
          'python2-gobject' 'python2-pybluez' 'startup-notification')
 optdepends=('dnsmasq: DHCP server for Network Access Point'
             'pulseaudio: for some audio support')
-makedepends=('git' 'intltool' 'libtool' 'pyrex')
-provides=("${_pkgname}-bluez5-git=$pkgver")
-conflicts=("${_pkgname}-bluez5-git")
+makedepends=('cython2' 'git' 'intltool' 'libtool')
+conflicts=("${_pkgname}-git" 'blueman-bzr')
+provides='blueman'
 source=("${pkgname}"::"git+https://github.com/blueman-project/${_pkgname}.git")
 sha1sums=('SKIP')
 install=${_pkgname}.install
@@ -38,7 +36,9 @@ prepare() {
 
 build() {
     cd "${srcdir}/${pkgname}"
-    PYTHON=/usr/bin/python2 ./configure \
+    export PYTHON=/usr/bin/python2
+    export CYTHONEXEC=/usr/bin/cython2
+    ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
         --libexecdir=/usr/lib/${_pkgname} \

@@ -1,7 +1,7 @@
 # Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
 pkgname=budgie-desktop
 pkgver=7
-pkgrel=2
+pkgrel=3
 pkgdesc="Simple GTK3 desktop experience"
 arch=('i686' 'x86_64')
 url="http://evolve-os.com/"
