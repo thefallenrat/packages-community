@@ -4,14 +4,14 @@
 pkgbase=faenzaflattr-icon-theme
 pkgname=(faenzaflattr-icon-theme faenzaflattr-black-icon-theme faenzaflattr-darkdecoration-icon-theme faenzaflattr-darkplasma-icon-theme faenzaflattr-green-icon-theme faenzaflattr-grey-icon-theme)
 _pkgname=FaenzaFlattr
-pkgver=1.2.2
+pkgver=1.2.3
 pkgrel=1
 pkgdesc="FaenzaFlattr icon theme for KDE"
 url="http://kde-look.org/content/show.php/FaenzaFlattr?content=164770"
 license=('CCPL:by-nc-sa')
 arch=('any')
 source=("${_pkgname}_${pkgver}.7z::https://drive.google.com/uc?export=download&id=0BwlW9hKxf1tUYlNOajVFdEtnN1k")
-md5sums=('07698997d7090b961d399752896306ed')
+sha256sums=('4325379bad16d9fbf3486c71d8e85b0e83508774d3961ca07f77daf2171f76f6')
 options=(!strip)
 
 package_faenzaflattr-icon-theme() {
@@ -22,7 +22,6 @@ package_faenzaflattr-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}/LICENSE
   cp -r $srcdir/${_pkgname} $pkgdir/usr/share/icons/
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}/apps/scalable/cmake.svg
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
@@ -33,7 +32,6 @@ package_faenzaflattr-black-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}-Black/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}-Black/LICENSE
   cp -r $srcdir/${_pkgname}-Black $pkgdir/usr/share/icons/
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}-Black/apps/scalable/cmake.svg  
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
@@ -44,7 +42,6 @@ package_faenzaflattr-darkdecoration-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}-DarkDecoration/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}-DarkDecoration/LICENSE
   cp -r $srcdir/${_pkgname}-DarkDecoration $pkgdir/usr/share/icons/
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}-DarkDecoration/apps/scalable/cmake.svg
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
@@ -55,9 +52,6 @@ package_faenzaflattr-darkplasma-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}-DarkPlasma/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}-DarkPlasma/LICENSE  
   cp -r $srcdir/${_pkgname}-DarkPlasma $pkgdir/usr/share/icons/
-  rm $pkgdir/usr/share/icons/${_pkgname}-DarkPlasma/categories/scalable/prefernces-system-network.svg  
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}-DarkPlasma/apps/scalable/cmake.svg 
-  ln -f -s ../../apps/scalable/clementine-panel.svg $pkgdir/usr/share/icons/${_pkgname}-DarkPlasma/status/scalable/clementine-panel.svg   
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
@@ -71,7 +65,6 @@ package_faenzaflattr-green-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}-Green/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}-Green/LICENSE    
   cp -r $srcdir/${_pkgname}-Green $pkgdir/usr/share/icons/
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}-Green/apps/scalable/cmake.svg  
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
@@ -82,7 +75,6 @@ package_faenzaflattr-grey-icon-theme() {
   install -d $pkgdir/usr/share/icons
   install -Dm644 $srcdir/${_pkgname}-Grey/LICENSE.txt $pkgdir/usr/share/licenses/${_pkgname}-Grey/LICENSE      
   cp -r $srcdir/${_pkgname}-Grey $pkgdir/usr/share/icons/
-  ln -f -s cmake-gui.svg $pkgdir/usr/share/icons/${_pkgname}-Grey/apps/scalable/cmake.svg  
   find $pkgdir/usr -type f -exec chmod 644 {} \;
   find $pkgdir/usr -type d -exec chmod 755 {} \;
   find $pkgdir/usr -type f -name '.directory' -delete
