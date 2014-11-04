@@ -3,16 +3,18 @@
 # Maintainer: Alexandre Arnt <arnt[at]manjaro[dot]org>
 # Maintainer: Roland Singer <roland[at]manjaro[dot]org>
 
+## Why there are 2 notifier packages: https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
+
 pkgbase=octopi
-pkgname=('octopi' 'octopi-notifier')
+pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-kf5')
 pkgver=0.5.0
-pkgrel=0.4
+pkgrel=0.5
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 _gitcommit=51fe6675a3cfe12a92691dfd8eb671190034b651
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
-makedepends=('qt5-declarative' 'qt4')
+makedepends=('qt5-declarative' 'qt4' 'knotifications')
 
 if [ "${_gitcommit}" != "" ]; then
   source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
@@ -21,6 +23,17 @@ else
 fi
 
 sha256sums=('cd66c4185a02bf70b7d41c27b516411f03be09899cba5cfa90fb63f0ed174bd1')
+
+prepare() {
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/octopi-${_gitcommit}"
+  else
+    cd "${srcdir}/octopi-${pkgver}"
+  fi
+
+  cp -r notifier notifier-kf5
+  sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-kf5/octopi-notifier/octopi-notifier.pro
+}
 
 build() {
   if [ "${_gitcommit}" != "" ]; then
@@ -44,6 +57,11 @@ build() {
   # For now we're using Qt4 for the notifier because if not there's problems with it on (at least) GTK DE's
   # https://forum.manjaro.org/index.php?topic=17673
   qmake-qt4 octopi-notifier.pro
+  make
+
+  cd ../../notifier-kf5/octopi-notifier
+  msg "Building octopi-notifier-kf5..."
+  qmake-qt5 octopi-notifier.pro
   make
 
   cd ../../repoeditor
@@ -104,5 +122,22 @@ package_octopi-notifier() {
 
   # Octopi-notifier files
   install -Dm755 "notifier/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
+}
+
+package_octopi-notifier-kf5() {
+  pkgdesc="Notifier for Octopi with Knotifications support"
+  depends=('octopi' 'libnotify' 'knotifications')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/octopi-${_gitcommit}"
+  else
+    cd "${srcdir}/octopi-${pkgver}"
+  fi
+
+  # Octopi-notifier-kf5 files
+  install -Dm755 "notifier-kf5/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
   install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
 }
