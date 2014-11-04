@@ -6,13 +6,13 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier')
 pkgver=0.5.0
-pkgrel=0.3
+pkgrel=0.4
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit=dfdefa21757874e435278126906611de4288cc4c
+_gitcommit=51fe6675a3cfe12a92691dfd8eb671190034b651
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
-makedepends=('qt5-declarative')
+makedepends=('qt5-declarative' 'qt4')
 
 if [ "${_gitcommit}" != "" ]; then
   source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
@@ -20,7 +20,7 @@ else
   source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('8ba9260005d1aa2b0519cce9dbbd380e87204eb677bd43148f01e727ee42007a')
+sha256sums=('cd66c4185a02bf70b7d41c27b516411f03be09899cba5cfa90fb63f0ed174bd1')
 
 build() {
   if [ "${_gitcommit}" != "" ]; then
@@ -40,7 +40,10 @@ build() {
    
   cd ../octopi-notifier
   msg "Building octopi-notifier..."
-  qmake-qt5 octopi-notifier.pro
+  #qmake-qt5 octopi-notifier.pro
+  # For now we're using Qt4 for the notifier because if not there's problems with it on (at least) GTK DE's
+  # https://forum.manjaro.org/index.php?topic=17673
+  qmake-qt4 octopi-notifier.pro
   make
 
   cd ../../repoeditor
@@ -71,7 +74,7 @@ package_octopi() {
   install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
   install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
-  install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/32x32/apps/octopi.png"
+  install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/48x48/apps/octopi.png"
   install -Dm644 "resources/images/octopi_red.png" "${pkgdir}/usr/share/icons/octopi_red.png"
   install -Dm644 "resources/images/octopi_yellow.png" "${pkgdir}/usr/share/icons/octopi_yellow.png"
 
@@ -89,7 +92,7 @@ package_octopi() {
 
 package_octopi-notifier() {
   pkgdesc="Notifier for Octopi"
-  depends=('octopi' 'libnotify')
+  depends=('octopi' 'libnotify' 'qt4')
   optdepends=('xfce4-notifyd: for notifications in XFCE')
   replaces=('octopi-qt5-notifier')
 
