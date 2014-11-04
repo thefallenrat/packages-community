@@ -6,9 +6,9 @@
 ## Why there are 2 notifier packages: https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
 
 pkgbase=octopi
-pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-kf5')
+pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=0.5
+pkgrel=0.6
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 _gitcommit=51fe6675a3cfe12a92691dfd8eb671190034b651
 arch=('i686' 'x86_64')
@@ -31,8 +31,8 @@ prepare() {
     cd "${srcdir}/octopi-${pkgver}"
   fi
 
-  cp -r notifier notifier-kf5
-  sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-kf5/octopi-notifier/octopi-notifier.pro
+  cp -r notifier notifier-frameworks
+  sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
 }
 
 build() {
@@ -59,8 +59,8 @@ build() {
   qmake-qt4 octopi-notifier.pro
   make
 
-  cd ../../notifier-kf5/octopi-notifier
-  msg "Building octopi-notifier-kf5..."
+  cd ../../notifier-frameworks/octopi-notifier
+  msg "Building octopi-notifier-frameworks..."
   qmake-qt5 octopi-notifier.pro
   make
 
@@ -125,7 +125,7 @@ package_octopi-notifier() {
   install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
 }
 
-package_octopi-notifier-kf5() {
+package_octopi-notifier-frameworks() {
   pkgdesc="Notifier for Octopi with Knotifications support"
   depends=('octopi' 'libnotify' 'knotifications')
   conflicts=('octopi-notifier')
@@ -137,7 +137,7 @@ package_octopi-notifier-kf5() {
     cd "${srcdir}/octopi-${pkgver}"
   fi
 
-  # Octopi-notifier-kf5 files
-  install -Dm755 "notifier-kf5/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  # Octopi-notifier-frameworks files
+  install -Dm755 "notifier-frameworks/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
   install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
 }
