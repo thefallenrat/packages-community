@@ -127,7 +127,7 @@ package_octopi-notifier() {
 
 package_octopi-notifier-frameworks() {
   pkgdesc="Notifier for Octopi with Knotifications support"
-  depends=('octopi' 'libnotify' 'knotifications')
+  depends=('octopi' 'knotifications')
   conflicts=('octopi-notifier')
   provides=("octopi-notifier=${pkgver}")
 
