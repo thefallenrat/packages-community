@@ -8,9 +8,9 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=0.7
+pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit=c3d495d87663c1ef2ead206eaeaedbc12659ffe8
+_gitcommit=""
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -21,8 +21,10 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
+source+=('octopi.desktop')
 
-sha256sums=('2fbb510740a735aeb44ca8e6a258a9d9464ea0982e92684c936ad62d8d01c438')
+sha256sums=('4e04d031b2716823c73fef0d08df93900e5196bbcfbec201a88066550029e173'
+	    'b61d2e49a406e9a9b084bb5174c9f52283162f1ec06be6c71a43188a589e8ecf')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -79,6 +81,7 @@ package_octopi() {
               'gnome-keyring: for password management'
               'yaourt: for AUR support'
               'octopi-notifier: for notifications'
+              'octopi-notifier-frameworks: for notifications with Knotifications support'
               'pacmanlogviewer: to view pacman log files')
   replaces=('octopi-qt5')
 
@@ -90,7 +93,7 @@ package_octopi() {
   
   # Octopi main files
   install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
-  install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
+  install -Dm644 "${srcdir}/octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/48x48/apps/octopi.png"
   install -Dm644 "resources/images/octopi_red.png" "${pkgdir}/usr/share/icons/octopi_red.png"
