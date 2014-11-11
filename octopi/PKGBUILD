@@ -2,36 +2,40 @@
 # Maintainer: Rob McCathie <rob[at]manjaro[dot]org>
 # Maintainer: Alexandre Arnt <arnt[at]manjaro[dot]org>
 # Maintainer: Roland Singer <roland[at]manjaro[dot]org>
+# Maintainer: Ramon Buldó <ramon[at]manaro[dot]org>
 
 ## Why there are 2 notifier packages: https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
 
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=1
+pkgrel=2
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit=""
+#_gitcommit=""
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
-makedepends=('qt5-declarative' 'qt4' 'knotifications')
+makedepends=('qt5-declarative' 'qt4' 'knotifications' 'libnotify')
 
 if [ "${_gitcommit}" != "" ]; then
   source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
 else
-  source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
+  source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz"
+	  "https://github.com/Kirek/octopi/commit/c04eea37f3c7e4d4c915015574cb1904f9692573.patch")
 fi
-source+=('octopi.desktop')
 
-sha256sums=('4e04d031b2716823c73fef0d08df93900e5196bbcfbec201a88066550029e173'
-	    'b61d2e49a406e9a9b084bb5174c9f52283162f1ec06be6c71a43188a589e8ecf')
+sha256sums=('ec407dc9cb8652dd621cc0f0a0bf344243481acaf807230485c91b3736e19a9d'
+            '841f9e954aac626ae53025ed8a7a9356e3042c7676114a43c00e0b6722bd7b65')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
-    cd "${srcdir}/octopi-${_gitcommit}"
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
   else
-    cd "${srcdir}/octopi-${pkgver}"
+    cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
+
+  #Fix detection of a running KDE desktop
+  patch -p1 -i $srcdir/c04eea37f3c7e4d4c915015574cb1904f9692573.patch
 
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
@@ -39,9 +43,9 @@ prepare() {
 
 build() {
   if [ "${_gitcommit}" != "" ]; then
-    cd "${srcdir}/octopi-${_gitcommit}"
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
   else
-    cd "${srcdir}/octopi-${pkgver}"
+    cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
   msg "Starting build..."
@@ -86,14 +90,14 @@ package_octopi() {
   replaces=('octopi-qt5')
 
   if [ "${_gitcommit}" != "" ]; then
-    cd "${srcdir}/octopi-${_gitcommit}"
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
   else
-    cd "${srcdir}/octopi-${pkgver}"
+    cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
   
   # Octopi main files
   install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
-  install -Dm644 "${srcdir}/octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
+  install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/48x48/apps/octopi.png"
   install -Dm644 "resources/images/octopi_red.png" "${pkgdir}/usr/share/icons/octopi_red.png"
@@ -118,9 +122,9 @@ package_octopi-notifier() {
   replaces=('octopi-qt5-notifier')
 
   if [ "${_gitcommit}" != "" ]; then
-    cd "${srcdir}/octopi-${_gitcommit}"
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
   else
-    cd "${srcdir}/octopi-${pkgver}"
+    cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
   # Octopi-notifier files
@@ -135,9 +139,9 @@ package_octopi-notifier-frameworks() {
   provides=("octopi-notifier=${pkgver}")
 
   if [ "${_gitcommit}" != "" ]; then
-    cd "${srcdir}/octopi-${_gitcommit}"
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
   else
-    cd "${srcdir}/octopi-${pkgver}"
+    cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
   # Octopi-notifier-frameworks files
