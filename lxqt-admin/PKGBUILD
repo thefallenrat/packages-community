@@ -1,0 +1,33 @@
+# Maintainer: Jerome Leclanche <jerome@leclan.ch>
+# Contributor: Matthew Stobbs <matthew@stobbstechnical.com>
+
+pkgname=lxqt-admin
+pkgver=0.8.0
+pkgrel=0.1
+pkgdesc="LXQt system administration"
+arch=('i686' 'x86_64')
+url='http://lxqt.org'
+license=('GPL2')
+groups=('lxqt')
+depends=('liblxqt' 'liboobs')
+makedepends=('cmake' 'qt5-tools')
+source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
+sha256sums=('f2c17f9a9f3628db53b6cfeee64de8500b35b13c37bc4bc8d12302f856362a8e')
+
+prepare() {
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../$pkgname-$pkgver \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DUSE_QT5=ON
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="$pkgdir" install
+}

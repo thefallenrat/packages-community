@@ -1,0 +1,34 @@
+# Maintainer: Ramon Buldó ramon@manjaro.org
+# Contributor: Antonio Rojas
+
+pkgname=lximage-qt
+pkgver=0.3.0
+pkgrel=0.1
+pkgdesc="LXQt image viewer"
+arch=('i686' 'x86_64')
+url='http://lxqt.org/'
+license=('LGPL')
+groups=('lxqt')
+depends=('pcmanfm-qt')
+makedepends=('cmake' 'qt5-tools')
+install=$pkgname.install
+source=("http://lxqt.org/downloads/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
+md5sums=('6ebd303f268fcef069e6f340583669be')
+
+prepare() {
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../$pkgname-$pkgver \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DUSE_QT5=ON
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,25 @@
+#Maintainer: Andrew Bibb <ajbibb@myfairpoint.net>
+pkgname=cmst
+_pkgver=2014.11.18
+pkgver=20141118
+pkgrel=2
+pkgdesc="A QT based GUI front end for the connman connection manager with systemtray icon"
+arch=('i686' 'x86_64')
+url="https://github.com/andrew-bibb/cmst"
+license=('MIT')
+depends=('qt5-base' 'connman' 'libxkbcommon-x11' 'hicolor-icon-theme')
+install=$pkgname.install
+source=(https://github.com/andrew-bibb/cmst/releases/download/${pkgname}-${_pkgver}/${pkgname}-${_pkgver}.tar.gz)
+md5sums=('0260c45d4eae68c2cba1bbebf7ad55e2')
+
+build() {
+	cd "$srcdir/$pkgname"
+	qmake-qt5 DISTRO=arch
+	make 
+}
+
+
+package() {
+	cd "$srcdir/$pkgname"
+	make INSTALL_ROOT="$pkgdir/" install
+}
