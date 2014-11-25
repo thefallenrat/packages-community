@@ -1,0 +1,37 @@
+# Maintainer : Rob McCathie <rob@manjaro.org>
+# Contributor: WAntilles <wantilles@adslgr.com>
+
+_name=compiz-fusion-plugins-unsupported
+pkgname=compiz08-fusion-plugins-unsupported
+pkgver=0.8.8
+pkgrel=1
+pkgdesc="Compiz Fusion Unsupported plugins, provides effects like snow and fish"
+arch=('i686' 'x86_64')
+url="http://opencompositing.org/"
+license=('GPL')
+depends=("compiz08-core>=${pkgver}" "compiz08-bcop>=${pkgver}" "compiz08-fusion-plugins-main>=${pkgver}" 'libnotify' 'mesa')
+makedepends=('intltool' 'pkgconfig' 'gettext')
+replaces=("${_name}")
+provides=("${_name}=${pkgver}")
+conflicts=("${_name}")
+source=("http://releases.compiz.org/${pkgver}/compiz-plugins-unsupported-${pkgver}.tar.bz2")
+md5sums=('4454bfc977c8d2590a3c26ed1b20fa42')
+
+prepare() {
+  cd "${srcdir}/compiz-plugins-unsupported-${pkgver}"
+  
+  sed -i 's/if text "x$use/if test "x$use/' configure
+}
+
+build() {
+  cd "${srcdir}/compiz-plugins-unsupported-${pkgver}"
+  
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}/compiz-plugins-unsupported-${pkgver}"
+  
+  make DESTDIR="${pkgdir}" install
+}

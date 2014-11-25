@@ -1,30 +1,30 @@
-# Maintainer : Rob McCathie <archaur at rmcc dot com dot au>
+# Maintainer : Rob McCathie <rob@manjaro.org>
 
-_name=compiz
-pkgname=compiz-xfce
+_basename=compiz
+_name=compiz-xfce
+pkgname=compiz08-xfce
 pkgver=0.8.9
-pkgrel=23
+pkgrel=1
 arch=('any')
 url="http://cgit.compiz.org/"
 license=('GPL' 'CCPL:by-sa-3.0')
-#makedepends=('')
-
 source=('compiz-xfce-decoratortheme'
         'compiz-xfce-decoratortheme.desktop'
         'compiz-xfce-autostart'
         'compiz-xfce-autostart.desktop'
         "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.2.2.tar.gz")
-
 sha1sums=('da229e2c5d2badab521b6a87137ac44d7e4962a5'
           '9a9b28143e237834e98c82bb677a1cff62dc3af9'
           'd55d2efd6e90b237e779ca5a636550d48fb380e1'
           'a790b6556695b06af4eff910e7dc409aab85f9a8'
           '57a827b34b58f03e692262a6746b394cb70149dc')
-
 pkgdesc="Compiz meta package for Xfce, including autostart and optimisations"
-depends=('compiz-gtk-standalone' 'compiz-fusion-plugins-main' 'compiz-fusion-plugins-extra' 'ccsm' 'xfce4-session')
-optdepends=("compiz-fusion-plugins-unsupported: Compiz unsupported plugins")
-install="$pkgname".install
+depends=('compiz08-gtk-standalone' 'compiz08-fusion-plugins-main' 'compiz08-fusion-plugins-extra' 'compiz08-ccsm' 'xfce4-session')
+optdepends=("compiz08-fusion-plugins-unsupported: Compiz unsupported plugins")
+replaces=("${_name}")
+provides=("${_name}=${pkgver}")
+conflicts=("${_name}")
+install="${_name}.install"
 
 package() {
   # Place autostart enablers/scripts
@@ -34,10 +34,10 @@ package() {
   install -Dm644 "${srcdir}"/compiz-xfce-autostart.desktop "${pkgdir}"/etc/xdg/autostart/compiz-xfce-autostart.desktop
   
   # greybird window decorations
-  cd "$srcdir/Greybird-1.2.2"
-  mkdir -p "$pkgdir/usr/share/themes/compiz-xfce-greybird"
-  cp LICENSE* "$pkgdir/usr/share/themes/compiz-xfce-greybird"
-  cp -r metacity-1/ "$pkgdir/usr/share/themes/compiz-xfce-greybird"
-  rm "$pkgdir/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-3.xml"
-  sed -i 's|Greybird|compiz-xfce-greybird|' "$pkgdir/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-2.xml"
+  cd "${srcdir}/Greybird-1.2.2"
+  mkdir -p "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
+  cp LICENSE* "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
+  cp -r metacity-1/ "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
+  rm "${pkgdir}/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-3.xml"
+  sed -i 's|Greybird|compiz-xfce-greybird|' "${pkgdir}/usr/share/themes/compiz-xfce-greybird/metacity-1/metacity-theme-2.xml"
 }
