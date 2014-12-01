@@ -3,7 +3,7 @@
 
 pkgname=vte3-select-text
 pkgver=0.38.2
-pkgrel=1
+pkgrel=1.1
 pkgdesc="Virtual Terminal Emulator widget for use with GTK3"
 arch=('i686' 'x86_64')
 license=('LGPL')
