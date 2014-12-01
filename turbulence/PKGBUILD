@@ -1,6 +1,6 @@
 # Maintainer: Joshua Strot <joshua@manjaro.org>
 pkgname=turbulence
-pkgver=0.3.6
+pkgver=0.3.7
 pkgrel=1
 pkgdesc="System configurer at boot for KDE and OpenBox."
 url="http://manjaro.org"
@@ -19,10 +19,10 @@ if [ "$_git" == "yes" ]; then
     source=(git+http://github.com/manjaro/turbulence.git)
     sha256sums=('SKIP')
 else
-    #source=("turbulence-$pkgver.tar.gz::http://github.com/manjaro/turbulence/archive/v$pkgver.tar.gz")
-    #sha256sums=('5c947d824160ae63815e6fd4a59b89b26b1bcd25ce6792b435fb482d15985549')
-    source=("turbulence-$pkgver.zip::http://github.com/manjaro/turbulence/archive/$_snapshot.zip")
-    sha256sums=('SKIP')
+    source=("turbulence-$pkgver.tar.gz::http://github.com/manjaro/turbulence/archive/v$pkgver.tar.gz")
+    sha256sums=('84f1d3b50c082d50fdc2325999ae5f6d6a1019b2de5b6088d356d3a9d256aa13')
+    #source=("turbulence-$pkgver.zip::http://github.com/manjaro/turbulence/archive/$_snapshot.zip")
+    #sha256sums=('SKIP')
 fi
 
 build() {
