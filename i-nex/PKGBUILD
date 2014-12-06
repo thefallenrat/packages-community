@@ -2,7 +2,7 @@
 
 pkgname=i-nex
 pkgver=7.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
 url="http://i-nex.linux.pl/"
@@ -12,6 +12,7 @@ depends=('gambas3-runtime'
 	 'gambas3-gb-form'
          'gambas3-gb-desktop'
          'gambas3-gb-qt4'
+         'gambas3-gb-desktop-x11'
          'python2' 
          'libcpuid'
          'xorg-server-utils' 
