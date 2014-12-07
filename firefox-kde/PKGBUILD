@@ -24,7 +24,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
 	    'gst-plugins-good: h.264 video'
 	    'gst-libav: h.264 video')
 provides=("firefox=${pkgver}")
-conflicts=('firefox')
+conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
 _patchrev=9e3063dcc69e
