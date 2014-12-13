@@ -9,9 +9,9 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=2
+pkgrel=3
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-#_gitcommit=""
+_gitcommit="c48eca9d64913a899ef2ef4ede56b933877b5f1e"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -20,12 +20,10 @@ makedepends=('qt5-declarative' 'qt4' 'knotifications' 'libnotify')
 if [ "${_gitcommit}" != "" ]; then
   source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
 else
-  source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz"
-	  "https://github.com/Kirek/octopi/commit/c04eea37f3c7e4d4c915015574cb1904f9692573.patch")
+  source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('ec407dc9cb8652dd621cc0f0a0bf344243481acaf807230485c91b3736e19a9d'
-            '841f9e954aac626ae53025ed8a7a9356e3042c7676114a43c00e0b6722bd7b65')
+sha256sums=('79abf2870fcdb2fd6cd77d2f7c25406ad028fa07e4ba0aa20bf00f5b599eaaac')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -33,9 +31,6 @@ prepare() {
   else
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
-
-  #Fix detection of a running KDE desktop
-  patch -p1 -i $srcdir/c04eea37f3c7e4d4c915015574cb1904f9692573.patch
 
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
