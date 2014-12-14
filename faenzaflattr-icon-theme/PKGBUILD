@@ -4,14 +4,14 @@
 pkgbase=faenzaflattr-icon-theme
 pkgname=(faenzaflattr-icon-theme faenzaflattr-black-icon-theme faenzaflattr-darkdecoration-icon-theme faenzaflattr-darkplasma-icon-theme faenzaflattr-green-icon-theme faenzaflattr-grey-icon-theme)
 _pkgname=FaenzaFlattr
-pkgver=1.2.7
+pkgver=1.2.8
 pkgrel=1
 pkgdesc="FaenzaFlattr icon theme for KDE"
 url="http://kde-look.org/content/show.php/FaenzaFlattr?content=164770"
 license=('CCPL:by-nc-sa')
 arch=('any')
 source=("${_pkgname}_${pkgver}.7z::https://drive.google.com/uc?export=download&id=0BwlW9hKxf1tUYlNOajVFdEtnN1k")
-sha256sums=('567187de700619f2127e64fa364e1777d7bd90849db79fe0522b32184a7ebe60')
+sha256sums=('e52b1062215442d5fa5a74ff74516099340a756224bd4b0a0c90a40db54fe65b')
 options=(!strip)
 
 package_faenzaflattr-icon-theme() {
