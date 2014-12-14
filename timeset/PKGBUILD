@@ -1,22 +1,21 @@
-# Maintainer: aaditya  aaditya_gnulinux@zoho.com
+# Maintainer: aaditya <aaditya_gnulinux[at]zoho[dot]com>
+# Contrubutor: Claude Bulin <xcfaudio[at]gmail[dot]com>
 
 pkgname=timeset
-pkgver=1.4.1
-pkgrel=1
-_snapshot=4674d3e242fce22bd9db79b42682369306d75c6e
-pkgdesc="A script for managing system date and time."
-url="http://git.manjaro.org/aadityabagga/timeset/"
+pkgver=1.5
+pkgrel=4
+pkgdesc="A bash script for managing system date and time."
+url="https://github.com/aadityabagga/timeset"
 arch=('any')
 license=('GPL')
-depends=('bash')
-optdepends=('ntp')
-source=("$pkgname-$pkgver-$pkgrel.tar.gz::http://git.manjaro.org/aadityabagga/$pkgname/repository/archive?ref=$_snapshot")
-sha256sums=('c2053b1512453d0195ab1b4b6cdb64acb8a6d05ceab32b52622d20fb3edc1a8a')
+depends=('ntp')
+optdepends=('ntp-openrc: openrc ntp service')
+source=("https://github.com/aadityabagga/timeset/archive/${pkgver}.tar.gz")
+sha1sums=('af1abb8bcbd3a37554f305d5282da679ee3d3160')
 
 package() {
-  cd "${srcdir}/${pkgname}.git"
-  make DESTDIR=${pkgdir} install
+  cd "$srcdir/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
 }
-
 
 # vim:set ts=2 sw=2 et:
