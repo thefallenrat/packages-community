@@ -4,12 +4,14 @@
 # Maintainer: Roland Singer <roland[at]manjaro[dot]org>
 # Maintainer: Ramon Buldó <ramon[at]manaro[dot]org>
 
-## Why there are 2 notifier packages: https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
+## Why there are 3 notifier packages:
+## https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
+## https://forum.manjaro.org/index.php?topic=17673.msg171500#msg171500
 
 pkgbase=octopi
-pkgname=('octopi' 'octopi-notifier' 'octopi-notifier-frameworks')
+pkgname=('octopi' 'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=3
+pkgrel=4
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 _gitcommit="c48eca9d64913a899ef2ef4ede56b933877b5f1e"
 arch=('i686' 'x86_64')
@@ -32,6 +34,8 @@ prepare() {
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
+  cp -r notifier notifier-qt4
+  cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
 }
@@ -52,12 +56,14 @@ build() {
   qmake-qt5 pacmanhelper.pro
   make
    
-  cd ../octopi-notifier
-  msg "Building octopi-notifier..."
-  #qmake-qt5 octopi-notifier.pro
-  # For now we're using Qt4 for the notifier because if not there's problems with it on (at least) GTK DE's
-  # https://forum.manjaro.org/index.php?topic=17673
+  cd ../../notifier-qt4/octopi-notifier
+  msg "Building octopi-notifier-qt4..."
   qmake-qt4 octopi-notifier.pro
+  make
+  
+  cd ../../notifier-qt5/octopi-notifier
+  msg "Building octopi-notifier-qt5..."
+  qmake-qt5 octopi-notifier.pro
   make
 
   cd ../../notifier-frameworks/octopi-notifier
@@ -110,10 +116,31 @@ package_octopi() {
   install -Dm755 "repoeditor/bin/octopi-repoeditor" "${pkgdir}/usr/bin/octopi-repoeditor"
 }
 
-package_octopi-notifier() {
-  pkgdesc="Notifier for Octopi"
+package_octopi-notifier-qt4() {
+  pkgdesc="Notifier for Octopi using Qt4 libs"
   depends=('octopi' 'libnotify' 'qt4')
   optdepends=('xfce4-notifyd: for notifications in XFCE')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
+  replaces=('octopi-notifier')
+
+  if [ "${_gitcommit}" != "" ]; then
+    cd "${srcdir}/${pkgbase}-${_gitcommit}"
+  else
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+  fi
+
+  # Octopi-notifier-qt4 files
+  install -Dm755 "notifier-qt4/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
+}
+
+package_octopi-notifier-qt5() {
+  pkgdesc="Notifier for Octopi using Qt5 libs"
+  depends=('octopi' 'libnotify')
+  optdepends=('xfce4-notifyd: for notifications in XFCE')
+  conflicts=('octopi-notifier')
+  provides=("octopi-notifier=${pkgver}")
   replaces=('octopi-qt5-notifier')
 
   if [ "${_gitcommit}" != "" ]; then
@@ -122,8 +149,8 @@ package_octopi-notifier() {
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
-  # Octopi-notifier files
-  install -Dm755 "notifier/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
+  # Octopi-notifier-qt5 files
+  install -Dm755 "notifier-qt5/bin/octopi-notifier" "${pkgdir}/usr/bin/octopi-notifier"
   install -Dm644 "octopi-notifier.desktop" "${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop"
 }
 
