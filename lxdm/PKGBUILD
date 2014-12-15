@@ -7,7 +7,7 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgname=lxdm
-pkgver=0.4.1.r178.gbf90ec7
+pkgver=0.5.0.r20.g8eda70f
 pkgrel=1
 pkgdesc='Lightweight X11 Display Manager'
 arch=('i686' 'x86_64')
@@ -24,7 +24,7 @@ optdepends=('lxpolkit: to run lxdm-config directly from menu'
             'gtk-engines: default GTK+ theme'
             'librsvg: display the default background')
 makedepends=('intltool' 'git')
-source=('lxdm::git://lxde.git.sourceforge.net/gitroot/lxde/lxdm'
+source=('lxdm::git://git.lxde.org/git/lxde/lxdm.git'
     'Xsession.patch' 'lxdm.patch' 'xconn.patch'
     'lxdm-pam' 'PostLogout'
     #####################################
@@ -97,6 +97,9 @@ package() {
     echo 'user=$(whoami)' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
     echo 'pkexec "/usr/bin/lxdm-config" --user "$user" "$@"' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
     chmod 755 ${pkgdir}/usr/bin/lxdm-config-pkexec
+
+    # Install policy config
+    install -Dm644 $srcdir/org.manjaro.pkexec.lxdm-config.policy $pkgdir/usr/share/polkit-1/actions/org.manjaro.pkexec.lxdm-config.policy
 
     # Install desktop file
     install -Dm644 $srcdir/${pkgname}-config.desktop $pkgdir/usr/share/applications/${pkgname}-config.desktop
