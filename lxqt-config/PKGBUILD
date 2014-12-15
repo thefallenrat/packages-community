@@ -3,7 +3,7 @@
 
 pkgname=lxqt-config
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="LXQt system configuration (control center)"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'

@@ -3,7 +3,7 @@
 
 pkgname=libsysstat
 pkgver=0.2.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="Library used to query system statistics (net status, system resource usage, ...etc)"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'

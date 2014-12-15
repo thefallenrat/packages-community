@@ -3,7 +3,7 @@
 
 pkgname=liblxqt
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="Common base library for most lxde-qt components"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'

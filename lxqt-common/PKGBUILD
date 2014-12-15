@@ -2,7 +2,7 @@
 
 pkgname=lxqt-common
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="Common data file required for running an lxde-qt session"
 arch=('any')
 url='http://lxqt.org/'

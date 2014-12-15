@@ -3,7 +3,7 @@
 
 pkgname=pcmanfm-qt
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="LXQt file manager and desktop manager"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'

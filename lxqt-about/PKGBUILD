@@ -3,7 +3,7 @@
 
 pkgname=lxqt-about
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="About dialog for LXQt"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'

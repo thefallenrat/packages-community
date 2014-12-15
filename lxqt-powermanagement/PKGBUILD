@@ -3,7 +3,7 @@
 
 pkgname=lxqt-powermanagement
 pkgver=0.8.0
-pkgrel=0.1
+pkgrel=0.2
 pkgdesc="Daemon use for power management and auto-suspend"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
