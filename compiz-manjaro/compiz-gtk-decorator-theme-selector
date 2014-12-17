@@ -30,7 +30,7 @@ main_window() {
           cat "$i"/metacity-1/metacity-theme-2.xml | grep "</name>" | sed 's/^.*<name>//' | sed 's|</name>||' | sed 's/ /-/'
         fi
         if [ -f "$i"/metacity-1/metacity-theme-1.xml ] && [ ! -f "$i"/metacity-1/metacity-theme-2.xml ] && [ ! -f "$i"/metacity-1/metacity-theme-3.xml ]; then
-          cat "$i"/metacity-1/metacity-theme-2.xml | grep "</name>" | sed 's/^.*<name>//' | sed 's|</name>||' | sed 's/ /-/'
+          cat "$i"/metacity-1/metacity-theme-1.xml | grep "</name>" | sed 's/^.*<name>//' | sed 's|</name>||' | sed 's/ /-/'
         fi
       done
     )
