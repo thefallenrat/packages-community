@@ -6,7 +6,7 @@ _name=compiz
 pkgname=compiz-manjaro
 _series=0.9.12
 pkgver=${_series}.0
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce & MATE."
 arch=('i686' 'x86_64')
 url="https://launchpad.net/${_name}"
@@ -126,7 +126,7 @@ package() {
   # Add Manjaro dconf/gsettings schema override file
   install -Dm644 "${srcdir}/${pkgname}.gschema.override" "${pkgdir}/usr/share/glib-2.0/schemas/${pkgname}.gschema.override"
   # Make ccsm icon appear in Xfce settings manager
-  sed -i 's|Categories=Compiz;Settings;DesktopSettings;|Categories=Compiz;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-OtherSettings;|' "${pkgdir}/usr/share/applications/ccsm.desktop"
+  sed -i 's|Categories=Settings;DesktopSettings;|Categories=Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-OtherSettings;|' "${pkgdir}/usr/share/applications/ccsm.desktop"
   # Install GWD theme selector app
   install -Dm755 "${srcdir}/compiz-gtk-decorator-theme-selector" "${pkgdir}/usr/bin/compiz-gtk-decorator-theme-selector"
   install -Dm644 "${srcdir}/compiz-gtk-decorator-theme.desktop" "${pkgdir}/usr/share/applications/compiz-gtk-decorator-theme.desktop"
