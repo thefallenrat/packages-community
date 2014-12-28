@@ -1,0 +1,12 @@
+post_install() { 
+   echo "Please check this thread for an important instruction: https://forum.manjaro.org/index.php?topic=19165.0"
+}
+
+post_upgrade() {
+  post_install
+}
+
+
+post_remove() {
+  post_install
+}
