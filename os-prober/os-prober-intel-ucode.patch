@@ -1,0 +1,34 @@
+diff -Npur os-prober.orig/linux-boot-probes/mounted/common/40grub2 os-prober/linux-boot-probes/mounted/common/40grub2
+--- os-prober.orig/linux-boot-probes/mounted/common/40grub2	2014-09-28 23:04:17.000000000 +0200
++++ os-prober/linux-boot-probes/mounted/common/40grub2	2014-12-28 20:21:34.347230482 +0100
+@@ -78,10 +78,10 @@ parse_grub_menu () {
+ 				fi
+ 			;;
+ 			initrd)
+-				initrd="$(echo "$2" | sed 's/(.*)//')"
+-				# Initrd same.
+ 				if [ "$partition" != "$bootpart" ]; then
+-					initrd="/boot$initrd"
++					initrd="$(echo "$line" | sed 's/initrd//;s/\t//;s|/|/boot/|g;s/(.*)//')"
++				else
++					initrd="$(echo "$line" | sed 's/initrd//;s/\t//;s/(.*)//')"
+ 				fi
+ 			;;
+ 			"}")
+diff -Npur os-prober.orig/linux-boot-probes/mounted/x86/40grub os-prober/linux-boot-probes/mounted/x86/40grub
+--- os-prober.orig/linux-boot-probes/mounted/x86/40grub	2014-09-28 23:04:17.000000000 +0200
++++ os-prober/linux-boot-probes/mounted/x86/40grub	2014-12-28 20:21:17.648886514 +0100
+@@ -66,10 +66,10 @@ parse_grub_menu () {
+ 			initrd)
+ 				# Hack alert take 2: sed off any (hdn,n)
+ 				# See #566102
+-				initrd="$(echo "$2" | sed 's/(.*)//')"
+-				# Initrd same.
+ 				if [ "$partition" != "$bootpart" ]; then
+-					initrd="/boot$initrd"
++					initrd="$(echo "$line" | sed 's/initrd//;s/\t//;s|/|/boot/|g;s/(.*)//')"
++				else
++					initrd="$(echo "$line" | sed 's/initrd//;s/\t//;s/(.*)//')"
+ 				fi
+ 			;;
+ 			boot)

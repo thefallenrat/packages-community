@@ -1,0 +1,58 @@
+# $Id: PKGBUILD 121838 2014-11-04 16:10:13Z tredaelli $
+# Maintainer: Timothy Redaelli <timothy.redaelli@gmail.com>
+# Contributor: darkcoder <mario_vazq@hotmail.com>
+
+pkgname=os-prober
+pkgver=1.65
+pkgrel=0.1
+pkgdesc="Utility to detect other OSes on a set of drives"
+url="http://joey.kitenet.net/code/os-prober/"
+arch=('i686' 'x86_64')
+license=('GPL3')
+depends=('sh')
+source=(ftp://ftp.debian.org/debian/pool/main/o/${pkgname}/${pkgname}_${pkgver}.tar.xz
+	os-prober-util-linux-2.24.patch
+	os-prober-intel-ucode.patch)
+md5sums=('a7e833555f54387a4798ffea8c2bf0d4'
+         'ce6218a8a0f791b617a79d29d097d7d8'
+         '338dea69011ebc8a31010cf8132d3441')
+sha256sums=('c4a7661a52edae722f7e6bacb3f107cf7086cbe768275fadf5398d04360bfc84'
+            '5271a50ebeaea23b5f1e02a5d61b9a68c3b8f978f48cd8511cbec78773200e8e'
+            '3ef4467401d6e6cbd80b1d9e8103f2da1e1a9b6337c7251c926c4260af9da94c')
+
+prepare() {
+  cd "$pkgname"
+
+  patch -p1 -i "$srcdir"/os-prober-util-linux-2.24.patch
+  patch -p1 -i "$srcdir"/os-prober-intel-ucode.patch
+
+  # adjust lib dir to allow detection of 64-bit distros
+  sed -i -e "s:/lib/ld\*\.so\*:/lib*/ld*.so*:g" os-probes/mounted/common/90linux-distro
+
+  rm -f Makefile
+}
+
+build() {
+  cd "$pkgname"
+
+  make newns
+}
+
+package() {
+  cd "$pkgname"
+
+  install -Dm755 linux-boot-prober "$pkgdir"/usr/bin/linux-boot-prober
+  install -Dm755 os-prober "$pkgdir"/usr/bin/os-prober
+  install -Dm755 newns "$pkgdir"/usr/lib/os-prober/newns
+  install -Dm755 common.sh $pkgdir/usr/share/os-prober/common.sh  
+
+  for dir in os-probes os-probes/mounted os-probes/init linux-boot-probes linux-boot-probes/mounted; do
+    install -dm755 "$pkgdir/usr/lib/$dir"
+    install -m755 -t "$pkgdir/usr/lib/$dir" "$dir"/common/*
+    [[ -d "$dir"/x86 ]] && cp -r "$dir"/x86/* "$pkgdir/usr/lib/$dir"
+  done
+
+  install -Dm755 os-probes/mounted/powerpc/20macosx "$pkgdir"/usr/lib/os-probes/mounted/20macosx
+
+  install -dm755 "$pkgdir"/var/lib/os-prober
+}
