@@ -5,7 +5,7 @@
 pkgname=dropbox3
 _pkgname=dropbox
 pkgver=3.0.4
-pkgrel=1
+pkgrel=2
 pkgdesc="A free service that lets you bring your photos, docs, and videos anywhere and share them easily."
 arch=("i686" "x86_64")
 url="http://www.dropbox.com"
@@ -15,7 +15,8 @@ optdepends=(
     'ufw-extras: ufw rules for dropbox'
     'perl-file-mimeinfo: opening dropbox folder on some desktop environments'
 )
-conflicts=("dropbox-experimental")
+conflicts=("dropbox" "dropbox-experimental" "dropbox2")
+provides=("dropbox")
 options=('!strip' '!upx')
 
 _source_arch="x86"

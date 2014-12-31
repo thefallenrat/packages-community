@@ -1,4 +1,8 @@
-post_install() { 
+post_install() {
+   pacman -Qq zenity &> /tmp/cmd
+   if [[ -z "$(grep 'error' /tmp/cmd)" && -e "/tmp/.X0-lock" ]]; then
+   zenity --info --text "Please check this thread for an important instruction:\n<url>https://forum.manjaro.org/index.php?topic=19165.0</url>"
+   fi
    echo "Please check this thread for an important instruction: https://forum.manjaro.org/index.php?topic=19165.0"
 }
 
