@@ -13,7 +13,6 @@ arch=('any')
 url="http://addons.mozilla.org/thunderbird/addon/firetray"
 license=('GPL3')
 depends=('thunderbird')
-provides=('thunderbird-firetray')
 conflicts=('thunderbird-firetray-git' 'thunderbird-firetray-appind-git' 'thunderbird-firetray-appind')
 replaces=('thunderbird-firetray-appind-git' 'thunderbird-firetray-appind')
 source=(https://addons.mozilla.org/thunderbird/downloads/file/291042/firetray-0.5.4-sm+fx+tb-linux.xpi)
