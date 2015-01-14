@@ -3,36 +3,35 @@
 
 pkgname=xfwm4-manjaro-netbook
 _pkgname=xfwm4-titleless-dev
-_name=${_pkgname%-*}
-pkgver=4.11.3
-pkgrel=3
-pkgdesc="Xfce window manager with hide title on maximized features, corner tiling and fixes"
+_name=${_pkgname%%-*}
+pkgver=4.11.4
+pkgrel=1
+pkgdesc="Modified version of xfwm4-titleless-dev, used in the Manjaro Netbook edition"
 arch=('i686' 'x86_64')
-url="https://github.com/cedl38/xfwm4-titleless"
+url="https://github.com/cedl38/${_name}"
 license=('GPL2')
 depends=('libxfce4ui>=4.11.0' 'libwnck' 'hicolor-icon-theme')
 makedepends=('intltool' 'xfce4-dev-tools' 'exo')
 provides=("xfwm4=${pkgver}")
 conflicts=('xfwm4')
-options=('!libtool')
 install=xfwm4.install
-source=("${_pkgname}-$pkgver.tar.gz::https://github.com/cedl38/${_name}/archive/v${pkgver}-t.tar.gz"
+source=("${_pkgname}-$pkgver.tar.gz::${url}/archive/v${pkgver}-t.tar.gz"
         'maximized_placement.patch'
         'remove_composite_tab.patch')
-sha256sums=('0e5a9a3e5776ff78c845f44f10f9f7c345cf2bc371a346eca6d5fa2b00bf1bd3'
+sha256sums=('eec6ea3ae08e064fa875aa9a36bfd304a5eabe8735e1dbe8b21a11ed81501f3e'
             'c4a911ab79234bf1887e4e151a4ced9c6c28da59d387d9ddd7caf8faf5518121'
             '4171023f028647087a6721a0ac0367adb1f1f2f58ab87fff7985eedf1016af04')
 
 prepare() {
-  cd "$srcdir/${_name}-${pkgver}-t"
-  patch -Np1 -i "$srcdir"/maximized_placement.patch
-  patch -Np1 -i "$srcdir"/remove_composite_tab.patch
+  cd "${srcdir}/${_name}-${pkgver}-t"
+  patch -Np1 -i "${srcdir}/maximized_placement.patch"
+  patch -Np1 -i "${srcdir}/remove_composite_tab.patch"
 }
 
 build() {
   cd "$srcdir/${_name}-${pkgver}-t"
 
-    ./autogen.sh \
+  ./autogen.sh \
     --prefix=/usr \
     --sysconfdir=/etc \
     --libexecdir=/usr/lib \
@@ -48,6 +47,6 @@ build() {
 }
 
 package() {
-  cd "$srcdir/${_name}-${pkgver}-t"
-  make DESTDIR="$pkgdir" install
+  cd "${srcdir}/${_name}-${pkgver}-t"
+  make DESTDIR="${pkgdir}" install
 }

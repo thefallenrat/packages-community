@@ -1,0 +1,5 @@
+post_install() {
+    if [ "$(grep 'GRUB_DISABLE_SUBMENU=y' /etc/default/grub)" == "" ]; then
+      echo "GRUB_DISABLE_SUBMENU=y" >> /etc/default/grub
+    fi
+}
