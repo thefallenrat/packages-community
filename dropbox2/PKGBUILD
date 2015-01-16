@@ -5,7 +5,7 @@
 pkgname=dropbox2
 _pkgname=dropbox
 pkgver=2.10.52
-pkgrel=3
+pkgrel=4
 pkgdesc="Dropbox version 2 - prevents QT compatibility bug. Read this post: https://forum.manjaro.org/index.php?topic=19165.0"
 arch=("i686" "x86_64")
 url="https://forum.manjaro.org/index.php?topic=19165.0"
