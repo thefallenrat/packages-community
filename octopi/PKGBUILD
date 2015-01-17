@@ -11,9 +11,9 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=6
+pkgrel=7
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="d61708f8c208e3f22747b05453f1ac3fabb115f2"
+_gitcommit="40f4f1afcd7a215a29cf24632ad645873f3d2d02"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -25,7 +25,7 @@ else
   source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('7daa35c3288963c455b521d17b7b2a75f1a92fe8a581edabcced79902c0bbc6a')
+sha256sums=('51f68851859904f447576d109e762b1b7a5a54aec84ee3e7f8866a9581d78038')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -76,7 +76,7 @@ build() {
 
   cd ../../repoeditor
   msg "Building octopi-repoeditor..."
-  qmake-qt5 repoeditor.pro
+  qmake-qt5 octopi-repoeditor.pro
   make
 }
 
