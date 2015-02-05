@@ -1,0 +1,32 @@
+# Maintainer: shimi <shimi.chen@gmail.com>
+
+pkgname=imagewriter
+pkgver=1.10.1420800585.134a9b3
+_release=1.2
+pkgrel=1
+pkgdesc="A graphical utility for writing raw disk images & hybrid isos to USB keys"
+arch=('i686' 'x86_64')
+url='https://github.com/mbarringer/imagewriter'
+license=('GPL2')
+depends=('qt4' 'xdg-su' 'udisks2')
+source=("http://download.opensuse.org/tumbleweed/repo/src-oss/suse/src/$pkgname-$pkgver-${_release}.src.rpm")
+sha512sums=('9c58c8dd5f6d441d17a23146789d23b18174cb9ba5234556750602c88d08d34d5d9f83b11d088cc1d9d5c6018cfb96ac9145b2466b6459b285ad0408ef00257f')
+install=$pkgname.install
+
+prepare() {
+	cd $srcdir
+	tar xvf $pkgname-$pkgver.tar.xz
+	sed 's/\/usr\/bin\/xdg-su -c \/usr\/bin\//xdg-su -s /' -i $pkgname-$pkgver/$pkgname.desktop
+}
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	CFLAGS="$CFLAGS -DKIOSKHACK"
+	qmake-qt4 PREFIX="$pkgdir/usr" DEFINES=USEUDISKS2 $pkgname.pro
+	make
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+}
