@@ -1,18 +1,18 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-session
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="LXQt session manager"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
 license=('LGPL')
 groups=('lxqt')
 depends=('liblxqt')
-makedepends=('cmake' 'qt5-tools')
+makedepends=('cmake' 'qt5-tools' 'kwindowsystem')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('d1bdb44afd29974ac9362e9384296495')
+sha256sums=('c543ffb938e230c144399b59c99c53ee69fd0b37ff404a02576ce1179a551d06')
 
 prepare() {
   mkdir -p build
@@ -23,9 +23,7 @@ build() {
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DLIB_SUFFIX="" \
-    -DBUNDLE_XDG_UTILS=NO \
-    -DUSE_QT5=ON
+    -DLIB_SUFFIX=""
   make
 }
 

@@ -1,9 +1,9 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-notificationd
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="Notification daemon and library"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('liblxqt')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('ac178f02150fac3585096bd28a28d13e')
+sha256sums=('f33f8086319ed9d4cffddaed76925db5d79716e90d1112e5b124c95594a74b24')
 
 prepare() {
   mkdir -p build
@@ -22,8 +22,7 @@ build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 

@@ -2,8 +2,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-globalkeys
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="Daemon and library for global keyboard shortcuts registration"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('liblxqt')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('884e0a66f978e58fd13401bcacab1dd7')
+sha256sums=('45292e125e8cc2f18afa7d358366ade670c8d73871caf04f4536a4be985d9f12')
 
 prepare() {
   mkdir -p build
@@ -23,7 +23,7 @@ build() {
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_LIBDIR=lib
   make
 }
 

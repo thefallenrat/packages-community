@@ -1,9 +1,9 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-policykit
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="LXQt Policykit authentication agent"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('liblxqt' 'polkit-qt5')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('c35c7f466e79142d6ee83e234a517f35')
+sha256sums=('6bed4b6859085f4330405f25b47beee9d183a37ae7c2ca6876c15b2a1c2cf549')
 
 prepare() {
   mkdir -p build
@@ -22,8 +22,7 @@ build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 

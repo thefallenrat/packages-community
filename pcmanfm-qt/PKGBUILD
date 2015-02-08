@@ -2,8 +2,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=pcmanfm-qt
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="LXQt file manager and desktop manager"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -13,7 +13,7 @@ depends=('libfm' 'qt5-x11extras')
 makedepends=('cmake' 'qt5-tools')
 install=$pkgname.install
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('5d86e2ec63463e615c21b812397785ae')
+sha256sums=('2df0f0a0c092f9ee6e7311255ab2aed66c8ea897b3399affb96732c46421e2df')
 
 prepare() {
   mkdir -p build
@@ -24,8 +24,7 @@ build() {
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=lib \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_LIBDIR=lib
   make
 }
 

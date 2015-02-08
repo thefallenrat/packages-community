@@ -2,16 +2,16 @@
 # Contributor: Antonio Rojas
 
 pkgname=libsysstat
-pkgver=0.2.0
-pkgrel=0.2
+pkgver=0.3.0
+pkgrel=0.1
 pkgdesc="Library used to query system statistics (net status, system resource usage, ...etc)"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
 license=('LGPL')
 depends=('qt5-base')
 makedepends=('cmake' 'qt5-tools')
-source=("http://lxqt.org/downloads/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('e767f4a7edd91e646a328f74bb312d66')
+source=("https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz")
+sha256sums=('ab6405ac1c2e547ab07c03556b356a462caf40bfb8c885f3ff6b6df82f012718')
 
 prepare() {
   mkdir -p build
@@ -19,7 +19,7 @@ prepare() {
 
 build() {
   cd build
-  cmake ../$pkgname \
+  cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DUSE_QT5=ON

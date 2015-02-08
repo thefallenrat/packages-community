@@ -1,18 +1,18 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-runner
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="Launch applications quickly by typing commands"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
 license=('LGPL')
 groups=('lxqt')
-depends=('lxqt-globalkeys' 'qt5-script' 'menu-cache')
+depends=('lxqt-globalkeys' 'qt5-script' 'menu-cache' 'kwindowsystem')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('95d8fb3041987f89cb5d570eebfb99c9')
+sha256sums=('7d9d4d85acb2a9e17892ca41637a677939ef7788df5cd45ba44d178ac066439a')
 
 prepare() {
   mkdir -p build
@@ -22,8 +22,7 @@ build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 

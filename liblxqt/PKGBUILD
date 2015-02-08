@@ -1,18 +1,18 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=liblxqt
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="Common base library for most lxde-qt components"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
 license=('LGPL')
 groups=('lxqt')
-depends=('qt5-x11extras' 'libqtxdg')
+depends=('qt5-x11extras' 'libqtxdg' 'kwindowsystem')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('7159035b93fc585b173f41c96b44a523')
+sha256sums=('b4f0941bcb8839163aed5c332a26d05650a8d75be241cb39c702f9bd15fe4d52')
 
 prepare() {
   mkdir -p build
@@ -23,8 +23,7 @@ build() {
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=lib \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_LIBDIR=lib
   make
 }
 

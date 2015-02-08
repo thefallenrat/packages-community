@@ -3,7 +3,7 @@
 
 pkgname=lximage-qt
 pkgver=0.3.0
-pkgrel=0.2
+pkgrel=0.3
 pkgdesc="LXQt image viewer"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -13,7 +13,7 @@ depends=('pcmanfm-qt')
 makedepends=('cmake' 'qt5-tools')
 install=$pkgname.install
 source=("http://lxqt.org/downloads/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('6ebd303f268fcef069e6f340583669be')
+sha256sums=('0a5a5114eb1014a4e24af17d4a5d77676bac6a5d25458082e8e2eb45c87f2984')
 
 prepare() {
   mkdir -p build

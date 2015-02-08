@@ -2,8 +2,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-qtplugin
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="LxQt platform integration plugin for Qt"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,18 +12,18 @@ groups=('lxqt')
 depends=('liblxqt')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('eac15139d7d0732592ac00a225ed7cfc')
+sha256sums=('0d996abc2081b9c77f5dc9c1d24b14ee44c47b9b906ee3f71fb2d28d04c72bb7')
 
 prepare() {
   mkdir -p build
+  sed -i -e 's|find_package(lxqt-qt5 REQUIRED QUIET)|find_package(lxqt REQUIRED QUIET)|' ${srcdir}/$pkgname-$pkgver/CMakeLists.txt
 }
 
 build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 

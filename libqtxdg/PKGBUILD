@@ -1,9 +1,9 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=libqtxdg
-pkgver=1.0.0
-pkgrel=0.2
+pkgver=1.1.0
+pkgrel=0.1
 pkgdesc="Library providing freedesktop.org specs implementations for Qt"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -11,7 +11,7 @@ license=('LGPL')
 depends=('qt5-base')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('394b6cedec6d580d387a73842343f53e')
+sha256sums=('5c90989fcd13387cc8a7905a03e0b65f76aa28545cb9733625e1d88fd6ff4002')
 
 prepare() {
   mkdir -p build
@@ -19,7 +19,7 @@ prepare() {
 
 build() {
   cd build
-  cmake ../$pkgname \
+  cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_INSTALL_LIBDIR=lib \

@@ -2,8 +2,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-about
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="About dialog for LXQt"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('liblxqt')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('6c5eed82fffc58a508dcd35531e65376')
+sha256sums=('6965eb5eba8acbd97cebd708da12f2aa8bbb3cf2c3fa211b5c00cc45fc48bf77')
 
 prepare() {
   mkdir -p build
@@ -22,8 +22,7 @@ build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 

@@ -1,9 +1,9 @@
-# Maintainer: Ramon Buldó ramon@manjaro.orgs
+# Maintainer : Ramon Buldó ramon@manjaro.orgs
 # Contributor: Antonio Rojas
 
 pkgname=lxqt-config
-pkgver=0.8.0
-pkgrel=0.2
+pkgver=0.9.0
+pkgrel=0.1
 pkgdesc="LXQt system configuration (control center)"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('liblxqt' 'libxcursor')
 makedepends=('cmake' 'qt5-tools')
 source=("http://lxqt.org/downloads/lxqt/$pkgver/$pkgname-$pkgver.tar.xz")
-md5sums=('72f0641977b7f46fa4de5c5cfc30f39d')
+sha256sums=('9d6b0d21846ac5d9c62c5806ce04383b92708ab7bd095b46d0ac9fbb3f84b913')
 
 prepare() {
   mkdir -p build
@@ -22,8 +22,7 @@ build() {
   cd build
   cmake ../$pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DUSE_QT5=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
   make
 }
 
