@@ -5,7 +5,7 @@
 pkgname=dropbox
 pkgname=dropbox
 pkgver=3.2.6
-pkgrel=2.1
+pkgrel=2.2
 pkgdesc="A free service that lets you bring your photos, docs, and videos anywhere and share them easily. If you have tray icon issues refer to dropbox2."
 arch=("i686" "x86_64")
 url="http://www.dropbox.com"
@@ -15,8 +15,8 @@ optdepends=(
     'ufw-extras: ufw rules for dropbox'
     'perl-file-mimeinfo: opening dropbox folder on some desktop environments'
 )
-conflicts=("dropbox-experimental" "dropbox2" "dropbox-cli")
-provides=("dropbox3" "dropbox2")
+conflicts=("dropbox-experimental" "dropbox-cli")
+replaces=("dropbox3" "dropbox2")
 options=('!strip' '!upx')
 
 source=("dropbox.png" "dropbox.desktop" "terms.txt" "dropbox.service" "dropbox@.service")
