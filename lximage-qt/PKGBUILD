@@ -1,9 +1,9 @@
-# Maintainer: Ramon Buldó ramon@manjaro.org
+# Maintainer : Ramon Buldó ramon@manjaro.org
 # Contributor: Antonio Rojas
 
 pkgname=lximage-qt
 pkgver=0.3.0
-pkgrel=0.3
+pkgrel=0.4
 pkgdesc="LXQt image viewer"
 arch=('i686' 'x86_64')
 url='http://lxqt.org/'
@@ -12,7 +12,7 @@ groups=('lxqt')
 depends=('pcmanfm-qt')
 makedepends=('cmake' 'qt5-tools')
 install=$pkgname.install
-source=("http://lxqt.org/downloads/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
+source=("http://downloads.lxqt.org/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz")
 sha256sums=('0a5a5114eb1014a4e24af17d4a5d77676bac6a5d25458082e8e2eb45c87f2984')
 
 prepare() {
