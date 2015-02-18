@@ -11,9 +11,9 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.5.0
-pkgrel=11
+pkgrel=12
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="fc199b5e959afe39a19d4af1d216e9bf055710cc"
+_gitcommit="95c07a7b258d23bac2fdb32f68c0a4399e35b3aa"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -25,7 +25,7 @@ else
   source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('deffee88f0e3991bafdda3db07c381d23b40ddc1d035db841acc61cdb1c0753a')
+sha256sums=('6ad8a6dcfb8de08ef6d8ed8ba438b727c8a4366d515c2f597c5d52e1500fe896')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
