@@ -54,6 +54,7 @@ if grep -q "LD_LIBRARY_PATH=/usr/lib" /etc/environment; then
    sed -i '/LD_LIBRARY_PATH/d' /etc/environment
    echo -e "\e[1;33mRelog or restart your system to access changes\e[0m"
 else  
-   echo "No default library path variable exists"    
+   echo "No default library path variable exists"
+fi    
 update-desktop-database -q
 }
