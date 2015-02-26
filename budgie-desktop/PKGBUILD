@@ -1,6 +1,6 @@
 # Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
 pkgname=budgie-desktop
-pkgver=8
+pkgver=8.1
 pkgrel=1
 pkgdesc="Simple GTK3 desktop experience"
 arch=('i686' 'x86_64')
