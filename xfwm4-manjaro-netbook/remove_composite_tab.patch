@@ -1,7 +1,7 @@
 diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4-tweaks-dialog.glade
---- a/settings-dialogs/xfwm4-tweaks-dialog.glade	2014-06-23 03:20:42.000000000 +1000
-+++ b/settings-dialogs/xfwm4-tweaks-dialog.glade	2014-08-03 02:26:23.917205000 +1000
-@@ -824,537 +824,6 @@
+--- a/settings-dialogs/xfwm4-tweaks-dialog.glade	2015-03-01 06:17:44.000000000 +1100
++++ b/settings-dialogs/xfwm4-tweaks-dialog.glade	2015-03-06 01:19:13.514648788 +1100
+@@ -808,553 +808,6 @@
                  <property name="tab_fill">False</property>
                </packing>
              </child>
@@ -84,6 +84,22 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  </packing>
 -                                </child>
 -                                <child>
+-                                  <object class="GtkCheckButton" id="cycle_preview_check">
+-                                    <property name="label" translatable="yes">Show windows preview in place of icons when cycling</property>
+-                                    <property name="use_action_appearance">False</property>
+-                                    <property name="visible">True</property>
+-                                    <property name="can_focus">True</property>
+-                                    <property name="receives_default">False</property>
+-                                    <property name="use_underline">True</property>
+-                                    <property name="draw_indicator">True</property>
+-                                  </object>
+-                                  <packing>
+-                                    <property name="expand">False</property>
+-                                    <property name="fill">True</property>
+-                                    <property name="position">2</property>
+-                                  </packing>
+-                                </child>
+-                                <child>
 -                                  <object class="GtkCheckButton" id="show_popup_shadow_check">
 -                                    <property name="label" translatable="yes">Show shadows under pop_up windows</property>
 -                                    <property name="use_action_appearance">False</property>
@@ -96,7 +112,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">True</property>
--                                    <property name="position">2</property>
+-                                    <property name="position">3</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -112,7 +128,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">True</property>
--                                    <property name="position">3</property>
+-                                    <property name="position">4</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -128,7 +144,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">True</property>
--                                    <property name="position">4</property>
+-                                    <property name="position">5</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -143,7 +159,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">True</property>
--                                    <property name="position">5</property>
+-                                    <property name="position">6</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -203,7 +219,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">6</property>
+-                                    <property name="position">7</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -218,7 +234,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">7</property>
+-                                    <property name="position">8</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -278,7 +294,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">8</property>
+-                                    <property name="position">9</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -293,7 +309,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">9</property>
+-                                    <property name="position">10</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -353,7 +369,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">10</property>
+-                                    <property name="position">11</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -368,7 +384,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">11</property>
+-                                    <property name="position">12</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -428,7 +444,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">12</property>
+-                                    <property name="position">13</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -443,7 +459,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">13</property>
+-                                    <property name="position">14</property>
 -                                  </packing>
 -                                </child>
 -                                <child>
@@ -503,7 +519,7 @@ diff -Naur a/settings-dialogs/xfwm4-tweaks-dialog.glade b/settings-dialogs/xfwm4
 -                                  <packing>
 -                                    <property name="expand">False</property>
 -                                    <property name="fill">False</property>
--                                    <property name="position">14</property>
+-                                    <property name="position">15</property>
 -                                  </packing>
 -                                </child>
 -                              </object>

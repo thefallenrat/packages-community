@@ -1,37 +1,37 @@
 # Maintainer : Rob McCathie <rob@manjaro.org>
-# Contributor: Cedric Leporcq <cedric at gmail dot com>
+# Contributor: Evangelos Foutras <evangelos@foutrelis.com>
+# Contributor: tobias <tobias funnychar archlinux.org>
 
 pkgname=xfwm4-manjaro-netbook
-_pkgname=xfwm4-titleless-dev
-_name=${_pkgname%%-*}
-pkgver=4.11.4
+_name=xfwm4
+pkgver=4.12.0
 pkgrel=1
-pkgdesc="Modified version of xfwm4-titleless-dev, used in the Manjaro Netbook edition"
+pkgdesc="Xfce window manager"
 arch=('i686' 'x86_64')
-url="https://github.com/cedl38/${_name}"
+url="http://www.xfce.org/"
 license=('GPL2')
-depends=('libxfce4ui>=4.11.0' 'libwnck' 'hicolor-icon-theme')
-makedepends=('intltool' 'xfce4-dev-tools' 'exo')
-provides=("xfwm4=${pkgver}")
-conflicts=('xfwm4')
-install=xfwm4.install
-source=("${_pkgname}-$pkgver.tar.gz::${url}/archive/v${pkgver}-t.tar.gz"
-        'maximized_placement.patch'
-        'remove_composite_tab.patch')
-sha256sums=('eec6ea3ae08e064fa875aa9a36bfd304a5eabe8735e1dbe8b21a11ed81501f3e'
-            'c4a911ab79234bf1887e4e151a4ced9c6c28da59d387d9ddd7caf8faf5518121'
-            '4171023f028647087a6721a0ac0367adb1f1f2f58ab87fff7985eedf1016af04')
+depends=('libxfce4ui' 'libwnck' 'libdrm' 'hicolor-icon-theme')
+makedepends=('intltool')
+install="${_name}.install"
+provides=("${_name}=${pkgver}")
+conflicts=("${_name}")
+source=("http://archive.xfce.org/src/xfce/${_name}/${pkgver%.*}/${_name}-${pkgver}.tar.bz2"
+        "maximized_placement.patch"
+        "remove_composite_tab.patch")
+sha256sums=('29f4cbe2869ae32a6775877ed6bfc4ded7000f013ff7eb70b2639c49f415cc3a'
+            'b90e4c6a4014eec9447bed058b3eb3519d58b676267167ce5811649e99b94ef6'
+            '5bbae2fb2907232fa8c2144754307c91e3a523e69fd44931455c8a99fa77b4c7')
 
 prepare() {
-  cd "${srcdir}/${_name}-${pkgver}-t"
-  patch -Np1 -i "${srcdir}/maximized_placement.patch"
-  patch -Np1 -i "${srcdir}/remove_composite_tab.patch"
+  cd "${srcdir}/${_name}-${pkgver}"
+  patch -p1 -i "${srcdir}/maximized_placement.patch"
+  patch -p1 -i "${srcdir}/remove_composite_tab.patch"
 }
 
 build() {
-  cd "$srcdir/${_name}-${pkgver}-t"
+  cd "${srcdir}/${_name}-${pkgver}"
 
-  ./autogen.sh \
+  ./configure \
     --prefix=/usr \
     --sysconfdir=/etc \
     --libexecdir=/usr/lib \
@@ -42,11 +42,10 @@ build() {
     --disable-compositor \
     --enable-xsync \
     --disable-debug
-
   make
 }
 
 package() {
-  cd "${srcdir}/${_name}-${pkgver}-t"
+  cd "${srcdir}/${_name}-${pkgver}"
   make DESTDIR="${pkgdir}" install
 }
