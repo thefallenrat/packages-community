@@ -1,23 +1,13 @@
-pkgname=maia-themes
+pkgname=plasma5-themes-maia
 pkgver=0.1.0
-pkgrel=1
+pkgrel=2
 _gitcommit=011558eeb4baf049c9ebf4fe4299b6a2466bb67c
 pkgdesc='Maia Look & Feel theme files'
 url='https://github.com/manjaro/artwork-maia/'
 arch=('any')
 license=('LGPL')
-depends=('plasma-framework')
-makedepends=('extra-cmake-modules')
-conflicts=('kde-kdm-themes-maia'
-           'kde-ksplash-themes-maia'
-           'kde-plasma-themes-maia' 
-           'maia-colors' 
-           'wallpapers-maia')
-replaces=('kde-kdm-themes-maia'
-          'kde-ksplash-themes-maia'
-          'kde-plasma-themes-maia' 
-          'maia-colors' 
-          'wallpapers-maia')
+makedepends=('extra-cmake-modules' 'plasma-framework')
+replaces=('maia-themes')
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
 md5sums=('SKIP')
 
