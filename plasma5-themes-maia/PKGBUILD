@@ -1,24 +1,23 @@
 pkgname=plasma5-themes-maia
-pkgver=0.1.0
-pkgrel=2
-_gitcommit=011558eeb4baf049c9ebf4fe4299b6a2466bb67c
+pkgver=0.2.0
+pkgrel=3
+_gitcommit=544e8b6421865d090cee0f3b92fea3053eb24990
 pkgdesc='Maia Look & Feel theme files'
 url='https://github.com/manjaro/artwork-maia/'
 arch=('any')
 license=('LGPL')
-makedepends=('extra-cmake-modules' 'plasma-framework')
+makedepends=('extra-cmake-modules' 'plasma-framework' 'git')
 replaces=('maia-themes')
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
 md5sums=('SKIP')
 
 prepare() {
   mv $srcdir/artwork-maia-$_gitcommit $srcdir/maia
+  mkdir -p build  
 }
 
 build() {
-  mkdir -p build
-  cd build
-  
+  cd build  
   cmake ../maia \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
@@ -28,6 +27,5 @@ build() {
 
 package() {
   cd build
-
   make DESTDIR=${pkgdir} install
 }

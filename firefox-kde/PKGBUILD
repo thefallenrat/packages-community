@@ -9,7 +9,7 @@
 #_pgo=true
 
 pkgname=firefox-kde
-pkgver=36.0
+pkgver=36.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -48,7 +48,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
 	$_patchurl/mozilla-nongnome-proxies.patch
 	$_patchurl/mozilla-prefer_plugin_pref.patch
 	$_patchurl/toolkit-download-folder.patch)
-sha256sums=('54c8e44b773c0cae885b2be0dc7d2421d2050206cdb0f00d376492d7cf9d5b20'
+sha256sums=('f468a65a24524b64ebd1e697eb08908d4a4b6fa39055bbbb92df5dcf8d2329ba'
             'd6468f627873bdfade1d62a3d84fbb3f53f57b233e691e4d28cda3d7e3e5096e'
             '175d03cf3d8eb420d24a5a3072be69c9603e3ddacd3a83f68f49754eaecf6c5a'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
