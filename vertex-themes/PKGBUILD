@@ -2,28 +2,27 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-themes
-pkgver=20150208
+pkgver=20150307
 pkgrel=1
 pkgdesc='Vertex Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.14 version)'
 _gnomever=3.14
-_releasever=20150208-1
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 replaces=('gtk-theme-vertex')
-source=("${pkgname}-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz")
-sha256sums=('f111d91927b3881d4587e1d94b97f392d79f6da0c2c73eab8f2badebc6b697d7')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${pkgver}.tar.gz")
+sha256sums=('f5c73fbb706ddbbdc3bed5b62b7b13f0a8dcbf80a682a1b22f208f7d279c3891')
 
 build() {
-  cd Vertex-theme-${_releasever}
+  cd Vertex-theme-${pkgver}
 
-  sed -i '145,146d' ./build.sh
+  sed -i '157,158d' ./build.sh
   chmod +x ./build.sh
   ./build.sh
 }
 package() {
-  cd Vertex-theme-${_releasever}
+  cd Vertex-theme-${pkgver}
 
   for theme in "Vertex-Gnome-Shell" "Vertex_alt_metacity" "Vertex-Cinnamon"; do
     find "$theme" -type f -not -name *~ -exec install -Dm644 '{}' "$pkgdir/usr/share/themes/{}" \;
