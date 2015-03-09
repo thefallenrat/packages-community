@@ -1,31 +1,24 @@
-_ver=1.9.9
-_pkgname=blueman
-pkgname=${_pkgname}
-pkgver=1.9.9.20141005.873022f
+pkgname=blueman
+pkgver=1.99.alpha2
 pkgrel=1
-pkgdesc="A GTK+ Bluetooth Manager (BlueZ 5) - git"
+pkgdesc="A GTK+ Bluetooth Manager (BlueZ 5)"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/blueman-project/blueman"
 depends=('bluez' 'dbus-glib' 'gconf' 'gtk3' 'notification-daemon'
-         'libnotify' 'obex-data-server' 'polkit' 'python2-dbus'
-         'python2-gobject' 'python2-pybluez' 'startup-notification')
+         'libnotify' 'obex-data-server' 'polkit' 'python2-cairo'
+         'python2-dbus' 'python2-gobject' 'python2-pybluez'
+         'startup-notification')
 optdepends=('dnsmasq: DHCP server for Network Access Point'
             'pulseaudio: for some audio support')
-makedepends=('cython2' 'git' 'intltool' 'libtool')
-conflicts=("${_pkgname}-git" 'blueman-bzr')
-provides='blueman'
-source=("${pkgname}"::"git+https://github.com/blueman-project/${_pkgname}.git")
-sha1sums=('SKIP')
-install=${_pkgname}.install
-
-pkgver() {
-    cd "${srcdir}/${pkgname}"
-    echo ${_ver}.$(date +%Y%m%d).$(git rev-parse --short master)
-}
+makedepends=('cython2' 'intltool' 'libtool')
+conflicts=('blueman-git' 'blueman-bzr')
+source=("${pkgname}-${pkgver}.zip"::"https://github.com/blueman-project/${pkgname}/archive/${pkgver}.zip")
+sha256sums=('e83ad0655dbdc3389cf6d0f22fbaf8afc4cd227cb99eed8cdf3160bb065b9802')
+install=${pkgname}.install
 
 prepare() {
-    cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/${pkgname}-${pkgver}"
     # Replace the python interpreter with python2
     for PY in apps/blueman-*
     do
@@ -35,21 +28,18 @@ prepare() {
 }
 
 build() {
-    cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/${pkgname}-${pkgver}"
     export PYTHON=/usr/bin/python2
     export CYTHONEXEC=/usr/bin/cython2
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
-        --libexecdir=/usr/lib/${_pkgname} \
-        --with-gtk=3.0 \
-        --disable-hal \
-        --disable-sendto \
+        --libexecdir=/usr/lib/${pkgname} \
         --disable-static
     make
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/${pkgname}-${pkgver}"
     make DESTDIR="${pkgdir}" install
 }
