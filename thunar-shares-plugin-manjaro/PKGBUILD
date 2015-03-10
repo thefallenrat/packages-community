@@ -3,34 +3,45 @@
 # Contributor: vinz <vinz@archlinux.us>
 # Contributor: Aurélien DESBRIÈRES <ice.cube@gmx.com>
 
-pkgname=thunar-shares-plugin
+_name=thunar-shares-plugin
+pkgname=thunar-shares-plugin-manjaro
 pkgver=0.2.0.git
 _gitcommit=053cc4e0dc484081def59769efbe3a544fe169bc
-pkgrel=2
+pkgrel=0.1
 pkgdesc="Thunar plugin to quickly share a folder using Samba without requiring root access"
 arch=('i686' 'x86_64')
-url="http://goodies.xfce.org/projects/thunar-plugins/${pkgname}"
+url="http://goodies.xfce.org/projects/thunar-plugins/${_name}"
 license=('GPL2' 'LGPL')
 depends=('thunar' 'samba')
 makedepends=('xfce4-dev-tools')
+backup=('etc/samba/smb.conf')
+provides=("${_name}=${pkgver}")
+conflicts=("${_name}")
 install="${pkgname}.install"
 source=("http://git.xfce.org/thunar-plugins/thunar-shares-plugin/snapshot/thunar-shares-plugin-${_gitcommit}.tar.bz2"
-        "drop-thunar-vfs.patch::http://git.xfce.org/thunar-plugins/thunar-shares-plugin/patch/?id=3a89ca67b27d717b13fed7851fce3244f31fc94e")
+        "drop-thunar-vfs.patch::http://git.xfce.org/thunar-plugins/thunar-shares-plugin/patch/?id=3a89ca67b27d717b13fed7851fce3244f31fc94e"
+        "smb.conf")
 sha1sums=('a6c4ca62f34fc26bde7ec94f5fcc5d9b6593b282'
-          '29a0e3c31e1e48008c781c3575915398ec9e502b')
+          '29a0e3c31e1e48008c781c3575915398ec9e502b'
+          '42ba587c96ceea5b20f1478350e7b9f11608f4c2')
 
 prepare() {
-  cd "${srcdir}/${pkgname}-${_gitcommit}"
+  cd "${srcdir}/${_name}-${_gitcommit}"
   patch -Np1 -i "${srcdir}/drop-thunar-vfs.patch"
 }
 
 build() {
-  cd "${srcdir}/${pkgname}-${_gitcommit}"
+  cd "${srcdir}/${_name}-${_gitcommit}"
   ./autogen.sh --prefix=/usr --enable-debug=no
   make
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${_gitcommit}"
+  cd "${srcdir}/${_name}-${_gitcommit}"
   make DESTDIR="${pkgdir}" install
+  
+  install -Dm644 "${srcdir}/smb.conf" "${pkgdir}/etc/samba/smb.conf"
+  mkdir -p "${pkgdir}/var/lib/samba/usershare"
+  chgrp users "${pkgdir}/var/lib/samba/usershare"
+  chmod 1775 "${pkgdir}/var/lib/samba/usershare"
 }

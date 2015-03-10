@@ -1,0 +1,23 @@
+msg() {
+    ALL_OFF="\e[1;0m"
+    BOLD="\e[1;1m"
+    GREEN="${BOLD}\e[1;32m"
+	local mesg=$1; shift
+	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+}
+
+post_install() {
+  msg "Attempting to enable Samba services..."
+  systemctl enable smbd nmbd
+  echo ""
+  msg "Samba services should now be enabled. Reboot your system."
+  echo ""
+}
+
+post_remove() {
+  msg "Attempting to disable Samba services..."
+  systemctl disable smbd nmbd
+  echo ""
+  msg "Samba services should now be disabled. Reboot your system."
+  echo ""
+}
