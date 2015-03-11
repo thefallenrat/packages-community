@@ -3,8 +3,8 @@
 pkgbase=plasma5-themes-maia
 pkgname=('plasma5-themes-maia' 'sddm-maia-theme')
 pkgver=0.2.0
-pkgrel=5
-_gitcommit=a32dc3da348710144e211c37e08aea805b1ba3e2
+pkgrel=7
+_gitcommit=515db878c6af9fbd227699154425728933802f04
 url=('https://github.com/manjaro/artwork-maia/')
 arch=('any')
 license=('LGPL')
@@ -44,5 +44,5 @@ package_sddm-maia-theme() {
   rm -rf "${pkgdir}/usr/share/icons"
   rm -rf "${pkgdir}/usr/share/kservices5"
   rm -rf "${pkgdir}/usr/share/plasma"
-  #rm -rf "${pkgdir}/usr/share/wallpapers"
+  rm -rf "${pkgdir}/usr/share/wallpapers"
 } 
