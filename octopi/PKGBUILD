@@ -12,9 +12,9 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.6.0
-pkgrel=2
+pkgrel=4
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="c79a0c9d9f9303001b68be48bfdb784595181ae4"
+_gitcommit="8781b20696536b1f75bff01f1df9802404dfbccb"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -26,7 +26,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('c33ab2a2c23ddc65dc9a68faca18d5ed41d3c462a8b4e6793953c8cbff896b82')
+sha256sums=('a9d3fbf79a4458b90d965f6ac9b55f060ffbf6fa95126860fad94abe0b010178')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -36,7 +36,7 @@ prepare() {
   fi
 
   # sed version
-  sed -i -e "s|0.6.0|${pkgver}-${pkgrel}|g" src/strconstants.h
+  sed -i -e "s|0.7.0-dev|${pkgver}-${pkgrel}|g" src/strconstants.h
 
   cp -r notifier notifier-qt4
   cp -r notifier notifier-qt5
@@ -117,6 +117,9 @@ package_octopi() {
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/hicolor/48x48/apps/octopi.png"
   install -Dm644 "resources/images/octopi_red.png" "${pkgdir}/usr/share/icons/octopi_red.png"
   install -Dm644 "resources/images/octopi_yellow.png" "${pkgdir}/usr/share/icons/octopi_yellow.png"
+
+  install -D -m755 speedup/speedup-octopi.sh ${pkgdir}/usr/bin/speedup-octopi.sh
+  install -D -m644 speedup/octopi.service ${pkgdir}/etc/systemd/system/octopi.service
 }
 
 package_octopi-pacmanhelper() {
@@ -160,7 +163,7 @@ package_octopi-cachecleaner() {
   fi
 
   install -D -m755 "cachecleaner/bin/octopi-cachecleaner" "${pkgdir}/usr/bin/octopi-cachecleaner"
-  install -D -m644 "cachecleaner/$pkgname.desktop" "${pkgdir}/usr/share/applications/$pkgname.desktop"
+  install -D -m644 "cachecleaner/octopi-cachecleaner.desktop" "${pkgdir}/usr/share/applications/octopi-cachecleaner.desktop"
 }
 
 package_octopi-notifier-qt4() {
