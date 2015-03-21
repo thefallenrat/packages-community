@@ -7,16 +7,26 @@ msg() {
 }
 
 post_install() {
+  pacman -Qq samba-openrc &> /tmp/cmd1
   msg "Attempting to enable Samba services..."
-  systemctl enable smbd nmbd
+  if [ "$(grep 'samba-openrc' /tmp/cmd1)" == "samba-openrc" ]; then
+    rc-update add smb default
+  else
+    systemctl enable smbd nmbd
+  fi
   echo ""
   msg "Samba services should now be enabled. Reboot your system."
   echo ""
 }
 
 post_remove() {
+  pacman -Qq samba-openrc &> /tmp/cmd1
   msg "Attempting to disable Samba services..."
-  systemctl disable smbd nmbd
+  if [ "$(grep 'samba-openrc' /tmp/cmd1)" == "samba-openrc" ]; then
+    rc-update del smb default
+  else
+    systemctl disable smbd nmbd
+  fi
   echo ""
   msg "Samba services should now be disabled. Reboot your system."
   echo ""
