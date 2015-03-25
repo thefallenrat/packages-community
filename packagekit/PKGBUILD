@@ -4,37 +4,34 @@
 
 pkgname='packagekit'
 pkgver=1.0.5
-pkgrel=1.1
+pkgrel=1.2
 pkgdesc='A system designed to make installation and updates of packages easier'
 arch=('i686' 'x86_64')
 url='http://www.packagekit.org/'
 license=('GPL')
-depends=('dbus-glib' 'pacman' 'polkit' 'shared-mime-info' 'sqlite')
-makedepends=('dbus-glib' 'gobject-introspection' 'gtk-doc' 'intltool'
-	'networkmanager' 'pacman>=4.2.0' 'polkit'
-	'shared-mime-info' 'sqlite' 'bash-completion')
+depends=('dbus-glib' 'pacman>=4.2.0' 'polkit' 'shared-mime-info' 'sqlite')
+makedepends=('gobject-introspection' 'gtk-doc' 'intltool'
+	'networkmanager' 'bash-completion')
 optdepends=('networkmanager: detect connection status'
 	'bash-completion: command completion in bash')
 install='packagekit.install'
 backup=('var/lib/PackageKit/transactions.db'
 	'etc/PackageKit/alpm.d/pacman.conf'
 	'etc/PackageKit/alpm.d/repos.list')
-validpgpkeys=('163EB50119225DB3DF8F49EA17ACBA8DFA970E17') # Richard Hughes
-source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz"{,.asc}
+#validpgpkeys=('163EB50119225DB3DF8F49EA17ACBA8DFA970E17') # Richard Hughes
+source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz" #{,.asc}
+	'alpm-track-pacman-round-2.patch'
 	'0001-Fix-SyncFirst-crash.patch')
 sha256sums=('e0010fbe266042f07aa3b47377e94139466876dabe86a191587758f23c1ac8d6'
-            'SKIP'
-            'ef6f5dfec55dd535e17ee89e51b94101658305b497f674e1c7f0fa0c077a5b9d')
+#	'SKIP'
+	'6f34263db8cbf36456f0e61e85cf2418c947c318a765fff2208063661a15d6d2'
+	'ef6f5dfec55dd535e17ee89e51b94101658305b497f674e1c7f0fa0c077a5b9d')
 
 prepare() {
 	cd "${srcdir}/PackageKit-${pkgver}"
 
+	patch -Np1 < "${srcdir}/alpm-track-pacman-round-2.patch"
 	patch -Np1 < "${srcdir}/0001-Fix-SyncFirst-crash.patch"
-
-	# packagekit does not know about updates made by pacman while daemon is running
-	# https://github.com/hughsie/PackageKit/issues/15
-	# For now we just exit the daemon... It will launch with a clean status if required.
-	sed -i '/ExecStart=/s/$/ --timed-exit/' data/packagekit.service.in
 }
 
 build() {
@@ -65,4 +62,3 @@ package() {
 
 	make DESTDIR="${pkgdir}" install
 }
-
