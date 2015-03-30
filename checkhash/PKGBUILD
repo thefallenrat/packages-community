@@ -1,5 +1,5 @@
-# Maintainer / Developer Filipe Marques <eagle[dot]software3[at]gmail[dot]com>
-# Initial Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+# Developer: Filipe Marques <eagle[dot]software3[at]gmail[dot]com>
 
 pkgname=checkhash
 pkgver=1.0.2
@@ -12,7 +12,7 @@ depends=('coreutils' 'qt5-base')
 makedepends=('qt5-tools')
 source=("$url/archive/$pkgname-$pkgver.tar.gz"
         "$pkgname.desktop")
-sha256sums=('3246fa2a4b362a1db172ae0e9456ecd8cea49cbd20c3988be6aab05ff4f2b245'
+sha256sums=('6560655865d1e62e59f2a07b4189a9bf7c777cfffd7425308345219656cbb928'
             'a57170359c74bd3fcb58f26fb715320001c43dd00e397bf5b14f845f1fbb0074')
 
 build() {
@@ -22,5 +22,6 @@ build() {
 }
 
 package() {
-  make install
+  cd $srcdir/check-hash-$pkgname-$pkgver
+  make install INSTALL_ROOT=$pkgdir
 }
