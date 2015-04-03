@@ -2,9 +2,9 @@
 
 pkgbase=plasma5-themes-maia
 pkgname=('plasma5-themes-maia' 'sddm-maia-theme')
-pkgver=0.2.2
+pkgver=0.3.0
 pkgrel=1
-_gitcommit=f1a77be2fb2dc9b6195a405612fac21712d52a0b
+_gitcommit=2d4c1d94ae236e08bfb7f76ef196dbbea0b23675
 url=('https://github.com/manjaro/artwork-maia/')
 arch=('any')
 license=('LGPL')
