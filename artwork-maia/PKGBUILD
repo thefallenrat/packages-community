@@ -1,10 +1,10 @@
-#Maintainer: Ramon Buldó <ramon@manjaro.org>
+# Maintainer: Ramon Buldó <ramon@manjaro.org>
 
-pkgbase=plasma5-themes-maia
-pkgname=('plasma5-themes-maia' 'sddm-maia-theme')
-pkgver=0.3.0
+pkgbase=artwork-maia
+pkgname=('maia-icon-theme' 'plasma5-themes-maia' 'sddm-maia-theme')
+pkgver=0.3.1
 pkgrel=1
-_gitcommit=2d4c1d94ae236e08bfb7f76ef196dbbea0b23675
+_gitcommit=4f44ae1bdb2b6930cccb9873f2320a002c29a980
 url=('https://github.com/manjaro/artwork-maia/')
 arch=('any')
 license=('LGPL')
@@ -27,13 +27,25 @@ build() {
   make
 }
 
+package_maia-icon-theme() {
+  pkgdesc='Maia icon theme'
+  cd build
+  make DESTDIR="${pkgdir}" install
+  rm -rf "${pkgdir}/usr/share/color-schemes"
+  rm -rf "${pkgdir}/usr/share/kservices5"
+  rm -rf "${pkgdir}/usr/share/plasma"
+  rm -rf "${pkgdir}/usr/share/sddm"  
+  rm -rf "${pkgdir}/usr/share/wallpapers"
+}
+
 package_plasma5-themes-maia() {
   pkgdesc='Maia theme for KDE Plasma 5'
-  depends=('breeze')
+  depends=('breeze' 'maia-icon-theme')
   replaces=('maia-themes')
   cd build
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}/usr/share/sddm"
+  rm -rf "${pkgdir}/usr/share/icons"
 }
 
 package_sddm-maia-theme() {
