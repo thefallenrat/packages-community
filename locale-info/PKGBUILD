@@ -1,11 +1,10 @@
 pkgname=locale-info
 pkgver=2.21
-pkgrel=2
+pkgrel=3
 pkgdesc="Locale informations"
 arch=('any')
 url="http://www.gnu.org/software/libc"
 license=('GPL' 'LGPL')
-groups=('base')
 
 source=(http://ftp.gnu.org/gnu/libc/glibc-${pkgver}.tar.xz
         localeinfo.sh)
