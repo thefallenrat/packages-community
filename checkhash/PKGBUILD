@@ -11,7 +11,7 @@ license=('GPL')
 depends=('coreutils' 'qt5-base')
 makedepends=('qt5-tools')
 source=("$url/archive/$pkgname-$pkgver.tar.gz")
-sha256sums=('524910888a0c8be75dd5a75c4fdda13014d9dfd30ae8edb50bfa10bf41991e7e')
+md5sums=('524910888a0c8be75dd5a75c4fdda13014d9dfd30ae8edb50bfa10bf41991e7e')
 
 build() {
   cd $srcdir/check-hash-$pkgname-$pkgver
