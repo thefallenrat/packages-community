@@ -21,5 +21,12 @@ build() {
 
 package() {
   cd $srcdir/vicky-$pkgname-$pkgver
-  make install INSTALL_ROOT=$pkgdir
+  #make install INSTALL_ROOT=$pkgdir
+
+  install -Dm755 "Vicky" "${pkgdir}/usr/bin/vicky"
+  install -Dm644 "vicky.desktop" "${pkgdir}/usr/share/applications/vicky.desktop"
+  install -Dm644 "resource/icons/vicky24.png" "${pkgdir}/usr/share/icons/vicky.png"
+  install -Dm644 "resource/icons/vicky24.png" "${pkgdir}/usr/share/icons/hicolor/24x24/apps/vicky.png"
+  install -Dm644 "resource/icons/vicky128.png" "${pkgdir}/usr/share/icons/hicolor/128x128/apps/vicky.png"
+  install -Dm644 "LICENSE" "${pkgdir}/usr/share/licenses/vicky/LICENSE"
 }

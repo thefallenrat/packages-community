@@ -1,17 +1,17 @@
 # Maintainer: Ramon Buldó <ramon@manjaro.org>
 
 pkgbase=artwork-maia
-pkgname=('maia-icon-theme' 'plasma5-themes-maia' 'sddm-maia-theme')
-pkgver=0.3.1
-pkgrel=2
-_gitcommit=07d6e56ebb503c0c4261671ddae9cbdf71533142
+pkgname=('maia-icon-theme' 'maia-xfce-icon-theme' 'plasma5-themes-maia' 'sddm-maia-theme')
+pkgver=0.3.2
+pkgrel=4
+_gitcommit=bb9955997ee7af83c47f867881b8f8d03c0da1d4
 url=('https://github.com/manjaro/artwork-maia/')
 arch=('any')
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'plasma-framework' 'git')
 
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('aa270468281593a016bcd8ddfa2e692c984c418c33af7181c25a31ee0c7b07e5')
 
 prepare() {
   mv $srcdir/artwork-maia-$_gitcommit $srcdir/maia
@@ -36,6 +36,14 @@ package_maia-icon-theme() {
   rm -rf "${pkgdir}/usr/share/plasma"
   rm -rf "${pkgdir}/usr/share/sddm"  
   rm -rf "${pkgdir}/usr/share/wallpapers"
+}
+
+package_maia-xfce-icon-theme() {
+  pkgdesc='Maia icon theme for XFCE'
+  conflicts=('maia-icon-theme')
+  provides=('maia-icon-theme')
+  mkdir -p "${pkgdir}/usr/share/icons/maia"
+  cp -a maia/icons-xfce/* "${pkgdir}/usr/share/icons/maia"
 }
 
 package_plasma5-themes-maia() {
