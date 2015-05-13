@@ -1,41 +1,36 @@
+# Maintainer: Ramon Buldó <rbuldo at gmail.com>
+
 pkgname=blueman
-pkgver=1.99.alpha2
+pkgver=2.0.rc1
 pkgrel=1
 pkgdesc="A GTK+ Bluetooth Manager (BlueZ 5)"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/blueman-project/blueman"
-depends=('bluez' 'dbus-glib' 'gconf' 'gtk3' 'notification-daemon'
-         'libnotify' 'obex-data-server' 'polkit' 'python2-cairo'
-         'python2-dbus' 'python2-gobject' 'python2-pybluez'
-         'startup-notification')
+depends=('bluez' 'bluez-libs' 'dbus-glib' 'gconf' 'gdk-pixbuf2' 'glib2' 
+         'gtk3' 'notification-daemon' 'libnotify' 'polkit' 'pango' 
+         'python-cairo' 'python-dbus' 'python-gobject')
 optdepends=('dnsmasq: DHCP server for Network Access Point'
             'pulseaudio: for some audio support')
-makedepends=('cython2' 'intltool' 'libtool')
+makedepends=('cython' 'intltool' 'libtool')
 conflicts=('blueman-git' 'blueman-bzr')
-source=("${pkgname}-${pkgver}.zip"::"https://github.com/blueman-project/${pkgname}/archive/${pkgver}.zip")
-sha256sums=('e83ad0655dbdc3389cf6d0f22fbaf8afc4cd227cb99eed8cdf3160bb065b9802')
+source=("https://github.com/blueman-project/${pkgname}/releases/download/${pkgver}/${pkgname}-${pkgver}.tar.xz")
+sha256sums=('4373e21e26260bb53a1180b1e9a476b9d91543c3bf291eb0d867ba20facb28e8')
 install=${pkgname}.install
 
 prepare() {
     cd "${srcdir}/${pkgname}-${pkgver}"
-    # Replace the python interpreter with python2
-    for PY in apps/blueman-*
-    do
-        sed -i 's/python/python2/' "${PY}"
-    done
     NOCONFIGURE=1 ./autogen.sh
 }
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"
-    export PYTHON=/usr/bin/python2
-    export CYTHONEXEC=/usr/bin/cython2
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
         --libexecdir=/usr/lib/${pkgname} \
-        --disable-static
+        --disable-static \
+        --disable-schemas-compile
     make
 }
 
