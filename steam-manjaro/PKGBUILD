@@ -4,8 +4,8 @@
 # Manjaro implementation: Alexandru Ianu <alexandru@manjaro.org>
 pkgname=steam-manjaro
 _pkgname=steam
-pkgver=1.0.0.49
-pkgrel=9.2
+pkgver=1.0.0.50
+pkgrel=0.1
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems."
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -20,7 +20,7 @@ source=("http://repo.steampowered.com/$_pkgname/pool/$_pkgname/s/$_pkgname/${_pk
         "https://www.dropbox.com/s/psf9xgcu5we6b6t/steam-clean.desktop"
         "https://www.dropbox.com/s/gwyymfi510tzoak/steam-clean"
         "https://www.dropbox.com/s/97qxmq703f0k52c/51-steam.rules")
-sha256sums=('fd893b5c2f5585be1cd8a83f4a6c7d523a2bd985a91587adb5afaccd6fa12fb0'
+sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
          '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
          '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
          'ad0dac17e97be528ed414e8aae1fe645c4f92e11769982801602f22de9425c71'
