@@ -15,11 +15,11 @@ source=("http://repo.steampowered.com/$_pkgname/pool/$_pkgname/s/$_pkgname/${_pk
         'lib32-flashplugin-path.patch'
         'alsa_sdl_audiodriver.patch'
         'lib_path_and_close_min.patch'
-        "https://www.dropbox.com/s/yhg327p2o64vo63/steam.desktop"
-        "https://www.dropbox.com/s/vgl9qfkpjuoxhrf/steam-valve.desktop"
-        "https://www.dropbox.com/s/psf9xgcu5we6b6t/steam-clean.desktop"
-        "https://www.dropbox.com/s/gwyymfi510tzoak/steam-clean"
-        "https://www.dropbox.com/s/97qxmq703f0k52c/51-steam.rules")
+        "steam.desktop"
+        "steam-valve.desktop"
+        "steam-clean.desktop"
+        "steam-clean"
+        "51-steam.rules")
 sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
          '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
          '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
@@ -30,34 +30,31 @@ sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
          '8bbcbd2f29ef1ac62b49d9c2770be9140a447301dcdeb83c94d1f3800228b360'
          '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c')
 
-  if [[ "$CARCH" == x86_64 ]]; then
-	source+=("https://www.dropbox.com/s/9xxku2o253ft6r0/lib32-nm09810.tar.xz")
-	sha256sums+=('b56b9da85e5647ef2b8013d14378b30917d7701cd61b27ba6a39045ab5ecc529')
+if [[ "$CARCH" == x86_64 ]]; then
+    source+=("https://www.dropbox.com/s/9xxku2o253ft6r0/lib32-nm09810.tar.xz")
+    sha256sums+=('b56b9da85e5647ef2b8013d14378b30917d7701cd61b27ba6a39045ab5ecc529')
 fi
 
 provides=('steam' 'steam-native')
-replaces=('steam' 'steam-native')
-if [[ "$CARCH" == "x86_64" ]]; then
-  #depends+=(lib32-libgl lib32-mesa-libgl lib32-gcc-libs lib32-libx11)
-  optdepends=(
-  'lib32-mesa-dri: for open source driver users'
-  'lib32-catalyst-utils: for AMD Catalyst users'
-  'lib32-nvidia-utils: for NVIDIA proprietary blob users'
-  'lib32-flashplugin: for flash video'
-  'lib32-alsa-plugins: for pulseaudio on some games'
-  )
+replaces=('steam-native')
+
 prepare() {
-    patch -d "$_pkgname" -Np1 -i "$srcdir/lib32-flashplugin-path.patch"
+    if [[ "$CARCH" == "x86_64" ]]; then
+        #depends+=(lib32-libgl lib32-mesa-libgl lib32-gcc-libs lib32-libx11)
+        optdepends=(
+            'lib32-mesa-dri: for open source driver users'
+            'lib32-catalyst-utils: for AMD Catalyst users'
+            'lib32-nvidia-utils: for NVIDIA proprietary blob users'
+            'lib32-flashplugin: for flash video'
+            'lib32-alsa-plugins: for pulseaudio on some games'
+        )
+        patch -d "$_pkgname" -Np1 -i "$srcdir/lib32-flashplugin-path.patch"
+    else
+        optdepends=('flashplugin: for flash videos')
+    fi
     patch -d "$_pkgname" -Np1 -i "$srcdir/alsa_sdl_audiodriver.patch"
     patch -d "$_pkgname" -Np1 -i "$srcdir/lib_path_and_close_min.patch"
 }
-else
-    optdepends=('flashplugin: for flash videos')
-prepare() {
-    patch -d "$_pkgname" -Np1 -i "$srcdir/alsa_sdl_audiodriver.patch"
-    patch -d "$_pkgname" -Np1 -i "$srcdir/lib_path_and_close_min.patch"
-}
-fi
 
 package() {
     depends=(
@@ -67,60 +64,67 @@ package() {
       'networkmanager' 'wpa_supplicant' 'mono' 'mono-addins'
       )
 
-  if [[ "$CARCH" == x86_64 ]]; then
+    if [[ "$CARCH" == x86_64 ]]; then
         depends+=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
-  #Steam native deps
-	depends+=('lib32-libxinerama' 'lib32-pango' 'lib32-openal' 'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-libgcrypt15' 'lib32-dbus-glib' 'lib32-libusb' 'lib32-libnl' 'lib32-polkit' 'lib32-pam' 'lib32-cracklib' 'lib32-libtirpc' 'lib32-js17' 'lib32-libpng12' 'lib32-systemd' 'lib32-gconf' 'lib32-libappindicator' 'lib32-nss' 'lib32-libsoup' 'lib32-polkit' 'lib32-libnl' 'lib32-dbus-glib' 'iproute2' 'lib32-libpulse')
-  #Common game deps
-	depends+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image' 'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
-  #Provides/conflicts
+        #Steam native deps
+        depends+=('lib32-libxinerama' 'lib32-pango' 'lib32-openal' 'lib32-gdk-pixbuf2'
+                  'lib32-gtk2' 'lib32-libgcrypt15' 'lib32-dbus-glib' 'lib32-libusb'
+                  'lib32-libnl' 'lib32-polkit' 'lib32-pam' 'lib32-cracklib' 'lib32-libtirpc'
+                  'lib32-js17' 'lib32-libpng12' 'lib32-systemd' 'lib32-gconf'
+                  'lib32-libappindicator' 'lib32-nss' 'lib32-libsoup' 'lib32-polkit'
+                  'lib32-libnl' 'lib32-dbus-glib' 'iproute2' 'lib32-libpulse')
+        #Common game deps
+        depends+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image'
+                  'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
+        #Provides/conflicts
         provides+=('lib32-libudev.so.0' 'lib32-networkmanager'=0.9.8.10 'lib32-nm-glib'=0.9.8.10)
         conflicts+=('chromium-browser-bin' 'lib32-libudev.so.0' 'lib32-networkmanager' 'lib32-nm-glib')
-  #Compat udev/NM
-	mkdir -p "$pkgdir/usr/lib32"
-	ln -s /usr/lib32/libudev.so ${pkgdir}/usr/lib32/libudev.so.0
-	tar -xJf "$srcdir/lib32-nm09810.tar.xz" -C "$pkgdir" --no-same-owner
+        #Compat udev/NM
+        mkdir -p "$pkgdir/usr/lib32"
+        ln -s /usr/lib32/libudev.so ${pkgdir}/usr/lib32/libudev.so.0
+        tar -xJf "$srcdir/lib32-nm09810.tar.xz" -C "$pkgdir" --no-same-owner
+    else
+        #Steam native deps
+        depends+=('libxinerama' 'pango' 'openal' 'gtk2' 'dbus-glib' 'libusb' 'libnl'
+                  'polkit' 'pam' 'cracklib' 'libtirpc' 'js17' 'libpng12' 'libgcrypt15'
+                  'systemd' 'gconf' 'libappindicator-gtk2' 'libappindicator-gtk3'
+                  'nss' 'libpulse')
+        #Common game deps
+        depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex' 'gperftools' 'libcurl-gnutls')
+        #Provides/conflicts
+        provides+=('libudev.so.0')
+        conflicts+=('chromium-browser-bin' 'libudev.so.0')
+        #Compat udev
+        mkdir -p "$pkgdir/usr/lib"
+        ln -s /usr/lib/libudev.so ${pkgdir}/usr/lib/libudev.so.0
+    fi
 
-  else
-  #Steam native deps
-	depends+=('libxinerama' 'pango' 'openal' 'gtk2' 'dbus-glib' 'libusb' 'libnl' 'polkit' 'pam' 'cracklib' 'libtirpc' 'js17' 'libpng12' 'libgcrypt15' 'systemd' 'gconf' 'libappindicator-gtk2' 'libappindicator-gtk3' 'nss' 'libpulse')
-  #Common game deps
-	depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex' 'gperftools' 'libcurl-gnutls')
-  #Provides/conflicts
-	provides+=('libudev.so.0')
-	conflicts+=('chromium-browser-bin' 'libudev.so.0')
-  #Compat udev
-	mkdir -p "$pkgdir/usr/lib"
-	ln -s /usr/lib/libudev.so ${pkgdir}/usr/lib/libudev.so.0
-  fi
+    mkdir -p "$pkgdir/usr/share/applications"
+    cp "$srcdir/steam.desktop" "$pkgdir/usr/share/applications/steam.desktop"
+    chmod +x "$pkgdir/usr/share/applications/steam.desktop"
+    cp "$srcdir/steam-valve.desktop" "$pkgdir/usr/share/applications/steam-valve.desktop"
+    chmod +x "$pkgdir/usr/share/applications/steam-valve.desktop"
+    cp "$srcdir/steam-clean.desktop" "$pkgdir/usr/share/applications/steam-clean.desktop"
+    chmod +x "$pkgdir/usr/share/applications/steam-clean.desktop"
+    mkdir -p "$pkgdir/usr/bin"
+    cp "$srcdir/steam-clean" "$pkgdir/usr/bin/steam-clean"
+    chmod +x "$pkgdir/usr/bin/steam-clean"
 
+    # Install license
+    make -C "$_pkgname" DESTDIR="$pkgdir" install
+    install -Dm644 "$pkgdir/usr/share/doc/steam/steam_install_agreement.txt" "$pkgdir/usr/share/licenses/steam/LICENSE"
 
-  mkdir -p "$pkgdir/usr/share/applications"
-  cp "$srcdir/steam.desktop" "$pkgdir/usr/share/applications/steam.desktop"
-  chmod +x "$pkgdir/usr/share/applications/steam.desktop"
-  cp "$srcdir/steam-valve.desktop" "$pkgdir/usr/share/applications/steam-valve.desktop"
-  chmod +x "$pkgdir/usr/share/applications/steam-valve.desktop"
-  cp "$srcdir/steam-clean.desktop" "$pkgdir/usr/share/applications/steam-clean.desktop"
-  chmod +x "$pkgdir/usr/share/applications/steam-clean.desktop"
-  mkdir -p "$pkgdir/usr/bin"
-  cp "$srcdir/steam-clean" "$pkgdir/usr/bin/steam-clean"
-  chmod +x "$pkgdir/usr/bin/steam-clean"
+    # blank steamdeps because apt-get
+    ln -sf /bin/true "$pkgdir/usr/bin/steamdeps"
 
-  # Install license
-  make -C "$_pkgname" DESTDIR="$pkgdir" install
-  install -Dm644 "$pkgdir/usr/share/doc/steam/steam_install_agreement.txt" "$pkgdir/usr/share/licenses/steam/LICENSE"
+    # Polkit rule
+    mkdir -p "$pkgdir/etc/polkit-1/rules.d"
+    cp "$srcdir/51-steam.rules" "$pkgdir/etc/polkit-1/rules.d/51-manjaro.rules"
+    chmod 700 "$pkgdir/etc/polkit-1/rules.d"
+    chmod 700 "$pkgdir/etc/polkit-1/rules.d/51-manjaro.rules"
 
-  # blank steamdeps because apt-get
-  ln -sf /bin/true "$pkgdir/usr/bin/steamdeps"
-
-  # Polkit rule
-  mkdir -p "$pkgdir/etc/polkit-1/rules.d"
-  cp "$srcdir/51-steam.rules" "$pkgdir/etc/polkit-1/rules.d/51-manjaro.rules"
-  chmod 700 "$pkgdir/etc/polkit-1/rules.d"
-  chmod 700 "$pkgdir/etc/polkit-1/rules.d/51-manjaro.rules"
-
-  # Replace orig launcher
-  rm "$pkgdir/usr/share/applications/steam.desktop" 
-  cp "$srcdir/steam.desktop" "$pkgdir/usr/share/applications/steam.desktop"
-  chmod +x "$pkgdir/usr/share/applications/steam.desktop"
+    # Replace orig launcher
+    rm "$pkgdir/usr/share/applications/steam.desktop" 
+    cp "$srcdir/steam.desktop" "$pkgdir/usr/share/applications/steam.desktop"
+    chmod +x "$pkgdir/usr/share/applications/steam.desktop"
 }
