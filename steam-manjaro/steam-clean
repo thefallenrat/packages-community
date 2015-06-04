@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias clearsteam='find ~/.steam/root/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" \) -print -delete'
+zenity --info --text="Potentially incompatible Steam libraries have been purged." --icon-name=steam 2>/dev/null

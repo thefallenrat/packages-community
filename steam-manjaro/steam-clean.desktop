@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Steam cleaning (fix errors)
+Comment=OpenGL errors or others related to library incompatibilities may be fixed by this
+Exec=/usr/bin/steam-clean
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Game;
