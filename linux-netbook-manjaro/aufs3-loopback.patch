@@ -1,4 +1,4 @@
-aufs3.14.21+ loopback patch
+aufs3.14.40+ loopback patch
 
 diff --git a/drivers/block/loop.c b/drivers/block/loop.c
 index ec278ac..1894990 100644
@@ -196,10 +196,10 @@ index 90df5d6..cb91822 100644
  	unsigned	lo_blocksize;
  	void		*key_data; 
 diff --git a/fs/aufs/f_op.c b/fs/aufs/f_op.c
-index ec549a4..f14afa3 100644
+index 51f041c..26bf2fc 100644
 --- a/fs/aufs/f_op.c
 +++ b/fs/aufs/f_op.c
-@@ -359,7 +359,7 @@ static ssize_t aufs_splice_read(struct file *file, loff_t *ppos,
+@@ -365,7 +365,7 @@ static ssize_t aufs_splice_read(struct file *file, loff_t *ppos,
  	err = -EINVAL;
  	h_file = au_hf_top(file);
  	get_file(h_file);
@@ -258,10 +258,10 @@ index 6d9864d..3322557 100644
  
  #endif /* __KERNEL__ */
 diff --git a/fs/aufs/super.c b/fs/aufs/super.c
-index 57b29ca..5d5007c 100644
+index 88accc0..770f84c6 100644
 --- a/fs/aufs/super.c
 +++ b/fs/aufs/super.c
-@@ -812,7 +812,10 @@ static const struct super_operations aufs_sop = {
+@@ -810,7 +810,10 @@ static const struct super_operations aufs_sop = {
  	.statfs		= aufs_statfs,
  	.put_super	= aufs_put_super,
  	.sync_fs	= aufs_sync_fs,
