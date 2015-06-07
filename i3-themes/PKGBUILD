@@ -1,0 +1,31 @@
+# Maintainer: Bernhard Landauer <oberon_at_manjaro_dot_org>
+# Contributor: herbie643
+
+pkgbase=('i3-themes')
+pkgname=('i3-theme-dark' 'i3-theme-dust')
+pkgver=20150607
+pkgrel=1
+arch=('any')
+url="https://github.com/oberon2007/artwork-i3"
+license=(GPL3)
+depends=('gtk-xfce-engine' 'gtk-engine-murrine')
+source=("git+$url.git")
+sha1sums=('SKIP')
+
+package_i3-theme-dark() {
+    pkgdesc="Dark gtk theme for i3"
+
+    cd "${srcdir}/artwork-i3"
+
+    install -dm755 "${pkgdir}/usr/share/themes"
+    cp -r "${pkgname}" "${pkgdir}/usr/share/themes/i3-dark"
+}
+
+package_i3-theme-dust() {
+    pkgdesc="Dust gtk theme for i3"
+
+    cd "${srcdir}/artwork-i3"
+
+    install -dm755 "${pkgdir}/usr/share/themes"
+    cp -r "${pkgname}" "${pkgdir}/usr/share/themes/i3-dust"
+}
