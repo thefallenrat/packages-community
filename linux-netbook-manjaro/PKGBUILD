@@ -81,9 +81,6 @@ prepare() {
 
   # add upstream patch
   patch -p1 -i "${srcdir}/patch-${pkgver}"
-  
-  # https://bugzilla.kernel.org/show_bug.cgi?id=98501
-  patch -Np1 -i "${srcdir}/md-raid0-fix-restore-to-sector-variable-in-raid0_mak.patch"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
