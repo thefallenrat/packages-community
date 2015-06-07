@@ -2,7 +2,7 @@
 # Contributor: herbie643
 
 pkgbase=('i3-themes')
-pkgname=('i3-theme-dark' 'i3-theme-dust')
+pkgname=('i3-dark' 'i3-dust')
 pkgver=20150607
 pkgrel=1
 arch=('any')
@@ -12,7 +12,7 @@ depends=('gtk-xfce-engine' 'gtk-engine-murrine')
 source=("git+$url.git")
 sha1sums=('SKIP')
 
-package_i3-theme-dark() {
+package_i3-dark() {
     pkgdesc="Dark gtk theme for i3"
 
     cd "${srcdir}/artwork-i3"
@@ -21,7 +21,7 @@ package_i3-theme-dark() {
     cp -r "${pkgname}" "${pkgdir}/usr/share/themes/i3-dark"
 }
 
-package_i3-theme-dust() {
+package_i3-dust() {
     pkgdesc="Dust gtk theme for i3"
 
     cd "${srcdir}/artwork-i3"
