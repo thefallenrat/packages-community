@@ -1,19 +1,19 @@
 # Maintainer: Philip Müller <philm_at_manjaro_dot_org>
 
 pkgname=numix-manjaro-themes
-pkgver=20131116
-_ver='8a017eb24e16c9d6f51430ef283f39fccca1c1e6'
-pkgrel=2
+pkgver=20150610
+_snapshot='88e118e92052d798dc0f7ad68a570a6febe14333'
+pkgrel=1
 pkgdesc="Desktop suite for Xfce"
 arch=('any')
-url="http://git.manjaro.org/artwork/numix-manjaro-themes"
+url="https://github.com/manjaro/artwork-numix-manjaro-themes"
 license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('git')
 optdepends=('faenza-green-icon-theme: matching icon theme')
 
-source=("$pkgname-$pkgver.tar.gz::http://git.manjaro.org/artwork/numix-manjaro-themes/repository/archive?ref=$_ver")
-sha256sums=('49ff36fc81352908d13767c3ad77b9788174288e33e037297879c46d013a48bc')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz")
+sha256sums=('e2dbfa236af0044cee13c65cf4ab97ee2521214c8c758e618a9461088103c992')
 
 package() {
   if [ -e "$srcdir/core-$pkgname" ]; then
