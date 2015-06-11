@@ -3,37 +3,23 @@
 pkgname=numix-manjaro-themes
 pkgver=20150610
 _snapshot='88e118e92052d798dc0f7ad68a570a6febe14333'
-pkgrel=1
+pkgrel=2
 pkgdesc="Desktop suite for Xfce"
 arch=('any')
 url="https://github.com/manjaro/artwork-numix-manjaro-themes"
 license=('GPL3')
 depends=('gtk-engine-murrine')
-makedepends=('git')
 optdepends=('faenza-green-icon-theme: matching icon theme')
 
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz")
 sha256sums=('e2dbfa236af0044cee13c65cf4ab97ee2521214c8c758e618a9461088103c992')
 
 package() {
-  if [ -e "$srcdir/core-$pkgname" ]; then
-	   cd "$srcdir/core-$pkgname"
-  fi
-  if [ -e "$srcdir/$pkgname" ]; then
-     cd "$srcdir/$pkgname"
-  fi
-  if [ -e "$srcdir/$pkgname.git" ]; then
-	   cd "$srcdir/$pkgname.git"
-  fi
+  cd "$srcdir/artwork-$pkgname-$_snapshot"
 
-  # create theme dirs
   install -d -m 755 "$pkgdir"/usr/share/themes
-
-  # install theme
-  cp -r . "$pkgdir"/usr/share/themes
-
-  # clean up
-  rm -rf "$pkgdir"/usr/share/themes/{.git,.gitignore}
+  cp -r Numix-Manjaro "$pkgdir"/usr/share/themes
+  cp -r Numix-Manjaro-Straight "$pkgdir"/usr/share/themes
 }
 
 # vim:set ts=2 sw=2 et:
