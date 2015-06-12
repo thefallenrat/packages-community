@@ -3,7 +3,7 @@
 
 pkgbase=('i3-themes')
 pkgname=('i3-theme-dark' 'i3-theme-dust')
-pkgver=20150607
+pkgver=20150613
 pkgrel=1
 arch=('any')
 url="https://github.com/oberon2007/artwork-i3"
