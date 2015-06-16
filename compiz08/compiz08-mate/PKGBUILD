@@ -8,13 +8,15 @@
 _name=compiz-mate
 pkgname=compiz08-mate
 pkgver=0.8.9
-pkgrel=1
+pkgrel=2
 pkgdesc="Compiz compositing window manager - patched with full MATE support"
 url="http://www.compiz.org/"
 license=('GPL' 'LGPL' 'MIT')
 arch=('i686' 'x86_64')
 makedepends=('intltool')
-depends=('startup-notification' 'librsvg' 'libgl' 'dbus' 'glu' 'libxslt' 'fuse' 'mate-control-center' 'gconf' 'libwnck' 'mate-window-manager' 'procps-ng')
+depends=('startup-notification' 'librsvg' 'libgl' 'dbus' 'glu' 'libxslt' 'fuse' 'mate-control-center' 'gconf' 'libwnck' 'procps-ng')
+optdepends=('marco: for MATE compiled with GTK2'
+            'marco-gtk3: for MATE compiled with GTK3')
 install="${_name}.install"
 options=(!emptydirs)
 replaces=("${_name}" 'compiz-core-mate')
