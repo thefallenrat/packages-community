@@ -4,30 +4,30 @@
 # Contributor: JJDaNiMoTh <jjdanimoth@gmail.com>
 # Contributor: nesl247 <nesl247@gmail.com>
 
-_name=compiz-bcop
 pkgname=compiz08-bcop
-pkgver=0.8.8
+_pkgname=bcop
+pkgver=0.8.10
 pkgrel=1
 pkgdesc="Compiz option code generator"
-arch=('i686' 'x86_64')
+arch=('any')
 url="http://www.compiz.org"
 license=('GPL')
-depends=('compiz08-core>=0.8.8' 'libxslt')
+depends=("compiz08-core>=${pkgver}" 'libxslt')
 makedepends=('intltool' 'pkgconfig')
-replaces=("${_name}")
-provides=("${_name}=${pkgver}")
-conflicts=("${_name}")
-source=("http://releases.compiz.org/${pkgver}/${_name}-${pkgver}.tar.bz2")
-sha1sums=('9210bd2a537480bdb11df0e3cc5f6d4548fd12da')
+replaces=('compiz-bcop')
+provides=("compiz-bcop=${pkgver}")
+conflicts=('compiz-bcop' 'compiz-bcop-dev')
+source=("http://www.northfield.ws/projects/compiz/releases/${pkgver}/${_pkgname}.tar.gz")
+md5sums=('8efcebe07f5c1e7d4365d639e4ebf324')
 
 build() {
-	cd "${srcdir}/${_name}-${pkgver}"
-	./configure --prefix=/usr
-
-	make
+    cd "${srcdir}/${_pkgname}"
+    ./autogen.sh
+    ./configure --prefix=/usr
+    make
 }
 
 package() {
-	cd "${srcdir}/${_name}-${pkgver}"
-	make DESTDIR="${pkgdir}" install
+    cd "${srcdir}/${_pkgname}"
+    make DESTDIR="${pkgdir}" install
 }

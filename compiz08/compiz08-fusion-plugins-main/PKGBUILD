@@ -3,37 +3,42 @@
 # Contributor: JJDaNiMoTh <jjdanimoth@gmail.com>
 # Contributor: nesl247 <nesl247@gmail.com>
 
-_name=compiz-fusion-plugins-main
 pkgname=compiz08-fusion-plugins-main
-pkgver=0.8.8.git
+_pkgname=compiz-fusion-plugins-main
+pkgver=0.8.10
 pkgrel=1
 pkgdesc="Compiz Fusion Main plugins"
 arch=('i686' 'x86_64')
 url="http://www.compiz.org"
 license=('GPL')
-depends=('compiz08-core' 'compiz08-bcop' 'libjpeg>=7' 'librsvg' 'libxdamage' 'libxcomposite' 'libxinerama' 'startup-notification' 'libxrandr' 'glu' 'libsm' 'libxslt')
+depends=('compiz08-core>=0.8.10' 'compiz08-bcop' 'libjpeg>=7' 'librsvg' 'libxdamage'
+         'libxcomposite' 'libxinerama' 'startup-notification' 'libxrandr' 'glu'
+         'libsm' 'libxslt')
 makedepends=('intltool' 'pkgconfig' 'gettext')
-replaces=("${_name}")
-provides=("${_name}=${pkgver}")
-conflicts=("${_name}")
-source=("http://cgit.compiz.org/fusion/plugins-main/snapshot/plugins-main-611295a4d4a9dce76316056c79741c387979e730.tar.bz2"
+replaces=("${_pkgname}")
+provides=("${_pkgname}=${pkgver}")
+conflicts=("${_pkgname}")
+source=("http://www.northfield.ws/projects/compiz/releases/${pkgver}/plugins-main.tar.gz"
         'expo_defaults.patch')
-sha1sums=('1c1b72f3e9b9045ffcaa35958db637ecaf7c048d'
+sha1sums=('64973a098bfc4f3f43cd604202600a551a93ada3'
           '6cbff060ef855997d504b27d0f30d4ee775c2ba4')
 
 prepare() {
-  cd "${srcdir}/plugins-main-611295a4d4a9dce76316056c79741c387979e730"
+  cd "${srcdir}/plugins-main"
   # Turn off expo reflection
   patch -p1 -i "${srcdir}/expo_defaults.patch"
 }
 
 build() {
-  cd "${srcdir}/plugins-main-611295a4d4a9dce76316056c79741c387979e730"
-  ./autogen.sh --prefix=/usr --sysconfdir=/etc
+  cd "${srcdir}/plugins-main"  
+  CPPFLAGS="$CPPFLAGS -I/usr/include/compiz \
+                      -I/usr/include/startup-notification-1.0 \
+                      -I/usr/include/libxml2" \
+                      ./autogen.sh --prefix=/usr --sysconfdir=/etc
   make
 }
 
 package() {
-  cd "${srcdir}/plugins-main-611295a4d4a9dce76316056c79741c387979e730"
+  cd "${srcdir}/plugins-main"
   make DESTDIR="${pkgdir}" install
 }

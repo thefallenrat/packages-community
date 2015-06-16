@@ -3,29 +3,29 @@
 # Contributor: JJDaNiMoTh <jjdanimoth@gmail.com>
 # Contributor: nesl247 <nesl247@gmail.com>
 
-_name=compizconfig-python
 pkgname=compiz08-compizconfig-python
-pkgver=0.8.4.git
+_pkgname=compizconfig-python
+pkgver=0.8.10
 pkgrel=1
 pkgdesc="Compizconfig bindings for python"
 arch=('i686' 'x86_64')
 url="http://opencompositing.org"
 license=('GPL')
-depends=('compiz08-core' 'compiz08-libcompizconfig' 'glib2' 'python2' 'libxrandr' 'libxdamage' 'libxslt' 'libsm')
+depends=("compiz08-core>=${pkgver}" 'compiz08-libcompizconfig' 'glib2' 'python2' 'libxrandr' 'libxdamage' 'libxslt' 'libsm')
 makedepends=('intltool' 'pkgconfig' 'pyrex')
-replaces=("${_name}")
-provides=("${_name}=${pkgver}")
-conflicts=("${_name}")
-source=("http://cgit.compiz.org/compiz/compizconfig/compizconfig-python/snapshot/compizconfig-python-7d36bcb9d0c44bf1bfc905e60f809934fdee840d.tar.bz2")
-sha1sums=('e0dd434c9a6d4cd64bf6628aa6ebd38fde23d5a5')
+replaces=("${_pkgname}")
+provides=("${_pkgname}=${pkgver}")
+conflicts=("${_pkgname}")
+source=("http://www.northfield.ws/projects/compiz/releases/${pkgver}/${_pkgname}.tar.gz")
+sha1sums=('81c9c22a11395badabc69e5d217d41291d4c1f75')
 
 build() {
-  cd "${srcdir}/compizconfig-python-7d36bcb9d0c44bf1bfc905e60f809934fdee840d"
+  cd "${srcdir}/${_pkgname}"
   PYTHON=python2 ./autogen.sh --prefix=/usr
   make
 }
 
 package() {
-  cd "${srcdir}/compizconfig-python-7d36bcb9d0c44bf1bfc905e60f809934fdee840d"
+  cd "${srcdir}/${_pkgname}"
   make DESTDIR="${pkgdir}" install
 }
