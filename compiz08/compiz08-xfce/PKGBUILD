@@ -3,7 +3,7 @@
 _basename=compiz
 _name=compiz-xfce
 pkgname=compiz08-xfce
-pkgver=0.8.9
+pkgver=0.8.10
 pkgrel=1
 arch=('any')
 url="http://cgit.compiz.org/"
@@ -12,12 +12,12 @@ source=('compiz-xfce-decoratortheme'
         'compiz-xfce-decoratortheme.desktop'
         'compiz-xfce-autostart'
         'compiz-xfce-autostart.desktop'
-        "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.2.2.tar.gz")
+        "xfce-theme-greybird.tar.gz::https://github.com/shimmerproject/Greybird/archive/v1.5.3.tar.gz")
 sha1sums=('da229e2c5d2badab521b6a87137ac44d7e4962a5'
           '9a9b28143e237834e98c82bb677a1cff62dc3af9'
           'd55d2efd6e90b237e779ca5a636550d48fb380e1'
           'a790b6556695b06af4eff910e7dc409aab85f9a8'
-          '57a827b34b58f03e692262a6746b394cb70149dc')
+          'ebc447a9c13b6c8563fec789d290354b3d7c8230')
 pkgdesc="Compiz meta package for Xfce, including autostart and optimisations"
 depends=('compiz08-gtk-standalone' 'compiz08-fusion-plugins-main' 'compiz08-fusion-plugins-extra' 'compiz08-ccsm' 'xfce4-session')
 optdepends=("compiz08-fusion-plugins-unsupported: Compiz unsupported plugins")
@@ -34,7 +34,7 @@ package() {
   install -Dm644 "${srcdir}"/compiz-xfce-autostart.desktop "${pkgdir}"/etc/xdg/autostart/compiz-xfce-autostart.desktop
   
   # greybird window decorations
-  cd "${srcdir}/Greybird-1.2.2"
+  cd "${srcdir}/Greybird-1.5.3"
   mkdir -p "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
   cp LICENSE* "${pkgdir}/usr/share/themes/compiz-xfce-greybird"
   cp -r metacity-1/ "${pkgdir}/usr/share/themes/compiz-xfce-greybird"

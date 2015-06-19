@@ -1,4 +1,4 @@
-aufs3.14.21+ base patch
+aufs3.14.40+ base patch
 
 diff --git a/MAINTAINERS b/MAINTAINERS
 index 900d98e..28c4a56 100644
@@ -55,7 +55,7 @@ index 66e8c3b..ec278ac 100644
  
  static ssize_t loop_attr_show(struct device *dev, char *page,
 diff --git a/fs/dcache.c b/fs/dcache.c
-index 58d57da..0d04dfe 100644
+index c345f5f..3214ccd 100644
 --- a/fs/dcache.c
 +++ b/fs/dcache.c
 @@ -1060,7 +1060,7 @@ enum d_walk_ret {
@@ -108,6 +108,18 @@ index 12028fa..f26cbaf 100644
  {
  	ssize_t (*splice_read)(struct file *, loff_t *,
  			       struct pipe_inode_info *, size_t, unsigned int);
+diff --git a/include/linux/file.h b/include/linux/file.h
+index 4d69123..62cffc0 100644
+--- a/include/linux/file.h
++++ b/include/linux/file.h
+@@ -19,6 +19,7 @@ struct dentry;
+ struct path;
+ extern struct file *alloc_file(struct path *, fmode_t mode,
+ 	const struct file_operations *fop);
++extern struct file *get_empty_filp(void);
+ 
+ static inline void fput_light(struct file *file, int fput_needed)
+ {
 diff --git a/include/linux/fs.h b/include/linux/fs.h
 index 23b2a35..f3f635c 100644
 --- a/include/linux/fs.h

@@ -1,11 +1,11 @@
-# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
-# Maintainer: wallnuss <v dot churavy at gmail dot com
+# Maintainer: FadeMind <fademind@gmail.com>
+# Contributor: wallnuss <v dot churavy at gmail dot com
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
 _pkgname=thermal_daemon
-_git="7baf411f4f32af0cad5fab94354946bfa3b0aa24" # lastest commit in thermal_daemon_next branch 20150403
+_git="0aacb9cf5c4b953f13e6252cf2a06789e3083154" # thermal_daemon development snapshot 20150616
 pkgname=thermald
-pkgver=1.3.7baf411
+pkgver=1.4.3.0aacb9c
 pkgrel=1
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
@@ -16,12 +16,11 @@ depends=('dbus-glib>=0.94' 'libxml2>=2.4')
 backup=('etc/thermald/thermal-conf.xml')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${_git}.tar.gz"
         'modules-load-thermald.conf')
-sha256sums=('b0deacebb561e4e8b59a841e37f589992d8840bce2255145d9a43649afe9883c'
+sha256sums=('c39ed0b114a677e5574de237b17fa38d59de4bb0655355f2360e8736c81cc2ec'
             '0155e1eb459306d251a5a049ffc6c11e144fa8caa75901ac5fa20bd52e05d515')
-
+          
 build() {
   cd "${srcdir}/${_pkgname}-${_git}"
-
   ./autogen.sh
   ./configure --prefix=/usr \
               --sysconfdir=/etc \
