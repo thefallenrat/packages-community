@@ -5,11 +5,17 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=1
+pkgrel=2
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems."
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
 license=('custom')
+depends=('bash' 'desktop-file-utils' 'hicolor-icon-theme' 'curl'
+         'dbus' 'freetype2'  'gdk-pixbuf2' 'ttf-font' 'zenity'
+         'libindicator-gtk2' 'libindicator-gtk3' 'dhcp-client'
+         'networkmanager' 'wpa_supplicant' 'mono' 'mono-addins')
+provides=('steam' 'steam-native')
+replaces=('steam-native')
 install=steam.install
 source=("http://repo.steampowered.com/$_pkgname/pool/$_pkgname/s/$_pkgname/${_pkgname}_$pkgver.tar.gz"
         'lib32-flashplugin-path.patch'
@@ -25,13 +31,10 @@ sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
             '33a5fd9858449af19fecf37ca85c805e1d1e800715485795e7326dc182182c36'
             'c26b486b0b4780cf13c712e23873850b65ffad824c4e735dc9e3ddc35170db0d'
-            '4cd23352ffd402830e47e824282b6dbdd51b2ae4c902d71e4f1909bf5a080477'
-            '9c4c59ad68895ca9ec5d174ec68f2e39d8ac9ec31e5f5e4a1b25100e8c40bbc1'
+            '8c075151e21fc94c420b1374531b7f38fb97f37ee142a9d277e99e505c6f293b'
+            '68d1b4774b79b4b0552eb65f7d463cdf2702a655215f63e448f04b107868e3ab'
             '3273349686e2d80420f060e089456884913fd6ed469eb7f03805b6aa2a271be9'
             '8bbcbd2f29ef1ac62b49d9c2770be9140a447301dcdeb83c94d1f3800228b360')
-
-provides=('steam' 'steam-native')
-replaces=('steam-native')
 
 if [[ "$CARCH" == "x86_64" ]]; then
 prepare() {
@@ -47,13 +50,6 @@ prepare() {
 fi
 
 package() {
-    depends=(
-      'bash' 'desktop-file-utils' 'hicolor-icon-theme' 'curl'
-      'dbus' 'freetype2'  'gdk-pixbuf2' 'ttf-font' 'zenity'
-      'libindicator-gtk2' 'libindicator-gtk3' 'dhcp-client'
-      'networkmanager' 'wpa_supplicant' 'mono' 'mono-addins'
-      )
-
     if [[ "$CARCH" == x86_64 ]]; then
         depends+=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
         #Steam native deps
@@ -79,14 +75,15 @@ package() {
                   'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
                   'libxinerama' 'openal' 'pam' 'pango' 'polkit')
         #Common game deps
-        depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex' 'gperftools' 'libcurl-gnutls')
+        depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex'
+                  'gperftools' 'libcurl-gnutls')
         optdepends=('flashplugin: for flash videos')
     fi
 
     make -C "$_pkgname" DESTDIR="$pkgdir" install
 
     # Install license
-    install -Dm644 "$pkgdir/usr/share/doc/steam/steam_install_agreement.txt" "$pkgdir/usr/share/licenses/steam/LICENSE"
+    install -Dm644 "$pkgdir/usr/share/doc/steam/steam_install_agreement.txt" "$pkgdir/usr/share/licenses/steam-manjaro/LICENSE"
 
     # blank steamdeps because apt-get
     ln -sf /bin/true "$pkgdir/usr/bin/steamdeps"
