@@ -1,0 +1,72 @@
+# $Id$
+# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Sial <sial@cpan.org>
+# Contributor: Martin Herndl <martin.herndl@gmail.com>
+
+pkgname=guayadeque
+pkgver=0.3.7
+pkgrel=2.1
+pkgdesc='Lightweight music player'
+arch=('i686' 'x86_64')
+url='http://guayadeque.org/'
+license=('GPL3')
+depends=('curl' 'desktop-file-utils' 'libgpod' 'taglib' 'wxgtk2.8')
+makedepends=('cmake')
+optdepends=('gstreamer0.10-good-plugins: Support for additional file formats'
+            'gvfs: Support for external devices')
+install='guayadeque.install'
+source=("https://github.com/Kirek/guayadeque/archive/${pkgver}.tar.gz"
+        'guayadeque-link.patch'
+        '0001-Fixed-some-Config-constructor-calls.patch::https://github.com/Kirek/guayadeque/commit/b247bebf9d187de2ee4f9f333d8c6473449f4122.patch'
+        '0002-Fix-play-stops-after-every-track-in-gapless-mode-bug.patch::https://github.com/Kirek/guayadeque/commit/f52143bfef7f50f2fccca956c55739e168b40021.patch'
+        '0003-Fix-recording-distorted-and-slow-bug.patch::https://github.com/Kirek/guayadeque/commit/be6822f1c03c5efa41fdf8939f59cf2a678667e2.patch'
+        '0004-Fix-crossfading-end-segfault.patch::https://github.com/Kirek/guayadeque/commit/a4e95e7fd5e1c85d976f4096256914fe7bc88a0d.patch')
+sha256sums=('e7d38b5f0e4081f43b3d8e666439bdd220b66cd3b5dd7117b90fb9a8c02344a5'
+            '9dea639f2464d2aceb0dd00786ba04a6c46e539d6eccc6468ab312f6de9321d4'
+            '5976831f00789543fe6b4cb77d31993fa087f3c43ab8f99a21e9ea7f381e99ee'
+            'b9d704929fb3900bd504f92dd6a1780b189121681963939d6a6317db65cd7812'
+            '9c5bcfdfcd1441931569cef233d0691b33d66545bde7ec26b03942151944d439'
+            'c0ceb89b3f428df8fcc11487c26985103096dcd50821dd286d3d653956855a79')
+
+prepare() {
+  cd guayadeque-${pkgver}
+  patch -Np1 -i ${srcdir}/0001-Fixed-some-Config-constructor-calls.patch
+  patch -Np1 -i ${srcdir}/0002-Fix-play-stops-after-every-track-in-gapless-mode-bug.patch
+  patch -Np1 -i ${srcdir}/0003-Fix-recording-distorted-and-slow-bug.patch
+  patch -Np1 -i ${srcdir}/0004-Fix-crossfading-end-segfault.patch
+
+  cd Trunk
+  patch -Np1 -i ${srcdir}/guayadeque-link.patch
+
+  sed -i 's/Exec=guayadeque %U/Exec=guayadeque --sync/g' guayadeque.desktop
+  
+  cd src
+  xgettext -d guayadeque -o guayadeque.pot -C --keyword=_ *.cpp
+  mv guayadeque.pot ../po
+
+  sed -i "s/0.3.5/0.3.7/g" Version.h.in
+}
+
+build() {
+  cd guayadeque-${pkgver}/Trunk
+
+  if [[ -d build || -f build ]]; then
+    rm -rf build
+  fi
+  mkdir build && cd build
+
+  cmake .. \
+    -DCMAKE_BUILD_TYPE='Release' \
+    -DCMAKE_INSTALL_PREFIX='/usr' \
+    -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8' \
+    -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8'
+  make
+}
+
+package() {
+  cd guayadeque-${pkgver}/Trunk/build
+
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim: ts=2 sw=2 et:
