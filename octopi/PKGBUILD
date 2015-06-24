@@ -12,9 +12,9 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.7.0
-pkgrel=1
+pkgrel=2
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-#_gitcommit="43b75264f5ce291efeacc13051d27e52553332a3"
+_gitcommit="ab6ed11e561013a15d58e7cad408f17d5386c8fb"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -26,7 +26,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('03d15458ebe482e5a9a00e7a3db5676a53886c754b13a7c56e36d75b73f2d496')
+sha256sums=('696d17d506a73007cab96f0c66ae90513dc245ca3c6ae8152a44863b9ef0ea3c')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -36,7 +36,7 @@ prepare() {
   fi
 
   # sed version
-  sed -i -e "s|0.7.0|${pkgver}-${pkgrel}|g" src/strconstants.h
+  sed -i -e "s|0.7.1-dev|${pkgver}-${pkgrel}|g" src/strconstants.h
 
   cp -r notifier notifier-qt4
   cp -r notifier notifier-qt5
