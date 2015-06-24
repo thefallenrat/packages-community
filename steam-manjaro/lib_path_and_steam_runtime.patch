@@ -6,7 +6,7 @@
  
 +# Set fallback functionality environment variables
 +export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib"
-+if [ -z "$STEAM_RUNTIME" ]; then export STEAM_RUNTIME=0; fi
++export STEAM_FRAME_FORCE_CLOSE=1
  # Get the full name of this script
  export STEAMSCRIPT="$(cd "${0%/*}" && echo "$PWD")/${0##*/}"
  

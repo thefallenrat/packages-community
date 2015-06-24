@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=10
+pkgrel=11
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -22,18 +22,18 @@ source=("http://repo.steampowered.com/$_pkgname/pool/$_pkgname/s/$_pkgname/${_pk
         'alsa_sdl_audiodriver.patch'
         'lib32_path_and_steam_runtime.patch'
         'lib_path_and_steam_runtime.patch'
-        'steam.desktop'
-        'steam-valve.desktop'
         'steam-clean.desktop'
+        'steam-system.desktop'
+        'steam-valve.desktop'
         'steam-clean')
 sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
             '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
-            '33a5fd9858449af19fecf37ca85c805e1d1e800715485795e7326dc182182c36'
-            'c26b486b0b4780cf13c712e23873850b65ffad824c4e735dc9e3ddc35170db0d'
-            '8c075151e21fc94c420b1374531b7f38fb97f37ee142a9d277e99e505c6f293b'
-            '68d1b4774b79b4b0552eb65f7d463cdf2702a655215f63e448f04b107868e3ab'
+            '449532fd8e8d9c55d1b0f98b98855829453d1ec9ea53e82a00e065e17d23bf58'
+            '3cdd0888fc84dc04b198bbe1082909f4ed8f220458d5d16d95927efcb1289398'
             '3273349686e2d80420f060e089456884913fd6ed469eb7f03805b6aa2a271be9'
+            '28d54929e249385994b6a8331cbe5350b1583f1a8b7d0cf4b1617518b8ed0b2e'
+            '9e379ded6bf823b114f6ab4248ec2de7582d8833401461b5f342d0b1f2a6ec1c'
             '8bbcbd2f29ef1ac62b49d9c2770be9140a447301dcdeb83c94d1f3800228b360')
 
 if [[ "$CARCH" == "x86_64" ]]; then
@@ -91,8 +91,8 @@ package() {
 
     # Replace orig launcher
     rm "$pkgdir/usr/share/applications/steam.desktop"
-    cp "$srcdir/steam.desktop" "$pkgdir/usr/share/applications/steam.desktop"
-    chmod +x "$pkgdir/usr/share/applications/steam.desktop"
+    cp "$srcdir/steam-system.desktop" "$pkgdir/usr/share/applications/steam-system.desktop"
+    chmod +x "$pkgdir/usr/share/applications/steam-system.desktop"
     cp "$srcdir/steam-valve.desktop" "$pkgdir/usr/share/applications/steam-valve.desktop"
     chmod +x "$pkgdir/usr/share/applications/steam-valve.desktop"
     cp "$srcdir/steam-clean.desktop" "$pkgdir/usr/share/applications/steam-clean.desktop"

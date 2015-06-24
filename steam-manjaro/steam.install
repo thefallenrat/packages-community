@@ -4,9 +4,8 @@ post_install() {
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam cleaning launcher"
-  if [[ "$(uname -m)"  == "x86_64" ]]; then
-  echo "Check the red paragraph here https://forum.manjaro.org/index.php?topic=16054.msg149783 for System Libs"
-  fi
+  echo "You can use the System Libraries launcher on computers with free GPU drivers"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
 }
 
 pre_install(){
@@ -20,11 +19,8 @@ post_upgrade() {
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam cleaning launcher"
-  echo "Use the System Libs launcher if it works, as it may be faster. Steam Runtime is provided for compatibility"
-  echo "Download this https://www.dropbox.com/sh/xexyu68u2xnfgn6/AACEvmC_k22iLY9brSA9tgIQa and copy to /usr/lib32"
-  if [[ "$(uname -m)"  == "x86_64" ]]; then
-  echo "Check the red paragraph here https://forum.manjaro.org/index.php?topic=16054.msg149783 for System Libs"
-  fi
+  echo "You can use the System Libraries launcher on computers with free GPU drivers"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
 }
 
 pre_upgrade(){
