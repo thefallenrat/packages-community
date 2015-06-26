@@ -7,7 +7,7 @@
 pkgname=compiz08-ccsm
 _pkgname=ccsm
 pkgver=0.8.10
-pkgrel=1
+pkgrel=2
 pkgdesc="Compizconfig Settings Manager in Python2"
 arch=('any')
 url="http://www.northfield.ws/projects/compiz/releases/0.8.10/"
@@ -24,7 +24,7 @@ sha1sums=('24fc8c0b17d5c93fed82d5ad4bc34cfea0324876')
 prepare() {
   cd "${srcdir}/${_pkgname}"
   # python2 fix
-  for file in $(find . -name '*.py' -print); do
+  for file in $(find . -name '*.py*' -print); do
     sed -i 's_^#!.*/usr/bin/python_#!/usr/bin/python2_' $file
     sed -i 's_^#!.*/usr/bin/env.*python_#!/usr/bin/env python2_' $file
   done
