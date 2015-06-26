@@ -1,44 +1,44 @@
-# Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
 pkgname=budgie-desktop
-pkgver=8.1
+pkgver=8.2
 pkgrel=1
-pkgdesc="Simple GTK3 desktop experience"
+pkgdesc="Simple GTK3 desktop experience from Solus Project"
 arch=('i686' 'x86_64')
-url="http://evolve-os.com/"
-license=('GPLv2')
-depends=('gtk3' 'upower' 'libwnck3' 'gnome-menus' 'gnome-settings-daemon' 'libpeas' 'mutter' 'desktop-file-utils' 'libpulse' 'vala' 'libgee')
-makedepends=('autoconf' 'git' 'python2')
-conflicts=('budgie-desktop-git')
-install=budgie-desktop.install
-source=("$pkgname"::'git+https://github.com/evolve-os/budgie-desktop.git#branch=master'
-          'budgie-desktop.install')
-md5sums=('SKIP'
-         'c1ff1a89371c426e771b81368c04185b')
+url="http://solus-project.com/"
+license=('GPL2')
 
-#pkgver() {
-#  cd "$srcdir/$pkgname"
-#		echo "5.1.$(git rev-list --count HEAD).$(git rev-parse --short master)"
-#}
+depends=('libwnck3' 'gnome-menus' 'gnome-settings-daemon' 'libpeas'
+		 'mutter>=3.14' 'desktop-file-utils' 'libgee' 'gnome-themes-standard'
+		 'gtk3>=3.14' 'libpulse' 'upower' 'intltool')
+
+makedepends=('git' 'python2' 'vala' 'gobject-introspection')
+
+install=budgie-desktop.install
+source=("$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-desktop/archive/v${pkgver}.tar.gz"
+        'git+https://git.gnome.org/browse/libgnome-volume-control#commit=e14dbe8')
+sha256sums=('039e15e26f17ad210feb9b69ad2a15ed330ffa231013ff734b31f80e9b219645'
+            'SKIP')
 
 prepare() {
-    cd "$srcdir/$pkgname"
-    git submodule init
-    git submodule update
+	cd "$srcdir"/$pkgname-$pkgver
+	rm -rv gvc
+	mv ../libgnome-volume-control gvc
 }
 
 build() {
-	cd "$srcdir/$pkgname"
+	cd "$srcdir"/$pkgname-$pkgver
+	intltoolize --force
 	autoreconf --force --install
 	./configure --prefix=/usr
 	make
 }
 
 check() {
-	cd "$srcdir/$pkgname"
+	cd "$srcdir"/$pkgname-$pkgver
 	make -k check
 }
 
 package() {
-	cd "$srcdir/$pkgname"
-	make DESTDIR="$pkgdir/" install
+	cd "$srcdir"/$pkgname-$pkgver
+	make DESTDIR="$pkgdir" install
 }
+
