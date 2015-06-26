@@ -8,8 +8,8 @@ pkgdesc="It's so easy doing the packaging process !"
 arch=('i686' 'x86_64')
 url="https://github.com/filipe-marques/packnroll"
 license=('GPL')
-depends=('qt5-base' 'dev-tools')
-makedepends=('qt5-tools' 'dev-tools')
+depends=('qt5-base' 'devtools')
+makedepends=('qt5-tools' 'devtools')
 source=("$url/archive/$pkgname-$pkgver.tar.gz")
 md5sums=('ab0f1373d2c61151ea619912cfe55fde')
 
