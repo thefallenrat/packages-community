@@ -11,7 +11,7 @@ license=('GPL')
 depends=('ffmpeg' 'qt5-base')
 makedepends=('qt5-tools')
 source=("$url/archive/$pkgname-$pkgver.tar.gz")
-md5sums=('9bafae05a128c1fe3ace4fe8da9049d8')
+md5sums=('f62365382a05de5a75369660cad77bf2')
 
 build() {
   cd $srcdir/vicky-$pkgname-$pkgver
