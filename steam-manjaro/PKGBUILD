@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=11
+pkgrel=12
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -58,7 +58,8 @@ package() {
                   'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-gnutls28'  
                   'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
                   'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
-                  'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev')
+                  'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev'
+                  'lib32-libxss')
         #Common game deps
         depends+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image'
                   'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
@@ -74,7 +75,7 @@ package() {
         #Steam native deps
         depends+=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
                   'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
-                  'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev')
+                  'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev' 'libxss')
         #Common game deps
         depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex'
                   'gperftools' 'libcurl-gnutls')
