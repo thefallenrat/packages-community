@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=13
+pkgrel=14
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
