@@ -3,12 +3,12 @@
 pkgbase=qpdfview
 pkgname=('qpdfview' 'qpdfview-djvu-plugin' 'qpdfview-ps-plugin')
 pkgver=0.4.14
-pkgrel=2
+pkgrel=3
 pkgdesc='A tabbed PDF viewer using the poppler library.'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/qpdfview'
 license=('GPL2')
-depends=('libcups' 'poppler-qt5' 'qt5-svg' 'desktop-file-utils' 'hicolor-icon-theme')
+depends=('libcups' 'poppler-qt5' 'qt5-svg' 'desktop-file-utils' 'hicolor-icon-theme' 'libxkbcommon-x11')
 optdepends=('qpdfview-ps-plugin: qpdfview plugin for PostScript support' 
             'qpdfview-djvu-plugin: qpdfview plugin for DjVu support')
 makedepends=('qt5-tools' 'libspectre' 'djvulibre')
@@ -34,14 +34,10 @@ package_qpdfview-djvu-plugin() {
     depends=('qpdfview' 'djvulibre')
     cd "$srcdir/$pkgbase-$pkgver"
     install -Dm644 "libqpdfview_djvu.so" "${pkgdir}/usr/lib/qpdfview/libqpdfview_djvu.so"
-   # mkdir "${pkgdir}/usr/lib/qpdfview/"
-   # cp -rv "usr/lib/qpdfview/libqpdfview_djvu.so" "${pkgdir}/usr/lib/qpdfview/libqpdfview_djvu.so"
 }
 
 package_qpdfview-ps-plugin() {
     depends=('qpdfview' 'libspectre')
     cd "$srcdir/$pkgbase-$pkgver"
     install -Dm644 "libqpdfview_ps.so" "${pkgdir}/usr/lib/qpdfview/libqpdfview_ps.so"
-   # mkdir "${pkgdir}/usr/lib/qpdfview/"
-   # cp -v "usr/lib/qpdfview/libqpdfview_ps.so" "${pkgdir}/usr/lib/qpdfview/libqpdfview_ps.so"
 }
