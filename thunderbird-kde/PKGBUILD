@@ -2,7 +2,7 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=38.0.1
+pkgver=38.1.0
 pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone Mail/News reader"
@@ -18,7 +18,7 @@ optdepends=('thunderbird-i18n: for multilanguage support'
             'libcanberra: for sound support')
 conflicts=('thunderbird' 'thunderbird-kde-opensuse')
 install=thunderbird.install
-# For patch look here: https://build.opensuse.org/package/show?project=openSUSE:Factory&package=MozillaThunderbird
+# For patch look here: https://build.opensuse.org/package/show/mozilla:Factory/MozillaThunderbird
 _patchrev=e11af0d6cb48
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.bz2
@@ -31,8 +31,8 @@ source=(ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sourc
         $_patchurl/mozilla-nongnome-proxies.patch        
         kde.js)
 options=('!emptydirs' '!makeflags')
-sha256sums=('7655039a9a2d5d169f5b43d2c737007dbaa42fa767f7bfbfde8ae46b05e4ab71'
-            '15c03b574125b62dacf21cf6b5e02d5a939e66c87144a91753fa842303458420'
+sha256sums=('ddf1fd6048f07370bb0375eac76e687c19d29100c19e9f86fc04bb88d4409787'
+            '6ce788b80d0a1bac96201ca4f4ce93fee5a94e222b1ddb6cdee5c6db2d00ef77'
             '3fba13d88aeb003ab0811ef739463858172ce0662a1c7d62835df3d83ddbb8fb'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
             'e4ea8e6788163d9f8db8f1f40023db3ea0a1358f9a4510169f2d4c4fe6a887ed'
