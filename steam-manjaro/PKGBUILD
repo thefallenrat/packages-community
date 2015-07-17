@@ -54,7 +54,7 @@ package() {
         depends+=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
         #Steam native deps
         depends+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'lib32-glew1.10'
-                  'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-js17' 'lib32-libappindicator'
+                  'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-js17' 'lib32-libappindicator-gtk2'
                   'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-gnutls28'  
                   'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
                   'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
