@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc="grey or green Conky with lua-ring clock"
 arch=('any')
 license=('GPL')
-depends=('conky-lua')
+depends=('conky-lua' 'ttf-bitstream-vera')
 source=(clock_rings_green.lua
 	clock_rings_grey.lua
 	conky_lua_green
