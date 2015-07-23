@@ -1,12 +1,18 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 pkgname=i3exit
-pkgver=20150713
+pkgver=20150723
 pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible exit-script for i3"
 arch=('any')
 license=('GPL')
-source=("$pkgname")
-md5sums=('ddf94e610587ac9e5df8bfa76220b480')
+depends=('i3lock')
+install=$pkgname.install
+source=("$pkgname"
+	 blurlock)
+md5sums=('ddf94e610587ac9e5df8bfa76220b480'
+	 '922f7c9a30bc5e2b30cafa9103bb05cd')
 package() {
-install -Dm755 "${srcdir}/$pkgname" "${pkgdir}/usr/bin/i3exit"
+	install -Dm755 "${srcdir}/$pkgname" "${pkgdir}/usr/bin/i3exit"
+	install -Dm755 "${srcdir}/blurlock" "${pkgdir}/usr/bin/blurlock"
+	rm -f "${pkgdir}/usr/local/bin/blurlock"
 }

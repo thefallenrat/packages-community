@@ -1,10 +1,14 @@
-# Maintainer: Bernhard Landauer <oberon at manjaro.org>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
+# Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Thorsten Töpper <atsutane-tu@freethoughts.de>
+# Contributor: Thayer Williams <thayer@archlinux.org>
+# Contributor: Jeff 'codemac' Mickey <jeff@archlinux.org>
 # Contributor: Bharani Deepan <bharanideepan at_ gmail >
 pkgname=dmenu-manjaro
 pkgver=4.5
 pkgrel=5
 pkgdesc="customized dmenu for manjaro-i3 with recency-awareness and xft-support"
-url=""
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'cantarell-fonts')
