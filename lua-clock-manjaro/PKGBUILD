@@ -1,0 +1,60 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgbase=('lua-clock-manjaro')
+pkgname=('lua-clock-manjaro' 'lua-clock-i3')
+pkgver=20150723
+pkgrel=1
+pkgdesc="grey or green Conky with lua-ring clock"
+arch=('any')
+license=('GPL')
+depends=('conky-lua')
+source=(clock_rings_green.lua
+	clock_rings_grey.lua
+	conky_lua_green
+	conky_lua_grey
+	conky_shortcuts_green
+	conky_shortcuts_grey
+	logo_green.png
+	logo_grey.png
+	start_conky_green
+	start_conky_grey
+	start_lua_green
+	start_lua_grey)
+md5sums=('6f62d3e56e3588ef99b9fb00c1bdb5c0'
+	'707642827f25bcdccb61e65ff79dacbd'
+	'23bab8b553c88021a5ce6b10c92ede7b'
+	'92a7b2750d057d1a1e842a2a9dcf5164'
+	'5d3b58b55309841b8b7f7a6fa8d70f5a'
+	'f7739be9a01563a0a6241a418a4124aa'
+	'a334b214e7cf383e256d1948e77c82f9'
+	'4ae44c5422fc64f5d234001bc5292799'
+	'db73f1e858097ab8eba4066170387d43'
+	'7f96a342544e0b8236a7aae8dd407e23'
+	'10276e65c47446e82a7ff56faa1c1e1d'
+	'cd4a025c1ed0a0853f2f64e87d303664')
+
+package_lua-clock-manjaro() {
+	cd "$srcdir"
+	install -Dm644 clock_rings_green.lua "${pkgdir}/usr/share/conky/clock_rings_green.lua"
+	install -Dm644 clock_rings_grey.lua "${pkgdir}/usr/share/conky/clock_rings_grey.lua"
+	install -Dm644 conky_lua_green "${pkgdir}/usr/share/conky/conky_lua_green"
+	install -Dm644 conky_lua_grey "${pkgdir}/usr/share/conky/conky_lua_grey"
+	install -Dm644 logo_green.png "${pkgdir}/usr/share/icons/logo_green.png"
+	install -Dm644 logo_grey.png "${pkgdir}/usr/share/icons/logo_grey.png"
+	install -Dm755 start_lua_green "${pkgdir}/usr/bin/start_lua_green"
+	install -Dm755 start_lua_grey "${pkgdir}/usr/bin/start_lua_grey"
+}
+
+package_lua-clock-i3() {
+	cd "$srcdir"
+	install -Dm644 clock_rings_green.lua "${pkgdir}/usr/share/conky/clock_rings_green.lua"
+	install -Dm644 clock_rings_grey.lua "${pkgdir}/usr/share/conky/clock_rings_grey.lua"
+	install -Dm644 conky_lua_green "${pkgdir}/usr/share/conky/conky_lua_green"
+	install -Dm644 conky_lua_grey "${pkgdir}/usr/share/conky/conky_lua_grey"
+	install -Dm644 logo_green.png "${pkgdir}/usr/share/icons/logo_green.png"
+	install -Dm644 logo_grey.png "${pkgdir}/usr/share/icons/logo_grey.png"
+	install -Dm644 conky_shortcuts_green "${pkgdir}/usr/share/conky/conky_shortcuts_green"
+	install -Dm644 conky_shortcuts_grey "${pkgdir}/usr/share/conky/conky_shortcuts_grey"
+	install -Dm755 start_conky_green "${pkgdir}/usr/bin/start_conky_green"
+	install -Dm755 start_conky_grey "${pkgdir}/usr/bin/start_conky_grey"
+}

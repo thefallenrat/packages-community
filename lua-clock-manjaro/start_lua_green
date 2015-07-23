@@ -1,0 +1,6 @@
+## start the green conkies ##
+#!/bin/bash
+
+conky -c /usr/share/conky/conky_green
+
+exit
