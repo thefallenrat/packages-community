@@ -1,0 +1,38 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Thorsten Töpper <atsutane-tu@freethoughts.de>
+
+pkgname=i3status-manjaro
+pkgver=2.9
+pkgrel=1
+pkgdesc='Customized status bar to use with i3bar, dzen2 or xmobar'
+arch=('i686' 'x86_64')
+url='http://i3.zekjur.net/i3status/'
+license=('BSD')
+groups=('i3')
+depends=('wireless_tools' 'confuse' 'alsa-lib' 'yajl' 'ttf-font-icons')
+makedepends=('asciidoc')
+backup=('etc/i3status.conf')
+install=$pkgname.install
+options=('docs')
+
+source=(i3status.conf
+	"http://i3.zekjur.net/i3status/i3status-$pkgver.tar.bz2")
+
+md5sums=('4c7fbfe8f4382d260c963ceabab79519'
+	'f02a61ade525fd9e9b092f778632a8b0')
+
+build() {
+  cd "${srcdir}/i3status-${pkgver}"
+  
+  make
+}
+
+package() {
+  cd "${srcdir}/i3status-${pkgver}"
+  
+  make DESTDIR="$pkgdir" install
+  install -Dm644 LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+  install -Dm644 "${srcdir}/i3status.conf" "${pkgdir}$HOME/i3status.conf"
+
+  make clean
+}
