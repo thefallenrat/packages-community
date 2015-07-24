@@ -1,15 +1,15 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=lua-clock-manjaro
+pkgname=lua-clock-i3
 pkgver=20150725
 pkgrel=1
 pkgdesc="grey or green Conky with lua-ring clock"
 arch=('any')
 license=('GPL')
 depends=('conky-lua' 'ttf-bitstream-vera')
-conflicts=lua-clock-i3
+conflicts=lua-clock-manjaro
 source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
-md5sums=('efb9639da51602b9a15309edd9bd9f75')
+md5sums=('eef773a73085c0ea294157bf6be65861')
 
 package() {
 	cd "$srcdir"
@@ -19,6 +19,8 @@ package() {
 	install -Dm644 conky_lua_grey "${pkgdir}/usr/share/conky/conky_lua_grey"
 	install -Dm644 logo_green.png "${pkgdir}/usr/share/icons/logo_green.png"
 	install -Dm644 logo_grey.png "${pkgdir}/usr/share/icons/logo_grey.png"
-	install -Dm755 start_lua_green "${pkgdir}/usr/bin/start_lua_green"
-	install -Dm755 start_lua_grey "${pkgdir}/usr/bin/start_lua_grey"
+	install -Dm644 conky_shortcuts_green "${pkgdir}/usr/share/conky/conky_shortcuts_green"
+	install -Dm644 conky_shortcuts_grey "${pkgdir}/usr/share/conky/conky_shortcuts_grey"
+	install -Dm755 start_conky_green "${pkgdir}/usr/bin/start_conky_green"
+	install -Dm755 start_conky_grey "${pkgdir}/usr/bin/start_conky_grey"
 }
