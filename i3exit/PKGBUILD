@@ -1,11 +1,11 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 pkgname=i3exit
-pkgver=20150723
-pkgrel=2
+pkgver=20150724
+pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible exit-script for i3"
 arch=('any')
 license=('GPL')
-depends=('i3lock')
+depends=('i3lock' 'imagemagick')
 install=$pkgname.install
 source=("$pkgname"
 	 blurlock)
