@@ -10,6 +10,7 @@ url='http://i3.zekjur.net/i3status/'
 license=('BSD')
 groups=('i3')
 depends=('wireless_tools' 'confuse' 'alsa-lib' 'yajl' 'ttf-font-icons')
+conflicts=('i3status')
 makedepends=('asciidoc')
 backup=('etc/i3status.conf')
 install=$pkgname.install
@@ -23,16 +24,13 @@ md5sums=('4c7fbfe8f4382d260c963ceabab79519'
 
 build() {
   cd "${srcdir}/i3status-${pkgver}"
-  
   make
 }
 
 package() {
   cd "${srcdir}/i3status-${pkgver}"
-  
   make DESTDIR="$pkgdir" install
   install -Dm644 LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
-  install -Dm644 "${srcdir}/i3status.conf" "${pkgdir}$HOME/i3status.conf"
-
+  install -Dm644 "${srcdir}/i3status.conf" "${pkgdir}/etc/i3status.conf"
   make clean
 }
