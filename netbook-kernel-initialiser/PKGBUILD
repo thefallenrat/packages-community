@@ -1,9 +1,0 @@
-# Maintainer: Rob McCathie <rob@manjaro.org>
-
-pkgname=netbook-kernel-initialiser
-pkgver=1.0
-pkgrel=1
-pkgdesc="Dummy package that will be automatically replaced by the Netbook kernel package upon system update"
-arch=('i686')
-url="http://www.manjaro.org"
-license=('GPL')
