@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Steam cleaning (fix errors)
-Comment=OpenGL errors or others related to library incompatibilities may be fixed by this
+Name=Steam (Purge Libraries)
+Comment=OpenGL errors related to runtime library incompatibilities may be fixed
 Exec=/usr/bin/steam-clean
 Icon=steam
 Terminal=false

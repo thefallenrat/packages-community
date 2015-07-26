@@ -1,19 +1,44 @@
-# $Id$
 # Maintainer: Daniel Wallace <danielwallace at gtmanfred dot com>
 # Contributor: K900 <k0009000@gmail.com>
 # Manjaro implementation: Alexandru Ianu <alexandru@manjaro.org>
+# Native config contribution: Manuel Hüsers <manuel.huesers@uni-ol.de>
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=14
+pkgrel=15
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
 license=('custom')
+
 depends=('bash' 'desktop-file-utils' 'hicolor-icon-theme' 'curl'
          'dbus' 'freetype2'  'gdk-pixbuf2' 'ttf-font' 'zenity'
          'libindicator-gtk2' 'libindicator-gtk3' 'dhcp-client'
          'networkmanager' 'wpa_supplicant' 'mono' 'mono-addins')
+depends_x86_64=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
+#Steam native deps
+depends_x86_64+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'lib32-glew1.10'
+         'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-js17' 'lib32-libappindicator-gtk2'
+         'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-gnutls28' 'lib32-libxss' 
+         'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
+         'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
+         'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev')
+depends_i686=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
+         'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
+         'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev' 'libxss')
+#Common game deps
+depends_x86_64+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image'
+         'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
+depends_i686+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex'
+         'gperftools' 'libcurl-gnutls')
+
+optdepends_i686=('flashplugin: for flash videos')
+optdepends_x86_64=('lib32-mesa: for open source driver users'
+         'lib32-catalyst-utils: for AMD Catalyst users'
+         'lib32-nvidia-utils: for NVIDIA proprietary blob users'
+         'lib32-flashplugin: for flash video'
+         'lib32-alsa-plugins: for pulseaudio on some games')
+
 provides=('steam' 'steam-native')
 replaces=('steam-native')
 install=steam.install
@@ -25,16 +50,18 @@ source=("http://repo.steampowered.com/$_pkgname/pool/$_pkgname/s/$_pkgname/${_pk
         'steam-clean.desktop'
         'steam-system.desktop'
         'steam-valve.desktop'
-        'steam-clean')
+        'steam-clean'
+        '51-steam.rules')
 sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
             '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
             '449532fd8e8d9c55d1b0f98b98855829453d1ec9ea53e82a00e065e17d23bf58'
             '3cdd0888fc84dc04b198bbe1082909f4ed8f220458d5d16d95927efcb1289398'
-            '3273349686e2d80420f060e089456884913fd6ed469eb7f03805b6aa2a271be9'
+            '8800f64bf94f593c11f73af021bb4a7d7378cbb475bbc33c32b799c06dd2f118'
             '28d54929e249385994b6a8331cbe5350b1583f1a8b7d0cf4b1617518b8ed0b2e'
             '9e379ded6bf823b114f6ab4248ec2de7582d8833401461b5f342d0b1f2a6ec1c'
-            'd89e10ecbc7b4be5bf98cdd5f4a5b5668658f2452eb8d698c15a7766418f389f')
+            '0862e190d5504225b049feea425bf18c03338ca8c32b70c2c94353920bc13577'
+            '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c')
 
 if [[ "$CARCH" == "x86_64" ]]; then
 prepare() {
@@ -50,38 +77,6 @@ prepare() {
 fi
 
 package() {
-    if [[ "$CARCH" == x86_64 ]]; then
-        depends+=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
-        #Steam native deps
-        depends+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'lib32-glew1.10'
-                  'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-js17' 'lib32-libappindicator-gtk2'
-                  'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-gnutls28'  
-                  'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
-                  'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
-                  'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev'
-                  'lib32-libxss')
-        #Common game deps
-        depends+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image'
-                  'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
-        optdepends=(
-            'lib32-mesa: for open source driver users'
-            'lib32-catalyst-utils: for AMD Catalyst users'
-            'lib32-nvidia-utils: for NVIDIA proprietary blob users'
-            'lib32-flashplugin: for flash video'
-            'lib32-alsa-plugins: for pulseaudio on some games'
-        )
-
-    else
-        #Steam native deps
-        depends+=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
-                  'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
-                  'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev' 'libxss')
-        #Common game deps
-        depends+=('sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex'
-                  'gperftools' 'libcurl-gnutls')
-        optdepends=('flashplugin: for flash videos')
-    fi
-
     make -C "$_pkgname" DESTDIR="$pkgdir" install
 
     # Install license
@@ -99,6 +94,13 @@ package() {
     cp "$srcdir/steam-clean.desktop" "$pkgdir/usr/share/applications/steam-clean.desktop"
     chmod +x "$pkgdir/usr/share/applications/steam-clean.desktop"
     mkdir -p "$pkgdir/usr/bin"
+
+    # Library cleaner script (to be used if needed)
     cp "$srcdir/steam-clean" "$pkgdir/usr/bin/steam-clean"
     chmod +x "$pkgdir/usr/bin/steam-clean"
+
+    # Polkit rules for network manager
+    mkdir -p "$pkgdir/etc/polkit-1/rules.d"
+    chmod 700 "$pkgdir/etc/polkit-1/rules.d"
+    cp "$srcdir/51-steam.rules" "$pkgdir/etc/polkit-1/rules.d/51-steam.rules"
 }
