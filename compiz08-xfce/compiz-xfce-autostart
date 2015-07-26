@@ -15,5 +15,11 @@ rm ~/.config/autostart/compiz-xfce-autostart.desktop
 cp /etc/xdg/autostart/compiz-xfce-autostart.desktop ~/.config/autostart/
 sed -i 's|Hidden=false|Hidden=true|' ~/.config/autostart/compiz-xfce-autostart.desktop
 
+mkdir -p ~/.local/bin
+rm ~/.local/bin/compiz-xfce-uninstall-helper
+rm ~/.config/autostart/compiz-xfce-uninstall-helper.desktop
+cp /usr/share/compiz-xfce/compiz-xfce-uninstall-helper ~/.local/bin/
+cp /usr/share/compiz-xfce/compiz-xfce-uninstall-helper.desktop ~/.config/autostart/
+
 ## This first-time run when it's replacing a running xfwm4, we run it twice cause of bugs
 compiz --replace ; exec compiz --replace
