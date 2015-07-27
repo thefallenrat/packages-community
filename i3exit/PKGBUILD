@@ -1,11 +1,12 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 pkgname=i3exit
-pkgver=20150724
+pkgver=20150727
 pkgrel=1
-pkgdesc="Systemd/OpenRC-compatible exit-script for i3"
+pkgdesc="Systemd/OpenRC-compatible exit-script for i3, including 'blurlock'"
 arch=('any')
 license=('GPL')
-depends=('i3lock' 'imagemagick')
+depends=('i3-wm' 'i3lock' 'imagemagick')
+optdepends=('lightdm-gtk-greeter: switch user with lightdm')
 install=$pkgname.install
 source=("$pkgname"
 	 blurlock)
