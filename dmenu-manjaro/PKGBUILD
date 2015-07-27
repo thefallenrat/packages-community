@@ -4,37 +4,38 @@
 # Contributor: Thorsten Töpper <atsutane-tu@freethoughts.de>
 # Contributor: Thayer Williams <thayer@archlinux.org>
 # Contributor: Jeff 'codemac' Mickey <jeff@archlinux.org>
-# Contributor: Bharani Deepan <bharanideepan at_ gmail >
+
 pkgname=dmenu-manjaro
 pkgver=4.5
-pkgrel=5
-pkgdesc="customized dmenu for manjaro-i3 with recency-awareness and xft-support"
+pkgrel=6
+pkgdesc="customized recency-aware dmenu for manjaro-i3 with mouse, xft and width-xy support"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'cantarell-fonts')
 conflicts=('dmenu' 'dmenu-xft')
 provides=('dmenu' 'dmenu-xft')
 source=(dmenu-$pkgver.tar.gz
-        dmenu-4.5-xft.diff
-        break-fix.diff
+	dmenu-4.5-xft-width-xy.diff
+	dmenu-4.5-mouse-support.diff
 	dmenu_recency)
-sha256sums=('082cd698d82125ca0b3989006fb84ac4675c2a5585bf5bb8af0ea09cfb95a850'
-            '2bb738db3c4ad2e2841db17f6bfd748eba957f0c147059966d85b94c2b152389'
-            '4c14ff3bc6bd6f4b1987c244bb3359beb716dab441088a1ab8fff81285636608'
-	    'c8a753185002984642adebae39f11f3ab2b076b04758ca3bdaabb183bee3408d')
+md5sums=('9c46169ed703732ec52ed946c27d84b4'
+	'8940e6146e71188b6ac0bb2c4414b4e6'
+	'eeec3e11ff68f27ebbc3133ad6549f56'
+	'7fc92e2dbcf095c4d15f202a91b4a14a')
 prepare() {
 	cd $srcdir/dmenu-$pkgver
-	patch -p1 < ../dmenu-$pkgver-xft.diff
-	patch -p1 < ../break-fix.diff
+	patch -p1 < ../dmenu-4.5-xft-width-xy.diff
+	patch -p1 < ../dmenu-4.5-mouse-support.diff
 }
 build() {
 	cd $srcdir/dmenu-$pkgver
-	make
+	make \
+	X11INC=/usr/include/X11 \
+	X11LIB=/usr/lib/X11
 }
-package()
-{
-    cd "$srcdir/dmenu-$pkgver"
-    make DESTDIR=$pkgdir PREFIX=/usr install
-    install -Dm755 "${srcdir}/dmenu_recency" "${pkgdir}/usr/bin/dmenu_recency"
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+package() {
+	cd $srcdir/dmenu-$pkgver
+	make PREFIX=/usr DESTDIR=$pkgdir install
+	install -Dm755 "${srcdir}/dmenu_recency" "${pkgdir}/usr/bin/dmenu_recency"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
