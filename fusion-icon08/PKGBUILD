@@ -8,19 +8,18 @@
 
 _name=fusion-icon
 pkgname=fusion-icon08
-epoch=1
 pkgver=0.1
-pkgrel=6
+pkgrel=2
 pkgdesc="Simple tray icon for Compiz 0.8"
 arch=('any')
 url="http://www.compiz.org/"
 license=('GPL')
 replaces=("${_name}")
 provides=('fusion-icon=0.1')
-conflicts=('fusion-icon0.9')
+conflicts=('fusion-icon0.9' 'fusion-icon')
 depends=('pygtk' 'compiz08-compizconfig-python' 'hicolor-icon-theme' 'xorg-utils' 'mesa-demos')
 install=$_name.install
-source=("http://archlinux.c3sl.ufpr.br/other/community/$_name/$_name-$pkgver.tar.gz" 
+source=("http://archlinux.c3sl.ufpr.br/other/community/$_name/$_name-0.1.tar.gz"
         "fix_glib_crash.patch"
         'fusion-icon.desktop')
 sha256sums=('da23acad5bc6d2d062744faafdfe5f71d5f8a787bd464642d763fb1559253c3d'
