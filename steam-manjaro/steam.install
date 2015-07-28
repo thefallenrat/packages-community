@@ -4,7 +4,7 @@ post_install() {
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam (Purge Libraries) launcher"
-  echo "The System Libraries launcher may or may not work depending on drivers"
+  echo "The System Libraries launcher may or may not work"
   echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
 }
 
@@ -19,7 +19,7 @@ post_upgrade() {
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam (Purge Libraries) launcher"
-  echo "The System Libraries launcher may or may not work depending on drivers"
+  echo "The System Libraries launcher may or may not work"
   echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
 }
 
