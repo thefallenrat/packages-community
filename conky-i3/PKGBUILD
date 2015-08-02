@@ -1,0 +1,23 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=conky-i3
+pkgver=20150802
+pkgrel=1
+pkgdesc="grey or green Conky for manjaro-i3"
+arch=('any')
+license=('GPL')
+depends=('conky>=1.10' 'ttf-bitstream-vera')
+conflicts=('lua-clock-manjaro' 'lua-clock-i3')
+backup=('usr/share/conky/conky_green' 'usr/share/conky/conky_grey' 'usr/share/conky/conky1.10_shortcuts_green' 'usr/share/conky/conky1.10_shortcuts_grey')
+source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
+md5sums=('b070f86728771ccfc9b6d8979f144e69')
+
+package() {
+	cd "$srcdir"
+	install -Dm644 conky_green "${pkgdir}/usr/share/conky/conky_green"
+	install -Dm644 conky_grey "${pkgdir}/usr/share/conky/conky_grey"
+	install -Dm644 conky1.10_shortcuts_green "${pkgdir}/usr/share/conky/conky1.10_shortcuts_green"
+	install -Dm644 conky1.10_shortcuts_grey "${pkgdir}/usr/share/conky/conky1.10_shortcuts_grey"
+	install -Dm755 start_conky_green "${pkgdir}/usr/bin/start_conky_green"
+	install -Dm755 start_conky_grey "${pkgdir}/usr/bin/start_conky_grey"
+}
