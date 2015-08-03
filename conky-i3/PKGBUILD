@@ -2,7 +2,7 @@
 
 pkgname=conky-i3
 pkgver=20150802
-pkgrel=1
+pkgrel=2
 pkgdesc="grey or green Conky for manjaro-i3"
 arch=('any')
 license=('GPL')
