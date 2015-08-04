@@ -2,7 +2,7 @@
 # Contributor: herbie643
 
 pkgname=i3-theme-dust
-pkgver=20150803
+pkgver=20150804
 pkgrel=1
 pkgdesc="Bright grey gtk theme for i3"
 arch=('any')
