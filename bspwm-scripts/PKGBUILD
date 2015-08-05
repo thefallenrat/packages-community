@@ -6,12 +6,11 @@ pkgver=0.1
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
-url="https://github.com/Chrysostomus/Bspwm-scripts"
+url="https://github.com/Chrysostomus/bspwm-scripts"
 license=("MIT")
 depends=('dmenu-manjaro' 'bspwm' 'sxhkd' 'xdotool' 'wmctrl' 'wmutils-git' 'xorg-xdpyinfo' 'xtitle' 'xwinfo-git')
 makedepends=("git")
-l=Bspwm-scripts.install
-source=(git://github.com/Chrysostomus/Bspwm-scripts)
+source=(git://github.com/Chrysostomus/bspwm-scripts)
 md5sums=('SKIP')
 
 pkgver() {
