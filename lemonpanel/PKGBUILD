@@ -11,18 +11,14 @@ license=("MIT")
 depends=('dmenu-manjaro' 'lemonbar-xft-clicky-git' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu-git' 'conky-cli' 'xorg-xdpyinfo' 'xtitle')
 # optdepends=('bspwm' 'bspwm-scripts')
 makedepends=("git")
-install=$_pkgname.install
 source=(git://github.com/Chrysostomus/lemonpanel)
 md5sums=('SKIP')
-
 
 pkgver() {
   cd "$_pkgname"
   git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/v//'
 }
 
-
-# vim:set ts=2 sw=2 et:
 package () {
     cd "$srcdir"
     install -d -m755 "$pkgdir/usr/bin"
