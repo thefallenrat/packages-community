@@ -10,7 +10,7 @@ url="https://github.com/Chrysostomus/Bspwm-scripts"
 license=("MIT")
 depends=('dmenu-manjaro' 'bspwm' 'sxhkd' 'xdotool' 'wmctrl' 'wmutils-git' 'xorg-xdpyinfo' 'xtitle' 'xwinfo-git')
 makedepends=("git")
-l=Bspwm-scripts.install
+install=Bspwm-scripts.install
 source=(git://github.com/Chrysostomus/Bspwm-scripts)
 md5sums=('SKIP')
 
