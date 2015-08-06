@@ -16,4 +16,3 @@ package() {
   install -Dm644 ${srcdir}/zevv-peep-iso8859-15-10x20.bdf \
 	${pkgdir}/usr/share/fonts/misc/zevv-peep-iso8859-15-10x20.bdf
 }
-

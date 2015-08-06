@@ -1,8 +1,9 @@
 # Maintainer: Stephen Smith <stephen304@gmail.com>
 
-pkgname=lemonbar-xft-clicky-git
+pkgname=lemonbar-xft-clicky
 _pkgname=bar
-pkgver=213.00c0a8b
+_ver=0
+pkgver=${_ver}.r214.a2fad82
 pkgrel=1
 pkgdesc="A lightweight xcb based bar with ported xft support. Modified to provide more clickable areas."
 arch=('i686' 'x86_64')
@@ -17,7 +18,7 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/$_pkgname"
-  echo $(git rev-list --count xft-port).$(git rev-parse --short xft-port)
+  printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
