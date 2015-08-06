@@ -1,0 +1,30 @@
+# Maintainer: Scott Hansen (firecat53) firecat4153 at gmail dot com
+
+pkgname=networkmanager-dmenu
+_gitname=nmcli-dmenu
+pkgver=1.0.0.r3.g74dae04
+pkgrel=1
+pkgdesc="Control NetworkManager via dmenu"
+arch=('any')
+url="https://github.com/firecat53/nmcli-dmenu"
+license=('MIT')
+depends=('python' 'networkmanager')
+makedepends=('git')
+optdepends=('dmenu: either dmenu or rofi is required'
+            'rofi: either dmenu or rofi is required'
+            'network-manager-applet: for the nm-connection-editor GUI')
+source=("$pkgname::git+https://github.com/firecat53/$_gitname.git")
+md5sums=('SKIP')
+install="$pkgname.install"
+
+pkgver() {
+  cd "$pkgname"
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+package() {
+  install -Dm755 "$srcdir/$pkgname/nmcli_dmenu" "$pkgdir/usr/bin/nmcli_dmenu"
+  install -Dm644 "$srcdir/$pkgname/LICENSE.txt" "$pkgdir/usr/share/license/$pkgname/LICENSE"
+  install -Dm644 "$srcdir/$pkgname/README.rst" "$pkgdir/usr/share/doc/$pkgname/README.rst"
+  install -Dm644 "$srcdir/$pkgname/config.ini.example" "$pkgdir/usr/share/doc/$pkgname/config.ini.example"
+  install -Dm644 "$srcdir/$pkgname/nmcli_dmenu.desktop" "$pkgdir/usr/share/applications/nmcli_dmenu.desktop"
+}

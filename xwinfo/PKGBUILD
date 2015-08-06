@@ -1,0 +1,30 @@
+# Maintainer: Bastien Dejean <nihilhill@gmail.com>
+
+pkgname=xwinfo
+pkgver=0.r8.3836605
+_ver=0
+pkgrel=1
+pkgdesc='Print window informations'
+arch=('i686' 'x86_64')
+url="https://github.com/baskerville/${pkgname}"
+license=('custom:Unlicense')
+depends=('libxcb' 'xcb-util-wm')
+makedepends=('git')
+source=("git://github.com/baskerville/${pkgname}.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$srcdir/$pkgname"
+    make PREFIX=/usr
+}
+
+package() {
+    cd "$srcdir/$pkgname"
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
