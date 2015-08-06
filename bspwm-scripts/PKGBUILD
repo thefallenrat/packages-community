@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=bspwm-scripts
-_pkgname=bspwm-scripts
+_pkgname=Bspwm-scripts
 pkgver=0.1
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
@@ -10,13 +10,8 @@ url="https://github.com/Chrysostomus/bspwm-scripts"
 license=("MIT")
 depends=('dmenu-manjaro' 'bspwm' 'sxhkd' 'xdotool' 'wmctrl' 'wmutils-git' 'xorg-xdpyinfo' 'xtitle' 'xwinfo-git')
 makedepends=("git")
-
+source=(git://github.com/Chrysostomus/$pkgname)
 md5sums=('SKIP')
-
-pkgver() {
-  cd "$_pkgname"
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/v//'
-}
 
 package () {
     cd "$srcdir"

@@ -1,9 +1,10 @@
-# Maintainer: Camille <onodera@rizon>
+# Contributor: Camille <onodera@rizon>
+# Maintainer: aksr <aksr at t-com dot me>
 
 pkgname=wmutils-git
-pkgver=v0.1.r3.ge4cf962
+pkgver=1.0.25.g7b86e8b
 pkgrel=1
-pkgdesc="wmutils' core is a set of tools for X windows manipulation. Each tool only has one purpose. We follow the UNIX philosophy: Do one thing and do it well."
+pkgdesc="A set of tools for X windows manipulation."
 url="https://github.com/wmutils/core"
 arch=('i686' 'x86_64')
 license=('ISC')
@@ -12,11 +13,15 @@ source=("$pkgname::git+https://github.com/wmutils/core.git")
 sha1sums=('SKIP')
 
 pkgver() {
-	cd $pkgname
-	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+  cd "$srcdir/$pkgname"
+  git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g;s/^v//g'
+}
+build() {
+  cd "$srcdir/$pkgname"
+  make
 }
 
 package() {
-	cd $pkgname
-	make DESTDIR="$pkgdir" install
+  cd "$srcdir/$pkgname"
+  make DESTDIR="$pkgdir" PREFIX="/usr/local" install
 }
