@@ -2,7 +2,7 @@
 
 pkgname=bspwm-scripts
 _pkgname=bspwm-scripts
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
