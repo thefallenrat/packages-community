@@ -3,7 +3,7 @@
 # Contributor: Yegorius <yegorius@domic.us>
 
 pkgname=firefox-kde
-pkgver=39.0
+pkgver=39.0.3
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -23,7 +23,7 @@ provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_patchrev=d5a1c8dec7ed
+_patchrev=09ffe9247f8a
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.bz2
         mozconfig 
@@ -45,7 +45,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         add_missing_pgo_rule.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('7e25014deb926df9220c3ab40ac6816c13a04c4cf7bd89b08fc1743307df1096'
+sha256sums=('8c16df4ce94b30f1308655f9ed6ac3e76aaa2eb3643739b9263226c086d0177b'
             '8da8233ec357964b7faf93958701491ba53a139eb08c3735f05540d631f8fd78'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
