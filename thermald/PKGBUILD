@@ -3,10 +3,10 @@
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
 _pkgname=thermal_daemon
-_git="46fba61e0a13738a4f1b02959725dcf34e7d87dd" # thermal_daemon 1.4.3
+_git="d9e676ceeb397596266efbd5fd24a2333f915ee1" # thermal_daemon 1.4.3 + d9e676ce
 pkgname=thermald
 pkgver=1.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
 url="https://github.com/01org/thermal_daemon"
@@ -14,9 +14,9 @@ license=('GPL2')
 makedepends=('systemd')
 depends=('dbus-glib>=0.94' 'libxml2>=2.4')
 backup=('etc/thermald/thermal-conf.xml')
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${_git}.tar.gz"
+source=("${pkgname}-${pkgver}-${pkgrel}.tar.gz::${url}/archive/${_git}.tar.gz"
         'modules-load-thermald.conf')
-sha256sums=('6cd0b90ac0bd53e8d4a09f78cdb19897896308c16e5dfe219d20a29008954eb5'
+sha256sums=('355457df086cfb6c5735fa4907688ddd0316728c17c48898802a2ea7e990c8d5'
             '0155e1eb459306d251a5a049ffc6c11e144fa8caa75901ac5fa20bd52e05d515')
           
 build() {
