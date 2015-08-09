@@ -1,16 +1,16 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=lua-clock-i3
-pkgver=20150808
+pkgver=20150809
 pkgrel=1
 pkgdesc="grey or green Conky with lua-ring clock"
 arch=('any')
 license=('GPL')
-depends=('conky-lua' 'ttf-bitstream-vera')
+depends=('conky-lua<1.10' 'ttf-bitstream-vera')
 conflicts=lua-clock-manjaro
 backup=('usr/share/conky/conky_lua_green' 'usr/share/conky/conky_lua_grey' 'usr/share/conky/conky_shortcuts_green' 'usr/share/conky/conky_shortcuts_grey')
 source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
-md5sums=('84d7aac4dd728be3c10e22f3f5531d4a')
+md5sums=('601aeac8f2412597d86a08bb5539479c')
 
 package() {
 	cd "$srcdir"
