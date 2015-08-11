@@ -1,4 +1,5 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: totschka
 
 pkgname=lua-clock-manjaro
 pkgver=20150809
