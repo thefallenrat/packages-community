@@ -20,11 +20,6 @@ pkgver() {
   printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-# pkgver() {
-#   cd xlogin
-#   git rev-list HEAD --count
-# }
-
 package() {
   cd xlogin
   make DESTDIR="$pkgdir" install

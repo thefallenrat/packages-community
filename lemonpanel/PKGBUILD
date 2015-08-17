@@ -1,8 +1,10 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Chrysostomus
 
 pkgname=lemonpanel
 _pkgname=lemonpanel
-pkgver=0.1
+_ver=0.2
+pkgver=$_ver.r34.65ed9b9
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
@@ -13,6 +15,11 @@ depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ct
 makedepends=("git")
 source=(git://github.com/Chrysostomus/lemonpanel)
 md5sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 package () {
     cd "$srcdir"
