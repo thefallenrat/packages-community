@@ -1,6 +1,6 @@
 pkgname=budgie-desktop
 pkgver=8.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Simple GTK3 desktop experience from Solus Project"
 arch=('i686' 'x86_64')
 url="http://solus-project.com/"
@@ -17,7 +17,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-deskto
         "git-fixes-${pkgver}-${pkgrel}.patch::https://github.com/solus-project/budgie-desktop/compare/v${pkgver}...master.patch"
         'git+https://git.gnome.org/browse/libgnome-volume-control#commit=e14dbe8')
 sha256sums=('039e15e26f17ad210feb9b69ad2a15ed330ffa231013ff734b31f80e9b219645'
-            'SKIP'
+            'a672f4a388c6e78a4c3a45f9f6d957a24a590c45d57af51548afefdd805bf167'
             'SKIP')
 
 prepare() {

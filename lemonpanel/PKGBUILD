@@ -3,14 +3,14 @@
 
 pkgname=lemonpanel
 _pkgname=lemonpanel
-_ver=0.2
+_ver=0.3
 pkgver=$_ver.r34.65ed9b9
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
 url="https://github.com/Chrysostomus/lemonpanel"
 license=("MIT")
-depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle')
+depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle'  'ttf-dejavu-sans-mono-powerline' 'bdf-zevv-peep' 'ttf-ionicons')
 # optdepends=('bspwm' 'bspwm-scripts')
 makedepends=("git")
 source=(git://github.com/Chrysostomus/lemonpanel)
