@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=bspwm-scripts
-pkgver=0.3
+pkgver=0.4
 pkgrel=1
 pkgdesc="Scripts for controlling bspwm"
 arch=(any)
