@@ -3,7 +3,7 @@
 pkgname=ttf-dejavu-sans-mono-powerline
 _ver=0
 pkgver="${_ver}.r78.97dc451"
-pkgrel=1
+pkgrel=2
 pkgdesc="DejaVu Sans Mono for Powerline"
 arch=('any')
 url=('https://github.com/powerline/fonts')

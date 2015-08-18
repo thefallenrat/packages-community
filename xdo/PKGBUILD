@@ -3,7 +3,7 @@
 
 pkgname=xdo
 pkgver=0.r30.88651cc
-pkgrel=1
+pkgrel=3
 pkgdesc='Small X utility to perform elementary actions on windows'
 arch=('i686' 'x86_64')
 url="https://github.com/baskerville/${pkgname}"
