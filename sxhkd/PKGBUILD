@@ -1,7 +1,7 @@
 # Maintainer: Bastien Dejean <nihilhill@gmail.com>
 
 pkgname=sxhkd
-pkgver=146
+pkgver=0.5.5.r10.g8433918
 pkgrel=1
 pkgdesc='A simple X hotkey daemon'
 arch=('i686' 'x86_64' 'armv7h')
@@ -14,7 +14,7 @@ md5sums=('SKIP')
 
 pkgver() {
     cd "$srcdir/$pkgname"
-    git rev-list --count HEAD
+    git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
