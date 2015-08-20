@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=17
+pkgrel=18
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -59,7 +59,7 @@ sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '3cdd0888fc84dc04b198bbe1082909f4ed8f220458d5d16d95927efcb1289398'
             '8800f64bf94f593c11f73af021bb4a7d7378cbb475bbc33c32b799c06dd2f118'
             '28d54929e249385994b6a8331cbe5350b1583f1a8b7d0cf4b1617518b8ed0b2e'
-            '9e379ded6bf823b114f6ab4248ec2de7582d8833401461b5f342d0b1f2a6ec1c'
+            '68d1b4774b79b4b0552eb65f7d463cdf2702a655215f63e448f04b107868e3ab'
             '0862e190d5504225b049feea425bf18c03338ca8c32b70c2c94353920bc13577'
             '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c')
 
