@@ -18,14 +18,14 @@ case "$1" in
 	if [ $(cat /proc/1/comm) = "systemd" ]; then 
 	blurlock && systemctl suspend
 	else
-	blurlock && dbus-send --system --print-reply --type=method_call --reply-timeout=2000 --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+	blurlock && dbus-send --system --dest=org.freedesktop.ConsoleKit --type=method_call --print-reply --reply-timeout=2000 /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Suspend boolean:true
 	fi
         ;;
     hibernate)
 	if [ $(cat /proc/1/comm) = "systemd" ]; then
 	blurlock && systemctl hibernate
 	else
-	blurlock && dbus-send --system --print-reply --type=method_call --reply-timeout=2000 --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Hibernate
+	blurlock && dbus-send --system --dest=org.freedesktop.ConsoleKit --type=method_call --print-reply --reply-timeout=2000 /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate boolean:true
 	fi
         ;;
     reboot)
