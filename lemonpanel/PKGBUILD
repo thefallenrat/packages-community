@@ -3,14 +3,14 @@
 
 pkgname=lemonpanel
 _pkgname=lemonpanel
-_ver=0.3
+_ver=0.4
 pkgver=$_ver.r34.65ed9b9
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
 url="https://github.com/Chrysostomus/lemonpanel"
 license=("MIT")
-depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle'  'ttf-dejavu-sans-mono-powerline' 'bdf-zevv-peep' 'ttf-ionicons')
+depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle'  'ttf-dejavu-sans-mono-powerline' 'bdf-zevv-peep' 'ttf-ionicons' 'zenity')
 # optdepends=('bspwm' 'bspwm-scripts')
 makedepends=("git")
 source=(git://github.com/Chrysostomus/lemonpanel)
@@ -39,4 +39,5 @@ package () {
 	install -m755 "$srcdir/$pkgname/terminal" "$pkgdir/usr/bin/terminal"
 	install -m755 "$srcdir/$pkgname/volume" "$pkgdir/usr/bin/volume"
 	install -m755 "$srcdir/$pkgname/volume_status.sh" "$pkgdir/usr/bin/volume_status.sh"
+	install -m755 "$srcdir/$pkgname/zensu" "$pkgdir/usr/bin/zensu"
 }
