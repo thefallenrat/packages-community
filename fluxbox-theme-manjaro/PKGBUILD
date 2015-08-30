@@ -1,12 +1,13 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=fluxbox-theme-manjaro
-pkgver=20150829
-pkgrel=1
+pkgver=20150830
+pkgrel=3
 pkgdesc="theme for manjaro-fluxbox"
 arch=('any')
 license=('GPL')
 depends=('fluxbox')
+backup=('usr/share/fluxbox/styles/manjaro-flux/theme.cfg')
 source="theme.cfg"
 md5sums=('9a8423a8f2be40a324987e9981b3ce35')
 package() {
