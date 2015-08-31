@@ -2,14 +2,14 @@
 # Maintainer: Chrysostomus
 
 pkgname=lemonpanel
-_ver=0.2
+_ver=0.3
 pkgver=$_ver.r40.861e349
 pkgrel=3
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
 url="https://github.com/Chrysostomus/lemonpanel"
 license=("MIT")
-depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle'  'ttf-dejavu-sans-mono-powerline' 'bdf-zevv-peep' 'ttf-ionicons')
+depends=('dmenu-manjaro' 'lemonbar-xft-clicky' 'xdotool' 'wmctrl' 'pulseaudio-ctl' 'rxvt-unicode' 'networkmanager-dmenu' 'conky-cli' 'xorg-xdpyinfo' 'xtitle'  'ttf-dejavu-sans-mono-powerline' 'bdf-zevv-peep' 'ttf-ionicons' 'zenity' 'xdg-utils')
 makedepends=("git")
 source=(git://github.com/Chrysostomus/lemonpanel)
 md5sums=('SKIP')
@@ -31,9 +31,10 @@ package () {
   install -m755 "$srcdir/$pkgname/dvol" "$pkgdir/usr/bin/dvol"
   install -m755 "$srcdir/$pkgname/panel_bar" "$pkgdir/usr/bin/panel_bar"
   install -m755 "$srcdir/$pkgname/networkmenuplacer.sh" "$pkgdir/usr/bin/networkmenuplacer.sh"
-  install -m755 "$srcdir/$pkgname/dmouse" "$pkgdir/usr/bin/dmouse"
+  inst3ll -m755 "$srcdir/$pkgname/dmouse" "$pkgdir/usr/bin/dmouse"
   install -m755 "$srcdir/$pkgname/MonocleSwitcher" "$pkgdir/usr/bin/MonocleSwitcher"
   install -m755 "$srcdir/$pkgname/terminal" "$pkgdir/usr/bin/terminal"
   install -m755 "$srcdir/$pkgname/volume" "$pkgdir/usr/bin/volume"
   install -m755 "$srcdir/$pkgname/volume_status.sh" "$pkgdir/usr/bin/volume_status.sh"
+  install -m755 "$srcdir/$pkgname/zensu" "$pkgdir/usr/bin/zensu"
 }
