@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=bspwm-scripts
-pkgver=0.4
+pkgver=0.5
 pkgrel=3
 pkgdesc="Scripts for controlling bspwm"
 arch=(any)
@@ -33,8 +33,9 @@ package () {
   install -m755 "$srcdir/$pkgname/toggle-focus-follows-pointer" "$pkgdir/usr/bin/toggle-focus-follows-pointer"
   install -m755 "$srcdir/$pkgname/whid" "$pkgdir/usr/bin/whid"
   install -m755 "$srcdir/$pkgname/workspaces_multimonitor" "$pkgdir/usr/bin/workspaces_multimonitor"
-  install -m755 "$srcdir/$pkgname/clickpasser2.sh" "$pkgdir/usr/bin/clickpasser2.sh"	
-  install -m755 "$srcdir/$pkgname/clickpasser3.sh" "$pkgdir/usr/bin/clickpasser3.sh"
+  install -m755 "$srcdir/$pkgname/clickpasser" "$pkgdir/usr/bin/clickpasser"
   install -m755 "$srcdir/$pkgname/dmenu_recent" "$pkgdir/usr/bin/dmenu_recent"
   install -m755 "$srcdir/$pkgname/finder" "$pkgdir/usr/bin/finder"
+  install -m755 "$srcdir/$pkgname/smartsplit" "$pkgdir/usr/bin/smartsplit"
+  install -m755 "$srcdir/$pkgname/99-monitor-hotplug-rules" "$pkgdir/etc/udev/rules.d/99-monitor-hotplug-rules"
 }
