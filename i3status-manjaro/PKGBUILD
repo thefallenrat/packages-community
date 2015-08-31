@@ -3,8 +3,7 @@
 
 pkgname=i3status-manjaro
 pkgver=2.9
-pkgrel=1
-epoch=3
+pkgrel=2
 pkgdesc='customized status bar for manjaro-i3, dzen2 or xmobar'
 arch=('i686' 'x86_64')
 url='http://i3.zekjur.net/i3status/'
