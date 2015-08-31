@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=bspwm-scripts
-pkgver=0.4
+pkgver=0.5
 pkgrel=1
 pkgdesc="Scripts for controlling bspwm"
 arch=(any)
@@ -37,4 +37,5 @@ package () {
   install -m755 "$srcdir/$pkgname/clickpasser3.sh" "$pkgdir/usr/bin/clickpasser3.sh"
   install -m755 "$srcdir/$pkgname/dmenu_recent" "$pkgdir/usr/bin/dmenu_recent"
   install -m755 "$srcdir/$pkgname/finder" "$pkgdir/usr/bin/finder"
+  install -m755 "$srcdir/$pkgname/smartsplit" "$pkgdir/usr/bin/smartsplit"
 }
