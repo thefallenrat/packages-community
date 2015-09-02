@@ -3,8 +3,8 @@
 
 pkgname=lemonpanel
 _ver=0.3
-pkgver=$_ver.r40.861e349
-pkgrel=3
+pkgver=$_ver.r47.993991e
+pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
 url="https://github.com/Chrysostomus/lemonpanel"
@@ -31,7 +31,7 @@ package () {
   install -m755 "$srcdir/$pkgname/dvol" "$pkgdir/usr/bin/dvol"
   install -m755 "$srcdir/$pkgname/panel_bar" "$pkgdir/usr/bin/panel_bar"
   install -m755 "$srcdir/$pkgname/networkmenuplacer.sh" "$pkgdir/usr/bin/networkmenuplacer.sh"
-  inst3ll -m755 "$srcdir/$pkgname/dmouse" "$pkgdir/usr/bin/dmouse"
+  install -m755 "$srcdir/$pkgname/dmouse" "$pkgdir/usr/bin/dmouse"
   install -m755 "$srcdir/$pkgname/MonocleSwitcher" "$pkgdir/usr/bin/MonocleSwitcher"
   install -m755 "$srcdir/$pkgname/terminal" "$pkgdir/usr/bin/terminal"
   install -m755 "$srcdir/$pkgname/volume" "$pkgdir/usr/bin/volume"

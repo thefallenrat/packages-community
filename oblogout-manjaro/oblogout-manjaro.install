@@ -1,0 +1,4 @@
+post_install() {
+rm -f etc/oblogout.conf
+cp etc/oblogout-manjaro.conf etc/oblogout.conf
+}

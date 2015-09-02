@@ -1,4 +1,0 @@
-post_install() {
-	rm -f etc/oblogout.conf
-	mv etc/fluxlogout.conf etc/oblogout.conf
-}

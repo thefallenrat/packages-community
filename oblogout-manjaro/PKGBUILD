@@ -1,0 +1,55 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Kirill Malyshev <keryascorpio at gmail.com>
+# Contributor: Robert Orzanna <orschiro@googlemail.com>
+
+pkgname=oblogout-manjaro
+pkgver=20150901
+pkgrel=1
+pkgdesc="Systemd/OpenRC-compatible logout script for Openbox and Fluxbox"
+arch=('any')
+url=
+license=('GPL2')
+depends=('i3lock' 'imagemagick' 'pygtk' 'python2-pillow' 'python2-distutils-extra' 'python2-dbus')
+optdepends=('upower' 'lightdm: for switch-user function')
+makedepends=('git')
+install=$pkgname.install 
+conflicts=('openboxlogout-gnome' 'oblogout' 'fluxlogout')
+replaces=('fluxlogout')
+install=oblogout-manjaro.install
+source=(fluxboxexit
+	oblogout.conf
+	OutMok.tar.xz
+	switch-user.patch)
+md5sums=('4aabfc1e92e7385effe7a0f12a057ccd'
+         'a948a77b66ee73af4ae22ea0ad2b0e99'
+         '40595ff25662c6d3244297e8a5b1f6f7'
+         '86a7a64ae86c0d733f69d37da05eb357')
+
+_gitroot="git://github.com/Cloudef/oblogout-fork.git"
+_gitname="oblogout-fork"
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [ -d $_gitname ] ; then
+    cd $_gitname && git pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot $_gitname --dept=1
+  fi
+
+  cd "$srcdir/$_gitname"
+
+  patch -p1 < "$srcdir/switch-user.patch"
+}
+
+package() {
+  cd "$srcdir/$_gitname"
+  python2 setup.py install --root="$pkgdir/"
+  cd "$srcdir"
+  install -m755 "$srcdir/fluxboxexit" "${pkgdir}/usr/bin/"
+  install -dm755 "$pkgdir/usr/share/themes/OutMok"
+  install -Dm644 "${srcdir}/oblogout.conf" "${pkgdir}/etc/oblogout-manjaro.conf"
+  cp -r "$srcdir/OutMok/oblogout" "$pkgdir/usr/share/themes/OutMok"
+}
