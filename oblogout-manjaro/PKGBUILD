@@ -7,7 +7,7 @@ pkgver=20150901
 pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible logout script for Openbox and Fluxbox"
 arch=('any')
-url=
+url="https://forum.manjaro.org/index.php?topic=25894.0"
 license=('GPL2')
 depends=('i3lock' 'imagemagick' 'pygtk' 'python2-pillow' 'python2-distutils-extra' 'python2-dbus')
 optdepends=('upower' 'lightdm: for switch-user function')
