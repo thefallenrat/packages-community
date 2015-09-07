@@ -2,23 +2,19 @@
 # Contributors: oleerik and rudregues @forum.manjaro.org
 
 pkgname=pyplanemode
-pkgver=20150906
+pkgver=20150907
 pkgrel=1
 pkgdesc="Simple GTK Python applet for airplanemode"
 arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25864.msg220281#msg220281"
 license=('GPL')
 depends=('python2' 'gtk3' 'pygtk' 'rfkill')
-source=("plane-off.svg"
-	"plane-on.svg"
-	"pyplanemode")
-md5sums=('9dae6f305b624ac548f245f560dae073'
-         '50c5d4bf3ca791f91152458b94356fe7'
-         '64dfd8d07569af514e70377f0c5fff58')
+source=("git://github.com/oleerik/$pkgname")
+md5sums=('SKIP')
 
 package() {
-  cd $srcdir
-  install -Dm755 "${srcdir}/pyplanemode" "${pkgdir}/usr/bin/pyplanemode"
+  cd "$srcdir"
+  install -Dm755 "$srcdir/$pkgname" "$pkgdir/usr/bin/$pkgname"
   install -Dm644 "$srcdir/plane-on.svg" "$pkgdir/usr/share/icons/plane-on.svg"
   install -m644 "$srcdir/plane-off.svg" "$pkgdir/usr/share/icons/plane-off.svg"
 }
