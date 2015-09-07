@@ -9,12 +9,15 @@ arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25864.msg220281#msg220281"
 license=('GPL')
 depends=('python2' 'gtk3' 'pygtk' 'rfkill')
-source=("git://github.com/oleerik/$pkgname")
+makedepends=('git')
+source=("https://github.com/oleerik/$pkgname.git")
 md5sums=('SKIP')
 
 package() {
-  cd "$srcdir"
-  install -Dm755 "$srcdir/$pkgname" "$pkgdir/usr/bin/$pkgname"
-  install -Dm644 "$srcdir/plane-on.svg" "$pkgdir/usr/share/icons/plane-on.svg"
-  install -m644 "$srcdir/plane-off.svg" "$pkgdir/usr/share/icons/plane-off.svg"
+  mkdir -p "$pkgdir/usr/bin"
+  mkdir -p "$pkgdir/usr/share/icons"
+  git clone "https://github.com/oleerik/$pkgname.git"
+  cd "$srcdir/$pkgname"
+  install -m755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -m644 plane{-on,-off}.svg "$pkgdir/usr/share/icons/"
 }
