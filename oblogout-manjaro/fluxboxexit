@@ -4,8 +4,10 @@ case "$1" in
 logout)
 if [ $DESKTOP_SESSION = "fluxbox" ]; then
 killall fluxbox
-else
+elif [ $DESKTOP_SESSION = "openbox" ]; then
 openbox --exit
+else
+pkill -KILL -u $USER
 fi
 ;;
 suspend)
