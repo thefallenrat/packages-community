@@ -3,7 +3,7 @@
 # Contributor: Robert Orzanna <orschiro@googlemail.com>
 
 pkgname=oblogout-manjaro
-pkgver=20150901
+pkgver=20150909
 pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible logout script for Openbox and Fluxbox"
 arch=('any')
@@ -20,7 +20,7 @@ source=(fluxboxexit
 	oblogout.conf
 	OutMok.tar.xz
 	switch-user.patch)
-md5sums=('4aabfc1e92e7385effe7a0f12a057ccd'
+md5sums=('bee303602bf8426ac1987df9b5293dba'
          'a948a77b66ee73af4ae22ea0ad2b0e99'
          '40595ff25662c6d3244297e8a5b1f6f7'
          '86a7a64ae86c0d733f69d37da05eb357')
