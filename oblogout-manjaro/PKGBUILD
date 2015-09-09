@@ -4,25 +4,24 @@
 
 pkgname=oblogout-manjaro
 pkgver=20150909
-pkgrel=1
-pkgdesc="Systemd/OpenRC-compatible logout script for Openbox and Fluxbox"
+pkgrel=4
+pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others"
 arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25894.0"
 license=('GPL2')
-depends=('i3lock' 'imagemagick' 'pygtk' 'python2-pillow' 'python2-distutils-extra' 'python2-dbus')
+depends=('i3lock' 'pygtk' 'python2-pillow' 'python2-distutils-extra' 'python2-dbus')
 optdepends=('upower' 'lightdm: for switch-user function')
 makedepends=('git')
 install=$pkgname.install 
 conflicts=('openboxlogout-gnome' 'oblogout' 'fluxlogout')
 replaces=('fluxlogout')
-install=oblogout-manjaro.install
 source=(fluxboxexit
 	oblogout.conf
 	OutMok.tar.xz
 	switch-user.patch)
 md5sums=('bee303602bf8426ac1987df9b5293dba'
-         'a948a77b66ee73af4ae22ea0ad2b0e99'
-         '40595ff25662c6d3244297e8a5b1f6f7'
+         '8d4c5d761a0bce7ad832cc942c3921b3'
+         'a30813dafbe1b9d650db2f237ac1d89d'
          '86a7a64ae86c0d733f69d37da05eb357')
 
 _gitroot="git://github.com/Cloudef/oblogout-fork.git"
@@ -48,8 +47,10 @@ package() {
   cd "$srcdir/$_gitname"
   python2 setup.py install --root="$pkgdir/"
   cd "$srcdir"
-  install -m755 "$srcdir/fluxboxexit" "${pkgdir}/usr/bin/"
-  install -dm755 "$pkgdir/usr/share/themes/OutMok"
-  install -Dm644 "${srcdir}/oblogout.conf" "${pkgdir}/etc/oblogout-manjaro.conf"
+  install -m755 "$srcdir/fluxboxexit" "$pkgdir/usr/bin/"
+  install -Dm644 "$srcdir/oblogout.conf" "$pkgdir/etc/oblogout-manjaro.conf"
+  mkdir -p "$pkgdir/usr/share/themes/OutMok"
+  mkdir -p "$pkgdir/usr/share/themes/OutMok-small"
   cp -r "$srcdir/OutMok/oblogout" "$pkgdir/usr/share/themes/OutMok"
+  cp -r "$srcdir/OutMok-small/oblogout" "$pkgdir/usr/share/themes/OutMok-small"
 }
