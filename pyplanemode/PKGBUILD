@@ -1,0 +1,24 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributors: oleerik and rudregues @forum.manjaro.org
+
+pkgname=pyplanemode
+pkgver=20150907
+pkgrel=1
+pkgdesc="Simple GTK Python applet for airplanemode"
+arch=('any')
+url="https://forum.manjaro.org/index.php?topic=25864.msg220281#msg220281"
+_git="https://github.com/oleerik/$pkgname"
+license=('GPL')
+depends=('python2' 'gtk3' 'pygtk' 'rfkill')
+makedepends=('git')
+source=("${_git}.git")
+md5sums=('SKIP')
+
+package() {
+  mkdir -p "$pkgdir/usr/bin"
+  mkdir -p "$pkgdir/usr/share/icons"
+  git clone $source
+  cd "$srcdir/$pkgname"
+  install -m755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -m644 plane{-on,-off}.svg "$pkgdir/usr/share/icons/"
+}
