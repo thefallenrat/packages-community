@@ -3,7 +3,7 @@
 
 pkgname=lemonpanel
 _ver=0.4
-pkgver=$_ver.r47.993991e
+pkgver=$_ver.r52.956e2e0
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=(any)
