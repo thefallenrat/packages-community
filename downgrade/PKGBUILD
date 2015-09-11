@@ -1,6 +1,6 @@
 # Author: Patrick Brisbin <pbrisbin@gmail.com>
 pkgname=downgrade
-pkgver=5.1.4
+pkgver=5.1.5
 pkgrel=1
 pkgdesc="Bash script for downgrading one or more packages to a version in your cache or the A.R.M."
 arch=('any')
@@ -8,6 +8,7 @@ url="https://github.com/pbrisbin/$pkgname"
 license=('GPL')
 source=("https://github.com/pbrisbin/$pkgname/archive/v$pkgver.tar.gz")
 optdepends=('sudo: for installation via sudo')
+md5sums=('88039514b23439a386b0e6a63a82658e')
 
 package() {
   local po_file
@@ -23,4 +24,3 @@ package() {
 
   make PREFIX=/usr DESTDIR="$pkgdir" install
 }
-md5sums=('4767451ae68b48b300c45ba811e3c268')
