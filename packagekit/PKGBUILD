@@ -3,7 +3,7 @@
 # Contributor: Jonathan Conder <jonno.conder@gmail.com>
 
 pkgname='packagekit'
-pkgver=1.0.8
+pkgver=1.0.9
 pkgrel=1.1
 pkgdesc='A system designed to make installation and updates of packages easier'
 arch=('i686' 'x86_64')
@@ -21,16 +21,10 @@ backup=('var/lib/PackageKit/transactions.db'
 validpgpkeys=('163EB50119225DB3DF8F49EA17ACBA8DFA970E17') # Richard Hughes
 source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz"{,.asc}
 	'0001-Fix-SyncFirst-crash.patch')
-sha256sums=('74b013689561322527429addbe1858d450d196bd64226407b8a6f3c627b15ded'
+sha256sums=('c10a276055a4cad063c312b112a0dc1462b9dc055ae30e22946e93872e8fbc1a'
             'SKIP'
             'ef6f5dfec55dd535e17ee89e51b94101658305b497f674e1c7f0fa0c077a5b9d')
-source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz"{,.asc}
-	'https://raw.githubusercontent.com/hughsie/PackageKit/master/lib/packagekit-glib2/PackageKitGlib-1.0.metadata'
-	'0001-Fix-SyncFirst-crash.patch')
-sha256sums=('74b013689561322527429addbe1858d450d196bd64226407b8a6f3c627b15ded'
-            'SKIP'
-            'c906451b6a0462e48cbdf05de7efdbf0bc9ca58d686b8329f5dfb29cacdc260a'
-            'ef6f5dfec55dd535e17ee89e51b94101658305b497f674e1c7f0fa0c077a5b9d')
+
 prepare() {
 	cd "${srcdir}/PackageKit-${pkgver}"
 
@@ -39,8 +33,6 @@ prepare() {
 
 build() {
 	cd "${srcdir}/PackageKit-${pkgver}"
-
-	cp "${srcdir}/PackageKitGlib-1.0.metadata" "lib/packagekit-glib2/"
 
 	./autogen.sh --prefix=/usr \
 		--sysconfdir=/etc \
