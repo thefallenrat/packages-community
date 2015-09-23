@@ -1,32 +1,27 @@
-# Maintainer: shimi <shimi.chen@gmail.com>
+# Maintainer : Ramon Buldó <ramon@manjaro.org>
+# Contributor: shimi <shimi.chen@gmail.com>
 
 pkgname=imagewriter
 pkgver=1.10.1420800585.134a9b3
-_release=1.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A graphical utility for writing raw disk images & hybrid isos to USB keys"
 arch=('i686' 'x86_64')
-url='https://github.com/mbarringer/imagewriter'
+url='https://github.com/openSUSE/imagewriter'
 license=('GPL2')
-depends=('qt4' 'xdg-su' 'udisks2')
-source=("http://download.opensuse.org/tumbleweed/repo/src-oss/suse/src/$pkgname-$pkgver-${_release}.src.rpm")
-sha512sums=('9c58c8dd5f6d441d17a23146789d23b18174cb9ba5234556750602c88d08d34d5d9f83b11d088cc1d9d5c6018cfb96ac9145b2466b6459b285ad0408ef00257f')
+depends=('qt5-base' 'udisks2' 'desktop-file-utils' 'hicolor-icon-theme')
+_gitcommit='1d253d960a28f9de4468b0b091c231083f03c1c8'
+source=("imagewriter-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
+sha256sums=('7761ee45b16b5841c6b62b091c7f9d0b8c64b14b79d77e9909ca813e1dc9885d')
 install=$pkgname.install
 
-prepare() {
-	cd $srcdir
-	tar xvf $pkgname-$pkgver.tar.xz
-	sed 's/\/usr\/bin\/xdg-su -c \/usr\/bin\//xdg-su -s /' -i $pkgname-$pkgver/$pkgname.desktop
-}
-
 build() {
-	cd "$srcdir/$pkgname-$pkgver"
-	CFLAGS="$CFLAGS -DKIOSKHACK"
-	qmake-qt4 PREFIX="$pkgdir/usr" DEFINES=USEUDISKS2 $pkgname.pro
-	make
+  cd "$pkgname-$_gitcommit"
+  CFLAGS="$CFLAGS -DKIOSKHACK"
+  qmake-qt5 PREFIX="$pkgdir/usr" DEFINES=USEUDISKS2 $pkgname.pro
+  make
 }
 
 package() {
-	cd "$srcdir/$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install
+  cd "$pkgname-$_gitcommit"
+  make DESTDIR="$pkgdir/" install
 }
