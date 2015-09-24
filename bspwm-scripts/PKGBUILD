@@ -36,7 +36,5 @@ package () {
   install -m755 "$srcdir/$pkgname/clickpasser" "$pkgdir/usr/bin/"
   install -m755 "$srcdir/$pkgname/dmenu_recent" "$pkgdir/usr/bin/"
   install -m755 "$srcdir/$pkgname/finder" "$pkgdir/usr/bin/"
-  install -m755 "$srcdir/$pkgname/summondesktop.sh" "$pkgdir/usr/bin/"
   install -m755 "$srcdir/$pkgname/smartsplit" "$pkgdir/usr/bin/"
   install -Dm755 "$srcdir/$pkgname/99-monitor-hotplug-rules" "$pkgdir/etc/udev/rules.d/99-monitor-hotplug-rules"
-}
