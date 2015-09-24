@@ -17,7 +17,8 @@ provides=('dmenu' 'dmenu-xft')
 source=(dmenu-$pkgver.tar.gz
 	dmenu-4.5-xft-width-xy.diff
 	dmenu-4.5-mouse-support.diff
-	dmenu_recency)
+	dmenu_recency
+	dmenurc)
 md5sums=('9c46169ed703732ec52ed946c27d84b4'
 	'8940e6146e71188b6ac0bb2c4414b4e6'
 	'eeec3e11ff68f27ebbc3133ad6549f56'
