@@ -37,5 +37,6 @@ package() {
 	cd $srcdir/dmenu-$pkgver
 	make PREFIX=/usr DESTDIR=$pkgdir install
 	install -Dm755 "${srcdir}/dmenu_recency" "${pkgdir}/usr/bin/dmenu_recency"
+	install -Dm755 "${srcdir}/$pkgname/dmenurc" "$pkgdir/usr/share/dmenu/dmenurc"
 	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
