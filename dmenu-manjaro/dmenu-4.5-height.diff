@@ -1,0 +1,83 @@
+diff -rupN dmenu-4.5/dmenu.1 dmenu-4.5s/dmenu.1
+--- dmenu-4.5/dmenu.1	2015-09-24 15:22:04.693169938 +0800
++++ dmenu-4.5s/dmenu.1	2015-09-24 15:22:27.503408094 +0800
+@@ -8,6 +8,8 @@ dmenu \- dynamic menu
+ .RB [ \-i ]
+ .RB [ \-l
+ .IR lines ]
++.RB [ \-h
++.IR height ]
+ .RB [ \-p
+ .IR prompt ]
+ .RB [ \-fn
+@@ -55,6 +57,9 @@ dmenu matches menu items case insensitiv
+ .BI \-l " lines"
+ dmenu lists items vertically, with the given number of lines.
+ .TP
++.BI \-h " height"
++defines the height of the bar in pixels.
++.TP
+ .BI \-p " prompt"
+ defines the prompt to be displayed to the left of the input field.
+ .TP
+diff -rupN dmenu-4.5/dmenu.c dmenu-4.5s/dmenu.c
+--- dmenu-4.5/dmenu.c	2015-09-24 15:10:39.111058060 +0800
++++ dmenu-4.5s/dmenu.c	2015-09-24 15:26:25.682846895 +0800
+@@ -52,7 +52,7 @@ static const char *normbgcolor = "#22222
+ static const char *normfgcolor = "#bbbbbb";
+ static const char *selbgcolor  = "#005577";
+ static const char *selfgcolor  = "#eeeeee";
+-static unsigned int lines = 0;
++static unsigned int lines, line_height = 0;
+ static int xoffset = 0;
+ static int yoffset = 0;
+ static int width = 0;
+@@ -102,6 +102,8 @@ main(int argc, char *argv[]) {
+ 			xoffset = atoi(argv[++i]);
+ 		else if(!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
+ 			lines = atoi(argv[++i]);
++		else if(!strcmp(argv[i], "-h"))   /* minimum height of single line */
++			line_height = atoi(argv[++i]);
+ 		else if(!strcmp(argv[i], "-p"))   /* adds prompt to left of input field */
+ 			prompt = argv[++i];
+ 		else if(!strcmp(argv[i], "-fn"))  /* font or font set */
+@@ -203,8 +205,8 @@ drawmenu(void) {
+ 	/* draw input field */
+ 	dc->w = (lines > 0 || !matches) ? mw - dc->x : inputw;
+ 	drawtext(dc, text, normcol);
+-	if((curpos = textnw(dc, text, cursor) + dc->h/2 - 2) < dc->w)
+-		drawrect(dc, curpos, 2, 1, dc->h - 4, True, normcol->FG);
++	if((curpos = textnw(dc, text, cursor) + dc->font.height/2) < dc->w)
++		drawrect(dc, curpos, (dc->h - dc->font.height)/2 + 1, 1, dc->font.height -1, True, normcol->FG);
+ 
+ 	if(lines > 0) {
+ 		/* draw vertical list */
+@@ -662,7 +664,7 @@ setup(void) {
+ 	utf8 = XInternAtom(dc->dpy, "UTF8_STRING", False);
+ 
+ 	/* calculate menu geometry */
+-	bh = dc->font.height + 2;
++	bh = (line_height > dc->font.height + 2) ? line_height : dc->font.height + 2;
+ 	lines = MAX(lines, 0);
+ 	mh = (lines + 1) * bh;
+ #ifdef XINERAMA
+@@ -737,6 +739,6 @@ void
+ usage(void) {
+ 	fputs("usage: dmenu [-b] [-f] [-i] [-l lines] [-p prompt] [-fn font]\n"
+ 	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-v]\n"
+-          "             [-w width] [-x x-margin] [-y y-margin]\n", stderr);
++              "             [-h height] [-w width] [-x x-margin] [-y y-margin]\n", stderr);
+ 	exit(EXIT_FAILURE);
+ }
+diff -rupN dmenu-4.5/draw.c dmenu-4.5s/draw.c
+--- dmenu-4.5/draw.c	2015-09-24 15:10:39.107724673 +0800
++++ dmenu-4.5s/draw.c	2015-09-24 15:27:15.673482804 +0800
+@@ -39,7 +39,7 @@ drawtext(DC *dc, const char *text, Color
+ void
+ drawtextn(DC *dc, const char *text, size_t n, ColorSet *col) {
+ 	int x = dc->x + dc->font.height/2;
+-	int y = dc->y + dc->font.ascent+1;
++	int y = dc->y + dc->font.ascent + (dc->h - dc->font.height)/2;
+ 
+ 	XSetForeground(dc->dpy, dc->gc, col->FG);
+ 	if(dc->font.xft_font) {
