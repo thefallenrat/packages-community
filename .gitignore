@@ -11,3 +11,4 @@ pkg
 *~
 .AURINFO
 .lock
+*apng.patch.gz

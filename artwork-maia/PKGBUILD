@@ -2,16 +2,16 @@
 
 pkgbase=artwork-maia
 pkgname=('maia-icon-theme' 'plasma5-themes-maia' 'sddm-maia-theme')
-pkgver=0.5.1
+pkgver=0.5.2
 pkgrel=1
-_gitcommit=c936e2d7e340c5b32000659f4b6774b1a24da2e5
+_gitcommit=76b888c97f1fa5befeeb641a1e957b3ff7669b36
 url=('https://github.com/manjaro/artwork-maia/')
 arch=('any')
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'plasma-framework' 'git')
 
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-sha256sums=('6e44826e82b03ce413cc6567d1a89c04fae76634ea5e11467961738b46da1081')
+sha256sums=('49467befa9ced49eda38305d236bbd4203f4f8e27775e8ec8423f6e6fcadac30')
 
 prepare() {
   mv $srcdir/artwork-maia-$_gitcommit $srcdir/maia
