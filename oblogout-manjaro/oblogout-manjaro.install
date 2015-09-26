@@ -9,7 +9,7 @@ printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
 }
 
 if [ -e /etc/oblogout.conf ]; then
-  msg "your existing oblogout.conf has been saved as /etc/oblogout.conf.bak"
+  msg "existing oblogout.conf will be saved as /etc/oblogout.conf.bak"
   mv /etc/oblogout.conf /etc/oblogout.conf.bak
 fi
 cp etc/oblogout-manjaro.conf etc/oblogout.conf

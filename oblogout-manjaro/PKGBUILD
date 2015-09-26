@@ -25,6 +25,7 @@ conflicts=('fluxlogout'
 	'oblogout'
 	'openboxlogout-gnome')
 replaces=('fluxlogout')
+backup=('etc/oblogout.conf')
 source=(fluxboxexit
 	ob_blurlock
 	oblogout.conf
@@ -32,8 +33,8 @@ source=(fluxboxexit
 	OutMok.tar.xz
 	switch-user.patch)
 md5sums=('f10cb96555b02245d944b381abb14221'
-         '67d69feab2de37b564e25f20ef2ba7cb'
-         'f5731f3a586396ef5d28469e03ef44b9'
+         '83f1726804ed4fc46bde3db158b9bbcd'
+         '12a8c357f261db5752c7841ed7b4e678'
          '0e9d42c6c83022515d3b14275f630f87'
          'a30813dafbe1b9d650db2f237ac1d89d'
          '86a7a64ae86c0d733f69d37da05eb357')
