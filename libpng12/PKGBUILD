@@ -7,7 +7,7 @@
 
 pkgname=libpng12
 pkgver=1.2.53
-pkgrel=3
+pkgrel=4
 pkgdesc='A collection of routines used to create PNG format graphics files'
 arch=('i686' 'x86_64')
 url='http://www.libpng.org/pub/png/libpng.html'
@@ -42,7 +42,7 @@ package() {
 
   make DESTDIR="${pkgdir}" install
 
-  rm -rf "${pkgdir}"/usr/{bin,include,lib/{libpng.{a,so},pkgconfig},share}
+  rm -rf "${pkgdir}"/usr/{bin/libpng-config,include/{pngconf.h,png.h},lib/{libpng.{a,so},pkgconfig/libpng.pc},share}
 
   install -dm 755 "${pkgdir}"/usr/share/licenses/libpng12
   install -m 644 LICENSE "${pkgdir}"/usr/share/licenses/libpng12/
