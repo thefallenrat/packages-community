@@ -5,7 +5,7 @@
 pkgname=oblogout-manjaro
 _gitname="oblogout-fork"
 pkgver=20150926
-pkgrel=1
+pkgrel=2
 pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others"
 arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25894.0"
@@ -30,10 +30,10 @@ source=(fluxboxexit
 	ob_blurlock
 	oblogout.conf
 	oblogout_blur
-	OutMok.tar.xz
+	http://www.oberon.at/oberon/src/OutMok.tar.xz
 	switch-user.patch)
 md5sums=('f10cb96555b02245d944b381abb14221'
-         '83f1726804ed4fc46bde3db158b9bbcd'
+         '67eff1ab5310456841c887ad6b06bf50'
          '12a8c357f261db5752c7841ed7b4e678'
          '0e9d42c6c83022515d3b14275f630f87'
          'a30813dafbe1b9d650db2f237ac1d89d'
