@@ -3,29 +3,40 @@
 # Contributor: Robert Orzanna <orschiro@googlemail.com>
 
 pkgname=oblogout-manjaro
-pkgver=20150909
-pkgrel=4
-pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others"
+_gitname="oblogout-fork"
+pkgver=20150927
+pkgrel=1
+pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others. Including blurlock"
 arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25894.0"
+_gitroot="git://github.com/Cloudef/oblogout-fork.git"
 license=('GPL2')
-depends=('i3lock' 'pygtk' 'python2-pillow' 'python2-distutils-extra' 'python2-dbus')
-optdepends=('upower' 'lightdm: for switch-user function')
+depends=('i3lock'
+	'imagemagick'
+	'pygtk'
+	'python2-pillow'
+	'python2-distutils-extra'
+	'python2-dbus')
+optdepends=('lightdm: for switch-user function')
 makedepends=('git')
 install=$pkgname.install 
-conflicts=('openboxlogout-gnome' 'oblogout' 'fluxlogout')
+conflicts=('fluxlogout'
+	'oblogout'
+	'openboxlogout-gnome')
 replaces=('fluxlogout')
+backup=('etc/oblogout.conf')
 source=(fluxboxexit
+	ob_blurlock
 	oblogout.conf
-	OutMok.tar.xz
+	oblogout_blur
+	http://www.oberon.at/oberon/src/OutMok.tar.xz
 	switch-user.patch)
-md5sums=('bee303602bf8426ac1987df9b5293dba'
-         '8d4c5d761a0bce7ad832cc942c3921b3'
+md5sums=('f10cb96555b02245d944b381abb14221'
+         'eef31ce5c7a9f002ef407394cf6fd20b'
+         '026c5552b167b39b40883bd39128cb35'
+         '0e9d42c6c83022515d3b14275f630f87'
          'a30813dafbe1b9d650db2f237ac1d89d'
-         '86a7a64ae86c0d733f69d37da05eb357')
-
-_gitroot="git://github.com/Cloudef/oblogout-fork.git"
-_gitname="oblogout-fork"
+         '4bb8046c6d6a9709796afd814feec8f1')
 
 build() {
   cd "$srcdir"
@@ -46,11 +57,14 @@ build() {
 package() {
   cd "$srcdir/$_gitname"
   python2 setup.py install --root="$pkgdir/"
+
   cd "$srcdir"
   install -m755 "$srcdir/fluxboxexit" "$pkgdir/usr/bin/"
+  install -m755 "$srcdir/ob_blurlock" "$pkgdir/usr/bin/"
+  install -m755 "$srcdir/oblogout_blur" "$pkgdir/usr/bin/"
   install -Dm644 "$srcdir/oblogout.conf" "$pkgdir/etc/oblogout-manjaro.conf"
-  mkdir -p "$pkgdir/usr/share/themes/OutMok"
-  mkdir -p "$pkgdir/usr/share/themes/OutMok-small"
+  mkdir -p "$pkgdir/usr/share/themes/OutMok" \
+	"$pkgdir/usr/share/themes/OutMok-small"
   cp -r "$srcdir/OutMok/oblogout" "$pkgdir/usr/share/themes/OutMok"
   cp -r "$srcdir/OutMok-small/oblogout" "$pkgdir/usr/share/themes/OutMok-small"
 }

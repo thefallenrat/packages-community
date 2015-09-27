@@ -1,0 +1,36 @@
+pkgbase = oblogout-manjaro
+	pkgdesc = Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others. Including blurlock
+	pkgver = 20150927
+	pkgrel = 1
+	url = https://forum.manjaro.org/index.php?topic=25894.0
+	install = oblogout-manjaro.install
+	arch = any
+	license = GPL2
+	makedepends = git
+	depends = i3lock
+	depends = imagemagick
+	depends = pygtk
+	depends = python2-pillow
+	depends = python2-distutils-extra
+	depends = python2-dbus
+	optdepends = lightdm: for switch-user function
+	conflicts = fluxlogout
+	conflicts = oblogout
+	conflicts = openboxlogout-gnome
+	replaces = fluxlogout
+	backup = etc/oblogout.conf
+	source = fluxboxexit
+	source = ob_blurlock
+	source = oblogout.conf
+	source = oblogout_blur
+	source = http://www.oberon.at/oberon/src/OutMok.tar.xz
+	source = switch-user.patch
+	md5sums = f10cb96555b02245d944b381abb14221
+	md5sums = eef31ce5c7a9f002ef407394cf6fd20b
+	md5sums = 026c5552b167b39b40883bd39128cb35
+	md5sums = 0e9d42c6c83022515d3b14275f630f87
+	md5sums = a30813dafbe1b9d650db2f237ac1d89d
+	md5sums = 4bb8046c6d6a9709796afd814feec8f1
+
+pkgname = oblogout-manjaro
+
