@@ -1,4 +1,5 @@
 # !/bin/bash
+# /usr/bin/ob_blurlock
 # blurlock for oblogout-manjaro
 
 if [ -e /tmp/screenshot.png ]; then

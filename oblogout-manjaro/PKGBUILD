@@ -4,9 +4,9 @@
 
 pkgname=oblogout-manjaro
 _gitname="oblogout-fork"
-pkgver=20150926
-pkgrel=2
-pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others"
+pkgver=20150927
+pkgrel=1
+pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others. Including blurlock"
 arch=('any')
 url="https://forum.manjaro.org/index.php?topic=25894.0"
 _gitroot="git://github.com/Cloudef/oblogout-fork.git"
@@ -17,8 +17,7 @@ depends=('i3lock'
 	'python2-pillow'
 	'python2-distutils-extra'
 	'python2-dbus')
-optdepends=('upower'
-	'lightdm: for switch-user function')
+optdepends=('lightdm: for switch-user function')
 makedepends=('git')
 install=$pkgname.install 
 conflicts=('fluxlogout'
@@ -33,11 +32,11 @@ source=(fluxboxexit
 	http://www.oberon.at/oberon/src/OutMok.tar.xz
 	switch-user.patch)
 md5sums=('f10cb96555b02245d944b381abb14221'
-         '67eff1ab5310456841c887ad6b06bf50'
-         '12a8c357f261db5752c7841ed7b4e678'
+         'eef31ce5c7a9f002ef407394cf6fd20b'
+         '026c5552b167b39b40883bd39128cb35'
          '0e9d42c6c83022515d3b14275f630f87'
          'a30813dafbe1b9d650db2f237ac1d89d'
-         '86a7a64ae86c0d733f69d37da05eb357')
+         '4bb8046c6d6a9709796afd814feec8f1')
 
 build() {
   cd "$srcdir"

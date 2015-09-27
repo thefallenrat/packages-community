@@ -8,10 +8,8 @@ local mesg=$1; shift
 printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
 }
 
-if [ -e /etc/oblogout.conf ]; then
-  msg "existing oblogout.conf will be saved as /etc/oblogout.conf.bak"
-  mv /etc/oblogout.conf /etc/oblogout.conf.bak
-fi
+msg "existing oblogout.conf will be saved as /etc/oblogout.conf.bak"
+mv /etc/oblogout.conf /etc/oblogout.conf.bak
 cp etc/oblogout-manjaro.conf etc/oblogout.conf
 }
 
