@@ -1,0 +1,20 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Ringo de Kroon <ringodekroon@gmail.com>
+
+pkgname=plymouth-theme-manjaro-extra-elegant
+_pkgname=manjaro-extra-elegant
+pkgver=1.0
+pkgrel=1
+pkgdesc="Elegant Plymouth theme with bright green Manjaro icon"
+arch=('any')
+url="https://forum.manjaro.org/index.php?topic=26633.0"
+license=('GPL')
+depends=('plymouth')
+source=("http://www.oberon.at/oberon/src/$_pkgname.tar.gz")
+md5sums=('ddb2e627947e8236f6603266a8903eaf')
+
+package() {
+  cd $srcdir
+  install -dm755 "$pkgdir/usr/share/plymouth/themes"
+  cp -r  "$srcdir/$_pkgname" "$pkgdir/usr/share/plymouth/themes/$_pkgname"
+}
