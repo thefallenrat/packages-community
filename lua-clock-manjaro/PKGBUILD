@@ -13,6 +13,9 @@ backup=('usr/share/conky/conky_lua_grey' 'usr/share/conky/conky_lua_green')
 source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
 md5sums=('f10ab9f1df8db72c6e6b7e6ff39867ec')
 
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
 	cd "$srcdir"
 	install -Dm644 clock_rings_green.lua "${pkgdir}/usr/share/conky/clock_rings_green.lua"

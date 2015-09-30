@@ -1,15 +1,17 @@
 # Maintainer: Bastien Dejean <nihilhill@gmail.com>
 
 pkgname=sxhkd
-pkgver=0.5.5.r10.g8433918
+pkgver=0.5.5.r12.g31501de
 pkgrel=1
 pkgdesc='A simple X hotkey daemon'
 arch=('i686' 'x86_64' 'armv7h')
 url="https://github.com/baskerville/${pkgname}"
 license=('custom:BSD')
-depends=('libxcb' 'xcb-util-keysyms')
-makedepends=('git' 'xcb-util')
-source=("git://github.com/baskerville/${pkgname}.git")
+depends=('libxcb'
+	'xcb-util-keysyms')
+makedepends=('git'
+	'xcb-util')
+source=("git://github.com/baskerville/$pkgname.git")
 md5sums=('SKIP')
 
 pkgver() {

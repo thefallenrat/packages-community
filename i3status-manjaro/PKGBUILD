@@ -9,8 +9,14 @@ arch=('i686' 'x86_64')
 url='http://i3.zekjur.net/i3status/'
 license=('BSD')
 groups=('i3')
-depends=('wireless_tools' 'confuse' 'alsa-lib' 'yajl' 'ttf-font-icons')
+depends=('i3-wm'
+	'wireless_tools'
+	'confuse'
+	'alsa-lib'
+	'yajl'
+	'ttf-font-icons')
 conflicts=('i3status')
+provides=('i3status')
 makedepends=('asciidoc')
 backup=('etc/i3status.conf')
 install=$pkgname.install

@@ -12,10 +12,11 @@ depends=('gtk-xfce-engine' 'gtk-engine-murrine')
 source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
 md5sums=('61d6c6ced25ba6799fb3bd94a1176963')
 
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
-
     cd "${srcdir}"
-
     install -dm755 "${pkgdir}/usr/share/themes"
     cp -r "i3-dust" "${pkgdir}/usr/share/themes"
 }

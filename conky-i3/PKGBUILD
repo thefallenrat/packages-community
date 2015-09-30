@@ -22,6 +22,9 @@ md5sums=('a9d0c9c90c467d8dc7766b59cb59df97'
          '098cca259e94d06b75e3408e9f1b251b'
          '929fc1959eb418f60ba58a2fc1c53dd2')
 
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
 	cd "$srcdir"
 	install -Dm644 conky_green "${pkgdir}/usr/share/conky/conky_green"
