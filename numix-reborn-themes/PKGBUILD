@@ -4,7 +4,8 @@ pkgbase=numix-reborn-themes
 arch=('any')
 pkgname=('numix-reborn-icon-themes'
 	'xfce-theme-numix-reborn'
-	'numix-reborn-wallpapers')
+	'numix-reborn-wallpapers'
+	'numix-reborn-suite')
 
 pkgver=20151001
 _snapshot='133eb1b27c9b4b79488158af49c27c4c5bbfb814'
@@ -43,4 +44,11 @@ package_numix-reborn-wallpapers() {
 	cd $srcdir/artwork-numix-reborn-manjaro-themes-$_snapshot/wallpapers
 	install -dm755 $pkgdir/usr/share/backgrounds
 	cp Manjaro_ST3_{one,two,three}.png $pkgdir/usr/share/backgrounds
+}
+
+package_numix-reborn-suite() {
+	pkgdesc="Numix reborn icons, themes and wallpapers - the whole green enchilada."
+	depends=('numix-reborn-icon-themes'
+		'xfce-theme-numix-reborn'
+		'numix-reborn-wallpapers')
 }
