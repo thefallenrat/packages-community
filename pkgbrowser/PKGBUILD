@@ -2,7 +2,7 @@
 
 pkgname='pkgbrowser'
 pkgver=0.19
-pkgrel=1
+pkgrel=2
 pkgdesc='A utility for browsing pacman databases and the AUR'
 arch=('i686' 'x86_64')
 url="https://bitbucket.org/kachelaqa/$pkgname"
@@ -14,6 +14,9 @@ md5sums=('4229a1206425f10bb528af5fa87b264b')
 
 build() {
     cd "$srcdir/$pkgname-$pkgver"
+    sed -i 's/{c,o}/c/g' Makefile
+    sed -i 's/, HTMLParseError//g' pkgbrowser/backend.py
+    sed -i 's/HTMLParseError, //g' pkgbrowser/backend.py
     make PREFIX='/usr'
 }
 
