@@ -9,7 +9,7 @@ pkgname=('numix-reborn-icon-themes'
 
 pkgver=20151001
 _snapshot='133eb1b27c9b4b79488158af49c27c4c5bbfb814'
-pkgrel=1
+pkgrel=2
 url="https://github.com/manjaro/artwork-numix-reborn-manjaro-themes"
 license=('GPL3')
 source=("$pkgbase-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz")
@@ -24,18 +24,18 @@ package_numix-reborn-icon-themes() {
 
 	cd "$srcdir/artwork-numix-reborn-manjaro-themes-$_snapshot/icon theme/"
 	install -dm755 $pkgdir/usr/share/icons/
-	cp -r Numix-Green $pkgdir/usr/share/icons/
-	cp -r Numix-Circle-Green $pkgdir/usr/share/icons/
+	cp -r Numix-Green $pkgdir/usr/share/icons/Numix-Reborn
+	cp -r Numix-Circle-Green $pkgdir/usr/share/icons/Numix-Reborn-Circle
 
 	install -Dm644 "$srcdir/artwork-numix-reborn-manjaro-themes-$_snapshot/panel menu icon/manjaro-circle-icon.png" "$pkgdir/usr/share/icons/manjaro-circle-icon.png"
 }
 
 package_xfce-theme-numix-reborn() {
-	pkgdesc="gtk-Xfce theme based on the original Numix Themes"
+	pkgdesc="Green gtk-Xfce theme based on the original Numix Themes"
 
 	cd "$srcdir/artwork-numix-reborn-manjaro-themes-$_snapshot/xfce-gtk theme"
 	install -dm755 $pkgdir/usr/share/themes/
-	cp -r Numix-Green $pkgdir/usr/share/themes/
+	cp -r Numix-Green $pkgdir/usr/share/themes/Numix-Reborn
 }
 
 package_numix-reborn-wallpapers() {
@@ -47,7 +47,7 @@ package_numix-reborn-wallpapers() {
 }
 
 package_numix-reborn-suite() {
-	pkgdesc="Numix reborn icons, themes and wallpapers - the whole green enchilada."
+	pkgdesc="Numix Reborn icons, themes and wallpapers - the whole green enchilada."
 	depends=('numix-reborn-icon-themes'
 		'xfce-theme-numix-reborn'
 		'numix-reborn-wallpapers')
