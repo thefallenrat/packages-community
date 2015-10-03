@@ -3,7 +3,7 @@
 pkgname=lemonbar-xft-clicky
 _pkgname=bar
 _ver=0
-pkgver=${_ver}.r214.a2fad82
+pkgver=0.r214.a2fad82
 pkgrel=1
 pkgdesc="A lightweight xcb based bar with ported xft support. Modified to provide more clickable areas."
 arch=('i686' 'x86_64')

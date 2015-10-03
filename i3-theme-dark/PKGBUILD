@@ -4,18 +4,24 @@
 pkgname=i3-theme-dark
 pkgver=20150725
 pkgrel=1
-pkgdesc="Dark gtk theme for i3"
-arch=('any')
-url=('https://forum.manjaro.org/index.php?board=53.0')
-license=(GPL3)
-depends=('gtk-xfce-engine' 'gtk-engine-murrine')
-source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.gz")
-md5sums=('67a0d04c1ab03f2e326d3581e9d4c2e8')
+pkgdesc="Dark gtk theme for manjaro-i3"
 
+repo=artwork-i3
+snapshot=2bf3b6beb7c5f6581d2276a4b47ddf9648f55b8a
+url=https://github.com/oberon2007/$repo
+
+arch=any
+license=GPL3
+depends=('gtk-xfce-engine'
+	'gtk-engine-murrine')
+source=$repo-$pkgver.tar.gz::$url/archive/$snapshot.tar.gz
+md5sums=('3650026d13732956789aa0d16b904813')
+
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
-
-    cd "${srcdir}"
-
-    install -dm755 "${pkgdir}/usr/share/themes"
-    cp -r "i3-dark" "${pkgdir}/usr/share/themes"
+	cd $srcdir/$repo-$snapshot
+	install -dm755 $pkgdir/usr/share/themes
+	cp -r i3-dark $pkgdir/usr/share/themes
 }

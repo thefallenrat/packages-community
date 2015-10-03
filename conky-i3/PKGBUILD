@@ -1,33 +1,36 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=conky-i3
-pkgver=20150918
+pkgver=20151002
 pkgrel=1
 pkgdesc="grey or green Conky for manjaro-i3"
-arch=('any')
-license=('GPL')
-depends=('conky>=1.10' 'ttf-bitstream-vera')
-conflicts=('lua-clock-manjaro' 'lua-clock-i3')
-backup=('usr/share/conky/conky_green' 'usr/share/conky/conky_grey' 'usr/share/conky/conky1.10_shortcuts_green' 'usr/share/conky/conky1.10_shortcuts_grey')
-source=(conky1.10_shortcuts_green
-	conky1.10_shortcuts_grey
-	conky_green
-	conky_grey
-	start_conky_green
-	start_conky_grey)
-md5sums=('a9d0c9c90c467d8dc7766b59cb59df97'
-         'ad268e01b76494c3bae803e9ad13e3bd'
-         '99ed1430af6996bf52aba1c7dc8f53b1'
-         '5f132338e7e4c0937b40e93be05aba29'
-         '098cca259e94d06b75e3408e9f1b251b'
-         '929fc1959eb418f60ba58a2fc1c53dd2')
+url=https://github.com/oberon2007/conkies
+_repo=conkies
+_snapshot=c368794452d5ef38ae94111aabdaf758ee12305e
 
+arch=any
+license=GPL
+depends=('conky>=1.10'
+	'ttf-bitstream-vera')
+conflicts=('lua-clock-manjaro'
+	'lua-clock-i3')
+backup=('usr/share/conky/conky_green'
+	'usr/share/conky/conky_grey'
+	'usr/share/conky/conky1.10_shortcuts_green'
+	'usr/share/conky/conky1.10_shortcuts_grey')
+source=$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz
+md5sums=('56dce255ff09876662649161d3d893cd')
+
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
-	cd "$srcdir"
-	install -Dm644 conky_green "${pkgdir}/usr/share/conky/conky_green"
-	install -Dm644 conky_grey "${pkgdir}/usr/share/conky/conky_grey"
-	install -Dm644 conky1.10_shortcuts_green "${pkgdir}/usr/share/conky/conky1.10_shortcuts_green"
-	install -Dm644 conky1.10_shortcuts_grey "${pkgdir}/usr/share/conky/conky1.10_shortcuts_grey"
-	install -Dm755 start_conky_green "${pkgdir}/usr/bin/start_conky_green"
-	install -Dm755 start_conky_grey "${pkgdir}/usr/bin/start_conky_grey"
+	cd $srcdir/$_repo-$_snapshot
+
+	install -Dm644 conky_green $pkgdir/usr/share/conky/conky_green
+	install -Dm644 conky_grey $pkgdir/usr/share/conky/conky_grey
+	install -Dm644 conky1.10_shortcuts_green $pkgdir/usr/share/conky/conky1.10_shortcuts_green
+	install -Dm644 conky1.10_shortcuts_grey $pkgdir/usr/share/conky/conky1.10_shortcuts_grey
+	install -Dm755 start-scripts-i3/start_conky_green ${pkgdir}/usr/bin/start_conky_green
+	install -Dm755 start-scripts-i3/start_conky_grey ${pkgdir}/usr/bin/start_conky_grey
 }

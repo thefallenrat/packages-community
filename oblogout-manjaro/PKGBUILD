@@ -53,7 +53,9 @@ build() {
 
   patch -p1 < "$srcdir/switch-user.patch"
 }
-
+pkgver() {
+	date +'%Y%m%d'
+}
 package() {
   cd "$srcdir/$_gitname"
   python2 setup.py install --root="$pkgdir/"
