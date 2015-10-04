@@ -16,5 +16,5 @@ package() {
 	cd "${srcdir}"
 	mkdir -p "${pkgdir}/usr/share/icons/"
 	cp -r AwOken{,Dark,White} "${pkgdir}/usr/share/icons/"
-	chmod +r -R "${pkgdir}"/usr/share/icons/AwOken{,Dark,White}
+	chmod a+r -R "${pkgdir}"/usr/share/icons/AwOken{,Dark,White}
 }
