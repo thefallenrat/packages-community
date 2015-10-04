@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=fluxbox-theme-manjaro
-pkgver=20150902
+pkgver=20151005
 pkgrel=1
 pkgdesc="theme for manjaro-fluxbox"
 arch=('any')
@@ -9,7 +9,8 @@ license=('GPL')
 depends=('fluxbox')
 backup=('usr/share/fluxbox/styles/manjaro-flux/theme.cfg')
 source="theme.cfg"
-md5sums=('1573abd2b935cd848184cdda40f660d8')
+md5sums=('a1f27bdd92bd0616f9efdca2fbd977cd')
+
 package() {
 	cd "${srcdir}"
 	install -Dm644 "${srcdir}/theme.cfg" "${pkgdir}/usr/share/fluxbox/styles/manjaro-flux/theme.cfg"
