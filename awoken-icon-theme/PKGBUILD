@@ -8,13 +8,15 @@ pkgrel=1
 pkgdesc="Coloured, dark and white icon sets for GNOME/XFCE/LXDE"
 arch=('any')
 url="http://alecive.deviantart.com/art/AwOken-163570862"
+snapshot=2119c93aa55908c8334dc442dd461c3eace0db45
 license=('CCPL:by-sa')
-source="http://www.oberon.at/oberon/src/${pkgname}-${pkgver}.tar.gz"
+makedepends=('git')
+source=$repo-$pkgver.tar.gz::https//github.com/oberon2007/$pkgname/archive/$snapshot.tar.gz
 md5sums=('4b574092225e8ef02c61aae231d9123f')
 
 package() {
-	cd "${srcdir}"
-	mkdir -p "${pkgdir}/usr/share/icons/"
-	cp -r AwOken{,Dark,White} "${pkgdir}/usr/share/icons/"
-	chmod a+r -R "${pkgdir}"/usr/share/icons/AwOken{,Dark,White}
+	cd "$srcdir/$pkgname-$snapshot"
+	install -dm755 "$pkgdir/usr/share/icons"
+	cp -r AwOken{,Dark,White} $pkgdir/usr/share/icons
+	chmod a+r -R $pkgdir/usr/share/icons/AwOken{,Dark,White}
 }
