@@ -3,7 +3,7 @@
 
 pkgname=lemonpanel
 _ver=0.6
-pkgver=0.6.r64.91e6036
+pkgver=0.6.r71.a7d98b0
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=any
@@ -34,8 +34,8 @@ pkgver() {
 }
 
 package () {
-	cd $srcdir
-	install -Dm755 $srcdir/$pkgname/lemonpanel $pkgdir/usr/bin/lemonpanel
-	cp -r $srcdir/$pkgname/bin $pkgdir/usr
+	cd $srcdir/$pkgname
+	install -dm755 $pkgdir/usr
+	cp -r bin $pkgdir/usr
 	chmod a+x $pkgdir/usr/bin/*
 }
