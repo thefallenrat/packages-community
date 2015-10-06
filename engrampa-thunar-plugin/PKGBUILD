@@ -1,0 +1,18 @@
+# Maintainer : Rob McCathie <korrode AT gmail>
+
+pkgname=engrampa-thunar-plugin
+pkgver=1.0
+pkgrel=1
+pkgdesc="Engrampa Thunar-Plugin"
+url="http://mate-desktop.org"
+arch=('any')
+license=('GPL')
+depends=('engrampa')
+replaces=('mate-file-archiver-thunar' 'engrampa-thunar')
+provides=('mate-file-archiver-thunar' 'engrampa-thunar')
+source=('engrampa.tap')
+sha1sums=('d493b15ccf77279dfa9dbe2c05243acf26be004a')
+
+package() {
+    install -Dm755 ${srcdir}/engrampa.tap ${pkgdir}/usr/lib/xfce4/thunar-archive-plugin/engrampa.tap
+}
