@@ -1,10 +1,9 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Contributor: Ringo de Kroon <ringodekroon@gmail.com>
 
-pkgname=plymouth-theme-manjaro-extra-elegant
-pkgver=1.0
-pkgrel=2
-pkgdesc="Green Manjaro Plymouth theme with round icon"
+pkgname=plymouth-theme-manjaro-circle
+pkgver=1.1
+pkgrel=4
+pkgdesc="Green and grey theme with round icon"
 repo="plymouth-themes-manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$repo"
@@ -18,5 +17,5 @@ md5sums=('SKIP')
 package() {
 	cd $srcdir/$repo
 	install -dm755 "$pkgdir/usr/share/plymouth/themes"
-	cp -r manjaro-extra-elegant "$pkgdir/usr/share/plymouth/themes"
+	cp -r manjaro-circle "$pkgdir/usr/share/plymouth/themes"
 }

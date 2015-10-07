@@ -21,17 +21,17 @@ makedepends=('asciidoc')
 backup=('etc/i3status.conf')
 install=$pkgname.install
 options=('docs')
-source=("http://oberon.at/oberon/src/$pkgname-$pkgver.tar.bz2")
-md5sums=('6c394a2b51b727b3d8f04c8bbc252deb')
+source=("git://github.com/oberon2007/$pkgname.git")
+md5sums=('SKIP')
 
 build() {
-  cd "${srcdir}/i3status-${pkgver}"
+  cd "$srcdir/$pkgname"
   make
 }
 
 package() {
-  cd "${srcdir}/i3status-${pkgver}"
+  cd "$srcdir/$pkgname"
   make DESTDIR="$pkgdir" install
-  install -Dm644 LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+  install -Dm644 LICENSE $pkgdir/usr/share/licenses/i3status/LICENSE
   make clean
 }
