@@ -1,0 +1,23 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+_profile=i3
+_user=oberon2007
+_repo=i3-wallpapers
+_snapshot=0525df546a8e2d143f6b4fdf00901636a91b3cbd
+url=https://github.com
+
+pkgname=$_profile-wallpapers
+pkgver="$(date +'%Y%m%d')"
+pkgrel=1
+pkgdesc="Wallpapers for $_profile"
+
+arch=any
+license=GPL3
+source="$pkgname-$pkgver.tar.gz::$url/$_user/$_repo/archive/$_snapshot.tar.gz"
+md5sums=('678aa221cac8df09c367755d8312d3a3')
+
+package() {
+	cd $srcdir/$_repo-$_snapshot
+	install -dm755 $pkgdir/usr/share
+	cp -r backgrounds $pkgdir/usr/share
+}
