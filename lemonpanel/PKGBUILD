@@ -1,9 +1,10 @@
+
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Chrysostomus
 
 pkgname=lemonpanel
-_ver=0.7
-pkgver=0.6.r72.ab9ed9d
+_ver=0.8
+pkgver=0.8.r86.01092f6
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=any
