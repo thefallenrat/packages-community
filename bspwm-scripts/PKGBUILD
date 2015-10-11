@@ -14,7 +14,6 @@ depends=('dmenu-manjaro'
 	'xdotool'
 	'wmctrl'
 	'wmutils'
-	'xorg-xdpyinfo'
 	'xtitle'
 	'xwinfo'
 	'xdo')
