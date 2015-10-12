@@ -1,7 +1,7 @@
 # Maintainer: Ingo Bürk <admin at airblader dot de>
 
 pkgname=i3-gaps
-pkgver=4.11.373.gd37ab01
+pkgver=4.11.r373.rgd37ab01
 pkgrel=1
 pkgdesc='A fork of i3wm tiling window manager with more features, including gaps'
 arch=('i686' 'x86_64')
@@ -37,7 +37,7 @@ _gitname='i3'
 
 pkgver() {
   cd "$srcdir/$_gitname"
-  git describe --tags | sed 's/-/./g'
+  git describe --tags | sed 's/-/.r/g'
 }
 
 build() {
