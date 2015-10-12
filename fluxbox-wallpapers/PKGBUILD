@@ -1,0 +1,22 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+_profile=fluxbox
+_user=oberon2007
+_snapshot=3bf37f42c3226c4a76ec580fbedf85bfc90507c3
+
+pkgname="$_profile-wallpapers"
+pkgver=20151012
+pkgrel=1
+pkgdesc="Wallpapers for $_profile"
+arch=any
+license=GPL3
+url=https://github.com
+source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
+
+md5sums=('d5f202f37e91846868c9059c2e81a465')
+
+package() {
+	cd $srcdir/$pkgname-$_snapshot
+	install -dm755 $pkgdir/usr/share
+	cp -r backgrounds $pkgdir/usr/share
+}
