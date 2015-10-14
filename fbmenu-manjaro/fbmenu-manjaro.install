@@ -1,0 +1,31 @@
+post_install() {
+
+	msg() {
+	ALL_OFF="\e[1;0m"
+	BOLD="\e[1;1m"
+	GREEN="${BOLD}\e[1;32m"
+	local mesg=$1; shift
+	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+	}
+
+	msg "Your existing menu will be backed up as ~/fluxbox/menu_backup."
+
+## backup existing menu config
+	if [ -f $HOME/.config/fbmenugen/schema.pl ]
+	then
+	mv $HOME/.config/fbmenugen/schema.pl $HOME/.config/fbmenugen/schema.pl_backup
+	fi
+	if [ -f $HOME/.config/fbmenugen/config.pl ]
+	then
+	mv $HOME/.config/fbmenugen/config.pl $HOME/.config/fbmenugen/config.pl_backup
+	fi
+	if [ -f $HOME/.fluxbox/menu ]
+	then
+	mv $HOME/.config/.fluxbox/menu $HOME/.config/.fluxbox/menu_backup
+	fi
+
+##copy new menu file and config for regenerate function
+	install -Dm644 /etc/xdg/fbmenu-manjaro/config.pl $HOME/.config/fbmenugen/config.pl
+	install -m644 /etc/xdg/fbmenu-manjaro/schema.pl $HOME/.config/fbmenugen/schema.pl
+	install -Dm644 /etc/xdg/fbmenu-manjaro/menu $HOME/.fluxbox/menu
+}
