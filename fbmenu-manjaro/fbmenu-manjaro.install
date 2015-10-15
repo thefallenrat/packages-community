@@ -34,9 +34,10 @@ for i in $( ls /home ); do
         install -dm755 /home/$i/.{config/fbmenugen,fluxbox}
         install -m644 /etc/xdg/fbmenu-manjaro/{config,schema}.pl /home/$i/.config/fbmenugen/
         install -m644 /etc/xdg/fbmenu-manjaro/menu /home/$i/.fluxbox/
-        chown $i:users /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*}
+        chown $i:users /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*} 2>/dev/null || chown root /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*}
 
         ##regenerate the new menu
-        su -c fbmenugen $i
+        su -c fbmenugen $i 2>/dev/null || echo "fbmenu-manjaro has been successfully installed and initialized for all users.
+Invalid user entries have been found in /home - please check them."
 done
 }
