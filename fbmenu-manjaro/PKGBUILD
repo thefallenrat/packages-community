@@ -2,7 +2,7 @@
 
 pkgname=fbmenu-manjaro
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Menu for Manjaro-Fluxbox with Regenerate function"
 url=" "
 arch=('any')
@@ -13,11 +13,9 @@ conflicts=(fb-restore-menu)
 replaces=(fb-restore-menu)
 install=$pkgname.install
 source=(config.pl
-	fbmenu
 	menu
 	schema.pl)
 md5sums=('473f685f2bc76d3dc8ada2aa3adbc0a8'
-         'd76636bbe60ea6ab1e69a8d7be647c6c'
          '2c17ceaa6dd08ee515bd0093304feef9'
          '39ea600269573a629df42f13a73ee1ef')
 
@@ -25,5 +23,4 @@ package() {
 	cd $srcdir
 	install -dm755 $pkgdir/etc/xdg/fbmenu-manjaro
 	cp {config.pl,menu,schema.pl} $pkgdir/etc/xdg/fbmenu-manjaro
-	install -Dm755 fbmenu $pkgdir/usr/bin/fbmenu
 }
