@@ -1,0 +1,22 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: fsckd <fsckdaemon at gmail dot com>
+# Contributor: veox <veox at wre dot ath dot cx>
+
+pkgname=zsh-history-substring-search
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A ZSH plugin to search history, a clean-room implementation of the Fish shell feature"
+arch=('any')
+url="https://github.com/zsh-users/zsh-history-substring-search"
+snapshot=1e7680405239a835aa403a7457cad23750f98e72
+license=('BSD')
+depends=('zsh')
+install=$pkgname.install
+source="https://github.com/zsh-users/zsh-history-substring-search/archive/v1.0.0.tar.gz"
+md5sums=('77ca86193687188d0f4d47dbaabd2386')
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  install -dm755 "$pkgdir/usr/share/zsh/plugins/$pkgname"
+  install -m644 README.md "$pkgname".{zsh,plugin.zsh} "$pkgdir/usr/share/zsh/plugins/$pkgname"
+}

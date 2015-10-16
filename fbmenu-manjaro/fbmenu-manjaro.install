@@ -13,25 +13,26 @@ msg "Your customized menu (if present) has been saved as ~/.fluxbox/menu_backup
 "
 
 for i in $( ls /home ); do
-	## backup existing menu config
-	if [ -f /home/$i/.config/fbmenugen/schema.pl ] && [ ! -f /home/$i/.config/fbmenugen/schema.pl_backup ]; then
-	mv /home/$i/.config/fbmenugen/schema.pl /home/$i/.config/fbmenugen/schema.pl_backup
-       	fi
-        if [ -f /home/$i/.config/fbmenugen/config.pl ] && [ ! -f /home/$i/.config/fbmenugen/config.pl_backup ]; then
-	mv /home/$i/.config/fbmenugen/config.pl /home/$i/.config/fbmenugen/config.pl_backup
-	fi
-        if [ -f /home/$i/.fluxbox/menu ] && [ ! -f /home/$i/.fluxbox/menu_backup ]; then
-	mv /home/$i/.fluxbox/menu /home/$i/.fluxbox/menu_backup
-        fi
+  if [ -d /home/$i/.fluxbox ]; then
+    ## backup existing menu config
+    if [ -f /home/$i/.config/fbmenugen/schema.pl ] && [ ! -f /home/$i/.config/fbmenugen/schema.pl_backup ]; then
+    mv /home/$i/.config/fbmenugen/schema.pl /home/$i/.config/fbmenugen/schema.pl_backup
+    fi
+    if [ -f /home/$i/.config/fbmenugen/config.pl ] && [ ! -f /home/$i/.config/fbmenugen/config.pl_backup ]; then
+    mv /home/$i/.config/fbmenugen/config.pl /home/$i/.config/fbmenugen/config.pl_backup
+    fi
+    if [ -f /home/$i/.fluxbox/menu ] && [ ! -f /home/$i/.fluxbox/menu_backup ]; then
+    mv /home/$i/.fluxbox/menu /home/$i/.fluxbox/menu_backup
+    fi
 
-        ##install new menu file and config for regenerate function
-        install -dm755 /home/$i/.{config/fbmenugen,fluxbox}
-        install -m644 /etc/xdg/fbmenu-manjaro/{config,schema}.pl /home/$i/.config/fbmenugen/
-        install -m644 /etc/xdg/fbmenu-manjaro/menu /home/$i/.fluxbox/
-        chown $i:users /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*} 2>/dev/null || chown root /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*}
+    ##install new menu file and config for regenerate function
+    install -dm755 /home/$i/.{config/fbmenugen,fluxbox}
+    install -m644 /etc/xdg/fbmenu-manjaro/{config,schema}.pl /home/$i/.config/fbmenugen/
+    install -m644 /etc/xdg/fbmenu-manjaro/menu /home/$i/.fluxbox/
+    chown $i:users /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*} 2>/dev/null || chown root /home/$i/.{config/fbmenugen/*.pl*,fluxbox/menu*}
 
-        ##regenerate the new menu
-        su -c fbmenugen $i 2>/dev/null || echo "fbmenu-manjaro has been successfully installed and initialized for all users.
-Invalid user entries have been found in /home - please check them."
+    ##regenerate the new menu
+    su -c fbmenugen $i 2>/dev/null
+  fi
 done
 }
