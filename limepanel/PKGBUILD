@@ -1,30 +1,17 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Chrysostomus
 
-pkgname=lemonpanel
-_ver=0.8
-pkgver=0.8.r103.f35be77
+pkgname=limepanel
+_ver=0.7
+pkgver=0.7.r37.6a7ddc5
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=any
-url=https://github.com/Chrysostomus/lemonpanel
+url=https://github.com/Chrysostomus/limepanel
 license=MIT
-depends=('dmenu-manjaro'
-	'lemonbar-xft-clicky'
-	'xdotool'
-	'wmctrl'
-	'pulseaudio-ctl'
-	'rxvt-unicode'
-	'networkmanager-dmenu'
-	'conky-cli'
-	'xtitle'
-	'ttf-dejavu-sans-mono-powerline'
-	'bdf-zevv-peep'
-	'ttf-ionicons'
-	'zenity'
-	'xdg-utils')
+depends=('lemonpanel')
 makedepends=git
-source="git://github.com/Chrysostomus/lemonpanel"
+source="git://github.com/Chrysostomus/limepanel"
 md5sums=('SKIP')
 
 pkgver() {
