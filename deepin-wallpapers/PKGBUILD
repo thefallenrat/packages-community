@@ -1,0 +1,22 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+_profile=deepin
+_user=oberon2007
+_snapshot=0b30804627270d8090047502ebde0e7554a1ede1
+
+pkgname="$_profile-wallpapers"
+pkgver="$(date +'%Y%m%d')"
+pkgrel=3
+pkgdesc="Wallpapers for $_profile"
+arch=any
+license=GPL3
+url=https://github.com
+source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
+
+md5sums=('efb93ce3cfd6efd958ee74593e91cc7e')
+
+package() {
+	cd $srcdir/$pkgname-$_snapshot
+	install -dm755 $pkgdir/usr/share
+	cp -r backgrounds $pkgdir/usr/share
+}
