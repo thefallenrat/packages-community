@@ -10,19 +10,19 @@ if ! [ -f "$HOME/.dmenurc" ]; then
 fi
 . $HOME/.dmenurc
 
-if [ -z "$TERMINAL" ]; then
+if [ -z "$TERMINAL_CMD" ]; then
   if [ "$(which urxvt)" ]; then
-  TERMINAL="urxvt -e"
+  TERMINAL_CMD="urxvt -e"
   elif [ "$(which xterm)" ]; then
-  TERMINAL="xterm -e"
+  TERMINAL_CMD="xterm -e"
   elif [ "$(which gnome-terminal)" ]; then
-  TERMINAL="gnome-terminal -e"
+  TERMINAL_CMD="gnome-terminal -e"
   elif [ "$(which lxterminal)" ]; then
-  TERMINAL="lxterminal -e"
+  TERMINAL_CMD="lxterminal -e"
   elif [ "$(which sakura)" ]; then
-  TERMINAL="sakura -e"
+  TERMINAL_CMD="sakura -e"
   elif [ "$(which xfce4-terminal)" ]; then
-  TERMINAL="xfce4-terminal -e"
+  TERMINAL_CMD="xfce4-terminal -e"
   fi
 fi
 
@@ -84,6 +84,6 @@ else
 fi
 
 [[ "$type" = "background" ]] && exec $cmd
-[[ "$type" = "terminal" ]] && exec $TERMINAL "$cmd"
+[[ "$type" = "terminal" ]] && exec $TERMINAL_CMD "$cmd"
 [[ "$type" = "terminal_hold" ]] &&
-    exec $TERMINAL sh -c "$cmd && echo Press Enter to kill me... && read line"
+    exec $TERMINAL_CMD sh -c "$cmd && echo Press Enter to kill me... && read line"
