@@ -8,15 +8,16 @@
 
 pkgname=dmenu-manjaro
 _pkgname=dmenu
-pkgver=4.5
-pkgrel=8
+pkgver=4.5.1
+pkgrel=1
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'cantarell-fonts')
 conflicts=('dmenu' 'dmenu-xft')
 provides=('dmenu' 'dmenu-xft')
-source=(http://dl.suckless.org/tools/$_pkgname-$pkgver.tar.gz
+install=$pkgname.install
+source=(http://dl.suckless.org/tools/$_pkgname-${pkgver%.*}.tar.gz
 	dmenu-4.5-xft-width-xy.diff
 	dmenu-4.5-mouse-support.diff
 	dmenu-4.5-height.diff
@@ -26,23 +27,23 @@ md5sums=('9c46169ed703732ec52ed946c27d84b4'
          '8940e6146e71188b6ac0bb2c4414b4e6'
          'eeec3e11ff68f27ebbc3133ad6549f56'
          'c01bbe49e7a0da28b3347f06a8e971aa'
-         'b1ff9ba085f048113fef7617be7dc284'
-         'c004c21d80dd962ac2a7d785f5a5a6e5')
+         'cb50f2c32fccf757d1bd94e734a3366e'
+         'f9e1c5cf05b1aedbad10d72532319ee6')
 
 prepare() {
-	cd $srcdir/$_pkgname-$pkgver
+	cd $srcdir/$_pkgname-${pkgver%.*}
 	patch -p1 < ../dmenu-4.5-xft-width-xy.diff
 	patch -p1 < ../dmenu-4.5-mouse-support.diff
  	patch -p1 < ../dmenu-4.5-height.diff
 }
 build() {
-	cd $srcdir/$_pkgname-$pkgver
+	cd $srcdir/$_pkgname-${pkgver%.*}
 	make \
 	X11INC=/usr/include/X11 \
 	X11LIB=/usr/lib/X11
 }
 package() {
-	cd $srcdir/$_pkgname-$pkgver
+	cd $srcdir/$_pkgname-${pkgver%.*}
 	make PREFIX=/usr DESTDIR=$pkgdir install
 	install -Dm755 "$srcdir/dmenu_recency" "$pkgdir/usr/bin/dmenu_recency"
 	install -Dm755 "$srcdir/dmenurc" "$pkgdir/usr/share/$_pkgname/dmenurc"
