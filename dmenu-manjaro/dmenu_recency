@@ -11,10 +11,12 @@ fi
 . $HOME/.dmenurc
 
 if [ -z "$TERMINAL_CMD" ]; then
-  if [ "$(which urxvt)" ]; then
+  if [ "$(which terminal)" ]; then
+  TERMINAL_CMD="terminal -e"
+  elif [ "$(which urxvt)" ]; then
   TERMINAL_CMD="urxvt -e"
-  elif [ "$(which xterm)" ]; then
-  TERMINAL_CMD="xterm -e"
+  elif [ "$(which termite)" ]; then
+  TERMINAL_CMD="termite -e"
   elif [ "$(which gnome-terminal)" ]; then
   TERMINAL_CMD="gnome-terminal -e"
   elif [ "$(which lxterminal)" ]; then
@@ -23,6 +25,8 @@ if [ -z "$TERMINAL_CMD" ]; then
   TERMINAL_CMD="sakura -e"
   elif [ "$(which xfce4-terminal)" ]; then
   TERMINAL_CMD="xfce4-terminal -e"
+  elif [ "$(which xterm)" ]; then
+  TERMINAL_CMD="xterm -e"
   fi
 fi
 

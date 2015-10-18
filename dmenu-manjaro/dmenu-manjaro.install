@@ -1,12 +1,20 @@
+msg() {
+ALL_OFF="\e[1;0m"
+BOLD="\e[1;1m"
+GREEN="${BOLD}\e[1;32m"
+local mesg=$1; shift
+printf "
+${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+}
+
 post_install() {
-  cat << _EOF
-
-==> To change colour, font and your preferred terminal application
-==> please edit the settings in ~/.dmenurc
-
-_EOF
+msg "Font, colour and your preferred terminal application for dmenu"
+msg "can be defined in ~/.dmenurc"
 }
 
 post_upgrade() {
-  post_install $1
+msg "dmenu can be configured in your ~/.dmenurc file."
+msg "To change your preferred terminal application add the variable"
+msg "'TERMINAL_CMD=' with the command there,"
+msg "for example: ' TERMINAL_CMD="lxterminal -e" '"
 }
