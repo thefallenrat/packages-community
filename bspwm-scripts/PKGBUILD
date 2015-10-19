@@ -14,7 +14,8 @@ depends=('dmenu-manjaro'
 	'wmctrl'
 	'wmutils'
 	'xtitle'
-	'xdo')
+	'xdo'
+	'rootmenu')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
