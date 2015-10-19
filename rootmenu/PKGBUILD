@@ -10,7 +10,7 @@ license=MIT
 depends=('dmenu-manjaro'
 	'xdotool'
 	'wmutils'
-	'xev'
+	'xorg-xev'
 	'xdg-utils')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
