@@ -10,9 +10,27 @@ if ! [ -f "$HOME/.dmenurc" ]; then
 fi
 . $HOME/.dmenurc
 
-#dmenu_cmd="dmenu $DMENU_OPTIONS"
+if [ -z "$TERMINAL_CMD" ]; then
+  if [ "$(which terminal)" ]; then
+  TERMINAL_CMD="terminal -e"
+  elif [ "$(which urxvt)" ]; then
+  TERMINAL_CMD="urxvt -e"
+  elif [ "$(which termite)" ]; then
+  TERMINAL_CMD="termite -e"
+  elif [ "$(which gnome-terminal)" ]; then
+  TERMINAL_CMD="gnome-terminal -e"
+  elif [ "$(which lxterminal)" ]; then
+  TERMINAL_CMD="lxterminal -e"
+  elif [ "$(which sakura)" ]; then
+  TERMINAL_CMD="sakura -e"
+  elif [ "$(which xfce4-terminal)" ]; then
+  TERMINAL_CMD="xfce4-terminal -e"
+  elif [ "$(which xterm)" ]; then
+  TERMINAL_CMD="xterm -e"
+  fi
+fi
+
 dmenu_cmd="dmenu $DMENU_OPTIONS"
-terminal="urxvt -e"
 max_recent=199 # Number of recent commands to track
 
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-recent"
@@ -70,6 +88,6 @@ else
 fi
 
 [[ "$type" = "background" ]] && exec $cmd
-[[ "$type" = "terminal" ]] && exec $terminal "$cmd"
+[[ "$type" = "terminal" ]] && exec $TERMINAL_CMD "$cmd"
 [[ "$type" = "terminal_hold" ]] &&
-    exec $terminal sh -c "$cmd && echo Press Enter to kill me... && read line"
+    exec $TERMINAL_CMD sh -c "$cmd && echo Press Enter to kill me... && read line"
