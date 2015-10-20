@@ -1,10 +1,10 @@
 msg() {
 ALL_OFF="\e[1;0m"
 BOLD="\e[1;1m"
-GREEN="${BOLD}\e[1;32m"
+RED="${BOLD}\e[1;31m"
 local mesg=$1; shift
 printf "
-${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+${RED}==>${ALL_OFF} ${mesg}${ALL_OFF}\n" "$@" >&2
 }
 
 post_install() {
@@ -13,8 +13,7 @@ msg "can be defined in ~/.dmenurc"
 }
 
 post_upgrade() {
-msg "dmenu can be configured in your ~/.dmenurc file."
-msg "To change your preferred terminal application add the variable"
-msg "'TERMINAL_CMD=' with the command there,"
-msg "for example: ' TERMINAL_CMD="lxterminal -e" '"
+msg "dmenu can be configured in your ~/.dmenurc file.
+    To change your preferred terminal command add the variable
+    TERMINAL_CMD= - for example: TERMINAL_CMD=\"lxterminal -e\"\n"
 }
