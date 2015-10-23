@@ -59,7 +59,7 @@ our $SCHEMA = [
 
 {begin_cat =>					['Customization',	]},
   {item =>	['lxappearance',		'Appearance',		]},
-  {item =>	['plank --preferences',		'Dock',			]},
+  {item =>	['plank --preferences',		'Dock (Plank)',			]},
   {item =>	['gksu lightdm-gtk-greeter-settings','LightDM Greeter',	]},
   {item =>	['xfce4-notifyd-config',	'Notifications',	]},
   {item =>	['nitrogen',			'Wallpaper',		]},
