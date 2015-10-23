@@ -17,6 +17,8 @@ if [ -z "$TERMINAL_CMD" ]; then
   TERMINAL_CMD="urxvt -e"
   elif [ "$(which termite)" ]; then
   TERMINAL_CMD="termite -e"
+  elif [ "$(which terminator)" ]; then
+  TERMINAL_CMD="terminator -e"
   elif [ "$(which gnome-terminal)" ]; then
   TERMINAL_CMD="gnome-terminal -e"
   elif [ "$(which lxterminal)" ]; then
