@@ -3,14 +3,13 @@
 
 pkgname=advcp
 pkgver=8.24
-pkgrel=1
+pkgrel=2
 
 _pkgname=coreutils
 pkgdesc="'cp' and 'mv' utilities with progress bar patches" 
 arch=("i686" "x86_64")
 license=("GPL3")
 url="https://www.gnu.org/software/coreutils/"
-groups=("base")
 depends=("glibc" "pam" "acl" "gmp" "libcap")
 provides=("acp" "amv")
 install=${pkgname}.install
