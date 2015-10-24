@@ -8,8 +8,8 @@ arch=('any')
 # groups=('deepin')
 url=" "
 license=('GPL3')
-depends=('deepin-gtk-theme'
-	'deepin-icon-theme')
+# depends=('deepin-gtk-theme'
+# 	'deepin-icon-theme')
 install=$pkgname.install
 source=(gsettings-override)
 md5sums=('3757d855f00423bbc81c88c62ac1a96a')
