@@ -2,19 +2,20 @@
 
 pkgname=deepin-manjaro-gsettings
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc='deepin-manjaro default gsettings'
 arch=('any')
 # groups=('deepin')
 url=" "
 license=('GPL3')
-# depends=('deepin-gtk-theme' 'deepin-icon-theme')
-install="${pkgname}.install"
+depends=('deepin-gtk-theme'
+	'deepin-icon-theme')
+install=$pkgname.install
 source=(gsettings-override)
 md5sums=('3757d855f00423bbc81c88c62ac1a96a')
 
 package() {
-  cd "${_srcdirname}"
-  install -dm 755 "${pkgdir}"/usr/share/glib-2.0/schemas
-  install -m 644 gsettings-override "${pkgdir}"/usr/share/glib-2.0/schemas/99_${pkgname}.gschema.override
+  cd $srcdir
+  install -dm 755 $pkgdir/usr/share/glib-2.0/schemas
+  install -m 644 gsettings-override $pkgdir/usr/share/glib-2.0/schemas/99_$pkgname.gschema.override
 }
