@@ -1,8 +1,6 @@
 [com.deepin.dde.dock]
-docked-apps=['nautilus','deepin-terminal','deepin-music-player','firefox','dde-control-center']
+docked-apps=['nautilus','deepin-software-center','deepin-music-player','deepin-movie','google-chrome','dde-control-center']
 hide-mode='keep-showing'
-display-mode='efficient'
-
 [com.deepin.dde.keybinding.system]
 launcher=['Super','/usr/bin/dde-launcher']
 terminal=['<Control><Alt>t','/usr/bin/default-terminal']
@@ -44,8 +42,6 @@ move-to-workspace-down=['<Shift><Control><Alt>Down']
 move-to-workspace-left=['<Shift><Control><Alt>Left']
 move-to-workspace-right=['<Shift><Control><Alt>Right']
 move-to-workspace-up=['<Shift><Control><Alt>Up']
-
-
 [com.deepin.dde.zone]
 left-up="/usr/bin/dde-launcher"
 left-down="/usr/lib/deepin-daemon/desktop-toggle"
@@ -53,8 +49,6 @@ right-down="dbus-send --print-reply --dest=com.deepin.dde.ControlCenter /com/dee
 right-up=""
 black-list=['pyrogenesis','0ad']
 white-list=['dde-launcher']
-
-
 [com.deepin.dde.keybinding.mediakey]
 audio-forward='XF86AudioForward'
 audio-repeat='XF86AudioRepeat'
@@ -93,8 +87,6 @@ volume-up='XF86AudioRaiseVolume'
 web-camera='XF86WebCam'
 wlan-toggle='XF86WLAN'
 www='XF86WWW'
-
-
 [org.compiz.commands]
 command20=""
 command19=""
@@ -119,8 +111,6 @@ metacity-theme-inactive-opacity=1.0
 [org.compiz.scale]
 initiate-edge=""
 
-
-
 [org.gnome.desktop.default-applications.terminal]
 exec='x-terminal-emulator'
 
@@ -129,14 +119,14 @@ automount-open=false
 
 [org.gnome.desktop.background]
 show-desktop-icons=true
-picture-uri='file:///usr/share/backgrounds/grey_paper.jpg'
-picture-options='scaled'
+picture-uri='file:///usr/share/backgrounds/default_background.jpg'
+picture-options='zoom'
 
 [org.gnome.desktop.interface]
-cursor-theme='Chameleon-Pearl'
+cursor-theme='Deepin'
 gtk-key-theme='Default'
 gtk-theme='Deepin'
-icon-theme='Deepin-2014'
+icon-theme='Deepin'
 gtk-im-module='fcitx'
 
 [org.gnome.desktop.sound]
@@ -225,8 +215,6 @@ toggle-maximized=[]
 toggle-on-all-workspaces=[]
 toggle-shaded=['<Alt>F10']
 unmaximize=['<Control><Super>Down']
-
-
 [org.gnome.gedit.preferences.encodings]
 auto-detected=['UTF-8','GB18030','GB2312','GBK','BIG5','CURRENT','UTF-16']
 

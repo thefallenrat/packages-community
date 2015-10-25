@@ -2,7 +2,7 @@
 
 _profile=deepin
 _user=oberon2007
-_snapshot=c2260c48273e866c211a8c6023b28f1c0bdcd838
+_snapshot=6db6bdb90cfbc9740dbc2ef946b92acd5d0454d1
 
 pkgname="$_profile-wallpapers"
 pkgver="$(date +'%Y%m%d')"
@@ -13,7 +13,7 @@ license=GPL3
 url=https://github.com
 source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
 
-md5sums=('b89b41eb6e1f3d327422001bc96d13a2')
+md5sums=('432782989279982956680e19f13ed239')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
