@@ -1,7 +1,7 @@
 [com.deepin.dde.dock]
 docked-apps=['nautilus','deepin-terminal','deepin-music-player','firefox','dde-control-center']
 hide-mode='keep-showing'
-
+display-mode='efficient'
 
 [com.deepin.dde.keybinding.system]
 launcher=['Super','/usr/bin/dde-launcher']
@@ -136,10 +136,8 @@ picture-options='scaled'
 cursor-theme='Chameleon-Perl-Regular-0.5'
 gtk-key-theme='Default'
 gtk-theme='Deepin'
-icon-theme='Deepin'
-# menus-have-icons=true
+icon-theme='Deepin-2014'
 gtk-im-module='fcitx'
-# automatic-mnemonics=false
 
 [org.gnome.desktop.sound]
 theme-name='LinuxDeepin'
