@@ -1,0 +1,21 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=deepin-manjaro-gsettings
+pkgver=0.1
+pkgrel=4
+pkgdesc='deepin-manjaro default gsettings'
+arch=('any')
+# groups=('deepin')
+url=" "
+license=('GPL3')
+# depends=('deepin-gtk-theme'
+# 	'deepin-icon-theme')
+install=$pkgname.install
+source=(gsettings-override)
+md5sums=('e52cc5758caf69c7379a08ed4522e683')
+
+package() {
+  cd $srcdir
+  install -dm 755 $pkgdir/usr/share/glib-2.0/schemas
+  install -m 644 gsettings-override $pkgdir/usr/share/glib-2.0/schemas/99_$pkgname.gschema.override
+}

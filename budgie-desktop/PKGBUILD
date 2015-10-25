@@ -1,31 +1,37 @@
+# Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
+
 pkgname=budgie-desktop
-pkgver=8.2
+pkgver=8.3
 pkgrel=1
-pkgdesc="Simple GTK3 desktop experience from Solus Project"
+pkgdesc="Simple GTK3 desktop experience"
 arch=('i686' 'x86_64')
-url="http://solus-project.com/"
-license=('GPL2')
+url="https://solus-project.com/budgie"
+license=('GPLv2')
 
-depends=('libwnck3' 'gnome-menus' 'gnome-settings-daemon' 'libpeas'
-		 'mutter>=3.14' 'desktop-file-utils' 'libgee' 'gnome-themes-standard'
-		 'gtk3>=3.14' 'libpulse' 'upower' 'intltool')
-
-makedepends=('git' 'python2' 'vala' 'gobject-introspection')
-
+depends=('gtk3' 'upower' 'libwnck3' 'gnome-menus' 'gnome-settings-daemon' 'libpeas' 'mutter' 'desktop-file-utils' 'libpulse' 'vala' 'libgee' 'gnome-themes-standard' 'gnome-control-center')
+makedepends=('autoconf' 'git' 'python2' 'gobject-introspection' 'intltool')
 install=budgie-desktop.install
-source=("$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-desktop/archive/v${pkgver}.tar.gz"
-        'git+https://git.gnome.org/browse/libgnome-volume-control#commit=e14dbe8')
-sha256sums=('039e15e26f17ad210feb9b69ad2a15ed330ffa231013ff734b31f80e9b219645'
-            'SKIP')
+
+source=(#"$pkgname"::'git+https://github.com/solus-project/budgie-desktop.git#branch=master'
+	"$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-desktop/archive/v${pkgver}.tar.gz"
+	'git+https://git.gnome.org/browse/libgnome-volume-control#commit=e14dbe8')
+md5sums=('SKIP'
+         'SKIP')
+
+#pkgver() {
+#  cd "$pkgname"
+#  git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+#}
 
 prepare() {
-	cd "$srcdir"/$pkgname-$pkgver
+	mv $pkgname-$pkgver "$srcdir"/$pkgname
+	cd "$srcdir"/$pkgname
 	rm -rv gvc
 	mv ../libgnome-volume-control gvc
 }
 
 build() {
-	cd "$srcdir"/$pkgname-$pkgver
+	cd "$srcdir/$pkgname"
 	intltoolize --force
 	autoreconf --force --install
 	./configure --prefix=/usr
@@ -33,12 +39,11 @@ build() {
 }
 
 check() {
-	cd "$srcdir"/$pkgname-$pkgver
+	cd "$srcdir/$pkgname"
 	make -k check
 }
 
 package() {
-	cd "$srcdir"/$pkgname-$pkgver
-	make DESTDIR="$pkgdir" install
+	cd "$srcdir/$pkgname"
+	make DESTDIR="$pkgdir/" install
 }
-

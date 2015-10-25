@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.50
-pkgrel=18
+pkgrel=19
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -51,7 +51,8 @@ source=("http://repo.steampowered.com/${_pkgname}/pool/${_pkgname}/s/${_pkgname}
         'steam-system.desktop'
         'steam-valve.desktop'
         'steam-clean'
-        '51-steam.rules')
+        '51-steam.rules'
+        '80-steam-controller-permission.rules')
 sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
             '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
@@ -61,7 +62,8 @@ sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             '28d54929e249385994b6a8331cbe5350b1583f1a8b7d0cf4b1617518b8ed0b2e'
             '68d1b4774b79b4b0552eb65f7d463cdf2702a655215f63e448f04b107868e3ab'
             '0862e190d5504225b049feea425bf18c03338ca8c32b70c2c94353920bc13577'
-            '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c')
+            '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c'
+            'd7202a025a847e938ec04accf46a40c3d63464a9340f0c4979bbd2ba9ded30af')
 
 if [[ "$CARCH" == "x86_64" ]]; then
 prepare() {
@@ -84,6 +86,8 @@ package() {
 
     # blank steamdeps because apt-get
     ln -sf /bin/true "${pkgdir}/usr/bin/steamdeps"
+
+    install -Dm644 $srcdir/80-steam-controller-permission.rules $pkgdir/usr/lib/udev/rules.d/80-steam-controller-permission.rules
 
     # Replace orig launcher
     rm "${pkgdir}/usr/share/applications/steam.desktop"
