@@ -33,4 +33,5 @@ package() {
     rm $pkgdir/usr/share/xsessions/bspwm.desktop
     install -Dm755 "$startdir/bspwm-session" "$pkgdir/usr/bin/bspwm-session"
     install -Dm755 "$startdir/bspwm.desktop" "$pkgdir/usr/share/xsessions/bspwm.desktop"
+    chmod a+x $pkgdir/usr/bin/*
 }
