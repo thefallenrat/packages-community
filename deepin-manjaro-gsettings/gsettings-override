@@ -137,9 +137,9 @@ cursor-theme='Chameleon-Perl-Regular-0.5'
 gtk-key-theme='Default'
 gtk-theme='Deepin'
 icon-theme='Deepin'
-menus-have-icons=true
+# menus-have-icons=true
 gtk-im-module='fcitx'
-automatic-mnemonics=false
+# automatic-mnemonics=false
 
 [org.gnome.desktop.sound]
 theme-name='LinuxDeepin'
