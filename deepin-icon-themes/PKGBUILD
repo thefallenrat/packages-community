@@ -1,0 +1,23 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=deepin-icon-theme-pack
+pkgver=20151026
+_srcdirname=deepin-artwork-icontheme-pack-0.0+2015050506
+pkgrel=1
+pkgdesc="Icon theme pack for the Deepin DE"
+arch=('any')
+url="http://www.deepin.org/"
+license=('LGPL3')
+depends=('gtk-update-icon-cache')
+makedepends=('inkscape')
+groups=('deepin')
+options=(!strip)
+install="${pkgname}.install"
+source=("http://ftp5.gwdg.de/pub/linux/linuxdeepin/packages/pool/main/d/deepin-artwork-icontheme-pack/deepin-artwork-icontheme-pack_0.0+2015050506.tar.gz")
+md5sums=('8a626a563cfdd653215fadd3f4c6d061')
+
+package() {
+	cd $_srcdirname
+	install -dm755 $pkgdir/usr/share/icons
+	cp -r {Compass,Dalisha,Insignia,Matrilineare,Nitrux} $pkgdir/usr/share/icons
+}
