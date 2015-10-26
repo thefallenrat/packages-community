@@ -1,6 +1,6 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=deepin-icon-theme-pack
+pkgname=deepin-icontheme-pack
 pkgver=20151026
 _srcdirname=deepin-artwork-icontheme-pack-0.0+2015050506
 pkgrel=1
