@@ -1,0 +1,32 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-manjaro-dock-applets
+pkgver=2.90.1
+pkgrel=1
+pkgdesc="Dock Applets of Deepin Desktop Environment"
+arch=('i686' 'x86_64')
+url="https://gitcafe.com/Deepin/dde-dock-applets"
+license=('GPL3')
+depends=('gtk2' 'qt5-svg' 'qt5-declarative')
+makedepends=('deepin-gettext-tools' 'git' 'qt5-tools')
+groups=('deepin')
+source=("git+https://github.com/linuxdeepin/dde-dock-applets.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+prepare() {
+	sed 's/qmake/qmake-qt5/' -i dde-dock-applets/Makefile
+}
+
+build() {
+	cd dde-dock-applets
+	make
+}
+
+package() {
+	depends+=('dde-api' 'dde-daemon' 'deepin-dbus-factory'
+			  'deepin-qml-widgets' 'deepin-manjaro-artwork-theme')
+	cd dde-dock-applets
+	make DESTDIR="${pkgdir}" install
+}
