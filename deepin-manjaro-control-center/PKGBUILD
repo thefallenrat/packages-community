@@ -4,7 +4,7 @@
 
 pkgname=deepin-manjaro-control-center
 pkgver=2.90.3
-pkgrel=1
+pkgrel=2
 pkgdesc="New control center for linux deepin"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-control-center"
@@ -27,7 +27,7 @@ build(){
 }
 
 package() {
-	depends+=('dde-account-faces' 'dde-api' 'dde-daemon' 'deepin-manjaro-artwork-themes'
+	depends+=('dde-account-faces' 'dde-api' 'dde-daemon' 'deepin-manjaro-artwork-theme'
 			  'deepin-dbus-factory' 'deepin-qml-widgets')
 	cd dde-control-center
 	make DESTDIR="${pkgdir}" install
