@@ -2,7 +2,7 @@
 # Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
 # Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
-pkgname=deepin-manajaro-workspace
+pkgname=deepin-manjaro-workspace
 pkgver=2.90.1
 pkgrel=1
 arch=('i686' 'x86_64')
