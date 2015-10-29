@@ -120,7 +120,6 @@ metacity-theme-inactive-opacity=1.0
 initiate-edge=""
 
 
-
 [org.gnome.desktop.default-applications.terminal]
 exec='x-terminal-emulator'
 
@@ -134,9 +133,9 @@ picture-options='scaled'
 
 [org.gnome.desktop.interface]
 cursor-theme='Chameleon-Pearl'
-gtk-key-theme='default'
+gtk-key-theme='Default'
 gtk-theme='Deepin'
-icon-theme='Deepin-2014'
+icon-theme='Dalisha'
 gtk-im-module='fcitx'
 
 [org.gnome.desktop.sound]
@@ -145,7 +144,7 @@ event-sounds=true
 
 [org.gnome.desktop.wm.preferences]
 button-layout='menu:minimize,maximize,close'
-theme='default'
+theme='Deepin'
 audible-bell=false
 
 [org.gnome.desktop.wm.keybindings]

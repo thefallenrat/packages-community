@@ -2,12 +2,13 @@
 
 pkgname=deepin-manjaro-artwork-theme
 pkgver="$(date +'%Y%m%d')"
-pkgrel=1
+pkgrel=3
 pkgdesc='Artwork theme for manjaro-deepin'
 arch=('any')
 license=('GPL')
 url="github.com/oberon2007"
-depends=('xcursor-chameleon-pearl-deepin')
+depends=('xcursor-chameleon-pearl-deepin'
+	'deepin-icontheme-pack')
 makedepends=('git')
 source=("git://$url/$pkgname.git")
 md5sums=('SKIP')
