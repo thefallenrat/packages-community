@@ -1,5 +1,5 @@
 [com.deepin.dde.dock]
-docked-apps=['nautilus','deepin-terminal','deepin-music-player','firefox','dde-control-center']
+docked-apps=['nautilus','deepin-terminal','deepin-music-player','deepin-movie','firefox','dde-control-center']
 hide-mode='keep-showing'
 display-mode='efficient'
 
@@ -129,12 +129,12 @@ automount-open=false
 
 [org.gnome.desktop.background]
 show-desktop-icons=true
-picture-uri='file:///usr/share/backgrounds/grey_paper.jpg'
+picture-uri='file:///usr/share/backgrounds/default.jpg'
 picture-options='scaled'
 
 [org.gnome.desktop.interface]
 cursor-theme='Chameleon-Pearl'
-gtk-key-theme='Default'
+gtk-key-theme='default'
 gtk-theme='Deepin'
 icon-theme='Deepin-2014'
 gtk-im-module='fcitx'
@@ -145,7 +145,7 @@ event-sounds=true
 
 [org.gnome.desktop.wm.preferences]
 button-layout='menu:minimize,maximize,close'
-theme='Deepin'
+theme='default'
 audible-bell=false
 
 [org.gnome.desktop.wm.keybindings]

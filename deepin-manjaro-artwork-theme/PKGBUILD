@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-manjaro-artwork-theme
-pkgver=20151026
+pkgver="$(date +'%Y%m%d')"
 pkgrel=1
 pkgdesc='Artwork theme for manjaro-deepin'
 arch=('any')

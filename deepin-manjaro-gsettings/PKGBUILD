@@ -1,8 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-manjaro-gsettings
-pkgver=0.1
-pkgrel=5
+pkgver=0.2
+pkgrel=2
 pkgdesc='deepin-manjaro default gsettings'
 arch=('any')
 # groups=('deepin')
@@ -12,7 +12,7 @@ license=('GPL3')
 # 	'deepin-icon-theme')
 install=$pkgname.install
 source=(gsettings-override)
-md5sums=('febc92f5ed24392e7b432008e330e306')
+md5sums=('8839d6a1b9d22d50a48c493fe169e1cf')
 
 package() {
   cd $srcdir
