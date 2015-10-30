@@ -5,14 +5,16 @@
 pkgbase=xcursor-chameleon-pearl
 pkgname=('xcursor-chameleon-pearl' 'xcursor-chameleon-pearl-deepin')
 pkgver=0.5
-pkgrel=2
+pkgrel=3
 pkgdesc="Chameleon X Cursor Theme (pearl flavour)"
 arch=('any')
 url="http://www.kde-look.org/content/show.php?content=38459"
 license=('GPL')
 depends=('libxcursor')
-source=(http://www.egregorion.net/works/chameleon/Chameleon-Pearl-0.5.tar.bz2)
-md5sums=('735fa20089d8248e56007b130cf10064')
+source=("http://www.egregorion.net/works/chameleon/Chameleon-Pearl-0.5.tar.bz2"
+	index.theme)
+md5sums=('735fa20089d8248e56007b130cf10064'
+         'e21ff98086205f39284361a84042927f')
 
 package_xcursor-chameleon-pearl() {
 	mkdir -p "$pkgdir/usr/share/icons"
@@ -22,4 +24,6 @@ package_xcursor-chameleon-pearl() {
 package_xcursor-chameleon-pearl-deepin() {
 	mkdir -p "$pkgdir/usr/share/icons"
 	cp -r "$srcdir/Chameleon-Pearl-Regular-0.5" "$pkgdir/usr/share/icons/Chameleon-Pearl"
+	rm $pkgdir/usr/share/icons/Chameleon-Pearl/index.theme
+	install -m644 $startdir/index.theme $pkgdir/usr/share/icons/Chameleon-Pearl/index.theme
 }

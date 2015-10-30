@@ -128,7 +128,7 @@ automount-open=false
 
 [org.gnome.desktop.background]
 show-desktop-icons=true
-picture-uri='file:///usr/share/backgrounds/default.jpg'
+picture-uri='file:///usr/share/backgrounds/default_background.jpg'
 picture-options='scaled'
 
 [org.gnome.desktop.interface]
