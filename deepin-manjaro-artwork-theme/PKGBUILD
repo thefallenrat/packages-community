@@ -1,0 +1,20 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=deepin-manjaro-artwork-theme
+pkgver="$(date +'%Y%m%d')"
+pkgrel=3
+pkgdesc='Artwork theme for manjaro-deepin'
+arch=('any')
+license=('GPL')
+url="github.com/oberon2007"
+depends=('xcursor-chameleon-pearl-deepin'
+	'deepin-icontheme-pack')
+makedepends=('git')
+source=("git://$url/$pkgname.git")
+md5sums=('SKIP')
+
+package() {
+	cd $srcdir/$pkgname
+	install -dm755 $pkgdir/usr/share
+	cp -R personalization $pkgdir/usr/share
+}

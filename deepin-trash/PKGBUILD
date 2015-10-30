@@ -1,0 +1,16 @@
+# Maintainer: Bernhard Landauer <oberon at manjaro dot org>
+
+pkgname=deepin-trash
+pkgver=1.0
+pkgrel=1
+pkgdesc="fix missing trash dirs"
+url=" "
+arch=('any')
+license=('GPL3')
+install=$pkgname.install
+
+package() {
+  cd $pkgdir
+  install -d -m755 etc/.Trash-1000/{expunged,files,info}
+  chown -R 1000:users etc/.Trash-1000
+}

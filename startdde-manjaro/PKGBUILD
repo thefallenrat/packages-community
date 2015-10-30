@@ -1,0 +1,39 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=startdde-manjaro
+pkgver=2.91.0
+_commit=272f5e061acc37301e646050e276f783659f04c1
+pkgrel=1
+pkgdesc="starter of deepin desktop environment"
+arch=('i686' 'x86_64')
+url="https://gitcafe.com/Deepin/startdde"
+license=('GPL3')
+# depends=('dde-daemon' 'deepin-manjaro-workspace' 'deepin-compiz')
+makedepends=('cmake' 'coffee-script' 'git' 'go-packages'
+			 'gstreamer0.10-base-plugins' 'python2' 'sqlite' 'webkitgtk')
+install='startdde.install'
+source=("git+https://github.com/linuxdeepin/startdde.git#commit=$_commit"
+		 "fix-app-launch-panic.patch"
+		 "use-compiz-as-default-wm.patch")
+sha256sums=('SKIP'
+            '0ba6fac2ec56277f1b5c8867b2e1231c979b74b4f144daac7e5342fbd25c4e0f'
+            '972410f0556a216db48412a0ca95fb0af37cba5342df28140e7354e41159cc1d')
+
+prepare() {
+	# mv -f start-dde startdde
+	cd startdde
+	patch -p1 -i ../fix-app-launch-panic.patch
+	patch -p1 -i ../use-compiz-as-default-wm.patch
+}
+
+build() {
+	cd startdde
+	make GOPATH="/usr/lib/go"
+}
+
+package() {
+	cd startdde
+	make GOPATH="/usr/lib/go" DESTDIR="${pkgdir}" install
+}
