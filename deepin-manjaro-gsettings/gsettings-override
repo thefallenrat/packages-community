@@ -45,6 +45,8 @@ move-to-workspace-left=['<Shift><Control><Alt>Left']
 move-to-workspace-right=['<Shift><Control><Alt>Right']
 move-to-workspace-up=['<Shift><Control><Alt>Up']
 
+[com.deepin.dde.personalization]
+current-theme="Default"
 
 [com.deepin.dde.zone]
 left-up="/usr/bin/dde-launcher"

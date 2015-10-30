@@ -3,7 +3,7 @@
 # Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=lightdm-deepin-greeter-manjaro
-pkgver=2.90.1
+pkgver=2.90.6
 pkgrel=1
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
@@ -14,7 +14,7 @@ depends=('libdeepin-webkit'
 	'nodejs')
 makedepends=('cmake' 'coffee-script' 'dbus-glib' 'git' 'go'
 	'libdeepin-webkit' 'lightdm' 'python2' 'webkitgtk')
-source=("git+https://github.com/oberon2007/dde-workspace.git#tag=$pkgver"
+source=("git+https://github.com/oberon2007/dde-workspace.git"
 	"go-gettext-go::git+https://github.com/chai2010/gettext-go.git"
 	'default-display-manager'
 	'fix-go1.5-template-issue.patch'
