@@ -1,33 +1,33 @@
-# Maintainer: Kyle <kyle@gmx.ca>
-# Contributer: Storm Dragon <stormdragon2976@gmail.com>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Mateusz Herych <heniekk@gmail.com>
+# Contributor: Christoph Siegenthaler <csi@gmx.ch>
 
 pkgname=espeak
 pkgver=1.48.15
-pkgrel=1
-pkgdesc="Text to Speech engine for good quality English, with support for other languages"
-arch=('i686' 'x86_64')
-url="http://espeak.sourceforge.net/test/latest.html"
+pkgrel=2
+pkgdesc='Text to Speech engine for high quality English, with support for other languages'
+arch=('x86_64' 'i686')
+url="https://github.com/rhdunn/$pkgname"
 license=('GPL')
-depends=('gcc-libs'
-	'portaudio')
-source=(http://espeak.sourceforge.net/test/$pkgname-$pkgver.zip)
-md5sums=('a933baef9cd6528f2e019e59582797bd')
-
-# Extracted dir sometimes has different version number from $pkgver and zip file. Fixed when necessary.
-#prepare() {
-#	mv ${srcdir}/espeak-1.48.01 ${srcdir}/espeak-${pkgver}
-#}
+depends=('portaudio'
+	'libpulse'
+	'wxgtk')
+options=('!emptydirs')
+source=("$url/archive/$pkgver.tar.gz")
+md5sums=('50108abc0d674ded73edd0e2d83003dc')
 
 build() {
-	cd $srcdir/$pkgname-$pkgver/src
-	cp portaudio19.h portaudio.h
-	sed -i 's/\#AUDIO\ =\ runtime/AUDIO\ =\ runtime/' Makefile
-	sed -i 's/AUDIO\ =\ portaudio/\#AUDIO\ =\ portaudio/' Makefile
-	make
+  cd $pkgname-$pkgver
+  cp src/portaudio19.h src/portaudio.h
+
+  ./autogen.sh
+  ./configure --prefix=/usr --with-extdict-ru --with-extdict-zh --with-extdict-zhy
+  make CXXFLAGS="$CXXFLAGS" AUDIO=runtime
 }
 
 package() {
-	cd $srcdir/$pkgname-$pkgver/src
-	make DESTDIR=$pkgdir install
-	find "$pkgdir/usr/share/espeak-data" -type f -print0 |xargs -0 chmod 644
+  cd "$pkgname-$pkgver"
+
+  make DESTDIR="$pkgdir" install
+  chmod 644 "$pkgdir/usr/lib/libespeak.a"
 }
