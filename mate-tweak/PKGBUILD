@@ -1,0 +1,24 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Tom < reztho at archlinux dot us >
+
+pkgname=mate-tweak
+pkgver=3.5.2
+_commit=8df794d91ecf
+pkgrel=1
+pkgdesc="Mate desktop configuration tool"
+arch=('any')
+url="https://bitbucket.org/ubuntu-mate/mate-tweak"
+license=('GPL')
+depends=('python' 'wmctrl' 'python-configobj' 'python-gobject')
+makedepends=('python-setuptools' 'python-distutils-extra') 
+conflicts=("${pkgname}-git")
+source=("$pkgname.tar.gz::$url/get/${pkgver}a.tar.gz")
+md5sums=('f6e7567b2b1c9ab2e4dd0141a45e7061')
+
+package() {
+    cd $srcdir/ubuntu-mate-$pkgname-$_commit
+    /usr/bin/python setup.py install --root="$pkgdir/" --optimize=1
+
+    cd "$pkgdir"
+    sed -i 's@/usr/bin/python2@/usr/bin/python@' usr/bin/mate-tweak
+}

@@ -17,7 +17,8 @@ depends=('i3-wm'
 	'ttf-font-icons')
 conflicts=('i3status')
 provides=('i3status')
-makedepends=('asciidoc')
+makedepends=('asciidoc'
+	'git')
 backup=('etc/i3status.conf')
 install=$pkgname.install
 options=('docs')
