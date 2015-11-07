@@ -4,12 +4,13 @@
 
 pkgname=deepin-manjaro-dock-applets
 pkgver=2.90.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Dock Applets of Deepin Desktop Environment"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-dock-applets"
 license=('GPL3')
 depends=('gtk2' 'qt5-svg' 'qt5-declarative')
+conflicts=('dde-dock-applets')
 makedepends=('deepin-gettext-tools' 'git' 'qt5-tools')
 source=("git+https://github.com/linuxdeepin/dde-dock-applets.git#tag=$pkgver")
 sha256sums=('SKIP')

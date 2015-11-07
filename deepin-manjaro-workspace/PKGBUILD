@@ -4,7 +4,7 @@
 
 pkgname=deepin-manjaro-workspace
 pkgver=2.90.1
-pkgrel=1
+pkgrel=3
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
 license=('GPL3')
@@ -50,6 +50,7 @@ package() {
 	'libdeepin-webkit')
 	optdepends=('lightdm-deepin-greeter')
 	replaces=('deepin-desktop-environment' 'deepin-workspace')
+	conflicts=('dde-workspace')
 	install='dde-workspace.install'
 
 	cd dde-workspace/build
