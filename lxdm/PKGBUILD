@@ -7,42 +7,52 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgname=lxdm
-pkgver=0.5.0.r20.g8eda70f
+pkgver=0.5.2.r0.g1ff8969
 pkgrel=1
-pkgdesc='Lightweight X11 Display Manager'
+pkgdesc='Lightweight Display Manager'
 arch=('i686' 'x86_64')
 url="http://blog.lxde.org/?p=531"
 license=('GPL')
 groups=('lxde')
 conflicts=('lxdm-git' 'lxdm-svn')
 install=lxdm.install
-backup=('etc/lxdm/lxdm.conf' 'etc/pam.d/lxdm' 'etc/lxdm/Xsession'
-    'etc/lxdm/PreLogin' 'etc/lxdm/LoginReady' 'etc/lxdm/PostLogin'
-    'etc/lxdm/PostLogout' 'etc/lxdm/PreReboot' 'etc/lxdm/PreShutdown')
-depends=('cairo' 'dbus-core' 'gdk-pixbuf2' 'glib2' 'gtk2' 'libx11' 'libxcb' 'pango')
-optdepends=('lxpolkit: to run lxdm-config directly from menu'
-            'gtk-engines: default GTK+ theme'
+backup=('etc/lxdm/lxdm.conf'
+        'etc/pam.d/lxdm'
+        'etc/lxdm/Xsession'
+        'etc/lxdm/PreLogin'
+        'etc/lxdm/LoginReady'
+        'etc/lxdm/PostLogin'
+        'etc/lxdm/PostLogout'
+        'etc/lxdm/PreReboot'
+        'etc/lxdm/PreShutdown')
+depends=('cairo' 'dbus-core' 'gdk-pixbuf2' 'glib2' 'gtk2' 'libx11' 'libxcb' 'pango' 'xorg-server')
+makedepends=('intltool' 'git' 'iso-codes')
+optdepends=('gtk-engines: default GTK+ theme'
+            'iso-codes: show language names in language chooser'
             'librsvg: display the default background')
-makedepends=('intltool' 'git')
-source=('lxdm::git://git.lxde.org/git/lxde/lxdm.git'
-    'Xsession.patch' 'lxdm.patch' 'xconn.patch'
-    'lxdm-pam' 'PostLogout'
-    #####################################
-    ## Custom Manjaro Login Pane Patch ##
-    #####################################
-    lxdm.login_pane.patch
-    org.manjaro.pkexec.lxdm-config.policy
-    lxdm-config.desktop)
+source=('lxdm::git+http://git.lxde.org/git/lxde/lxdm.git'
+        'Xsession'
+        'lxdm.in.patch'
+        'lxdm.conf.in.patch'
+        'lxdm.pam'
+        'PostLogout'
+        'xauth.patch'
+        #####################################
+        ## Custom Manjaro Login Pane Patch ##
+        #####################################
+        lxdm.login_pane.patch
+        org.manjaro.pkexec.lxdm-config.policy
+        lxdm-config.desktop)
 sha256sums=('SKIP'
-         '599d4526b8b9e62e0163e7184c93fb3e615752265d9cd6c082ddd2b6fae0416e' #Xsession.patch
-         'c4dbea49b6b4cab407d621e868e1bda0111df1012a244abde36cac54ea4a5735' #lxdm.patch
-         'f9189bb851fe29b47cc3e589e1bf55a16140a2f64ed7791a71e8676e884dac57' #xconn.patch
-         'ffbf4300a104a9bc38a9e7e14ad4120e7967941177598ea09e4d3f6a39e66507' #lxdm-pam
-         '260fd37365dc44fa99745d97a03d75b52c35f6abda0f82ee6f2508a3c32169d0' #PostLogout
-         '078b624d05a9a97414c48075c267fba4f7cfc21fec7f983de05fcc75a186d0c9' #lxdm.login_pane.patch
-         '21288b1de0354dfa3ee45c9c91552c3abb1e58aba48c70eb7b604b6e07e33ea1' #org.manjaro.pkexec.lxdm-config.policy
-         'ced6936b00b8e7cfd67b7be960e5e0f447581a03c1b19e34783257ed4b602db7' #lxdm-config.desktop
-)
+            '60d434814ecb1f87a19c395ab17612e93c1822e16d596e9ec8318c593586faba'
+            '1c9be7834c847a516160d14066ae71d1a05fe06b57b372836d4cada56e0b2fd0'
+            '979f4fb83e1c88db08641eb19c85bf6718033eb18f988aeb9eab20ecd526cbf5'
+            'e8c4c5fd3b801a390d201166fd1fb9730e78a5c62928768103b870b6bd980ea0'
+            '260fd37365dc44fa99745d97a03d75b52c35f6abda0f82ee6f2508a3c32169d0'
+            'dd471d1b66e8771b3f91b0dc896d4ea7fb20f81ff955c5b86c9009b9abdae98b'
+            '078b624d05a9a97414c48075c267fba4f7cfc21fec7f983de05fcc75a186d0c9'
+            '21288b1de0354dfa3ee45c9c91552c3abb1e58aba48c70eb7b604b6e07e33ea1'
+            'ced6936b00b8e7cfd67b7be960e5e0f447581a03c1b19e34783257ed4b602db7')
 
 pkgver() {
     cd $pkgname
@@ -54,8 +64,17 @@ pkgver() {
     fi
 }
 
-prepare(){
+prepare() {
     cd $pkgname
+
+    # Revert broken commit
+    patch -RNp1 -i ../xauth.patch
+    
+    patch -Np1 < ../lxdm.in.patch
+    patch -Np1 < ../lxdm.conf.in.patch
+
+    cp ../Xsession data/Xsession
+    cp ../lxdm.pam pam/lxdm
 
     #####################################
     ## Custom Manjaro Login Pane Patch ##
@@ -66,30 +85,21 @@ prepare(){
 build() {
     cd $pkgname
     
-    ./autogen.sh    
-    ./configure --prefix=/usr --bindir=/usr/bin --sbindir=/usr/bin --sysconfdir=/etc --libexecdir=/usr/lib/lxdm --localstatedir=/var --with-pam
+    ./autogen.sh        
+    ./configure --prefix=/usr --bindir=/usr/bin --sbindir=/usr/bin --sysconfdir=/etc \
+    	    --libexecdir=/usr/lib/lxdm --localstatedir=/var
     make
-
-    sed -i 's/getty@tty1/getty@tty7/g' systemd/lxdm.service
-    sed -i 's/sbin/bin/' systemd/lxdm.service
-    sed -i 's/sbin/bin/' data/lxdm
-
-    patch -Np0 < ${srcdir}/lxdm.patch
-    patch -Np0 < ${srcdir}/Xsession.patch
-    patch -Np1 < ${srcdir}/xconn.patch
 }
 
 package() {
     cd $pkgname
 
-    make DESTDIR=${pkgdir} sbindir=/usr/bin install
+    make DESTDIR=${pkgdir} install
     chmod 644 "$pkgdir/etc/lxdm/lxdm.conf"
-    install -m644 ${srcdir}/lxdm-pam ${pkgdir}/etc/pam.d/lxdm
     install -m755 ${srcdir}/PostLogout ${pkgdir}/etc/lxdm/PostLogout
 
     # Home directory
-    install -d ${pkgdir}/var/{lib,run}/lxdm    
-    chown -R 121:121 "$pkgdir/var/lib/lxdm"
+    install -dm 755 ${pkgdir}/var/lib/lxdm    
     echo 'GDK_CORE_DEVICE_EVENTS=true' > "$pkgdir"/var/lib/lxdm/.pam_environment
 
     # Install launcher script
@@ -107,8 +117,5 @@ package() {
     # GNOME Shell extension
     mkdir -p "$pkgdir/usr/share/gnome-shell/extensions"
     cp -r gnome-shell/LXDM_User_Switch@dgod "$pkgdir/usr/share/gnome-shell/extensions"
-
-    # avoid conflict with filesystem>=2012.06
-    rm -r ${pkgdir}/var/run
 }
 

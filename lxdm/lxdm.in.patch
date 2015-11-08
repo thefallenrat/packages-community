@@ -1,8 +1,8 @@
---- data/lxdm.orig	2010-01-24 16:58:42.262866825 -0200
-+++ data/lxdm	2010-01-19 11:56:34.308668692 -0200
+--- a/data/lxdm.in	2015-10-18 19:22:46.386331477 -0200
++++ b/data/lxdm.in	2015-10-18 19:28:46.354787701 -0200
 @@ -1,21 +1,13 @@
  #!/bin/sh
-
+ 
 -[ -f /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
 -
 -if [ -z "$LANG" -a -e /etc/sysconfig/language ]; then
@@ -13,11 +13,11 @@
 +if [ -r /etc/profile.d/locale.sh ]; then
 +	. /etc/profile.d/locale.sh
  fi
-
+ 
  if [ -n "$LANG" ]; then
  	export LANG
  fi
-
+ 
 -[ -f /etc/sysconfig/desktop ] && . /etc/sysconfig/desktop
 -[ -f /etc/sysconfig/windowmanager ] && . /etc/sysconfig/windowmanager
 -
