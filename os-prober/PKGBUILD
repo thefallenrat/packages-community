@@ -3,7 +3,7 @@
 # Contributor: darkcoder <mario_vazq@hotmail.com>
 
 pkgname=os-prober
-pkgver=1.66
+pkgver=1.70
 pkgrel=1
 pkgdesc="Utility to detect other OSes on a set of drives"
 url="http://joey.kitenet.net/code/os-prober/"
@@ -11,16 +11,16 @@ arch=('i686' 'x86_64')
 license=('GPL3')
 depends=('sh')
 source=(http://http.debian.net/debian/pool/main/o/${pkgname}/${pkgname}_${pkgver}.tar.xz
-	intel-ucode_util-linux-2.24_win10.patch)
-md5sums=('7ac4903d4aa114cd4709152f604dd0ea'
-	 '374ca0ab2df86fbf3f499629eb36291e')
-sha256sums=('ab66eab63223d651cb6f9221ddffc958521b13edee4996c4fd87f08cb1955057'
-	    '2d4ae4912b41df4b91b81b05077c2097aebeff85f7e251c1223078283b0e4439')
+	intel-ucode.patch)
+md5sums=('c1cfdd90dc958f12b932ccc8d64051e1'
+         '843e32f3c266fc4d3e5bea03f4a8cb4e')
+sha256sums=('f95a8998e106578edf105c42c84809c71e413a01370be9bd0b6d238d5b63bf1d'
+            'd65213e30c571d31186af7cd521d2712dbc2f7fe90ca34cdfbed6178194eedee')
 
 prepare() {
-  cd "$pkgname"
+  cd "$pkgname-$pkgver"
 
-  patch -p1 -i "$srcdir"/intel-ucode_util-linux-2.24_win10.patch
+  patch -p1 -i "$srcdir"/intel-ucode.patch
 
   # adjust lib dir to allow detection of 64-bit distros
   sed -i -e "s:/lib/ld\*\.so\*:/lib*/ld*.so*:g" os-probes/mounted/common/90linux-distro
@@ -29,13 +29,13 @@ prepare() {
 }
 
 build() {
-  cd "$pkgname"
+  cd "$pkgname-$pkgver"
 
   make newns
 }
 
 package() {
-  cd "$pkgname"
+  cd "$pkgname-$pkgver"
 
   install -Dm755 linux-boot-prober "$pkgdir"/usr/bin/linux-boot-prober
   install -Dm755 os-prober "$pkgdir"/usr/bin/os-prober

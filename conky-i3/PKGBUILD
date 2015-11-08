@@ -1,12 +1,11 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=conky-i3
-pkgver=20151002
+pkgver=20151103
 pkgrel=1
 pkgdesc="grey or green Conky for manjaro-i3"
-url=https://github.com/oberon2007/conkies
 _repo=conkies
-_snapshot=c368794452d5ef38ae94111aabdaf758ee12305e
+url=github.com/oberon2007/$_repo
 
 arch=any
 license=GPL
@@ -18,14 +17,11 @@ backup=('usr/share/conky/conky_green'
 	'usr/share/conky/conky_grey'
 	'usr/share/conky/conky1.10_shortcuts_green'
 	'usr/share/conky/conky1.10_shortcuts_grey')
-source=$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz
-md5sums=('56dce255ff09876662649161d3d893cd')
+source=("git://$url.git")
+md5sums=('SKIP')
 
-pkgver() {
-	date +'%Y%m%d'
-}
 package() {
-	cd $srcdir/$_repo-$_snapshot
+	cd $srcdir/$_repo
 
 	install -Dm644 conky_green $pkgdir/usr/share/conky/conky_green
 	install -Dm644 conky_grey $pkgdir/usr/share/conky/conky_grey

@@ -3,7 +3,8 @@
 # Contributor: Yegorius <yegorius@domic.us>
 
 pkgname=firefox-kde
-pkgver=41.0.2
+_pkgname=firefox
+pkgver=42.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -23,9 +24,9 @@ provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_patchrev=7aa7715fdc8f
-#_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
-_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
+_patchrev=ee3c462047d5
+_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
+#_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
         firefox.desktop 
@@ -42,13 +43,12 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-kde.patch
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
-        $_patchurl/toolkit-download-folder.patch
         unity-menubar.patch
         add_missing_pgo_rule.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('ff00689f4d2ff54c5eb7b3aa367560a3645800eb0c96e73a795e461461b1970e'
-            '8da8233ec357964b7faf93958701491ba53a139eb08c3735f05540d631f8fd78'
+sha256sums=('994a346699298277b64ec0cab72660b8d3e5b879a2ac79207576f7e6c33da3ae'
+            'd6ba4e591154bbf410be140cae923aa074c6c595cfd385fb81e73a6fc4db590c'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
@@ -56,12 +56,11 @@ sha256sums=('ff00689f4d2ff54c5eb7b3aa367560a3645800eb0c96e73a795e461461b1970e'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213'
             '72abd31e89a41cddbd8165b0b9555465184c52c426e0998c9cb7786af94b5532'
-            'fd063e2db91b034a9a985238299b4d99751deb4910480e13e3bde5edb4633d1f'
+            '23ce5dbcff0a9caf8cbf13730f12366c84382ab63e4020136f331df4a7ebe5ed'
             '02e92f84dd31ed079be3e67509cf23d0d351e06bb690fcc091c904d906d2d690'
-            'dc5b64b912e81976e7e431171f3e5d142f15924a83985b1fe93d399d1e1e4756'
+            'efb473d0fbf41bd0a6c388d8d74de719b263675c522ec63b465af040067ecf5e'
             'ce1b7a5bb217c31590bce30653aea5139b6401a01eda7bded7fd2f83a23d397b'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
-            'a87332e4baff50fad86b5a5b7d59076a09725f89113b8fd86dbe28efda103882'
             '5fd329439480d861eb37edcca47fb3e05801f5a48b4d6c2afa17fb4c71c65fa1'
             'f9067f62a25a7a77276e15f91cc9e7ba6576315345cfc6347b1b2e884becdb0c'
             '2c9c97bff07cc71b3f6d35f3edfaddaf8180a1f533ee4682adf18a8f86d29264')
@@ -82,7 +81,7 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 
 prepare() {
-  cd mozilla-release
+  cd $_pkgname-$pkgver
 
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
@@ -101,7 +100,6 @@ prepare() {
 
 
   msg "Patching for KDE"
-  patch -Np1 -i "$srcdir/toolkit-download-folder.patch"
   patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
   patch -Np1 -i "$srcdir/mozilla-kde.patch"
   patch -Np1 -i "$srcdir/mozilla-language.patch"
@@ -135,7 +133,7 @@ prepare() {
 }
 
 build() {
-  cd mozilla-release
+  cd $_pkgname-$pkgver
 
   export PATH="$srcdir/path:$PATH"
   export PYTHON="/usr/bin/python2"
@@ -146,7 +144,7 @@ build() {
 }
 
 package() {
-  cd mozilla-release
+  cd $_pkgname-$pkgver
 
   [[ "$CARCH" == "i686" ]] && cp "$srcdir/kde.js" obj-i686-pc-linux-gnu/dist/bin/defaults/pref
   [[ "$CARCH" == "x86_64" ]] && cp "$srcdir/kde.js" obj-x86_64-unknown-linux-gnu/dist/bin/defaults/pref

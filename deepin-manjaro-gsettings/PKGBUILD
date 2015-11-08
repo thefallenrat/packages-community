@@ -1,21 +1,30 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-manjaro-gsettings
-pkgver=0.2
-pkgrel=3
+pkgver=0.5
+pkgrel=1
+_srcdirname=$pkgname-$pkgver
 pkgdesc='deepin-manjaro default gsettings'
 arch=('any')
-# groups=('deepin')
-url=" "
+url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
-# depends=('deepin-gtk-theme'
-# 	'deepin-icon-theme')
 install=$pkgname.install
-source=(gsettings-override)
-md5sums=('4963aa1e321ef5515d0078ca0962668f')
+source=("$_srcdirname::git+$url")
+conflicts=('deepin-default-gsettings')
+md5sums=('SKIP')
+
+prepare() {
+  cd $_srcdirname
+  cat *.override >> gsettings-override
+}
 
 package() {
-  cd $srcdir
+#  depends=('deepin-gtk-theme' 'deepin-icon-theme')
+
+  cd $_srcdirname
+
   install -dm 755 $pkgdir/usr/share/glib-2.0/schemas
   install -m 644 gsettings-override $pkgdir/usr/share/glib-2.0/schemas/99_$pkgname.gschema.override
 }

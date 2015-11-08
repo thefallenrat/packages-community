@@ -2,18 +2,18 @@
 
 _profile=i3
 _user=oberon2007
-_snapshot=0525df546a8e2d143f6b4fdf00901636a91b3cbd
+_snapshot=d7d8424b8340229ea658d0747f7d0d8720133c31
 
 pkgname="$_profile-wallpapers"
 pkgver="$(date +'%Y%m%d')"
-pkgrel=1
+pkgrel=2
 pkgdesc="Wallpapers for $_profile"
 arch=any
 license=GPL3
 url=https://github.com
-source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
+source="$pkgname-$pkgver-$pkgrel.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
 
-md5sums=('678aa221cac8df09c367755d8312d3a3')
+md5sums=('88b98fead063c4e802442fb80f3f9a80')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
