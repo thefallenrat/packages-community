@@ -1,15 +1,23 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
-# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-manjaro-gsettings
-pkgver=0.5
+pkgver=0.6
 pkgrel=1
 _srcdirname=$pkgname-$pkgver
 pkgdesc='deepin-manjaro default gsettings'
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
+depends=(
+#'dde-dock-applets'
+'deepin-manjaro-dock-applets'
+	'deepin-gtk-theme'
+	'deepin-icon-theme'
+	'deepin-icontheme-pack'
+'startdde-manjaro'
+#'startdde'
+)
+makedepends=('git')
 install=$pkgname.install
 source=("$_srcdirname::git+$url")
 conflicts=('deepin-default-gsettings')
@@ -21,8 +29,6 @@ prepare() {
 }
 
 package() {
-#  depends=('deepin-gtk-theme' 'deepin-icon-theme')
-
   cd $_srcdirname
 
   install -dm 755 $pkgdir/usr/share/glib-2.0/schemas
