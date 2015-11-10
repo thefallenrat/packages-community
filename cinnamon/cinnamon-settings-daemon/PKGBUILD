@@ -1,0 +1,42 @@
+# $Id: PKGBUILD 133859 2015-05-20 01:34:39Z faidoc $
+# Maintainer: Alexandre Filgueira (faidoc) <alexfilgueira@antergos.com>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+
+pkgname=cinnamon-settings-daemon
+pkgver=2.8.0
+pkgrel=0.1
+pkgdesc="The Cinnamon Settings daemon"
+arch=('i686' 'x86_64')
+license=('GPL')
+depends=('cinnamon-desktop' 'libibus' 'libcanberra-pulse' 'librsvg' 'nss'
+         'pulseaudio-alsa' 'upower' 'libnotify' 'libgnomekbd' 'libwacom')
+makedepends=('intltool' 'docbook-xsl' 'gnome-common' 'xf86-input-wacom')
+options=('!emptydirs')
+install=cinnamon-settings-daemon.install
+url="https://github.com/linuxmint/cinnamon-settings-daemon"
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-settings-daemon/archive/${pkgver}.tar.gz")
+sha256sums=('ddaa68c847eee3cfbca3617faf1cd2aed8784cc80ec1af76d461e0f9a34b6077')
+_allowed_in="staging"
+prepare() {
+  cd $pkgname-$pkgver
+
+}
+
+build() {
+  cd $pkgname-$pkgver
+
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+      --libexecdir=/usr/lib/$pkgname --disable-static --enable-systemd
+
+  #https://bugzilla.gnome.org/show_bug.cgi?id=656231
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}
+ 
+
