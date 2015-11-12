@@ -4,7 +4,7 @@
 
 pkgname=lightdm-deepin-greeter-manjaro
 pkgver=2.90.6
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
 license=('GPL3')
@@ -14,6 +14,7 @@ depends=('libdeepin-webkit'
 	'nodejs')
 makedepends=('cmake' 'coffee-script' 'dbus-glib' 'git' 'go'
 	'libdeepin-webkit' 'lightdm' 'python2' 'webkitgtk')
+conflicts=('lightdm-deepin-greeter')
 source=("git+https://github.com/oberon2007/dde-workspace.git"
 	"go-gettext-go::git+https://github.com/chai2010/gettext-go.git"
 	'default-display-manager'

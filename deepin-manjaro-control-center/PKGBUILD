@@ -4,12 +4,13 @@
 
 pkgname=deepin-manjaro-control-center
 pkgver=2.90.3
-pkgrel=2
+pkgrel=3
 pkgdesc="New control center for linux deepin"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-control-center"
 license=('GPL3')
 depends=('qt5-svg' 'qt5-multimedia')
+conflicts=('dde-control-center')
 makedepends=('deepin-gettext-tools' 'git' 'gtk2' 'qt5-declarative' 'qt5-tools')
 source=("git+https://github.com/linuxdeepin/dde-control-center.git#tag=$pkgver")
 sha256sums=('SKIP')

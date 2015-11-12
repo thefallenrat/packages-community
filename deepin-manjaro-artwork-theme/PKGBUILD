@@ -2,7 +2,7 @@
 
 pkgname=deepin-manjaro-artwork-theme
 pkgver="$(date +'%Y%m%d')"
-pkgrel=5
+pkgrel=1
 pkgdesc='Artwork theme for manjaro-deepin'
 arch=('any')
 license=('GPL')
@@ -12,6 +12,7 @@ depends=('cantarell-fonts'
 	'deepin-wallpapers'
 	'xcursor-chameleon-pearl-deepin')
 makedepends=('git')
+conflicts=('deepin-artwork-themes')
 source=("git://$url/$pkgname.git")
 md5sums=('SKIP')
 

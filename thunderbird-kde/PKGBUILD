@@ -3,7 +3,7 @@
 
 pkgname=thunderbird-kde
 pkgver=38.3.0
-pkgrel=2
+pkgrel=3
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone Mail/News reader"
 arch=('i686' 'x86_64')

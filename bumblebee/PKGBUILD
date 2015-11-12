@@ -28,7 +28,7 @@ source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
         'bumblebee-3.2.1-modprobe.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/1ada79fe5916961fc4e4917f8c63bb184908d986.patch'
         "bumblebee-hexadecimal.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch")
 md5sums=('30974e677bb13e8a3825fd6f3e7d3b24'
-         '011be3a2fe4077dc8aa046462f49198a'
+         '7c19d51712896b2fc2d349fc7569f8cf'
          'd0a7d504a717e34b05fb4bc9ee68f881')
 
 prepare() {
