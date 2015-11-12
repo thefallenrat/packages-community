@@ -46,9 +46,7 @@ build() {
 
 package() {
 	pkgdesc="Linux Deepin desktop environment."
-	depends=('dbus-glib' 'deepin-manjaro-control-center'
-	# 'deepin-artwork' 'deepin-menu' 'deepin-nautilus-properties'
-	'libdeepin-webkit')
+	depends=('dbus-glib' 'deepin-manjaro-control-center' 'deepin-artwork' 'deepin-menu' 'deepin-nautilus-properties' 'libdeepin-webkit')
 	optdepends=('lightdm-deepin-greeter')
 	replaces=('deepin-desktop-environment' 'deepin-workspace')
 	conflicts=('dde-workspace')
