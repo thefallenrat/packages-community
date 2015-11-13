@@ -10,7 +10,7 @@ pkgdesc="starter of deepin desktop environment"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/startdde"
 license=('GPL3')
-# depends=('dde-daemon' 'deepin-manjaro-workspace' 'deepin-compiz')
+depends=('dde-daemon' 'deepin-manjaro-workspace' 'deepin-compiz')
 conflicts=('startdde')
 makedepends=('cmake' 'coffee-script' 'git' 'go-packages'
 			 'gstreamer0.10-base-plugins' 'python2' 'sqlite' 'webkitgtk')

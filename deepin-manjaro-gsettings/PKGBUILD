@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-manjaro-gsettings
-pkgver=0.6
+pkgver=20151111
 pkgrel=1
 _srcdirname=$pkgname-$pkgver
 pkgdesc='deepin-manjaro default gsettings'
