@@ -3,7 +3,7 @@
 # Contributor: Ner0
 
 pkgname=nemo
-pkgver=2.8.1
+pkgver=2.8.4
 pkgrel=0.1
 pkgdesc="Cinnamon file manager (Nautilus fork)"
 arch=('i686' 'x86_64')
@@ -16,7 +16,7 @@ options=('!emptydirs')
 install=nemo.install
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/nemo/tarball/$pkgver"
         "desktop-theme.patch")
-sha256sums=('8b6d4f1b6becaab73fd5ecdeab690f9ada2bd8b141e64ec0817edc4a08e0659c'
+sha256sums=('316ffd75b6bf538462fda57e413984e9efa063e5053d645b4a0a96b0fa9331c1'
             '565aaf8275bc255c89dce44dca3e353e35d093411558aa278b4f52dd49f9d57d')
 _allowed_in="staging"
 prepare() {
