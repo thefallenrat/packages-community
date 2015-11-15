@@ -5,25 +5,37 @@
 pkgname=startdde-manjaro
 pkgver=2.91.0
 _commit=272f5e061acc37301e646050e276f783659f04c1
-pkgrel=3
+pkgrel=4
 pkgdesc="starter of deepin desktop environment"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/startdde"
 license=('GPL3')
-depends=('dde-daemon' 'deepin-manjaro-workspace' 'deepin-compiz')
+depends=('dde-daemon'
+	'deepin-manjaro-workspace'
+	'deepin-compiz')
+makedepends=('cmake'
+	'coffee-script'
+	'git'
+	'go-packages'
+	'gstreamer0.10-base-plugins'
+	'python2'
+	'sqlite'
+	'webkitgtk')
 conflicts=('startdde')
-makedepends=('cmake' 'coffee-script' 'git' 'go-packages'
-			 'gstreamer0.10-base-plugins' 'python2' 'sqlite' 'webkitgtk')
+# groups=('deepin')
 install='startdde.install'
 source=("git+https://github.com/linuxdeepin/startdde.git#commit=$_commit"
 		 "fix-app-launch-panic.patch"
 		 "use-compiz-as-default-wm.patch")
+#source=('start-dde.tar.xz'
+#		"fix-app-launch-panic.patch"
+#		'use-compiz-as-default-wm.patch')
 sha256sums=('SKIP'
-            '0ba6fac2ec56277f1b5c8867b2e1231c979b74b4f144daac7e5342fbd25c4e0f'
-            '972410f0556a216db48412a0ca95fb0af37cba5342df28140e7354e41159cc1d')
+	'SKIP'
+	'SKIP')
 
 prepare() {
-	# mv -f start-dde startdde
+#	mv -f start-dde startdde
 	cd startdde
 	patch -p1 -i ../fix-app-launch-panic.patch
 	patch -p1 -i ../use-compiz-as-default-wm.patch

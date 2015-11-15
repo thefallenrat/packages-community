@@ -1,22 +1,21 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-manjaro-gsettings
-pkgver=20151111
+pkgver=20151114
 pkgrel=1
 _srcdirname=$pkgname-$pkgver
 pkgdesc='deepin-manjaro default gsettings'
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
-depends=(
-#'dde-dock-applets'
-'deepin-manjaro-dock-applets'
+depends=('dde-dock-applets'
+# 'deepin-manjaro-dock-applets'
 	'deepin-gtk-theme'
 	'deepin-icon-theme'
 	'deepin-icontheme-pack'
-'startdde-manjaro'
-#'startdde'
-)
+	'deepin-wallpapers'
+# 'startdde-manjaro'
+	'startdde-manjaro')
 makedepends=('git')
 install=$pkgname.install
 source=("$_srcdirname::git+$url")
