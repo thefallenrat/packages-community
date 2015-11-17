@@ -12,8 +12,15 @@ desc="Lightdm greeter for the Deepin DE"
 depends=('libdeepin-webkit'
 	'lightdm'
 	'nodejs')
-makedepends=('cmake' 'coffee-script' 'dbus-glib' 'git' 'go'
-	'libdeepin-webkit' 'lightdm' 'python2' 'webkitgtk')
+makedepends=('cmake'
+	'coffee-script'
+	'dbus-glib'
+	'git'
+	'go'
+	'libdeepin-webkit'
+	'lightdm'
+	'python2'
+	'webkitgtk')
 conflicts=('lightdm-deepin-greeter')
 source=("git+https://github.com/oberon2007/dde-workspace.git"
 	"go-gettext-go::git+https://github.com/chai2010/gettext-go.git"

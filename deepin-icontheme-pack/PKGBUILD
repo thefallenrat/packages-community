@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-icontheme-pack
-pkgver=20151026
+pkgver="$(date +'%Y%m%d')"
 _srcdirname=deepin-artwork-icontheme-pack-0.0+2015050506
 pkgrel=1
 pkgdesc="Icon theme pack for the Deepin DE"
@@ -10,9 +10,14 @@ url="http://www.deepin.org/"
 license=('LGPL3')
 depends=('gtk-update-icon-cache')
 install="${pkgname}.install"
-source=("http://ftp5.gwdg.de/pub/linux/linuxdeepin/packages/pool/main/d/deepin-artwork-icontheme-pack/deepin-artwork-icontheme-pack_0.0+2015050506.tar.gz")
-md5sums=('8a626a563cfdd653215fadd3f4c6d061')
-
+source=("http://ftp5.gwdg.de/pub/linux/linuxdeepin/packages/pool/main/d/deepin-artwork-icontheme-pack/deepin-artwork-icontheme-pack_0.0+2015050506.tar.gz"
+	Deepin-fallback.diff)
+md5sums=('8a626a563cfdd653215fadd3f4c6d061'
+         'b9a663937ea85f124a9dbb95af33d25d')
+prepare() {
+	cd $srcdir/$_srcdirname
+ 	patch -p1 < ../Deepin-fallback.diff
+}
 package() {
 	cd $_srcdirname
 	install -dm755 $pkgdir/usr/share/icons

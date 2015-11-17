@@ -10,8 +10,15 @@ arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
 license=('GPL3')
 groups=('deepin')
-makedepends=('cmake' 'coffee-script' 'dbus-glib' 'git' 'go'
-	'libdeepin-webkit' 'lightdm' 'python2' 'webkitgtk')
+makedepends=('cmake'
+	'coffee-script'
+	'dbus-glib'
+	'git'
+	'go'
+	'libdeepin-webkit'
+	'lightdm'
+	'python2'
+	'webkitgtk')
 source=("git+https://github.com/linuxdeepin/dde-workspace.git#tag=$pkgver"
 	"go-gettext-go::git+https://github.com/chai2010/gettext-go.git"
 	'default-display-manager'
@@ -66,13 +73,3 @@ package() {
 #	## add default background..
 #	install -m644 ../resources/greeter/images/background/default_background.jpg "${pkgdir}"/usr/share/backgrounds/
 }
-
-# package_lightdm-deepin-greeter() {
-#	pkgdesc="Lightdm greeter for Linux Deepin desktop environment."
-#	depends=('libdeepin-webkit' 'lightdm' 'nodejs')
-#
-#	cd dde-workspace-greeter/build/app/greeter
-#	make install DESTDIR="${pkgdir}"
-#
-#	chmod 0700 "${pkgdir}"/var/lib/polkit-1
-#}
