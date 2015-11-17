@@ -1,4 +1,3 @@
-
 #! /bin/sh
 export BSPWM_SCRIPTS_DIR="$HOME/scripts"
 gap=15
