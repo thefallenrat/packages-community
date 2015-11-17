@@ -64,6 +64,7 @@ for file in "${source_these[@]}"; do
 done
 
 # Launch sxhkd:
+[ -e /bin/dash ] && SXHKD_SHELL="/bin/dash"
 sxhkd &
 # Launch bspwm:
 bspwm
