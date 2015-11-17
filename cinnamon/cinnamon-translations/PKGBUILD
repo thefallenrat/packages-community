@@ -2,14 +2,14 @@
 # Maintainer: Alexandre Filgueira <alexfilgueira@antergos.com>
 
 pkgname=cinnamon-translations
-pkgver=2.8.0
+pkgver=2.8.2
 pkgrel=0.1
 pkgdesc="Translations for Cinnamon and Nemo"
 arch=(any)
 url="http://cinnamon.linuxmint.com/"
 license=('GPL2')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/cinnamon-translations/archive/${pkgver}.tar.gz")
-sha256sums=('d4c6ca5ff04c9e670e1a0cfe79b0834437829222f1382cc8de65af4c7c94f081')
+sha256sums=('062f8d76d448500aea175889b68fdc00b582b957a972e7dd1e05f34bc9ed4c7f')
 _allowed_in="staging"
 build() {
 	cd ${pkgname}-${pkgver}

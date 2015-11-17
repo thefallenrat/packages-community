@@ -2,25 +2,33 @@
 # Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
 # Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
-pkgname=deepin-manjaro-workspace
+# pkgbase=dde-workspace
+pkgname=('deepin-manjaro-workspace')
 pkgver=2.90.1
-pkgrel=4
+pkgrel=5
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
 license=('GPL3')
-makedepends=('cmake' 'coffee-script' 'dbus-glib' 'git' 'go'
-	'libdeepin-webkit' 'lightdm' 'python2' 'webkitgtk')
-install=$pkgname.install
+groups=('deepin')
+makedepends=('cmake'
+	'coffee-script'
+	'dbus-glib'
+	'git'
+	'go'
+	'libdeepin-webkit'
+	'lightdm'
+	'python2'
+	'webkitgtk')
 source=("git+https://github.com/linuxdeepin/dde-workspace.git#tag=$pkgver"
 	"go-gettext-go::git+https://github.com/chai2010/gettext-go.git"
 	'default-display-manager'
 	'fix-go1.5-template-issue.patch'
 	'30-deepin-inotify-limit.conf')
 sha256sums=('SKIP'
-            'SKIP'
-            '3667d6cce9a00f0b8c8bc27250b2ceaf421382d3b4e687a5bcea4c64292030df'
-            '55025f4c739b87cb71394b1d53fbd43eb79a4dec0a0996cf53585cd91ef6c28b'
-            '57792923fd07d6e99528947735d124e1a6d7a90fbb4535610658b7b5766602ab')
+	'SKIP'
+	'3667d6cce9a00f0b8c8bc27250b2ceaf421382d3b4e687a5bcea4c64292030df'
+	'55025f4c739b87cb71394b1d53fbd43eb79a4dec0a0996cf53585cd91ef6c28b'
+	'57792923fd07d6e99528947735d124e1a6d7a90fbb4535610658b7b5766602ab')
 
 prepare() {
 	export GOPATH="$srcdir/build"
@@ -45,11 +53,16 @@ build() {
 }
 
 package() {
-	pkgdesc="Linux Deepin desktop environment."
-	depends=('dbus-glib' 'deepin-manjaro-control-center' 'deepin-artwork' 'deepin-menu' 'deepin-nautilus-properties' 'libdeepin-webkit')
-	optdepends=('lightdm-deepin-greeter')
-	replaces=('deepin-desktop-environment' 'deepin-workspace')
-	conflicts=('dde-workspace')
+# package_dde-workspace() {
+  pkgdesc="Linux Deepin desktop environment."
+  groups=('deepin')
+  depends=('dbus-glib' 'dde-control-center'
+	'deepin-menu' 'deepin-nautilus-properties'
+	'libdeepin-webkit')
+  optdepends=('lightdm-deepin-greeter')
+  conflicts=('dde-workspace')
+  replaces=('deepin-desktop-environment' 'deepin-workspace')
+  install='dde-workspace.install'
 
 	cd dde-workspace/build
 	make install DESTDIR="${pkgdir}"
@@ -57,15 +70,6 @@ package() {
 	install -dm755 "${pkgdir}"/{etc/{X11,sysctl.d},usr/share/backgrounds}
 	install -m644 ../../30-deepin-inotify-limit.conf "${pkgdir}"/etc/sysctl.d/
 	install -m644 ../../default-display-manager "${pkgdir}"/etc/X11/
-	## fix default background manjaro
+#	## add default background..
+#	install -m644 ../resources/greeter/images/background/default_background.jpg "${pkgdir}"/usr/share/backgrounds/
 }
-
-#package_lightdm-deepin-greeter() {
-#	pkgdesc="Lightdm greeter for Linux Deepin desktop environment."
-#	depends=('libdeepin-webkit' 'lightdm' 'nodejs')
-#
-#	cd dde-workspace-greeter/build/app/greeter
-#	make install DESTDIR="${pkgdir}"
-#
-#	chmod 0700 "${pkgdir}"/var/lib/polkit-1
-#}

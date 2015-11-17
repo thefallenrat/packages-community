@@ -2,7 +2,7 @@
 
 pkgname=deepin-manjaro-artwork-theme
 pkgver="$(date +'%Y%m%d')"
-pkgrel=1
+pkgrel=2
 pkgdesc='Artwork theme for manjaro-deepin'
 arch=('any')
 license=('GPL')
