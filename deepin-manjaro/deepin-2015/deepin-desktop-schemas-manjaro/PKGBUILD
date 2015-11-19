@@ -1,0 +1,29 @@
+# Maintainer: Bernhard Landauaer <oberon@manjaro.org>
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-desktop-schemas-manjaro
+pkgver=2.91.0
+pkgrel=2
+pkgdesc='desktop-wide gsettings for manjaro-deepin'
+arch=('any')
+url="https://github.com/linuxdeepin/deepin-desktop-schemas"
+license=('GPL3')
+depends=('dconf')
+makedepends=('git')
+conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
+provides=('${pkgname%-manjaro}')
+install=${pkgname%-manjaro}.install
+source=("git+https://github.com/oberon2007/deepin-desktop-schemas.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+build() {
+  cd "${pkgname%-manjaro}"
+  make
+}
+
+package() {
+  cd "${pkgname%-manjaro}"
+  make DESTDIR="${pkgdir}" install
+}
