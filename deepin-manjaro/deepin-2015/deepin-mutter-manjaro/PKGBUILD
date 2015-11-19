@@ -5,7 +5,7 @@
 
 pkgname=deepin-mutter-manjaro
 pkgver=3.18.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Base window manager for deepin, fork of gnome mutter"
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/deepin-mutter"
@@ -28,6 +28,8 @@ makedepends=('gnome-common'
 	'gtk-doc'
 	'intltool'
 	'git')
+provides=('deepin-mutter')
+conflicts=('deepin-mutter')
 options=('!emptydirs')
 install="${pkgname%-manjaro}.install"
 source=("git+https://github.com/linuxdeepin/deepin-mutter.git#tag=$pkgver")

@@ -5,7 +5,7 @@
 pkgname=deepin-daemon-manjaro
 pkgver=2.93.0
 _commit=6726ab7281f17fe2878f6b035f671be9f1f16ccb
-pkgrel=1
+pkgrel=2
 pkgdesc='daemon handling the DDE session settings'
 arch=('i686' 'x86_64')
 url="https://github.com/linuxdeepin/dde-daemon"
@@ -16,12 +16,12 @@ depends=('deepin-desktop-schemas-manjaro'
 	'metacity'
 	'poppler-glib'
 	'rfkill')
-makedepends=('deepin-api'
+makedepends=('dde-api-manjaro'
 	'git'
 	'go-packages'
 	'sqlite3')
 optdepends=('networkmanager: Network Management daemon')
-conflicts=('${pkgname%-manjaro}' 'dde-daemon')
+conflicts=('deepin-daemon' 'dde-daemon')
 provides=('${pkgname%-manjaro}')
 install="deepin-daemon.install"
 source=("git+https://github.com/linuxdeepin/dde-daemon.git#commit=$_commit"

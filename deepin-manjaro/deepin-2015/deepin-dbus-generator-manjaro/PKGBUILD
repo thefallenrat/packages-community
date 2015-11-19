@@ -1,0 +1,30 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-dbus-generator-manjaro
+pkgver=0.0.3.20141120163131
+pkgrel=3
+pkgdesc='Convert dbus interfaces to go-lang or qml wrapper code'
+arch=('i686' 'x86_64')
+url="https://github.com/linuxdeepin/go-dbus-generator"
+license=('GPL3')
+depends=('glibc')
+makedepends=('git'
+	'go-packages'
+	'qt5-declarative')
+conflicts=('deepin-dbus-generator')
+provides=('deepin-dbus-generator')
+source=("git://github.com/linuxdeepin/go-dbus-generator.git")
+sha256sums=('SKIP')
+
+build() {
+	export GOPATH="/usr/lib/go"
+
+	cd go-dbus-generator
+	go build -o out/dbus-generator
+}
+
+package() {
+	install -Dm 755 go-dbus-generator/out/dbus-generator "${pkgdir}"/usr/bin/dbus-generator
+}

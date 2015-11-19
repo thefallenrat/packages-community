@@ -16,25 +16,28 @@ depends=('bamf'
 	'deepin-mutter-manjaro'
 	'gnome-desktop'
 	'libgee')
-makedepends=('gnome-common' 'intltool' 'vala' 'git')
+makedepends=('git'
+	'gnome-common'
+	'intltool'
+	'vala')
 conflicts=('deepin-wm')
 install='deepin-wm.install'
 source=("git+https://github.com/linuxdeepin/deepin-wm.git#tag=$pkgver")
 sha256sums=('SKIP')
 
 prepare() {
-  cd "${pkgname}"
+  cd "${pkgname%-manjaro}"
   export CFLAGS="$CFLAGS -DWNCK_I_KNOW_THIS_IS_UNSTABLE"
 }
 
 build() {
-  cd "${pkgname}"
+  cd "${pkgname%-manjaro}"
   ./autogen.sh \
     --prefix='/usr' \
     --disable-schemas-compile
 }
 
 package() {
-  cd "${pkgname}"
+  cd "${pkgname%-manjaro}"
   make DESTDIR="${pkgdir}" install
 }

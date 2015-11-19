@@ -4,7 +4,7 @@
 
 pkgname=startdde-manjaro-2015
 pkgver=2.92.0
-_commit=69761f6d59f754d4c7f166283f29fd385bb39c18
+_commit=18e8ea2eb38c51fdb4faaa0764cd47d6052da8b5
 pkgrel=1
 pkgdesc="starter of deepin desktop environment"
 arch=('i686' 'x86_64')
@@ -12,22 +12,22 @@ url="https://github.com/linuxdeepin/startdde"
 license=('GPL3')
 makedepends=('cmake'
 	'coffee-script'
-	'deepin-daemon'
 	'deepin-dbus-factory'
-	'deepin-wm'
+	'deepin-wm-manjaro'
 	'go-packages'
+	'libdeepin-webkit'
 	'python2'
 	'webkitgtk')
-conflicts=('startdde' 'startdde-manjaro')
 source=("git+https://github.com/linuxdeepin/startdde.git#commit=$_commit")
-sha256sums=('SKIP')
+md5sums=('SKIP')
 
 build() {
-	cd startdde-${pkgver}
+	cd startdde
 	make GOPATH="/usr/lib/go"
 }
 
 package() {
-	cd startdde-${pkgver}
+	depends+=('deepin-daemon-manjaro')
+	cd startdde
 	make GOPATH="/usr/lib/go" DESTDIR="${pkgdir}" install
 }

@@ -2,18 +2,18 @@
 # Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=go-packages
-pkgver=20151027
-_dbusfactoryver=2.91.0
-_golibver=0.4.1
-pkgrel=1
+pkgver=20151119
+pkgrel=2
 pkgdesc='GO source packages for dde'
-arch=('any')
+arch=('i686' 'x86_64')
 url="https://github.com"
 license=('custom')
 depends=('go')
-makedepends=('deepin-dbus-generator' 'mercurial' 'git')
-source=("git+https://github.com/linuxdeepin/go-lib.git#tag=$_golibver"
-		 "git+https://github.com/linuxdeepin/dbus-factory.git#tag=$_dbusfactoryver"
+makedepends=('deepin-dbus-generator-manjaro'
+	'git'
+	'mercurial')
+source=("git+https://github.com/linuxdeepin/go-lib.git"
+		 "git+https://github.com/linuxdeepin/dbus-factory.git"
         "go-assertions::git+https://github.com/smartystreets/assertions.git"
         "go-fsnotify::git+https://github.com/howeyc/fsnotify.git"
         "go-gettext-go::git+https://github.com/chai2010/gettext-go.git"
@@ -30,27 +30,10 @@ source=("git+https://github.com/linuxdeepin/go-lib.git#tag=$_golibver"
         "go-units::git+https://github.com/alecthomas/units.git"
         "go-xgb::git+https://github.com/BurntSushi/xgb.git"
         "go-xgbutil::git+https://github.com/BurntSushi/xgbutil.git"
-		 "fix-arch.patch")
-
-md5sums=('SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         'SKIP'
-         '9da00950fbc960c2fd8ad1ebf1b1a292')
+	"fix-arch.patch")
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
+			'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
+			'0195e1258534ef14d8ec63cde5389f8cfad39d5308ab8ddf73966018a34bd300')
 
 _bd="build/src"
 
@@ -103,7 +86,5 @@ build() {
 package() {
 	cd dbus-factory
 	make DESTDIR="${pkgdir}" install-golang
-
-	#mkdir -p "${pkgdir}"/usr/lib/go/src
 	cp -a "${srcdir}"/build/src/* "${pkgdir}"/usr/lib/go/src/
 }
