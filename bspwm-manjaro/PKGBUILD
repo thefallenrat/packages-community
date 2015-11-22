@@ -4,11 +4,12 @@
 _pkgname=bspwm
 pkgname=${_pkgname}-manjaro
 pkgver=0.9
-pkgrel=1
+pkgrel=2
 pkgdesc='A tiling window manager based on binary space partitioning'
 arch=('i686' 'x86_64' 'armv7h')
 url="https://github.com/baskerville/${_pkgname}"
 license=('custom:BSD')
+install='bspwm-manjaro.install'
 depends=('libxcb'
 	'xcb-util'
 	'xcb-util-wm')
@@ -20,7 +21,8 @@ optdepends=('sxhkd-git: to define keyboard and pointer bindings'
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=("git://github.com/baskerville/${_pkgname}.git")
-md5sums=('SKIP')
+md5sums=('SKIP'
+         '4f5be68d9c929cd5f399526e6b571af0')
 
 build() {
     cd "$srcdir/$_pkgname"
@@ -34,4 +36,6 @@ package() {
     rm $pkgdir/usr/share/xsessions/bspwm.desktop
     install -Dm755 "$startdir/bspwm-session" "$pkgdir/usr/bin/bspwm-session"
     install -Dm755 "$startdir/bspwm.desktop" "$pkgdir/usr/share/xsessions/bspwm.desktop"
+    install -Dm755 "$startdir/sxhkd" "$pkgdir/etc/skel/.config/sxhkd/sxhkdrc"
+    install -Dm755 "$startdir/bspwmrc" "$pkgdir/etc/skel/.config/bspwm/bspwmrc"
 }
