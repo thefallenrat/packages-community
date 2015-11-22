@@ -14,7 +14,6 @@ makedepends=('git'
 	'go-packages'
 	'qt5-declarative')
 conflicts=('deepin-dbus-generator')
-provides=('deepin-dbus-generator')
 source=("git://github.com/linuxdeepin/go-dbus-generator.git")
 sha256sums=('SKIP')
 

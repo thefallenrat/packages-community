@@ -2,7 +2,7 @@
 # Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
 # Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
-pkgname=dde-api-manjaro
+pkgname=deepin-api-manjaro
 pkgver=2.92.0
 _commit=c37ebaf89c526f951e2bea84297a5cae0d665d75
 pkgrel=1
@@ -13,6 +13,7 @@ license=('GPL3')
 depends=('libcanberra-pulse'
 	'rfkill'
 	'metacity')
+conflicts=('dde-api' 'deepin-api')
 makedepends=('deepin-dbus-factory'
 	'git'
 	'go-packages'

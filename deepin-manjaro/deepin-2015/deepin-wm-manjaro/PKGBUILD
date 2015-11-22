@@ -3,12 +3,13 @@
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
-pkgname=deepin-wm-manjaro
-pkgver=0.91.0
+_pkgname=deepin-wm
+pkgname=$_pkgname-manjaro
+pkgver=0.91.3
 pkgrel=1
 pkgdesc='Deepin Window Manager'
 arch=('i686' 'x86_64')
-url="https://cr.deepin.io/deepin-wm"
+url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL3')
 depends=('bamf'
 	'clutter-gtk'
@@ -21,23 +22,23 @@ makedepends=('git'
 	'intltool'
 	'vala')
 conflicts=('deepin-wm')
-install='deepin-wm.install'
-source=("git+https://github.com/linuxdeepin/deepin-wm.git#tag=$pkgver")
+install="$_pkgname.install"
+source=("git+$url.git#tag=$pkgver")
 sha256sums=('SKIP')
 
 prepare() {
-  cd "${pkgname%-manjaro}"
+  cd "$_pkgname"
   export CFLAGS="$CFLAGS -DWNCK_I_KNOW_THIS_IS_UNSTABLE"
 }
 
 build() {
-  cd "${pkgname%-manjaro}"
+  cd "$_pkgname"
   ./autogen.sh \
     --prefix='/usr' \
     --disable-schemas-compile
 }
 
 package() {
-  cd "${pkgname%-manjaro}"
+  cd "$_pkgname"
   make DESTDIR="${pkgdir}" install
 }

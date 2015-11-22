@@ -16,12 +16,12 @@ depends=('deepin-desktop-schemas-manjaro'
 	'metacity'
 	'poppler-glib'
 	'rfkill')
-makedepends=('dde-api-manjaro'
+makedepends=('deepin-api-manjaro'
 	'git'
 	'go-packages'
 	'sqlite3')
 optdepends=('networkmanager: Network Management daemon')
-conflicts=('deepin-daemon' 'dde-daemon')
+conflicts=('dde-daemon' 'deepin-daemon')
 provides=('${pkgname%-manjaro}')
 install="deepin-daemon.install"
 source=("git+https://github.com/linuxdeepin/dde-daemon.git#commit=$_commit"

@@ -1,0 +1,32 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+_pkgname=dde-launcher
+pkgname=deepin-launcher-manjaro
+pkgver=2.90.1
+_commit=d25a5dd95b5c26acee49eaed1f0153f10056aecb
+pkgrel=1
+pkgdesc='deepin desktop-environment - launcher module'
+arch=('i686' 'x86_64')
+url="https://github.com/linuxdeepin/$_pkgname"
+license=('GPL3')
+depends=('gtk2'
+	'gsettings-qt'
+	'qt5-svg'
+	'qt5-x11extras')
+makedepends=('git')
+conflicts=('dde-launcher' 'deepin-launcher')
+source=("git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+build(){
+	cd $_pkgname
+	qmake-qt5 PREFIX=/usr
+	make
+}
+
+package() {
+	cd $_pkgname
+	make INSTALL_ROOT="${pkgdir}" install
+}

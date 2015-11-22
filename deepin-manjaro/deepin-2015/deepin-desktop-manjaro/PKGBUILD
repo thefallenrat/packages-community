@@ -1,0 +1,33 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-desktop-manjaro
+_pkgname=dde-desktop
+pkgver=2.90.0
+_commit=37daa4433f93118f08ba2cf398a4efcf0118d6dd
+pkgrel=2
+pkgdesc='deepin desktop-environment - desktop module'
+arch=('i686' 'x86_64')
+url="https://github.com/linuxdeepin/$_pkgname"
+license=('GPL3')
+depends=('deepin-file-manager-manjaro'
+	'gsettings-qt'
+	'gtk2'
+	'qt5-svg'
+	'qt5-x11extras')
+makedepends=('git')
+conflicts=('dde-desktop' 'deepin-desktop')
+source=("git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+build(){
+	cd $_pkgname
+	qmake-qt5 PREFIX=/usr
+	make
+}
+
+package() {
+	cd $_pkgname
+	make INSTALL_ROOT="${pkgdir}" install
+}
