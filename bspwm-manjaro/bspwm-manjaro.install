@@ -9,7 +9,7 @@ super + t
 users=$(awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd)
 
 ## sxhkd function
-function sxhkd_fixer() {
+function sxhkd_fixer {
 	#Remove 2 old lines if they exist
 	grep -q "super + {_,shift +} t" $sxhkdrc && sed -i '/super + {_,shift +} t/ d' $sxhkdrc
 	grep -q "bspc window -t {floating,pseudo_tiled}" $sxhkdrc && sed -i '/bspc window -t {floating,pseudo_tiled}/ d' $sxhkdrc
@@ -22,7 +22,7 @@ function sxhkd_fixer() {
 }
 
 ## bspwm function 
-function bspwm_fixer() {
+function bspwm_fixer {
 	#Replace some config lines if they exist
 	grep -q "Chromium" $bspwmrc && sed -i 's/Chromium/chromium/' $bspwmrc
 	grep -q "Midori" $bspwmrc && sed -i 's/Midori/midori/' $bspwmrc
@@ -47,5 +47,6 @@ post_upgrade() {
 		[[ -f /home/$user/.config/bspwm/bspwmrc ]] && cp /home/$user/.config/bspwm/bspwmrc /home/$user/.config/bspwm/bspwmrc.bak
 		[[ -f /home/$user/.config/bspwm/bspwmrc ]] && bspwmrc=/home/$user/.config/bspwm/bspwmrc && bspwm_fixer
 	done
+	echo "sxhkdrc and bspwmrc were updated to match changed syntax"
 }
-exit 0
+#post_upgrade
