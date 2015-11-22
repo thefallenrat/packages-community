@@ -21,7 +21,8 @@ optdepends=('sxhkd-git: to define keyboard and pointer bindings'
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=("git://github.com/baskerville/${_pkgname}.git")
-md5sums=('SKIP')
+md5sums=('SKIP'
+         '4f5be68d9c929cd5f399526e6b571af0')
 
 build() {
     cd "$srcdir/$_pkgname"
