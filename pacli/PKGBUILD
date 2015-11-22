@@ -14,7 +14,7 @@ depends=('pmenu'
 	'sudo'
 	'bash')
 makedepends=('git')
-source=("git://github.com/Chrysostomus/$pkgname")
+source=("git://github.com/Manjaro-Pek/$pkgname")
 md5sums=('SKIP')
 
 package () {
