@@ -1,0 +1,25 @@
+post_install() {
+  echo "Discrete GPU + proprietary drivers won't work in native mode"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
+}
+
+pre_install(){
+  update-desktop-database -q
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+}
+
+post_upgrade() {
+  echo "Discrete GPU + proprietary drivers won't work in native mode"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
+}
+
+pre_upgrade(){
+  update-desktop-database -q
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+}
+
+post_remove() {
+  update-desktop-database -q
+  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+}
+
