@@ -1,0 +1,41 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-desktop-schemas-manjaro
+pkgver=2.91.1
+pkgrel=1
+pkgdesc='desktop-wide gsettings schemas'
+arch=('any')
+url="https://github.com/oberon2007/$pkgname"
+license=('GPL3')
+depends=('dconf'
+	'deepin-gtk-theme'
+	'deepin-wallpapers'
+	'xcursor-chameleon-pearl-deepin')
+makedepends=('git')
+conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
+provides=('deepin-desktop-schemas')
+replaces=('deepin-default-gsettings' 'deepin-manjaro-gsettings')
+install="${pkgname%-manjaro}.install"
+source=("git+$url.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+#prepare() {
+#  cd "${pkgname}"
+#  # fix default background url
+#  sed -i "s#^picture-uri.*#picture-uri='file:///usr/share/backgrounds/deepin_default_background.jpg'#" overrides/com.deepin.wrap.gnome.desktop.override
+#  # Removing google-chrome and deepin-appstore, they are not packaged in our repos.
+#  sed -i "s/^docked-apps=.*/docked-apps=['org.gnome.nautilus','deepin-music-player','deepin-movie','dde-control-center']/" overrides/com.deepin.dde.dock.override
+#}
+
+build() {
+  cd "${pkgname}"
+  make
+}
+
+package() {
+  cd "${pkgname}"
+  make DESTDIR="${pkgdir}" install
+}
