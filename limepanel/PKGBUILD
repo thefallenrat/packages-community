@@ -2,14 +2,16 @@
 # Maintainer: Chrysostomus
 
 pkgname=limepanel
-_ver=0.12
+_ver=0.13
 pkgver=0.12.r56.c6d4361
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=any
 url=https://github.com/Chrysostomus/limepanel
 license=MIT
-depends=('lemonpanel')
+depends=('lemonpanel'
+	'xorg-xprop'
+	'wmctrl')
 makedepends=git
 source="git://github.com/Chrysostomus/limepanel"
 md5sums=('SKIP')
