@@ -1,5 +1,6 @@
---- a/data/lxdm.conf.in	2015-10-18 19:22:46.386331477 -0200
-+++ b/data/lxdm.conf.in	2015-10-18 19:33:38.514873184 -0200
+diff -Naur lxdm.orig/data/lxdm.conf.in lxdm/data/lxdm.conf.in
+--- lxdm.orig/data/lxdm.conf.in	2013-08-30 17:56:16.097006000 +0200
++++ lxdm/data/lxdm.conf.in	2013-09-04 01:54:12.942117085 +0200
 @@ -23,7 +23,7 @@
  
  [server]
@@ -14,7 +15,7 @@
  
  ## background of the greeter
 -bg=/usr/share/backgrounds/default.png
-+#bg=/usr/share/backgrounds/default.png
++# bg=/usr/share/backgrounds/default.png
  
  ## if show bottom pane
  bottom_pane=1
