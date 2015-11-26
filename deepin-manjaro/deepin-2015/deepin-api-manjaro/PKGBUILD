@@ -1,0 +1,34 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Maintainer: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-api-manjaro
+pkgver=2.92.1
+_commit=c508abbfde0bdf8105c654d249b994b69abbe048
+pkgrel=1
+pkgdesc='Go-lang bingdings for dde-daemon'
+arch=('i686' 'x86_64')
+url="https://github.com/linuxdeepin/dde-api"
+license=('GPL3')
+depends=('libcanberra-pulse'
+	'rfkill'
+	'metacity')
+makedepends=('deepin-dbus-factory'
+	'git'
+	'go-packages'
+	'gtk3'
+	'poppler-glib')
+conflicts=('dde-api' 'deepin-api')
+source=("git+https://github.com/linuxdeepin/dde-api.git#commit=$_commit")
+md5sums=('SKIP')
+
+build(){
+	cd dde-api
+	make GOPATH="/usr/lib/go" USE_GCCGO=1
+}
+
+package() {
+	depends+=('xcur2png')
+	cd dde-api
+	make GOPATH="/usr/lib/go" GOSITE_DIR="/usr/lib/go" DESTDIR="${pkgdir}" install
+}

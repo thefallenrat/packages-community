@@ -5,11 +5,10 @@
 # pkgbase=dde-workspace
 pkgname=('deepin-manjaro-workspace')
 pkgver=2.90.1
-pkgrel=5
+pkgrel=6
 arch=('i686' 'x86_64')
 url="https://gitcafe.com/Deepin/dde-workspace"
 license=('GPL3')
-groups=('deepin')
 makedepends=('cmake'
 	'coffee-script'
 	'dbus-glib'
@@ -55,9 +54,10 @@ build() {
 package() {
 # package_dde-workspace() {
   pkgdesc="Linux Deepin desktop environment."
-  groups=('deepin')
-  depends=('dbus-glib' 'dde-control-center'
-	'deepin-menu' 'deepin-nautilus-properties'
+  depends=('dbus-glib'
+	'dde-control-center'
+	'deepin-menu'
+	'deepin-nautilus-properties'
 	'libdeepin-webkit')
   optdepends=('lightdm-deepin-greeter')
   conflicts=('dde-workspace')

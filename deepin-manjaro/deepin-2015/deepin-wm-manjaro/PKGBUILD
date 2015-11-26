@@ -1,0 +1,44 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+_pkgname=deepin-wm
+pkgname=$_pkgname-manjaro
+pkgver=0.91.3
+pkgrel=1
+pkgdesc='Deepin Window Manager'
+arch=('i686' 'x86_64')
+url="https://github.com/linuxdeepin/$_pkgname"
+license=('GPL3')
+depends=('bamf'
+	'clutter-gtk'
+	'deepin-desktop-schemas-manjaro'
+	'deepin-mutter-manjaro'
+	'gnome-desktop'
+	'libgee')
+makedepends=('git'
+	'gnome-common'
+	'intltool'
+	'vala')
+conflicts=('deepin-wm')
+install="$_pkgname.install"
+source=("git+$url.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgname"
+  export CFLAGS="$CFLAGS -DWNCK_I_KNOW_THIS_IS_UNSTABLE"
+}
+
+build() {
+  cd "$_pkgname"
+  ./autogen.sh \
+    --prefix='/usr' \
+    --disable-schemas-compile
+}
+
+package() {
+  cd "$_pkgname"
+  make DESTDIR="${pkgdir}" install
+}
