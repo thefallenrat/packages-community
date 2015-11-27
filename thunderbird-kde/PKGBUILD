@@ -2,8 +2,8 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=38.3.0
-pkgrel=3
+pkgver=38.4.0
+pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone Mail/News reader"
 arch=('i686' 'x86_64')
@@ -22,18 +22,18 @@ install=thunderbird.install
 _patchrev=255a6c12c85f
 #_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 _patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
-source=(ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.bz2
+source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.bz2
         mozconfig
         thunderbird.desktop
         thunderbird-install-dir.patch
         vendor.js
-        mozilla-kde.patch::https://build.opensuse.org/source/mozilla:Factory/MozillaThunderbird/mozilla-kde.patch?rev=4ba37ad20aa933bf91eb68606066c604
+        mozilla-kde.patch::https://build.opensuse.org/source/mozilla:Factory/MozillaThunderbird/mozilla-kde.patch
         #$_patchurl/mozilla-kde.patch
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         kde.js)
 options=('!emptydirs' '!makeflags')
-sha256sums=('9f3cb19a5ceabc5e8fa31f782b6d92720a77ef2c2d6c7b63b3d792cde491c961'
+sha256sums=('326a4408d6dc79890cba8466dbc337acf99df76b58dadb0ed453e5e42af7fdbe'
             '6ce788b80d0a1bac96201ca4f4ce93fee5a94e222b1ddb6cdee5c6db2d00ef77'
             '3fba13d88aeb003ab0811ef739463858172ce0662a1c7d62835df3d83ddbb8fb'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
