@@ -4,7 +4,7 @@
 pkgname=limepanel
 _ver=0.13
 pkgver=0.13.r62.db01785
-pkgrel=1
+pkgrel=2
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=any
 url=https://github.com/Chrysostomus/limepanel
