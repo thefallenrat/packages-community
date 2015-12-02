@@ -12,7 +12,8 @@ depends=('bash'
 	'mhwd-tui'
 	'brandr'
 	'awk'
-	'sed')
+	'sed'
+	'elinks')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
