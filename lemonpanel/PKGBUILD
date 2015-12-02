@@ -23,7 +23,8 @@ depends=('dmenu-manjaro'
 	'ttf-ionicons'
 	'zenity'
 	'xdg-utils'
-	'rootmenu')
+	'rootmenu'
+        'update-notifier')
 makedepends=git
 source="git://github.com/Chrysostomus/lemonpanel"
 md5sums=('SKIP')

@@ -1,16 +1,15 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
-pkgname=mhwd-tui
-pkgver=0.2
+pkgname=brandr
+pkgver=0.1
 pkgrel=1
-pkgdesc="An interactive mhwd interface using bash"
+pkgdesc="An interactive xrandr interface using bash"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
-depends=('pmenu'
-	'mhwd'
-	'awk'
-	'bash')
+depends=('awk'
+	'bash'
+	'xrandr')
 optdepends=('pacli: package management menu item')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
@@ -18,5 +17,5 @@ md5sums=('SKIP')
 
 package () {
 	cd "$srcdir"
-        install -Dm755 "$srcdir/$pkgname/mhwd-tui" "$pkgdir/usr/bin/mhwd-tui"
+        install -Dm755 "$srcdir/$pkgname/brandr" "$pkgdir/usr/bin/brandr"
 }
