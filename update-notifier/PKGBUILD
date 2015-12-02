@@ -16,5 +16,5 @@ md5sums=('SKIP')
 
 package () {
 	cd "$srcdir"
-        install -Dm755 "$srcdir/$pkgname/update-notifier" "$pkgdir/usr/bin/nodate-notifier"
+        install -Dm755 "$srcdir/$pkgname/update-notifier" "$pkgdir/usr/bin/update-notifier"
 }
