@@ -7,8 +7,8 @@ pkgdesc="A simple pacman update notifier"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
-depends=('pacman'
-	'awk'
+depends=('awk'
+	'pacman'
         'yaourt')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")

@@ -7,10 +7,10 @@ pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
-depends=('pmenu'
+depends=('awk'
+	'bash'
 	'mhwd'
-	'awk'
-	'bash')
+	'pmenu')
 optdepends=('pacli: package management menu item')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
