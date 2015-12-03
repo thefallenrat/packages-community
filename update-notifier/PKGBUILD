@@ -7,8 +7,8 @@ pkgdesc="A simple pacman update notifier"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
-depends=('pacman'
-	'awk'
+depends=('awk'
+	'pacman'
         'yaourt')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
@@ -16,5 +16,5 @@ md5sums=('SKIP')
 
 package () {
 	cd "$srcdir"
-        install -Dm755 "$srcdir/$pkgname/update-notifier" "$pkgdir/usr/bin/nodate-notifier"
+        install -Dm755 "$srcdir/$pkgname/update-notifier" "$pkgdir/usr/bin/update-notifier"
 }

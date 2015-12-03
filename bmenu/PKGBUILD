@@ -7,13 +7,13 @@ pkgdesc="Simple system menu for commandline"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
-depends=('bash'
-	'pacli'
-	'mhwd-tui'
+depends=('awk'
+	'bash'
 	'brandr'
-	'awk'
-	'sed'
-	'elinks')
+	'elinks'
+	'mhwd-tui'
+	'pacli'
+	'sed')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
