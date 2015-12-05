@@ -4,8 +4,8 @@
 # Native config contribution: Manuel Hüsers <manuel.huesers@uni-ol.de>
 pkgname=steam-manjaro
 _pkgname=steam
-pkgver=1.0.0.50
-pkgrel=21
+pkgver=1.0.0.51
+pkgrel=1
 pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -43,7 +43,7 @@ source=("http://repo.steampowered.com/${_pkgname}/pool/${_pkgname}/s/${_pkgname}
         'steam-clean'
         '51-steam.rules'
         '80-steam-controller-permission.rules')
-sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
+sha256sums=('bf766db05fcc3a8079e7e514accfbd2503813a3c70ff8336aa93e554ed7719be'
             '87b9e9f74709a43fb8424d7bb3074fb576f72c56d78a045e3b4ed4719600b0fa'
             '174a110eda1c9d5b1c92a4490b266b31918559bbf8292a94905221c92da4bc0e'
             '449532fd8e8d9c55d1b0f98b98855829453d1ec9ea53e82a00e065e17d23bf58'
@@ -52,7 +52,7 @@ sha256sums=('be6388c0ab36799d6173276ac75b4d92c6623a53d901395c9fc1963cfd245573'
             'd5b1e77861e92bb43405f25394c0b5d4e5e0cb04b8527ad3e813af9595468756'
             '9acc9a8952018654e696619b33cd94c351d89a996c082855d723a5f3d9cec8a9'
             '12d6d0a96e66f10eaeee94ddb6d1048c0e40a8132521fa7b00b844d6454d641c'
-            'd7202a025a847e938ec04accf46a40c3d63464a9340f0c4979bbd2ba9ded30af')
+            '99123198a5c15b23102e8b0f8349de498b25331f6803b2f8c02f804f26470588')
 
 if [[ "$CARCH" == "x86_64" ]]; then
 prepare() {

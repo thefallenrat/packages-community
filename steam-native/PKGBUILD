@@ -2,8 +2,8 @@
 # Native config contribution: Manuel Hüsers <manuel.huesers@uni-ol.de>
 pkgname=steam-native
 _pkgname=steam
-pkgver=1.0.0.50
-pkgrel=21
+pkgver=1.0.0.51
+pkgrel=1
 pkgdesc="Native library launcher and dependencies for Steam. Will not work with discrete GPU and proprietary drivers. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -17,7 +17,7 @@ depends_x86_64+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'li
          'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
          'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
          'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev')
-depends_i686=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
+depends_i686+=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
          'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
          'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev' 'libxss')
 
