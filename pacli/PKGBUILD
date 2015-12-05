@@ -10,9 +10,9 @@ license=MIT
 depends=('bash'
 	'downgrade'
 	'pacman'
-	'pmenu'
+	'fzf'
 	'sudo'
-        'update-notifier'
+	'update-notifier'
 	'yaourt')
 makedepends=('git')
 source=("git://github.com/Manjaro-Pek/$pkgname")
