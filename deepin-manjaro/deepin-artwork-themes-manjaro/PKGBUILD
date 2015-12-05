@@ -4,7 +4,7 @@
 
 _pkgname=deepin-artwork-themes
 pkgname=$_pkgname-manjaro
-pkgver=20151202
+pkgver="$(date +'%Y%m%d')"
 _snapshot=d701c14f598ec687b04587e5bb3fa0e0a95196ec
 pkgrel=1
 pkgdesc='Default artwork themes for Manjaro-Deepin'
