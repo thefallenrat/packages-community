@@ -3,37 +3,37 @@
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
 _pkgname=thermal_daemon
-_git="d9e676ceeb397596266efbd5fd24a2333f915ee1" # thermal_daemon 1.4.3 + d9e676ce
+_gitcommit=0b7a49e # https://github.com/01org/thermal_daemon/commit/0b7a49e02560374c5593a10189adc732e324cabf
 pkgname=thermald
 pkgver=1.4.3
-pkgrel=2
+pkgrel=3
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
-url="https://github.com/01org/thermal_daemon"
+url="https://github.com/01org/${_pkgname}"
 license=('GPL2')
 makedepends=('systemd')
 depends=('dbus-glib>=0.94' 'libxml2>=2.4')
+conflicts=('thermald-git')
 backup=('etc/thermald/thermal-conf.xml')
-source=("${pkgname}-${pkgver}-${pkgrel}.tar.gz::${url}/archive/${_git}.tar.gz"
-        'modules-load-thermald.conf')
-sha256sums=('355457df086cfb6c5735fa4907688ddd0316728c17c48898802a2ea7e990c8d5'
-            '0155e1eb459306d251a5a049ffc6c11e144fa8caa75901ac5fa20bd52e05d515')
+source=("git+${url}.git#commit=${_gitcommit}")
+md5sums=('SKIP')
           
 build() {
-  cd "${srcdir}/${_pkgname}-${_git}"
-  ./autogen.sh
-  ./configure --prefix=/usr \
-              --sysconfdir=/etc \
-              --sbindir=/usr/bin
-  make
+    cd ${_pkgname}
+    ./autogen.sh
+    ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin
+    make
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}-${_git}"
-  make DESTDIR="${pkgdir}" install
-  mkdir -p "${pkgdir}/usr/lib/modules-load.d"
-  install -m644 "${srcdir}/modules-load-thermald.conf" "${pkgdir}/usr/lib/modules-load.d/thermald.conf"
-
-  # Remove upstart
-  rm -rf "${pkgdir}/etc/init"
+    cd ${_pkgname}
+    make DESTDIR="$pkgdir" install
+    mkdir -p ${pkgdir}/etc/{systemd/system/thermald.service.d,modules-load.d}
+    echo 'msr' > ${pkgdir}/etc/modules-load.d/thermald.conf
+    # disable debug info in journal logs
+    # Reference: https://www.reddit.com/r/archlinux/comments/3okrhl/thermald_anyone/cw0fqmb
+    bash -c "{
+    echo \"[Service]\"
+    echo \"StandardOutput=null\"
+    } > ${pkgdir}/etc/systemd/system/thermald.service.d/nostdout.conf"
 }
