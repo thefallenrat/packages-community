@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plymouth-theme-manjaro-deepin
-pkgver=1.4
+pkgver=1.5
 pkgrel=1
 pkgdesc="Plymouth theme for Manjaro-Deepin"
 repo="plymouth-themes-manjaro"
