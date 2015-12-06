@@ -6,7 +6,7 @@
 pkgname=brltty-sonar
 _pkgname=brltty
 pkgver=5.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Braille display driver for Linux/Unix"
 arch=(i686 x86_64)
 url="http://mielke.cc/brltty"
@@ -14,7 +14,10 @@ license=(GPL LGPL)
 provides=brltty
 conflicts=brltty
 depends=(libxaw gpm icu tcl cython bluez-libs)
-makedepends=(at-spi2-core tcl)
+makedepends=('at-spi2-core'
+	'espeak'
+	'speech-dispatcher'
+	'tcl')
 optdepends=('at-spi2-core: X11/GNOME Apps accessibility'
             'atk: ATK bridge for X11/GNOME accessibility')
 backup=(etc/brltty.conf)
