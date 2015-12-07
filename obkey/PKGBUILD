@@ -3,8 +3,8 @@
 # Contributor: Wido <widomaker2k7@gmail.com>
 
 pkgname=obkey
-pkgver=1.0
-pkgrel=4
+pkgver=1.0.11
+pkgrel=1
 pkgdesc='Openbox Key Editor'
 arch=('any')
 url="http://code.google.com/p/obkey"
@@ -12,13 +12,21 @@ depends=('python2' 'pygtk')
 license=('GPL')
 conflicts=('obkey-git')
 replaces=('obkey-dev')
-source=(http://obkey.googlecode.com/files/$pkgname-$pkgver.tar.gz)
-md5sums=('fd11d473d79055af1e68f40c354d233b')
-
-package() {
-  cd "$srcdir"/$pkgname-$pkgver
-
-  python2 setup.py install --root="$pkgdir"
+makedepends=('git')
+source=("git+https://github.com/stevenhoneyman/obkey.git")
+md5sums=('SKIP')
+ 
+pkgver() {
+	cd "$srcdir/obkey"
+	git describe --tags | sed "s/^v//;s/-/./g"
 }
-
-# vim:set ts=2 sw=2 et:
+ 
+package() {
+	cd $srcdir/obkey
+	install -Dm755 obkey "$pkgdir"/usr/bin/obkey
+	install -Dm755 obkey_classes.py "$pkgdir"/usr/lib/python2.7/site-packages/obkey_classes.py
+	mkdir -p "$pkgdir"/usr/share/obkey/icons/
+	install -Dm644 icons/add_{child,sibling}.png "$pkgdir"/usr/share/obkey/icons/
+	mkdir -p "$pkgdir"/usr/share/applications/
+	install -Dm644 misc/obkey.desktop "$pkgdir"/usr/share/applications/
+}
