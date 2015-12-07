@@ -13,7 +13,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/QtCurve/${pkgbase}"
 license=('LGPL')
 groups=('qtcurve')
-makedepends=(cmake automoc4 git gtk2 qt4 qt5-{svg,x11extras})
+makedepends=(cmake automoc4 git gtk2 qt4 qt5-{svg,x11extras} kdebase-runtime)
 source=("${pkgbase}::git://anongit.kde.org/${pkgbase}.git")
 md5sums=('SKIP')
 
