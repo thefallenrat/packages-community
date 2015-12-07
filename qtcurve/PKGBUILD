@@ -1,0 +1,68 @@
+# Maintainer: FadeMind <fademind@gmail.com>
+# Contributor: speps <speps at aur dot archlinux dot org>
+# Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Pierre Schmitz <pierre@archlinux.de>
+
+pkgbase=qtcurve
+pkgname=('qtcurve-utils' 'qtcurve-gtk2' 'qtcurve-qt4' 'qtcurve-qt5')
+pkgver=1.8.18.r244.g330bfa5
+pkgrel=1
+pkgdesc="The QtCurve style engine ready for Plasma 5"
+arch=('i686' 'x86_64')
+url="https://github.com/QtCurve/${pkgbase}"
+license=('LGPL')
+groups=('qtcurve')
+makedepends=(cmake automoc4 gtk2 qt4 qt5-{svg,x11extras})
+source=("${pkgbase}::git://anongit.kde.org/${pkgbase}.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd ${pkgbase}
+    git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    cd ${pkgbase}
+    rm -rf build
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release \
+             -DCMAKE_INSTALL_PREFIX=/usr
+    make
+}
+
+package_qtcurve-utils() {
+    depends=('libx11')
+    conflicts="qtcurve-utils=1.8.18-3 qtcurve-kde4 qtcurve-utils-git"
+    replaces="qtcurve-utils=1.8.18-3"
+    provides="qtcurve-utils=1.8.18.r244.g330bfa5-1"
+    cd ${pkgbase}/build/lib/utils
+    make DESTDIR="$pkgdir" install
+}
+
+package_qtcurve-gtk2() {
+    depends=('qtcurve-utils=1.8.18.r244.g330bfa5-1' 'gtk2')
+    replaces="qtcurve-gtk2=1.8.18-3"
+    conflicts="qtcurve-gtk2=1.8.18-3 qtcurve-gtk2-git"
+    cd ${pkgbase}/build/gtk2
+    make DESTDIR="$pkgdir" install
+    cd ../lib/cairo
+    make DESTDIR="$pkgdir" install
+}
+
+package_qtcurve-qt4() {
+    depends=('qtcurve-utils' 'qt4')
+    replaces="qtcurve-qt4=1.8.18-3"
+    conflicts="qtcurve-qt4=1.8.18-3 qtcurve-qt4-git"
+    cd ${pkgbase}/build/qt4
+    make DESTDIR="$pkgdir" install
+}
+
+package_qtcurve-qt5() {
+    depends=('qtcurve-utils' 'qt5-svg' 'qt5-x11extras')
+    conflicts="qtcurve-qt5=1.8.18-3 qtcurve-qt5-git"
+    provides="qtcurve-qt5=1.8.18-3"
+    cd ${pkgbase}/build/qt5
+    make DESTDIR="$pkgdir" install
+}
