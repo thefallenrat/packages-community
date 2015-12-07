@@ -34,17 +34,14 @@ build() {
 
 package_qtcurve-utils() {
     depends=('libx11')
-    conflicts="qtcurve-utils=1.8.18-3 qtcurve-kde4 qtcurve-utils-git"
-    replaces="qtcurve-utils=1.8.18-3"
-    provides="qtcurve-utils=1.8.18.r244.g330bfa5-1"
+    conflicts=('qtcurve-utils=1.8.18-3' 'qtcurve-utils-git' 'qtcurve-kde4')
     cd ${pkgbase}/build/lib/utils
     make DESTDIR="$pkgdir" install
 }
 
 package_qtcurve-gtk2() {
     depends=('qtcurve-utils=1.8.18.r244.g330bfa5-1' 'gtk2')
-    replaces="qtcurve-gtk2=1.8.18-3"
-    conflicts="qtcurve-gtk2=1.8.18-3 qtcurve-gtk2-git"
+    conflicts=('qtcurve-gtk2=1.8.18-3' 'qtcurve-gtk2-git')
     cd ${pkgbase}/build/gtk2
     make DESTDIR="$pkgdir" install
     cd ../lib/cairo
@@ -52,17 +49,15 @@ package_qtcurve-gtk2() {
 }
 
 package_qtcurve-qt4() {
-    depends=('qtcurve-utils' 'qt4')
-    replaces="qtcurve-qt4=1.8.18-3"
-    conflicts="qtcurve-qt4=1.8.18-3 qtcurve-qt4-git"
+    depends=('qtcurve-utils=1.8.18.r244.g330bfa5-1' 'qt4')
+    conflicts=('qtcurve-qt4=1.8.18-3' 'qtcurve-qt4-git')
     cd ${pkgbase}/build/qt4
     make DESTDIR="$pkgdir" install
 }
 
 package_qtcurve-qt5() {
-    depends=('qtcurve-utils' 'qt5-svg' 'qt5-x11extras')
-    conflicts="qtcurve-qt5=1.8.18-3 qtcurve-qt5-git"
-    provides="qtcurve-qt5=1.8.18-3"
+    depends=('qtcurve-utils=1.8.18.r244.g330bfa5-1' 'qt5-svg' 'qt5-x11extras')
+    conflicts=('qtcurve-qt5=1.8.18-3' 'qtcurve-qt5-git')
     cd ${pkgbase}/build/qt5
     make DESTDIR="$pkgdir" install
 }
