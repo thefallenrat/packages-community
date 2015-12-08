@@ -1,6 +1,5 @@
 post_install() {
-  echo "Discrete GPU + proprietary drivers won't work in native mode"
-  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054 for info"
 }
 
 pre_install(){
@@ -9,8 +8,7 @@ pre_install(){
 }
 
 post_upgrade() {
-  echo "Discrete GPU + proprietary drivers won't work in native mode"
-  echo "Check https://forum.manjaro.org/index.php?topic=16054.msg149783 for info"
+  echo "Check https://forum.manjaro.org/index.php?topic=16054 for info"
 }
 
 pre_upgrade(){
@@ -21,5 +19,10 @@ pre_upgrade(){
 post_remove() {
   update-desktop-database -q
   gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+  # Lib replacement
+	  msg "Replacing Steam runtime libraries with originals"
+	  rm /var/lib/pacman/db.lck &> /dev/null
+	  pacman --noconfirm -Rdd lib32-libgudev-steamruntime lib32-libusb-steamruntime
+	  pacman --noconfirm -S --force lib32-libgudev lib32-libusb
 }
 
