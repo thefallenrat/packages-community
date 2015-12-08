@@ -5,7 +5,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.51
-pkgrel=2
+pkgrel=3
 pkgdesc="Digital distribution client bootstrap package. Includes common game depends. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
