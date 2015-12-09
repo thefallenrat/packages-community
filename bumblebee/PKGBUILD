@@ -4,7 +4,7 @@
 
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=7
+pkgrel=8
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 depends=('primus' 'glib2' 'mesa-libgl')
@@ -24,11 +24,14 @@ license=("GPL3")
 backup=('etc/bumblebee/bumblebee.conf' 
         'etc/bumblebee/xorg.conf.nouveau' 
         'etc/bumblebee/xorg.conf.nvidia')
-source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz" "bb_hexadicimal_bug699.patch")
+source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
+        "bb_hexadicimal_bug699.patch"
+        "bb_nvidia_modeset-detection_bug699.patch")
 md5sums=('30974e677bb13e8a3825fd6f3e7d3b24'
-         '09d3c01ad86d92e51ec14a67f4a92c2a')
+         '09d3c01ad86d92e51ec14a67f4a92c2a'
+         '92c5aa0bfa39e41b0092362e555e93de')
 
-build() {
+prepare() {
     # Hard workaround for unload nvidia_nomodeset module.
     # Reference: https://github.com/arafey/Bumblebee/commit/5636b24fa86a005a5d2e30bd794516db13ccba56
     # https://github.com/Bumblebee-Project/Bumblebee/issues/699
@@ -36,6 +39,12 @@ build() {
     # in one patch file
     patch -p1 -i ${srcdir}/bb_hexadicimal_bug699.patch
     
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    patch -p1 -i ${srcdir}/bb_nvidia_modeset-detection_bug699.patch
+}
+
+build() {    
     cd "${srcdir}/${pkgname}-${pkgver}"
 
     ./configure \
