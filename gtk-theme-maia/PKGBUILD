@@ -3,8 +3,8 @@
 
 pkgname=gtk-theme-maia
 pkgver=5.5.0
-pkgrel=1
-_gitcommit=7f7cd50ac1bfad6d7f7d5a8c07b51d2f6a29ec81
+pkgrel=2
+_gitcommit=a0ddd08843e14bfcf376a634e3df1b9dc3affb9b
 pkgdesc="Maia widget theme for GTK 2 and 3"
 arch=(any)
 url='https://github.com/manjaro/artwork-maia-gtk'
@@ -12,7 +12,7 @@ license=(LGPL)
 makedepends=(extra-cmake-modules)
 conflicts=(gnome-themes-maia)
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('4057389b81c1353732edf86aa35a071c')
+md5sums=('8f60c689560fd0e26eac85489eee63c4')
 
 prepare(){
   mv $srcdir/artwork-maia-gtk-$_gitcommit $srcdir/$pkgname
