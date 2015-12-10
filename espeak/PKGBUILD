@@ -5,6 +5,7 @@
 pkgname=espeak
 pkgver=1.48.15
 pkgrel=4
+_git=c885d1543e40df00fa5808785e2d7c1ad680b0d3
 pkgdesc='Text to Speech engine for high quality English, with support for other languages'
 arch=('x86_64' 'i686')
 url="https://github.com/rhdunn/$pkgname"
@@ -13,8 +14,24 @@ depends=('portaudio'
 	'libpulse'
 	'wxgtk')
 options=('!emptydirs')
-source=("$url/archive/$pkgver.tar.gz")
-md5sums=('50108abc0d674ded73edd0e2d83003dc')
+#source=("$url/archive/$pkgver.tar.gz")
+source=("$pkgver-$pkgrel.tar.gz::$url/archive/$_git.tar.gz")
+md5sums=('77e791d3b646ba8342921bcfaa3de180')
+
+prepare() {
+  if [ -e $pkgname-$_git ]; then
+     mv $pkgname-$_git $pkgname-$pkgver
+  fi
+
+  # disable broken dictionaries
+  cd $pkgname-$pkgver
+  rm -v dictsource/hu_*
+  rm -v dictsource/lfn_*
+  touch dictsource/hu_list
+  touch dictsource/hu_rules
+  touch dictsource/lfn_list
+  touch dictsource/lfn_rules
+}
 
 build() {
   cd $pkgname-$pkgver
