@@ -4,7 +4,7 @@
 
 pkgname=espeak
 pkgver=1.48.15
-pkgrel=3
+pkgrel=4
 pkgdesc='Text to Speech engine for high quality English, with support for other languages'
 arch=('x86_64' 'i686')
 url="https://github.com/rhdunn/$pkgname"
