@@ -3,7 +3,7 @@
 
 pkgname=thunderbird-kde
 pkgver=38.4.0
-pkgrel=1
+pkgrel=2
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone Mail/News reader"
 arch=('i686' 'x86_64')
@@ -20,8 +20,7 @@ conflicts=('thunderbird' 'thunderbird-kde-opensuse')
 install=thunderbird.install
 # For patch look here: https://build.opensuse.org/package/show/mozilla:Factory/MozillaThunderbird
 _patchrev=255a6c12c85f
-#_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
-_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
+_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.bz2
         mozconfig
         thunderbird.desktop
