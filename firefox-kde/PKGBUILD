@@ -5,7 +5,7 @@
 pkgname=firefox-kde
 _pkgname=firefox
 pkgver=42.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
@@ -24,7 +24,7 @@ provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_patchrev=ee3c462047d5
+_patchrev=2e9f984bca7f
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 #_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
