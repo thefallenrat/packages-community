@@ -3,7 +3,7 @@
 
 pkgname=fbmenugen
 pkgver=0.76
-pkgrel=1
+pkgrel=2
 pkgdesc="A simple menu generator for the Fluxbox Window Manager."
 arch=any
 url=https://github.com/trizen/$pkgname
