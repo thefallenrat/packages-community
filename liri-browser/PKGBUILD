@@ -16,7 +16,7 @@ install=$pkgname.install
 source=("$pkgname::git+https://github.com/liri-project/liri-browser.git"
         "liri-browser.sh" "liri-browser.desktop" "$pkgname.install")
 sha256sums=('SKIP'
-            '99a40bfa09714058bb4c4c459267b60d18a8980114c3b88066d1462052aa3d93'
+            '8b3d89676e36de8f8061632d15a58f239d782ae18e2fd0ba63f983fe05b5bea7'
             'b4d6d873065113430170981ade78f2a85a07c3764f4476c6c3bfe281de10f088'
             'd63c805a874d8fcb93125bf3f648600ab77bc7dc5d3eaa296e22a81fb0733137')
 
