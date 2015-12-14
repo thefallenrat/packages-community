@@ -9,7 +9,7 @@
 pkgname=dmenu-manjaro
 _pkgname=dmenu
 pkgver=4.6
-pkgrel=1
+pkgrel=2
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 license=('MIT')
@@ -24,8 +24,8 @@ source=(http://dl.suckless.org/tools/$_pkgname-$pkgver.tar.gz
 	dmenu_recency
 	dmenurc)
 md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
-         '8dac93bc24689089e29e1f129470fba5'
-         'ecd9f5c6a70850e157ad34fffa7d91bc'
+         '0e7946b11aba7e445fb0f97431a332da'
+         '90ace6ce00d5eca669cb6039583413fe'
          '75ce132d2f30208b7cdef0d70339bae2'
          '584eef3b98587b4653b8231f7e991ee4'
          '24c8fdfa957c41eee741379173f6bd0d')

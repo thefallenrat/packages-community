@@ -3,7 +3,7 @@ index d3ab805..5301910 100644
 --- a/dmenu.1
 +++ b/dmenu.1
 @@ -54,6 +54,24 @@ dmenu matches menu items case insensitively.
- .BI \-lh " height"
+ .BI \-h " height"
  dmenu uses a menu line of at least 'height' pixels tall, but no less than 8.
  .TP
 +.BI \-x " xoffset"
@@ -68,8 +68,8 @@ index a07f8e3..9e0c51c 100644
  usage(void)
  {
  	fputs("usage: dmenu [-b] [-f] [-i] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
--	      "             [-lh line-height]\n"
-+	      "             [-lh line-height] [-x xoffset] [-y yoffset] [-w width]\n"
+-	      "             [-h height]\n"
++	      "             [-h height] [-x xoffset] [-y yoffset] [-w width]\n"
  	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-v]\n", stderr);
  	exit(1);
  }
