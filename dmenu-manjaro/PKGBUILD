@@ -8,8 +8,8 @@
 
 pkgname=dmenu-manjaro
 _pkgname=dmenu
-pkgver=4.5.1
-pkgrel=2
+pkgver=4.6
+pkgrel=1
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 license=('MIT')
@@ -17,34 +17,33 @@ depends=('sh' 'libxinerama' 'libxft' 'cantarell-fonts')
 conflicts=('dmenu' 'dmenu-xft')
 provides=('dmenu' 'dmenu-xft')
 install=$pkgname.install
-source=(http://dl.suckless.org/tools/$_pkgname-${pkgver%.*}.tar.gz
-	dmenu-4.5-xft-width-xy.diff
-	dmenu-4.5-mouse-support.diff
-	dmenu-4.5-height.diff
+source=(http://dl.suckless.org/tools/$_pkgname-$pkgver.tar.gz
+	dmenu-4.6-line-height-manjaro.diff
+	dmenu-4.6-xyw-manjaro.diff
+	dmenu-4.6-mouse-support-msel-manjaro.diff
 	dmenu_recency
 	dmenurc)
-md5sums=('9c46169ed703732ec52ed946c27d84b4'
-         '8940e6146e71188b6ac0bb2c4414b4e6'
-         'eeec3e11ff68f27ebbc3133ad6549f56'
-         'c01bbe49e7a0da28b3347f06a8e971aa'
+md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
+         '8dac93bc24689089e29e1f129470fba5'
+         'ecd9f5c6a70850e157ad34fffa7d91bc'
+         '75ce132d2f30208b7cdef0d70339bae2'
          '584eef3b98587b4653b8231f7e991ee4'
          '24c8fdfa957c41eee741379173f6bd0d')
 
 prepare() {
-	cd $srcdir/$_pkgname-${pkgver%.*}
-	patch -p1 < ../dmenu-4.5-xft-width-xy.diff
-	patch -p1 < ../dmenu-4.5-mouse-support.diff
- 	patch -p1 < ../dmenu-4.5-height.diff
+	cd $srcdir/$_pkgname-$pkgver
+	patch -p1 < ../dmenu-4.6-line-height-manjaro.diff
+	patch -p1 < ../dmenu-4.6-xyw-manjaro.diff
+	patch -p1 < ../dmenu-4.6-mouse-support-msel-manjaro.diff
 }
 build() {
-	cd $srcdir/$_pkgname-${pkgver%.*}
-	make \
-	X11INC=/usr/include/X11 \
-	X11LIB=/usr/lib/X11
+	cd $_pkgname-$pkgver
+	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 FREETYPEINC=/usr/include/freetype2
 }
+
 package() {
-	cd $srcdir/$_pkgname-${pkgver%.*}
-	make PREFIX=/usr DESTDIR=$pkgdir install
+	cd $_pkgname-$pkgver
+	make PREFIX=/usr DESTDIR="$pkgdir" install
 	install -Dm755 "$srcdir/dmenu_recency" "$pkgdir/usr/bin/dmenu_recency"
 	install -Dm755 "$srcdir/dmenurc" "$pkgdir/usr/share/$_pkgname/dmenurc"
 	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
