@@ -1,38 +1,52 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Contributor: Thorsten Töpper <atsutane-tu@freethoughts.de>
+# Maintainer: Thorsten Töpper <atsutane-tu@freethoughts.de>
 
-pkgname=i3status-manjaro
-pkgver=2.9
-pkgrel=4
+_pkgname=i3status
+pkgname=$_pkgname-manjaro
+pkgver=2.9.r80.g395d025
+pkgrel=1
 pkgdesc='customized status bar for manjaro-i3, dzen2 or xmobar'
 arch=('i686' 'x86_64')
-url='http://i3.zekjur.net/i3status/'
+url='http://github.com/i3/i3status'
 license=('BSD')
-groups=('i3')
-depends=('i3-wm'
-	'wireless_tools'
+depends=('alsa-lib'
 	'confuse'
-	'alsa-lib'
-	'yajl'
-	'ttf-font-icons')
+	'libpulse'
+	'libnl'
+	'ttf-font-icons'
+	'wireless_tools'
+	'yajl')
+makedepends=('asciidoc'
+	'git'
+	'pkgconfig')
+options=('docs')
 conflicts=('i3status')
 provides=('i3status')
-makedepends=('asciidoc'
-	'git')
 backup=('etc/i3status.conf')
 install=$pkgname.install
-options=('docs')
-source=("git://github.com/oberon2007/$pkgname.git")
-md5sums=('SKIP')
+source=("git+$url.git"
+	'manjaro.diff')
+md5sums=('SKIP'
+         '6ccabe890aa5a1c66f6f344c4927b0e0')
+
+pkgver() {
+  cd "$_pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "/$srcdir/$_pkgname"
+  patch -p0 < ../manjaro.diff
+}
 
 build() {
-  cd "$srcdir/$pkgname"
+  cd "$_pkgname"
   make
 }
 
 package() {
-  cd "$srcdir/$pkgname"
+  cd "$_pkgname"
   make DESTDIR="$pkgdir" install
-  install -Dm644 LICENSE $pkgdir/usr/share/licenses/i3status/LICENSE
+  install -Dm644 LICENSE $pkgdir/usr/share/licenses/${_pkgname}/LICENSE
   make clean
 }
