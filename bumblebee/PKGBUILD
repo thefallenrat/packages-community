@@ -5,7 +5,7 @@
 
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=9
+pkgrel=10
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 install=bumblebee.install
 arch=('i686' 'x86_64')
