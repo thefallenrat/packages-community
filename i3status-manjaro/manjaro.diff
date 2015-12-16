@@ -1,0 +1,106 @@
+--- i3status.conf.orig	2015-12-15 12:10:56.841781000 +0100
++++ i3status.conf	2015-12-15 12:25:48.307317635 +0100
+@@ -9,49 +9,71 @@
+ general {
+         colors = true
+         interval = 5
+-}
++	color_good = "#2ECC71"
++        color_bad = "#E74C3C"
++#	color_degraded = " "
++	}
+ 
+-order += "ipv6"
++order += "cpu_usage"
++# order += "load"
+ order += "disk /"
+-order += "run_watch DHCP"
+-order += "run_watch VPN"
++# order += "disk /home"
+ order += "wireless _first_"
+ order += "ethernet _first_"
+-order += "battery 0"
+-order += "load"
++order += "battery 1"
+ order += "tztime local"
++# order += "ipv6"
++# order += "run_watch DHCP"
++# order += "run_watch VPN"
+ 
+-wireless _first_ {
+-        format_up = "W: (%quality at %essid) %ip"
+-        format_down = "W: down"
++cpu_usage {
++format = " cpu  %usage "
+ }
+-
+-ethernet _first_ {
+-        # if you use %speed, i3status requires root privileges
+-        format_up = "E: %ip (%speed)"
+-        format_down = "E: down"
++load {
++format = " load %1min "
++# max_threshold = 0.3
+ }
+-
+-battery 0 {
+-        format = "%status %percentage %remaining"
++disk "/" {
++# format = " hdd %avail "
++format = " ⛁ %avail "
+ }
+-
+-run_watch DHCP {
+-        pidfile = "/var/run/dhclient*.pid"
++disk "/home" {
++format = " /home %avail "
+ }
+-
+-run_watch VPN {
+-        pidfile = "/var/run/vpnc/pid"
++wireless _first_ {
++# format_up = "W: (%quality at %essid) %ip"
++format_up = "  %essid %quality "
++format_down = " no wlan "
+ }
+-
+-tztime local {
+-        format = "%Y-%m-%d %H:%M:%S"
++ethernet _first_ {
++# if you use %speed, i3status requires root privileges
++format_up = " lan: %ip %speed "
++format_down = " no lan "
++}
++battery 1 {
++#	format = "%status %percentage %remaining %emptytime"
++	format = " %status %percentage"
++	format_down = "No battery"
++	last_full_capacity = true
++	integer_battery_capacity = true
++#	status_chr = ""
++	status_chr = "⚡"
++	status_bat = ""
++#	status_bat = "bat"
++#	status_bat = "☉"
++#	status_full = ""
++	status_full = "☻"
++        low_threshold = 15
++	threshold_type = time
+ }
+-
+-load {
+-        format = "%1min"
++tztime local {
++#        format = "%Y-%m-%d %H:%M:%S"
++format = " %d.%m. %H:%M "
+ }
+ 
+-disk "/" {
+-        format = "%avail"
+-}
++# run_watch DHCP {
++#         pidfile = "/var/run/dhclient*.pid"
++# }
++# run_watch VPN {
++#         pidfile = "/var/run/vpnc/pid"
++# }

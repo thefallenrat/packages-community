@@ -1,0 +1,31 @@
+# Hard workaround for unload nvidia_nomodeset module.
+# Reference: https://github.com/arafey/Bumblebee/commit/5636b24fa86a005a5d2e30bd794516db13ccba56
+# https://github.com/Bumblebee-Project/Bumblebee/issues/699
+# Merged with: https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b
+
+diff --git a/bumblebee-3.2.1/src/bbsecondary.c b/bumblebee-3.2.1/src/bbsecondary.c
+--- a/bumblebee-3.2.1/src/bbsecondary.c
++++ b/bumblebee-3.2.1/src/bbsecondary.c
+@@ -138,7 +138,7 @@
+   if (!bb_is_running(bb_status.x_pid)) {
+     char pci_id[12];
+     static char *x_conf_file;
+-    snprintf(pci_id, 12, "PCI:%02x:%02x:%o", pci_bus_id_discrete->bus,
++    snprintf(pci_id, 12, "PCI:%02d:%02d:%o", pci_bus_id_discrete->bus,
+             pci_bus_id_discrete->slot, pci_bus_id_discrete->func);
+     if (!x_conf_file) {
+       x_conf_file = xorg_path_w_driver(bb_config.x_conf_file, bb_config.driver);
+diff --git a/bumblebee-3.2.1/src/module.c b/bumblebee-3.2.1/src/module.c
+--- a/bumblebee-3.2.1/src/module.c
++++ b/bumblebee-3.2.1/src/module.c
+@@ -96,7 +96,9 @@
+     int retries = 30;
+     bb_log(LOG_INFO, "Unloading %s driver\n", driver);
+     char *mod_argv[] = {
+-      "rmmod",
++      "modprobe",
++      "-r",
++      "nvidia_modeset",
+       driver,
+       NULL
+     };

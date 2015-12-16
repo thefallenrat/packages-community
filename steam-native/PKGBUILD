@@ -3,8 +3,8 @@
 pkgname=steam-native
 _pkgname=steam
 pkgver=1.0.0.51
-pkgrel=1
-pkgdesc="Native library launcher and dependencies for Steam. Will not work with discrete GPU and proprietary drivers. See https://forum.manjaro.org/index.php?topic=16054"
+pkgrel=3
+pkgdesc="Native library launcher and dependencies for Steam. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
 license=('GPL3')
@@ -20,6 +20,8 @@ depends_x86_64+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'li
 depends_i686+=('cracklib' 'dbus-glib' 'gconf' 'gtk2' 'js17' 'libgcrypt15' 'libnl' 'nss'
          'libpng12' 'libpulse' 'libsoup' 'libtirpc' 'libudev0' 'libusb' 'libvpx'
          'libxinerama' 'openal' 'pam' 'pango' 'polkit' 'libgudev' 'libxss')
+#Runtime compatibility libraries
+depends_x86_64+=('lib32-libgudev-steamruntime' 'lib32-libusb-steamruntime')
 
 provides=('steam-native')
 install=steam-native.install

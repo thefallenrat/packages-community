@@ -1,11 +1,13 @@
 # Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Roland Singer <roland@manjaro.org>
 # Maintainer: Philip Mueller <philm@manjaro.org>
+# Maintainer: FadeMind < fademind@gmail.com>
 
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=6
+pkgrel=10
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
+install=bumblebee.install
 arch=('i686' 'x86_64')
 depends=('primus' 'glib2' 'mesa-libgl')
 makedepends=('help2man')
@@ -25,26 +27,43 @@ backup=('etc/bumblebee/bumblebee.conf'
         'etc/bumblebee/xorg.conf.nouveau' 
         'etc/bumblebee/xorg.conf.nvidia')
 source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
-        'bumblebee-3.2.1-modprobe.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/1ada79fe5916961fc4e4917f8c63bb184908d986.patch'
-        "bumblebee-hexadecimal.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch")
+        "bb_hexadicimal_bug699.patch"
+        "bb_nvidia_modeset-detection_bug699.patch")
 md5sums=('30974e677bb13e8a3825fd6f3e7d3b24'
-         '7c19d51712896b2fc2d349fc7569f8cf'
-         'd0a7d504a717e34b05fb4bc9ee68f881')
+         '09d3c01ad86d92e51ec14a67f4a92c2a'
+         '92c5aa0bfa39e41b0092362e555e93de')
 
 prepare() {
+    ###############################################################################################################################
+    # Issue #699                                                                                                                  #
+    #-----------------------------------------------------------------------------------------------------------------------------#
+    # Dirty fix for issue #699 version improved This should fix issue #699 without causing any problems for non-affected users.   #
+    # It should correctly detect if nvidia and nvidia_modeset are loaded, unload nvidia_modeset using modprobe -r nvidia_modeset  #
+    # (this also unloads nvidia), and log errors (as before). If it doesn't detect nvidia_modeset but detects "driver",           #
+    # then it will unload the detected driver just like before, except it does so using modprobe -r "driver" for consistency.     #
+    # https://github.com/Bumblebee-Project/Bumblebee/issues/699                                                                   #
+    # https://github.com/arafey/Bumblebee/commit/09d537e8e5313cd0f2c7bf6620ca70454de8a04a                                         #
+    ###############################################################################################################################
+    # Issue #573                                                                                                                  #
+    #-----------------------------------------------------------------------------------------------------------------------------#
+    # Fix devices with a bus larger than 9 (GH-573)                                                                               #
+    # The `-isolateDevice` option accepts a PCI ID in decimal format, not hex.                                                    #
+    # https://github.com/Bumblebee-Project/Bumblebee/issues/573                                                                   #
+    # https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b                              #
+    ###############################################################################################################################
+
+    patch -p1 -i ${srcdir}/bb_hexadicimal_bug699.patch
     cd "${srcdir}/${pkgname}-${pkgver}"
-    patch -p1 -i "${srcdir}/bumblebee-3.2.1-modprobe.patch"
-    patch -p1 -i "${srcdir}/bumblebee-hexadecimal.patch"
+    patch -p1 -i ${srcdir}/bb_nvidia_modeset-detection_bug699.patch
 }
 
-build() {
+build() {    
     cd "${srcdir}/${pkgname}-${pkgver}"
 
     ./configure \
         CONF_DRIVER_MODULE_NVIDIA=nvidia \
         CONF_LDPATH_NVIDIA=/usr/lib/nvidia:/usr/lib32/nvidia \
         CONF_MODPATH_NVIDIA=/usr/lib/nvidia/xorg/,/usr/lib/xorg/modules \
-        CONF_GID=users \
         --prefix=/usr \
         --sbindir=/usr/bin \
         --with-udev-rules=/usr/lib/udev/rules.d/ \
@@ -65,8 +84,5 @@ package() {
 
     # Make bash_completion work
     mv -v "${pkgdir}/etc/bash_completion.d/bumblebee" "${pkgdir}/etc/bash_completion.d/optirun"
-
-    # Adjust ServerGroup to users
-    sed -i "/#/!s|ServerGroup[ ]*=.*|ServerGroup=users|g" "${pkgdir}/etc/bumblebee/bumblebee.conf"
 }
 

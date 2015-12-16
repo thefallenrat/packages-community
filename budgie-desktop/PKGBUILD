@@ -2,7 +2,7 @@
 
 pkgname=budgie-desktop
 pkgver=8.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple GTK3 desktop experience"
 arch=('i686' 'x86_64')
 url="https://solus-project.com/budgie"

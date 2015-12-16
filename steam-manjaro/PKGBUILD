@@ -5,8 +5,8 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.51
-pkgrel=1
-pkgdesc="Digital distribution client bootstrap package. Implementation for bleeding edge Arch-based rolling systems. See https://forum.manjaro.org/index.php?topic=16054"
+pkgrel=3
+pkgdesc="Digital distribution client bootstrap package. Includes common game depends. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
 license=('custom')
@@ -19,9 +19,10 @@ depends_x86_64=('lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11')
 
 #Common game deps
 depends+=('wqy-microhei' 'sdl' 'sdl_image' 'sdl_mixer' 'sdl2' 'sdl2_image' 'tcp_wrappers' 'speex'
-         'gperftools' 'libcurl-gnutls')
+         'gperftools' 'libcurl-gnutls' 'rtmpdump')
 depends_x86_64+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'lib32-sdl2_image'
-         'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 'lib32-libcurl-gnutls')
+         'lib32-tcp_wrappers' 'lib32-speex' 'lib32-gperftools' 
+'lib32-libcurl-gnutls' 'lib32-rtmpdump')
 
 
 optdepends_i686=('flashplugin: for flash videos')

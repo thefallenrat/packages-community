@@ -1,0 +1,24 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-account-faces
+pkgver=1.0.9.20151210
+_commit=5d9d73271c73d975b301fd50c2ac3d8d7428c94e
+pkgrel=1.1
+pkgdesc='Account faces for Linux Deepin'
+arch=('any')
+license=('GPL3')
+url="https://github.com/oberon2007/$pkgname"
+makedepends=('git')
+conflicts=('dde-account-faces')
+replaces=('dde-account-faces')
+groups=('deepin')
+source=("git+$url.git#commit=$_commit")
+md5sums=('SKIP')
+
+package() {
+  cd $pkgname
+  make DESTDIR="${pkgdir}" install
+}

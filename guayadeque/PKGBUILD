@@ -1,72 +1,83 @@
 # $Id$
-# Maintainer: Maxime Gauduin <alucryd@archlinux.org>
+# Maintainer: Scott Furry <scott.wl.furry@gmail.com>
+# Contributor: Maxime Gauduin <alucryd@archlinux.org>
 # Contributor: Sial <sial@cpan.org>
 # Contributor: Martin Herndl <martin.herndl@gmail.com>
 
 pkgname=guayadeque
 pkgver=0.3.7
-pkgrel=2.1
+pkgrel=7
 pkgdesc='Lightweight music player'
 arch=('i686' 'x86_64')
 url='http://guayadeque.org/'
 license=('GPL3')
-depends=('curl' 'desktop-file-utils' 'libgpod' 'taglib' 'wxgtk2.8')
+depends=('curl' 'desktop-file-utils' 'libgpod' 'taglib' 'wxgtk' 'gdk-pixbuf2')
 makedepends=('cmake')
 optdepends=('gstreamer0.10-good-plugins: Support for additional file formats'
-            'gvfs: Support for external devices')
+			'gstreamer0.10-bad-plugins: Support for additional file formats'
+			'gstreamer0.10-ugly-plugins: Support for additional file formats'
+			'gvfs: Support for external devices')
 install='guayadeque.install'
-source=("https://github.com/Kirek/guayadeque/archive/${pkgver}.tar.gz"
-        'guayadeque-link.patch'
-        '0001-Fixed-some-Config-constructor-calls.patch::https://github.com/Kirek/guayadeque/commit/b247bebf9d187de2ee4f9f333d8c6473449f4122.patch'
-        '0002-Fix-play-stops-after-every-track-in-gapless-mode-bug.patch::https://github.com/Kirek/guayadeque/commit/f52143bfef7f50f2fccca956c55739e168b40021.patch'
-        '0003-Fix-recording-distorted-and-slow-bug.patch::https://github.com/Kirek/guayadeque/commit/be6822f1c03c5efa41fdf8939f59cf2a678667e2.patch'
-        '0004-Fix-crossfading-end-segfault.patch::https://github.com/Kirek/guayadeque/commit/a4e95e7fd5e1c85d976f4096256914fe7bc88a0d.patch')
-sha256sums=('e7d38b5f0e4081f43b3d8e666439bdd220b66cd3b5dd7117b90fb9a8c02344a5'
-            '9dea639f2464d2aceb0dd00786ba04a6c46e539d6eccc6468ab312f6de9321d4'
-            '5976831f00789543fe6b4cb77d31993fa087f3c43ab8f99a21e9ea7f381e99ee'
-            'b9d704929fb3900bd504f92dd6a1780b189121681963939d6a6317db65cd7812'
-            '9c5bcfdfcd1441931569cef233d0691b33d66545bde7ec26b03942151944d439'
-            'c0ceb89b3f428df8fcc11487c26985103096dcd50821dd286d3d653956855a79')
+source=("https://downloads.sourceforge.net/project/${pkgname}/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.bz2"
+        'guayadeque_01a_rev1891.patch'
+        'guayadeque_01b_rev1892.patch'
+        'guayadeque_01c_rev1893.patch'
+        'guayadeque_01d_rev1894.patch'
+        'guayadeque_02_pause_crash.patch'
+        'guayadeque_03_wx30.patch'
+        'guayadeque_04_wxcurl.patch'
+        'guayadeque_05_wxSqlite_upgrade.patch'
+        'guayadeque_06_pixbuf_link.patch'
+        'guayadeque_07_player_display_fix.patch'
+        'guayadeque_08_EditCrash.patch'
+        'guayadeque_09_gstreamer_deprecated.patch')
+sha256sums=('d23eb1247add0bef8d5fef834294d7cb3d7c5fc20db9022b86f618a13d359938'
+            '56ff5fae064fa421cb951a7c664550861e04ae4df8b692044e2a4785f238ce24'
+            '15b49c58be40a57ecb1d38e7055c1edc5aaf71e0164062cc5f2b8fb589530377'
+            '11f51be56bff7b3f1572df9e701ae4ee0c9f7d6324b9b78e0ab93da185eefad2'
+            'b4101860ee371f3d37329267ff71efcb2f3b117399997209197687d1864c6716'
+            'b0a17d8a4b69e5559966d84f9a517e268198a62ccbb178db78a4772b52d62e8f'
+            '52bc278567abbd88fc281cdbaa10427be2e28028cd8c307d58a718c061607f45'
+            'f6e8faedeac2ff47f6f2ea0ef3cb7737aafb9f7179b49313aac0f07b63783506'
+            '6bd07e63afe0aa7baf30b616d701e234fd1c304897053e3eb466acb2db818071'
+            '23d388711a17dc7e1487c740fd961ceb563a967d5866c5d5508865252be2d645'
+            'e2dbb71fc1d6118fa31d30f49382c16bb306130fc94118f3df9f0ea64c27ca0f'
+            'aaf355a3df930128da5c165b6ff07d06c3aa8ed4514522cc6a71e78634b5ee14'
+            'b9df9aad73ef4b78850dea00d1f123770b0b139eddeba614bc662756ebfc4c6e')
+BUILDFLDR='buildlocal'
 
 prepare() {
   cd guayadeque-${pkgver}
-  patch -Np1 -i ${srcdir}/0001-Fixed-some-Config-constructor-calls.patch
-  patch -Np1 -i ${srcdir}/0002-Fix-play-stops-after-every-track-in-gapless-mode-bug.patch
-  patch -Np1 -i ${srcdir}/0003-Fix-recording-distorted-and-slow-bug.patch
-  patch -Np1 -i ${srcdir}/0004-Fix-crossfading-end-segfault.patch
-
-  cd Trunk
-  patch -Np1 -i ${srcdir}/guayadeque-link.patch
-
-  sed -i 's/Exec=guayadeque %U/Exec=guayadeque --sync/g' guayadeque.desktop
-  
-  cd src
-  xgettext -d guayadeque -o guayadeque.pot -C --keyword=_ *.cpp
-  mv guayadeque.pot ../po
-
-  sed -i "s/0.3.5/0.3.7/g" Version.h.in
+  patch -Np0 -i ../guayadeque_01a_rev1891.patch
+  patch -Np0 -i ../guayadeque_01b_rev1892.patch
+  patch -Np0 -i ../guayadeque_01c_rev1893.patch
+  patch -Np0 -i ../guayadeque_01d_rev1894.patch
+  patch -Np0 -i ../guayadeque_02_pause_crash.patch
+  patch -Np0 -i ../guayadeque_03_wx30.patch
+  patch -Np0 -i ../guayadeque_04_wxcurl.patch
+  patch -Np0 -i ../guayadeque_05_wxSqlite_upgrade.patch
+  patch -Np0 -i ../guayadeque_06_pixbuf_link.patch
+  patch -Np0 -i ../guayadeque_07_player_display_fix.patch
+  patch -Np0 -i ../guayadeque_08_EditCrash.patch
+  patch -Np0 -i ../guayadeque_09_gstreamer_deprecated.patch
 }
 
 build() {
-  cd guayadeque-${pkgver}/Trunk
-
-  if [[ -d build || -f build ]]; then
-    rm -rf build
-  fi
-  mkdir build && cd build
+  cd guayadeque-${pkgver}
+  mkdir ${BUILDFLDR}
+  cd ${BUILDFLDR}
 
   cmake .. \
     -DCMAKE_BUILD_TYPE='Release' \
     -DCMAKE_INSTALL_PREFIX='/usr' \
-    -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc-2.8' \
-    -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config-2.8'
+    -DwxWidgets_wxrc_EXECUTABLE='/usr/bin/wxrc' \
+    -DwxWidgets_CONFIG_EXECUTABLE='/usr/bin/wx-config' \
+    -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations" \
+    -D_GUREVISION_:STRING="${pkgrel}"
   make
 }
 
 package() {
-  cd guayadeque-${pkgver}/Trunk/build
-
+  cd guayadeque-${pkgver}/${BUILDFLDR}
   make DESTDIR="${pkgdir}" install
 }
-
-# vim: ts=2 sw=2 et:
