@@ -9,12 +9,13 @@ url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
 depends=('awk'
 	'bash'
-	'brandr'
 	'elinks'
-	'mhwd-tui'
 	'pacli'
 	'sed'
 	'fzf')
+optdepends=(
+	'brandr'
+	'mhwd-tui')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
