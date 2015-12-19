@@ -4,8 +4,8 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=43.0
-pkgrel=2
+pkgver=43.0.1
+pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
@@ -47,7 +47,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         add_missing_pgo_rule.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('a5b16741dcce9344ca71e39e0efb0e7e1336ca5160cb9b6b12f8985f402d8fea'
+sha256sums=('b1f9173c6ddbd2bf868d94a815fde364bc37aa46a00981903fd1fe86a8f873d8'
             '29c7ffa84416139b1a1a9adb7a4aa4865fe9c5be40362e97840cbbd30b9c55b2'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
