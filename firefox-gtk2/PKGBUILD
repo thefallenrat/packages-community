@@ -1,19 +1,17 @@
-# Maintainer : Ramon Buldó <ramon@manjaro.org>
-# Contributor: Weng Xuetian <wengxt@gmail.com>
-# Contributor: Yegorius <yegorius@domic.us>
+# Maintainer : Philip Müller <philm@manjaro.org>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
+# Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
-pkgname=firefox-kde
-_pkgname=firefox
+pkgname=firefox-gtk2
 pkgver=43.0.1
 pkgrel=1
-pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
+pkgdesc="Standalone web browser from mozilla.org (GTK2 version)"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
-url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
+url="https://www.mozilla.org/firefox/"
 depends=('gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
          'dbus-glib' 'alsa-lib' 'desktop-file-utils' 'hicolor-icon-theme'
-         'libvpx' 'icu'  'libevent' 'nss' 'nspr' 'hunspell' 'sqlite' 
-         'libnotify' 'kmozillahelper' 'ttf-font')
+         'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 'sqlite' 'ttf-font')
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
              'xorg-server-xvfb' 'libpulse' 'inetutils' 'gst-plugins-base-libs')
 optdepends=('networkmanager: Location detection via available WiFi networks'
@@ -21,48 +19,23 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
             'gst-plugins-good: MP3 playback'
             'gst-plugins-ugly: MP3 playback'
             'upower: Battery API')
+conflicts=('firefox' 'firefox-kde')
 provides=("firefox=${pkgver}")
-conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_patchrev=de3a92aed259
-_patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
-#_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
-        mozconfig 
-        firefox.desktop 
-        firefox-install-dir.patch 
+        mozconfig
+        firefox.desktop
+        firefox-install-dir.patch
         vendor.js
-        kde.js 
-        firefox-fixed-loading-icon.png
-        # Firefox patchset
-        $_patchurl/firefox-branded-icons.patch
-        $_patchurl/firefox-kde.patch
-        $_patchurl/firefox-no-default-ualocale.patch
-        # Gecko/toolkit patchset
-        $_patchurl/mozilla-kde.patch
-        $_patchurl/mozilla-language.patch
-        $_patchurl/mozilla-nongnome-proxies.patch
-        unity-menubar.patch
-        add_missing_pgo_rule.patch
-        pgo_fix_missing_kdejs.patch)
-
+        firefox-fixed-loading-icon.png)
 sha256sums=('b1f9173c6ddbd2bf868d94a815fde364bc37aa46a00981903fd1fe86a8f873d8'
-            '29c7ffa84416139b1a1a9adb7a4aa4865fe9c5be40362e97840cbbd30b9c55b2'
+            '358a4acdd39561f4475581d6da91545cd72587e1db12326bf56673248670b74b'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
-            '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
-            '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213'
-            '72abd31e89a41cddbd8165b0b9555465184c52c426e0998c9cb7786af94b5532'
-            '2017e1f7a71e8c3563c11fa48cc96de864388ff4fa8a124da3c30ba6129565a2'
-            '02e92f84dd31ed079be3e67509cf23d0d351e06bb690fcc091c904d906d2d690'
-            'cffc199f0d4d684792e6dbeec106077f4a6ac4bdf406b4fc67d46b330c3b4169'
-            'ce1b7a5bb217c31590bce30653aea5139b6401a01eda7bded7fd2f83a23d397b'
-            'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
-            '5fd329439480d861eb37edcca47fb3e05801f5a48b4d6c2afa17fb4c71c65fa1'
-            'f9067f62a25a7a77276e15f91cc9e7ba6576315345cfc6347b1b2e884becdb0c'
-            '2c9c97bff07cc71b3f6d35f3edfaddaf8180a1f533ee4682adf18a8f86d29264')
+            '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213')
+validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
 
 # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
 # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -80,10 +53,10 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 
 prepare() {
-  cd $_pkgname-$pkgver
+  cd firefox-$pkgver
 
-  cp "$srcdir/mozconfig" .mozconfig
-  patch -Np1 -i "$srcdir/firefox-install-dir.patch"
+  cp ../mozconfig .mozconfig
+  patch -Np1 -i ../firefox-install-dir.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
@@ -93,25 +66,6 @@ prepare() {
 
   echo -n "$_mozilla_api_key" >mozilla-api-key
   echo "ac_add_options --with-mozilla-api-keyfile=\"$PWD/mozilla-api-key\"" >>.mozconfig
-
-
-  msg "Patching for KDE"
-  patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
-  patch -Np1 -i "$srcdir/mozilla-kde.patch"
-  patch -Np1 -i "$srcdir/mozilla-language.patch"
-
-  patch -Np1 -i "$srcdir/firefox-kde.patch"
-  patch -Np1 -i "$srcdir/firefox-no-default-ualocale.patch"
-  patch -Np1 -i "$srcdir/firefox-branded-icons.patch"
-
-  # Thaodan patches: https://github.com/Thaodan/thaopkgs/tree/master/firefox-kde-opensuse
-  msg "Add globalmenu support"
-  #patch -Np1 -i "$srcdir/unity-menubar.patch"  
-  msg "Add missing rule for pgo builds"
-  patch -Np1 -i "$srcdir/add_missing_pgo_rule.patch"
-  msg "Add missing file Makefile for pgo builds"
-  patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
-
 
   mkdir "$srcdir/path"
 
@@ -129,7 +83,7 @@ prepare() {
 }
 
 build() {
-  cd $_pkgname-$pkgver
+  cd firefox-$pkgver
 
   export PATH="$srcdir/path:$PATH"
   export PYTHON="/usr/bin/python2"
@@ -140,21 +94,15 @@ build() {
 }
 
 package() {
-  cd $_pkgname-$pkgver
-
-  [[ "$CARCH" == "i686" ]] && cp "$srcdir/kde.js" obj-i686-pc-linux-gnu/dist/bin/defaults/pref
-  [[ "$CARCH" == "x86_64" ]] && cp "$srcdir/kde.js" obj-x86_64-unknown-linux-gnu/dist/bin/defaults/pref
-
+  cd firefox-$pkgver
   make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
 
-  install -Dm644 "$srcdir/vendor.js" "$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
-  install -Dm644 "$srcdir/kde.js" "$pkgdir/usr/lib/firefox/browser/defaults/preferences/kde.js"
+  install -Dm644 ../vendor.js "$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
 
   for i in 16 22 24 32 48 256; do
       install -Dm644 browser/branding/official/default$i.png \
         "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/firefox.png"
   done
-
   install -Dm644 browser/branding/official/content/icon64.png \
     "$pkgdir/usr/share/icons/hicolor/64x64/apps/firefox.png"
   install -Dm644 browser/branding/official/mozicon128.png \
@@ -164,7 +112,8 @@ package() {
   install -Dm644 browser/branding/official/content/about-logo@2x.png \
     "$pkgdir/usr/share/icons/hicolor/384x384/apps/firefox.png"
 
-  install -Dm644 "$srcdir/firefox.desktop" "$pkgdir/usr/share/applications/firefox.desktop"
+  install -Dm644 ../firefox.desktop \
+    "$pkgdir/usr/share/applications/firefox.desktop"
 
   # Use system-provided dictionaries
   rm -rf "$pkgdir"/usr/lib/firefox/{dictionaries,hyphenation}
