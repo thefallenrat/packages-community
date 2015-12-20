@@ -1,0 +1,22 @@
+# Maintainer: Chrysostomus
+
+_profile=bspwm
+_user=Chrysostomus
+_snapshot=a0542463273cd45672eb296c10bbb8d86216f141
+
+pkgname="$_profile-wallpapers"
+pkgver="$(date +'%Y%m%d')"
+pkgrel=2
+pkgdesc="Wallpapers for $_profile"
+arch=any
+license=GPL3
+url=https://github.com
+source="$pkgname-$pkgver-$pkgrel.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
+
+md5sums=('SKIP')
+
+package() {
+	cd $srcdir/$pkgname-$_snapshot
+	install -dm755 $pkgdir/usr/share
+	cp -r backgrounds $pkgdir/usr/share
+}
