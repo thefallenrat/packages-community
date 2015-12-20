@@ -2,7 +2,7 @@
 
 _profile=bspwm
 _user=Chrysostomus
-_snapshot=3fc89b6032c5e487f7d270ed04e3ced84adb2ce0
+_snapshot=a0542463273cd45672eb296c10bbb8d86216f141
 
 pkgname="$_profile-wallpapers"
 pkgver="$(date +'%Y%m%d')"
