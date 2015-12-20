@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ ! -f /usr/bin/compiz ]; then
-   xfwm4 --daemon
-   rm ~/.config/autostart/compiz-xfce-uninstall-helper.desktop
-   rm ~/.local/bin/compiz-xfce-uninstall-helper
-fi
