@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 147165 2015-11-19 18:39:15Z seblu $
+# $Id: PKGBUILD 153734 2015-12-19 22:57:12Z seblu $
 # Maintainer: Sébastien "Seblu" Luttringer
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
@@ -10,7 +10,7 @@ pkgname=('virtualbox'
          'virtualbox-guest-utils'
          'virtualbox-guest-utils-nox'
          'virtualbox-ext-vnc')
-pkgver=5.0.10
+pkgver=5.0.12
 pkgrel=0.1
 arch=('i686' 'x86_64')
 url='http://virtualbox.org'
@@ -66,7 +66,7 @@ source=("http://download.virtualbox.org/virtualbox/$pkgver/VirtualBox-$pkgver.ta
         '007-python2-path.patch'
         '010-no-update.patch'
         )
-md5sums=('b978c28a021d637489beb23f7b1380e2'
+md5sums=('5912835882ef547e0559c7e73bc85828'
          '984412a63aa9c07ddc3cfd970381d5df'
          '4833c8e0524fd2272b24ba0d94aef006'
          '6e2722bfd7013c1b0174382626ac1b8d'
@@ -86,10 +86,11 @@ md5sums=('b978c28a021d637489beb23f7b1380e2'
 prepare() {
     cd "VirtualBox-$pkgver"
 
-    for _p in "$srcdir"/*.patch; do
-        [[ -e $_p ]] || continue
-        msg2 "Appy patch ${_p##*/}"
-        patch -Np1 -i "$_p"
+    for _f in "${source[@]}"; do
+        [[ "$_f" =~ \.patch$ ]] && {
+            msg2 "Applying patch $_f"
+            patch -p1 -i "$srcdir/$_f"
+        }
     done
 
     msg2 'Applying local config'
