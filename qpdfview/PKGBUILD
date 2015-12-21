@@ -3,13 +3,14 @@
 pkgbase=qpdfview
 pkgname=('qpdfview' 'qpdfview-djvu-plugin' 'qpdfview-ps-plugin')
 pkgver=0.4.16
-pkgrel=1
+pkgrel=2
 pkgdesc='A tabbed PDF viewer using the poppler library.'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/qpdfview'
 license=('GPL2')
-depends=('libcups' 'poppler-qt5' 'qt5-svg' 'desktop-file-utils' 'hicolor-icon-theme' 'texlive-bin')
-optdepends=('qpdfview-ps-plugin: qpdfview plugin for PostScript support' 
+depends=('libcups' 'poppler-qt5' 'qt5-svg' 'desktop-file-utils' 'hicolor-icon-theme')
+optdepends=('texlive-bin: for shared SyncTeX parser library'
+            'qpdfview-ps-plugin: qpdfview plugin for PostScript support' 
             'qpdfview-djvu-plugin: qpdfview plugin for DjVu support')
 makedepends=('qt5-tools' 'libspectre' 'djvulibre' 'texlive-bin')
 install='qpdfview.install'
