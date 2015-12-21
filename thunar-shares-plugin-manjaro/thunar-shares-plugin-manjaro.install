@@ -3,7 +3,7 @@ msg() {
     BOLD="\e[1;1m"
     GREEN="${BOLD}\e[1;32m"
 	local mesg=$1; shift
-	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
 }
 
 add_users() {
@@ -27,11 +27,11 @@ add_users() {
 add_group() {
     getent group "sambashare" &>/dev/null || groupadd -g 617 sambashare
     add_users
+    chgrp sambashare var/lib/samba/usershare
 }
 
 post_upgrade() {
   add_group
-  chgrp sambashare var/lib/samba/usershare
   echo ""
   msg "Please add new users to 'sambashare' group."
   echo ""
@@ -46,7 +46,6 @@ post_install() {
     systemctl enable smbd nmbd
   fi
   add_group
-  chgrp sambashare var/lib/samba/usershare
   echo ""
   msg "Samba services should now be enabled."
   msg "Please add new users to 'sambashare' group."
