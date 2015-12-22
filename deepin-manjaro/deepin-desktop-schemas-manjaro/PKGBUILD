@@ -13,7 +13,7 @@ url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
 depends=('dconf'
 	'deepin-artwork-themes-manjaro'
-	'deepin-gtk-theme'
+	'numix-themes-archblue'
 	'deepin-sound-theme')
 makedepends=('git')
 conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
