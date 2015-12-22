@@ -1,0 +1,21 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=deepin-icontheme-pack
+pkgver="$(date +'%Y%m%d')"
+_repo=deepin-iconthemes
+_snapshot=010380685a3ed2ed91bb9d421af83e39ca231c90
+pkgrel=1
+pkgdesc="Icon theme pack for the Deepin DE"
+arch=('any')
+url="http://github.com/oberon2007"
+license=('LGPL3')
+depends=('gtk-update-icon-cache')
+install="${pkgname}.install"
+source=("$pkgname-$pkgver.tar.gz::$url/$_repo/archive/$_snapshot.tar.gz")
+md5sums=('60d27477acd5abff9b665cfcc1fd3316')
+
+package() {
+	cd $_repo-$_snapshot
+	install -dm755 $pkgdir/usr/share/icons
+	cp -r {Compass,Dalisha,Deepin-2014} $pkgdir/usr/share/icons
+}

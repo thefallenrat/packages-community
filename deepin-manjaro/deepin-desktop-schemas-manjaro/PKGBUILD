@@ -5,7 +5,7 @@
 
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
-pkgver="2.91.2.$(date +'%Y%m%d')"
+pkgver="2.91.3.$(date +'%Y%m%d')"
 pkgrel=1
 pkgdesc='Desktop-wide gsettings schemas for Manjaro-Deepin'
 arch=('any')
