@@ -3,8 +3,8 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox-gtk2
-pkgver=43.0.1
-pkgrel=2
+pkgver=43.0.2
+pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org (GTK2 version)"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
@@ -31,7 +31,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         firefox-support-YUV420J-pixel-format.patch
         vendor.js
         firefox-fixed-loading-icon.png)
-sha256sums=('b1f9173c6ddbd2bf868d94a815fde364bc37aa46a00981903fd1fe86a8f873d8'
+sha256sums=('5df48d7f2fff843ec3837cfc68de68f4f7ca77aceaafc53c65be14c070445e72'
             '358a4acdd39561f4475581d6da91545cd72587e1db12326bf56673248670b74b'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
