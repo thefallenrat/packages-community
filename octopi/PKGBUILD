@@ -25,8 +25,10 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
-
-sha256sums=('79ab8a24e3329ab4e5320e03309f44f802336cc00bada0f9a37fae46f5eeb02b')
+source+=('0001-lxqt-sudo-support.patch' '0001-declare-method.patch')
+sha256sums=('79ab8a24e3329ab4e5320e03309f44f802336cc00bada0f9a37fae46f5eeb02b'
+            '5db4ecaae2f01f233b2c699f98f68eb0b30116919ae7cbaacee3caa7386c788a'
+            '664c0e01fdd72996eea1129039b095a55e323e8af085f415779c7595d229caef')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -42,6 +44,8 @@ prepare() {
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+  patch -Np1 -i $srcdir/0001-lxqt-sudo-support.patch
+  patch -Np1 -i $srcdir/0001-declare-method.patch
 }
 
 build() {
@@ -62,12 +66,12 @@ build() {
   msg "Building pacmanhelper..."
   qmake-qt5 pacmanhelper.pro
   make -j $jc
-   
+
   cd ../../notifier-qt4/octopi-notifier
   msg "Building octopi-notifier-qt4..."
   qmake-qt4 octopi-notifier.pro
   make -j $jc
-  
+
   cd ../../notifier-qt5/octopi-notifier
   msg "Building octopi-notifier-qt5..."
   qmake-qt5 octopi-notifier.pro
@@ -112,7 +116,7 @@ package_octopi() {
   else
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
-  
+
   install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
   install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
