@@ -5,7 +5,7 @@
 _pkgname=deepin-artwork-themes
 pkgname=$_pkgname-manjaro
 pkgver="$(date +'%Y%m%d')"
-_snapshot=03b5a0d30ef28d59e056551a66d24cab6e12fa20
+_snapshot=4a8c5f5838b46bb6d861153925a4cec885f352fc
 pkgrel=1
 pkgdesc='Default artwork themes for Manjaro-Deepin'
 arch=('any')
@@ -15,12 +15,13 @@ depends=('cantarell-fonts'
 	'deepin-icon-theme'
 	'deepin-iconthemes-manjaro'
 	'deepin-wallpapers'
+	'numix-themes-archblue'
 	'xcursor-chameleon-pearl-deepin')
 makedepends=('python2' 'git')
 conflicts=('deepin-artwork-themes')
 provides=('deepin-artwork-themes')
 source=("$pkgname.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('36cfe2f07e9f6aaa20eb0c267936d1de')
+md5sums=('dfbfb894655eded4edb53503c82425f5')
 
 build() {
   cd $pkgname-$_snapshot
