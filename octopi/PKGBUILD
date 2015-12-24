@@ -12,7 +12,7 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.8.0
-pkgrel=2
+pkgrel=3
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 #_gitcommit="5abb0fca0f5f6b5107dd89ea4e1071d71d70366a"
 arch=('i686' 'x86_64')
@@ -25,8 +25,9 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
-
-sha256sums=('79ab8a24e3329ab4e5320e03309f44f802336cc00bada0f9a37fae46f5eeb02b')
+source+=('0001-lxqt-sudo-support.patch')
+sha256sums=('79ab8a24e3329ab4e5320e03309f44f802336cc00bada0f9a37fae46f5eeb02b'
+            'fd2f14799d0767b827b8ce53ad013934ff0ea20dc7bfd94f1226a062420058b4')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -42,6 +43,7 @@ prepare() {
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+  patch -Np1 -i $srcdir/0001-lxqt-sudo-support.patch
 }
 
 build() {
@@ -62,12 +64,12 @@ build() {
   msg "Building pacmanhelper..."
   qmake-qt5 pacmanhelper.pro
   make -j $jc
-   
+
   cd ../../notifier-qt4/octopi-notifier
   msg "Building octopi-notifier-qt4..."
   qmake-qt4 octopi-notifier.pro
   make -j $jc
-  
+
   cd ../../notifier-qt5/octopi-notifier
   msg "Building octopi-notifier-qt5..."
   qmake-qt5 octopi-notifier.pro
@@ -95,6 +97,7 @@ package_octopi() {
   depends=('qt5-base' 'qt5-declarative' 'xterm')
   optdepends=('kdesu: for KDE'
               'gksu: for XFCE, Gnome, LXDE, Cinnamon'
+              'lxqt-sudo: for LXQT'
               'gnome-keyring: for password management'
               'gist: for SysInfo report'
               'pacaur: for AUR support'
@@ -112,7 +115,7 @@ package_octopi() {
   else
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
-  
+
   install -Dm755 "bin/octopi" "${pkgdir}/usr/bin/octopi"
   install -Dm644 "octopi.desktop" "${pkgdir}/usr/share/applications/octopi.desktop"
   install -Dm644 "resources/images/octopi_green.png" "${pkgdir}/usr/share/icons/octopi.png"
