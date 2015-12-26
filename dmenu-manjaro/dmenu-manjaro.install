@@ -14,6 +14,6 @@ msg "can be defined in ~/.dmenurc"
 
 post_upgrade() {
 msg "dmenu can be configured in your ~/.dmenurc file.
-    To change your preferred terminal command add the variable
+    To change your preferred terminal command edit or add the variable
     TERMINAL_CMD= - for example: TERMINAL_CMD=\"lxterminal -e\"\n"
 }

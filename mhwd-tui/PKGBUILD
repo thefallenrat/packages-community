@@ -2,7 +2,7 @@
 
 pkgname=mhwd-tui
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
