@@ -2,7 +2,7 @@
 
 pkgname=bmenu
 pkgver=0.4.1
-pkgrel=2
+pkgrel=4
 pkgdesc="Simple system menu for commandline"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
