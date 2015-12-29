@@ -19,6 +19,7 @@ makedepends=('git')
 conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
 provides=('deepin-desktop-schemas')
 replaces=('deepin-default-gsettings' 'deepin-manjaro-gsettings')
+groups=('deepin-manjaro')
 install="$_pkgname.install"
 source=("git+$url.git")
 sha256sums=('SKIP')

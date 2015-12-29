@@ -20,6 +20,7 @@ depends=('cantarell-fonts'
 makedepends=('python2' 'git')
 conflicts=('deepin-artwork-themes')
 provides=('deepin-artwork-themes')
+groups=('deepin-manjaro')
 source=("$pkgname.tar.gz::$url/archive/$_snapshot.tar.gz")
 md5sums=('dfbfb894655eded4edb53503c82425f5')
 

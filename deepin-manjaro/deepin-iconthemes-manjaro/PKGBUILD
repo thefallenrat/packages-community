@@ -13,6 +13,7 @@ depends=('deepin-icon-theme'
 	'gtk-update-icon-cache')
 conflicts=('deepin-icontheme-pack')
 provides=('deepin-icontheme-pack')
+groups=('deepin-manjaro')
 install="$_repo.install"
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz")
 md5sums=('ffae15ce4356df1d17a737c1bc0aff7c')

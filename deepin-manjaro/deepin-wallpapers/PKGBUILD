@@ -11,6 +11,7 @@ pkgdesc="Wallpapers for $_profile"
 arch=any
 license=GPL3
 url=https://github.com
+groups=('deepin-manjaro')
 source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
 
 md5sums=('2bcb675484eaf48e39b7a6dfa2f2c7a3')
