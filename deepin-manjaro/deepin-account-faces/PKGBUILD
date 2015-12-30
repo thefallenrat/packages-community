@@ -4,8 +4,8 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-account-faces
-pkgver=1.0.9.20151210
-_commit=5d9d73271c73d975b301fd50c2ac3d8d7428c94e
+pkgver=1.0.10
+_commit=a915976b1de473c4025e9bf7d64d463ba5aa8902
 pkgrel=1.1
 pkgdesc='Account faces for Linux Deepin'
 arch=('any')
