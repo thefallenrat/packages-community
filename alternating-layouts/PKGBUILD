@@ -1,7 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=alternating-layouts
-pkgver=r20.179edd6
+_ver=0.0
+pkgver=0.0.r20.179edd6
 pkgrel=1
 pkgdesc="Alternating split directions for the i3-wm"
 _repo=i3-alternating-layout
@@ -17,7 +18,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd $_repo
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
