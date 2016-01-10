@@ -8,9 +8,9 @@
 _pkgbasename=nettle
 pkgname=${_pkgbasename}4
 pkgver=2.7.1
-pkgrel=3
+pkgrel=4
 pkgdesc="A low-level cryptographic library (32-bit, legacy version)"
-arch=('x86_64')
+arch=('x86_64' 'i686')
 url="http://www.lysator.liu.se/~nisse/nettle/"
 license=('GPL2')
 depends=('gmp' $_pkgbasename)
@@ -23,8 +23,8 @@ validpgpkeys=(343C2FF0FBEE5EC2EDBEF399F3599FF828C67298)
 build() {
   cd "$srcdir/$_pkgbasename-$pkgver"
 
-  export CC="gcc -m64"
-  export CXX="g++ -m64"
+  export CC="gcc"
+  export CXX="g++"
   export PKG_CONFIG_PATH="/usr/lib/pkgconfig"
 
   ./configure --prefix=/usr --libdir=/usr/lib \
