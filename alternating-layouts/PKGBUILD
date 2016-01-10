@@ -2,15 +2,16 @@
 
 pkgname=alternating-layouts
 _ver=0.0
-pkgver=0.0.r20.179edd6
+pkgver=0.0.r23.0f10a9c
 pkgrel=1
 pkgdesc="Alternating split directions for the i3-wm"
 _repo=i3-alternating-layout
 url="github.com/olemartinorg/$_repo"
 arch=('any')
 license=('MIT')
-depends=('xorg-utils'
-	'i3-wm')
+depends=('i3-wm'
+	'python-i3'
+	'xorg-utils')
 makedepends=('git')
 install=$pkgname.install
 source=("git://$url")
