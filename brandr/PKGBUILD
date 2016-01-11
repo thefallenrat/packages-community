@@ -9,7 +9,8 @@ url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
 depends=('awk'
 	'bash'
-	'xorg-xrandr')
+	'xorg-xrandr'
+	'fzf')
 optdepends=('srandrd: Dynamic loading of saved settings')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
