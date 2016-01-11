@@ -5,7 +5,7 @@
 
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
-pkgver="2.91.2.$(date +'%Y%m%d')"
+pkgver=3.0.0
 pkgrel=1
 pkgdesc='Desktop-wide gsettings schemas for Manjaro-Deepin'
 arch=('any')
@@ -13,12 +13,13 @@ url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
 depends=('dconf'
 	'deepin-artwork-themes-manjaro'
-	'deepin-gtk-theme'
+	'numix-themes-archblue'
 	'deepin-sound-theme')
 makedepends=('git')
 conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
 provides=('deepin-desktop-schemas')
 replaces=('deepin-default-gsettings' 'deepin-manjaro-gsettings')
+groups=('deepin-manjaro')
 install="$_pkgname.install"
 source=("git+$url.git")
 sha256sums=('SKIP')

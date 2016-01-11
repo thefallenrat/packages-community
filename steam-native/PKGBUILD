@@ -3,7 +3,7 @@
 pkgname=steam-native
 _pkgname=steam
 pkgver=1.0.0.51
-pkgrel=3
+pkgrel=4
 pkgdesc="Native library launcher and dependencies for Steam. See https://forum.manjaro.org/index.php?topic=16054"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -13,7 +13,7 @@ depends=('steam-manjaro')
 #Steam native deps
 depends_x86_64+=('iproute2' 'lib32-cracklib' 'lib32-dbus-glib' 'lib32-gconf' 'lib32-glew1.10'
          'lib32-gdk-pixbuf2' 'lib32-gtk2' 'lib32-js17' 'lib32-libappindicator-gtk2'
-         'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-gnutls28' 'lib32-libxss' 
+         'lib32-libgcrypt15' 'lib32-libjpeg6' 'lib32-libnl'  'lib32-libxss' 
          'lib32-nss' 'lib32-libpng12' 'lib32-libpulse' 'lib32-libsoup' 'lib32-libtirpc'
          'lib32-libudev0' 'lib32-libusb' 'lib32-libvpx' 'lib32-libxinerama' 'lib32-libnm-glib46'
          'lib32-openal' 'lib32-pam' 'lib32-pango' 'lib32-polkit' 'lib32-libgudev')

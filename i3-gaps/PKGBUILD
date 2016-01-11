@@ -1,7 +1,7 @@
 # Maintainer: Ingo Bürk <admin at airblader dot de>
 
 pkgname=i3-gaps
-pkgver=4.11.r404.rgfdbe3ce
+pkgver=4.11.r671.rg7e96419
 pkgrel=1
 pkgdesc='A fork of i3wm tiling window manager with more features, including gaps'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ optdepends=('dmenu: As menu.'
 	'perl-json-xs: For i3-save-tree'
 	'rxvt-unicode: The terminal emulator used in the default config.')
 options=('docs' '!strip')
-source=('git://github.com/Airblader/i3#branch=gaps')
+source=('git://github.com/Airblader/i3#branch=gaps-next')
 sha1sums=('SKIP')
 
 _gitname='i3'

@@ -2,15 +2,14 @@
 
 pkgname=mhwd-tui
 pkgver=0.2
-pkgrel=1
+pkgrel=3
 pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
 depends=('awk'
 	'bash'
-	'mhwd'
-	'pmenu')
+	'mhwd')
 optdepends=('pacli: package management menu item')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")

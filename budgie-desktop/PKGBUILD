@@ -1,21 +1,24 @@
 # Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
 
 pkgname=budgie-desktop
-pkgver=8.3
+pkgver=10.2.2
 pkgrel=2
 pkgdesc="Simple GTK3 desktop experience"
 arch=('i686' 'x86_64')
 url="https://solus-project.com/budgie"
 license=('GPLv2')
 
-depends=('gtk3' 'upower' 'libwnck3' 'gnome-menus' 'gnome-settings-daemon' 'libpeas' 'mutter' 'desktop-file-utils' 'libpulse' 'vala' 'libgee' 'gnome-themes-standard' 'gnome-control-center')
-makedepends=('autoconf' 'git' 'python2' 'gobject-introspection' 'intltool')
+depends=('gtk3>=3.18' 'upower' 'libwnck3' 'gnome-menus' 'gnome-settings-daemon'
+         'libpeas' 'mutter>=3.18' 'desktop-file-utils' 'libpulse' 'vala' 'libgee'
+         'gnome-themes-standard' 'gnome-control-center' 'gnome-session>=3.18'
+         'intltool' 'gnome-terminal' 'nautilus')
+makedepends=('autoconf' 'git' 'python2' 'gobject-introspection')
 install=budgie-desktop.install
 
 source=(#"$pkgname"::'git+https://github.com/solus-project/budgie-desktop.git#branch=master'
 	"$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-desktop/archive/v${pkgver}.tar.gz"
-	'git+https://git.gnome.org/browse/libgnome-volume-control#commit=e14dbe8')
-md5sums=('SKIP'
+	'git+https://git.gnome.org/browse/libgnome-volume-control#commit=7e5504d')
+md5sums=('cea64444fc14eb795c01ffa5a710e5ec'
          'SKIP')
 
 #pkgver() {
@@ -34,7 +37,7 @@ build() {
 	cd "$srcdir/$pkgname"
 	intltoolize --force
 	autoreconf --force --install
-	./configure --prefix=/usr
+	./configure --prefix=/usr --sysconfdir=/etc
 	make
 }
 

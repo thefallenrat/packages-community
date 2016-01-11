@@ -11,6 +11,7 @@ license=('GPL')
 depends=('plymouth')
 install=$pkgname.install
 makedepends=('git')
+groups=('deepin-manjaro')
 source="git+$url.git"
 md5sums=('SKIP')
 
