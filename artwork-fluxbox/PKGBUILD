@@ -1,17 +1,17 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=artwork-i3
+pkgname=artwork-fluxbox
 pkgver="$(date +'%Y%m%d')"
-pkgrel=2
-pkgdesc="Wallpapers and avatars for manjaro-i3"
+pkgrel=1
+pkgdesc="Wallpapers and avatars for manjaro-fluxbox"
 arch=any
 license=GPL3
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=299ffb9066b35e4a8d42dc1915c2fbf2b84d4068
-conflicts=('i3-wallpapers')
-backup=('manjaro.png' 'manjaro_round.png')
+_snapshot=dbd7a7cc56ed4fd74019e48a74ff0bf7be135bda
+conflicts=('fluxbox-wallpapers')
+backup=('manjaro.png' 'manjaro_round_green.png')
 source="$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz"
-md5sums=('83d7e4cc56919cc45f7ce3ed3f5ecb75')
+md5sums=('')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
