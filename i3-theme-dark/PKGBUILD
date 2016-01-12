@@ -6,7 +6,7 @@ pkgver=20150725
 pkgrel=1
 pkgdesc="Dark gtk theme for manjaro-i3"
 
-repo=artwork-i3
+repo=i3-themes
 snapshot=2bf3b6beb7c5f6581d2276a4b47ddf9648f55b8a
 url=https://github.com/oberon2007/$repo
 
