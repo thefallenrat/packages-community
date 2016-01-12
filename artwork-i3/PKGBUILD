@@ -9,8 +9,7 @@ license=GPL3
 url="https://github.com/oberon2007/$pkgname"
 _snapshot=16d55c2922d651d385480aaa31e71205f5edde9d
 source="$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz"
-
-md5sums=('')
+md5sums=('ec3ad7fccc82135309269fd62545a6be')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
