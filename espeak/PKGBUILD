@@ -26,7 +26,7 @@ build() {
   cd $_gitname
   ./autogen.sh
   ./configure --prefix=/usr --with-extdict-ru --with-extdict-zh --with-extdict-zhy
-  make
+  make -j1
 }
 
 package() {
