@@ -13,7 +13,7 @@ depends=(gcc-libs portaudio)
 optdepends=('pulseaudio: speech output via Pulseaudio')
 makedepends=('git')
 provides=(espeak)
-conflicts=(espeak espeak-test)
+conflicts=(espeak espeak-test espeak-ng-git)
 source=("git+https://github.com/espeak-ng/espeak-ng.git")
 md5sums=('SKIP')
 
