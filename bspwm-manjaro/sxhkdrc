@@ -1,4 +1,4 @@
-# bspwm hotkeys
+﻿# bspwm hotkeys
 #
 # Cleanly quit bspwm
 super + shift + q
@@ -11,7 +11,7 @@ super + shift + space
 
 # Show keybindings
 super + F1
-	terminal -name 'floaterm' -geometry 90x65 -e keybindings.sh
+	$TERMINAL -e keybindings.sh
 #
 # Window manipulation
 # ______________
@@ -88,11 +88,7 @@ alt + ctrl + {1-9}
 		
 # Move current window to largest space or preselected area if there is one.
 super + Return
-    if [ -z "$(bspc query -W -w last.manual.local)" ]; then \
-        bspc window -s biggest.unfocused; \
-    else \
-        bspc window -w last.manual.local; \
-    fi 
+    windowpromoter
 
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
@@ -190,8 +186,10 @@ super + shift + {comma,period}
 # Change window gap
 
 super + g
-    bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
+	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
 
+super + button{4,5}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
 #
 # mouse bindings
 # __________________
@@ -261,32 +259,26 @@ super + space
 	dmouse
 
 super + p
-	dmenu_recent -h PANEL_HEIGHT
+	dmenu_recent -h $PANEL_HEIGHT
 		
-## 'terminal' is a wrapper script for urxvt	
-ctrl + alt + t
-	terminal -name 'floaterm' -geometry 75x30
 
 super + shift + Return
-	terminal
-
+	$TERMINAL
 super + z
-	terminal
-
-super + shift + z
-	terminal -name 'floaterm' -geometry 75x30
+#	terminal
+	$TERMINAL
 	
 super + r
 	finder
 
 super + shift + b
-	midori 
+	chromium --disk-cache-dir=/tmp/cache
     		
 super + e
 	spacefm
 
 super + shift + e
-	terminal -e ranger
+	$TERMINAL -e ranger
 
 Print
 	scrot -q 100
