@@ -1,52 +1,34 @@
 #!/bin/bash
 
 #Variables
-tiling_toggles="super + shift + t
-	bspc window -t {pseudo_tiled,tiled}
-super + t
-	{bspc window -t floating && window-placer,bspc window -t tiled}
-"
 users=$(awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd)
 
 ## sxhkd function
 function sxhkd_fixer {
 	#Remove 2 old lines if they exist
-	grep -q "super + {_,shift +} t" $sxhkdrc && sed -i '/super + {_,shift +} t/ d' $sxhkdrc
-	grep -q "bspc window -t {floating,pseudo_tiled}" $sxhkdrc && sed -i '/bspc window -t {floating,pseudo_tiled}/ d' $sxhkdrc
-	#Insert new lines inplace
-	sed -i '/Toggle tiling mode of window/r /tmp/tiling_toggles' $sxhkdrc
-	#Replace some config lines if they exist
-	grep -q "bspc window -t private" $sxhkdrc && sed -i 's/bspc window -t private/bspc window -g {private,public}/' $sxhkdrc
-	grep -q "bspc window -t sticky" $sxhkdrc && sed -i 's/bspc window -t sticky/bspc window -g {sticky.nonsticky}/' $sxhkdrc
-	grep -q "bspc window -t locked" $sxhkdrc && sed -i 's/bspc window -t locked/bspc window -g {locked,unlocked}/' $sxhkdrc
+	grep -q "node" $sxhkdrc || echo -e "Your sxhkd uses old syntax." 
+	echo -e "This update introduced syntax changes that would render your desktop unusable."
+	echo -e "your old sxhkdrc has been saved under name sxhkdrc.old. Logging in next time"
+	echo -e "gives you the updated default sxhkdrc to keep your system usable." &&
+	mv $sxhkdrc $sxhkdrc.old
+	grep -q "terminal -e" $sxhkdrc.old && echo "export TERMINAL=terminal" >> $user/.profile &&
+	echo "export gap=15" >> $user/.profile
 }
 
 ## bspwm function 
 function bspwm_fixer {
-	#Replace some config lines if they exist
-	grep -q "Chromium" $bspwmrc && sed -i 's/Chromium/chromium/' $bspwmrc
-	grep -q "Midori" $bspwmrc && sed -i 's/Midori/midori/' $bspwmrc
-	grep -q "Firefox" $bspwmrc && sed -i 's/Firefox/firefox/' $bspwmrc
-	grep -q "Google-chrome-stable" $bspwmrc && sed -i 's/Google-chrome-stable/google-chrome-stable/' $bspwmrc
-	grep -q "Google-chrome-unstable" $bspwmrc && sed -i 's/Google-chrome-unstable/google-chrome-unstable/' $bspwmrc
-	grep -q "File-roller" $bspwmrc && sed -i 's/File-roller/file-roller/' $bspwmrc
-	grep -q "Conky" $bspwmrc && sed -i 's/Conky/conky/' $bspwmrc
-	grep -q "Spotify" $bspwmrc && sed -i 's/Spotify/spotify/' $bspwmrc
-	grep -q "Transmission-gtk" $bspwmrc && sed -i 's/Transmission-gtk/transmission-gtk/' $bspwmrc
+	grep -q "state=floating" $bspwmrc && echo -e "Your bspwmrc uses old syntax.
+	This update introduced syntax changes that would render your desktop unusable.
+	Your old bspwmrc has been saved under name bspwmrc.old. Logging in next time
+	gives you the updated default bspwmrc to keep your system usable." &&
+	mv $bspwmrc $bspwmrc.old
 }
 post_upgrade() {
-	#Make temporary file that is used for fixing sxhkdrc
-	echo "$tiling_toggles" > /tmp/tiling_toggles
-	##check if file exists for users and in /etc/skel
-	[ -f /etc/skel/.config/sxhkd/sxhkdrc ] && sxhkdrc=/etc/skel/.config/sxhkd/sxhkdrc && sxhkd_fixer
-	[ -f /etc/skel/.config/bspwm/bspwmrc ] && bspwmrc=/etc/skel/.config/bspwm/bspwmrc && bspwm_fixer
 	#Backup and fix configs
 	for user in $users; do
-		[[ -f /home/$user/.config/sxhkd/sxhkdrc ]] && cp /home/$user/.config/sxhkd/sxhkdrc /home/$user/.config/sxhkd/sxhkdrc.bak
-		[[ -f /home/$user/.config/sxhkd/sxhkdrc ]] && sxhkdrc=/home/$user/.config/sxhkd/sxhkdrc && sxhkd_fixer
-		[[ -f /home/$user/.config/bspwm/bspwmrc ]] && cp /home/$user/.config/bspwm/bspwmrc /home/$user/.config/bspwm/bspwmrc.bak
+		[[ -f /home/$user/.config/sxhkd/sxhkdrc ]] && sxhkdrc=/home/$user/.config/sxhkd/sxhkdrc && export $user && sxhkd_fixer
 		[[ -f /home/$user/.config/bspwm/bspwmrc ]] && bspwmrc=/home/$user/.config/bspwm/bspwmrc && bspwm_fixer
 	done
-	echo "sxhkdrc and bspwmrc were updated to match changed syntax"
+	echo "sxhkdrc and bspwmrc were replaced to match changed syntax"
 }
 #post_upgrade
