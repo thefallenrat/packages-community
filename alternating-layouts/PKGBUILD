@@ -3,7 +3,7 @@
 pkgname=alternating-layouts
 _ver=0.0
 pkgver=0.0.r23.0f10a9c
-pkgrel=1
+pkgrel=2
 pkgdesc="Alternating split directions for the i3-wm"
 _repo=i3-alternating-layout
 url="github.com/olemartinorg/$_repo"

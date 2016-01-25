@@ -1,0 +1,30 @@
+diff -rupN mate-system-monitor-1.12.1.old/mate-system-monitor.desktop.in mate-system-monitor-1.12.1/mate-system-monitor.desktop.in
+--- mate-system-monitor-1.12.1.old/mate-system-monitor.desktop.in	2015-11-30 10:36:40.000000000 +0100
++++ mate-system-monitor-1.12.1/mate-system-monitor.desktop.in	2016-01-14 04:18:06.816531868 +0100
+@@ -9,10 +9,4 @@ Terminal=false
+ Type=Application
+ StartupNotify=true
+ Categories=GTK;System;Monitor;
+-Keywords=MATE;system;monitor;process;list;view;current;resources;
+-OnlyShowIn=MATE;
+-X-MATE-Bugzilla-Bugzilla=MATE
+-X-MATE-Bugzilla-Product=system-monitor
+-X-MATE-Bugzilla-Component=general
+-X-MATE-Bugzilla-Version=1.12.1
+-
++Keywords=system;monitor;process;list;view;current;resources;
+diff -rupN mate-system-monitor-1.12.1.old/mate-system-monitor.desktop.in.in mate-system-monitor-1.12.1/mate-system-monitor.desktop.in.in
+--- mate-system-monitor-1.12.1.old/mate-system-monitor.desktop.in.in	2015-09-25 12:36:19.000000000 +0100
++++ mate-system-monitor-1.12.1/mate-system-monitor.desktop.in.in	2016-01-14 04:18:22.373386385 +0100
+@@ -9,10 +9,4 @@ Terminal=false
+ Type=Application
+ StartupNotify=true
+ Categories=GTK;System;Monitor;
+-Keywords=MATE;system;monitor;process;list;view;current;resources;
+-OnlyShowIn=MATE;
+-X-MATE-Bugzilla-Bugzilla=MATE
+-X-MATE-Bugzilla-Product=system-monitor
+-X-MATE-Bugzilla-Component=general
+-X-MATE-Bugzilla-Version=@VERSION@
+-
++Keywords=system;monitor;process;list;view;current;resources;

@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=conky-i3
-pkgver=20160108
+pkgver="$(date +'%Y%m%d')"
 pkgrel=1
 pkgdesc="grey or green Conky for manjaro-i3"
 _repo=conkies
@@ -24,10 +24,11 @@ md5sums=('SKIP')
 package() {
 	cd $srcdir/$_repo
 
-	install -Dm644 conky_green $pkgdir/usr/share/conky/conky_green
-	install -Dm644 conky_grey $pkgdir/usr/share/conky/conky_grey
-	install -Dm644 conky1.10_shortcuts_green $pkgdir/usr/share/conky/conky1.10_shortcuts_green
-	install -Dm644 conky1.10_shortcuts_grey $pkgdir/usr/share/conky/conky1.10_shortcuts_grey
-	install -Dm755 start-scripts-i3/start_conky_green ${pkgdir}/usr/bin/start_conky_green
-	install -Dm755 start-scripts-i3/start_conky_grey ${pkgdir}/usr/bin/start_conky_grey
+	install -dm755 $pkgdir/usr/bin
+	cp start-scripts-i3/* $pkgdir/usr/bin
+	chmod 755 $pkgdir/usr/bin/*
+
+	install -dm755 $pkgdir/usr/share/conky
+	cp config_i3/* $pkgdir/usr/share/conky
+	chmod 644 $pkgdir/usr/share/conky/*
 }

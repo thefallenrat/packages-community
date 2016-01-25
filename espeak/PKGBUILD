@@ -3,31 +3,30 @@
 pkgname=espeak
 _gitname=espeak-ng
 _commit=
-pkgver=1.48.15.429.g9ab5560
+pkgver=1.48.15.r459.gc0d7970
 pkgrel=1
 pkgdesc="Next generation open source speech synthesizer based on Espeak (git version)"
 arch=(i686 x86_64)
 url="https://github.com/espeak-ng/espeak-ng"
 license=('GPL3')
-depends=(gcc-libs)
-optdepends=('portaudio: speech output via Portaudio'
-  'pulseaudio: speech output via Pulseaudio')
+depends=(gcc-libs portaudio)
+optdepends=('pulseaudio: speech output via Pulseaudio')
 makedepends=('git')
 provides=(espeak)
-conflicts=(espeak espeak-test)
+conflicts=(espeak espeak-test espeak-ng-git)
 source=("git+https://github.com/espeak-ng/espeak-ng.git")
 md5sums=('SKIP')
 
 pkgver() {
   cd $_gitname
-  git describe --always | sed -e 's|v||' -e 's|-|.|g'
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
   cd $_gitname
   ./autogen.sh
   ./configure --prefix=/usr --with-extdict-ru --with-extdict-zh --with-extdict-zhy
-  make
+  make -j1
 }
 
 package() {
