@@ -260,19 +260,17 @@ super + space
 
 super + p
 	dmenu_recent -h $PANEL_HEIGHT
-		
 
 super + shift + Return
 	$TERMINAL
 super + z
-#	terminal
 	$TERMINAL
 	
 super + r
 	finder
 
 super + shift + b
-	chromium --disk-cache-dir=/tmp/cache
+	$BROWSER
     		
 super + e
 	spacefm
