@@ -2,11 +2,11 @@
 
 _profile=deepin
 _user=oberon2007
-_snapshot=e7f5288c0fdf3b5f7eeeaeeb319d68f3ca042940
+_snapshot=8fd74f3c0f1b72565716e9d2593dec2bda59d90c
 
 pkgname="$_profile-wallpapers"
 pkgver=20160126
-pkgrel=1
+pkgrel=2
 pkgdesc="Wallpapers for $_profile"
 arch=any
 license=GPL3
@@ -14,7 +14,7 @@ url=https://github.com
 groups=('deepin-manjaro')
 source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
 
-md5sums=('4f8ad9189994c27bb628a29e62327288')
+md5sums=('16ce80dc3950886844c214acca33ee16')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
