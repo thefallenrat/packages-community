@@ -283,8 +283,6 @@ super + shift + e
 Print
 	scrot -q 100
 
-#super + shift + p
-#	gnome-pie
 	
 #
 # Media keys
