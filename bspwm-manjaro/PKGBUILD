@@ -3,7 +3,7 @@
 
 _pkgname=bspwm
 pkgname=${_pkgname}-manjaro
-pkgver=0.9
+pkgver=0.9.1
 pkgrel=3
 pkgdesc='A tiling window manager based on binary space partitioning'
 arch=('i686' 'x86_64' 'armv7h')
@@ -12,10 +12,11 @@ license=('custom:BSD')
 install='bspwm-manjaro.install'
 depends=('libxcb'
 	'xcb-util'
-	'xcb-util-wm')
+	'xcb-util-wm'
+	'bspwm-scripts>=0.15'
+	'rootmenu>=0.4')
 makedepends=('git')
 optdepends=('sxhkd-git: to define keyboard and pointer bindings'
-	'bspwm-scripts: helper utilities for window management'
 	'lemonpanel: example panel'
 	'limepanel: i3 style example panel')
 provides=("${_pkgname}")

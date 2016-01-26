@@ -3,39 +3,9 @@
 # bspwm-session
 # From https://github.com/baskerville/bspwm/blob/master/contrib/freedesktop/bspwm-session , 
 # modified to copy example configs unless user already has some.
-#
+# Later modified to drop multiuser support.
 # This script is a session launcher for bspwm.
 # It is based on similar scripts included with Openbox.
-
-if [ -n "$1" ]; then
-	echo "Usage: bspwm-session"
-	echo
-	exit 1
-fi
-
-# Multi-user support:
-state_prefix=${XDG_CACHE_HOME:-"$HOME/.cache"}
-mkdir -p "${state_prefix}"
-
-if [ ! -d "${state_prefix}" ]; then
-	echo "bspwm-session: cache directory ‘${state_prefix}‘ is missing."
-	echo
-	exit 1
-elif [ ! -w "${state_prefix}" ]; then
-	echo "bspwm-session: cache directory ‘${state_prefix}‘ is not writable."
-	echo
-	exit 1
-fi
-
-state_path=$(mktemp -d "${state_prefix}/bspwm-session.XXXXXX")
-
-if [ $? -ne 0 ]; then
-	echo "bspwm-session: failed to create state directory ‘${state_path}‘."
-	echo
-	exit 1
-fi
-
-export BSPWM_SOCKET=${state_path}/bspwm-socket
 
 # Trap: make sure everything started in ~/.config/bspwm/autostart is
 # signalled when this script exits or dies. Also clean up $state_path.
