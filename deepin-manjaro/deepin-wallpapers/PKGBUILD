@@ -2,10 +2,10 @@
 
 _profile=deepin
 _user=oberon2007
-_snapshot=699c02e1c484a1614e639c2df994449b94cc6feb
+_snapshot=e7f5288c0fdf3b5f7eeeaeeb319d68f3ca042940
 
 pkgname="$_profile-wallpapers"
-pkgver="$(date +'%Y%m%d')"
+pkgver=20160126
 pkgrel=1
 pkgdesc="Wallpapers for $_profile"
 arch=any
@@ -14,10 +14,11 @@ url=https://github.com
 groups=('deepin-manjaro')
 source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
 
-md5sums=('2bcb675484eaf48e39b7a6dfa2f2c7a3')
+md5sums=('4f8ad9189994c27bb628a29e62327288')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
 	install -dm755 $pkgdir/usr/share
-	cp -r backgrounds $pkgdir/usr/share
+	cp -r * $pkgdir/usr/share
+
 }
