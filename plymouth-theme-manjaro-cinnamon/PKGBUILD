@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-cinnamon
 pkgver=1.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Green Manjaro Plymouth theme"
 repo="plymouth-themes-manjaro"
 arch=('any')
