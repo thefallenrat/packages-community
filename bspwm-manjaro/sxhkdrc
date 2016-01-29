@@ -18,17 +18,17 @@ super + F1
 
 # Close window
 super + x
-	bspc  window -c
+	bspc  node -c
 
 # Kill window
 super + shift + x
-	bspc  window -k
+	bspc  node -k
 
 # Toggle tiling mode of window
 super + shift + t
-	bspc window -t {pseudo_tiled,tiled}
+	bspc node -t {pseudo_tiled,tiled}
 super + t
-	{bspc window -t floating && window-placer,bspc window -t tiled}
+	{bspc node -t floating && window-placer,bspc node -t tiled}
 # Force all windows of the desktop to tile
 super + ctrl + t
 	bspcp tile
@@ -38,19 +38,19 @@ super + ctrl + shift + t
 	
 # Toggle fullscreen
 super + shift + f 
-	bspc window -t fullscreen	
+	bspc node -t {fullscreen,tiled}	
 
 # Try to keep size and position of the selected window
 super + o
-	bspc window -g {private,public}
+	bspc node -g private
 
 # Make window sticky
 super + i
-	bspc window -g {sticky.nonsticky}
+	bspc node -g sticky
 
 # Lock a window from closing
 super + Escape
-	bspc window -g {locked,unlocked} 
+	bspc node -g locked 
 
 ### Map or unmap windows (functional equivalent of "minimize")
 super + c
@@ -74,17 +74,17 @@ ctrl + space
 	auto-presel
 # Presel window for splitting in certain direction
 alt + ctrl + {a,s,w,d}
-	bspc window -p {left,down,up,right}
+	bspc node -p {left,down,up,right}
 
 alt + ctrl + {h,j,k,l}
-	bspc window -p {left,down,up,right}
+	bspc node -p {left,down,up,right}
 
 alt + ctrl + {Left,Down,Up,Right}
-	bspc window -p {left,down,up,right}
+	bspc node -p {left,down,up,right}
 
 # Set splitting ratio of windows
 alt + ctrl + {1-9}
-	bspc window -r 0.{1-9}
+	bspc node -o 0.{1-9}
 		
 # Move current window to largest space or preselected area if there is one.
 super + Return
@@ -92,19 +92,7 @@ super + Return
 
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
-    bspc {desktop -f,window -d} ^{1-9,10}
-
-## Alternative: bring nth desktop to current monitor and then focus it (Xmonad style)
-#super + {1-9,0}
-#     summondesktop.sh {1-9,10}
-#super + shift + {1-9,0}
-#    bspc window -d ^{1-9,10}
- 
-## Another alternative: focus nth desktop of currently focused monitor (i3 style)
-#super + {1-9}
-#  focusdesktopofthismonitor ^{1-9}
-#super + shift + {1-9,0}
-#    movetodesktopofthismonitor ^{1-9}
+    bspc {desktop -f,node -d} ^{1-9,10}
 
 # Select previous / next desktop
 super + {m,n}
@@ -112,7 +100,7 @@ super + {m,n}
 
 # cycle windows
 alt + {_,shift + }Tab
-    bspc window -f {next,prev}
+    bspc node -f {next,prev}
 
 # Go to specific window
 super + Tab
@@ -120,44 +108,35 @@ super + Tab
 	
 #Focus windows by direction, works with multihead
 super +  {a,s,w,d}
-    focusmover {left,down,up,right}
+    focusmover {west,south,north,east}
 
 super +  {h,j,k,l}
-    focusmover {left,down,up,right}
+    focusmover {west,south,north,east}
 
 super +  {Left,Down,Up,Right}
-    focusmover {left,down,up,right}
+    focusmover {west,south,north,east}
         	
 # Move tiled windows. Moving a tiled window to 
 # preselected one moves into preselection instead. 
 # Moving out of the screen should move the window to next monitor if possible
 super + shift + {a,s,w,d}
-	windowgrabber {left,down,up,right}
+	windowgrabber {west,south,north,east}
 
 super + shift + {h,j,k,l}
-	windowgrabber {left,down,up,right}
+	windowgrabber {west,south,north,east}
 	
 super + shift + {Left,Down,Up,Right}
-	windowgrabber {left,down,up,right}
+	windowgrabber {west,south,north,east}
 
 #resize windows
-super + ctrl + {d,a}
-	bspwm_resize.sh {-p,-n} -x -s 20
+super + ctrl + {a,s,w,d}
+	bspwm_resize.sh {west,south,north,east}
 
-super + ctrl + {s,w}
-    bspwm_resize.sh {-p,-n} -y -s 20
-
-super + ctrl + {l,h}
-	bspwm_resize.sh {-p,-n} -x -s 20
-
-super + ctrl + {j,k}
-    bspwm_resize.sh {-p,-n} -y -s 20
-
-super + ctrl + {Right,Left}
-	bspwm_resize.sh {-p,-n} -x -s 20
-
-super + ctrl + {Down,Up}
-    bspwm_resize.sh {-p,-n} -y -s 20
+super + ctrl + {h,j,k,l}
+	bspwm_resize.sh {west,south,north,east}
+	
+super + ctrl + {Left,Down,Up,Right}
+	bspwm_resize.sh {west,south,north,east}
 
 #
 # Layout manipulation/desktop level controls
@@ -169,19 +148,19 @@ super + f
 	
 # Balance tree
 super + b
-	bspc desktop -B
+	bspc node @/ -B
 	
 # Undo balancing (equalize windows)
 super + ctrl + b
-	bspc desktop -E 
+	bspc node @/ -E
 
 # Mirror and flip leaves of tree
 super + {comma,period}
-	bspc desktop -F {horizontal,vertical}
+	bspc node @/ -F {horizontal,vertical}
 	
 # Rotate leaves of tree
 super + shift + {comma,period}
-	bspc desktop -R {90,270}
+	bspc node @/ -R {90,270}
 
 # Change window gap
 
@@ -223,8 +202,8 @@ super + ctrl + button4
 # biggest dimension of the window, MouseLaunch only cares which edge is closer.
 # mod5 is alt_gr (first key right from space) on most keyboards. 
 mod5 + @button1
-#    MouseLaunch
-	smartsplit &&dboxmenu
+#    MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
+	smartsplit ; dboxmenu
 
 # Spawn window manipulation menu
 # Mod1 is alt
@@ -307,7 +286,7 @@ super + shift + r
 	bspwmrc
 #edit this file
 alt + ctrl + space
-	geany ~/.config/sxhkd/sxhkdrc
+	$GUI_EDITOR ~/.config/sxhkd/sxhkdrc
 # Toggle compositing
 super + ctrl + space
 	{pkill compton ,\
