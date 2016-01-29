@@ -209,6 +209,7 @@ mod5 + @button1
 # Mod1 is alt
 mod1 + @button1
     BspwmWindowMenu
+#    mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
 
 # These two are needed if you want to use xfdesktops menus while 
 # focus_follows_pointer is on
