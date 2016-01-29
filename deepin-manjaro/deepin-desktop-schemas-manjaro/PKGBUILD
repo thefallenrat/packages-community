@@ -6,7 +6,7 @@
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
 pkgver=3.0.1
-pkgrel=4
+pkgrel=5
 pkgdesc='Desktop-wide gsettings schemas for Manjaro-Deepin'
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
