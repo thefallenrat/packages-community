@@ -2,7 +2,7 @@
 
 pkgname=bspwm-scripts
 pkgver=0.16
-pkgrel=3
+pkgrel=1
 pkgdesc="Scripts for controlling bspwm"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
