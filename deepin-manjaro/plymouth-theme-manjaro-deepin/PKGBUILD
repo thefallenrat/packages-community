@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plymouth-theme-manjaro-deepin
-pkgver=1.5
+pkgver=1.6
 pkgrel=1
 pkgdesc="Plymouth theme for Manjaro-Deepin"
 repo="plymouth-themes-manjaro"
@@ -12,7 +12,7 @@ depends=('plymouth')
 install=$pkgname.install
 makedepends=('git')
 groups=('deepin-manjaro')
-source="git+$url.git"
+source=("git+$url.git")
 md5sums=('SKIP')
 
 package() {

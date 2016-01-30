@@ -3,8 +3,8 @@
 pkgname=deepin-iconthemes-manjaro
 pkgver=20160130
 _repo=deepin-iconthemes
-_snapshot=649b78a27a42f43223a4de9ece752b093a86e0d9
-pkgrel=1
+_snapshot=16ccc69faa6d50c395831b199fecbdebb5236d27
+pkgrel=2
 pkgdesc="Icon themes for Deepin-Manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$_repo"
@@ -16,7 +16,7 @@ provides=('deepin-icontheme-pack')
 groups=('deepin-manjaro')
 install="$_repo.install"
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('a7f331ba3edbc292cfc94bbae9f23640')
+md5sums=('9577efc5b190b8d95da9db800222144b')
 
 package() {
 	cd $_repo-$_snapshot
