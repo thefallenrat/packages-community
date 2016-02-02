@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-deepin
 pkgver=1.6
-pkgrel=1
+pkgrel=2
 pkgdesc="Plymouth theme for Manjaro-Deepin"
 repo="plymouth-themes-manjaro"
 arch=('any')
@@ -11,7 +11,6 @@ license=('GPL')
 depends=('plymouth')
 install=$pkgname.install
 makedepends=('git')
-groups=('deepin-manjaro')
 source=("git+$url.git")
 md5sums=('SKIP')
 
