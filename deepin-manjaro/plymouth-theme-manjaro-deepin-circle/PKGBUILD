@@ -1,9 +1,9 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=plymouth-theme-manjaro-cinnamon
-pkgver=1.2
-pkgrel=4
-pkgdesc="Green Manjaro Plymouth theme"
+pkgname=plymouth-theme-manjaro-deepin-circle
+pkgver=1.0
+pkgrel=1
+pkgdesc="Plymouth theme for Manjaro-Deepin"
 repo="plymouth-themes-manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$repo"
@@ -11,11 +11,12 @@ license=('GPL')
 depends=('plymouth')
 install=$pkgname.install
 makedepends=('git')
+groups=('deepin-manjaro')
 source=("git+$url.git")
 md5sums=('SKIP')
 
 package() {
 	cd $srcdir/$repo
 	install -dm755 "$pkgdir/usr/share/plymouth/themes"
-	cp -r manjaro-cinnamon "$pkgdir/usr/share/plymouth/themes"
+	cp -r manjaro-deepin-circle "$pkgdir/usr/share/plymouth/themes"
 }

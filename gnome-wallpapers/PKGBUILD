@@ -1,0 +1,21 @@
+# Maintainer: Ste74 <capitani74atgmaildotcom>
+
+pkgname=gnome-wallpapers
+_pkgname=manj_gnome.jpg
+pkgver=20160131
+pkgrel=1
+pkgdesc='Manjaro Linux Gnome wallpapers'
+arch=('any')
+url="https://github.com/manjaro/packages-community"
+license=('GPL')
+source=("https://github.com/Ste74/Aur-binary-repo/releases/download/v1.0/${_pkgname}")
+sha256sums=('a4490790fbad874b2e4ea70ab4114582cca8f57a47f150e938d91990762db814')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+package(){
+	install -d $pkgdir/usr/share/backgrounds
+	install $srcdir/${_pkgname} $pkgdir/usr/share/backgrounds
+}

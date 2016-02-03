@@ -1,0 +1,21 @@
+# Maintainer: Ste74 <capitani74atgmaildotcom>
+
+pkgname=budgie-wallpapers
+_pkgname=manj_wallpaper.jpg
+pkgver=20160131
+pkgrel=1
+pkgdesc='Manjaro Linux Budgie wallpapers'
+arch=('any')
+url="https://github.com/manjaro/packages-community"
+license=('GPL')
+source=("https://github.com/Ste74/Aur-binary-repo/releases/download/v1.0/${_pkgname}")
+sha256sums=('878611c516dc83deaec6e302fa352f6f9aef1ceeb14ee57f51fe97a0d10f4a91')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+package(){
+	install -d $pkgdir/usr/share/backgrounds
+	install $srcdir/${_pkgname} $pkgdir/usr/share/backgrounds
+}

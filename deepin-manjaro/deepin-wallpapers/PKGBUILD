@@ -2,23 +2,21 @@
 
 _profile=deepin
 _user=oberon2007
-_snapshot=e7f5288c0fdf3b5f7eeeaeeb319d68f3ca042940
+_snapshot=496fa3bace8904f31ab232a80adbb37638033f2b
 
 pkgname="$_profile-wallpapers"
-pkgver=20160126
+pkgver="$(date +'%Y%m%d')"
 pkgrel=1
 pkgdesc="Wallpapers for $_profile"
-arch=any
-license=GPL3
+arch=('any')
+license=('GPL3')
 url=https://github.com
 groups=('deepin-manjaro')
-source="$pkgname-$pkgver.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
-
-md5sums=('4f8ad9189994c27bb628a29e62327288')
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz")
+md5sums=('682faae4c1e8a14c286da01be845be72')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
-	install -dm755 $pkgdir/usr/share
+	install -dm755 $pkgdir/usr/share/icons/hicolor/256x256/apps
 	cp -r * $pkgdir/usr/share
-
 }

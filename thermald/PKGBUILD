@@ -3,10 +3,10 @@
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
 _pkgname=thermal_daemon
-_gitcommit=0b7a49e # https://github.com/01org/thermal_daemon/commit/0b7a49e02560374c5593a10189adc732e324cabf
+_gitcommit=8bef9c9 # https://github.com/01org/thermal_daemon/commit/8bef9c9dd478045fc99027f8a1a5e50d416450b1
 pkgname=thermald
 pkgver=1.4.3
-pkgrel=3
+pkgrel=4
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
 url="https://github.com/01org/${_pkgname}"

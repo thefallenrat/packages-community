@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=43.0.4
+pkgver=44.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -15,17 +15,15 @@ depends=('gtk2' 'gtk3' 'mozilla-common' 'libxt' 'startup-notification' 'mime-typ
          'libvpx' 'icu'  'libevent' 'nss' 'nspr' 'hunspell' 'sqlite' 
          'libnotify' 'kmozillahelper' 'ttf-font')
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'xorg-server-xvfb' 'libpulse' 'inetutils' 'gst-plugins-base-libs')
+             'xorg-server-xvfb' 'libpulse' 'inetutils')
 optdepends=('networkmanager: Location detection via available WiFi networks'
-            'ffmpeg: H264/AAC decoding'
-            'gst-plugins-good: MP3 playback'
-            'gst-plugins-ugly: MP3 playback'
+            'ffmpeg: H264/AAC/MP3 decoding'
             'upower: Battery API')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_patchrev=2b664b26b6b2
+_patchrev=eb9ebe3e2e6a
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 #_patchurl=http://88.198.125.221/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
@@ -34,8 +32,6 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         firefox-install-dir.patch 
         vendor.js
         kde.js
-        firefox-disable-GMP-PDM.patch
-        firefox-support-YUV420J-pixel-format.patch
         firefox-fixed-loading-icon.png
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -49,24 +45,22 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         add_missing_pgo_rule.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('76cfa99285d49dede4097096ab3e7ee4bdedb64084b1fc23f2de216884245a76'
-            '6e6f02ef7eba5782b43b919804b7105acfedf6b397333add989d4fe6815e9504'
+sha256sums=('ea82b0f4840d320aa4fe8046ba28e686bf6dc60f707a0514a9d68c150d0c4c1d'
+            'e824be6de82b82cf8177b24d154f1f5dc32f2855790b847c1690de415ac139f1'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
-            'fb1f631363c9b50c8246a0d8738c40570717b3e15b5457dacad9f447449d7e92'
-            '4a949e5b4281be4df0bece8087ecad0a3debb4828efc6a587bd3bd931ab70c94'
             '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213'
-            '72abd31e89a41cddbd8165b0b9555465184c52c426e0998c9cb7786af94b5532'
-            '2017e1f7a71e8c3563c11fa48cc96de864388ff4fa8a124da3c30ba6129565a2'
+            '0ac532cb40be8057225032a000587e1fb7936dd06607e79a69064b10d436afd5'
+            '8255adfb5289505c98c2f0aa534c5e63c4750e867552f6c6f9199e03d2cc9bc8'
             '02e92f84dd31ed079be3e67509cf23d0d351e06bb690fcc091c904d906d2d690'
-            'fbf9b64a9dcdaaef915ff1a365572eb02a2c151ac2311d82b0b8b47fb2d0267a'
-            'ce1b7a5bb217c31590bce30653aea5139b6401a01eda7bded7fd2f83a23d397b'
+            '0d764c620fc2853803fca31e8b9ca1b44620ccfccceffc78f0e9af652ca80ea0'
+            'feede2fb86527c4a5d90bd5458fe582da920ab02dd25ec656236d87caf8888ba'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '5fd329439480d861eb37edcca47fb3e05801f5a48b4d6c2afa17fb4c71c65fa1'
             'f9067f62a25a7a77276e15f91cc9e7ba6576315345cfc6347b1b2e884becdb0c'
-            '2c9c97bff07cc71b3f6d35f3edfaddaf8180a1f533ee4682adf18a8f86d29264')
+            '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
 
 # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
 # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -85,12 +79,6 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 prepare() {
   cd $_pkgname-$pkgver
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1233429
-  patch -Np1 -i ../firefox-disable-GMP-PDM.patch
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1233340
-  patch -Np1 -i ../firefox-support-YUV420J-pixel-format.patch
   
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
