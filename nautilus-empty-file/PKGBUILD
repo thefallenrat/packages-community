@@ -2,7 +2,7 @@
 
 pkgname=nautilus-empty-file
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="provides context menu 'New Document' functionality for nautilus"
 arch=('any')
 depends=('nautilus')
