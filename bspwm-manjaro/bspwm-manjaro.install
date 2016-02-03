@@ -5,23 +5,26 @@ users=$(awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd)
 
 ## sxhkd function
 function sxhkd_fixer {
-	#Remove 2 old lines if they exist
-	grep -q "node" $sxhkdrc || echo -e "Your sxhkd uses old syntax." 
-	echo -e "This update introduced syntax changes that would render your desktop unusable."
-	echo -e "your old sxhkdrc has been saved under name sxhkdrc.old. Logging in next time"
-	echo -e "gives you the updated default sxhkdrc to keep your system usable." &&
-	mv $sxhkdrc $sxhkdrc.old
-	grep -q "terminal -e" $sxhkdrc.old && echo "export TERMINAL=terminal" >> $user/.profile &&
-	echo "export gap=15" >> $user/.profile
+	if ! grep -q "node" $sxhkdrc ; then
+		echo -e "Your sxhkd uses old syntax." 
+		echo -e "This update introduced syntax changes that would render your desktop unusable."
+		echo -e "your old sxhkdrc has been saved under name sxhkdrc.old. Logging in next time"
+		echo -e "gives you the updated default sxhkdrc to keep your system usable." &&
+		mv $sxhkdrc $sxhkdrc.old
+		grep -q "terminal -e" $sxhkdrc.old && echo "export TERMINAL=terminal" >> $user/.profile &&
+		grep -q "gap" $user/.profile || echo "export gap=15" >> $user/.profile
+	fi
 }
 
 ## bspwm function 
 function bspwm_fixer {
-	grep -q "state=floating" $bspwmrc && echo -e "Your bspwmrc uses old syntax.
+	if ! grep -q "state=pseudo_tiled" $bspwmrc ; then
+		mv $bspwmrc $bspwmrc.old
+		echo -e "Your bspwmrc uses old syntax.
 	This update introduced syntax changes that would render your desktop unusable.
 	Your old bspwmrc has been saved under name bspwmrc.old. Logging in next time
-	gives you the updated default bspwmrc to keep your system usable." &&
-	mv $bspwmrc $bspwmrc.old
+	gives you the updated default bspwmrc to keep your system usable."
+	fi
 }
 post_upgrade() {
 	#Backup and fix configs
@@ -29,6 +32,4 @@ post_upgrade() {
 		[[ -f /home/$user/.config/sxhkd/sxhkdrc ]] && sxhkdrc=/home/$user/.config/sxhkd/sxhkdrc && export $user && sxhkd_fixer
 		[[ -f /home/$user/.config/bspwm/bspwmrc ]] && bspwmrc=/home/$user/.config/bspwm/bspwmrc && bspwm_fixer
 	done
-	echo "sxhkdrc and bspwmrc were replaced to match changed syntax"
 }
-#post_upgrade
