@@ -2,11 +2,11 @@
 
 pkgname=pacli
 pkgver=0.6
-pkgrel=2
-pkgdesc="An interactive pacman interface using pmenu"
+pkgrel=3
+pkgdesc="An interactive pacman interface using fzf"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-license=MIT
+license=(MIT)
 depends=('bash'
 	'downgrade'
 	'pacman'
