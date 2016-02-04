@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="A wm independent desktop menu"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-license=MIT
+license=(MIT)
 depends=('xorg-xev'
 	'awk'
 	'bash')

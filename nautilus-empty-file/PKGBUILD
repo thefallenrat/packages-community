@@ -2,7 +2,7 @@
 
 pkgname=nautilus-empty-file
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="provides context menu 'New Document' functionality for nautilus"
 arch=('any')
 depends=('nautilus')
@@ -14,5 +14,5 @@ md5sums=('2cb892d2b271d951af5d3b3fb9c5dbc0'
 package() {
 	cd $startdir
 	install -Dm755 create-template $pkgdir/usr/bin/create-template
-	install -Dm644 create-template.desktop $pkgdir/etc/skel/create-template.desktop
+	install -Dm644 create-template.desktop $pkgdir/etc/skel/.config/autostart/create-template.desktop
 }
