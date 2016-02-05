@@ -87,16 +87,6 @@ package() {
     # Install main app
     make install DESTDIR="$pkgdir"
     
-    # Blacklist nvidia and nouveau modules
-    # Reference: https://github.com/Bumblebee-Project/Bumblebee/issues/719
-    install -dm755 ${pkgdir}/usr/lib/modprobe.d
-    bash -c "{
-    echo \"blacklist nvidia\"
-    echo \"blacklist nvidia-modeset\"
-    echo \"blacklist nvidia-uvm\"
-    echo \"blacklist nouveau\"
-    } > ${pkgdir}/usr/lib/modprobe.d/bumblebee.conf"
-    
     # Install systemd unit
     install -Dm644 "scripts/systemd/bumblebeed.service" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"    
     sed -i "s/sbin/bin/" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"
