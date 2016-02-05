@@ -2,7 +2,7 @@
 
 pkgname=networkmanager-dmenu
 _gitname=nmcli-dmenu
-pkgver=1.0.0.r3.g74dae04
+pkgver=1.0.0.r13.ge572f5c
 pkgrel=1
 pkgdesc="Control NetworkManager via dmenu"
 arch=('any')
