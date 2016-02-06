@@ -5,7 +5,7 @@
 
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=11
+pkgrel=12
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 install=bumblebee.install
 arch=('i686' 'x86_64')
@@ -30,12 +30,14 @@ source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
         "0001-bb_nvidia_modeset-detection_bug699_01.patch::https://github.com/arafey/Bumblebee/commit/5636b24fa86a005a5d2e30bd794516db13ccba56.patch"
         "0002-bb_nvidia_modeset-detection_bug699_02.patch::https://github.com/arafey/Bumblebee/commit/09d537e8e5313cd0f2c7bf6620ca70454de8a04a.patch"
         "0003-bb_nvidia_umv_detection_bug699.patch::https://github.com/arafey/Bumblebee/commit/dbbf20a38aa2bffb10c4e8af583b34dff6bfe721.patch"
-        "0004-bb_hexadicimal_bug573.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch")
+        "0004-bb_hexadicimal_bug573.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch"
+        "0005-bb_mutebblogger.patch")
 sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
             'aff3528d17a77ff19b4e0a7a10682b8351456f11795f71ef62b315e774fb408a'
             '70ad9b3d8e0d70a504110651c6f5f3a1b1d3c4c44eeb0fd49a4463e99124a47b'
             '16fd522f412125b3c9b5709d78584744c70cb627e8baf8cd6025a71d278f79a6'
-            '0b7c1f4bb2e27d131c6c21fd7006d075584917ac4259bd9899e6eca99efc0ece')
+            '0b7c1f4bb2e27d131c6c21fd7006d075584917ac4259bd9899e6eca99efc0ece'
+            'cbe3e1717bc80146b87d8f2ab1158ee9e094ea5bb2ca9a4a8c09c24b086a7792')
 
 prepare() {
     cd "${srcdir}/${pkgname}-${pkgver}"
@@ -58,8 +60,8 @@ prepare() {
     # https://github.com/Bumblebee-Project/Bumblebee/issues/573                                                                   #
     # https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b                              #
     ###############################################################################################################################
-    for p in $(ls ${srcdir}/00{01,02,03,04}*.patch); do
-    patch -Np1 -i "$p"
+    for p in $(ls ${srcdir}/00{01,02,03,04,05}*.patch); do
+        patch -Np1 -i "$p"
     done
 }
 
@@ -81,11 +83,12 @@ build() {
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
-
+    
+    # Install main app
     make install DESTDIR="$pkgdir"
-
+    
     # Install systemd unit
-    install -D -m644 "scripts/systemd/bumblebeed.service" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"    
+    install -Dm644 "scripts/systemd/bumblebeed.service" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"    
     sed -i "s/sbin/bin/" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"
 
     # Make bash_completion work
