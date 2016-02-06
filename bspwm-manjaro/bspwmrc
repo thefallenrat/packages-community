@@ -77,8 +77,8 @@ bspc rule -a conky sticky=on manage=off lower=on
 bspc rule -a astime sticky=on
 bspc rule -a feh state=floating manage=off
 bspc rule -a yad state=floating
-bspc rule -a docky layer=above
-bspc rule -a plank layer=above
+bspc rule -a Docky layer=above border=off manage=on
+bspc rule -a Plank layer=above border=off manage=on
 bspc rule -a wbar layer=above
 bspc rule -a dockbarx layer=above
 bspc rule -a google-chrome-unstable private=on
