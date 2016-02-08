@@ -1,6 +1,4 @@
-# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
-# Contributor: artoo <artoo@manjaro.org>
-# Contributor: Ste74 <capitani74atgmaildotcom>
+# Maintainer: Ste74 <capitani74atgmaildotcom>
 
 pkgname=budgie-wallpapers
 _pkgname=manj_wallpaper.jpg

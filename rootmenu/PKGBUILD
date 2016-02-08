@@ -1,17 +1,19 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=rootmenu
-pkgver=0.4
-pkgrel=2
+pkgver=0.5
+pkgrel=1
 pkgdesc="A wm independent desktop menu"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-license=MIT
-depends=('dmenu-manjaro'
-	'xdotool'
-	'wmutils'
-	'xorg-xev'
-	'xdg-utils')
+license=(MIT)
+depends=('xorg-xev'
+	'awk'
+	'bash')
+optdepends=('dmenu-manjaro: used for the example menus'
+	'xdotool: used for the example menus'
+	'wmutils: used for the example menus'
+	'xdg-utils: used for the example menus')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')

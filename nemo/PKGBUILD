@@ -3,7 +3,7 @@
 # Contributor: Ner0
 
 pkgname=nemo
-pkgver=2.8.6.r18.g3c19e02
+pkgver=2.8.6.r20.gf539ba5
 pkgrel=1
 pkgdesc="Cinnamon file manager"
 arch=('i686' 'x86_64')

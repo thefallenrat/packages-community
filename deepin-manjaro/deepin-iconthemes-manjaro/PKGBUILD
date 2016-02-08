@@ -1,10 +1,10 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-iconthemes-manjaro
-pkgver=20160130
+pkgver=20160201
 _repo=deepin-iconthemes
-_snapshot=73a622ae3223d25011d0c71141dcb8402f22f9e5
-pkgrel=4
+_snapshot=579ea110a28d7d4f8f69b9ca8d0e17d2bb397604
+pkgrel=1
 pkgdesc="Icon themes for Deepin-Manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$_repo"
@@ -15,11 +15,11 @@ conflicts=('deepin-icontheme-pack')
 provides=('deepin-icontheme-pack')
 groups=('deepin-manjaro')
 install="$_repo.install"
-source=("$pkgname-$pkgver-3.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('4d3cb048c650c38182f836585262a818')
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
+md5sums=('a1d10704c1153381d92f3e6216640aad')
 
 package() {
 	cd $_repo-$_snapshot
 	install -dm755 $pkgdir/usr/share/icons
-	cp -r {Compass,Dalisha} $pkgdir/usr/share/icons
+	cp -r {Compass,Dalisha,hicolor} $pkgdir/usr/share/icons
 }
