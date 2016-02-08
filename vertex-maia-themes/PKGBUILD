@@ -4,13 +4,15 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160203
+pkgver=20160208
 pkgrel=1
-pkgdesc='Vertex themes adjusted to match maia icon theme'
+pkgdesc='Vertex themes to match maia icon theme with classic round or new square window buttons'
 arch=('any')
 url="http://github.com/oberon2007/$pkgname"
 license=('GPL3')
 depends=('gtk-engine-murrine')
+replaces=('vertex-maia-themes-square')
+makedepends=('git')
 optdepends=('xcursor-simpleandsoft: matching cursor-theme'
 	'cantarell-fonts: font for Cinnamon panel')
 source=("git+$url.git")
@@ -19,5 +21,5 @@ sha256sums=('SKIP')
 package() {
 	cd $pkgname
 	install -dm755 $pkgdir/usr/share/themes
-	cp -r Vertex-Maia $pkgdir/usr/share/themes
+	cp -r Vertex-Maia{,-Square} $pkgdir/usr/share/themes
 }
