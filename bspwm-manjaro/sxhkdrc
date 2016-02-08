@@ -28,7 +28,7 @@ super + shift + x
 super + shift + t
 	bspc node -t {pseudo_tiled,tiled}
 super + t
-	{bspc node -t floating && window-placer,bspc node -t tiled}
+	{bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
 # Force all windows of the desktop to tile
 super + ctrl + t
 	bspcp tile
