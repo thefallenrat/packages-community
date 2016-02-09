@@ -229,14 +229,14 @@ super + ctrl + button4
 # biggest dimension of the window, MouseLaunch only cares which edge is closer.
 # mod5 is alt_gr (first key right from space) on most keyboards. 
 mod5 + @button1
-#    MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
-	smartsplit ; dboxmenu
+    MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
+#	smartsplit ; dboxmenu
 
 # Spawn window manipulation menu
 # Mod1 is alt
 mod1 + @button1
-    BspwmWindowMenu
-#    mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+#    BspwmWindowMenu
+    mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
 
 # These two are needed if you want to use xfdesktops menus while 
 # focus_follows_pointer is on
