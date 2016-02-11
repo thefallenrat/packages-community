@@ -1,15 +1,15 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=cinnamon-wallpapers
-pkgver=20160202
+pkgver=20160211
 pkgrel=1
 pkgdesc="Wallpapers for Manjaro Cinnamon"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=78ff081a6b1787ddcaabdefae787a86a8ea04aad
+_snapshot=362344e68f3c7ce2e2da3d319f4e220ed7953948
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('5df5a283c6a2975619e55f4e5a7ae8e8')
+md5sums=('e05dc87e6c7cdefd8e0032954f144e6c')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot

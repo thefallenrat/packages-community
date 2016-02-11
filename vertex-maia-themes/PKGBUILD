@@ -4,7 +4,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160208
+pkgver=20160210
 pkgrel=1
 pkgdesc='Vertex themes to match maia icon theme with classic round or new square window buttons'
 arch=('any')
