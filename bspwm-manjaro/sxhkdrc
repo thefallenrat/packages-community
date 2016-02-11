@@ -102,7 +102,7 @@ super + Return
 
 # Create a new "master area", splitting the whole desktop instead of just windows.
 alt + Return
-	bspc node -n @/ ; bspc node @brother -B
+	bspc node -n @/
 	
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
@@ -176,6 +176,9 @@ super + f
 # Balance tree
 super + b
 	bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+	bspc node @brother -B
 	
 # Undo balancing (equalize windows)
 super + ctrl + b
