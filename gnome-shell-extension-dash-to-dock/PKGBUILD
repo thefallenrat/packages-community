@@ -9,7 +9,6 @@ _author="micheleg"
 pkgname="gnome-shell-extension-${_extname}"
 pkgver=50
 pkgrel=1
-epoch=1
 pkgdesc="This extension moves the dash out of the overview transforming it in a dock for an easier launching of applications and a faster switching between windows and desktops."
 arch=("any")
 url="https://${_author}.github.io/${_extname}/"
