@@ -1,0 +1,41 @@
+# Maintainer: jtts
+# Contributor: Christian METZLER <neroth@xeked.com>
+
+pkgname=gnome-shell-extension-openweather
+pkgver=1.0.r43.g4b3afe6
+pkgrel=1
+pkgdesc="A simple extension for displaying weather informations from several cities in GNOME Shell."
+arch=('any')
+url="https://github.com/jenslody/$pkgname"
+license=('GPL3')
+depends=('glib2' 'gettext' 'pkg-config')
+makedepends=('autoconf'
+	'automake'
+	'git'
+	'gnome-common'
+	'intltool')
+provides=('gnome-shell-extension-weather-neroth-git'
+	  'gnome-shell-extension-weather-git'
+	  'gnome-shell-extension-yawe-git')
+conflicts=('gnome-shell-extension-weather-neroth-git'
+	  'gnome-shell-extension-weather-git'
+	  'gnome-shell-extension-yawe-git')
+install=gschemas.install
+source=("$pkgname::git+$url#branch=master")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$pkgname"
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$srcdir/$pkgname"
+  ./autogen.sh --prefix=/usr
+  make
+}
+
+package() {
+  cd "$srcdir/$pkgname"
+  make DESTDIR=$pkgdir install
+}
