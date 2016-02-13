@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=44.0
+pkgver=44.0.2
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -32,6 +32,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         firefox-install-dir.patch 
         vendor.js
         kde.js
+        firefox-quicktime.patch
         firefox-fixed-loading-icon.png
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -45,12 +46,13 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         add_missing_pgo_rule.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('ea82b0f4840d320aa4fe8046ba28e686bf6dc60f707a0514a9d68c150d0c4c1d'
+sha256sums=('0bb28841a9268c50cbb239f759f16f55b3a624f679c68965158beaa0a83a2d9e'
             'e824be6de82b82cf8177b24d154f1f5dc32f2855790b847c1690de415ac139f1'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
+            '6b731ca36e7688aeb24685da702e0af0475e6671072fc96464fbbed49d0bbd50'
             '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213'
             '0ac532cb40be8057225032a000587e1fb7936dd06607e79a69064b10d436afd5'
             '8255adfb5289505c98c2f0aa534c5e63c4750e867552f6c6f9199e03d2cc9bc8'
@@ -79,6 +81,9 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 prepare() {
   cd $_pkgname-$pkgver
+  
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1244523
+  patch -Np1 -i ../firefox-quicktime.patch
   
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
