@@ -3,7 +3,7 @@
 
 pkgname=numix-themes-archblue
 pkgver=2.5.1
-pkgrel=3
+pkgrel=4
 pkgdesc='A flat and light theme with a modern look using Arch Linux colors (GNOME, Openbox, Unity, Xfce)'
 arch=('any')
 url='https://github.com/oberon2007/numix-themes-archblue'
@@ -19,4 +19,6 @@ package() {
 
   install -dm 755 $pkgdir/usr/share/themes
   cp -dr --no-preserve='ownership' Numix-ArchBlue $pkgdir/usr/share/themes
+  install -Dm 644 deepin-thumbnail.png \
+  $pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix-ArchBlue-thumbnail.png
 }
