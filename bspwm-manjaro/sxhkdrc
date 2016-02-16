@@ -152,8 +152,9 @@ super + shift + {a,s,w,d}
 super + shift + {h,j,k,l}
 	windowgrabber {west,south,north,east}
 	
+# Different style of movement: transplant into window in chosen direction
 super + shift + {Left,Down,Up,Right}
-	windowgrabber {west,south,north,east}
+	euclid_mover {west,south,north,east}
 
 #resize windows
 super + ctrl + {a,s,w,d}
@@ -184,6 +185,10 @@ super + alt + b
 # Undo balancing (equalize windows)
 super + ctrl + b
 	bspc node @/ -E
+
+# Toggle automatic balancing of windows
+alt + b
+	euclid_balance
 
 # Mirror and flip leaves of tree
 super + {comma,period}
