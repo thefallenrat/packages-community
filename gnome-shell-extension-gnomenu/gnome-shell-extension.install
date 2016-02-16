@@ -1,0 +1,17 @@
+instructions() {
+    echo "Don't forget to restart GNOME Shell ([Alt]+[F2], r) and to enable extension with gnome-tweak-tool."
+}
+
+post_install() {
+    instructions
+}
+
+post_upgrade() {
+    instructions
+}
+
+post_remove() {
+    echo "Don't forget to restart GNOME Shell ([Alt]+[F2], r)"
+}
+
+

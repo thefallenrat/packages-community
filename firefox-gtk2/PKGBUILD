@@ -3,7 +3,7 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox-gtk2
-pkgver=43.0.4
+pkgver=44.0.2
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org (GTK2 version)"
 arch=('i686' 'x86_64')
@@ -13,11 +13,9 @@ depends=('gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
          'dbus-glib' 'alsa-lib' 'desktop-file-utils' 'hicolor-icon-theme'
          'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 'sqlite' 'ttf-font')
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'xorg-server-xvfb' 'libpulse' 'inetutils' 'gst-plugins-base-libs')
+             'xorg-server-xvfb' 'libpulse' 'inetutils')
 optdepends=('networkmanager: Location detection via available WiFi networks'
-            'ffmpeg: H264/AAC decoding'
-            'gst-plugins-good: MP3 playback'
-            'gst-plugins-ugly: MP3 playback'
+            'ffmpeg: H264/AAC/MP3 decoding'
             'upower: Battery API')
 conflicts=('firefox' 'firefox-kde')
 provides=("firefox=${pkgver}")
@@ -26,17 +24,15 @@ options=('!emptydirs' '!makeflags')
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig
         firefox.desktop
+        firefox-quicktime.patch
         firefox-install-dir.patch
-        firefox-disable-GMP-PDM.patch
-        firefox-support-YUV420J-pixel-format.patch
         vendor.js
         firefox-fixed-loading-icon.png)
-sha256sums=('76cfa99285d49dede4097096ab3e7ee4bdedb64084b1fc23f2de216884245a76'
-            '358a4acdd39561f4475581d6da91545cd72587e1db12326bf56673248670b74b'
+sha256sums=('0bb28841a9268c50cbb239f759f16f55b3a624f679c68965158beaa0a83a2d9e'
+            '8b593590cffcd6de04a3eabc37300341880b6db8c05d5a873fbaee8132cf5b44'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
+            '6b731ca36e7688aeb24685da702e0af0475e6671072fc96464fbbed49d0bbd50'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
-            'fb1f631363c9b50c8246a0d8738c40570717b3e15b5457dacad9f447449d7e92'
-            '4a949e5b4281be4df0bece8087ecad0a3debb4828efc6a587bd3bd931ab70c94'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             '68e3a5b47c6d175cc95b98b069a15205f027cab83af9e075818d38610feb6213')
 #validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
@@ -59,11 +55,8 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 prepare() {
   cd firefox-$pkgver
 
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1233429
-  patch -Np1 -i ../firefox-disable-GMP-PDM.patch
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1233340
-  patch -Np1 -i ../firefox-support-YUV420J-pixel-format.patch
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1244523
+  patch -Np1 -i ../firefox-quicktime.patch
 
   cp ../mozconfig .mozconfig
   patch -Np1 -i ../firefox-install-dir.patch
