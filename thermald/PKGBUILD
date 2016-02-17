@@ -7,7 +7,7 @@
 ### https://github.com/01org/thermal_daemon/tree/white_list_changes
 
 _pkgname=thermal_daemon
-_gitcommit=f1a77c5f3b936ba8a7a63d587a803641974f8e62 
+_gitcommit=f1a77c5f3b936ba8a7a63d587a803641974f8e62
 pkgname=thermald
 pkgver=1.4.3
 pkgrel=5
