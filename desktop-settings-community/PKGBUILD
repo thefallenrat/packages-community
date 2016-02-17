@@ -99,7 +99,7 @@ package_manjaro-cinnamon-minimal-settings() {
 	pkgdesc='Manjaro Linux cinnamon-minimal settings'
 	conflicts=( $(_get_conflicts) )
 
-	_inst_dir 'community/cinnamon-minimal'
+	_inst_dir 'minimal/cinnamon'
 }
 
 package_manjaro-deepin-settings() {
