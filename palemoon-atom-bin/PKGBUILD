@@ -24,7 +24,7 @@ options=('!strip')
 source=("http://linux.palemoon.org/files/atom/$pkgver/palemoon-$pkgver-atom.en-US.linux-i686.tar.bz2"
         "palemoon.desktop")
 sha1sums=('711fd3a0aad4d23f46fb0cbe106551581a76031f'
-          '83ff22ff7a034efac31f1dd5f27ad0115a778743')
+          'e8d4cbcd51326c337a2c901e7aff7b6c54043dec')
 
 package() {
   install -d "$pkgdir"/usr/{bin,lib}
