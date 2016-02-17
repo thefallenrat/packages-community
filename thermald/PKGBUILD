@@ -2,11 +2,15 @@
 # Contributor: wallnuss <v dot churavy at gmail dot com
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
+### NOTE ###
+### lastest commit from development branch with major fixes 
+### https://github.com/01org/thermal_daemon/tree/white_list_changes
+
 _pkgname=thermal_daemon
-_gitcommit=8bef9c9 # https://github.com/01org/thermal_daemon/commit/8bef9c9dd478045fc99027f8a1a5e50d416450b1
+_gitcommit=f1a77c5f3b936ba8a7a63d587a803641974f8e62 
 pkgname=thermald
 pkgver=1.4.3
-pkgrel=4
+pkgrel=5
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
 url="https://github.com/01org/${_pkgname}"
@@ -15,26 +19,26 @@ makedepends=('systemd')
 depends=('dbus-glib>=0.94' 'libxml2>=2.4')
 conflicts=('thermald-git')
 backup=('etc/thermald/thermal-conf.xml')
-source=("git+${url}.git#commit=${_gitcommit}")
-md5sums=('SKIP')
+source=("$_pkgname.zip::https://github.com/01org/thermal_daemon/archive/${_gitcommit}.zip")
+sha256sums=('e48f44604b9683034d329acd91aad960850fa62389fad35dc6c8be5eed42e9d2')
           
 build() {
-    cd ${_pkgname}
+    cd ${_pkgname}-${_gitcommit}
     ./autogen.sh
     ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin
     make
 }
 
 package() {
-    cd ${_pkgname}
+    cd ${_pkgname}-${_gitcommit}
     make DESTDIR="$pkgdir" install
     mkdir -p ${pkgdir}/etc/{systemd/system/thermald.service.d,modules-load.d}
-    # modules load during boot
+    # required modules load during boot
     bash -c "{
     echo \"msr\"
     echo \"coretemp\"
     } > ${pkgdir}/etc/modules-load.d/thermald.conf"
-    # disable debug info in journal logs
+    # disabling debug info in journal logs
     # Reference: https://www.reddit.com/r/archlinux/comments/3okrhl/thermald_anyone/cw0fqmb
     bash -c "{
     echo \"[Service]\"
