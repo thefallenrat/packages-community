@@ -99,7 +99,7 @@ bspc rule -a tint2 border=off manage=off
 #autogap &
 
 ##  This script balances all windows when new one is spawned 
-#euclid_balance &
+#euclid_balancer &
 
 ##Edge-switcher switches to next workspace when moves moves to the 
 ##edge of the monitor (behavior similar to enlightenment)
