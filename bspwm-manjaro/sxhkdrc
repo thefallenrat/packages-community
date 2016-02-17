@@ -188,7 +188,7 @@ super + ctrl + b
 
 # Toggle automatic balancing of windows
 alt + b
-	euclid_balance
+	euclid_balancer
 
 # Mirror and flip leaves of tree
 super + {comma,period}
