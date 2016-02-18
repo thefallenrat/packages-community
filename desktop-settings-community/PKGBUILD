@@ -23,7 +23,7 @@ pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
-	'manjaro-cinnamon-minimal-settings'
+#	'manjaro-cinnamon-minimal-settings'
 	'manjaro-deepin-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
@@ -32,7 +32,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160216
+pkgver=20160218
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
