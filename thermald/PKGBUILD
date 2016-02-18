@@ -10,8 +10,7 @@ pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
 url="https://github.com/01org/${_pkgname}"
 license=('GPL2')
-makedepends=('systemd')
-depends=('dbus-glib>=0.94' 'libxml2>=2.4')
+depends=('dbus-glib>=0.94' 'libxml2>=2.4' 'systemd')
 conflicts=('thermald-git')
 backup=('etc/thermald/thermal-conf.xml')
 install="${pkgname}.install"
