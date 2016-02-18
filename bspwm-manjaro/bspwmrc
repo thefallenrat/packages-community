@@ -82,8 +82,8 @@ bspc rule -a chromium private=on
 bspc rule -a firefox private=on
 bspc rule -a midori private=on
 bspc rule -a gnome-pie border=off manage=off
-bspc rule -a Xfce4-panel manage=true border=false]
-bspc rule -a Wrapper-1.0 manage=false border=false
+bspc rule -a Xfce4-panel manage=true border=false
+bspc rule -a Wrapper-1.0 center=off border=off
 #bspc rule -a firefox desktop=I
 #bspc rule -a calibre desktop=II
 #bspc rule -a geany desktop=II
