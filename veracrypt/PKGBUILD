@@ -1,0 +1,28 @@
+# Maintainer: Sebastian Lau <archlinux _at_ slau _dot_ info>
+# Maintainer: Eric Ozwigh <ozwigh at gmail dot com>
+
+pkgname=veracrypt
+pkgver=1.17
+pkgrel=1
+pkgdesc="Disk encryption with strong security based on TrueCrypt"
+arch=('i686' 'x86_64') #'armv6h' 'armv7h')
+url="http://veracrypt.codeplex.com/"
+license=('custom')
+depends=('fuse' 'wxgtk>=3.0')
+makedepends=('nasm')
+install='veracrypt.install'
+
+source_x86_64=(	"https://archlinux.0ptr.de/mirrors/veracrypt/${pkgver}/${pkgname}_${pkgver}_amd64.tar.gz")
+source_i686=(	"https://archlinux.0ptr.de/mirrors/veracrypt/${pkgver}/${pkgname}_${pkgver}_i386.tar.gz")
+source=("veracrypt.desktop")
+sha1sums_x86_64=('b8aa201c42b4dda3233722066bd17fcac600d301')
+sha1sums_i686=('479fad1cfe53fef9155dd7ef9c28dd2ecb5d9be4')
+sha1sums=('ebdd450e719fe3cff5e459f027856cbaf03db13a')
+
+package() {
+  cd "${srcdir}"
+  install -D -m755 "${srcdir}/usr/bin/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+  install -D -m644 "${srcdir}/usr/share/veracrypt/doc/License.txt" "${pkgdir}/usr/share/licenses/${pkgname}/License.txt"
+  install -D -m644 "${srcdir}/usr/share/pixmaps/veracrypt.xpm" "${pkgdir}/usr/share/pixmaps/veracrypt.xpm"
+  install -D -m644 "${srcdir}/usr/share/applications/veracrypt.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+}

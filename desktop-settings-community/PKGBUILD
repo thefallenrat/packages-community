@@ -1,19 +1,20 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 # Contributor: artoo <artoo@manjaro.org>
 
-_profiles=('xfce-minimal'
+_profiles=('kde'
 	'kde-minimal'
 	'xfce'
-	'kde'
-	'lxqt-minimal'
+	'xfce-minimal'
 	'bspwm'
 	'budgie'
 	'cinnamon'
+	'cinnamon-minimal'
 	'deepin'
 	'gnome'
 	'i3'
 	'lxde'
 	'lxqt'
+	'lxqt-minimal'
 	'mate'
 	'netbook'
 	'pantheon')
@@ -22,6 +23,7 @@ pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
+#	'manjaro-cinnamon-minimal-settings'
 	'manjaro-deepin-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
@@ -30,8 +32,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160212
-pkgrel=2
+pkgver=20160216
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -91,6 +93,13 @@ package_manjaro-cinnamon-settings() {
 	conflicts=( $(_get_conflicts) )
 
 	_inst_dir 'community/cinnamon'
+}
+
+package_manjaro-cinnamon-minimal-settings() {
+	pkgdesc='Manjaro Linux cinnamon-minimal settings'
+	conflicts=( $(_get_conflicts) )
+
+	_inst_dir 'minimal/cinnamon'
 }
 
 package_manjaro-deepin-settings() {

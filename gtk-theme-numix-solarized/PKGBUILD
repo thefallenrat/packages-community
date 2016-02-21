@@ -3,7 +3,7 @@
 # Contributor: defendor at riseup dot net
 
 pkgname=gtk-theme-numix-solarized
-pkgver=20160212
+pkgver=20160214
 pkgrel=1
 pkgdesc="Solarized Numix GTK2/3, Xfwm4, Metacity, Cinnamon and Openbox theme, light and dark"
 arch=('any')
@@ -19,4 +19,8 @@ package() {
 	cd $srcdir/$pkgname
 	mkdir -p $pkgdir/usr/share/themes/
 	cp -r Numix\ Solarized{,\ Light} $pkgdir/usr/share/themes/
+ 	install -Dm 644 deepin-thumbnail.png \
+	$pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix\ Solarized-thumbnail.png
+ 	install -Dm 644 deepin-thumbnail-light.png \
+	$pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix\ Solarized\ Light-thumbnail.png
 }

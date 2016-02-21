@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="A simple pacman update notifier"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-license=MIT
+license=('MIT')
 depends=('awk'
 	'pacman'
         'yaourt')

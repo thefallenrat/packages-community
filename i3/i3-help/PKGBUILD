@@ -1,0 +1,18 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=i3-help
+pkgver=20160216
+pkgrel=1
+pkgdesc="help-files for manjaro-i3"
+arch=(any)
+license=(GPL3)
+url="https://github.com/oberon2007/$pkgname"
+source=("git+$url.git")
+md5sums=('SKIP')
+
+package() {
+	cd $srcdir/$pkgname
+	install -dm755 $pkgdir/usr/share/doc/manjaro
+	install -m644 i3_help.pdf $pkgdir/usr/share/doc/manjaro/i3_help.pdf
+	install -m644 i3_help_live.pdf $pkgdir/usr/share/doc/manjaro/i3_help_live.pdf
+}
