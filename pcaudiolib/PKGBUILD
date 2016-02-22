@@ -1,7 +1,7 @@
 # Maintainer: Kyle <kyle@gmx.ca>
-pkgname=pcaudiolib-git
+pkgname=pcaudiolib
 _gitname=pcaudiolib
-pkgver=b5b2860 # determined from git origin
+pkgver=f1c8f12 # determined from git origin
 pkgrel=1
 pkgdesc="Portable C Audio Library (git version)"
 arch=(armv6h armv7h i686 x86_64)
