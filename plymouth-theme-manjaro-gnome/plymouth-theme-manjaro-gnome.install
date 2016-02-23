@@ -1,7 +1,7 @@
 post_install() {
   cat << _EOF 
 
-==> To activate run: 
+==> To activate or update the theme run: 
 ==> sudo plymouth-set-default-theme -R manjaro-gnome
 
 _EOF

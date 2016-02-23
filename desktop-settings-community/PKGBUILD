@@ -8,7 +8,6 @@ _profiles=('kde'
 	'bspwm'
 	'budgie'
 	'cinnamon'
-	'cinnamon-minimal'
 	'deepin'
 	'gnome'
 	'i3'
@@ -23,7 +22,6 @@ pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
-#	'manjaro-cinnamon-minimal-settings'
 	'manjaro-deepin-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
@@ -32,7 +30,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160216
+pkgver=20160223
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -90,16 +88,16 @@ package_manjaro-budgie-settings() {
 
 package_manjaro-cinnamon-settings() {
 	pkgdesc='Manjaro Linux cinnamon settings'
+	depends=(
+'artwork-cinnamon-minimal'
+'cantarell-fonts'
+'maia-icon-theme'
+'vertex-maia-themes'
+'xcursor-simpleandsoft'
+)
 	conflicts=( $(_get_conflicts) )
 
 	_inst_dir 'community/cinnamon'
-}
-
-package_manjaro-cinnamon-minimal-settings() {
-	pkgdesc='Manjaro Linux cinnamon-minimal settings'
-	conflicts=( $(_get_conflicts) )
-
-	_inst_dir 'minimal/cinnamon'
 }
 
 package_manjaro-deepin-settings() {

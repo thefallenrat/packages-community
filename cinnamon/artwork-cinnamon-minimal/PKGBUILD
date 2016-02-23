@@ -2,25 +2,19 @@
 
 pkgname=artwork-cinnamon-minimal
 _repo=cinnamon-wallpapers
-pkgver=20160218
+pkgver=20160223
 pkgrel=1
 pkgdesc="Wallpapers for Manjaro Cinnamon"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$_repo"
-_snapshot=53d279a869bc0f98bbc6518a0b660cc159cceb3a
-conflicts=('cinnamon-wallpapers')
+_snapshot=f65fd1072f5b6b6f3732589b848290a54fa57a75
+optdepends=('cinnamon-wallpapers: more wallpapers for Manjaro Cinnamon')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('428a6826aab40aceabff267e5f76a1a4')
+md5sums=('')
 
 package() {
 	cd $srcdir/$_repo-$_snapshot
-
-	install -dm755 $pkgdir/usr/share/{backgrounds,icons}
-	install -Dm644 backgrounds/cinnamon-brown.jpg\
-	  $pkgdir/usr/share/backgrounds/cinnamon-brown.jpg
-	install -Dm644 backgrounds/maia.jpg\
-	  $pkgdir/usr/share/backgrounds/maia.jpg
-	install -Dm644 icons/manjaro-maia.png $pkgdir/usr/share/icons
-	cp -r icons/Simple-and-Soft $pkgdir/usr/share/icons
+	install -dm755 $pkgdir/usr/share
+	cp -r * $pkgdir/usr/share
 }
