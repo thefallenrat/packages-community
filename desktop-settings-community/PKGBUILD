@@ -73,9 +73,21 @@ pkgver() {
 }
 
 package_manjaro-bspwm-settings() {
-	pkgdesc='Manjaro Linux budgie settings'
+	pkgdesc='Manjaro Linux bdspwm settings'
 	conflicts=( $(_get_conflicts) )
-
+	depends=(
+	'bspwm-wallpapers'
+	'menda-circle-icon-theme'
+	'gtk-theme-maia'
+	'xcursor-breeze'
+	'feh'
+	'rootmenu'
+	'mygtkmenui'
+	'limepanel'
+	'bspwm-manjaro'
+	'bspwm-scripts'
+	'sxhkd'
+)
 	_inst_dir 'community/bspwm'
 }
 
