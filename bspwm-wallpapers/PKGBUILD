@@ -6,7 +6,7 @@ _snapshot=a0542463273cd45672eb296c10bbb8d86216f141
 
 pkgname="$_profile-wallpapers"
 pkgver="$(date +'%Y%m%d')"
-pkgrel=2
+pkgrel=3
 pkgdesc="Wallpapers for $_profile"
 arch=any
 license=GPL3
