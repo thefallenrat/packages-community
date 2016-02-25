@@ -1,0 +1,15 @@
+#!/bin/bash
+
+gsettings reset-recursively org.cinnamon
+gsettings reset-recursively org.cinnamon.desktop.background
+gsettings reset-recursively org.cinnamon.desktop.interface
+gsettings reset-recursively org.cinnamon.desktop.screensaver
+gsettings reset-recursively org.cinnamon.desktop.wm.preferences
+gsettings reset-recursively org.cinnamon.theme
+gsettings reset-recursively org.nemo.desktop
+gsettings reset-recursively org.xfce.mousepad.preferences.view
+
+## reset gnome-terminal profile
+_profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+profile=${_profile:1:-1} # remove leading and trailing single quotes
+gsettings reset-recursively "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/"

@@ -7,9 +7,9 @@ pkgdesc="Wallpapers for Manjaro Cinnamon"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=897e1acf03769587e649e4a1ce83defd9a19c7d5
+_snapshot=91511dca3d9b8121646495717484cd03c68af9df
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('667073fa92eeafea805c5d2a93d40e16')
+md5sums=('7ade92ea1cd9e4e86145d507b5c61db6')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
