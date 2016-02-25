@@ -4,7 +4,7 @@
 
 _pkgname=thermal_daemon
 pkgname=thermald
-pkgver=1.5
+pkgver=1.5.2
 pkgrel=1
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
@@ -14,8 +14,9 @@ makedepends=('systemd')
 depends=('dbus-glib>=0.94' 'libxml2>=2.4')
 conflicts=('thermald-git')
 backup=('etc/thermald/thermal-conf.xml')
-source=("https://github.com/01org/thermal_daemon/archive/v1.5.tar.gz")
-sha256sums=('48cec153097d19d4b1b5fba8bc7ee5801e8ff5d17c22714bbedd1f967ca1ece9')
+install="${pkgname}.install"
+source=("https://github.com/01org/thermal_daemon/archive/v${pkgver}.tar.gz")
+sha256sums=('e44b3cdd8a3c385d32d093b6c0b50f5804daad1ed3f5ef16df24b7a3fa048064')
           
 build() {
     cd ${_pkgname}-${pkgver}
