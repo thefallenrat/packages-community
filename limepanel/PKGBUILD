@@ -3,20 +3,20 @@
 
 pkgname=limepanel
 _ver=0.16
-pkgver=0.15.r80.acf7365
+pkgver=0.16.r83.gb81aa7d
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
-arch=any
-url=https://github.com/Chrysostomus/limepanel
-license=MIT
+arch=('any')
+url="https://github.com/Chrysostomus/$pkgname"
+license=('MIT')
 depends=('lemonpanel')
-makedepends=git
-source="git://github.com/Chrysostomus/limepanel"
+makedepends=('git')
+source=("git://github.com/Chrysostomus/limepanel")
 md5sums=('SKIP')
 
 pkgver() {
 	cd $pkgname
-	printf "$_ver.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	printf "$_ver.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package () {

@@ -1,19 +1,16 @@
 # Maintainer: Chrysostomus
 
-_profile=bspwm
-_user=Chrysostomus
-_snapshot=a0542463273cd45672eb296c10bbb8d86216f141
-
-pkgname="$_profile-wallpapers"
+_snapshot=82513d42156d45f74a37d6916cf7acb285da8dbe
+pkgname=bspwm-wallpapers
 pkgver="$(date +'%Y%m%d')"
-pkgrel=3
-pkgdesc="Wallpapers for $_profile"
-arch=any
-license=GPL3
-url=https://github.com
-source="$pkgname-$pkgver-$pkgrel.tar.gz::$url/$_user/$pkgname/archive/$_snapshot.tar.gz"
+pkgrel=1
+pkgdesc="Wallpapers for bspwm"
+arch=('any')
+license=('GPL3')
+url="https://github.com/Chrysostomus/$pkgname"
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
 
-md5sums=('SKIP')
+md5sums=('5a3e73f8b8bbc5f9d3c4bd52ba188f36')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
