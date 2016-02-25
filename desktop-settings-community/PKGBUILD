@@ -75,8 +75,7 @@ pkgver() {
 package_manjaro-bspwm-settings() {
 	pkgdesc='Manjaro Linux bdspwm settings'
 	conflicts=( $(_get_conflicts) )
-	depends=(
-	'bspwm-wallpapers'
+	depends=('bspwm-wallpapers'
 	'menda-circle-icon-theme'
 	'gtk-theme-maia'
 	'xcursor-breeze'
@@ -86,8 +85,7 @@ package_manjaro-bspwm-settings() {
 	'limepanel'
 	'bspwm-manjaro'
 	'bspwm-scripts'
-	'sxhkd'
-)
+	'sxhkd')
 	_inst_dir 'community/bspwm'
 }
 
@@ -100,13 +98,12 @@ package_manjaro-budgie-settings() {
 
 package_manjaro-cinnamon-settings() {
 	pkgdesc='Manjaro Linux cinnamon settings'
-	depends=(
-'artwork-cinnamon-minimal'
-'cantarell-fonts'
-'maia-icon-theme'
-'vertex-maia-themes'
-'xcursor-simpleandsoft'
-)
+	depends=('artwork-cinnamon-minimal'
+	'cantarell-fonts'
+	'maia-icon-theme'
+	'reset-gsettings'
+	'vertex-maia-themes'
+	'xcursor-simpleandsoft')
 	conflicts=( $(_get_conflicts) )
 
 	_inst_dir 'community/cinnamon'
