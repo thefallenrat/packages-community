@@ -2,7 +2,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=lemonpanel
-_ver=0.14
+_ver=0.15
 pkgver=0.14.r165.95ba709
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
@@ -13,8 +13,6 @@ depends=('dmenu-manjaro'
 	'lemonbar-xft-clicky'
 	'xdotool'
 	'wmctrl'
-	'networkmanager-dmenu'
-	'conky-cli'
 	'xtitle'
 	'ttf-dejavu-sans-mono-powerline'
 	'bdf-zevv-peep'
@@ -24,7 +22,9 @@ depends=('dmenu-manjaro'
         'update-notifier')
 optdepends=('pulseaudio-ctl'
 	'rxvt-unicode'
-	'zenity')
+	'zenity'
+	'networkmanager-dmenu'
+	'conky-cli')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/lemonpanel")
 md5sums=('SKIP')
