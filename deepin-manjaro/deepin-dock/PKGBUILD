@@ -3,11 +3,12 @@
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
-## until fixed upstream
+## already fixed upstream
+## can be dropped with pkgver >=3.0.4-2 
 
 pkgname=deepin-dock
+_commit=cc56265
 pkgver=3.0.4
-_pkgver=3.0.3
 pkgrel=1.2
 pkgdesc='Deepin desktop-environment - dock module'
 arch=('i686' 'x86_64')
@@ -18,7 +19,7 @@ makedepends=('git' 'qt5-tools')
 conflicts=('dde-dock')
 replaces=('dde-dock')
 groups=('deepin')
-source=("git+https://cr.deepin.io/dde/dde-dock.git#commit=e7ceb38e62f802addc11348f474269e8c03bd23f")
+source=("git+https://github.com/linuxdeepin/dde-dock.git#commit=$_commit")
 sha256sums=('SKIP')
 
 build() {
