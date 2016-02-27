@@ -19,7 +19,8 @@ depends=('dmenu-manjaro'
 	'ttf-ionicons'
 	'xdg-utils'
 	'rootmenu'
-        'update-notifier')
+        'update-notifier'
+        'dash')
 optdepends=('pulseaudio-ctl'
 	'rxvt-unicode'
 	'zenity'
