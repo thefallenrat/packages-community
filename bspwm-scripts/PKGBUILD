@@ -16,7 +16,8 @@ depends=('dmenu-manjaro'
 	'xtitle'
 	'xdo'
 	'rootmenu'
-	'jshon')
+	'jshon'
+	'dash')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
