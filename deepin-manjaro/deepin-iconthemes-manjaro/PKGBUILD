@@ -1,9 +1,9 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-iconthemes-manjaro
-pkgver=20160212
+pkgver=20160226
 _repo=deepin-iconthemes
-_snapshot=8ffd930a0e41f86c8bfa87be4f874078b77de87d
+_snapshot=c18292219fcfef6ed7b74de2164bbff1a7f08fe1
 pkgrel=1
 pkgdesc="Icon themes for Deepin-Manjaro"
 arch=('any')
@@ -16,7 +16,7 @@ provides=('deepin-icontheme-pack')
 groups=('deepin-manjaro')
 install="$_repo.install"
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('11d1ac94ec90a4e97fab7b29c67bc096')
+md5sums=('3c005307734ba065f0bff06454f683a3')
 
 package() {
 	cd $_repo-$_snapshot
