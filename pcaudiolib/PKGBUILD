@@ -1,37 +1,33 @@
 # Maintainer: Kyle <kyle@gmx.ca>
+
 pkgname=pcaudiolib
-_gitname=pcaudiolib
-pkgver=f1c8f12 # determined from git origin
+pkgver=r26.228b7a6
 pkgrel=1
 pkgdesc="Portable C Audio Library (git version)"
 arch=(armv6h armv7h i686 x86_64)
-url="https://github.com/rhdunn/pcaudiolib"
+url="https://github.com/rhdunn/$pkgname"
 license=('GPL3')
 depends=()
 optdepends=('alsa-lib: ALSA output support'
   'pulseaudio: Pulseaudio output support')
 makedepends=('git')
-provides=(pcaudiolib)
 conflicts=(pcaudiolib-git)
-source=('git+https://github.com/rhdunn/pcaudiolib.git')
+source=("git+$url.git")
 md5sums=('SKIP')
 
 pkgver() {
-  cd $_gitname
-  # Use the tag of the last commit
-  git describe --always | sed -e 's|v||' -e 's|-|.|g'
+  cd $pkgname
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd $_gitname
+  cd $pkgname
   ./autogen.sh
   ./configure --prefix=/usr
   make
 }
 
 package() {
-  cd $_gitname
+  cd $pkgname
   make DESTDIR="$pkgdir/" install
 }
-
-# vim:set ts=2 sw=2 et:

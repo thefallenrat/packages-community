@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plymouth-theme-manjaro-gnome
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc="Plymouth theme for Manjaro Gnome"
 repo="plymouth-themes-manjaro"

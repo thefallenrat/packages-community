@@ -1,8 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plymouth-theme-manjaro-cinnamon
-pkgver=1.2
-pkgrel=4
+pkgver=1.3
+pkgrel=1
 pkgdesc="Green Manjaro Plymouth theme"
 repo="plymouth-themes-manjaro"
 arch=('any')

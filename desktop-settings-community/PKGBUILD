@@ -30,7 +30,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160223
+pkgver=20160226
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -91,6 +91,11 @@ package_manjaro-bspwm-settings() {
 
 package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
+        depends=('arc-themes'
+	'arc-firefox-theme'
+	'maia-icon-theme'
+	'budgie-wallpapers'
+	'deepin-icon-theme')
 	conflicts=( $(_get_conflicts) )
 
 	_inst_dir 'community/budgie'
@@ -119,6 +124,7 @@ package_manjaro-deepin-settings() {
 
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
+	depends=('gnome-wallpapers')
 	conflicts=( $(_get_conflicts) )
 
 	_inst_dir 'community/gnome'

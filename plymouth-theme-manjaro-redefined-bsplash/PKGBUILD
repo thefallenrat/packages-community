@@ -4,7 +4,7 @@
 pkgname=plymouth-theme-manjaro-redefined-bsplash
 basename=manjaro-redefined-bsplash
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro Redefined Plymouth theme."
 arch=('any')
 license=('GPL')
@@ -14,8 +14,7 @@ install=$basename.install
 source=('http://kent.dl.sourceforge.net/project/manjaroredefined/Manjaro-Redefined-Bsplash.tar.gz'
         'manjaro-redefined-bsplash.install'
        )
-md5sums=('SKIP'
-         '05ba612f303fb1282a46785ea72ebf1e')
+md5sums=('SKIP')
 
 package() {
   cd $srcdir/Manjaro-Redefined-Bsplash
