@@ -2,7 +2,7 @@
 
 pkgname=pacli
 pkgver=0.7
-pkgrel=3
+pkgrel=1
 pkgdesc="An interactive pacman interface using fzf"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
