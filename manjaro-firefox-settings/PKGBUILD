@@ -1,0 +1,20 @@
+# Maintainer: Ramon Buldó <rbuldo@gmail.com>
+
+pkgname=manjaro-firefox-settings
+pkgver=20160303
+pkgrel=1
+pkgdesc="Manjaro Linux firefox settings"
+arch=('any')
+url="https://github.com/manjaro/manjaro-firefox-settings"
+license=('GPL')
+_gitcommit=c04d5dd0faa686d8da7012bbeb7a04f95ca95ec0
+source=("manjaro-firefox-settings-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
+md5sums=('2d00ae5066fca192bd8608e7facc4310')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/${pkgname}-${_gitcommit}/distribution.ini" "${pkgdir}/usr/lib/firefox/distribution/distribution.ini"
+}

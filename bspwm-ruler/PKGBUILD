@@ -11,10 +11,10 @@ depends=('bash'
 	'fzf'
 	'xorg-xprop')
 makedepends=('git')
-source=("git://github.com/Chrysostomus/$pkgname")
+source=("git+$url.git")
 md5sums=('SKIP')
 
-package () {
-	cd "$srcdir"
-        install -Dm755 "$srcdir/$pkgname/pacli" "$pkgdir/usr/bin/bspwm-ruler"
+package() {
+	cd "$pkgname"
+        install -Dm755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
 }
