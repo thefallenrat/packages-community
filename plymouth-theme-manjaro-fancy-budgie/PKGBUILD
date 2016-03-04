@@ -1,0 +1,25 @@
+#
+# Maintainer: Ste74 <stefanoatmanjarodotorg>
+# Author : Ste74 , based on original theme elementaryOSblueNature
+
+pkgname=plymouth-theme-manjaro-fancy-budgie
+_basename=manjaro-fancy-budgie
+pkgver=1.0
+pkgrel=1
+pkgdesc="Manjaro Plymouth theme for Budgie Desktop."
+arch=('any')
+license=('GPL')
+url="https://youtu.be/XFnqC13f7XI"
+depends=('plymouth')
+install=${_basename}.install
+source=('https://github.com/Ste74/Aur-binary-repo/releases/download/v1.0/'${_basename}'.tar.gz'
+        ''${_basename}'.install'
+       )
+md5sums=('65cbf84e539a729d88f2c7a4f7080c6c'
+         '3ea23bac34516f532e47b3224f942e7e')
+
+package() {
+  cd $srcdir/${_basename}
+  mkdir -p $pkgdir/usr/share/plymouth/themes/${_basename}
+  install -Dm644 * $pkgdir/usr/share/plymouth/themes/${_basename}
+}
