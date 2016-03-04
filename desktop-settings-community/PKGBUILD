@@ -30,8 +30,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160226
-pkgrel=1
+pkgver=20160304
+pkgrel=3
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -106,7 +106,6 @@ package_manjaro-cinnamon-settings() {
 	depends=('artwork-cinnamon-minimal'
 	'cantarell-fonts'
 	'maia-icon-theme'
-	'reset-gsettings'
 	'vertex-maia-themes'
 	'xcursor-simpleandsoft')
 	conflicts=( $(_get_conflicts) )
