@@ -1,23 +1,6 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 # Contributor: artoo <artoo@manjaro.org>
 
-_profiles=('kde'
-	'kde-minimal'
-	'xfce'
-	'xfce-minimal'
-	'bspwm'
-	'budgie'
-	'cinnamon'
-	'deepin'
-	'gnome'
-	'i3'
-	'lxde'
-	'lxqt'
-	'lxqt-minimal'
-	'mate'
-	'netbook'
-	'pantheon')
-
 pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
@@ -30,12 +13,11 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160226
-pkgrel=1
+pkgver=20160304
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
-depends=('manjaro-base-skel')
 makedepends=('git')
 source=("git+$url.git")
 sha256sums=('SKIP')
@@ -58,23 +40,14 @@ _inst_dir(){
 	fi
 }
 
-_get_conflicts(){
-	local c=()
-	for p in ${_profiles[@]};do
-		if [[ "$pkgname" != "manjaro-$p-settings" ]];then
-			c+=("manjaro-$p-settings")
-		fi
-	done
-	echo ${c[@]}
-}
-
 pkgver() {
 	date +%Y%m%d
 }
 
 package_manjaro-bspwm-settings() {
 	pkgdesc='Manjaro Linux bdspwm settings'
-	conflicts=( $(_get_conflicts) )
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 	depends=('bspwm-wallpapers'
 	'menda-circle-icon-theme'
 	'gtk-theme-maia'
@@ -96,7 +69,8 @@ package_manjaro-budgie-settings() {
 	'maia-icon-theme'
 	'budgie-wallpapers'
 	'deepin-icon-theme')
-	conflicts=( $(_get_conflicts) )
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/budgie'
 }
@@ -109,7 +83,8 @@ package_manjaro-cinnamon-settings() {
 	'reset-gsettings'
 	'vertex-maia-themes'
 	'xcursor-simpleandsoft')
-	conflicts=( $(_get_conflicts) )
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/cinnamon'
 }
@@ -117,7 +92,9 @@ package_manjaro-cinnamon-settings() {
 package_manjaro-deepin-settings() {
 	pkgdesc='Manjaro Linux deepin settings'
 	groups=('deepin-manjaro')
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/deepin'
 }
@@ -125,49 +102,62 @@ package_manjaro-deepin-settings() {
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
 	depends=('gnome-wallpapers')
-	conflicts=( $(_get_conflicts) )
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/gnome'
 }
 
 package_manjaro-i3-settings() {
 	pkgdesc='Manjaro Linux i3 settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/i3'
 }
 
 package_manjaro-lxde-settings() {
 	pkgdesc='Manjaro Linux lxde settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/lxde'
 }
 
 package_manjaro-lxqt-settings() {
 	pkgdesc='Manjaro Linux lxqt settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/lxqt'
 }
 
 package_manjaro-mate-settings() {
 	pkgdesc='Manjaro Linux mate settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/mate'
 }
 
 package_manjaro-netbook-settings() {
 	pkgdesc='Manjaro Linux netbook settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/netbook'
 }
 
 package_manjaro-pantheon-settings() {
 	pkgdesc='Manjaro Linux pantheon settings'
-	conflicts=( $(_get_conflicts) )
+	depends=('manjaro-base-skel')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/pantheon'
 }
