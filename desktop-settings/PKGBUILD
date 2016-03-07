@@ -2,7 +2,9 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgbase=desktop-settings
-pkgname=('manjaro-bspwm-settings'
+pkgname=('manjaro-openbox-minimal-settings'
+	'manjaro-lxqt-minimal-settings'
+	'manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
 	'manjaro-deepin-settings'
@@ -13,8 +15,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160304
-pkgrel=3
+pkgver=20160307
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -44,31 +46,50 @@ pkgver() {
 	date +%Y%m%d
 }
 
+package_manjaro-openbox-minimal-settings() {
+	pkgdesc='Manjaro Linux openbox-minimal settings'
+	depends=('manjaro-base-skel')
+# 	depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes')
+
+	_inst_dir 'minimal/openbox'
+}
+
+package_manjaro-lxqt-minimal-settings() {
+	pkgdesc='Manjaro Linux lxqt-minimal settings'
+# 	depends=('manjaro-openbox-minimal-settings' 'compton' 'qterminal'
+# 		'pcmanfm-qt' 'lxqt-panel')
+	depends=('manjaro-openbox-minimal-settings')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir 'minimal/lxqt'
+}
+
 package_manjaro-bspwm-settings() {
 	pkgdesc='Manjaro Linux bdspwm settings'
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 	depends=('bspwm-wallpapers'
-	'menda-circle-icon-theme'
-	'gtk-theme-maia'
-	'xcursor-breeze'
-	'feh'
-	'rootmenu'
-	'mygtkmenui'
-	'limepanel'
-	'bspwm-manjaro'
-	'bspwm-scripts'
-	'sxhkd')
+		'menda-circle-icon-theme'
+		'gtk-theme-maia'
+		'xcursor-breeze'
+		'feh'
+		'rootmenu'
+		'mygtkmenui'
+		'limepanel'
+		'bspwm-manjaro'
+		'bspwm-scripts'
+		'sxhkd')
 	_inst_dir 'community/bspwm'
 }
 
 package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
         depends=('arc-themes'
-	'arc-firefox-theme'
-	'maia-icon-theme'
-	'budgie-wallpapers'
-	'deepin-icon-theme')
+		'arc-firefox-theme'
+		'maia-icon-theme'
+		'budgie-wallpapers'
+		'deepin-icon-theme')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -78,10 +99,10 @@ package_manjaro-budgie-settings() {
 package_manjaro-cinnamon-settings() {
 	pkgdesc='Manjaro Linux cinnamon settings'
 	depends=('artwork-cinnamon-minimal'
-	'cantarell-fonts'
-	'maia-icon-theme'
-	'vertex-maia-themes'
-	'xcursor-simpleandsoft')
+		'cantarell-fonts'
+		'maia-icon-theme'
+		'vertex-maia-themes'
+		'xcursor-simpleandsoft')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -90,9 +111,9 @@ package_manjaro-cinnamon-settings() {
 
 package_manjaro-deepin-settings() {
 	pkgdesc='Manjaro Linux deepin settings'
-	groups=('deepin-manjaro')	
-depends=('deepin-manjaro'
-	'manjaro-base-skel')
+	groups=('deepin-manjaro')
+	depends=('deepin-manjaro'
+		'manjaro-base-skel')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
