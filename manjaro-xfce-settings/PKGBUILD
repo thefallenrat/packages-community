@@ -1,0 +1,34 @@
+# Maintainer: Ramon Buldó <rbuldo@gmail.com>
+
+pkgbase=manjaro-xfce-settings
+pkgname=('manjaro-xfce-settings'
+         'manjaro-xfce-minimal-settings')
+pkgver=20160304
+pkgrel=1
+pkgdesc="Manjaro Linux Xfce settings"
+arch=('any')
+url="https://github.com/manjaro/manjaro-xfce-settings"
+license=('GPL')
+_gitcommit=
+source=("${pkgbase}-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
+md5sums=('')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package_manjaro-kde-settings() {
+  pkgdesc="Manjaro Linux Xfce settings"
+  conflicts=('manjaro-desktop-settings')
+  provides=('manjaro-desktop-settings')
+  depends=('manjaro-base-skel' 'maia-icon-theme' 'gtk-theme-maia' 'plasma5-themes-maia')
+
+}
+
+package_manjaro-kde-minimal-settings() {
+  pkgdesc="Manjaro Linux Xfce minimal settings"
+  conflicts=('manjaro-desktop-settings')
+  provides=('manjaro-desktop-settings')
+  depends=('manjaro-base-skel' 'maia-icon-theme' 'gtk-theme-maia' 'plasma5-themes-maia')
+
+}
