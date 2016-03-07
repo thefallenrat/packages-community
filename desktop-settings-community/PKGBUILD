@@ -90,8 +90,9 @@ package_manjaro-cinnamon-settings() {
 
 package_manjaro-deepin-settings() {
 	pkgdesc='Manjaro Linux deepin settings'
-	groups=('deepin-manjaro')
-	depends=('manjaro-base-skel')
+	groups=('deepin-manjaro')	
+depends=('deepin-manjaro'
+	'manjaro-base-skel')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
