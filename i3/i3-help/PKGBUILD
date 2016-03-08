@@ -1,10 +1,11 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-help
-pkgver=20160216
-pkgrel=1
+pkgver=20160308
+pkgrel=2
 pkgdesc="help-files for manjaro-i3"
 arch=(any)
+groups=('i3-manjaro')
 license=(GPL3)
 url="https://github.com/oberon2007/$pkgname"
 source=("git+$url.git")

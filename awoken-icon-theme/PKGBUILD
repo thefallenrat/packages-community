@@ -6,7 +6,7 @@ _pkgname=AwOken
 pkgname=('awoken-icon-theme'
 	'awoken-icon-theme-light')
 pkgver=2.5
-pkgrel=2
+pkgrel=3
 arch=('any')
 url="https://github.com/oberon2007/$pkgbase"
 snapshot=2119c93aa55908c8334dc442dd461c3eace0db45
@@ -17,6 +17,7 @@ md5sums=('e372ad2aae758901ba22f7d2187628d5')
 
 package_awoken-icon-theme() {
 	pkgdesc="Coloured, dark and white icon sets for GNOME/XFCE/LXDE"
+	provides=('awoken-icon-theme-light')
 	cd "$srcdir/$pkgbase-$snapshot"
 	install -dm755 "$pkgdir/usr/share/icons"
 	cp -r AwOken{,Dark,White} $pkgdir/usr/share/icons

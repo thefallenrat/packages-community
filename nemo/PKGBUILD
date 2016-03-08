@@ -3,8 +3,9 @@
 # Contributor: Ner0
 
 pkgname=nemo
-pkgver=2.8.6.r20.gf539ba5
-pkgrel=1
+pkgver=2.8.7
+pkgrel=0.1
+_commit=f1dfc68
 pkgdesc="Cinnamon file manager"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/nemo"
@@ -28,13 +29,13 @@ makedepends=('git'
 	'python2-polib')
 options=('!emptydirs')
 install=$pkgname.install
-source=("git+https://github.com/linuxmint/$pkgname.git")
+source=("git+https://github.com/linuxmint/$pkgname#commit=$_commit")
 sha256sums=('SKIP')
 
-pkgver() {
-  cd $pkgname
-  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+#pkgver() {
+#  cd $pkgname
+#  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+#}
 
 prepare() {
   cd $srcdir/$pkgname

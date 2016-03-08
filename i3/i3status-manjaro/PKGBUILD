@@ -3,10 +3,11 @@
 
 _pkgname=i3status
 pkgname=$_pkgname-manjaro
-pkgver=2.9.r80.g395d025
+pkgver=2.10.r13.ge073cf4
 pkgrel=1
 pkgdesc='customized status bar for manjaro-i3, dzen2 or xmobar'
 arch=('i686' 'x86_64')
+groups=('i3-manjaro')
 url='http://github.com/i3/i3status'
 license=('BSD')
 depends=('alsa-lib'

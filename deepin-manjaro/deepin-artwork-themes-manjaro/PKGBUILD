@@ -12,7 +12,6 @@ arch=('any')
 license=('LGPL3')
 url="https://github.com/oberon2007/deepin-artwork-themes-manjaro"
 depends=('cantarell-fonts'
-	'deepin-icon-theme'
 	'deepin-iconthemes-manjaro'
 	'deepin-wallpapers'
 	'numix-themes-archblue'
