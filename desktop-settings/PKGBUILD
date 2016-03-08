@@ -16,7 +16,7 @@ pkgname=('manjaro-openbox-minimal-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
 pkgver=20160308
-pkgrel=2
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
