@@ -2,7 +2,7 @@
 
 pkgname=i3-help
 pkgver=20160308
-pkgrel=1
+pkgrel=2
 pkgdesc="help-files for manjaro-i3"
 arch=(any)
 groups=('i3-manjaro')
