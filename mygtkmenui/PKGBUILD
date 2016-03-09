@@ -2,7 +2,7 @@
 
 pkgname=mygtkmenui
 pkgver=r23.g505c53a
-pkgrel=1
+pkgrel=2
 pkgdesc="myGtkMenu improved; GTK2, GTK3 standalone & lightweight menu written in C"
 arch=('i686' 'x86_64')
 url="https://github.com/dumblob/$pkgname"
