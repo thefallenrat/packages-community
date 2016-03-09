@@ -28,7 +28,8 @@ package() {
   cd "$pkgname"
   install -D -m755 "$pkgname"            "$pkgdir/usr/bin/$pkgname"
   install -D -m644 "example_menu.desc"     "$pkgdir/usr/share/doc/$pkgname/example_menu.desc"
-  install -D -m644 "${pkgname}.desktop"  "$pkgdir/usr/share/applications/${pkgname}.desktop"
+# Don't install desktop file, it just causes trouble and is not really useful.
+#  install -D -m644 "${pkgname}.desktop"  "$pkgdir/usr/share/applications/${pkgname}.desktop"
   install -D -m644 "icon/${pkgname}.svg" "$pkgdir/usr/share/pixmaps/${pkgname}.svg"
   install -D -m644 "icon/${pkgname}.png" "$pkgdir/usr/share/pixmaps/${pkgname}.png"
 }
