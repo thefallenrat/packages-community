@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=bmenu
-pkgver=0.4.2
+pkgver=0.4.3
 pkgrel=3
 pkgdesc="Simple system menu for commandline"
 arch=(any)
