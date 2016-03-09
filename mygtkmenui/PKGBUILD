@@ -10,6 +10,7 @@ license=('GPL')
 source=("$pkgname::git+https://github.com/dumblob/mygtkmenui")
 sha256sums=('SKIP')
 depends=('gtk3')
+makedepends=('git')
 #depends=('gtk2>=2.4')
 
 build() {
