@@ -9,7 +9,7 @@
 pkgname=dmenu-manjaro
 _pkgname=dmenu
 pkgver=4.6
-pkgrel=4
+pkgrel=5
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 groups=('i3-manjaro')

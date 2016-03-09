@@ -5,9 +5,9 @@
          colors = true
          interval = 5
 -}
-+	color_good = "#2ECC71"
-+        color_bad = "#E74C3C"
-+#	color_degraded = " "
++	color_good = "#2AA198"
++       color_bad = "#586E75"
++	color_degraded = "#DC322F"
 +	}
  
 -order += "ipv6"

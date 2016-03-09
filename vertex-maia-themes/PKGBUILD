@@ -4,11 +4,11 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160212
+pkgver=20160308
 pkgrel=1
 pkgdesc='Vertex themes to match maia icon theme with classic round or new square window buttons'
 arch=('any')
-url="http://github.com/oberon2007/$pkgname"
+url="http://github.com/manjaro/$pkgname"
 license=('GPL3')
 depends=('gtk-engine-murrine')
 replaces=('vertex-maia-themes-square')
