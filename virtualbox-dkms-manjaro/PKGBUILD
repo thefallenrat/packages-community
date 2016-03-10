@@ -1,0 +1,17 @@
+pkgname=('virtualbox-dkms-manjaro')
+pkgver=5.0.14
+pkgrel=1
+arch=('any')
+url='http://manjaro.org'
+license=('GPL')
+makedepends=('virtualbox-host-dkms' 'virtualbox-guest-dkms')
+
+package() {
+    pkgdesc='VirtualBox kernel modules dkms helpers'
+    depends=('virtualbox-host-dkms' 'virtualbox-guest-dkms')
+    install=virtualbox-dkms.install
+
+    install -dm755 "$pkgdir/usr/src"
+    ln -sf vboxguest-"$pkgver"_OSE "$pkgdir/usr/src/vboxguest-$pkgver"
+    ln -sf vboxhost-"$pkgver"_OSE "$pkgdir/usr/src/vboxhost-$pkgver"
+}
