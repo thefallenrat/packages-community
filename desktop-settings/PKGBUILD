@@ -17,7 +17,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
 pkgver=20160311
-pkgrel=2
+pkgrel=3
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -71,7 +71,7 @@ package_manjaro-budgie-settings() {
 		'arc-firefox-theme'
 		'maia-icon-theme'
 		'budgie-wallpapers'
-		'deepin-icon-theme')
+		'xcursor-simpleandsoft')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -109,7 +109,14 @@ package_manjaro-deepin-settings() {
 
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
-	depends=('gnome-wallpapers')
+	depends=('gnome-wallpapers'
+		'gnome-shell-extensions'
+		'gnome-shell-extension-openweather'
+		'gnome-shell-extension-mediaplayer'
+		'gnome-shell-extension-gnomenu'
+		'gnome-shell-extension-dash-to-dock'
+		'gnome-shell'
+		'xcursor-simpleandsoft')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
