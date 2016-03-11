@@ -1,10 +1,10 @@
-# Maintainer: Stefano Capitani (Ste74) <adminatmanjaro-itdotorg>
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
 # Autor: The Panacea Project
 
 pkgname=gnome-shell-extension-gnomenu
 _pkgname=gno-menu
 pkgver=18
-pkgrel=1
+pkgrel=2
 pkgdesc="GnoMenu is a traditional styled full featured Gnome-Shell apps-menu, that aims to offer all the essentials in a simple uncluttered intuitive interface."
 arch=(any)
 url="https://github.com/The-Panacea-Projects/Gnomenu"
