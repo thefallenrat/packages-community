@@ -128,7 +128,18 @@ package_manjaro-deepin-settings() {
 
 package_manjaro-fluxbox-settings() {
 	pkgdesc='Manjaro Linux fluxbox settings'
-	depends=('manjaro-base-skel')
+	depends=('manjaro-base-skel'
+                'cantarell-fonts'
+                'fbmenugen'
+                'fluxbox-theme-manjaro'
+                'fluxbox-wallpapers'
+                'menda-themes-dark'
+                'numix-reborn-suite'
+                'oblogout-manjaro'
+                'plymouth-theme-manjaro-circle'
+                'xcursor-chameleon-pearl'
+                'xcursor-menda'
+                'xfce-theme-greenbird')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
