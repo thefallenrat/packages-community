@@ -136,10 +136,9 @@ package_manjaro-fluxbox-settings() {
                 'menda-themes-dark'
                 'numix-reborn-suite'
                 'oblogout-manjaro'
-                'plymouth-theme-manjaro-circle'
-                'xcursor-chameleon-pearl'
                 'xcursor-menda'
                 'xfce-theme-greenbird')
+        optdepends=('plymouth-theme-manjaro-circle')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
