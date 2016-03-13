@@ -6,6 +6,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
 	'manjaro-deepin-settings'
+	'manjaro-fluxbox-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
 	'manjaro-jwm-settings'
@@ -106,6 +107,25 @@ package_manjaro-deepin-settings() {
 	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/deepin'
+}
+
+package_manjaro-fluxbox-settings() {
+	pkgdesc='Manjaro Linux fluxbox settings'
+	depends=('manjaro-base-skel'
+                'cantarell-fonts'
+                'fbmenugen'
+                'fluxbox-theme-manjaro'
+                'fluxbox-wallpapers'
+                'menda-themes-dark'
+                'numix-reborn-icon-themes'
+                'oblogout-manjaro'
+                'xcursor-menda'
+                'xfce-theme-greenbird')
+        optdepends=('plymouth-theme-manjaro-circle')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir 'community/fluxbox'
 }
 
 package_manjaro-gnome-settings() {
