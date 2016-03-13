@@ -69,9 +69,10 @@ package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
         depends=('arc-themes'
 		'arc-firefox-theme'
-		'maia-icon-theme'
+		'moka-icon-theme'
 		'budgie-wallpapers'
 		'xcursor-simpleandsoft')
+	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -117,6 +118,7 @@ package_manjaro-gnome-settings() {
 		'gnome-shell-extension-dash-to-dock'
 		'gnome-shell'
 		'xcursor-simpleandsoft')
+	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
