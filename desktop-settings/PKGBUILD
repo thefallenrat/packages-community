@@ -134,7 +134,7 @@ package_manjaro-fluxbox-settings() {
                 'fluxbox-theme-manjaro'
                 'fluxbox-wallpapers'
                 'menda-themes-dark'
-                'numix-reborn-suite'
+                'numix-reborn-icon-themes'
                 'oblogout-manjaro'
                 'xcursor-menda'
                 'xfce-theme-greenbird')
