@@ -1,7 +1,7 @@
 # Maintainer: Ramon Buldó <rbuldo@gmail.com>
 
 pkgname=manjaro-firefox-settings
-pkgver=20160303
+pkgver=20160312
 pkgrel=1
 pkgdesc="Manjaro Linux firefox settings"
 arch=('any')
@@ -16,5 +16,8 @@ pkgver() {
 }
 
 package() {
-  install -Dm755 "${srcdir}/${pkgname}-${_gitcommit}/distribution.ini" "${pkgdir}/usr/lib/firefox/distribution/distribution.ini"
+  install -Dm755 "${srcdir}/${pkgname}-${_gitcommit}/distribution.ini"\
+	"${pkgdir}/usr/lib/firefox/distribution/distribution.ini"
+  install -Dm755 "${srcdir}/${pkgname}-${_gitcommit}/distribution.ini"\
+	"${pkgdir}/usr/lib/palemoon/distribution/distribution.ini"
 }
