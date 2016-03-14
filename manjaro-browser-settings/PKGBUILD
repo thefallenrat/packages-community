@@ -1,0 +1,29 @@
+# Maintainer: Ramon Buldó <rbuldo@gmail.com>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org
+
+pkgname=manjaro-browser-settings
+pkgver=20160314
+pkgrel=1
+pkgdesc="Manjaro Linux settings browser defaults"
+arch=('any')
+url="https://github.com/manjaro/$pkgname"
+license=('GPL')
+_gitcommit=0e41c4df2ac58c27371af6f9a1855bc961d654a9
+conflicts=('manjaro-firefox-settings')
+replaces=('manjaro-firefox-settings')
+source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
+md5sums=('7c7c5e10e334b3dfb8b4bf22035a1d60')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  cd $pkgname-$_gitcommit
+  mkdir -p $pkgdir/usr/lib/{firefox,palemoon}/distribution
+  mkdir -p $pkgdir/usr/lib/{chrome,chromium}
+  cp chrome/* $pkgdir/usr/lib/chrome
+  cp chrome/* $pkgdir/usr/lib/chromium
+  cp firefox/* $pkgdir/usr/lib/firefox/distribution
+  cp firefox/* $pkgdir/usr/lib/palemoon/distribution
+}
