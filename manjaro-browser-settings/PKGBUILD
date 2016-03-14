@@ -12,7 +12,7 @@ _gitcommit=0e41c4df2ac58c27371af6f9a1855bc961d654a9
 conflicts=('manjaro-firefox-settings')
 replaces=('manjaro-firefox-settings')
 source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('7c7c5e10e334b3dfb8b4bf22035a1d60')
+md5sums=('03394461195f069e645c17a6cb0a1526')
 
 pkgver() {
   date +%Y%m%d
