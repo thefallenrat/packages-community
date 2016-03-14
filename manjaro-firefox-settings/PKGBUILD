@@ -1,15 +1,15 @@
 # Maintainer: Ramon Buldó <rbuldo@gmail.com>
 
 pkgname=manjaro-firefox-settings
-pkgver=20160312
+pkgver=20160314
 pkgrel=1
-pkgdesc="Manjaro Linux firefox settings"
+pkgdesc="Manjaro Linux settings for Firefox and Palemoon"
 arch=('any')
 url="https://github.com/manjaro/manjaro-firefox-settings"
 license=('GPL')
-_gitcommit=c04d5dd0faa686d8da7012bbeb7a04f95ca95ec0
+_gitcommit=44f020ec303776caa6fc1b2e96724acc6f6ca78d
 source=("manjaro-firefox-settings-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('2d00ae5066fca192bd8608e7facc4310')
+md5sums=('8f87dd034a61f02251d60dee4ebdf239')
 
 pkgver() {
   date +%Y%m%d
