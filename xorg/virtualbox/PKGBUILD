@@ -10,7 +10,7 @@ pkgname=('virtualbox'
          'virtualbox-guest-utils'
          'virtualbox-guest-utils-nox'
          'virtualbox-ext-vnc')
-pkgver=5.0.14
+pkgver=5.0.16
 pkgrel=0.1
 arch=('i686' 'x86_64')
 url='http://virtualbox.org'
@@ -66,7 +66,7 @@ source=("http://download.virtualbox.org/virtualbox/$pkgver/VirtualBox-$pkgver.ta
         '007-python2-path.patch'
         '010-no-update.patch'
         )
-md5sums=('e0a02426ad09b475e630881efe911423'
+md5sums=('1752a485b1cb377cee5f196918cda741'
          '984412a63aa9c07ddc3cfd970381d5df'
          '4833c8e0524fd2272b24ba0d94aef006'
          '6e2722bfd7013c1b0174382626ac1b8d'
@@ -86,11 +86,13 @@ md5sums=('e0a02426ad09b475e630881efe911423'
 prepare() {
     cd "VirtualBox-$pkgver"
 
-    for _f in "${source[@]}"; do
-        [[ "$_f" =~ \.patch$ ]] && {
-            msg2 "Applying patch $_f"
-            patch -p1 -i "$srcdir/$_f"
-        }
+    # apply patch from the source array (should be a pacman feature)
+    local filename
+    for filename in "${source[@]}"; do
+        if [[ "$filename" =~ \.patch$ ]]; then
+            msg2 "Applying patch $filename"
+            patch -p1 -N -i "$srcdir/$filename"
+        fi
     done
 
     msg2 'Applying local config'
@@ -239,7 +241,7 @@ package_virtualbox-sdk() {
     VBOX_INSTALL_PATH="/usr/lib/virtualbox" python2 vboxapisetup.py install --root "$pkgdir"
     popd
     rm -rf sdk/installer
-    mv sdk "$pkgdir/usr/lib/virtualbox"
+    cp -r sdk "$pkgdir/usr/lib/virtualbox"
     # licence
     install -Dm644 "$srcdir/VirtualBox-$pkgver/COPYING" \
         "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
@@ -258,10 +260,15 @@ package_virtualbox-host-dkms() {
     install -dm755 "$pkgdir/usr/src"
     source "VirtualBox-$pkgver/env.sh"
     cd "VirtualBox-$pkgver/out/linux.$BUILD_PLATFORM_ARCH/release/bin"
-    cp -r src "$pkgdir/usr/src/vboxhost-$pkgver"
+    cp -r src "$pkgdir/usr/src/vboxhost-${pkgver}_OSE"
     # licence
     install -Dm644 "$srcdir/VirtualBox-$pkgver/COPYING" \
         "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    # module loading
+    install -Dm644 /dev/null \
+        "$pkgdir/usr/lib/modules-load.d/$pkgname.conf"
+    printf "vboxdrv\nvboxpci\nvboxnetadp\nvboxnetflt\n" > \
+        "$pkgdir/usr/lib/modules-load.d/$pkgname.conf"
 }
 
 package_virtualbox-guest-dkms() {
@@ -277,10 +284,15 @@ package_virtualbox-guest-dkms() {
     install -dm755 "$pkgdir/usr/src"
     source "VirtualBox-$pkgver/env.sh"
     cd "VirtualBox-$pkgver/out/linux.$BUILD_PLATFORM_ARCH/release/bin/additions"
-    cp -r src "$pkgdir/usr/src/vboxguest-$pkgver"
+    cp -r src "$pkgdir/usr/src/vboxguest-${pkgver}_OSE"
     # licence
     install -Dm644 "$srcdir/VirtualBox-$pkgver/COPYING" \
         "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    # module loading
+    install -Dm644 /dev/null \
+        "$pkgdir/usr/lib/modules-load.d/$pkgname.conf"
+    printf "vboxguest\nvboxsf\nvboxvideo\n" > \
+        "$pkgdir/usr/lib/modules-load.d/$pkgname.conf"
 }
 
 package_virtualbox-guest-utils() {
