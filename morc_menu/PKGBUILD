@@ -1,0 +1,27 @@
+# Maintainer: Chrysostomus @forum.manjaro.org
+# Maintainer: boruch @forum.manjaro.org
+
+pkgname=morc_menu
+pkgver=0.1
+pkgrel=1
+pkgdesc="A categorized applications menu using dmenu and bash"
+arch=(any)
+url="https://github.com/Boruch-Baum/morc_menu"
+license=(GPL3)
+depends=('dmenu'
+	'bash')
+makedepends=('git')
+optdepends=(
+	'wmutils: Spawn menu on cursor'
+	'xdotool: Spawn menu on cursor'
+	'dmenu-manjaro: Support for mouse, xft fonts and menu placing'
+	'rofi: Alternative frontend'
+	'zenity: Alternative frontend'
+	'rootmenu: Spawn menu by clicking desktop')
+source=("git://github.com/Boruch-Baum/morc_menu")
+md5sums=('SKIP')
+
+package () {
+    install -Dm755 "$srcdir/$pkgname/morc_menu" "$pkgdir/usr/bin/morc_menu"
+    install -Dm544 "$srcdir/$pkgname/morc_menu_v1.conf" "$pkgdir/etc/skel/.config/morc_menu/help/morc_menu_v1.conf"
+}
