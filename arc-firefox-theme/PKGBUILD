@@ -1,9 +1,10 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: gabrielsimoes <simoes.sgabriel@gmail.com>
+# Contributor: Stefano Capitani <stefano@manjaro.org>
 
 pkgname="arc-firefox-theme"
-pkgver=20160126
-_pkgver="44.$pkgver"
+pkgver=20160308
+_pkgver="45.$pkgver"
 pkgrel=1
 pkgdesc="Arc Firefox Theme"
 url="https://github.com/horst3180/$pkgname"
@@ -11,8 +12,10 @@ arch=('i686' 'x86_64')
 license=('Mozilla Public License version 2.0')
 depends=('firefox')
 makedepends=('autoconf' 'automake' 'unzip' 'zip')
-source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz")
-md5sums=('b999df3dd2ea56698a032949add7d3e1')
+source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz" "budgie-prefs.js")
+conflicts=('arc-firefox-theme-git')
+md5sums=('1e34c29ac5c1613ec6dfd052e87511d8'
+         '1c84eccb0c9bdfaacf3fb4c6c6734594')
 
 build() {
   cd "$srcdir/$pkgname-$_pkgver"
@@ -24,4 +27,10 @@ package() {
   cd "${srcdir}"/"$pkgname-$_pkgver"
   make DESTDIR="$pkgdir" install
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+#Enable by default the dark-theme 
+
+  cd ../ ..  
+  mkdir -p "$pkgdir/usr/lib/firefox/browser/defaults/preferences"
+  cp budgie-prefs.js "$pkgdir/usr/lib/firefox/browser/defaults/preferences/"
 }
