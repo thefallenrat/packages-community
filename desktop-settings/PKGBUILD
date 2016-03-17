@@ -17,7 +17,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-netbook-settings'
 	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160316
+pkgver=20160318
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -72,7 +72,8 @@ package_manjaro-budgie-settings() {
 		'arc-firefox-theme'
 		'moka-icon-theme'
 		'budgie-wallpapers'
-		'xcursor-simpleandsoft')
+		'xcursor-simpleandsoft'
+		'manjaro-budgie-settings-extra')
 	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')

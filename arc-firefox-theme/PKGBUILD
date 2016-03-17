@@ -12,10 +12,9 @@ arch=('i686' 'x86_64')
 license=('Mozilla Public License version 2.0')
 depends=('firefox')
 makedepends=('autoconf' 'automake' 'unzip' 'zip')
-source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz" "budgie-prefs.js")
+source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz")
 conflicts=('arc-firefox-theme-git')
-md5sums=('1e34c29ac5c1613ec6dfd052e87511d8'
-         '1c84eccb0c9bdfaacf3fb4c6c6734594')
+md5sums=('1e34c29ac5c1613ec6dfd052e87511d8')
 
 build() {
   cd "$srcdir/$pkgname-$_pkgver"
@@ -27,10 +26,4 @@ package() {
   cd "${srcdir}"/"$pkgname-$_pkgver"
   make DESTDIR="$pkgdir" install
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-
-#Enable by default the dark-theme 
-
-  cd ../ ..  
-  mkdir -p "$pkgdir/usr/lib/firefox/browser/defaults/preferences"
-  cp budgie-prefs.js "$pkgdir/usr/lib/firefox/browser/defaults/preferences/"
 }
