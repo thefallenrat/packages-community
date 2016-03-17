@@ -18,7 +18,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
 pkgver=20160317
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -73,7 +73,7 @@ package_manjaro-budgie-settings() {
 		'moka-icon-theme'
 		'budgie-wallpapers'
 		'xcursor-simpleandsoft'
-		'manjaro-budgie-settings')
+		'manjaro-budgie-settings-extra')
 	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')

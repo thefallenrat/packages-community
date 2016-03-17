@@ -1,6 +1,6 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
-pkgname=manjaro-budgie-settings
+pkgname=manjaro-budgie-settings-extra
 pkgver=20160317
 pkgrel=1
 pkgdesc="Manjaro Linux settings for Budgie Desktop"
@@ -13,7 +13,7 @@ replaces=('$pkgname')
 source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
 depends=('firefox' 'arc-firefox-theme')
 optdepends=('budgie-desktop')
-md5sums=('f044dfd60b3cdeb9e6496eb4a912a1e1')
+md5sums=('577a2d9b7ab59dcdf61d7023d76a662f')
 
 pkgver() {
   date +%Y%m%d
