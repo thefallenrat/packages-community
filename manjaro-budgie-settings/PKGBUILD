@@ -1,17 +1,19 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
-pkgname=budgie-manjaro-firefox-settings
-pkgver=20160316
+pkgname=manjaro-budgie-settings
+pkgver=20160317
 pkgrel=1
-pkgdesc="Manjaro Linux settings Firefox for Budgie Desktop"
+pkgdesc="Manjaro Linux settings for Budgie Desktop"
 arch=('any')
 url="https://github.com/Ste74/$pkgname"
 license=('GPL')
 _gitcommit=3a52fe1f4363603bb177775b578dc36eb22beae8
-conflicts=('budgie-manjaro-firefox-settings')
-replaces=('budgie-manjaro-firefox-settings')
+conflicts=('$pkgname')
+replaces=('$pkgname')
 source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('2e866cd8f50030d4e8e75d36b6aad860')
+depends=('firefox' 'arc-firefox-theme')
+optdepends=('budgie-desktop')
+md5sums=('f044dfd60b3cdeb9e6496eb4a912a1e1')
 
 pkgver() {
   date +%Y%m%d
