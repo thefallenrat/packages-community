@@ -4,7 +4,7 @@
 _pkgname=i3status
 pkgname=$_pkgname-manjaro
 pkgver=2.10.r13.ge073cf4
-pkgrel=1
+pkgrel=2
 pkgdesc='customized status bar for manjaro-i3, dzen2 or xmobar'
 arch=('i686' 'x86_64')
 groups=('i3-manjaro')
@@ -28,7 +28,7 @@ install=$pkgname.install
 source=("git+$url.git"
 	'manjaro.diff')
 md5sums=('SKIP'
-         '6ccabe890aa5a1c66f6f344c4927b0e0')
+         'cfc11cf43b222943f0ba61d7f6c9fd5d')
 
 pkgver() {
   cd "$_pkgname"

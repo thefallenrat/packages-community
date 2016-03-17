@@ -5,13 +5,14 @@
 
 pkgname=deepin-account-faces
 pkgver=1.0.10
-_commit=a915976b1de473c4025e9bf7d64d463ba5aa8902
-pkgrel=1.1
+_commit=c639f158c32bce15d3b32af21a08e929c1dfa952
+pkgrel=2
 pkgdesc='Account faces for Linux Deepin'
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
 makedepends=('git')
+backup=('var/lib/AccountsService/icons/manjaro.png')
 conflicts=('dde-account-faces')
 replaces=('dde-account-faces')
 groups=('deepin')
@@ -20,5 +21,5 @@ md5sums=('SKIP')
 
 package() {
   cd $pkgname
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR="$pkgdir" install
 }

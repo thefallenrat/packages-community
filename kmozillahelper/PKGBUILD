@@ -1,5 +1,6 @@
+# Maintainer : Ramon Buldó <ramon@manjaro.org>
 # Contributor: Weng Xuetian <wengxt@gmail.com>
-# Maintainer: Yegorius <yegorius@domic.us>
+# Contributor: Yegorius <yegorius@domic.us>
 
 pkgname=kmozillahelper
 pkgver=0.6.5

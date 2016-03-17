@@ -2,20 +2,22 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgbase=desktop-settings
-pkgname=('manjaro-openbox-minimal-settings'
-	'manjaro-lxqt-minimal-settings'
-	'manjaro-bspwm-settings'
+pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
 	'manjaro-deepin-settings'
+	'manjaro-fluxbox-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
+	'manjaro-jwm-settings'
 	'manjaro-lxde-settings'
 	'manjaro-lxqt-settings'
+	'manjaro-lxqt-minimal-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
+	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160308
+pkgver=20160315
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -46,25 +48,6 @@ pkgver() {
 	date +%Y%m%d
 }
 
-package_manjaro-openbox-minimal-settings() {
-	pkgdesc='Manjaro Linux openbox-minimal settings'
-	depends=('manjaro-base-skel')
-# 	depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes')
-
-	_inst_dir 'minimal/openbox'
-}
-
-package_manjaro-lxqt-minimal-settings() {
-	pkgdesc='Manjaro Linux lxqt-minimal settings'
-# 	depends=('manjaro-openbox-minimal-settings' 'compton' 'qterminal'
-# 		'pcmanfm-qt' 'lxqt-panel')
-	depends=('manjaro-openbox-minimal-settings')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-
-	_inst_dir 'minimal/lxqt'
-}
-
 package_manjaro-bspwm-settings() {
 	pkgdesc='Manjaro Linux bdspwm settings'
 	conflicts=('manjaro-desktop-settings')
@@ -87,9 +70,10 @@ package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
         depends=('arc-themes'
 		'arc-firefox-theme'
-		'maia-icon-theme'
+		'moka-icon-theme'
 		'budgie-wallpapers'
-		'deepin-icon-theme')
+		'xcursor-simpleandsoft')
+	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -125,9 +109,36 @@ package_manjaro-deepin-settings() {
 	_inst_dir 'community/deepin'
 }
 
+package_manjaro-fluxbox-settings() {
+	pkgdesc='Manjaro Linux fluxbox settings'
+	depends=('manjaro-base-skel'
+                'cantarell-fonts'
+                'fbmenugen'
+                'fluxbox-theme-manjaro'
+                'fluxbox-wallpapers'
+                'menda-themes-dark'
+                'numix-reborn-icon-themes'
+                'oblogout-manjaro'
+                'xcursor-menda'
+                'xfce-theme-greenbird')
+        optdepends=('plymouth-theme-manjaro-circle')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir 'community/fluxbox'
+}
+
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
-	depends=('gnome-wallpapers')
+	depends=('gnome-wallpapers'
+		'gnome-shell-extensions'
+		'gnome-shell-extension-openweather'
+		'gnome-shell-extension-mediaplayer'
+		'gnome-shell-extension-gnomenu'
+		'gnome-shell-extension-dash-to-dock'
+		'gnome-shell'
+		'xcursor-simpleandsoft')
+	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -155,6 +166,14 @@ package_manjaro-i3-settings() {
 	_inst_dir 'community/i3'
 }
 
+package_manjaro-jwm-settings() {
+	pkgdesc='Manjaro Linux jwm settings'
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir 'community/jwm'
+}
+
 package_manjaro-lxde-settings() {
 	pkgdesc='Manjaro Linux lxde settings'
 	depends=('manjaro-base-skel')
@@ -173,6 +192,17 @@ package_manjaro-lxqt-settings() {
 	_inst_dir 'community/lxqt'
 }
 
+package_manjaro-lxqt-minimal-settings() {
+	pkgdesc='Manjaro Linux lxqt-minimal settings'
+# 	depends=('manjaro-openbox-minimal-settings' 'compton' 'qterminal'
+# 		'pcmanfm-qt' 'lxqt-panel')
+	depends=('manjaro-openbox-minimal-settings')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir 'minimal/lxqt'
+}
+
 package_manjaro-mate-settings() {
 	pkgdesc='Manjaro Linux mate settings'
 	depends=('manjaro-base-skel')
@@ -189,6 +219,14 @@ package_manjaro-netbook-settings() {
 	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/netbook'
+}
+
+package_manjaro-openbox-minimal-settings() {
+	pkgdesc='Manjaro Linux openbox-minimal settings'
+	depends=('manjaro-base-skel')
+# 	depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes')
+
+	_inst_dir 'minimal/openbox'
 }
 
 package_manjaro-pantheon-settings() {

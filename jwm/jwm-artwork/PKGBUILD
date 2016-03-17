@@ -1,0 +1,24 @@
+# Maintainer: holmeslinux <holmes_holmes@live.com>
+
+pkgname=jwm-artwork
+pkgver=20160315
+pkgrel=1
+pkgdesc="artwork for jwm"
+arch=('any')
+license=('GPL3')
+url="https://github.com/holmeslinux/$pkgname"
+_snapshot=8fd02bf5c0cfed917ff608113887c3e00caa1ec7
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
+md5sums=('bacd4f2725521467caa63cfa37e8c1fb')
+
+prepare() {
+	# fix file permissions
+	chmod -x $srcdir/$pkgname-$_snapshot/buttons/jwm/*
+}
+
+package() {
+	cd $srcdir/$pkgname-$_snapshot
+	install -dm755 $pkgdir/usr/share/themes
+	cp -r {buttons,GrayOrange} $pkgdir/usr/share/themes
+	cp -r lxdm $pkgdir/usr/share
+}
