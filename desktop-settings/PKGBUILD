@@ -17,7 +17,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-netbook-settings'
 	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160315
+pkgver=20160316
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -159,7 +159,8 @@ package_manjaro-i3-settings() {
 		'i3status-manjaro'
 		'manjaro-base-skel'
 		'xcursor-chameleon-pearl')
-	optdepends=('awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
+	optdepends=("conky-i3: manjaro-i3's original grey, green or solarized conkies"
+		'awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 

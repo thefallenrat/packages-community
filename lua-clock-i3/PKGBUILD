@@ -2,40 +2,27 @@
 # Contributor: totschka
 
 pkgname=lua-clock-i3
-pkgver=20151002
+pkgver=20160317
 pkgrel=1
-pkgdesc="grey or green Conky with lua-ring clock"
-
-url=https://github.com/oberon2007/conkies
+pkgdesc="grey, green or solarized Conky with lua-ring clock"
 _repo=conkies
-_snapshot=c368794452d5ef38ae94111aabdaf758ee12305e
-arch=any
-license=GPL
-depends=('conky-lua<1.10'
+url=https://github.com/oberon2007/$_repo
+_snapshot=ad1ab12d88a0a9dc305ff7350d7f95353d6d51e1
+arch=('any')
+license=('GPL')
+depends=('conky-lua-nv'
 	'ttf-bitstream-vera')
-conflicts=lua-clock-manjaro
-backup=('usr/share/conky/conky_lua_green'
-	'usr/share/conky/conky_lua_grey'
-	'usr/share/conky/conky_shortcuts_green'
-	'usr/share/conky/conky_shortcuts_grey')
-source=$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz
-md5sums=('56dce255ff09876662649161d3d893cd')
-
-pkgver() {
-	date +'%Y%m%d'
-}
+conflicts=('lua-clock-manjaro')
+backup=("usr/share/conky/conky_{lua_{gre{en,y},solarized},shortcuts{,1.10}_{gre{en,y},solarized}")
+source=("$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz")
+md5sums=('49f825a93c92716ffe350ea5441702bd')
 
 package() {
 	cd $srcdir/$_repo-$_snapshot
 
-	install -Dm644 clock_rings_green.lua $pkgdir/usr/share/conky/clock_rings_green.lua
-	install -Dm644 clock_rings_grey.lua $pkgdir/usr/share/conky/clock_rings_grey.lua
-	install -Dm644 conky_lua_green $pkgdir/usr/share/conky/conky_lua_green
-	install -Dm644 conky_lua_grey $pkgdir/usr/share/conky/conky_lua_grey
-	install -Dm644 logo_green.png $pkgdir/usr/share/icons/logo_green.png
-	install -Dm644 logo_grey.png $pkgdir/usr/share/icons/logo_grey.png
-	install -Dm644 conky_shortcuts_green $pkgdir/usr/share/conky/conky_shortcuts_green
-	install -Dm644 conky_shortcuts_grey $pkgdir/usr/share/conky/conky_shortcuts_grey
-	install -Dm755 start-scripts-lua-i3/start_conky_green $pkgdir/usr/bin/start_conky_green
-	install -Dm755 start-scripts-lua-i3/start_conky_grey $pkgdir/usr/bin/start_conky_grey
+	mkdir -p $pkgdir/usr/{bin,share/{conky,icons}}
+
+	cp config_lua/* $pkgdir/usr/share/conky
+	cp start-scripts-lua-i3/* $pkgdir/usr/bin
+	cp icons/* $pkgdir/usr/share/icons
 }
