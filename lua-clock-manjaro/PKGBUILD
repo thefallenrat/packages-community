@@ -2,7 +2,7 @@
 # Contributor: totschka
 
 pkgname=lua-clock-manjaro
-pkgver=20160317
+pkgver=20160318
 pkgrel=1
 pkgdesc="grey, green or solarized Conky with lua-ring clock"
 _repo=conkies
@@ -13,7 +13,9 @@ license=('GPL')
 depends=('conky-lua-nv'
 	'ttf-bitstream-vera')
 conflicts=('lua-clock-i3')
-backup=("usr/share/conky/conky_{lua_{gre{en,y},solarized}")
+backup=('usr/share/conky/conky_lua_green'
+	'usr/share/conky/conky_lua_grey'
+	'usr/share/conky/conky_lua_solarized')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
 md5sums=('49f825a93c92716ffe350ea5441702bd')
 
