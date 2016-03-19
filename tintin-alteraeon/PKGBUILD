@@ -2,7 +2,7 @@
 
 pkgname=tintin-alteraeon
 _pkgver=3.0
-pkgver=3.0.r113.fbe987f
+pkgver=3.0.r119.4e240f2
 pkgrel=1
 pkgdesc="Play Alter Aeon with sounds and other game enhancements. Uses the tintin++ mud client."
 arch=('any')
