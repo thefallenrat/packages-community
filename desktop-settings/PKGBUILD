@@ -14,8 +14,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160318
-pkgrel=3
+pkgver=20160319
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -128,13 +128,13 @@ package_manjaro-fluxbox-settings() {
 
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
-	depends=('gnome-wallpapers'
+	depends=('gnome-shell'
 		'gnome-shell-extensions'
 		'gnome-shell-extension-openweather'
 		'gnome-shell-extension-mediaplayer'
 		'gnome-shell-extension-gnomenu'
 		'gnome-shell-extension-dash-to-dock'
-		'gnome-shell'
+		'gnome-wallpapers'
 		'xcursor-simpleandsoft')
 	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
@@ -167,6 +167,12 @@ package_manjaro-i3-settings() {
 
 package_manjaro-jwm-settings() {
 	pkgdesc='Manjaro Linux jwm settings'
+	depends=('cantarell-fonts'
+		'gtk-theme-stylishdark'
+		'jwm-artwork'
+		'jwm-wallpapers'
+		'ultraflatorange-icon-theme'
+		'xcursor-rezowhite')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 

@@ -6,13 +6,13 @@
 pkgname=brltty-sonar
 _pkgname=brltty
 pkgver=5.3.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Braille display driver for Linux/Unix"
 arch=(i686 x86_64)
 url="http://mielke.cc/brltty"
 license=(GPL LGPL)
-provides=brltty
-conflicts=brltty
+provides=('brltty')
+conflicts=('brltty')
 depends=(libxaw gpm icu tcl cython bluez-libs)
 makedepends=('at-spi2-core'
 	'espeak'
