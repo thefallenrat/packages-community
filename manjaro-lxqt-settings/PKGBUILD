@@ -5,7 +5,7 @@ pkgbase=desktop-settings
 pkgname=('manjaro-lxqt-settings'
 	'manjaro-lxqt-minimal-settings')
 pkgver=20160319
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -35,8 +35,6 @@ package_manjaro-lxqt-settings() {
 
 package_manjaro-lxqt-minimal-settings() {
 	pkgdesc='Manjaro Linux lxqt-minimal settings'
-# 	depends=('manjaro-openbox-settings' 'compton' 'qterminal'
-# 		'pcmanfm-qt' 'lxqt-panel')
 	depends=('manjaro-openbox-settings')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
