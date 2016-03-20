@@ -2,7 +2,7 @@
 # Contributor: totschka
 
 pkgname=lua-clock-i3
-pkgver=20160318
+pkgver=20160320
 pkgrel=1
 pkgdesc="grey, green or solarized Conky with lua-ring clock"
 _repo=conkies
