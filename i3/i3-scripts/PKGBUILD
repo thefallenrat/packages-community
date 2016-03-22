@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-pkgver=20160311
+pkgver=20160322
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
@@ -12,6 +12,7 @@ source=("git+$url.git")
 sha1sums=('SKIP')
 
 package() {
-  install -dm755 $pkgdir/usr/bin
+  install -dm755 $pkgdir/usr/{,local/}bin
   cp $pkgname/bin/* $pkgdir/usr/bin
+  cp $pkgname/local/xflock4 $pkgdir/usr/local/bin
 }

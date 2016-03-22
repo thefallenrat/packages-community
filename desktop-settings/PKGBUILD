@@ -14,8 +14,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160321
-pkgrel=2
+pkgver=20160322
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -151,8 +151,9 @@ package_manjaro-i3-settings() {
 		'conky-i3'
 		'dmenu-manjaro'
 		'gtk-theme-numix-solarized'
-		'i3-gaps'
 		'i3exit'
+		'i3-scripts'
+		'i3-gaps'
 		'i3-help'
 		'i3status-manjaro'
 		'manjaro-base-skel'
