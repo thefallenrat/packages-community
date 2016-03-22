@@ -2,7 +2,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org
 
 pkgname=manjaro-browser-settings
-pkgver=20160314
+pkgver=20160322
 pkgrel=1
 pkgdesc="Manjaro Linux settings browser defaults"
 arch=('any')
@@ -25,5 +25,5 @@ package() {
   cp chrome/* $pkgdir/usr/lib/chrome
   cp chrome/* $pkgdir/usr/lib/chromium
   cp firefox/* $pkgdir/usr/lib/firefox/distribution
-  cp firefox/* $pkgdir/usr/lib/palemoon/distribution
+  cp palemoon/* $pkgdir/usr/lib/palemoon/distribution
 }
