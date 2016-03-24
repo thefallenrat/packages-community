@@ -1,53 +1,75 @@
-# Maintainer: Ricardo Vieira <ricardo.vieira@tecnico.ulisboa.pt>
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+# add optdepends
 
 pkgname=budgie-desktop
 pkgver=10.2.4
-pkgrel=1
-pkgdesc="Simple GTK3 desktop experience"
+pkgrel=2
+pkgdesc="Modern desktop environment from the Solus Project"
 arch=('i686' 'x86_64')
 url="https://solus-project.com/budgie"
-license=('GPLv2')
-
-depends=('gtk3>=3.18' 'upower' 'libwnck3' 'gnome-menus' 'gnome-settings-daemon'
-         'libpeas' 'mutter>=3.18' 'desktop-file-utils' 'libpulse' 'vala' 'libgee'
-         'gnome-themes-standard' 'gnome-control-center' 'gnome-session>=3.18'
-         'intltool' 'gnome-terminal' 'nautilus' 'gtk-doc')
-makedepends=('autoconf' 'git' 'python2' 'gobject-introspection' 'intltool')
-install=budgie-desktop.install
-
-source=(#"$pkgname"::'git+https://github.com/solus-project/budgie-desktop.git#branch=master'
-	"$pkgname-$pkgver.tar.gz::https://github.com/solus-project/budgie-desktop/archive/v${pkgver}.tar.gz"
-	'git+https://git.gnome.org/browse/libgnome-volume-control#commit=7e5504d')
-md5sums=('60e0f0504c0efe324b21c93764541091'
-         'SKIP')
-
-#pkgver() {
-#  cd "$pkgname"
-#  git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-#}
+license=('GPL' 'LGPL')
+depends=('gnome-bluetooth' 'gnome-menus' 'gnome-session' 'gnome-themes-standard' 'libpeas' 'libwnck3' 'mutter')
+makedepends=('autoconf-archive' 'git' 'gobject-introspection' 'intltool' 'vala')
+optdepends=('gnome-backgrounds: Default background'
+            'gnome-control-center: System settings'
+            'gnome-screensaver: Lock screen'
+            'network-manager-applet: Network management'
+	    'arc-themes: Official theme for Budgie'
+	    'arc-firefox-theme: Arc firefox theme'
+	    'moka-icon-theme: Icon set for Budgie')
+install=$pkgname.install
+source=("https://github.com/solus-project/budgie-desktop/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz"
+        "git+https://github.com/City-busz/budgie-helper.git#commit=4b68fcf"
+        "0001-panel-Fix-missing-panel-background.patch"
+        "0001-Port-CSS-files-to-GTK-3.20.patch")
+sha256sums=('b01e7be9349cbc26cd77db74a0c138d21c31d8bad21a02b31828014b416256f7'
+            'SKIP'
+            '7212d6f08c7ceaeefc0f97ad125b8a04b6f689a31a7059677067f9e111f54eb6'
+            '4215679511ac5d8cc2930b9de86dab50dfe8f79b2605d02e0168b068ed1b7784')
 
 prepare() {
-	mv $pkgname-$pkgver "$srcdir"/$pkgname
-	cd "$srcdir"/$pkgname
-	rm -rv gvc
-	mv ../libgnome-volume-control gvc
+	cd $pkgname-$pkgver
+	# Disable workspaces applet as it's broken
+	# https://github.com/solus-project/budgie-desktop/issues/302
+	sed -i ':a;N;$!ba;s/ \\\n\tworkspaces//' panel/applets/Makefile.am
+	autoreconf -fi
+
+	# Remove preferences button from rundialog as it's broken
+	# https://github.com/solus-project/budgie-desktop/issues/360
+        sed -i '/box.add(preferences);/d' rundialog/RunDialog.vala
+
+	# panel: Fix missing panel background
+	# https://github.com/solus-project/budgie-desktop/pull/358
+	patch -Np1 -i ../0001-panel-Fix-missing-panel-background.patch
+
+	# Port CSS files to GTK+ 3.20 (prepared for upgrade)
+	# https://github.com/solus-project/budgie-desktop/issues/359
+	# patch -Np1 -i ../0001-Port-CSS-files-to-GTK-3.20.patch
+
+	cd "$srcdir/budgie-helper"
+	# Provide better compatibility for GNOME
+	# https://github.com/solus-project/budgie-desktop/issues/261
+	NOCONFIGURE=1 ./autogen.sh
 }
 
 build() {
-	cd "$srcdir/$pkgname"
-	intltoolize --force
-        gtkdocize || exit 1
-	autoreconf --force --install
-	./configure --prefix=/usr --sysconfdir=/etc
+	cd $pkgname-$pkgver
+	./configure --prefix=/usr --sysconfdir=/etc --disable-schemas-compile
+
+	#https://bugzilla.gnome.org/show_bug.cgi?id=656231
+	sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+	make
+
+	cd "$srcdir/budgie-helper"
+	./configure --prefix=/usr --sysconfdir=/etc --disable-schemas-compile --disable-Werror
 	make
 }
 
-check() {
-	cd "$srcdir/$pkgname"
-	make -k check
-}
-
 package() {
-	cd "$srcdir/$pkgname"
-	make DESTDIR="$pkgdir/" install
+	cd $pkgname-$pkgver
+	make DESTDIR="$pkgdir" install
+
+	cd "$srcdir/budgie-helper"
+	make DESTDIR="$pkgdir" install
 }
