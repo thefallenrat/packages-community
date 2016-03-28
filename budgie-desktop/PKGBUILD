@@ -1,9 +1,9 @@
 # Maintainer: Balló György <ballogyor+arch at gmail dot com>
-# add optdepends
+# Contributor: Stefano Capitani <stefano@manjaro.org> : add optdepends and remove patch
 
 pkgname=budgie-desktop
-pkgver=10.2.4
-pkgrel=2
+pkgver=10.2.5
+pkgrel=1
 pkgdesc="Modern desktop environment from the Solus Project"
 arch=('i686' 'x86_64')
 url="https://solus-project.com/budgie"
@@ -19,13 +19,9 @@ optdepends=('gnome-backgrounds: Default background'
 	    'moka-icon-theme: Icon set for Budgie')
 install=$pkgname.install
 source=("https://github.com/solus-project/budgie-desktop/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz"
-        "git+https://github.com/City-busz/budgie-helper.git#commit=4b68fcf"
-        "0001-panel-Fix-missing-panel-background.patch"
-        "0001-Port-CSS-files-to-GTK-3.20.patch")
-sha256sums=('b01e7be9349cbc26cd77db74a0c138d21c31d8bad21a02b31828014b416256f7'
-            'SKIP'
-            '7212d6f08c7ceaeefc0f97ad125b8a04b6f689a31a7059677067f9e111f54eb6'
-            '4215679511ac5d8cc2930b9de86dab50dfe8f79b2605d02e0168b068ed1b7784')
+        "git+https://github.com/City-busz/budgie-helper.git#commit=4b68fcf")
+sha256sums=('65bc36c67e4b0a68997fcd27b4c9058031f50b1b91d4b19923bf14f6b443b154'
+            'SKIP')
 
 prepare() {
 	cd $pkgname-$pkgver
@@ -40,7 +36,7 @@ prepare() {
 
 	# panel: Fix missing panel background
 	# https://github.com/solus-project/budgie-desktop/pull/358
-	patch -Np1 -i ../0001-panel-Fix-missing-panel-background.patch
+	#patch -Np1 -i ../0001-panel-Fix-missing-panel-background.patch
 
 	# Port CSS files to GTK+ 3.20 (prepared for upgrade)
 	# https://github.com/solus-project/budgie-desktop/issues/359
