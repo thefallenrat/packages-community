@@ -1,21 +1,25 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgname=budgie-wallpapers
-_pkgname=black_leather_manjaro_linux_by_tefrem34.jpg
-pkgver=20160315
+_pkgname=dark_grey_texture_by_tefrem34.jpg
+pkgver=20160321
 pkgrel=1
+_snapshot=59194fd37ce339b1719a3a4a00857ed7a3a72ddc
+_repo=art-works
 pkgdesc='Manjaro Linux Budgie wallpapers'
 arch=('any')
-url="https://github.com/manjaro/packages-community"
+url="https://github.com/Ste74/$_repo"
 license=('GPL')
-source=("https://github.com/Ste74/Aur-binary-repo/releases/download/v1.0/${_pkgname}")
-sha256sums=('fdee68f2e90b89a7d4a7c523f925161bd36d2bcce528a711cd46b867036845aa')
+source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
+sha256sums=('f201fefc9e05f401f3eaa01ca8f8ed7671aa34726a0d3338e0caf1e7dd8ccd79')
 
 pkgver() {
 	date +%Y%m%d
 }
 
-package(){
-	install -d $pkgdir/usr/share/backgrounds
-	install $srcdir/${_pkgname} $pkgdir/usr/share/backgrounds
+package() {
+	cd $srcdir
+	install -dm755 $pkgdir/usr/share/backgrounds
+	cd $_repo-$_snapshot
+	cp $_pkgname $pkgdir/usr/share/backgrounds/
 }

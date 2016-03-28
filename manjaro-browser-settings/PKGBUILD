@@ -2,17 +2,17 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org
 
 pkgname=manjaro-browser-settings
-pkgver=20160314
+pkgver=20160322
 pkgrel=1
 pkgdesc="Manjaro Linux settings browser defaults"
 arch=('any')
 url="https://github.com/manjaro/$pkgname"
 license=('GPL')
-_gitcommit=0e41c4df2ac58c27371af6f9a1855bc961d654a9
+_gitcommit=33d8ea251c7805529b38ad92568438d1bc9ae5a6
 conflicts=('manjaro-firefox-settings')
 replaces=('manjaro-firefox-settings')
 source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('03394461195f069e645c17a6cb0a1526')
+md5sums=('ae3bd87fb78fa1541d915790e0b53369')
 
 pkgver() {
   date +%Y%m%d
@@ -25,5 +25,5 @@ package() {
   cp chrome/* $pkgdir/usr/lib/chrome
   cp chrome/* $pkgdir/usr/lib/chromium
   cp firefox/* $pkgdir/usr/lib/firefox/distribution
-  cp firefox/* $pkgdir/usr/lib/palemoon/distribution
+  cp palemoon/* $pkgdir/usr/lib/palemoon/distribution
 }

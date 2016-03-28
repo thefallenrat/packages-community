@@ -2,35 +2,30 @@
 # Contributor: totschka
 
 pkgname=lua-clock-manjaro
-pkgver=20151002
+pkgver=20160318
 pkgrel=1
-pkgdesc="grey or green Conky with lua-ring clock"
-
-url=https://github.com/oberon2007/conkies
+pkgdesc="grey, green or solarized Conky with lua-ring clock"
 _repo=conkies
-_snapshot=c368794452d5ef38ae94111aabdaf758ee12305e
-arch=any
-license=GPL
-depends=('conky-lua<1.10'
+url=https://github.com/oberon2007/$_repo
+_snapshot=ad1ab12d88a0a9dc305ff7350d7f95353d6d51e1
+arch=('any')
+license=('GPL')
+depends=('conky-lua-nv'
 	'ttf-bitstream-vera')
-conflicts=lua-clock-i3
-backup=('usr/share/conky/conky_lua_grey'
-	'usr/share/conky/conky_lua_green')
-source=$pkgname-$pkgver.tar.gz::$url/archive/$_snapshot.tar.gz
-md5sums=('56dce255ff09876662649161d3d893cd')
+conflicts=('lua-clock-i3')
+backup=('usr/share/conky/conky_lua_green'
+	'usr/share/conky/conky_lua_grey'
+	'usr/share/conky/conky_lua_solarized')
+source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
+md5sums=('49f825a93c92716ffe350ea5441702bd')
 
-pkgver() {
-	date +'%Y%m%d'
-}
 package() {
-	cd $srcdir/$_repo-$_snapshot
+	cd $_repo-$_snapshot
 
-	install -Dm644 clock_rings_green.lua $pkgdir/usr/share/conky/clock_rings_green.lua
-	install -Dm644 clock_rings_grey.lua $pkgdir/usr/share/conky/clock_rings_grey.lua
-	install -Dm644 conky_lua_green $pkgdir/usr/share/conky/conky_lua_green
-	install -Dm644 conky_lua_grey $pkgdir/usr/share/conky/conky_lua_grey
-	install -Dm644 logo_green.png $pkgdir/usr/share/icons/logo_green.png
-	install -Dm644 logo_grey.png $pkgdir/usr/share/icons/logo_grey.png
-	install -Dm755 start-scripts-lua/start_lua_green $pkgdir/usr/bin/start_lua_green
-	install -Dm755 start-scripts-lua/start_lua_grey $pkgdir/usr/bin/start_lua_grey
+        mkdir -p $pkgdir/usr/{bin,share/{conky,icons}}
+
+        cp config_lua/* $pkgdir/usr/share/conky
+	rm $pkgdir/usr/share/conky/conky1*
+        cp start-scripts-lua/* $pkgdir/usr/bin
+        cp icons/* $pkgdir/usr/share/icons
 }

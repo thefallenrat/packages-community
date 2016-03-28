@@ -3,6 +3,7 @@
 # Maintainer: Alexandre Arnt <arnt[at]manjaro[dot]org>
 # Maintainer: Roland Singer <roland[at]manjaro[dot]org>
 # Maintainer: Ramon Buldó <ramon[at]manaro[dot]org>
+# Maintainer: Tomasz Przybył <fademind[at]manaro[dot]org>
 
 ## Why there are 3 notifier packages:
 ## https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
@@ -11,8 +12,8 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
-pkgver=0.8.0
-pkgrel=4
+pkgver=0.8.1
+pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
 #_gitcommit="5abb0fca0f5f6b5107dd89ea4e1071d71d70366a"
 arch=('i686' 'x86_64')
@@ -25,9 +26,7 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
-source+=('0001-lxqt-sudo-support.patch')
-sha256sums=('79ab8a24e3329ab4e5320e03309f44f802336cc00bada0f9a37fae46f5eeb02b'
-            'fd2f14799d0767b827b8ce53ad013934ff0ea20dc7bfd94f1226a062420058b4')
+sha256sums=('e01c6d959e5663797771b95b47951e3ad11a9abbc7cbb009f1f835404c5ff43e')
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -37,13 +36,12 @@ prepare() {
   fi
 
   # sed version
-  sed -i -e "s|0.8.0|${pkgver}-${pkgrel}|g" src/strconstants.h
+  sed -i -e "s|0.8.1|${pkgver}-${pkgrel}|g" src/strconstants.h
 
   cp -r notifier notifier-qt4
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
-  patch -Np1 -i $srcdir/0001-lxqt-sudo-support.patch
 }
 
 build() {

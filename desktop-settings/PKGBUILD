@@ -11,13 +11,10 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-i3-settings'
 	'manjaro-jwm-settings'
 	'manjaro-lxde-settings'
-	'manjaro-lxqt-settings'
-	'manjaro-lxqt-minimal-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
-	'manjaro-openbox-minimal-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160315
+pkgver=20160328
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -72,7 +69,8 @@ package_manjaro-budgie-settings() {
 		'arc-firefox-theme'
 		'moka-icon-theme'
 		'budgie-wallpapers'
-		'xcursor-simpleandsoft')
+		'xcursor-simpleandsoft'
+		'manjaro-budgie-settings-extra')
 	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
@@ -84,9 +82,11 @@ package_manjaro-cinnamon-settings() {
 	pkgdesc='Manjaro Linux cinnamon settings'
 	depends=('artwork-cinnamon-minimal'
 		'cantarell-fonts'
+		'cinnamon'
 		'maia-icon-theme'
 		'vertex-maia-themes'
 		'xcursor-simpleandsoft')
+	optdepends=('plymouth-theme-manjaro-cinnamon')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -97,8 +97,10 @@ package_manjaro-deepin-settings() {
 	pkgdesc='Manjaro Linux deepin settings'
 	groups=('deepin-manjaro')
 	depends=('deepin-artwork-themes-manjaro'
+		'deepin-desktop'
 		'deepin-desktop-schemas-manjaro'
 		'deepin-iconthemes-manjaro'
+		'deepin-launcher'
 		'deepin-session-ui-manjaro'
 		'deepin-wallpapers'
 		'manjaro-base-skel')
@@ -130,13 +132,13 @@ package_manjaro-fluxbox-settings() {
 
 package_manjaro-gnome-settings() {
 	pkgdesc='Manjaro Linux gnome settings'
-	depends=('gnome-wallpapers'
+	depends=('gnome-shell'
 		'gnome-shell-extensions'
 		'gnome-shell-extension-openweather'
 		'gnome-shell-extension-mediaplayer'
 		'gnome-shell-extension-gnomenu'
 		'gnome-shell-extension-dash-to-dock'
-		'gnome-shell'
+		'gnome-wallpapers'
 		'xcursor-simpleandsoft')
 	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
@@ -153,11 +155,13 @@ package_manjaro-i3-settings() {
 		'conky-i3'
 		'dmenu-manjaro'
 		'gtk-theme-numix-solarized'
-		'i3-gaps'
 		'i3exit'
+		'i3-scripts'
+		'i3-gaps'
 		'i3-help'
 		'i3status-manjaro'
 		'manjaro-base-skel'
+		'nitrogen'
 		'xcursor-chameleon-pearl')
 	optdepends=('awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
 	conflicts=('manjaro-desktop-settings')
@@ -168,6 +172,12 @@ package_manjaro-i3-settings() {
 
 package_manjaro-jwm-settings() {
 	pkgdesc='Manjaro Linux jwm settings'
+	depends=('cantarell-fonts'
+		'gtk-theme-stylishdark'
+		'jwm-artwork'
+		'jwm-wallpapers'
+		'ultraflatorange-icon-theme'
+		'xcursor-rezowhite')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -181,26 +191,6 @@ package_manjaro-lxde-settings() {
 	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/lxde'
-}
-
-package_manjaro-lxqt-settings() {
-	pkgdesc='Manjaro Linux lxqt settings'
-	depends=('manjaro-base-skel')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-
-	_inst_dir 'community/lxqt'
-}
-
-package_manjaro-lxqt-minimal-settings() {
-	pkgdesc='Manjaro Linux lxqt-minimal settings'
-# 	depends=('manjaro-openbox-minimal-settings' 'compton' 'qterminal'
-# 		'pcmanfm-qt' 'lxqt-panel')
-	depends=('manjaro-openbox-minimal-settings')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-
-	_inst_dir 'minimal/lxqt'
 }
 
 package_manjaro-mate-settings() {
@@ -219,14 +209,6 @@ package_manjaro-netbook-settings() {
 	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/netbook'
-}
-
-package_manjaro-openbox-minimal-settings() {
-	pkgdesc='Manjaro Linux openbox-minimal settings'
-	depends=('manjaro-base-skel')
-# 	depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes')
-
-	_inst_dir 'minimal/openbox'
 }
 
 package_manjaro-pantheon-settings() {

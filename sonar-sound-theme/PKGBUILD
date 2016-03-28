@@ -1,0 +1,19 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Kendell Clark <coffeekingms@gmail.com>
+
+pkgname=sonar-sound-theme
+pkgver=1.0
+pkgrel=1
+pkgdesc="Sound-theme for the Sonar Mate-edition"
+arch=('any')
+url="https://github.com/oberon2007/$pkgname"
+snapshot=f88aae9ad32b63d4c3a2db60c969bb0d22d8d59a
+license=('GPL')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/$snapshot.tar.gz")
+md5sums=('40166ec711d88aab6656a51059faa82c')
+
+package() {
+	cd "$srcdir/$pkgname-$snapshot"
+	install -dm755 "$pkgdir/usr/share"
+	cp -r sounds $pkgdir/usr/share
+}
