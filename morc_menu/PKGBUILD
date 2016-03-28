@@ -20,8 +20,11 @@ optdepends=(
 	'rootmenu: Spawn menu by clicking desktop')
 source=("git://github.com/Boruch-Baum/morc_menu")
 md5sums=('SKIP')
-
+install=morc_menu.install
 package () {
     install -Dm755 "$srcdir/$pkgname/morc_menu" "$pkgdir/usr/bin/morc_menu"
-    install -Dm544 "$srcdir/$pkgname/morc_menu_v1.conf" "$pkgdir/etc/skel/.config/morc_menu/help/morc_menu_v1.conf"
+    install -Dm644 "$srcdir/$pkgname/morc_menu_v1.conf" "$pkgdir/etc/skel/.config/morc_menu/morc_menu_v1.conf"
+    install -Dm644 "$srcdir/$pkgname/morc_menu_v1.conf" "$pkgdir/usr/share/morc_menu/morc_menu_v1.conf"
+    install -Dm644 "$srcdir/$pkgname/morc_menu.1" "$pkgdir/usr/share/man/man1/morc_menu.1"
+    gzip "$pkgdir/usr/share/man/man1/morc_menu.1" 
 }
