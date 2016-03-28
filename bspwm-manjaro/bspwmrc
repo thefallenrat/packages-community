@@ -5,9 +5,8 @@ export gap
 export PANEL_HEIGHT
 
 #This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
-#Leaves padding for top panel on first monitor only.
 bspc config window_gap $gap;
-bspc config top_padding -$gap &&bspc config -m $(bspc query -M | awk NR==1) top_padding $(($PANEL_HEIGHT-$gap))
+bspc config top_padding $(($PANEL_HEIGHT-$gap))
 bspc config left_padding -$gap
 bspc config right_padding -$gap
 bspc config bottom_padding -$gap
@@ -60,7 +59,6 @@ bspc rule -a gmrun state=floating center=true
 bspc rule -a lxterminal state=floating center=true sticky=true
 #bspc rule -a urxvt state=floating center=true
 bspc rule -a viewnior state=floating center=true
-bspc rule -a feh center=true
 bspc rule -a file-roller state=floating center=true
 bspc rule -a floaterm state=floating center=true
 bspc rule -a spotify state=pseudo_tiled
@@ -70,7 +68,6 @@ bspc rule -a file-roller state=pseudo_tiled
 bspc rule -a transmission-gtk state=pseudo_tiled
 bspc rule -a conky sticky=on manage=off lower=on
 bspc rule -a astime sticky=on
-bspc rule -a feh state=floating manage=off
 bspc rule -a yad state=floating
 bspc rule -a Docky layer=above border=off manage=on
 bspc rule -a Plank layer=above border=off manage=on
@@ -82,8 +79,6 @@ bspc rule -a chromium private=on
 bspc rule -a firefox private=on
 bspc rule -a midori private=on
 bspc rule -a gnome-pie border=off manage=off
-bspc rule -a Xfce4-panel manage=true border=false
-bspc rule -a Wrapper-1.0 center=off border=off
 #bspc rule -a firefox desktop=I
 #bspc rule -a calibre desktop=II
 #bspc rule -a geany desktop=II
