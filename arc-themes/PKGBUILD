@@ -4,7 +4,7 @@
 
 pkgname=arc-themes
 _pkgname=arc-theme
-pkgver=20160324
+pkgver=20160331
 pkgrel=1
 pkgdesc='A flat theme with transparent elements (GNOME 3.18 version and ready for 3.20 version)'
 _gnomever=3.18

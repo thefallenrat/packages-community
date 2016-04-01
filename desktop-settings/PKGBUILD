@@ -65,7 +65,8 @@ package_manjaro-bspwm-settings() {
 
 package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
-        depends=('arc-themes'
+        depends=('budgie-desktop'
+		'arc-themes'
 		'arc-firefox-theme'
 		'moka-icon-theme'
 		'budgie-wallpapers'
