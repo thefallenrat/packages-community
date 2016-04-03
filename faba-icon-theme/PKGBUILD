@@ -4,6 +4,7 @@
 pkgname=faba-icon-theme
 pkgver=4.0
 pkgrel=9.1
+epoch=1
 _fedora_release=22
 pkgdesc="Faba is a sexy and modern icon theme with Tango influences. All variations and supplementary themes for Faba, require this base theme.Packages based on last Fedora $_fedora_release"
 arch=('any')

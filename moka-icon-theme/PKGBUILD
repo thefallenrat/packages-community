@@ -4,6 +4,7 @@
 pkgname=moka-icon-theme
 pkgver=5.0
 pkgrel=15.1
+epoch=1
 _fedora_release=22
 pkgdesc="An icon theme designed with a minimal, flat style, using simple geometry & colours.Packages based on last Fedora $_fedora_release"
 arch=('any')
