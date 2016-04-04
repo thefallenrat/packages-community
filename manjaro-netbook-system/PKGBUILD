@@ -1,7 +1,7 @@
 # Maintainer: Rob McCathie <rob@manjaro.org>
 
 pkgname=manjaro-netbook-system
-pkgver=20150114
+pkgver=20160404
 pkgrel=1
 pkgdesc="Manjaro Netbook System - Components and update script"
 arch=('any')
@@ -16,7 +16,7 @@ source=("manjaro-netbook-compton-autostart"
         "close_active-manjaro-netbook.desktop"
         "unmaximize_active-manjaro-netbook.desktop"
         "gnome-keyring-daemon-fix.desktop")
-sha1sums=('484c115fe2d14764002f2b4f82d66be73f4d8726'
+sha1sums=('747cbc5665014693ed219b2ae18c811b35915bce'
           '28e67491a40df8fa58ce0945f81ba26a0b060aa5'
           '5c108e096d02461efc6f346096a27555a4f2724d'
           '234a8d6826aa6ba2c40b0fcc07bf63e430a2c31e'
