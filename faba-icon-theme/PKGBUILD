@@ -2,22 +2,22 @@
 # Autor: Moka Project
 
 pkgname=faba-icon-theme
-pkgver=4.0
-pkgrel=9.1
-epoch=1
-_fedora_release=22
-pkgdesc="Faba is a sexy and modern icon theme with Tango influences. All variations and supplementary themes for Faba, require this base theme.Packages based on last Fedora $_fedora_release"
+pkgver=20150802
+pkgrel=1
+pkgdesc="Faba is a sexy and modern icon theme with Tango influences."
 arch=('any')
 url="http://snwh.org/moka/"
 license=('GPL3')
 depends=('gtk-update-icon-cache')
+_grab=6f1cea3fcd0720d952145dfa6b0415ab2b4ca9d7
 options=(!strip)
-source=("http://download.opensuse.org/repositories/home:/snwh:/moka-project/Fedora_${_fedora_release}/noarch/${pkgname}-${pkgver}-${pkgrel}.noarch.rpm")
+source=("https://github.com/moka-project/$pkgname/archive/$_grab.tar.gz")
 install=${pkgname}.install
-sha256sums=('dfa65b667a1092b63db73a1df2a8f06fd8ddf1793e7d30f3201ef013d74e82b5')
+sha256sums=('47842eadbdb668a266e31643f91c27ceaf8ff002e7ae76e70cd226017afb9462')
 
 package() {
-	install -dm755 $srcdir/./usr/share/ $pkgdir/usr/share/icons/Faba/
-	cp -r $srcdir/./usr/share/icons/Faba/ $pkgdir/usr/share/icons/
+    install -d -m 755 "${pkgdir}"/usr/share/icons/Faba
+    cp -dr --no-preserve=ownership "${pkgname}-${_grab}"/Faba "${pkgdir}"/usr/share/icons/
+    find "${pkgdir}"/usr/share/icons/ -type d -exec chmod 755 {} \;
+    find "${pkgdir}"/usr/share/icons/ -type f -exec chmod 644 {} \;
 }
-

@@ -2,22 +2,23 @@
 # Autor: Moka Project
 
 pkgname=moka-icon-theme
-pkgver=5.0
-pkgrel=15.1
-epoch=1
-_fedora_release=22
-pkgdesc="An icon theme designed with a minimal, flat style, using simple geometry & colours.Packages based on last Fedora $_fedora_release"
+pkgver=20151123
+pkgrel=1
+pkgdesc="An icon theme designed with a minimal, flat style, using simple geometry & colours."
 arch=('any')
 url="http://snwh.org/moka/"
 license=('GPL3')
+_grab=edba1587f4b3014210ca3857bb5fbf913e9a5fd5
 depends=('gtk-update-icon-cache' 'faba-icon-theme')
 options=(!strip)
-source=(http://download.opensuse.org/repositories/home:/snwh:/moka-project/Fedora_${_fedora_release}/noarch/${pkgname}-${pkgver}-${pkgrel}.noarch.rpm)
+source=(https://github.com/moka-project/$pkgname/archive/$_grab.tar.gz)
 install=${pkgname}.install
-sha256sums=('44c9b3b18b9cd1943cb0733be769eeaaf125c5b92faac4ac0109400aa991830e')
+sha256sums=('b6107c25e7a758a72c5b26267b4f7e5a6c3b4f05553f9cc82bea345b08b4a5dd')
 
 package() {
-	install -dm755 $srcdir/./usr/share/ $pkgdir/usr/share/icons/Moka/
-	cp -r $srcdir/./usr/share/icons/Moka/ $pkgdir/usr/share/icons/
+    install -d -m 755 "${pkgdir}"/usr/share/icons/Moka
+    cp -dr --no-preserve=ownership "${pkgname}-${_grab}"/Moka "${pkgdir}"/usr/share/icons/
+    find "${pkgdir}"/usr/share/icons/ -type d -exec chmod 755 {} \;
+    find "${pkgdir}"/usr/share/icons/ -type f -exec chmod 644 {} \;
 }
 
