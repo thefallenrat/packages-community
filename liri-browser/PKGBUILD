@@ -2,7 +2,7 @@
 
 _pkgname=liri-browser
 pkgname=$_pkgname
-pkgver=0.3.r228.g2985577
+pkgver=0.3.r245.g71ccccf
 pkgrel=1
 pkgdesc="A Web Browser using the QML Material framework from the Papyros Project"
 arch=("i686" "x86_64")
@@ -21,20 +21,20 @@ sha256sums=('SKIP'
             'd63c805a874d8fcb93125bf3f648600ab77bc7dc5d3eaa296e22a81fb0733137')
 
 pkgver() {
-    cd "$pkgname"
-    # cutting off 'foo-' prefix that presents in the git tag
-    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  cd "$pkgname"
+  # cutting off 'foo-' prefix that presents in the git tag
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
   cd "$srcdir/$pkgname"
-	qmake liri-browser.pro
-	make
+  qmake liri-browser.pro
+  make
 }
 
 package() {
-	cd "$srcdir/$pkgname"
-	make INSTALL_ROOT="$pkgdir" install
+  cd "$srcdir/$pkgname"
+  make INSTALL_ROOT="$pkgdir" install
 
   mkdir -p "$pkgdir"/usr/bin
   mkdir -p "$pkgdir"/usr/share/applications
@@ -52,11 +52,11 @@ package() {
 # Additional functions to generate a changelog
 
 changelog() {
-    cd "$pkgname"
-    git log $1..HEAD --no-merges --format=" * %s"
+  cd "$pkgname"
+  git log $1..HEAD --no-merges --format=" * %s"
 }
 
 gitref() {
-    cd "$pkgname"
-    git rev-parse HEAD
+  cd "$pkgname"
+  git rev-parse HEAD
 }
