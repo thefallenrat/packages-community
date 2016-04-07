@@ -2,7 +2,7 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=38.7.1
+pkgver=38.7.2
 pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone Mail/News reader"
@@ -29,7 +29,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozilla-nongnome-proxies.patch
         kde.js)
 options=('!emptydirs' '!makeflags')
-sha256sums=('46985ab53f1d1fab9a6c7dd0b34ccf38f8401d507bf686ee56dc28a0555d9328'
+sha256sums=('e2b1453ac193615586e350bc729278db8c8a61a8d4ac089db370754af47d4493'
             '6ce788b80d0a1bac96201ca4f4ce93fee5a94e222b1ddb6cdee5c6db2d00ef77'
             'b4371b9021fd5f65a1f546fca36c6c326a00ef0f57b448e86a33656ac7f780a8'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
