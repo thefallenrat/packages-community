@@ -5,7 +5,7 @@
 # You may find it convenient to file issues and pull requests there.
 
 pkgname=gnome-shell-extension-mediaplayer
-pkgver=r545.1b12e25
+pkgver=r551.040807f
 pkgrel=1
 pkgdesc='A mediaplayer indicator for the Gnome Shell'
 arch=('any')
@@ -51,7 +51,8 @@ depends[125]=gnome-shell
 package_20_version() {
   local compatibles=($(\
     find -path ./pkg -type d -prune -o \
-    -name metadata.json -exec grep -Pzo '(?s)(?<="shell-version": \[)[^\[\]]*(?=\])' '{}' \; | \
+    -name metadata.json -exec cat '{}' \; | \
+    tr -d '\n' | grep -Po '(?<="shell-version": \[)[^\[\]]*(?=\])' | \
     tr '\n," ' '\n' | sed 's/3\.//g;/^$/d' | sort -n -t. -k 1,1))
   depends+=("gnome-shell>=3.${compatibles[0]}")
   local max="${compatibles[-1]}"
