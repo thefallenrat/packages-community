@@ -1,13 +1,13 @@
 # Maintainer: Rob McCathie <rob@manjaro.org>
 
 pkgname=manjaro-netbook-system
-pkgver=20160404
+pkgver=20160410
 pkgrel=1
 pkgdesc="Manjaro Netbook System - Components and update script"
 arch=('any')
 url="http://www.manjaro.org"
 license=('GPL')
-depends=('grub')
+depends=('grub' 'tlp')
 install="${pkgname}.install"
 source=("manjaro-netbook-compton-autostart"
         "compton-manjaro-netbook.desktop"
