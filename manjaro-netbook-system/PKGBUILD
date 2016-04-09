@@ -2,12 +2,12 @@
 
 pkgname=manjaro-netbook-system
 pkgver=20160410
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro Netbook System - Components and update script"
 arch=('any')
 url="http://www.manjaro.org"
 license=('GPL')
-depends=('grub' 'tlp')
+depends=('grub')
 install="${pkgname}.install"
 source=("manjaro-netbook-compton-autostart"
         "compton-manjaro-netbook.desktop"
