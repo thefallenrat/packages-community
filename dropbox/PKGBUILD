@@ -5,68 +5,66 @@
 # Contributor: David Manouchehri <d@32t.ca>
 
 pkgname=dropbox
-pkgver=3.14.5
+pkgver=3.18.1
 pkgrel=1
 pkgdesc="A free service that lets you bring your photos, docs, and videos anywhere and share them easily."
 arch=("i686" "x86_64")
 url="http://www.dropbox.com"
 license=('custom')
-depends=('libxmu' 'libxslt')
-makedepends=('chrpath')
+depends=('dbus' 'libxmu' 'libxslt')
+makedepends=('chrpath' 'desktop-file-utils')
 optdepends=('ufw-extras: UFW rules for Dropbox'
             'perl-file-mimeinfo: Opening the Dropbox folder on some desktop environments')
 conflicts=("dropbox-experimental")
 replaces=("dropbox3" "dropbox2")
 options=('!strip')
-source=("dropbox.desktop"
+source=("dropbox"
+        "dropbox.desktop"
         "dropbox.png"
         "dropbox.service"
         "dropbox@.service"
         "terms.txt")
-source_i686=("https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86-$pkgver.tar.gz")
-source_x86_64=("https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86_64-$pkgver.tar.gz")
-sha256sums=('541f2fd2de0d601a08cde7853e404062f542af21e6e7106825b5e68177168e0f'
+source_i686=("dropbox-lnx.x86-${pkgver}.tar.gz::https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86-${pkgver}.tar.gz")
+source_x86_64=("dropbox-lnx.x86_64-${pkgver}.tar.gz::https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86_64-${pkgver}.tar.gz")
+sha256sums=('4240052a07a0f38dbdea6f199d5f1fc7b04ace9bf7474a63f09bdff7682a5154'
+            '541f2fd2de0d601a08cde7853e404062f542af21e6e7106825b5e68177168e0f'
             'e7d245f5d1a3d5322614b61400ae2913a8caef44bc86717ff7d8197a15dd7f01'
             '5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e'
             '85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a'
             'c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e')
-sha256sums_i686=('3bbf7c0466e9b3c4dae957a3907bbe16e341eec22058de3f83ba2eab9f89162b')
-sha256sums_x86_64=('af71c1cc62c1ad06bb583d8bce31334001d87dd96eaa149a0fa60e094262d20b')
+sha256sums_i686=('51b2c5bc82e61c5c842b92f1348aa53803b343c5288d080261caf326f294ab04')
+sha256sums_x86_64=('153e39f32363dff87e923dbaea8395cf3da1d4a0658c8476ce7fccdf5186aae1')
 
 if [ "$CARCH" = "x86_64" ]; then
-  _source_arch="x86_64"
+    _source_arch="x86_64"
 else
-  _source_arch="x86"
+    _source_arch="x86"
 fi
 
 prepare() {
-  cd .dropbox-dist/dropbox-lnx.${_source_arch}-${pkgver}
-
-  rm library.zip
-  ln -s dropbox library.zip
-  chrpath -d plugins/platforms/libqxcb.so
+    cd .dropbox-dist/dropbox-lnx.${_source_arch}-${pkgver}
+    rm library.zip
+    ln -s dropbox library.zip
+    chrpath -d plugins/platforms/libqxcb.so
 }
 
 package() {
-  cd .dropbox-dist
+    cd .dropbox-dist
 
-  install -dm755 "$pkgdir"/opt
-  cp -dr --no-preserve='ownership' dropbox-lnx.${_source_arch}-${pkgver} "${pkgdir}"/opt/dropbox
-  find "${pkgdir}"/opt/dropbox -type d -exec chmod 755 {} +
-  find "${pkgdir}"/opt/dropbox -type f -exec chmod 644 {} +
-  chmod 755 "${pkgdir}"/opt/dropbox/dropbox{,d}
+    install -dm755 "$pkgdir"/opt
+    cp -dr --no-preserve='ownership' dropbox-lnx.${_source_arch}-${pkgver} "${pkgdir}"/opt/dropbox
+    find "${pkgdir}"/opt/dropbox -type d -exec chmod 755 {} +
+    find "${pkgdir}"/opt/dropbox -type f -exec chmod 644 {} +
+    chmod 755 "${pkgdir}"/opt/dropbox/dropbox{,d}
+    install -Dm 755 ../dropbox ${pkgdir}/usr/bin/dropbox
 
-  install -dm 755 "$pkgdir"/usr/bin
-  ln -s /opt/dropbox/dropbox "$pkgdir"/usr/bin/dropbox
+    install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/dropbox,pixmaps}
+    install -m 644 ../dropbox.png "${pkgdir}"/usr/share/pixmaps/
+    install -m 644 ../terms.txt "${pkgdir}"/usr/share/licenses/dropbox/
 
-  install -dm 755 "${pkgdir}"/usr/share/{applications,licenses/dropbox,pixmaps}
-  install -m 644 ../dropbox.desktop "${pkgdir}"/usr/share/applications/
-  install -m 644 ../dropbox.png "${pkgdir}"/usr/share/pixmaps/
-  install -m 644 ../terms.txt "${pkgdir}"/usr/share/licenses/dropbox/
-
-  install -dm 755 "${pkgdir}"/usr/lib/systemd/{user,system}
-  install -m 644 ../dropbox.service "${pkgdir}"/usr/lib/systemd/user/
-  install -m 644 ../dropbox@.service "${pkgdir}"/usr/lib/systemd/system/
+    install -dm 755 "${pkgdir}"/usr/lib/systemd/{user,system}
+    install -m 644 ../dropbox.service "${pkgdir}"/usr/lib/systemd/user/
+    install -m 644 ../dropbox@.service "${pkgdir}"/usr/lib/systemd/system/
+    
+    desktop-file-install ../dropbox.desktop --dir ${pkgdir}/usr/share/applications/
 }
-
-# vim: ts=2 sw=2 et:
