@@ -2,7 +2,7 @@
 
 pkgname=adwaita-manjaro-theme
 pkgver=20160411
-pkgrel=3
+pkgrel=4
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
 _maiacommit=cec8588ec16090335591189e43411a3f474c3f71
@@ -21,7 +21,7 @@ source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
 sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
             '940b6d8d501f55a60279b4c0a1b591300e4c7a4083bbf4454b1820f42cd05703'
             '2af9a90a51d6c33c983339c86e958bc8f4755dba99bdf4f387658f184deb4be9'
-            '31361546dfbbf4e1c880b03448653f2b69c97b9b50d18a0dc923aa7266d65838'
+            '32d051214ab29df129f62a44dc49973f40be131078796182da7619c0cfb58c4a'
             '5f980512053a1694b3a5dc1ac32ad2fa3f67db4eed9d481b8804fc59394c20ee'
             '35fff2f7341c989ad8a18c372e616abd33f6b8e030662183e65081ff175d44a1')
 options=('!strip')
