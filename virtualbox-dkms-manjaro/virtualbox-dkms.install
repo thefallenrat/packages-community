@@ -2,8 +2,8 @@
 
 # arg 1:  the new package version
 post_install() {
-  dkms add vboxguest/${1%-*}
-  dkms add vboxhost/${1%-*}
+  dkms add vboxguest/"${1%-*}"_OSE
+  dkms add vboxhost/"${1%-*}"_OSE
 }
 
 # arg 1:  the new package version
@@ -15,15 +15,15 @@ pre_upgrade() {
 # arg 1:  the new package version
 # arg 2:  the old package version
 post_upgrade() {
-  dkms add vboxguest/${1%-*}
-  dkms add vboxhost/${1%-*}
+  dkms add vboxguest/"${1%-*}"_OSE
+  dkms add vboxhost/"${1%-*}"_OSE
 }
 
 # arg 1:  the old package version
 pre_remove() {
   # Remove modules using dkms
-  [ -n "${1%-*}" ] && dkms remove vboxguest/${1%-*} --all &>/dev/null || true
-  [ -n "${1%-*}" ] && dkms remove vboxhost/${1%-*} --all &>/dev/null || true
+  [ -n "${1%-*}"_OSE ] && dkms remove vboxguest/${1%-*}_OSE --all &>/dev/null || true
+  [ -n "${1%-*}"_OSE ] && dkms remove vboxhost/${1%-*}_OSE --all &>/dev/null || true
 }
 
 # vim:set ts=2 sw=2 ft=sh et:
