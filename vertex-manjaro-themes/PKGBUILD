@@ -55,7 +55,8 @@ package() {
   
   ## Although the resulting green is the same brightness as the previous blue, against white green has less contrast than blue,
   ## this might be ok for stuff like text input field or button highlights (or maybe we should further adjust the images with
-  ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem (which is a PNG in Vertex)...
+  ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem, which is a PNG in Vertex
+  ## for GTK2 (and so far for GTK3 i can't get item/menuitem highlight to not be blue :\ )...
 
   ## ...so make that PNG darker:
   mogrify -channel g -modulate 50 gtk-2.0/Menu/menuitem.png
