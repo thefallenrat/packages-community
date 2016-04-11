@@ -40,6 +40,7 @@ package() {
   ### Manjarification ###
 
   msg "This next bit might take a little while..."
+  
   cd "$pkgdir/usr/share/themes"
   rm -r Vertex{-Dark,-Light,-Plank,_alt_metacity}
   rm -r Chrome Firefox # i'd think these two need modifying, not deleting, this is only happening during development
@@ -48,11 +49,15 @@ package() {
   ## Any plain text we can find within any file in the theme that reads "Vertex" is replaced with "Vertex-Manjaro"
   find . -type f -exec sed -i "s/Vertex/Vertex-Manjaro/g" {} \;
   
-  ## For all PNG and SVG images, find everything blue and make it green
+  ## Since Vertex has blue highlights, for all PNG and SVG images swap the blue and green channels, making everything green instead
   find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
   find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;
+  
+  ## Although the resulting green is the same brightness as the previous blue, against white green has less contrast than blue,
+  ## this might be ok for stuff like text input field or button highlights (or maybe we should further adjust the images with
+  ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem (which is a PNG in Vertex)...
 
-  ## Vertex uses a PNG for menu items, it's already green from the previous commands, but needs to be darker
+  ## ...so make that PNG darker:
   mogrify -channel g -modulate 50 gtk-2.0/Menu/menuitem.png
   
   ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
