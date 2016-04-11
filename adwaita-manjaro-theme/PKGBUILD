@@ -2,7 +2,7 @@
 
 pkgname=adwaita-manjaro-theme
 pkgver=20160411
-pkgrel=2
+pkgrel=3
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
 _maiacommit=cec8588ec16090335591189e43411a3f474c3f71
@@ -11,6 +11,7 @@ arch=('any')
 url="https://www.gnome.org/"
 license=('GPL')
 makedepends=('imagemagick')
+depends=('gtk-engine-murrine')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
         "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
         "https://github.com/manjaro/artwork-vertex-maia/archive/${_maiacommit}.zip"
