@@ -1,0 +1,10 @@
+[X-GNOME-Metatheme]
+Name=Adwaita-Manjaro
+Type=X-GNOME-Metatheme
+Comment=Manjaro default theme
+Encoding=UTF-8
+GtkTheme=Adwaita-Manjaro
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita
+CursorSize=24
