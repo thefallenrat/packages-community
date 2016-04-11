@@ -47,7 +47,7 @@ package() {
   
   msg "This next bit might take a little while..."
 
-  ## For all PNG and SVG images, find everything blue and make it green
+  ## For all PNG and SVG images swap the blue and green channels, making everything green instead of blue.
   find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
   find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;  
 }
