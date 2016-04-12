@@ -1,11 +1,12 @@
 # Maintainer : Rob McCathie <rob@manjaro.org>
 
 pkgname=adwaita-manjaro-themes
-pkgver=20160411
-pkgrel=7
+pkgver=20160412
+pkgrel=1
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
-_maiacommit=cec8588ec16090335591189e43411a3f474c3f71
+_axcommit=cc3ffa01f27aa0b6e2f431034832d62fd65aac14
+_metacityver=3.18.3
 pkgdesc="Adwaita-Manjaro theme"
 arch=('any')
 url="https://www.gnome.org/"
@@ -16,16 +17,20 @@ provides=('adwaita-manjaro-theme')
 replaces=('adwaita-manjaro-theme')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
         "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
-        "https://github.com/manjaro/artwork-vertex-maia/archive/${_maiacommit}.zip"
+        "https://github.com/thearakattack/adwaita-xfce/archive/${_axcommit}.zip"
+        "https://git.gnome.org/browse/metacity/snapshot/metacity-${_metacityver}.tar.xz"
         "index.theme"
         "panel.rc"
-        "add-xfce-panel.patch")
+        "add-xfce-panel.patch"
+        "README.md")
 sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
             '940b6d8d501f55a60279b4c0a1b591300e4c7a4083bbf4454b1820f42cd05703'
-            '2af9a90a51d6c33c983339c86e958bc8f4755dba99bdf4f387658f184deb4be9'
+            'b45e219135add294284a40eb3f72466334f3634d23d3e92a5635e15857ea534d'
+            '2c71b9e157bdbcf5da03913e048c81de4b22ce71f8345ce5bcd03405e529ee7a'
             '32d051214ab29df129f62a44dc49973f40be131078796182da7619c0cfb58c4a'
             '5f980512053a1694b3a5dc1ac32ad2fa3f67db4eed9d481b8804fc59394c20ee'
-            '35fff2f7341c989ad8a18c372e616abd33f6b8e030662183e65081ff175d44a1')
+            '35fff2f7341c989ad8a18c372e616abd33f6b8e030662183e65081ff175d44a1'
+            '7df8f2e6bd6e8d62143b0405832d79151e0f31785b433c50f5f211a69241057e')
 options=('!strip')
 
 package() {
@@ -45,18 +50,23 @@ package() {
   patch -p1 -i "${srcdir}/add-xfce-panel.patch"
   
   cd ..
-  sed -i "s/4a90d9/16a085/g" gtk-2.0/gtkrc
-  sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk.css
-  sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk-dark.css
-  
-  msg "This next bit might take a little while..."
+  #sed -i "s/4a90d9/16a085/g" gtk-2.0/gtkrc
+  #sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk.css
+  #sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk-dark.css
+  sed -i "s/4a90d9/28bc70/g" gtk-2.0/gtkrc
+  sed -i "s/4a90d9/28bc70/g" gtk-3.0/gtk.css
+  sed -i "s/4a90d9/28bc70/g" gtk-3.0/gtk-dark.css
 
   ## For all PNG and SVG images swap the blue and green channels, making everything green instead of blue.
   find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
   find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;
   
   ## Xfwm4 and Metacity decorations
-  cp -r "${srcdir}/artwork-vertex-maia-${_maiacommit}/Vertex-Maia-Square/xfwm4" ./
-  cp -r "${srcdir}/artwork-vertex-maia-${_maiacommit}/Vertex-Maia-Square/metacity-1" ./
-  sed -i "s|<name>Vertex-Maia-SQ-B</name>|<name>Adwaita-Manjaro</name>|g" metacity-1/metacity-theme-2.xml
+  cp -r "${srcdir}/adwaita-xfce-${_axcommit}/Adwaita-Xfce Alt v1/xfwm4" ./
+  rm "xfwm4/themerc~"
+  install -Dm644 "${srcdir}/metacity-${_metacityver}/src/themes/Adwaita/metacity-theme-3.xml" metacity-1/metacity-theme-3.xml
+  sed -i "s|<name>Adwaita</name>|<name>Adwaita-Manjaro</name>|g" metacity-1/metacity-theme-3.xml
+  
+  ## Place README
+  cp "${srcdir}/README.md" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/README"
 }
