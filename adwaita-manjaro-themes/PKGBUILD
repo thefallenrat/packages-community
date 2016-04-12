@@ -2,7 +2,7 @@
 
 pkgname=adwaita-manjaro-themes
 pkgver=20160412
-pkgrel=2
+pkgrel=3
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
 _axcommit=cc3ffa01f27aa0b6e2f431034832d62fd65aac14
@@ -74,9 +74,12 @@ package() {
   find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
   find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;
   
-  ## Xfwm4 and Metacity decorations
+  ## Xfwm4 decorations
   cp -r "${srcdir}/adwaita-xfce-${_axcommit}/Adwaita-Xfce Alt v1/xfwm4" ./
   rm "xfwm4/themerc~"
+  find . -name "*.xpm" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
+  
+  ## Metacity decorations
   install -Dm644 "${srcdir}/metacity-${_metacityver}/src/themes/Adwaita/metacity-theme-3.xml" metacity-1/metacity-theme-3.xml
   sed -i "s|<name>Adwaita</name>|<name>Adwaita-Manjaro</name>|g" metacity-1/metacity-theme-3.xml
   
