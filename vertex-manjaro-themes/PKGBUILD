@@ -1,0 +1,67 @@
+# Contributor: Rob McCathie <rob@manjaro.org>
+# Contributor: CanalGuada <dguadal at free dot fr>
+# Author: horst3180 @ deviantart
+
+pkgname=vertex-manjaro-themes
+pkgver=20160411
+pkgrel=1
+pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
+_gnomever=3.20
+_releasever=20160329
+arch=('any')
+url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
+license=('GPL3')
+depends=('gtk-engine-murrine')
+makedepends=('imagemagick')
+source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz")
+sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85')
+options=('!strip')
+
+build() {
+  cd vertex-theme-${_releasever}
+  ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
+}
+package() {
+  cd vertex-theme-${_releasever}
+
+  make DESTDIR="$pkgdir" install
+  cd extra
+  for name in "Chrome" "Firefox" "Vertex-Plank" "Vertex_alt_metacity"; do
+    find "$name" -type f -not -name *~ -exec install -Dm644 '{}' "$pkgdir/usr/share/themes/{}" \;
+  done
+
+  cd ..
+  install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+  ## We need to provide our own README
+  #install -Dm644 README.md "$pkgdir/usr/share/themes/Vertex/README"
+
+
+
+  ### Manjarification ###
+
+  msg "This next bit might take a little while..."
+  
+  cd "$pkgdir/usr/share/themes"
+  rm -r Vertex{-Dark,-Light,-Plank,_alt_metacity}
+  rm -r Chrome Firefox # i'd think these two need modifying, not deleting, this is only happening during development
+  mv Vertex Vertex-Manjaro && cd Vertex-Manjaro
+  
+  ## Any plain text we can find within any file in the theme that reads "Vertex" is replaced with "Vertex-Manjaro"
+  find . -type f -exec sed -i "s/Vertex/Vertex-Manjaro/g" {} \;
+  
+  ## Since Vertex has blue highlights, for all PNG and SVG images swap the blue and green channels, making everything green instead
+  find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
+  find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;
+  
+  ## Although the resulting green is the same brightness as the previous blue, against white green has less contrast than blue,
+  ## this might be ok for stuff like text input field or button highlights (or maybe we should further adjust the images with
+  ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem, which is a PNG in Vertex
+  ## for GTK2 (and so far for GTK3 i can't get item/menuitem highlight to not be blue :\ )...
+
+  ## ...so make that PNG darker:
+  mogrify -channel g -modulate 50 gtk-2.0/Menu/menuitem.png
+  
+  ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
+  find . -name "*.css" -exec sed -i "s/4080fb/04af3e/g" {} \;
+  sed -i "s/4080fb/04af3e/g" gtk-2.0/gtkrc
+}
