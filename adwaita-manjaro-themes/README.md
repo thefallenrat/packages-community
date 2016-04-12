@@ -1,6 +1,6 @@
 # Adwaita theme modified for Manjaro
 
-All assets used for this package are licensed under the GPl.
+All assets used for this package are licensed under the GPL.
 
 Credits:
 

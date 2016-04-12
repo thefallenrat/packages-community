@@ -2,7 +2,7 @@
 
 pkgname=adwaita-manjaro-themes
 pkgver=20160412
-pkgrel=1
+pkgrel=2
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
 _axcommit=cc3ffa01f27aa0b6e2f431034832d62fd65aac14
@@ -30,7 +30,7 @@ sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
             '32d051214ab29df129f62a44dc49973f40be131078796182da7619c0cfb58c4a'
             '5f980512053a1694b3a5dc1ac32ad2fa3f67db4eed9d481b8804fc59394c20ee'
             '35fff2f7341c989ad8a18c372e616abd33f6b8e030662183e65081ff175d44a1'
-            '7df8f2e6bd6e8d62143b0405832d79151e0f31785b433c50f5f211a69241057e')
+            'f7b10d87635bc30e655fa702c9cf825841a05f50fd2e304983b8f2ca06cbfb62')
 options=('!strip')
 
 package() {
@@ -50,12 +50,42 @@ package() {
   patch -p1 -i "${srcdir}/add-xfce-panel.patch"
   
   cd ..
-  #sed -i "s/4a90d9/16a085/g" gtk-2.0/gtkrc
-  #sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk.css
-  #sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk-dark.css
-  sed -i "s/4a90d9/28bc70/g" gtk-2.0/gtkrc
-  sed -i "s/4a90d9/28bc70/g" gtk-3.0/gtk.css
-  sed -i "s/4a90d9/28bc70/g" gtk-3.0/gtk-dark.css
+  
+  ## Main highlight colour  blue->green
+  sed -i "s/4a90d9/16a085/g" gtk-2.0/gtkrc
+  sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk.css
+  sed -i "s/4a90d9/16a085/g" gtk-3.0/gtk-dark.css
+  
+  ## Lower half of GTK3 progress bars  blue->green
+  sed -i "s/2a76c6/008672/g" gtk-3.0/gtk.css
+  sed -i "s/2a76c6/008672/g" gtk-3.0/gtk-dark.css
+  
+  ## Button borders  blue->green
+  sed -i "s/184472/00541e/g" gtk-3.0/gtk.css
+  sed -i "s/184472/00541e/g" gtk-3.0/gtk-dark.css
+  
+  ## All the below are from the "button.suggested-action" section  blue->green
+  sed -i "s/1c5187/006133/g" gtk-3.0/gtk.css
+  sed -i "s/1c5187/006133/g" gtk-3.0/gtk-dark.css
+  
+  sed -i "s/3986d5/059681/g" gtk-3.0/gtk.css
+  sed -i "s/3986d5/059681/g" gtk-3.0/gtk-dark.css
+  
+  sed -i "s/63a0de/2fb08a/g" gtk-3.0/gtk.css
+  sed -i "s/63a0de/2fb08a/g" gtk-3.0/gtk-dark.css
+
+
+  sed -i "s/276fba/007f66/g" gtk-3.0/gtk.css
+  sed -i "s/276fba/007f66/g" gtk-3.0/gtk-dark.css
+
+  sed -i "s/3583d5/019381/g" gtk-3.0/gtk.css
+  sed -i "s/3583d5/019381/g" gtk-3.0/gtk-dark.css
+
+  sed -i "s/5094db/1ca487/g" gtk-3.0/gtk.css
+  sed -i "s/5094db/1ca487/g" gtk-3.0/gtk-dark.css
+
+  sed -i "s/8db9e8/59c994/g" gtk-3.0/gtk.css
+  sed -i "s/8db9e8/59c994/g" gtk-3.0/gtk-dark.css
 
   ## For all PNG and SVG images swap the blue and green channels, making everything green instead of blue.
   find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
