@@ -13,8 +13,10 @@ url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('imagemagick')
-source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz")
-sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85')
+source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
+	menuitem.png)
+sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85'
+            '2fda4b0906ae5befbb6f5d083fe627da6b4529b1734464b691e30028761bc36b')
 options=('!strip')
 
 build() {
@@ -49,18 +51,20 @@ package() {
   find . -type f -exec sed -i "s/Vertex/Vertex-Manjaro/g" {} \;
   
   ## Since Vertex has blue highlights, for all PNG and SVG images swap the blue and green channels, making everything green instead
-  find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
-  find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine {} \;
+  find . -name "*.png" -exec mogrify -channel rbga -separate -swap 1,2 -combine -modulate 80 {} \;
+  find . -name "*.svg" -exec mogrify -background none -channel rbga -separate -swap 1,2 -combine -modulate 80 {} \;
+  
+  ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
+  find . -name "*.css" -exec sed -i "s/4080fb/16a085/g;s/3176fb/16a085/g;s/4577d6, #4c86f3/16a085, #16a085/g;s/6496F5, #5A86DB/16a085, #16a085/g" {} \;
+  sed -i "s/4080fb/16a085/g" gtk-2.0/gtkrc
   
   ## Although the resulting green is the same brightness as the previous blue, against white green has less contrast than blue,
   ## this might be ok for stuff like text input field or button highlights (or maybe we should further adjust the images with
   ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem, which is a PNG in Vertex
   ## for GTK2 (and so far for GTK3 i can't get item/menuitem highlight to not be blue :\ )...
 
-  ## ...so make that PNG darker:
-  mogrify -channel g -modulate 50 gtk-2.0/Menu/menuitem.png
-  
-  ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
-  find . -name "*.css" -exec sed -i "s/4080fb/16a085/g;s/3176fb/16a085/g;s/4577d6, #4c86f3/16a085, #16a085/g;s/6496F5, #5A86DB/16a085, #16a085/g" {} \;
-  sed -i "s/4080fb/16a085/g" gtk-2.0/gtkrc
+  ## replace menuitem.png
+  cd "$pkgdir/usr/share/themes/Vertex-Manjaro/gtk-2.0/Menu"
+  rm menuitem.png
+  cp $srcdir/menuitem.png .
 }
