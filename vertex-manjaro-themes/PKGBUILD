@@ -4,7 +4,7 @@
 
 pkgname=vertex-manjaro-themes
 pkgver=20160413
-pkgrel=1
+pkgrel=2
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=20160329
@@ -14,9 +14,9 @@ license=('GPL3')
 depends=('gtk-engine-murrine')
 makedepends=('imagemagick')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
-	menuitem.png
-	progressbar.png
-	progressbar_v.png)
+	'menuitem.png'
+	'progressbar.png'
+	'progressbar_v.png')
 sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85'
             '148be77e522f75493808faa4ec7436ea3d39bc79f1e3449a8faf9946621c73a3'
             '421ad50c2d621ca8d4f0362990012afb952b30778267eb7be13dc502b30cdd42'
@@ -47,9 +47,10 @@ package() {
   msg "This next bit might take a little while..."
   
   cd "$pkgdir/usr/share/themes"
-  rm -r Vertex{-Dark,-Light,-Plank,_alt_metacity}
+  rm -r Vertex{-Light,-Plank,_alt_metacity}
   rm -r Chrome Firefox # i'd think these two need modifying, not deleting, this is only happening during development
-  mv Vertex Vertex-Manjaro && cd Vertex-Manjaro
+  mv Vertex Vertex-Manjaro
+  mv Vertex-Dark Vertex-Manjaro-Dark
   
   ## Any plain text we can find within any file in the theme that reads "Vertex" is replaced with "Vertex-Manjaro"
   find . -type f -exec sed -i "s/Vertex/Vertex-Manjaro/g" {} \;
@@ -60,19 +61,11 @@ package() {
   
   ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
   find . -name "*.css" -exec sed -i "s/4080fb/16a085/g;s/3176fb/16a085/g;s/4577d6, #4c86f3/16a085, #16a085/g;s/6496F5, #5A86DB/16a085, #16a085/g" {} \;
-  sed -i "s/4080fb/16a085/g" gtk-2.0/gtkrc
-  
-  ## Although the resulting green is the same brightness as the previous blue, against white green has less contrast than blue,
-  ## this might be ok for stuff like text input field or button highlights (or maybe we should further adjust the images with
-  ## mogrify), but it's too bright for the background highlight of the current selected item/menuitem, which is a PNG in Vertex
-  ## for GTK2 (and so far for GTK3 i can't get item/menuitem highlight to not be blue :\ )...
+  find . -name "gtkrc" -exec sed -i "s/4080fb/16a085/g" {} \;
 
   ## fix menu and progressbars
-  cd "$pkgdir/usr/share/themes/Vertex-Manjaro/gtk-2.0/Menu"
-  rm menuitem.png
-  cp $srcdir/menuitem.png .
-
-  cd "$pkgdir/usr/share/themes/Vertex-Manjaro/gtk-2.0/ProgressBar"
-  rm progressbar*
-  cp $srcdir/progressbar* .
+  cd "$pkgdir/usr/share/themes"
+  tee Vertex-Manjaro{,-Dark}/gtk-2.0/Menu/menuitem.png < $srcdir/menuitem.png
+  tee Vertex-Manjaro{,-Dark}/gtk-2.0/ProgressBar/progressbar.png < $srcdir/progressbar.png
+  tee Vertex-Manjaro{,-Dark}/gtk-2.0/ProgressBar/progressbar_v.png < $srcdir/progressbar_v.png
 }
