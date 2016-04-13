@@ -36,7 +36,6 @@ package() {
   #install -Dm644 README.md "$pkgdir/usr/share/themes/Vertex/README"
 
 
-
   ### Manjarification ###
 
   msg "This next bit might take a little while..."
@@ -62,6 +61,6 @@ package() {
   mogrify -channel g -modulate 50 gtk-2.0/Menu/menuitem.png
   
   ## Change highlight colour from blue to match whatever you've just made the menuitem.png file with the above command
-  find . -name "*.css" -exec sed -i "s/4080fb/04af3e/g" {} \;
-  sed -i "s/4080fb/04af3e/g" gtk-2.0/gtkrc
+  find . -name "*.css" -exec sed -i "s/4080fb/16a085/g;s/3176fb/16a085/g;s/4577d6, #4c86f3/16a085, #16a085/g;s/6496F5, #5A86DB/16a085, #16a085/g" {} \;
+  sed -i "s/4080fb/16a085/g" gtk-2.0/gtkrc
 }
