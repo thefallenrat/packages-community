@@ -5,7 +5,7 @@
 
 pkgname=vertex-manjaro-themes
 pkgver=20160414
-pkgrel=2
+pkgrel=3
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=20160329
@@ -61,12 +61,12 @@ package() {
   ## Adjust color values
   find . -name "*.css" -exec sed -i \
 	"s/0553ea/1ceab6/g;\
-	s/0e5ffa/16A085/g;\
+	s/0e5ffa/16a085/g;\
 	s/122237/123722/g;\
 	s/171819/171918/g;\
 	s/1c1d1e/1c1e1d/g;\
 	s/244672/247246/g;\
-	s/276ffa/16A085/g;\
+	s/276ffa/16a085/g;\
 	s/284d7d/287d4d/g;\
 	s/29292b/292b29/g;\
 	s/2a5285/2a8552/g;\
@@ -74,9 +74,9 @@ package() {
 	s/2b2c2e/2b2e2c/g;\
 	s/2b5489/2b8954/g;\
 	s/2c578d/2c8d57/g;\
-	s/2c73fb/16A085/g;\
+	s/2c73fb/16a085/g;\
 	s/313132/313231/g;\
-	s/3176fb/16A085/g;\
+	s/3176fb/16a085/g;\
 	s/343436/343634/g;\
 	s/353638/353836/g;\
 	s/37383A/373A38/g;\
@@ -93,7 +93,7 @@ package() {
 	s/3e5e9d/3e9d5e/g;\
 	s/407cbc/40bc7c/g;\
 	s/404042/404240/g;\
-	s/4080fb/16A085/g;\
+	s/4080fb/16a085/g;\
 	s/434446/434644/g;\
 	s/454649/454946/g;\
 	s/46484a/464a48/g;\
@@ -105,12 +105,12 @@ package() {
 	s/4f5053/4f5350/g;\
 	s/4f5154/4f5451/g;\
 	s/525254/4f5451/g;\
-	s/538dfb/16A085/g;\
-	s/548dfb/16A085/g;\
+	s/538dfb/16a085/g;\
+	s/548dfb/16a085/g;\
 	s/58585a/585a58/g;\
 	s/5d5d5f/5d5f5d/g;\
 	s/5d5e62/5d625e/g;\
-	s/5d93fc/16A085/g;\
+	s/5d93fc/16a085/g;\
 	s/5e6064/5e6460/g;\
 	s/616163/616361/g;\
 	s/616263/616362/g;\
@@ -119,11 +119,11 @@ package() {
 	s/656668/656866/g;\
 	s/6596ca/65ca96/g;\
 	s/6a6a6c/6a6c6a/g;\
-	s/72a1fc/16A085/g;\
+	s/72a1fc/16a085/g;\
 	s/747476/747674/g;\
-	s/77a3f6/16A085/g;\
+	s/77a3f6/16a085/g;\
 	s/78797a/787a79/g;\
-	s/79a6fc/16A085/g;\
+	s/79a6fc/16a085/g;\
 	s/7a7a7b/7a7b7a/g;\
 	s/7c7d7f/7c7f7d/g;\
 	s/7d7e7f/7d7f7e/g;\
@@ -135,10 +135,10 @@ package() {
 	s/949597/949795/g;\
 	s/99999b/999b99/g;\
 	s/9c9d9e/9c9e9d/g;\
-	s/9cbdfd/16A085/g;\
+	s/9cbdfd/16a085/g;\
 	s/9e9e9f/9e9f9e/g;\
-	s/a0c0fd/16A085/g;\
-	s/a4c2fd/16A085/g;\
+	s/a0c0fd/16a085/g;\
+	s/a4c2fd/16a085/g;\
 	s/a5a5a7/a5a7a5/g;\
 	s/a9a9aa/a9aaa9/g;\
 	s/ababad/abadab/g;\
@@ -199,6 +199,7 @@ package() {
 	s/1f1f20/1f201f/g;\
 	s/242426/242624/g;\
 	s/262627/262726/g;\
+	s/28bd8e/16a085/g;\
 	s/2a2a2b/2a2b2a/g;\
 	s/2B2B2C/2B2C2B/g;\
 	s/2e2e30/2e302e/g;\
@@ -213,10 +214,10 @@ package() {
 	s/3C3E40/3C403E/g;\
 	s/3D5074/3D7463/g;\
 	s/3d73dc/28dca0/g;\
-	s/3e78e6/16A085/g;\
+	s/3e78e6/16a085/g;\
 	s/3f3f40/3f403f/g;\
 	s/3f4042/3f4240/g;\
-	s/3f7cf1/16A085/g;\
+	s/3f7cf1/16a085/g;\
 	s/414245/414542/g;\
 	s/414345/414543/g;\
 	s/4e4f52/4e524f/g;\
