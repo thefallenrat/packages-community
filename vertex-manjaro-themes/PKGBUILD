@@ -237,6 +237,7 @@ package() {
 	s/4080fb/16a085/g;\
 	s/454749/454947/g;\
 	s/F3F3F5/F3F5F3/g;\
+	s/FFF\"/F9FAF9\"/g;\
 	s/FFFFFF/F9FAF9/g" gtkrc
 
   sed -i "s/232324/232423/g;\
@@ -254,6 +255,7 @@ package() {
 	s/454749/454947/g;\
 	s/F3F3F5/F3F5F3/g;\
 	s/ffffff/f9faf9/g;\
+	s/FFF\"/F9FAF9\"/g;\
 	s/FFFFFF/F9FAF9/g" gtkrc
 
   sed -i "s/232324/232423/g;\
