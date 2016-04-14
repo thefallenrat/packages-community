@@ -244,7 +244,8 @@ package() {
   sed -i "s/232324/232423/g;\
 	s/3C3E40/3C403E/g;\
 	s/45474A/454A47/g;\
-	s/F3F3F5/F3F5F3/g" panel.rc
+	s/F3F3F5/F3F5F3/g;\
+	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
 
   cd ../../Vertex-Manjaro-Dark/gtk-2.0
   sed -i "s/2B2B2C/2B2C2B/g;\
@@ -262,7 +263,8 @@ package() {
   sed -i "s/232324/232423/g;\
 	s/3C3E40/3C403E/g;\
 	s/45474A/454A47/g;\
-	s/F3F3F5/F3F5F3/g" panel.rc
+	s/F3F3F5/F3F5F3/g;\
+	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
 
   ## use custom menuitem and progressbars
   cd "$pkgdir/usr/share/themes"
