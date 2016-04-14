@@ -5,7 +5,7 @@
 
 pkgname=vertex-manjaro-themes
 pkgver=20160414
-pkgrel=5
+pkgrel=6
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=20160329
@@ -19,7 +19,7 @@ source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme
 	'progressbar.png'
 	'progressbar_v.png')
 sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85'
-            '148be77e522f75493808faa4ec7436ea3d39bc79f1e3449a8faf9946621c73a3'
+            '02e6cf989fd8d51874e74689e2d5550835e1960e9c728a61c8fab7a06ee5cac1'
             '421ad50c2d621ca8d4f0362990012afb952b30778267eb7be13dc502b30cdd42'
             '1402962fd31b172525f945fcf4d8235595ce66d9b170d9384a384bb997800d11')
 options=('!strip')
@@ -90,16 +90,16 @@ package() {
 	s/3c3e40/3c403e/g;\
 	s/3d3e40/3d403e/g;\
 	s/3e5e9d/3e9d5e/g;\
-	s/407cbc/40bc7c/g;\
+	s/407cbc/16a085/g;\
 	s/404042/404240/g;\
 	s/4080fb/16a085/g;\
 	s/434446/434644/g;\
 	s/46484a/464a48/g;\
-	s/4a84c1/4ac184/g;\
+	s/4a84c1/16a085/g;\
 	s/4a86fb/62fbc8/g;\
 	s/4B4C4E/4B4E4C/g;\
 	s/4b4d50/4b504d/g;\
-	s/4e86c3/4ec386/g;\
+	s/4e86c3/16a085/g;\
 	s/4f5053/4f5350/g;\
 	s/4f5154/4f5451/g;\
 	s/525254/4f5451/g;\
@@ -112,10 +112,10 @@ package() {
 	s/5e6064/5e6460/g;\
 	s/616163/616361/g;\
 	s/616263/616362/g;\
-	s/6193c9/61c993/g;\
+	s/6193c9/16a085/g;\
 	s/628cdd/77ddbb/g;\
 	s/656668/656866/g;\
-	s/6596ca/65ca96/g;\
+	s/6596ca/16a085/g;\
 	s/6a6a6c/6a6c6a/g;\
 	s/72a1fc/16a085/g;\
 	s/747476/747674/g;\
@@ -208,10 +208,11 @@ package() {
 	s/344463/346353/g;\
 	s/37393b/373b39/g;\
 	s/37455f/375f52/g;\
-	s/3a67bd/28bd8e/g;\
+	s/3a67bd/16a085/g;\
 	s/3C3E40/3C403E/g;\
 	s/3D5074/3D7463/g;\
-	s/3d73dc/28dca0/g;\
+	s/3d73dc/16a085/g;\
+
 	s/3e78e6/16a085/g;\
 	s/3f3f40/3f403f/g;\
 	s/3f4042/3f4240/g;\
