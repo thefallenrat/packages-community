@@ -1,0 +1,84 @@
+Making install in common
+make[1]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329/common'
+make[2]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329/common'
+make[2]: Nothing to be done for 'install-exec-am'.
+/usr/bin/mkdir -p /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+cp ./index.theme /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+/usr/bin/mkdir -p /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark
+cp ./index.theme-dark /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/index.theme
+cp -R ./cinnamon /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+/usr/bin/mkdir -p /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/gnome-shell
+cd ./gnome-shell/3.20 && cp -R \
+	assets \
+	gnome-shell.css \
+	/build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/gnome-shell
+cp -R ./gtk-2.0 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/gtk-2.0 && rm -f gtkrc-light
+cp -R ./gtk-2.0-dark /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/gtk-2.0
+cp -RH ./gtk-3.0/3.20 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/gtk-3.0
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/gtk-3.0 && rm -rf \
+	gtk-light.css \
+	thumbnail-dark.png \
+	assets.svg \
+	README.md \
+	sass \
+	*.sh \
+	*.txt \
+	gulpfile.js \
+	.nvmrc \
+	package.json
+cp -RH ./gtk-3.0/3.20 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/gtk-3.0
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/gtk-3.0 && rm -rf \
+	gtk.css \
+	gtk-light.css \
+	assets.svg \
+	README.md \
+	sass \
+	*.sh \
+	*.txt \
+	gulpfile.js \
+	.nvmrc \
+	package.json
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/gtk-3.0 && \
+	mv gtk-dark.css gtk.css && \
+	mv thumbnail-dark.png thumbnail.png
+cp -R ./metacity-1 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex/metacity-1 && rm -f \
+	metacity-theme-1-dark.xml \
+	metacity-theme-1-light.xml \
+	metacity-theme-2-dark.xml \
+	metacity-theme-2-light.xml \
+	metacity-theme-3-dark.xml \
+	metacity-theme-3-light.xml \
+	thumbnail-light.png
+cp -R ./metacity-1 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/metacity-1 && rm -f \
+	metacity-theme-1.xml \
+	metacity-theme-1-light.xml \
+	metacity-theme-2.xml \
+	metacity-theme-2-light.xml \
+	metacity-theme-3.xml \
+	metacity-theme-3-light.xml \
+	thumbnail-light.png
+cd /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark/metacity-1 && \
+	mv metacity-theme-1-dark.xml metacity-theme-1.xml && \
+	mv metacity-theme-2-dark.xml metacity-theme-2.xml && \
+	mv metacity-theme-3-dark.xml metacity-theme-3.xml
+cp -R ./xfwm4 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex
+cp -R ./xfwm4 /build/vertex-maia-themes/pkg/vertex-maia-themes/usr/share/themes/Vertex-Dark
+make[2]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329/common'
+make[1]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329/common'
+Making install in extra
+make[1]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329/extra'
+make[2]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329/extra'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329/extra'
+make[1]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329/extra'
+make[1]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329'
+make[2]: Entering directory '/build/vertex-maia-themes/src/vertex-theme-20160329'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329'
+make[1]: Leaving directory '/build/vertex-maia-themes/src/vertex-theme-20160329'
+[1m[32m==>[0m[1m This next bit might take a little while...[0m
