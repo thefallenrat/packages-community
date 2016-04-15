@@ -5,7 +5,7 @@
 
 pkgname=vertex-manjaro-themes
 pkgver=20160415
-pkgrel=1
+pkgrel=2
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=20160329
@@ -89,6 +89,7 @@ package() {
 	s/2b5489/2b8954/g;\
 	s/2c578d/2c8d57/g;\
 	s/2c73fb/16a085/g;\
+	s/2e3436/2e3634/g;\
 	s/313132/313231/g;\
 	s/3176fb/16a085/g;\
 	s/343436/343634/g;\
@@ -163,8 +164,12 @@ package() {
 	s/ababad/abadab/g;\
 	s/b3ccfd/b3fdde/g;\
 	s/b4b4b6/b4b6b4/g;\
+	s/bbbbc7/bbc7bb/g;\
+	s/c9c9d2/c9d2c9/g;\
 	s/d0d0da/d0dad0/g;\
 	s/d4e1fb/d4fbe1/g;\
+	s/d4e1fb/d4fbe1/g;\
+	s/d7d7de/d7ded7/g;\
 	s/d9d9e0/d9e0d9/g;\
 	s/d9e6fe/d9fee6/g;\
 	s/dcdce3/dce3dc/g;\
