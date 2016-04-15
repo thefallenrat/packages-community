@@ -64,16 +64,21 @@ package() {
   ## Adjust color values
   find . -name "*.css" -exec sed -i \
 	"s/0553ea/1ceab6/g;\
+	s/0d9eff/0dff9e/g;\
 	s/0e5ffa/16a085/g;\
 	s/122237/123722/g;\
 	s/171819/171918/g;\
+	s/1793e5/16a085/g;\
 	s/1c1d1e/1c1e1d/g;\
+	s/1E1E1F/1E1F1E/g;\
+	s/232324/232423/g;\
 	s/244672/247246/g;\
 	s/276ffa/16a085/g;\
 	s/282829/282928/g;\
 	s/284d7d/287d4d/g;\
 	s/29292b/292b29/g;\
 	s/2a5285/2a8552/g;\
+	s/2b2b2c/2b2c2b/g;\
 	s/2b2b2d/2b2d2b/g;\
 	s/2b2c2e/2b2e2c/g;\
 	s/2b5489/2b8954/g;\
@@ -81,6 +86,8 @@ package() {
 	s/2c73fb/16a085/g;\
 	s/2e3436/2e3634/g;\
 	s/313132/313231/g;\
+	s/3294d5/32d594/g;\
+	s/3176fb/16a085/g;\
 	s/3176fb/16a085/g;\
 	s/343436/343634/g;\
 	s/353638/353836/g;\
@@ -101,12 +108,14 @@ package() {
 	s/4080FB/16a085/g;\
 	s/434446/434644/g;\
 	s/4577d6/16a085/g;\
+	s/45a3e7/45e7a3/g;\
 	s/46484a/464a48/g;\
 	s/4a84c1/16a085/g;\
 	s/4a86fb/62fbc8/g;\
 	s/4B4C4E/4B4E4C/g;\
 	s/4b4d50/4b504d/g;\
 	s/4c86f3/16a085/g;\
+	s/4cb1ff/16a085/g;\
 	s/4e86c3/16a085/g;\
 	s/4f5053/4f5350/g;\
 	s/4f5154/4f5451/g;\
@@ -115,6 +124,7 @@ package() {
 	s/538dfb/16a085/g;\
 	s/548dfb/16a085/g;\
 	s/58585a/585a58/g;\
+	s/59b5fc/59fcb5/g;\
 	s/5A86DB/16a085/g;\
 	s/5d5d5f/5d5f5d/g;\
 	s/5d5e62/5d625e/g;\
@@ -127,6 +137,7 @@ package() {
 	s/6496F5/16a085/g;\
 	s/656668/656866/g;\
 	s/6596ca/16a085/g;\
+	s/66bdff/66ffbd/g;\
 	s/6a6a6c/6a6c6a/g;\
 	s/72a1fc/16a085/g;\
 	s/747476/747674/g;\
@@ -152,8 +163,10 @@ package() {
 	s/a5a5a7/a5a7a5/g;\
 	s/a9a9aa/a9aaa9/g;\
 	s/ababad/abadab/g;\
+	s/B2BDC4/B2C4BD/g;\
 	s/b3ccfd/b3fdde/g;\
 	s/b4b4b6/b4b6b4/g;\
+	s/B9B9BA/B9BAB9/g;\
 	s/bbbbc7/bbc7bb/g;\
 	s/c9c9d2/c9d2c9/g;\
 	s/d0d0da/d0dad0/g;\
