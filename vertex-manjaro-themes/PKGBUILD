@@ -5,7 +5,7 @@
 
 pkgname=vertex-manjaro-themes
 pkgver=20160415
-pkgrel=2
+pkgrel=3
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=20160329
@@ -16,6 +16,7 @@ depends=('gtk-engine-murrine')
 makedepends=('imagemagick')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	'menuitem.png'
+	'menu-hover.svg'
 	'progressbar.png'
 	'progressbar_v.png'
 	'privatebrowsing-mask.png'
@@ -25,6 +26,7 @@ source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme
 	'summary-counter.svg')
 sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85'
             '02e6cf989fd8d51874e74689e2d5550835e1960e9c728a61c8fab7a06ee5cac1'
+            '378e92a1de212531df3911433b0890bff2433b7fa35060124d447405077b33ba'
             '421ad50c2d621ca8d4f0362990012afb952b30778267eb7be13dc502b30cdd42'
             '1402962fd31b172525f945fcf4d8235595ce66d9b170d9384a384bb997800d11'
             '3b95b036d4dca1d05f30f2d126bacf9dd47dde01b42bbb9cc0f05cefbe111524'
@@ -300,7 +302,9 @@ package() {
   tee Firefox/Vertex-Manjaro{,-Dark}/chrome/images/privatebrowsing-mask.png < $srcdir/privatebrowsing-mask.png >/dev/null
 
   cd Vertex-Manjaro/gnome-shell/assets
-  rm button/shutdown-button-border{,-active,-hover}.svg misc/summary-counter.svg
   cp $srcdir/shutdown*.svg button
   cp $srcdir/summary-counter.svg misc
+
+  cd "$pkgdir/usr/share/themes/Vertex-Manjaro/cinnamon"
+  cp $srcdir/menu-hover.svg menu
 }
