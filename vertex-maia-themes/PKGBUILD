@@ -5,7 +5,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160415
+pkgver=20160416
 pkgrel=1
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
@@ -211,11 +211,14 @@ package() {
 	s/245, 245, 247/245, 247, 245/g;\
 	s/114, 161, 252/114, 252, 161/g;\
 	s/151516/151615/g;\
+	s/1e1f20/1e201f/g;\
 	s/1f1f20/1f201f/g;\
+	s/202021/202120/g;\
 	s/242426/242624/g;\
 	s/262627/262726/g;\
 	s/28bd8e/16a085/g;\
 	s/2a2a2b/2a2b2a/g;\
+	s/2A2A2B/2A2B2A/g;\
 	s/2B2B2C/2B2C2B/g;\
 	s/2e2e30/2e302e/g;\
 	s/2f3032/2f3230/g;\
@@ -223,9 +226,14 @@ package() {
 	s/303133/303331/g;\
 	s/333436/333634/g;\
 	s/344463/346353/g;\
+	s/353537/353735/g;\
+	s/363738/363837/g;\
+	s/363739/363937/g;\
 	s/37393b/373b39/g;\
+	s/37393B/373B39/g;\
 	s/37455f/375f52/g;\
 	s/3a67bd/16a085/g;\
+	s/3a6cce/16a085/g;\
 	s/3C3E40/3C403E/g;\
 	s/3D5074/3D7463/g;\
 	s/3d73dc/16a085/g;\
@@ -235,14 +243,20 @@ package() {
 	s/3f7cf1/16a085/g;\
 	s/414245/414542/g;\
 	s/414345/414543/g;\
+	s/444547/444745/g;\
+	s/454749/454947/g;\
+	s/47494A/474A49/g;\
 	s/4e4f52/4e524f/g;\
 	s/505255/505552/g;\
+	s/54565a/545a56/g;\
 	s/5991fc/59fcc8/g;\
 	s/78787a/787a78/g;\
+	s/7F7F8A/7F8A7F/g;\
 	s/8bb2fd/8bfdd9/g;\
 	s/8f8f91/8f918f/g;\
 	s/9abaf8/81f8d0/g;\
 	s/a3a3a5/a3a5a3/g;\
+	s/A7A7A8/A7A8A7/g;\
 	s/a7a7a9/a7a9a7/g;\
 	s/bababc/babcba/g;\
 	s/cdcdcf/cdcfcd/g;\
@@ -288,4 +302,7 @@ package() {
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   tee ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia{,-Dark}/chrome/images/privatebrowsing-mask.png < Firefox/privatebrowsing-mask.png >/dev/null
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
+
+  ## fix corrupt metacity thumbnail
+  cp $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png $pkgdir/usr/share/themes/Vertex-Maia/metacity-1
 }
