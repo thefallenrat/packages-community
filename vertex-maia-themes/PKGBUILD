@@ -317,5 +317,5 @@ package() {
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
 
   ## fix corrupt metacity thumbnail
-  cp $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png $pkgdir/usr/share/themes/Vertex-Maia/metacity-1
+  tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 }
