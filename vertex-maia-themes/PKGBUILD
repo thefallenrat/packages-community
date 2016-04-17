@@ -20,9 +20,11 @@ makedepends=('imagemagick')
 conflicts=('vertex-manjaro-themes')
 replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
-	"vertex-manjaro-${pkgver}-${pkgrel}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz")
+	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
+	'whiskermenu-rabideau.patch')
 sha256sums=('c075c9fc059a5b2e30e65242a000083b5f8621a5cdfebb7ac61c31e33c6cbe85'
-            'dc421dada4532fe62eeaf514147343ed8d7da9d34a3015012e27386f99888a26')
+            'dc421dada4532fe62eeaf514147343ed8d7da9d34a3015012e27386f99888a26'
+            '7bce3fdda5494820c51974ba9c704ec4b40c373035bac089828b1ac0a0fcabfa')
 options=('!strip')
 
 build() {
@@ -311,7 +313,7 @@ package() {
 	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
 
   ## add custom items and Square variant
-  cd "$srcdir/vertex-manjaro-$_commit"
+  cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   tee ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia{,-Dark}/chrome/images/privatebrowsing-mask.png < Firefox/privatebrowsing-mask.png >/dev/null
@@ -319,4 +321,8 @@ package() {
 
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
+
+#  ## customization for whiskermenu - if desired
+#  cd $pkgdir/usr/share/themes/Vertex-Maia
+#  patch -p1 < $srcdir/whiskermenu-rabideau.patch
 }
