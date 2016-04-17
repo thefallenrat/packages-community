@@ -97,7 +97,7 @@ package() {
 	s/39689f/399f68/g;\
 	s/3a3b3d/3a3d3b/g;\
 	s/3a6fa9/3aa96f/g;\
-	s/3a73e2/51e2b2/g;\
+	s/3a73e2/16a085/g;\
 	s/3c3c3e/3c3e3c/g;\
 	s/3c3e40/3c403e/g;\
 	s/3d3e40/3d403e/g;\
@@ -309,7 +309,7 @@ package() {
 	s/F3F3F5/F3F5F3/g;\
 	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
 
-  ## add customs items and Square variant
+  ## add custom items and Square variant
   cd "$srcdir/vertex-manjaro-$_commit"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
