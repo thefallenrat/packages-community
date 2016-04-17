@@ -1,11 +1,12 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Contributor: Rob McCathie <rob@manjaro.org>
+# Contributor: Philip Müller <philm@manjaro.org>
 # Contributor: paulubuntu @ gnome-look.org
 # Contributor: CanalGuada <dguadal at free dot fr>
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160416
+pkgver=20160417
 pkgrel=1
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
@@ -58,11 +59,11 @@ package() {
   find . -type f -exec sed -i "s/Vertex/Vertex-Maia/g;s/DMZ-Black/Menda/g;s/gnome/Maia/g;s/horst3180/horst3180\/korrode\/oberon\/ManjaroCinnamonFan/g" {} \;
   
   ## Shift the hightlight-hue of all image files from blue to maia-greenish
-  find . -name "*.png" -exec mogrify -modulate 100,100,71 {} \;
-  find . -name "*.svg" -exec mogrify -background none -modulate 100,100,71 {} \;
+  find . ! -type l -name "*.png" -exec mogrify -modulate 100,100,71 {} \;
+  find . ! -type l -name "*.svg" -exec mogrify -background none -modulate 100,100,71 {} \;
   
   ## Adjust color values
-  find . -name "*.css" -exec sed -i \
+  find . ! -type l -name "*.css" -exec sed -i \
 	"s/0553ea/1ceab6/g;\
 	s/0d9eff/0dff9e/g;\
 	s/0e5ffa/16a085/g;\
