@@ -7,11 +7,11 @@
 
 pkgname=vertex-maia-themes
 pkgver=20160418
-pkgrel=1
+pkgrel=2
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
-_commit=b6333f9a53da8c3d51ea47a886673028e7d1bff1
+_commit=fdd84de7be7f8e8e26f173a285ec83f9c5f3695f
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
