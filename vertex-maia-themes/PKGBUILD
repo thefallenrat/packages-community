@@ -7,7 +7,7 @@
 
 pkgname=vertex-maia-themes
 pkgver=20160418
-pkgrel=3
+pkgrel=4
 pkgdesc='Vertex-Manjaro Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.20 version)'
 _gnomever=3.20
 _releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
@@ -24,7 +24,7 @@ source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme
 	'whiskermenu-rabideau.patch')
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '297110cc8bbeac1492b945722ed853f8548cdeab4b5155e64b398aea6be7f50d'
-            '7bce3fdda5494820c51974ba9c704ec4b40c373035bac089828b1ac0a0fcabfa')
+            'a2c28d3e5e0a48b664d2bc5b31b598561f8befe93cde9c6928473dffd7cebc23')
 options=('!strip')
 
 build() {
@@ -90,7 +90,6 @@ package() {
 	s/2e3436/2e3634/g;\
 	s/313132/313231/g;\
 	s/3294d5/32d594/g;\
-	s/3176fb/16a085/g;\
 	s/3176fb/16a085/g;\
 	s/343436/343634/g;\
 	s/353638/353836/g;\
@@ -315,7 +314,7 @@ package() {
   ## add custom items and Square variant
   cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
-  cp -r images/gtk-2.0 "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
+  cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
 
