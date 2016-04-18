@@ -23,7 +23,7 @@ source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
 	'whiskermenu-rabideau.patch')
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
-            '6b7c89ae6fdb66c776d3cc4eea1e65aee31f72b53dcc3380b8f4ffaba3ae2e73'
+            '297110cc8bbeac1492b945722ed853f8548cdeab4b5155e64b398aea6be7f50d'
             '7bce3fdda5494820c51974ba9c704ec4b40c373035bac089828b1ac0a0fcabfa')
 options=('!strip')
 
