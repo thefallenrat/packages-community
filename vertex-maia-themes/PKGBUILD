@@ -6,8 +6,8 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160418
-pkgrel=4
+pkgver=20160419
+pkgrel=1
 pkgdesc='official Manjaro Gtk, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
 _releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
