@@ -1,4 +1,4 @@
-diff -rupN Vertex-Maia.orig/gtk-2.0/gtkrc Vertex-Maia/gtk-2.0/gtkrc
+gdiff -rupN Vertex-Maia.orig/gtk-2.0/gtkrc Vertex-Maia/gtk-2.0/gtkrc
 --- Vertex-Maia.orig/gtk-2.0/gtkrc	2016-04-16 02:17:41.000000000 +0200
 +++ Vertex-Maia/gtk-2.0/gtkrc	2016-04-17 16:08:29.546981860 +0200
 @@ -2381,6 +2383,18 @@ style "xfwm-tabwin-button" {
@@ -6,7 +6,7 @@ diff -rupN Vertex-Maia.orig/gtk-2.0/gtkrc Vertex-Maia/gtk-2.0/gtkrc
  }
  
 +style "darkback" {
-+   bg[NORMAL] = "#494B4E"
++   bg[NORMAL] = "#454947"
 +   bg[ACTIVE] = "#1A1A1A"
 +   fg[NORMAL] = "#f9f9f9"
 +}
