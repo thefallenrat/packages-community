@@ -36,7 +36,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozilla-nongnome-proxies.patch
         kde.js)
 sha256sums=('15693897f1e46cbb5a95932b8c087a53004635415845fb4f50d4edfbba77d667'
-            'ff90079af65e41675e5fc250ab8f15f46d6c17365cbe53c4bdc958aecda16236'
+            '539d5495d8c36c2f49d1e0e6ad726c68ee0545c1a262a621d720674086ff8970'
             'b4371b9021fd5f65a1f546fca36c6c326a00ef0f57b448e86a33656ac7f780a8'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
             'e4ea8e6788163d9f8db8f1f40023db3ea0a1358f9a4510169f2d4c4fe6a887ed'
@@ -97,7 +97,7 @@ build() {
   export PYTHON="/usr/bin/python2"
 
   xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-    make -f client.mk build MOZ_PGO=1
+    make -f client.mk profiledbuild
 }
 
 package() {
