@@ -6,15 +6,15 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160419
-pkgrel=2
+pkgver=20160420
+pkgrel=1
 pkgdesc='official Manjaro Gtk, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
 #_releasever=20160329
 ## use git commit including (partial) fix for FF scrollbars
 _releasever=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
 ## repo vertex-majaro:
-_commit=6f7877e29c123d9d6bded763d6e05edc18728346
+_commit=282a70baf0f790ea2686707f6bd2b916d2dae1cb
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
@@ -333,7 +333,7 @@ package() {
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 
-#  ## customization for whiskermenu - if desired
-#  cd $pkgdir/usr/share/themes/Vertex-Maia
-#  patch -p1 < $srcdir/whiskermenu-rabideau.patch
+  ## customization for whiskermenu - if desired
+  cd $pkgdir/usr/share/themes/Vertex-Maia
+  patch -p1 < $srcdir/whiskermenu-rabideau.patch
 }
