@@ -3,7 +3,7 @@
 # Contributor: eloaders <eloaders at linux dot pl>
 
 pkgname=libcpuid
-pkgver=0.2.2.r10.g13f3827
+pkgver=0.2.2.r15.geb6f1a2
 pkgrel=1
 pkgdesc="Provides CPU identification for x86 (and x86_64)"
 arch=('i686' 'x86_64')
