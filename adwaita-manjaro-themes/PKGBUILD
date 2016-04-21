@@ -63,6 +63,10 @@ package() {
   
   ## Button borders  blue->green
   sed -i "s/184472/00541e/g" gtk-3.0/gtk{,-dark}.css
+
+  ## Window frame color to match window border
+  sed -i "s/e8e8e7/ededed/g" gtk-2.0/gtkrc
+  sed -i "s/e8e8e7/ededed/g" gtk-3.0/gtk.css
   
   ## All the below are from the "button.suggested-action" section  blue->green
   sed -i "s/1c5187/006133/g" gtk-3.0/gtk{,-dark}.css
