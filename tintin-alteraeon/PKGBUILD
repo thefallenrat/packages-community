@@ -1,8 +1,7 @@
 # Maintainer: Storm Dragon <stormdragon2976@gmail.com>
 
 pkgname=tintin-alteraeon
-_pkgver=3.0
-pkgver=3.0.r168.0d979a7
+pkgver=2016.04.20+git0d979a7
 pkgrel=1
 pkgdesc="Play Alter Aeon with sounds and other game enhancements. Uses the tintin++ mud client."
 arch=('any')
@@ -27,7 +26,8 @@ md5sums=('SKIP'
 
 pkgver() {
   cd "$pkgname"
-  printf "%s.r%s.%s" "$_pkgver" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  _pkgver=$(cat modules/version.tin | grep "{tintinAlterAeonVersionNumber}" | grep 'VARIABLE' | cut -d{ -f3 | cut -d} -f1)
+  printf "%s+git%s" "$_pkgver" "$(git rev-parse --short HEAD)"
 }
  
 package() {
