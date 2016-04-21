@@ -1,6 +1,6 @@
-diff -Naur a/gtk.css b/gtk.css
---- a/gtk.css	2016-04-11 23:49:08.586857304 +1000
-+++ b/gtk.css	2016-04-11 23:48:19.923709000 +1000
+diff -Naur a/gtk-3.0/gtk.css b/gtk-3.0/gtk.css
+--- a/gtk-3.0/gtk.css	2016-04-11 23:49:08.586857304 +1000
++++ b/gtk-3.0/gtk.css	2016-04-11 23:48:19.923709000 +1000
 @@ -4548,6 +4548,39 @@
    min-height: 32px;
    padding: 0; }
@@ -41,3 +41,17 @@ diff -Naur a/gtk.css b/gtk.css
  /* GTK NAMED COLORS
     ----------------
     use responsibly! */
+diff -Naur a/gtk-2.0/panel.rc b/gtk-2.0/panel.rc
+--- a/gtk-2.0/panel.rc	2016-04-21 20:20:25.737742813 +1000
++++ b/gtk-2.0/panel.rc	2016-04-21 20:03:27.508663000 +1000
+@@ -44,8 +44,8 @@
+ 
+ style "panelbuttons" {
+ 
+-  xthickness = 4
+-  ythickness = 3
++  xthickness = 2
++  ythickness = 2
+ 
+   engine "murrine" {
+     lightborder_shade = 1.5
