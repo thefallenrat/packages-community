@@ -8,7 +8,7 @@
 pkgname=vertex-maia-themes
 pkgver=20160420
 pkgrel=1
-pkgdesc='official Manjaro Gtk, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
+pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
 #_releasever=20160329
 ## use git commit including (partial) fix for FF scrollbars
