@@ -1,0 +1,23 @@
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+# Autor: Moka Project
+
+pkgname=faba-icon-theme
+pkgver=20150802
+pkgrel=1
+pkgdesc="Faba is a sexy and modern icon theme with Tango influences."
+arch=('any')
+url="http://snwh.org/moka/"
+license=('GPL3')
+depends=('gtk-update-icon-cache')
+_grab=6f1cea3fcd0720d952145dfa6b0415ab2b4ca9d7
+options=(!strip)
+source=("https://github.com/moka-project/$pkgname/archive/$_grab.tar.gz")
+install=${pkgname}.install
+sha256sums=('47842eadbdb668a266e31643f91c27ceaf8ff002e7ae76e70cd226017afb9462')
+
+package() {
+    install -d -m 755 "${pkgdir}"/usr/share/icons/Faba
+    cp -dr --no-preserve=ownership "${pkgname}-${_grab}"/Faba "${pkgdir}"/usr/share/icons/
+    find "${pkgdir}"/usr/share/icons/ -type d -exec chmod 755 {} \;
+    find "${pkgdir}"/usr/share/icons/ -type f -exec chmod 644 {} \;
+}

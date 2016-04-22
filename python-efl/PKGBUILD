@@ -1,29 +1,32 @@
 # Maintainer: Doug Newgard <scimmia at archlinux dot info>
+# Maintainer: Lorenzo Ferrillo <lorenzofersteam at live dot it>
 
 _python=python
 _pkgname=python-efl
 pkgname=$_python-efl
-pkgver=1.15.0
+pkgver=1.17.0
 pkgrel=1
-pkgdesc="${_python^} bindings for the Enlightenment Foundataion Libraries"
+pkgdesc="${_python^} bindings for the Enlightenment Foundation Libraries"
 arch=('i686' 'x86_64')
 url="http://www.enlightenment.org"
 license=('LGPL3' 'GPL3')
 depends=('elementary' "$_python-dbus")
+#depends=('elementary' "$_python-dbus") elementary is not updated
 source=("http://download.enlightenment.org/rel/bindings/python/$_pkgname-$pkgver.tar.xz")
-sha1sums=('d5142fa4c5d28230b71f7a850ea821d033ea1121')
+sha256sums=('9ea0fe0938bd4a970206b2b18f46f4d2a4fd1994e9b5f84af2d5f9fa98739179')
 
 build() {
-  cd "$srcdir/$_pkgname-$pkgver"
+  cd $_pkgname-$pkgver
 
+  DISABLE_CYTHON=1 \
   $_python setup.py build
 }
 
 package() {
-  cd "$srcdir/$_pkgname-$pkgver"
+  cd $_pkgname-$pkgver
 
+  DISABLE_CYTHON=1 \
   $_python setup.py install --root="$pkgdir" --optimize=1
 
-  install -d "$pkgdir/usr/share/doc/$pkgname/"
-  install -m644 -t "$pkgdir/usr/share/doc/$pkgname/" AUTHORS README ChangeLog
+  install -Dm644 -t "$pkgdir/usr/share/doc/$pkgname/" AUTHORS README ChangeLog
 }

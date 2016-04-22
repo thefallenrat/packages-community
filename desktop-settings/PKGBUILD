@@ -14,8 +14,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160328
-pkgrel=2
+pkgver=20160419
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -46,7 +46,7 @@ pkgver() {
 }
 
 package_manjaro-bspwm-settings() {
-	pkgdesc='Manjaro Linux bdspwm settings'
+	pkgdesc='Manjaro Linux bspwm settings'
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 	depends=('bspwm-wallpapers'
@@ -65,7 +65,8 @@ package_manjaro-bspwm-settings() {
 
 package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
-        depends=('arc-themes'
+        depends=('budgie-desktop'
+		'arc-themes'
 		'arc-firefox-theme'
 		'moka-icon-theme'
 		'budgie-wallpapers'

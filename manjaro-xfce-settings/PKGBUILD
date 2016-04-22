@@ -3,8 +3,8 @@
 pkgbase=manjaro-xfce-settings
 pkgname=('manjaro-xfce-settings'
          'manjaro-xfce-minimal-settings')
-pkgver=20160323
-pkgrel=2
+pkgver=20160417
+pkgrel=3
 pkgdesc="Manjaro Linux Xfce settings"
 arch=('any')
 url="https://github.com/manjaro/manjaro-xfce-settings"
@@ -23,8 +23,8 @@ _inst_dir(){
 
 package_manjaro-xfce-settings() {
 	pkgdesc='Manjaro Linux xfce settings'
-	depends=('manjaro-backgrounds' 'manjaro-base-skel' 'maia-wallpaper' 'maia-icon-theme' 'vertex-maia-themes'
-                 'xcursor-menda' 'manjaro-artwork')
+	depends=('manjaro-base-skel' 'maia-wallpaper' 'vertex-maia-icon-theme' 'vertex-maia-themes'
+                 'xcursor-maia' 'manjaro-artwork')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
@@ -35,8 +35,8 @@ package_manjaro-xfce-settings() {
 
 package_manjaro-xfce-minimal-settings() {
 	pkgdesc='Manjaro Linux xfce-minimal settings'
-	depends=('manjaro-backgrounds' 'manjaro-base-skel' 'maia-wallpaper' 'maia-icon-theme' 'vertex-maia-themes'
-                 'xcursor-menda' 'manjaro-artwork')
+	depends=('manjaro-base-skel' 'maia-wallpaper' 'vertex-maia-icon-theme' 'vertex-maia-themes'
+                 'xcursor-maia' 'manjaro-artwork')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 

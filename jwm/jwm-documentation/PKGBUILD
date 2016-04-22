@@ -2,7 +2,7 @@
 
 pkgname=('jwm-documentation')
 pkgver=16.06
-pkgrel=1
+pkgrel=2
 pkgdesc='User Orientation Guide for Manjaro-JWM'
 license=('CC-BY-SA 4.0')
 arch=('any')
