@@ -2,7 +2,7 @@
 
 pkgname=conky-i3
 pkgver=20160423
-pkgrel=1
+pkgrel=2
 pkgdesc="grey, green or solarized Conky for manjaro-i3"
 _repo=conkies
 url=github.com/oberon2007/$_repo
@@ -15,10 +15,12 @@ makedepends=('git')
 conflicts=('lua-clock-i3')
 backup=('usr/share/conky/conky_green'
 	'usr/share/conky/conky_grey'
+	'usr/share/conky/conky_maia'
 	'usr/share/conky/conky_solarized'
 	'usr/share/conky/conky1.10_shortcuts_green'
 	'usr/share/conky/conky1.10_shortcuts_grey'
-	'usr/share/conky/conky1.10_shortcuts_solarized')
+	'usr/share/conky/conky1.10_shortcuts_maia'
+        'usr/share/conky/conky1.10_shortcuts_solarized')
 source=("git://$url.git")
 md5sums=('SKIP')
 
