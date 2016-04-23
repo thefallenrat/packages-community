@@ -14,8 +14,8 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160419
-pkgrel=1
+pkgver=20160423
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -152,10 +152,10 @@ package_manjaro-i3-settings() {
 	pkgdesc='Manjaro Linux i3 settings'
 	groups=('i3-manjaro')
 	depends=('artwork-i3'
-		'awoken-icon-theme-light'
+		'breeze-maia-icon-themes'
 		'conky-i3'
 		'dmenu-manjaro'
-		'gtk-theme-numix-solarized'
+		'vertex-maia-themes'
 		'i3exit'
 		'i3-scripts'
 		'i3-gaps'
@@ -164,7 +164,7 @@ package_manjaro-i3-settings() {
 		'manjaro-base-skel'
 		'nitrogen'
 		'xcursor-chameleon-pearl')
-	optdepends=('awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
+	optdepends=('vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
