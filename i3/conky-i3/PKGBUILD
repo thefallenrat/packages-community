@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=conky-i3
-pkgver=20160320
+pkgver=20160423
 pkgrel=1
 pkgdesc="grey, green or solarized Conky for manjaro-i3"
 _repo=conkies
