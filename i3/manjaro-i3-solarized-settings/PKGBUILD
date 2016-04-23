@@ -1,0 +1,33 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=('manjaro-i3-solarized-settings')
+pkgver=20160423
+pkgrel=1
+arch=('any')
+url="https://github.com/manjaro/desktop-settings"
+license=('GPL')
+makedepends=('git')
+pkgdesc='Manjaro i3-solarized desktop settings'
+depends=('artwork-i3'
+	'awoken-icon-theme-light'
+	'conky-i3'
+	'dmenu-manjaro'
+	'gtk-theme-numix-solarized'
+	'i3exit'
+	'i3-scripts'
+	'i3-gaps'
+	'i3-help'
+	'i3status-manjaro'
+	'manjaro-base-skel'
+	'nitrogen'
+	'xcursor-chameleon-pearl')
+optdepends=('awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
+conflicts=('manjaro-desktop-settings')
+provides=('manjaro-desktop-settings')
+source=("git+$url#branch=i3-solarized")
+sha256sums=('SKIP')
+
+package() {
+  install -dm755 $pkgdir/etc
+  cp -r $srcdir/desktop-settings/community/i3/skel $pkgdir/etc
+}
