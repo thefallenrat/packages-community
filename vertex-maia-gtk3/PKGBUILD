@@ -5,7 +5,7 @@
 # Contributor: CanalGuada <dguadal at free dot fr>
 # Author: horst3180 @ deviantart
 
-pkgname=vertex-maia-themes
+pkgname=vertex-maia-gtk3
 pkgver=20160420
 pkgrel=1
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
@@ -20,14 +20,14 @@ url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk3')
 makedepends=('imagemagick')
-conflicts=('vertex-manjaro-themes')
-replaces=('vertex-manjaro-themes')
+conflicts=('vertex-manjaro-themes'
+					'vertex-maia-themes')
+replaces=('vertex-manjaro-themes'
+					'vertex-maia-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
-	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
-	'whiskermenu-rabideau.patch')
+	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz")
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
-            '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
-            '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
+            '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d')
 options=('!strip')
 
 build() {
@@ -334,6 +334,6 @@ package() {
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 
   ## customization for whiskermenu - if desired
-  cd $pkgdir/usr/share/themes/Vertex-Maia
-  patch -p1 < $srcdir/whiskermenu-rabideau.patch
+#  cd $pkgdir/usr/share/themes/Vertex-Maia
+#  patch -p1 < $srcdir/whiskermenu-rabideau.patch
 }
