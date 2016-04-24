@@ -6,7 +6,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20160423
+pkgver=20160424
 pkgrel=1
 pkgdesc='Official Manjaro Gtk3 theme, based on Vertex'
 _gnomever=3.20
@@ -33,7 +33,6 @@ build() {
 	--disable-light \
 	--disable-unity \
 	--with-gnome=${_gnomever} \
-	--disable-gtk2 \
 	--disable-xfwm
 }
 
@@ -290,7 +289,7 @@ package() {
   cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   rm -r $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,xfwm4}
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
-  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/{gtk-2.0,xfwm4}
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/xfwm4
   cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
 
   ## add .css for Palemoon
@@ -303,4 +302,28 @@ package() {
 
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
+
+  ## add gtkrc files in order for lxappearance to find the themes
+  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0/gtkrc $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0/gtkrc
+  cd $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
+  sed -i "s/3c3c3e/3c3e3c/g;\
+ 	s/4080fb/16a085/g;\
+  	s/454749/454947/g;\
+ 	s/F3F3F5/F3F5F3/g;\
+ 	s/fff\;/f9faf9\;/g;\
+ 	s/FFF\"/F9FAF9\"/g;\
+ 	s/FFFFFF/F9FAF9/g" gtkrc
+  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0-dark/gtkrc $pkgdir/usr/share/themes/Vertex-Maia-Dark/gtk-2.0/gtkrc
+  cd ../../Vertex-Maia-Dark/gtk-2.0
+  sed -i "s/2B2B2C/2B2C2B/g;\
+ 	s/2c2e2f/2c2f2e/g;\
+ 	s/353638/353836/g;\
+	s/3c3c3e/3c3e3c/g;\ 
+	s/4080fb/16a085/g;\
+	s/434446/434644/g;\
+	s/454749/454947/g;\
+	s/F3F3F5/F3F5F3/g;\
+	s/ffffff/f9faf9/g;\
+	s/FFF\"/F9FAF9\"/g;\
+	s/FFFFFF/F9FAF9/g" gtkrc
 }
