@@ -34,7 +34,7 @@ build() {
 	--disable-unity \
 	--with-gnome=${_gnomever} \
 	--disable-gtk2 \
-	--disable-xfmw
+	--disable-xfwm
 }
 
 package() {
