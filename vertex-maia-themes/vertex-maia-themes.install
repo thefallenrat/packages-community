@@ -1,0 +1,20 @@
+#This explain how to integrate Firefox or Palemoon
+
+instructions() {
+    echo "If you want a perfect integration whit Firefox or Palemoon browser please do this in a terminal:
+for Firefox:
+ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/ ~/.mozilla/firefox/<xyz123>.default/chrome
+For Palemoon:
+ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/ ~/.moonchild\ productions/pale\ moon/<xyz123>.default/chrome
+Enjoy"
+}
+
+post_install() {
+    instructions
+}
+
+post_upgrade() {
+    instructions
+    echo "Do only the first time"    
+}
+

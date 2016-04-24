@@ -7,7 +7,7 @@
 
 pkgname=vertex-maia-themes
 pkgver=20160420
-pkgrel=1
+pkgrel=2
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
 #_releasever=20160329
@@ -25,6 +25,7 @@ replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
 	'whiskermenu-rabideau.patch')
+install=vertex-maia-themes.install
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
             '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
