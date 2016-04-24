@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 153734 2015-12-19 22:57:12Z seblu $
+# $Id: PKGBUILD 171631 2016-04-23 16:02:08Z seblu $
 # Maintainer: Sébastien "Seblu" Luttringer
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
@@ -10,7 +10,7 @@ pkgname=('virtualbox'
          'virtualbox-guest-utils'
          'virtualbox-guest-utils-nox'
          'virtualbox-ext-vnc')
-pkgver=5.0.16
+pkgver=5.0.18
 pkgrel=0.1
 arch=('i686' 'x86_64')
 url='http://virtualbox.org'
@@ -66,7 +66,7 @@ source=("http://download.virtualbox.org/virtualbox/$pkgver/VirtualBox-$pkgver.ta
         '007-python2-path.patch'
         '010-no-update.patch'
         )
-md5sums=('1752a485b1cb377cee5f196918cda741'
+md5sums=('5d57e400f4ab75696510aef308f6c7a9'
          '984412a63aa9c07ddc3cfd970381d5df'
          '4833c8e0524fd2272b24ba0d94aef006'
          '6e2722bfd7013c1b0174382626ac1b8d'
@@ -75,7 +75,7 @@ md5sums=('1752a485b1cb377cee5f196918cda741'
          '8ba9179c4a3516904417d773816dd992'
          'fcf6bcef98b16849d5c9f048592739c0'
          'bc9efed88e0469cd7fc460d5a5cd7b4b'
-         '44a8e105517a1e04769b50469a87bdcb'
+         '0bab94ff2f4835fd907f89eb23ebbe21'
          '9be7e2703afeee1fca9368bd8750e710'
          '9e49bbaa2192b141c27ee43cef8cbab7'
          'ecfd13297d7753ebe7b8763ca5b792d9'
@@ -133,13 +133,12 @@ package_virtualbox() {
     depends=('glibc' 'openssl' 'curl' 'gcc-libs' 'libpng' 'python2' 'sdl'
              'libvpx' 'libxml2' 'procps-ng' 'shared-mime-info' 'zlib'
              'libxcursor' 'libxinerama' 'libx11' 'libxext' 'libxmu' 'libxt'
-             'virtualbox-host-modules')
+             'VIRTUALBOX-HOST-MODULES')
     optdepends=('qt4: GUI support'
                 'vde2: Virtual Distributed Ethernet support'
                 'virtualbox-guest-iso: Guest Additions CD image'
                 'virtualbox-ext-vnc: VNC server support'
                 'virtualbox-sdk: Developer kit'
-                'virtualbox-host-dkms: Build kernel modules with DKMS'
                 'net-tools: Host-only or bridged networking support')
     backup=('etc/vbox/vbox.cfg')
     replaces=('virtualbox-ose')
@@ -250,11 +249,14 @@ package_virtualbox-sdk() {
 package_virtualbox-host-dkms() {
     pkgdesc='VirtualBox Host kernel modules sources'
     depends=('dkms' 'gcc' 'make')
-    provides=('virtualbox-host-modules')
-    replaces=('virtualbox-source' 'virtualbox-host-source')
+    replaces=('virtualbox-source'
+              'virtualbox-host-source'
+              'virtualbox-host-modules-lts')
     conflicts=('virtualbox-source' 'virtualbox-host-source')
-    optdepends=('linux-headers'
-                'linux-lts-headers')
+    provides=('VIRTUALBOX-HOST-MODULES')
+    optdepends=('linux-headers: build modules against Arch kernel'
+                'linux-lts-headers: build modules against LTS kernel'
+                'linux-zen-headers: build modules against ZEN kernel')
     install=virtualbox-host-dkms.install
 
     install -dm755 "$pkgdir/usr/src"
@@ -274,11 +276,14 @@ package_virtualbox-host-dkms() {
 package_virtualbox-guest-dkms() {
     pkgdesc='VirtualBox Guest kernel modules sources'
     depends=('dkms' 'gcc' 'make')
-    provides=('virtualbox-guest-modules')
-    replaces=('virtualbox-archlinux-source' 'virtualbox-guest-source')
+    replaces=('virtualbox-archlinux-source'
+              'virtualbox-guest-source'
+              'virtualbox-guest-modules-lts')
+    provides=('VIRTUALBOX-GUEST-MODULES')
     conflicts=('virtualbox-archlinux-source' 'virtualbox-guest-source')
-    optdepends=('linux-headers'
-                'linux-lts-headers')
+    optdepends=('linux-headers: build modules against Arch kernel'
+                'linux-lts-headers: build modules against LTS kernel'
+                'linux-zen-headers: build modules against ZEN kernel')
     install=virtualbox-guest-dkms.install
 
     install -dm755 "$pkgdir/usr/src"
@@ -297,10 +302,9 @@ package_virtualbox-guest-dkms() {
 
 package_virtualbox-guest-utils() {
     pkgdesc='VirtualBox Guest userspace utilities'
-    depends=('virtualbox-guest-modules' 'glibc' 'pam' 'libx11' 'libxcomposite'
+    depends=('glibc' 'pam' 'libx11' 'libxcomposite'
              'libxdamage' 'libxext' 'libxfixes' 'libxmu' 'libxt' 'xorg-xrandr'
-             'X-ABI-VIDEODRV_VERSION=19')
-    optdepends=('virtualbox-guest-dkms: Guest kernel source modules for non-stock kernels')
+             'VIRTUALBOX-GUEST-MODULES' 'X-ABI-VIDEODRV_VERSION=19')
     replaces=('virtualbox-archlinux-additions' 'virtualbox-guest-additions')
     conflicts=('virtualbox-archlinux-additions' 'virtualbox-guest-additions' 'virtualbox-guest-utils-nox')
     install=virtualbox-guest-utils.install
@@ -330,8 +334,7 @@ package_virtualbox-guest-utils() {
 
 package_virtualbox-guest-utils-nox() {
     pkgdesc='VirtualBox Guest userspace utilities without X support'
-    depends=('virtualbox-guest-modules' 'glibc' 'pam')
-    optdepends=('virtualbox-guest-dkms: Guest kernel source modules for non-stock kernels')
+    depends=('glibc' 'pam' 'VIRTUALBOX-GUEST-MODULES')
     conflicts=('virtualbox-guest-utils')
     install=virtualbox-guest-utils.install
 
