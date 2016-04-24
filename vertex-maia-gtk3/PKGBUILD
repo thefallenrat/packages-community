@@ -285,12 +285,12 @@ package() {
   ## add custom items and Square variant
   cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
-  rm -rf $pkgdir/usr/share/themes/Vertex-Maia/{gtk-2.0,xfwm4}
-  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,gtk-3.0/assets,xfwm4}
+  rm -rf $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
+  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,gtk-3.0/assets}
   cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   rm -r $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,xfwm4}
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
-  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/{xfwm4,gtk-2.0}
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/{gtk-2.0,xfwm4}
   cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
 
   ## add .css for Palemoon
