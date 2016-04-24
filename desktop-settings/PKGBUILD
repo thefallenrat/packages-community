@@ -50,8 +50,6 @@ package_manjaro-bspwm-settings() {
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 	depends=('bspwm-wallpapers'
-		'menda-circle-icon-theme'
-		'gtk-theme-maia'
 		'xcursor-breeze'
 		'feh'
 		'rootmenu'
