@@ -17,6 +17,7 @@ package() {
   # delete custom buttons for metacity and unity
   rm Mediterranean*/*.tar.gz
   rm -rf MediterraneanNight/TitleBar-Buttons
+  rm -rf Mediterranean*/gtk-3.0
 
   find Mediterranean*/ -type f -exec install -Dm644 "{}" "$pkgdir/usr/share/themes/{}" \;
 }
