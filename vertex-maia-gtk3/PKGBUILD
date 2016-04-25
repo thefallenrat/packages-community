@@ -281,7 +281,7 @@ package() {
 	s/cdcdcf/cdcfcd/g;\
 	s/d7d7d9/d7d9d7/g" {} \;
 
-  ## add some custom items
+  ## add some custom items and Square variant
   cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
   rm -rf $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
