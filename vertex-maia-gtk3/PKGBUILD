@@ -18,7 +18,6 @@ _commit=2c9ac40529a75eae99ddcf21cb21631e7ad10068
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
-depends=('gtk3')
 makedepends=('imagemagick')
 conflicts=('vertex-maia-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
