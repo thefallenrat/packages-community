@@ -3,22 +3,47 @@
 
 pkgname=numix-themes-archblue
 pkgver=2.5.1
-pkgrel=4
+pkgrel=5
 pkgdesc='A flat and light theme with a modern look using Arch Linux colors (GNOME, Openbox, Unity, Xfce)'
 arch=('any')
-url='https://github.com/oberon2007/numix-themes-archblue'
+url='https://github.com/shimmerproject/Numix'
 license=('GPL3')
 depends=('gtk-engine-murrine')
-makedepends=('git')
-source=("git+$url.git")
+makedepends=('git' 'ruby-sass')
+source=("git+$url.git"
+	"git+https://github.com/oberon2007/$pkgname.git")
+md5sums=('SKIP'
+	'SKIP')
 
-md5sums=('SKIP')
+prepare() {
+    cd Numix
+
+    for f in `find -type f`
+    do
+        sed -i 's/#fc6f5d/#1793d1/g' $f
+        sed -i 's/#d64937/#1793d1/g' $f
+        sed -i 's/#2d2d2d/#333333/g' $f
+        sed -i 's/#dedede/#eeeeee/g' $f
+        sed -i 's/#d9d9d9/#dedede/g' $f
+        sed -i 's/#f0f0f0/#ffffff/g' $f
+        sed -i 's/#f9f9f9/#ffffff/g' $f
+        sed -i 's/#bdbdbd/#cbcbcb/g' $f
+        sed -i 's/#f0544c/#1793d1/g' $f
+        sed -i 's/#444444/#333333/g' $f
+        sed -i 's/#444/#333/g' $f
+        sed -i 's/Numix/Numix-ArchBlue/' $f
+    done
+}
 
 package() {
-  cd $pkgname
+  cd Numix
+  make
 
-  install -dm 755 $pkgdir/usr/share/themes
-  cp -dr --no-preserve='ownership' Numix-ArchBlue $pkgdir/usr/share/themes
-  install -Dm 644 deepin-thumbnail.png \
-  $pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix-ArchBlue-thumbnail.png
+  rm -rf .git .gitignore gtk-3.0/assets/*.png README.md unity
+  install -dm 755 $pkgdir/usr/share/themes/Numix-ArchBlue
+  cp -r * $pkgdir/usr/share/themes/Numix-ArchBlue
+
+  cd ../$pkgname
+  cp -r cinnamon $pkgdir/usr/share/themes/Numix-ArchBlue
+  install -Dm 644 deepin-thumbnail.png $pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix-ArchBlue-thumbnail.png
 }
