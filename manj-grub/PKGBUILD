@@ -1,0 +1,28 @@
+#
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+# Based on grub theme by Legendary Bibo
+# Thanks to gohlip for collect some os icons
+
+pkgname=manj-grub
+_author=Ste74
+pkgver=1.2
+pkgrel=2
+pkgdesc="Manjaro grub-theme, based on Journey theme."
+url="https://github.com/$_author/$pkgname"
+arch=('any')
+license=('GPL' 'CC-SA')
+depends=('grub')
+install=$pkgname.install
+source=("$pkgname::git+https://github.com/$_author/$pkgname.git" "$pkgname.install")
+md5sums=('SKIP'
+         'bae3c721bfabbe2917765d2c51eecdb3')
+
+package() {
+  
+  cd $srcdir
+  
+  find . -type f -exec install -D -m644 {} ${pkgdir}/usr/share/grub/themes/{} \;
+  
+}
+
+
