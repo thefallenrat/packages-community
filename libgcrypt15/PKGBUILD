@@ -3,9 +3,9 @@
 
 pkgname=libgcrypt15
 _pkgname=libgcrypt
-pkgver=1.5.4
-_apiver=11.8.3
-pkgrel=3
+pkgver=1.5.5
+_apiver=11.8.4
+pkgrel=1
 pkgdesc="General purpose cryptographic library based on the code from GnuPG"
 arch=(i686 x86_64)
 url="http://www.gnupg.org"
@@ -23,7 +23,7 @@ source=(
   # Currently, this mirror returns 403
   # http://mirrors.dotsrc.org/gcrypt/${_pkgname}/${_pkgname}-${pkgver}.tar.bz2
 )
-sha1sums=('bdf4b04a0d2aabc04ab3564fbe38fd094135aa7a')
+sha1sums=('31368576484416b697d5762ef24abdf4c6e9ffaf')
 
 build() {
   cd ${_pkgname}-${pkgver}
