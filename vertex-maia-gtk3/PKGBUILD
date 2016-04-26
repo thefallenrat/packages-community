@@ -5,10 +5,10 @@
 # Contributor: CanalGuada <dguadal at free dot fr>
 # Author: horst3180 @ deviantart
 
-pkgname=vertex-maia-themes
-pkgver=20160425
+pkgname=vertex-maia-gtk3
+pkgver=20160426
 pkgrel=1
-pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
+pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.20
 #_releasever=20160329
 ## use git commit including (partial) fix for FF scrollbars
@@ -18,22 +18,21 @@ _commit=2c9ac40529a75eae99ddcf21cb21631e7ad10068
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
-depends=('gtk-engine-murrine')
 makedepends=('imagemagick')
-conflicts=('vertex-manjaro-themes')
-replaces=('vertex-manjaro-themes')
+conflicts=('vertex-maia-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
-	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
-	'whiskermenu-rabideau.patch')
-install=$pkgname.install
+	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz")
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
-            '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
-            '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
+            '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d')
 options=('!strip')
 
 build() {
   cd vertex-theme-${_releasever}
-  ./autogen.sh --prefix=/usr --disable-light --disable-unity --with-gnome=${_gnomever}
+  ./autogen.sh --prefix=/usr \
+	--disable-light \
+	--disable-unity \
+	--with-gnome=${_gnomever} \
+	--disable-xfwm
 }
 
 package() {
@@ -46,7 +45,7 @@ package() {
   done
   cd ..
 
-  install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+  install -Dm644 COPYING "$pkgdir/usr/share/licenses/vertex-maia/COPYING"
 
   ## We need to provide our own README
   #install -Dm644 README.md "$pkgdir/usr/share/themes/Vertex/README"
@@ -281,47 +280,16 @@ package() {
 	s/cdcdcf/cdcfcd/g;\
 	s/d7d7d9/d7d9d7/g" {} \;
 
-  cd Vertex-Maia/gtk-2.0
-  sed -i "s/3c3c3e/3c3e3c/g;\
-	s/4080fb/16a085/g;\
-	s/454749/454947/g;\
-	s/F3F3F5/F3F5F3/g;\
-	s/fff\;/f9faf9\;/g;\
-	s/FFF\"/F9FAF9\"/g;\
-	s/FFFFFF/F9FAF9/g" gtkrc
-
-  sed -i "s/232324/232423/g;\
-	s/3C3E40/3C403E/g;\
-	s/45474A/454A47/g;\
-	s/F3F3F5/F3F5F3/g;\
-	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
-
-  cd ../../Vertex-Maia-Dark/gtk-2.0
-  sed -i "s/2B2B2C/2B2C2B/g;\
-	s/2c2e2f/2c2f2e/g;\
-	s/353638/353836/g;\
-	s/3c3c3e/3c3e3c/g;\
-	s/4080fb/16a085/g;\
-	s/434446/434644/g;\
-	s/454749/454947/g;\
-	s/F3F3F5/F3F5F3/g;\
-	s/ffffff/f9faf9/g;\
-	s/FFF\"/F9FAF9\"/g;\
-	s/FFFFFF/F9FAF9/g" gtkrc
-
-  sed -i "s/232324/232423/g;\
-	s/3C3E40/3C403E/g;\
-	s/45474A/454A47/g;\
-	s/F3F3F5/F3F5F3/g;\
-	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
-
-  ## add custom items and Square variant
+  ## add some custom items and Square variant
   cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
-  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0/{Menu,ProgressBar},gtk-3.0/assets,xfwm4}
+  rm -rf $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
+  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,gtk-3.0/assets}
   cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
-  cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,xfwm4}
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/xfwm4
+  cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
 
   ## add .css for Palemoon
   install -dm755 $pkgdir/usr/share/themes/Palemoon/Vertex-Maia{,-Dark}/chrome
@@ -334,7 +302,27 @@ package() {
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 
-  ## customization for whiskermenu
-  cd $pkgdir/usr/share/themes/Vertex-Maia
-  patch -p1 < $srcdir/whiskermenu-rabideau.patch
+  ## add gtkrc files in order for lxappearance to find the themes
+  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0/gtkrc $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0/gtkrc
+  cd $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
+  sed -i "s/3c3c3e/3c3e3c/g;\
+	s/4080fb/16a085/g;\
+	s/454749/454947/g;\
+	s/F3F3F5/F3F5F3/g;\
+	s/fff\;/f9faf9\;/g;\
+	s/FFF\"/F9FAF9\"/g;\
+	s/FFFFFF/F9FAF9/g" gtkrc
+  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0-dark/gtkrc $pkgdir/usr/share/themes/Vertex-Maia-Dark/gtk-2.0/gtkrc
+  cd ../../Vertex-Maia-Dark/gtk-2.0
+  sed -i "s/2B2B2C/2B2C2B/g;\
+	s/2c2e2f/2c2f2e/g;\
+	s/353638/353836/g;\
+	s/3c3c3e/3c3e3c/g;\
+	s/4080fb/16a085/g;\
+	s/434446/434644/g;\
+	s/454749/454947/g;\
+	s/F3F3F5/F3F5F3/g;\
+	s/ffffff/f9faf9/g;\
+	s/FFF\"/F9FAF9\"/g;\
+	s/FFFFFF/F9FAF9/g" gtkrc
 }
