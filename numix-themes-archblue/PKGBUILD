@@ -3,7 +3,7 @@
 
 pkgname=numix-themes-archblue
 pkgver=2.5.1
-pkgrel=5
+pkgrel=6
 pkgdesc='A flat and light theme with a modern look using Arch Linux colors (GNOME, Openbox, Unity, Xfce)'
 arch=('any')
 url='https://github.com/shimmerproject/Numix'
@@ -21,6 +21,7 @@ prepare() {
     for f in `find -type f`
     do
         sed -i 's/#fc6f5d/#1793d1/g' $f
+        sed -i 's/#b3b3b3/#c2c2c2/g' $f
         sed -i 's/#d64937/#1793d1/g' $f
         sed -i 's/#2d2d2d/#333333/g' $f
         sed -i 's/#dedede/#eeeeee/g' $f
@@ -44,6 +45,5 @@ package() {
   cp -r * $pkgdir/usr/share/themes/Numix-ArchBlue
 
   cd ../$pkgname
-  cp -r cinnamon $pkgdir/usr/share/themes/Numix-ArchBlue
   install -Dm 644 deepin-thumbnail.png $pkgdir/usr/share/personalization/thumbnail/WindowThemes/Numix-ArchBlue-thumbnail.png
 }
