@@ -4,9 +4,9 @@ pkgname=hibernator
 pkgver=0.3
 pkgrel=1
 pkgdesc="Script to automate setting up hibernation"
-arch=any
+arch=('any')
 url="https://github.com/Chrysostomus/$pkgname"
-license=("MIT")
+license=('MIT')
 depends=('bash'
 	'gawk'
 	'mkinitcpio'
@@ -15,7 +15,7 @@ makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
 
-package () {
+package() {
 	cd $srcdir
 	install -Dm755 $srcdir/$pkgname/$pkgname $pkgdir/usr/bin/$pkgname
 }
