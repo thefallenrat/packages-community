@@ -6,9 +6,9 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20160424
+pkgver=20160426
 pkgrel=1
-pkgdesc='Official Manjaro Gtk3 theme, based on Vertex'
+pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.20
 #_releasever=20160329
 ## use git commit including (partial) fix for FF scrollbars
