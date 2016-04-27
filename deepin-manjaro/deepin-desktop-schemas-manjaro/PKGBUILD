@@ -6,7 +6,7 @@
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
 pkgver=3.0.3
-pkgrel=2
+pkgrel=3
 pkgdesc='Desktop-wide gsettings schemas for Manjaro-Deepin'
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
@@ -20,7 +20,6 @@ conflicts=('dde-daemon<=2.92.1' 'deepin-desktop-schemas')
 provides=('deepin-desktop-schemas')
 replaces=('deepin-default-gsettings' 'deepin-manjaro-gsettings')
 groups=('deepin-manjaro')
-install="$pkgname.install"
 source=("git+$url.git")
 sha256sums=('SKIP')
 
@@ -31,5 +30,5 @@ build() {
 
 package() {
   cd $pkgname
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR=$pkgdir install
 }
