@@ -10,7 +10,7 @@ if [ ! -f ~/.local/manjaro-netbook-update-helper/${_currentver} ] && [ -f /usr/s
         if [ "$(xfconf-query -c xsettings -p /Net/ThemeName)" == "Menda" ] && [ -d /usr/share/themes/Vertex-Maia ]; then
 	        xfconf-query -c xsettings -p /Net/ThemeName -s Vertex-Maia
 	        xfconf-query -c xfwm4 -p /general/theme -s Vertex-Maia-Square
-	        sed -i 's/1e1e1e1e1e1e/3c3c40403e3e/g' ~/.config/xfce4/panel/dockbarx-3.rc
+	        sed -i 's/1e1e1e1e1e1e/3c3c40403e3e/g' ~/.config/xfce4/panel/dockbarx-*.rc
 	    fi
 	    mkdir -p ~/.local/manjaro-netbook-update-helper
 	    cp /usr/share/manjaro-netbook-update-helper/20160427-1 ~/.local/manjaro-netbook-update-helper/

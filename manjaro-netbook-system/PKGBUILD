@@ -19,7 +19,7 @@ source=("manjaro-netbook-compton-autostart"
         "unmaximize_active-manjaro-netbook.desktop"
         "gnome-keyring-daemon-fix.desktop")
 sha1sums=('747cbc5665014693ed219b2ae18c811b35915bce'
-          'aff8bd2194ec6c28e150462d85fb4683d9e3d53a'
+          '6e591b851186bcb79d4fb80271c0985318faa1e9'
           '28e67491a40df8fa58ce0945f81ba26a0b060aa5'
           '1c4a380126b85d1f9347164857697f194852eafd'
           '5c108e096d02461efc6f346096a27555a4f2724d'
