@@ -18,7 +18,6 @@ conflicts=('kio-sysinfo-svn')
 provides=('kio-sysinfo-svn')
 source=('background_manjaro.png')
 md5sums=('4a2bd9162c236d682cba1ff306375336')
-install='sysinfo.install'
 
 _svntrunk="svn://anonsvn.kde.org/home/kde/trunk/playground/base/kio_sysinfo"
 _svnmod=kio_sysinfo

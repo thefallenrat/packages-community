@@ -18,7 +18,6 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
             'upower: Battery API')
 conflicts=('firefox' 'firefox-kde')
 provides=("firefox=${pkgver}")
-install=firefox.install
 options=('!emptydirs' '!makeflags')
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig

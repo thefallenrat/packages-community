@@ -9,7 +9,6 @@ arch=('i686' 'x86_64')
 license=('GPL')
 depends=('fribidi' 'wv' 'librsvg' 'enchant' 'desktop-file-utils' 'gtk2' 'libxslt')
 makedepends=('pkgconfig' 'boost')
-install=$pkgname.install
 conflicts=('abiword' 'abiword-plugins')
 url='http://www.abisource.com'
 source=("$_pkgname-$pkgver.tar.gz::http://abisource.com/downloads/$_pkgname/$pkgver/source/$_pkgname-$pkgver.tar.gz")

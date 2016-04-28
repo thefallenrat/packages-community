@@ -1,17 +1,9 @@
-msg-and-update()
-{
-gtk-update-icon-cache /usr/share/icons/hicolor
-cat << EOF
-You no longer need to be a member of the games group for the sounds to work, they're now installed per user in ~/.config/tintin-alteraeon. Notifications have been added, type "notifications" when in game to turn them on and "nonotifications" in game to turn them off.
-EOF
+post_install() {
+  cat << EOF
+  You no longer need to be a member of the games group for the sounds to work, they're now installed per user in ~/.config/tintin-alteraeon. Notifications have been added, type "notifications" when in game to turn them on and "nonotifications" in game to turn them off.
+  EOF
 }
 
-post_install()
-{
-msg-and-update
-}
-
-post_upgrade()
-{
-msg-and-update
+post_upgrade() {
+  post_install
 }

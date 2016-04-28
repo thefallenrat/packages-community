@@ -20,7 +20,6 @@ depends=('accountsservice' 'caribou' 'cinnamon-settings-daemon' 'cinnamon-sessio
          'network-manager-applet' 'nemo' 'polkit-gnome' 'python2-ptyprocess')
 makedepends=('gnome-common' 'intltool' 'gtk-doc' 'gobject-introspection')
 options=('!emptydirs')
-install=${pkgname}.install
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/$pkgver.tar.gz"
         "set_wheel.patch"
         "default-theme.patch"

@@ -15,7 +15,6 @@ conflicts=('open-fuse-iso-term')
 provides=('open-fuse-iso-term')
 #replaces=('')
 source=("$pkgname::git+https://github.com/alexandruianu/$pkgname")
-install="${pkgname}.install"
 md5sums=('SKIP')
 
 package() {

@@ -10,7 +10,6 @@ arch=('i686' 'x86_64')
 url="https://github.com/andrew-bibb/cmst"
 license=('MIT')
 depends=('qt5-base' 'connman' 'libxkbcommon-x11' 'hicolor-icon-theme')
-install=$pkgname.install
 source=(https://github.com/andrew-bibb/cmst/releases/download/${pkgname}-${_pkgver}/${pkgname}-${_pkgver}.tar.gz)
 md5sums=('626b9ca23f1ea908932d3938c190c150')
 

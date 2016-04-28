@@ -15,7 +15,6 @@ url='http://ignorantguru.github.com/spacefm/'
 license=('GPL3')
 conflicts=('spacefm')
 provides=('spacefm')
-install=$_pkgname.install
 depends=('gtk2' 'desktop-file-utils' 'startup-notification' 'ffmpegthumbnailer')
 makedepends=('intltool' 'gettext')
 optdepends=('lsof: device processes'

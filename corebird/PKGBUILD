@@ -24,7 +24,6 @@ depends=('glib2>=2.40'
 makedepends=('vala>=0.26')
 source=(https://github.com/baedert/corebird/archive/${pkgver}.tar.gz)
 sha1sums=('0b72bd81bd906c8a6f3d68c0ee6b045d51ef9c0f')
-install=corebird.install
 
 build() {
   cd corebird-${pkgver}

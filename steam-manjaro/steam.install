@@ -1,6 +1,4 @@
 post_install() {
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam (Purge Libraries) launcher"
@@ -13,8 +11,6 @@ pre_install(){
 }
 
 post_upgrade() {
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
   echo "If you are running x86_64, you need the lib32 opt depends for your driver - check that mhwd has it correctly set"
   echo "If you are having problems with the steam license, remove .steam and .local/share/Steam"
   echo "Library issues can be fixed with the Steam (Purge Libraries) launcher"
@@ -25,9 +21,3 @@ pre_upgrade(){
   update-desktop-database -q
   gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
 }
-
-post_remove() {
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
-}
-
