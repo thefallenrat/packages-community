@@ -22,7 +22,6 @@ license=('GPL')
 makedepends=('git')
 source=("git+$url.git")
 sha256sums=('SKIP')
-install=$pkgbase.install
 
 _inst_dir(){
 	if [[ -d $srcdir/$pkgbase/$1/skel ]];then

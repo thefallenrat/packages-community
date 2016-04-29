@@ -20,7 +20,6 @@ options=(!libtool)
 conflicts=(${_realname})
 provides=(${_realname}=${pkgver})
 replaces=('emerald-git')
-install=${_realname}.install
 source=(http://cgit.compiz.org/fusion/decorators/${_realname}/snapshot/${_realname}-${pkgver}.tar.bz2)
 sha256sums=('7982b8b7aaf3056d644c411963bdf0b980d93e4eabe8788bc773558fb5f9cda5')
 

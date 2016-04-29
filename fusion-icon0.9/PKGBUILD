@@ -12,7 +12,6 @@ license=('GPL')
 provides=('fusion-icon=0.2')
 conflicts=('fusion-icon')
 depends=('python2' 'compiz>0.9' 'python2-gobject' 'gtk3' 'hicolor-icon-theme' 'xorg-utils' 'mesa-demos')
-install=fusion-icon.install
 source=("https://github.com/kozec/fusion-icon-gtk3/archive/v${pkgver}.tar.gz")
 md5sums=('e046e4073267a38d358d2aad2226da01')
 

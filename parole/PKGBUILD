@@ -20,7 +20,6 @@ optdepends=('xulrunner: browser plugin'
 	    'gst-plugins-base'
 	    'gst-plugins-ugly')
 conflicts=('parole-media-player-git')
-install=parole.install
 source=(http://git.xfce.org/apps/parole/snapshot/parole-$_git.tar.bz2)
 sha256sums=('14d3cab4d26731dc525e6c50b25406ecbc5fc257e19c80a936ac4ee89ce1a5ea')
 

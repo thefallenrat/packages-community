@@ -12,7 +12,6 @@ _grab=edba1587f4b3014210ca3857bb5fbf913e9a5fd5
 depends=('gtk-update-icon-cache' 'faba-icon-theme')
 options=(!strip)
 source=(https://github.com/moka-project/$pkgname/archive/$_grab.tar.gz)
-install=${pkgname}.install
 sha256sums=('b6107c25e7a758a72c5b26267b4f7e5a6c3b4f05553f9cc82bea345b08b4a5dd')
 
 package() {
