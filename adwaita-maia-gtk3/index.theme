@@ -1,9 +1,9 @@
 [X-GNOME-Metatheme]
-Name=Adwaita-Manjaro
+Name=Adwaita-Maia
 Type=X-GNOME-Metatheme
 Comment=Adwaita theme modified for Manjaro
 Encoding=UTF-8
-GtkTheme=Adwaita-Manjaro
+GtkTheme=Adwaita-Maia
 MetacityTheme=Adwaita-Manjaro
 IconTheme=Adwaita
 CursorTheme=Adwaita

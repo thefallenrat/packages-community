@@ -15,36 +15,32 @@ url="https://www.gnome.org/"
 license=('GPL')
 makedepends=('imagemagick')
 optdepends=('gtk-engine-murrine: support for gtk2 theme')
-provides=('adwaita-manjaro-theme')
-replaces=('adwaita-manjaro-theme')
+conflicts=('adwaita-manjaro-themes')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
         "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
-        "https://github.com/thearakattack/adwaita-xfce/archive/${_axcommit}.zip"
-        "https://git.gnome.org/browse/metacity/snapshot/metacity-${_metacityver}.tar.xz"
+#        "https://github.com/thearakattack/adwaita-xfce/archive/${_axcommit}.zip"
+#        "https://git.gnome.org/browse/metacity/snapshot/metacity-${_metacityver}.tar.xz"
         "index.theme"
         "https://raw.githubusercontent.com/horst3180/vertex-theme/${_vertexcommit}/common/gtk-2.0/panel.rc"
-        "add-xfce-panel.patch"
+#        "add-xfce-panel.patch"
         "README.md")
 sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
             '940b6d8d501f55a60279b4c0a1b591300e4c7a4083bbf4454b1820f42cd05703'
-            'b45e219135add294284a40eb3f72466334f3634d23d3e92a5635e15857ea534d'
-            '2c71b9e157bdbcf5da03913e048c81de4b22ce71f8345ce5bcd03405e529ee7a'
-            '7f8ad1082a347cb5e7356d690b4762034c64d6af79ac2fde8961fd38f2bd594b'
+            '721ff8aa9e6c14ecf01594cdafb89ebd591661797fa5a40fc90f1d8b3010d930'
             '5f980512053a1694b3a5dc1ac32ad2fa3f67db4eed9d481b8804fc59394c20ee'
-            'e521cf44764913f7144d0336487409940b4e25c6fbfd64d38e2ab4c896b78e8e'
             'f7b10d87635bc30e655fa702c9cf825841a05f50fd2e304983b8f2ca06cbfb62')
 options=('!strip')
 
 package() {
-  mkdir -p "${pkgdir}/usr/share/themes/Adwaita-Manjaro"
-  cp "${srcdir}/index.theme" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/"
-  cp -r "${srcdir}/usr/share/themes/Adwaita/gtk-2.0" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/"
-  cp -r "${srcdir}/gtk+-${_fullgtkver}/gtk/theme/Adwaita" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/gtk-3.0"
+  mkdir -p "${pkgdir}/usr/share/themes/Adwaita-Maia"
+  cp "${srcdir}/index.theme" "${pkgdir}/usr/share/themes/Adwaita-Maia/"
+  cp -r "${srcdir}/usr/share/themes/Adwaita/gtk-2.0" "${pkgdir}/usr/share/themes/Adwaita-Maia/"
+  cp -r "${srcdir}/gtk+-${_fullgtkver}/gtk/theme/Adwaita" "${pkgdir}/usr/share/themes/Adwaita-Maia/gtk-3.0"
   
-  cp "${srcdir}/panel.rc" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/gtk-2.0/"
-  echo 'include "panel.rc"' >> "${pkgdir}/usr/share/themes/Adwaita-Manjaro/gtk-2.0/gtkrc"
+  cp "${srcdir}/panel.rc" "${pkgdir}/usr/share/themes/Adwaita-Maia/gtk-2.0/"
+  echo 'include "panel.rc"' >> "${pkgdir}/usr/share/themes/Adwaita-Maia/gtk-2.0/gtkrc"
   
-  cd "${pkgdir}/usr/share/themes/Adwaita-Manjaro/gtk-3.0"
+  cd "${pkgdir}/usr/share/themes/Adwaita-Maia/gtk-3.0"
   find . -maxdepth 1 -type f -not -name '*contained*' -exec rm {} \;
   rm *.scss
   mv gtk-contained.css gtk.css
@@ -86,15 +82,15 @@ package() {
   find . ! -type l -name "*.svg" -exec mogrify -background none -modulate 100,100,71 {} \;
   
   ## Xfwm4 decorations
-  cp -r "${srcdir}/adwaita-xfce-${_axcommit}/Adwaita-Xfce Alt v1/xfwm4" ./
-  rm "xfwm4/themerc~"
+#  cp -r "${srcdir}/adwaita-xfce-${_axcommit}/Adwaita-Xfce Alt v1/xfwm4" ./
+#  rm "xfwm4/themerc~"
   #find . -name "*.xpm" -exec mogrify -channel rbga -separate -swap 1,2 -combine {} \;
-  mogrify -modulate 100,100,71 "${pkgdir}/usr/share/themes/Adwaita-Manjaro/xfwm4/"{hide-pressed,maximize-pressed,shade-pressed,shade-toggled-pressed,stick-pressed,stick-toggled-pressed}.xpm
+#  mogrify -modulate 100,100,71 "${pkgdir}/usr/share/themes/Adwaita-Maia/xfwm4/"{hide-pressed,maximize-pressed,shade-pressed,shade-toggled-pressed,stick-pressed,stick-toggled-pressed}.xpm
   
   ## Metacity decorations
-  install -Dm644 "${srcdir}/metacity-${_metacityver}/src/themes/Adwaita/metacity-theme-3.xml" metacity-1/metacity-theme-3.xml
-  sed -i "s|<name>Adwaita</name>|<name>Adwaita-Manjaro</name>|g" metacity-1/metacity-theme-3.xml
+#  install -Dm644 "${srcdir}/metacity-${_metacityver}/src/themes/Adwaita/metacity-theme-3.xml" metacity-1/metacity-theme-3.xml
+#  sed -i "s|<name>Adwaita</name>|<name>Adwaita-Maia</name>|g" metacity-1/metacity-theme-3.xml
   
   ## Place README
-  cp "${srcdir}/README.md" "${pkgdir}/usr/share/themes/Adwaita-Manjaro/README"
+  cp "${srcdir}/README.md" "${pkgdir}/usr/share/themes/Adwaita-Maia/README"
 }
