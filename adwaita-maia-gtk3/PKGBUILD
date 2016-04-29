@@ -15,7 +15,6 @@ url="https://www.gnome.org/"
 license=('GPL')
 makedepends=('imagemagick')
 optdepends=('gtk-engine-murrine: support for gtk2 theme')
-conflicts=('adwaita-manjaro-themes')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
         "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
 #        "https://github.com/thearakattack/adwaita-xfce/archive/${_axcommit}.zip"
