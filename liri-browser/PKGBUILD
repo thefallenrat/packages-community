@@ -1,24 +1,22 @@
 # Maintainer: Riley Trautman <asonix.dev@gmail.com>
 
-_pkgname=liri-browser
-pkgname=$_pkgname
+pkgname=liri-browser
 pkgver=0.3.r245.g71ccccf
-pkgrel=1
+pkgrel=2
 pkgdesc="A Web Browser using the QML Material framework from the Papyros Project"
 arch=("i686" "x86_64")
 url="https://github.com/liri-browser/liri-browser"
 license=("GPLv3")
 depends=("qt5-base" "qt5-webengine" "qml-material" "qt5-multimedia")
 makedepends=("git")
-provides=("$_pkgname" "$pkgname-git")
-conflicts=("$_pkgname-git")
-install=$pkgname.install
+provides=("$pkgname-git")
+conflicts=("$pkgname-git")
 source=("$pkgname::git+https://github.com/liri-project/liri-browser.git"
-        "liri-browser.sh" "liri-browser.desktop" "$pkgname.install")
+        "liri-browser.sh" 
+        "liri-browser.desktop")
 sha256sums=('SKIP'
             '8b3d89676e36de8f8061632d15a58f239d782ae18e2fd0ba63f983fe05b5bea7'
-            'b4d6d873065113430170981ade78f2a85a07c3764f4476c6c3bfe281de10f088'
-            'd63c805a874d8fcb93125bf3f648600ab77bc7dc5d3eaa296e22a81fb0733137')
+            'b4d6d873065113430170981ade78f2a85a07c3764f4476c6c3bfe281de10f088')
 
 pkgver() {
   cd "$pkgname"
