@@ -6,7 +6,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20160426
+pkgver=20160430
 pkgrel=1
 pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.20
@@ -28,7 +28,8 @@ options=('!strip')
 
 build() {
   cd vertex-theme-${_releasever}
-  ./autogen.sh --prefix=/usr \
+  ./autogen.sh \
+	--prefix=/usr \
 	--disable-light \
 	--disable-unity \
 	--with-gnome=${_gnomever} \
@@ -280,31 +281,7 @@ package() {
 	s/cdcdcf/cdcfcd/g;\
 	s/d7d7d9/d7d9d7/g" {} \;
 
-  ## add some custom items and Square variant
-  cd "$srcdir/vertex-manjaro-${_commit}"
-  cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
-  rm -rf $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
-  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,gtk-3.0/assets}
-  cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
-  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0,xfwm4}
-  cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
-  rm -r $pkgdir/usr/share/themes/Vertex-Maia-Square/xfwm4
-  cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
-
-  ## add .css for Palemoon
-  install -dm755 $pkgdir/usr/share/themes/Palemoon/Vertex-Maia{,-Dark}/chrome
-  cp Palemoon/userChrome.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/userChrome.css  
-  cp Palemoon/userChrome-dark.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userChrome.css
-  ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/userContent.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userContent.css
-  ln -s /usr/share/themes/Firefox/Vertex-Maia/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/images
-  ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/images
-
-  ## fix corrupt metacity thumbnail
-  tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
-
-  ## add gtkrc files in order for lxappearance to find the themes
-  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0/gtkrc $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0/gtkrc
-  cd $pkgdir/usr/share/themes/Vertex-Maia/gtk-2.0
+  cd Vertex-Maia/gtk-2.0
   sed -i "s/3c3c3e/3c3e3c/g;\
 	s/4080fb/16a085/g;\
 	s/454749/454947/g;\
@@ -312,7 +289,7 @@ package() {
 	s/fff\;/f9faf9\;/g;\
 	s/FFF\"/F9FAF9\"/g;\
 	s/FFFFFF/F9FAF9/g" gtkrc
-  install -Dm644 $srcdir/vertex-theme-$_releasever/common/gtk-2.0-dark/gtkrc $pkgdir/usr/share/themes/Vertex-Maia-Dark/gtk-2.0/gtkrc
+
   cd ../../Vertex-Maia-Dark/gtk-2.0
   sed -i "s/2B2B2C/2B2C2B/g;\
 	s/2c2e2f/2c2f2e/g;\
@@ -325,4 +302,24 @@ package() {
 	s/ffffff/f9faf9/g;\
 	s/FFF\"/F9FAF9\"/g;\
 	s/FFFFFF/F9FAF9/g" gtkrc
+
+  ## add some custom items and Square variant
+  cd "$srcdir/vertex-manjaro-${_commit}"
+  cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
+  rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0/{Menu,ProgressBar},gtk-3.0/assets,xfwm4}
+  cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
+  cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia-{Dark,Square}/xfwm4
+  cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
+
+  ## add .css for Palemoon
+  install -dm755 $pkgdir/usr/share/themes/Palemoon/Vertex-Maia{,-Dark}/chrome
+  cp Palemoon/userChrome.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/userChrome.css  
+  cp Palemoon/userChrome-dark.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userChrome.css
+  ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/userContent.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userContent.css
+  ln -s /usr/share/themes/Firefox/Vertex-Maia/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/images
+  ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/images
+
+  ## fix corrupt metacity thumbnail
+  tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_releasever/common/metacity-1/thumbnail.png >/dev/null
 }
