@@ -303,13 +303,14 @@ package() {
 	s/FFF\"/F9FAF9\"/g;\
 	s/FFFFFF/F9FAF9/g" gtkrc
 
-  ## add some custom items and Square variant
+  ## add some custom items and Square variant, remove xfce stuff
   cd "$srcdir/vertex-manjaro-${_commit}"
   cp -r images/* "$pkgdir/usr/share/themes/Vertex-Maia"
   rm -rf $pkgdir/usr/share/themes/Vertex-Maia-Dark/{gtk-2.0/{Menu,ProgressBar},gtk-3.0/assets,xfwm4}
   cp -r images-dark/* "$pkgdir/usr/share/themes/Vertex-Maia-Dark"
   cp -r Vertex-Maia-Square "$pkgdir/usr/share/themes"
   rm -r $pkgdir/usr/share/themes/Vertex-Maia-{Dark,Square}/xfwm4
+  rm -r $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/gtk-2.0/panel.rc
   cp Firefox/privatebrowsing-mask.png ${pkgdir}/usr/share/themes/Firefox/Vertex-Maia/chrome/images
 
   ## add .css for Palemoon
