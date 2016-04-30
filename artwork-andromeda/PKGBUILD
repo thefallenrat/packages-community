@@ -2,16 +2,16 @@
 
 pkgbase=artwork-andromeda
 pkgname=('andromeda-icon-theme' 'plasma5-themes-andromeda' 'sddm-andromeda-theme' 'andromeda-wallpaper')
-pkgver=0.1.0
-pkgrel=2
-_gitcommit=372ba3081d521e8d5834d2b4953e7604b0151951
+pkgver=0.1.2
+pkgrel=1
+_gitcommit=ac06518b0917358b9f939720a02e6dcbedfae953
 url=https://github.com/manjaro/artwork-andromeda/
 arch=('any')
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'plasma-framework')
 
 source=("andromeda-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('849d442625925f7ad4921810e992307f')
+md5sums=('2a8c44659952e90df7e65d21cc28e67c')
 
 prepare() {
   mv $srcdir/artwork-andromeda-$_gitcommit $srcdir/andromeda
