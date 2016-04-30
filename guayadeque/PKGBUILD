@@ -6,7 +6,7 @@
 
 pkgname=guayadeque
 pkgver=0.3.7
-pkgrel=7
+pkgrel=8
 pkgdesc='Lightweight music player'
 arch=('i686' 'x86_64')
 url='http://guayadeque.org/'
