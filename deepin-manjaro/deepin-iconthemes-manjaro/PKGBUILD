@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-iconthemes-manjaro
-pkgver=20160226
+pkgver=20160501
 _repo=deepin-iconthemes
 _snapshot=c18292219fcfef6ed7b74de2164bbff1a7f08fe1
 pkgrel=1
