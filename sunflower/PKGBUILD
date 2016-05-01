@@ -3,25 +3,30 @@
 # Contributor: Henrik Olsson
 
 pkgname=sunflower
-pkgver=0.2_59
-pkgrel=5
+_vermaj=0.3
+_vermin=61
+pkgver=$_vermaj.$_vermin
+pkgrel=1
 pkgdesc="Small, customizable twin-panel file manager"
 url="http://sunflower-fm.org"
 arch=('any')
 license=('GPL3')
-depends=('desktop-file-utils' 'pygtk' 'librsvg')
-optdepends=('python2-gnomekeyring: password storage for remote mounts'
-            'python2-notify: desktop notifications service'
-            'vte: integrated vte-based terminal'
-            'mutagen: audio-metadata support'
-            'gvfs: mount-management'
-            'python2-dbus: single application instance support')
-conflicts=('sunflower-hg')
+depends=('desktop-file-utils'
+	'librsvg'
+	'pygtk'
+	'python2-chardet')
+optdepends=('gvfs: mount-management'
+	'mutagen: audio-metadata support'
+	'python2-dbus: single application instance support'
+	'python2-gnomekeyring: password storage for remote mounts'
+	'python2-notify: desktop notifications service'
+	'vte: integrated vte-based terminal')
+conflicts=('sunflower-git')
 options=(!strip !zipman)
-source=($url/pub/${pkgname}-${pkgver//_/-}.tgz
+source=($url/pub/$pkgname-$_vermaj-$_vermin.tgz
         sunflower)
-md5sums=('ad3d894003685bbcec3d13bec12058b4'
-         '95b68d1631f9406d55bd772231b021e6')
+sha256sums=('49a7e62ffb47e07da8ffc755b3b1d25a4f97b65641249b1946f88abdefabe8ec'
+            'ae9205c6bcf09b86a409a02088ecaf3b9c5e15e2bc8bcf0ce4fe3fc68802476d')
 
 package() {
   install -Dm755 sunflower "${pkgdir}/usr/bin/sunflower"
