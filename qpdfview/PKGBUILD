@@ -3,7 +3,7 @@
 pkgbase=qpdfview
 pkgname=('qpdfview' 'qpdfview-djvu-plugin' 'qpdfview-ps-plugin')
 pkgver=0.4.16
-pkgrel=3
+pkgrel=4
 pkgdesc='A tabbed PDF viewer using the poppler library.'
 arch=('i686' 'x86_64')
 url='https://launchpad.net/qpdfview'
@@ -12,7 +12,6 @@ depends=('libcups' 'poppler-qt5' 'qt5-svg' 'desktop-file-utils' 'hicolor-icon-th
 optdepends=('qpdfview-ps-plugin: qpdfview plugin for PostScript support' 
             'qpdfview-djvu-plugin: qpdfview plugin for DjVu support')
 makedepends=('qt5-tools' 'libspectre' 'djvulibre')
-install='qpdfview.install'
 source=("http://launchpad.net/$pkgname/trunk/$pkgver/+download/$pkgname-$pkgver.tar.gz"
         synctex_parser.diff::http://bazaar.launchpad.net/~adamreichold/qpdfview/trunk/diff/1944?context=3)
 md5sums=('4b317c4536332a7fe437abe50eca1716'

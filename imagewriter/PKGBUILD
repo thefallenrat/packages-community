@@ -12,7 +12,6 @@ depends=('qt5-base' 'udisks2' 'desktop-file-utils' 'hicolor-icon-theme')
 _gitcommit='1d253d960a28f9de4468b0b091c231083f03c1c8'
 source=("imagewriter-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
 sha256sums=('7761ee45b16b5841c6b62b091c7f9d0b8c64b14b79d77e9909ca813e1dc9885d')
-install=$pkgname.install
 
 build() {
   cd "$pkgname-$_gitcommit"

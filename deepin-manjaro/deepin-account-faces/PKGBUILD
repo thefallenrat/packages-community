@@ -5,8 +5,8 @@
 
 pkgname=deepin-account-faces
 pkgver=1.0.10
-_commit=c639f158c32bce15d3b32af21a08e929c1dfa952
-pkgrel=2
+_commit=7bbe244538bbe3241b660336e5e0102161a45167
+pkgrel=3
 pkgdesc='Account faces for Linux Deepin'
 arch=('any')
 license=('GPL3')

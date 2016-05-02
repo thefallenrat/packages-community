@@ -3,8 +3,8 @@
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 pkgname=lumina-desktop
 pkgver=0.8.8
-pkgrel=1
-_snapshot=f2082d43744740bb27076eef3f8f915d52f928bc
+pkgrel=2
+_snapshot=44c29bd3f9faf3f5ed38fb87d7281bfbb2819b54
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
 url="https://github.com/pcbsd/lumina"
@@ -14,9 +14,8 @@ optdepends=('xorg-xbacklight: required for changing screen brightness' 'alsa-uti
 makedepends=('qt5-tools')
 options=('!makeflags')
 conflicts=("${pkgname}-git" "lumina-de-git")
-install="${pkgname}.install"
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/pcbsd/lumina/archive/$_snapshot.tar.gz")
-md5sums=('701594604bbcc57665b5ab5e3b230f3c')
+md5sums=('29ae9fda7c8ee24a4330c2ba3f7197ee')
 
 
 build(){

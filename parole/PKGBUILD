@@ -5,7 +5,7 @@
 pkgname=parole
 pkgver=0.7.0
 _git=b71bd86995d476049b72d08d90636d5b0617db19
-pkgrel=2
+pkgrel=3
 pkgdesc="A modern media player based on the GStreamer framework"
 arch=('i686' 'x86_64')
 url="http://goodies.xfce.org/projects/applications/parole/"
@@ -20,7 +20,6 @@ optdepends=('xulrunner: browser plugin'
 	    'gst-plugins-base'
 	    'gst-plugins-ugly')
 conflicts=('parole-media-player-git')
-install=parole.install
 source=(http://git.xfce.org/apps/parole/snapshot/parole-$_git.tar.bz2)
 sha256sums=('14d3cab4d26731dc525e6c50b25406ecbc5fc257e19c80a936ac4ee89ce1a5ea')
 

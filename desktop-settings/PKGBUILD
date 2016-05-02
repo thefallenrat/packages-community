@@ -14,7 +14,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160419
+pkgver=20160501
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -22,7 +22,6 @@ license=('GPL')
 makedepends=('git')
 source=("git+$url.git")
 sha256sums=('SKIP')
-install=$pkgbase.install
 
 _inst_dir(){
 	if [[ -d $srcdir/$pkgbase/$1/skel ]];then
@@ -50,8 +49,6 @@ package_manjaro-bspwm-settings() {
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 	depends=('bspwm-wallpapers'
-		'menda-circle-icon-theme'
-		'gtk-theme-maia'
 		'xcursor-breeze'
 		'feh'
 		'rootmenu'
@@ -152,10 +149,9 @@ package_manjaro-i3-settings() {
 	pkgdesc='Manjaro Linux i3 settings'
 	groups=('i3-manjaro')
 	depends=('artwork-i3'
-		'awoken-icon-theme-light'
+		'breeze-maia-icon-themes'
 		'conky-i3'
 		'dmenu-manjaro'
-		'gtk-theme-numix-solarized'
 		'i3exit'
 		'i3-scripts'
 		'i3-gaps'
@@ -163,8 +159,10 @@ package_manjaro-i3-settings() {
 		'i3status-manjaro'
 		'manjaro-base-skel'
 		'nitrogen'
+		'vertex-maia-themes'
 		'xcursor-chameleon-pearl')
-	optdepends=('awoken-icon-theme: full set of AwOken icons with white and dark variations of the theme')
+	optdepends=('manjaro-backgrounds: Manjaro wallpapers'
+		'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 

@@ -1,31 +1,40 @@
 # Maintainer: Somasis <somasis@cryptolab.net>
+# Contributor: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=mugshot
-pkgver=0.3.0
+pkgver=0.3.1
+pkgrel=2
 pkgver_min=${pkgver%.*}
-pkgrel=5
+_git=01cc800f467dd3661bf158fb26820d37042fb0a0
 pkgdesc="Program to update personal user details"
 arch=('any')
-install="${pkgname}.install"
 url="https://launchpad.net/mugshot"
 license=('GPLv3')
-depends=('python-pexpect' 'python-dbus' 'python-cairo' 'python-gobject' 'python-distutils-extra')
-optdepends=( 'gstreamer0.10-good-plugins: webcam support'
-             'pidgin: update buddy icon'
-             'libreoffice: update user details'
-             'accountsservice: user image management without ~/.face'
-)
+depends=('python-cairo'
+	'python-dbus'
+	'python-distutils-extra'
+	'python-gobject'
+	'python-pexpect')
+optdepends=('gstreamer0.10-good-plugins: webcam support')
 options=(!emptydirs)
-
-source=("https://launchpad.net/mugshot/$pkgver_min/$pkgver/+download/mugshot-${pkgver}.tar.gz" "office-phone.patch")
-md5sums=('526722e9985ad86771fd60cdf0bee985' 'e4ea8f6762f9c3e4023ca73e4fc32a62')
+source=("https://launchpad.net/mugshot/$pkgver_min/$pkgver/+download/mugshot-$pkgver.tar.gz"
+	office-phone.patch
+	"avatars-$_git.tar.gz::http://github.com/oberon2007/avatars/archive/$_git.tar.gz")
+md5sums=('edc71cf248438bd8ea574d00746ab2b9'
+         'ede4502604472c3a54e86136060cec29'
+         'feb11c6d8f7031df752b2c57c9e42ff8')
 
 prepare() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+    cd $srcdir/$pkgname-$pkgver
     patch -p1 -i $srcdir/office-phone.patch
 }
 
 package() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
-    python3 setup.py install --root "${pkgdir}"
+    cd $srcdir/$pkgname-$pkgver
+    python3 setup.py install --root $pkgdir
+
+    # install our stock avatars
+    cd $srcdir/avatars-$_git
+    install -dm755 $pkgdir/usr/share/pixmaps
+    cp -r faces $pkgdir/usr/share/pixmaps
 }
