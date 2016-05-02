@@ -9,7 +9,6 @@ url="http://sourceforge.net/projects/lightfirefox"
 license=('MPL')
 depends=('alsa-lib' 'dbus-glib' 'desktop-file-utils' 'gtk3' 'libxt' 'mime-types' 'nss' 'shared-mime-info')
 provides=("${pkgname}=${_pkgver}")
-install=${pkgname}.install
 arch=('i686' 'x86_64')
 source_x86_64=("http://downloads.sourceforge.net/project/${pkgname}/${_pkgver}/${pkgname/firefox}-${pkgver}.en-US.linux-x86_64_r2.rpm")
 md5sums_x86_64=('57bc36c550d67aaa36cb7307d602b5f7')
