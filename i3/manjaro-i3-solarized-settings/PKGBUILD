@@ -2,7 +2,7 @@
 
 pkgname=('manjaro-i3-solarized-settings')
 pkgver=20160503
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
