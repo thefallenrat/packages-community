@@ -72,4 +72,5 @@ package() {
   mkdir -p $pkgdir/usr/share/themes/Firefox/Adwaita-Maia/
   tar -zxvf ${srcdir}/chrome.tar.gz
   cp -r ${srcdir}/chrome $pkgdir/usr/share/themes/Firefox/Adwaita-Maia/chrome/
+  rm -rf $pkgdir/usr/share/themes/Adwaita-Maia/chrome/
 }
