@@ -4,7 +4,7 @@
 pkgbase=menda-themes
 pkgname=("${pkgbase}" "${pkgbase}-dark")
 pkgver=20160329
-pkgrel=1
+pkgrel=2
 _git='2759ebcea6504aaece63d5f71d8c9ab407a18df9'
 arch=('any')
 url="https://github.com/manjaro/artwork-menda"
@@ -16,18 +16,20 @@ source=("${pkgbase}-${pkgver}-${pkgrel}.tar.gz::${url}/archive/${_git}.tar.gz")
 md5sums=('f6f52471e49ea2277c54b6de71f6ee57')
 
 package_menda-themes() {
-  pkgdesc="Menda Theme for Gtk2, Gtk3, Metacity, Xfwm4, Openbox, Cinnamon and GNOME Shell themes"
+  pkgdesc="Menda Theme for Gtk2, Metacity, Xfwm4, Openbox"
   replaces=('gtk-theme-menda')
   
   install -dm755 "${pkgdir}/usr/share/themes"
   install -Dm755 "${srcdir}/artwork-menda-${_git}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   cp -r "${srcdir}/artwork-menda-${_git}/Menda" "${pkgdir}/usr/share/themes"
+  rm -rf "${srcdir}/artwork-menda-${_git}/Menda/{gtk-3.0,gnome-shell,cinnamon}"
 }
 
 package_menda-themes-dark() {
-  pkgdesc="Menda Theme Gtk2, Gtk3, Metacity, Xfwm4, Openbox, Cinnamon and GNOME Shell themes, dark version"
+  pkgdesc="Menda Theme Gtk2, Metacity, Xfwm4, Openbox, dark version"
   
   install -dm755 "${pkgdir}/usr/share/themes"
   install -Dm755 "${srcdir}/artwork-menda-${_git}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   cp -r "${srcdir}/artwork-menda-${_git}/Menda-Dark" "${pkgdir}/usr/share/themes"
+  rm -rf "${srcdir}/artwork-menda-${_git}/Menda-Dark/{gtk-3.0,gnome-shell,cinnamon}"
 }
