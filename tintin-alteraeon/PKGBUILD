@@ -1,7 +1,7 @@
 # Maintainer: Storm Dragon <stormdragon2976@gmail.com>
 
 pkgname=tintin-alteraeon
-pkgver=2016.04.20+180.7762488
+pkgver=2016.04.20+183.d583be5
 pkgrel=1
 pkgdesc="Play Alter Aeon with sounds and other game enhancements. Uses the tintin++ mud client."
 arch=('any')
@@ -15,8 +15,11 @@ depends=('opusfile'
 makedepends=('git')
 optdepends=('cmus: Music player'
 	'mpd: Music player'
-	'pianobar: Music player'
-	'xmms2: Music player')
+		'moc: Music player'
+'pianobar: Music player'
+	'xmms2: Music player'
+		'audacious: Music player')
+
 source=("$pkgname::git+git://github.com/stormdragon2976/${pkgname}.git")
 install="${pkgname}.install"
 md5sums=('SKIP')
