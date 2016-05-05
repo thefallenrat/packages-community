@@ -2,7 +2,7 @@
 # Maintainer : Chrysostomus
 
 pkgname=adwaita-maia-gtk3
-pkgver=20160429
+pkgver=20160505
 pkgrel=1
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
