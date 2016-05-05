@@ -16,12 +16,10 @@ license=('GPL')
 makedepends=('imagemagick')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
         "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
-        "index.theme"
-        "https://rawgit.com/Chrysostomus/adwaita-maia-gtk3/master/chrome.tar.gz")
+        "index.theme")
 sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
             '940b6d8d501f55a60279b4c0a1b591300e4c7a4083bbf4454b1820f42cd05703'
-            'c9f05e7d94f828a3876cab9bc9118fcfeed095a82c2e84867fd0760aed219b5c'
-            '46da02cd70ec699ac01a9add574ee3b67cf49516187678059e459ed373abbc8c')
+            'c9f05e7d94f828a3876cab9bc9118fcfeed095a82c2e84867fd0760aed219b5c')
 options=('!strip')
 
 package() {
@@ -67,10 +65,4 @@ package() {
   ## Shift the hightlight-hue of all image files from blue to maia-greenish
   find . ! -type l -name "*.png" -exec mogrify -modulate 100,100,71 {} \;
   find . ! -type l -name "*.svg" -exec mogrify -background none -modulate 100,100,71 {} \;
-  
-  ## Install browser theme
-  mkdir -p $pkgdir/usr/share/themes/Firefox/Adwaita-Maia/
-  tar -zxvf ${srcdir}/chrome.tar.gz
-  cp -r ${srcdir}/chrome $pkgdir/usr/share/themes/Firefox/Adwaita-Maia/chrome/
-  rm -rf $pkgdir/usr/share/themes/Adwaita-Maia/chrome/
 }
