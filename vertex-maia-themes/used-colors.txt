@@ -128,7 +128,21 @@ f3f3f5/f3f5f3 - Light grayish lime green
 2a2a2a - Very dark gray (mostly black)
 79a6fc/a6fc79 - Soft green
 eaebed/ebedea - Light grayish green
-
-
-
-
+a7a7a7 - Gray
+7f7f81/7f817f - Dark grayish lime green
+6d6d6f/6d6f6d - Very dark grayish lime green
+0f2145/21450f - Very dark green
+a22d33 - Dark red
+969696 - Dark gray
+102b68/2b6810 - Very dark green
+454749/474945 - Very dark grayish green
+eaebed/ebedea - Light grayish green
+f5f5f7/f5f7f5 - Light grayish lime green
+4c4c4d/4c4d4c - Very dark grayish lime green
+3d3e40/3e403d - Very dark grayish green
+383838 - Very dark gray
+0c0c0c - Very dark gray (mostly black)
+313233/323331 - Very dark grayish green
+aeb2b9/b2b9ae - Grayish green
+454545 - Very dark gray
+032b7c/2b7c03 - Dark green
