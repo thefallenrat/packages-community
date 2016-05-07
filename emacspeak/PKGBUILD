@@ -3,7 +3,7 @@
 # Contributors: Chris Brannon <cmbrannon79@gmail.com>
 
 pkgname=emacspeak
-pkgver=43.0.r182.g731d58a
+pkgver=simple.sign.r42.g56bcfcf
 pkgrel=1
 pkgdesc="Emacs extension that provides spoken output"
 arch=(i686 x86_64)
