@@ -25,7 +25,7 @@ replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
 	'whiskermenu-rabideau.patch'
-        'correction.patch::https://github.com/horst3180/vertex-theme/compare/master...Ste74:192bae3f22692a809a16832c24b3ce2eb5633acf.patch')
+        'correction.patch)
 install=$pkgname.install
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
@@ -300,8 +300,6 @@ prepare() {
 	s/F3F3F5/F3F5F3/g;\
 	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" \
 	common/gtk-2.0-dark/panel.rc
-
-this_is_an_error
 
   cd common/gtk-3.0/3.20
   ### create css using sass ###

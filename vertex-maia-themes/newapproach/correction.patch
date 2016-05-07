@@ -1,0 +1,137 @@
+From 4366da79ed1a2782eec066066a77f114ede970c8 Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 17:48:52 +0200
+Subject: [PATCH 1/6] Correction
+
+---
+ common/gtk-3.0/3.20/sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_common.scss b/common/gtk-3.0/3.20/sass/_common.scss
+index cb449a1..c3384cf 100644
+--- a/common/gtk-3.0/3.20/sass/_common.scss
++++ b/common/gtk-3.0/3.20/sass/_common.scss
+@@ -861,7 +861,7 @@ combobox {
+   .linked:not(.vertical) > &:last-child > box > button.combo { @extend %linked:last-child; }
+   .linked:not(.vertical) > &:only-child > box > button.combo { @extend %linked:only-child; }
+ 
+-  .linked.vertical > & > box > button.combo { @extend %linked_vertical_middle; }
++  .linked.vertical > & > box > button.combo { @extend %linked_vertical_middle !optional; }
+   .linked.vertical > &:first-child > box > button.combo { @extend %linked_vertical:first-child; }
+   .linked.vertical > &:last-child > box > button.combo { @extend %linked_vertical:last-child; }
+   .linked.vertical > &:only-child > box > button.combo { @extend %linked_vertical:only-child; }
+
+From 58c117c3c1bb8c794b901213f5992ace3f5d0c2e Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 17:58:17 +0200
+Subject: [PATCH 2/6] correction
+
+---
+ common/gtk-3.0/3.20/sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_common.scss b/common/gtk-3.0/3.20/sass/_common.scss
+index c3384cf..b78ef1c 100644
+--- a/common/gtk-3.0/3.20/sass/_common.scss
++++ b/common/gtk-3.0/3.20/sass/_common.scss
+@@ -1297,7 +1297,7 @@ headerbar {
+     &.linked {
+       button:nth-child(2) {
+         &:dir(ltr) { @extend %header_linked:last-child; }
+-        &:dir(rtl) { @extend %header_:first-child; }
++        &:dir(rtl) { @extend %header_:first-child !optional; }
+       }
+     }
+     .linked > & > button.combo {
+
+From 93c32d45bc97fe5dba59103786a13effe1ae7543 Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 18:04:30 +0200
+Subject: [PATCH 3/6] correction
+
+---
+ common/gtk-3.0/3.20/sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_common.scss b/common/gtk-3.0/3.20/sass/_common.scss
+index b78ef1c..e427a1f 100644
+--- a/common/gtk-3.0/3.20/sass/_common.scss
++++ b/common/gtk-3.0/3.20/sass/_common.scss
+@@ -1802,7 +1802,7 @@ popover.background {
+   }
+ 
+   &, .csd & {
+-    &.osd, &.magnifier { @extend %osd; }
++    &.osd, &.magnifier { @extend %osd !optional; }
+     &.touch-selection { @extend .context-menu }
+ 
+     &.osd { @extend %osd; }
+
+From e577dfd135ea2c5aba8e202fd2684ab6e8e595e5 Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 18:08:05 +0200
+Subject: [PATCH 4/6] other
+
+---
+ common/gtk-3.0/3.20/sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_common.scss b/common/gtk-3.0/3.20/sass/_common.scss
+index e427a1f..6f78aee 100644
+--- a/common/gtk-3.0/3.20/sass/_common.scss
++++ b/common/gtk-3.0/3.20/sass/_common.scss
+@@ -1805,7 +1805,7 @@ popover.background {
+     &.osd, &.magnifier { @extend %osd !optional; }
+     &.touch-selection { @extend .context-menu }
+ 
+-    &.osd { @extend %osd; }
++    &.osd { @extend %osd !optional; }
+   }
+ 
+   button.flat,
+
+From 638ccbabee1e52222749f89c06af6d69aa99f680 Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 18:13:01 +0200
+Subject: [PATCH 5/6] correction
+
+---
+ common/gtk-3.0/3.20/sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_common.scss b/common/gtk-3.0/3.20/sass/_common.scss
+index 6f78aee..130e273 100644
+--- a/common/gtk-3.0/3.20/sass/_common.scss
++++ b/common/gtk-3.0/3.20/sass/_common.scss
+@@ -3240,7 +3240,7 @@ button.color {
+ }
+ 
+ .scale-popup {
+-  .osd & { @extend %osd; }
++  .osd & { @extend %osd !optional; }
+ 
+   button { // +/- buttons on GtkVolumeButton popup
+     &:hover {
+
+From 192bae3f22692a809a16832c24b3ce2eb5633acf Mon Sep 17 00:00:00 2001
+From: Ste74 <capitani74@gmail.com>
+Date: Sat, 7 May 2016 18:17:36 +0200
+Subject: [PATCH 6/6] correction
+
+---
+ common/gtk-3.0/3.20/sass/_budgie.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/gtk-3.0/3.20/sass/_budgie.scss b/common/gtk-3.0/3.20/sass/_budgie.scss
+index 83ecc61..17eea13 100644
+--- a/common/gtk-3.0/3.20/sass/_budgie.scss
++++ b/common/gtk-3.0/3.20/sass/_budgie.scss
+@@ -142,7 +142,7 @@ popover.budgie-menu {
+     }
+   }
+ 
+-  button { @extend %budgie_panel_button; }
++  button { @extend %budgie_panel_button !optional; }
+ 
+   // used to indicate unread notifications
+   .alert { color: $alert_color; }
