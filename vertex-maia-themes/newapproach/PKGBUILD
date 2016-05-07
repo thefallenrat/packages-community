@@ -6,7 +6,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20160507
+pkgver=20160508
 pkgrel=1
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon and GNOME Shell themes, based on Vertex'
 _gnomever=3.20
@@ -25,7 +25,7 @@ replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
 	'whiskermenu-rabideau.patch'
-        'correction.patch)
+        'correction.patch')
 install=$pkgname.install
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
@@ -53,7 +53,89 @@ prepare() {
   
   ## Adjust color values
   find . ! -type l -name "*.css" -o -name "*.scss" -o -name "*.svg" -exec sed -i \
-	"s/0553ea/1ceab6/g;\
+	"s/ecf0f2/f0f2ec/g;\
+	s/6b6b6d/6b6d6b/g;\
+	s/5b5b5d/5b5d5b/g;\
+	s/4080fb/80fb40/g;\
+	s/00061e/061e00/g;\
+	s/000610/061000/g;\
+	s/38393c/393c38/g;\
+	s/292a2b/2a2b29/g;\
+	s/e8ecef/ecefe8/g;\
+	s/3c3b40/3b403c/g;\
+	s/858587/858785/g;\
+	s/777779/777977/g;\
+	s/f9f9fa/f9faf9/g;\
+	s/e7e7ea/e7eae7/g;\
+	s/909092/909290/g;\
+	s/f7f7f9/f7f9f7/g;\
+	s/353537/353735/g;\
+	s/4d4f52/4f524d/g;\
+	s/6c6c6e/6c6e6c/g;\
+	s/3f4042/40423f/g;\
+	s/828284/828482/g;\
+	s/0b3381/33810b/g;\
+	s/1049b8/49b810/g;\
+	s/2266ec/66ec22/g;\
+	s/90b6ff/b6ff90/g;\
+	s/8d8d8f/8d8f8d/g;\
+	s/bababc/babcba/g;\
+	s/ceced0/ced0ce/g;\
+	s/3c3d3f/3d3f3c/g;\
+	s/58595b/595b58/g;\
+	s/545556/555654/g;\
+	s/202122/212220/g;\
+	s/202022/202220/g;\
+	s/6f7072/70726f/g;\
+	s/545456/545654/g;\
+	s/afb0b2/b0b2af/g;\
+	s/1202ff/02ff12/g;\
+	s/151516/151615/g;\
+	s/4e4e50/4e504e/g;\
+	s/3b3c3e/3c3e3b/g;\
+	s/474f56/4f5647/g;\
+	s/434446/444643/g;\
+	s/12223f/223f12/g;\
+	s/414142/414241/g;\
+	s/727274/727472/g;\
+	s/636365/636563/g;\
+	s/2e2e30/2e302e/g;\
+	s/1e1e1f/1e1f1e/g;\
+	s/6f6f71/6f716f/g;\
+	s/021948/194802/g;\
+	s/69696b/696b69/g;\
+	s/9b9ca0/9ca09b/g;\
+	s/242328/232824/g;\
+	s/3d5179/51793d/g;\
+	s/597cc1/7cc159/g;\
+	s/2b2b2c/2b2c2b/g;\
+	s/aaaaac/aaacaa/g;\
+	s/8e8f93/8f938e/g;\
+	s/606474/647460/g;\
+	s/9499a7/99a794/g;\
+	s/21304d/304d21/g;\
+	s/566990/699056/g;\
+	s/3f4143/41433f/g;\
+	s/585a5f/5a5f58/g;\
+	s/f3f3f5/f3f5f3/g;\
+	s/515254/525451/g;\
+	s/353638/363835/g;\
+	s/313133/313331/g;\
+	s/79a6fc/a6fc79/g;\
+	s/eaebed/ebedea/g;\
+	s/7f7f81/7f817f/g;\
+	s/6d6d6f/6d6f6d/g;\
+	s/0f2145/21450f/g;\
+	s/102b68/2b6810/g;\
+	s/454749/474945/g;\
+	s/eaebed/ebedea/g;\
+	s/f5f5f7/f5f7f5/g;\
+	s/4c4c4d/4c4d4c/g;\
+	s/3d3e40/3e403d/g;\
+	s/313233/323331/g;\
+	s/aeb2b9/b2b9ae/g;\
+	s/032b7c/2b7c03/g;\
+	s/0553ea/1ceab6/g;\
 	s/0d9eff/0dff9e/g;\
 	s/0e5ffa/16a085/g;\
 	s/122237/123722/g;\
@@ -181,7 +263,6 @@ prepare() {
 	s/f8f8f9/f8f9f8/g;\
 	s/fafafb/fafbfa/g;\
 	s/fbfbfc/fbfcfb/g;\
-	s/ffffff/f9faf9/g;\
 	s/14, 95, 250/14, 250, 95/g;\
 	s/22, 22, 23/22, 23, 22/g;\
 	s/25, 26, 29/25, 29, 26/g;\
