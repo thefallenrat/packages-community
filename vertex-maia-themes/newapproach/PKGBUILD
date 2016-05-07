@@ -24,28 +24,26 @@ conflicts=('vertex-manjaro-themes')
 replaces=('vertex-manjaro-themes')
 source=("vertex-${_releasever}.tar.gz::https://github.com/horst3180/Vertex-theme/archive/${_releasever}.tar.gz"
 	"vertex-manjaro-${_commit}.tar.gz::https://github.com/oberon2007/vertex-manjaro/archive/${_commit}.tar.gz"
-	'whiskermenu-rabideau.patch')
+	'whiskermenu-rabideau.patch'
+        'correction.patch::https://github.com/horst3180/vertex-theme/compare/master...Ste74:192bae3f22692a809a16832c24b3ce2eb5633acf.patch')
 install=$pkgname.install
 sha256sums=('b2cf4ae08709cfa8ae5b4389e0bfd824d27ca9f73f0a09ce2be3c4b62dd4549d'
             '41da06cab61bdd21d9df95896b81cb1c1ce48809d15f85eb566129b3be52512d'
-            '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
+            '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2'
+            '1845cc14bc64008ad12aba688915a89ed536eb6a5b479fbce7e8a8733819d207')
 options=('!strip')
-
-build() {
-  cd vertex-theme-${_releasever}
-  ./autogen.sh --prefix=/usr --disable-light --disable-unity --with-gnome=${_gnomever}
-}
 
 prepare() {
   cd vertex-theme-${_releasever}
+  patch -Np1 -i $srcdir/correction.patch
 
   ## Remove unneeded files
   msg "Remove unneeded files..."
   rm -r common/{gtk-3.0,gnome-shell}/3.1*
   rm -r common/gtk-3.0/3.20/{borders,assets}
   # BUG # see: https://github.com/horst3180/vertex-theme/issues/193
-  #rm common/{gtk-3.0,gnome-shell}/3.20/*.css
-  rm common/gnome-shell/3.20/*.css
+  rm common/{gtk-3.0,gnome-shell}/3.20/*.css
+  #rm common/gnome-shell/3.20/*.css
 
   msg "Changing colours might take a little while..."
 
@@ -303,16 +301,18 @@ prepare() {
 	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" \
 	common/gtk-2.0-dark/panel.rc
 
+this_is_an_error
+
   cd common/gtk-3.0/3.20
   ### create css using sass ###
   # BUG # see: https://github.com/horst3180/vertex-theme/issues/193
-  #msg "Create .css config files for gtk..."
-  #source /usr/share/nvm/init-nvm.sh
-  #source /usr/share/nvm/install-nvm-exec
-  #nvm i
-  #npm i
-  #npm i -g gulp
-  #gulp
+  msg "Create .css config files for gtk..."
+  source /usr/share/nvm/init-nvm.sh
+  source /usr/share/nvm/install-nvm-exec
+  nvm i
+  npm i
+  npm i -g gulp
+  gulp
 
   ### render files ###
   msg "Rendering gtk files..."
@@ -323,12 +323,17 @@ prepare() {
   cd ../../gnome-shell/3.20
   ### create css using sass ###
   msg "Create .css config files for gnome-shell..."
-  source /usr/share/nvm/init-nvm.sh		# not needed when #193 is fixed
-  source /usr/share/nvm/install-nvm-exec	# not needed when #193 is fixed
-  nvm i						# not needed when #193 is fixed
+  #source /usr/share/nvm/init-nvm.sh		# not needed when #193 is fixed
+  #source /usr/share/nvm/install-nvm-exec	# not needed when #193 is fixed
+  #nvm i					# not needed when #193 is fixed
   npm i
   npm i -g gulp
   gulp
+}
+
+build() {
+  cd vertex-theme-${_releasever}
+  ./autogen.sh --prefix=/usr --disable-light --disable-unity --with-gnome=${_gnomever}
 }
 
 package() {

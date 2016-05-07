@@ -1,0 +1,19 @@
+assets.svg
+------------
+ecf0f2/f0f2ec - Light grayish green - Triadic Color
+ffffff - White
+000000 - Black
+6b6b6d/6b6d6b - Very dark grayish lime green - Triadic Color
+5b5b5d/5b5d5b - Very dark grayish lime green - Triadic Color
+0d0d0d - Very dark gray (mostly black)
+090909 - Very dark gray (mostly black)
+4080fb/80fb40 - Bright green - Triadic Color
+0f0f0f - Very dark gray (mostly black)
+171717 - Very dark gray (mostly black)
+1b1b1b - Very dark gray (mostly black)
+00061e/061e00 - Very dark (mostly black) lime green - Triadic Color
+000610/061000 - Very dark (mostly black) green - Triadic Color
+1e1e1e - Very dark gray (mostly black)
+0b0b0b - Very dark gray (mostly black)
+38393c/393c38 - Very dark grayish green - Triadic Color
+292a2b/2a2b29 - Very dark (mostly black) green - Triadic Color
