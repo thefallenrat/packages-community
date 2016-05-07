@@ -87,4 +87,23 @@ eeeeee - Very light gray
 2e2e30/2e302e - Very dark (mostly black) lime green
 3e1313 - Very dark red
 1e1e1f/1e1f1e - Very dark (mostly black) lime green
-
+6f6f71/6f716f - Very dark grayish lime green
+021948/194802 - Very dark green
+464646 - Very dark gray
+69696b/696b69 - Very dark grayish lime green
+9b9ca0/9ca09b - Dark grayish lime green
+200000 - Very dark (mostly black) red
+b8b8b8 - Gray
+242328/232824 - Very dark (mostly black) lime green
+696969 - Very dark gray
+ebebeb - Very light gray
+3c3c3c - Very dark gray
+767676 - Dark gray
+3d5179/51793d - Dark moderate green
+597cc1/7cc159 - Moderate green
+5a5a5a - Very dark gray
+f5f5f5 - Very light gray (mostly white)
+2b2b2c/2b2c2b - Very dark (mostly black) lime green
+191919 - Very dark gray (mostly black)
+aaaaac/aaacaa - Dark grayish lime green
+8e8f93/8f938e - Dark grayish lime green
