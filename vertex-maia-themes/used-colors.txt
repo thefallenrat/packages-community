@@ -2,86 +2,89 @@ Use http://www.colorhexa.com/ and find triadic color replacements.
 
 assets.svg
 ------------
-ecf0f2/f0f2ec - Light grayish green - Triadic Color
+ecf0f2/f0f2ec - Light grayish green
 ffffff - White
 000000 - Black
-6b6b6d/6b6d6b - Very dark grayish lime green - Triadic Color
-5b5b5d/5b5d5b - Very dark grayish lime green - Triadic Color
+6b6b6d/6b6d6b - Very dark grayish lime green
+5b5b5d/5b5d5b - Very dark grayish lime green
 0d0d0d - Very dark gray (mostly black)
 090909 - Very dark gray (mostly black)
-4080fb/80fb40 - Bright green - Triadic Color
+4080fb/80fb40 - Bright green
 0f0f0f - Very dark gray (mostly black)
 171717 - Very dark gray (mostly black)
 1b1b1b - Very dark gray (mostly black)
-00061e/061e00 - Very dark (mostly black) lime green - Triadic Color
-000610/061000 - Very dark (mostly black) green - Triadic Color
+00061e/061e00 - Very dark (mostly black) lime green
+000610/061000 - Very dark (mostly black) green
 1e1e1e - Very dark gray (mostly black)
 0b0b0b - Very dark gray (mostly black)
-38393c/393c38 - Very dark grayish green - Triadic Color
-292a2b/2a2b29 - Very dark (mostly black) green - Triadic Color
-e8ecef/ecefe8 - Light grayish green - Triadic Color
+38393c/393c38 - Very dark grayish green
+292a2b/2a2b29 - Very dark (mostly black) green
+e8ecef/ecefe8 - Light grayish green
 f5f7f4 - Light grayish green
-3c3b40/3b403c - Very dark grayish lime green - Triadic Color
+3c3b40/3b403c - Very dark grayish lime green
 3a3c3b - Very dark grayish cyan - lime green
-858587/858785 - Dark grayish lime green - Triadic Color
-777779/777977 - Dark grayish lime green - Triadic Color
-f9f9fa/f9faf9 - Light grayish lime green - Triadic Color
-e7e7ea/e7eae7 - Light grayish lime green - Triadic Color
-909092/909290 - Dark grayish lime green - Triadic Color
-f7f7f9/f7f9f7 - Light grayish lime green - Triadic Color
+858587/858785 - Dark grayish lime green
+777779/777977 - Dark grayish lime green
+f9f9fa/f9faf9 - Light grayish lime green
+e7e7ea/e7eae7 - Light grayish lime green
+909092/909290 - Dark grayish lime green
+f7f7f9/f7f9f7 - Light grayish lime green
 eaeaea - Very light gray
 4b4b4b - Very dark gray
 8b8b8b - Dark gray
 313131 - Very dark gray (mostly black)
 515151 - Very dark gray
-353537/353735 - Very dark grayish lime green - Triadic Color
-4d4f52/4f524d - Very dark grayish green - Triadic Color
-6c6c6e/6c6e6c - Very dark grayish lime green - Triadic Color
+353537/353735 - Very dark grayish lime green
+4d4f52/4f524d - Very dark grayish green
+6c6c6e/6c6e6c - Very dark grayish lime green
 bebebe - Gray
 1a1a1a - Very dark gray (mostly black)
-3f4042/40423f - Very dark grayish green - Triadic Color
-828284/828482 - Dark grayish lime green - Triadic Color
+3f4042/40423f - Very dark grayish green
+828284/828482 - Dark grayish lime green
 810b0b - Dark red
 b81010 - Strong red
-0b3381/33810b - Dark green - Triadic Color
-1049b8/49b810 - Strong green - Triadic Color
+0b3381/33810b - Dark green
+1049b8/49b810 - Strong green
 ec2222 - Vivid red
 ff9090 - Very light red
-2266ec/66ec22 - Vivid green - Triadic Color
-90b6ff/b6ff90 - Very light green - Triadic Color
-8d8d8f/8d8f8d - Dark grayish lime green - Triadic Color
-bababc/babcba - Grayish lime green - Triadic Color
-ceced0/ced0ce - Grayish lime green - Triadic Color
-3c3d3f/3d3f3c - Very dark grayish green - Triadic Color
-58595b/595b58 - Very dark grayish green - Triadic Color
-545556/555654 - Very dark grayish green - Triadic Color
+2266ec/66ec22 - Vivid green
+90b6ff/b6ff90 - Very light green
+8d8d8f/8d8f8d - Dark grayish lime green
+bababc/babcba - Grayish lime green
+ceced0/ced0ce - Grayish lime green
+3c3d3f/3d3f3c - Very dark grayish green
+58595b/595b58 - Very dark grayish green
+545556/555654 - Very dark grayish green
 141414 - Very dark gray (mostly black)
-202122/212220 - Very dark (mostly black) green - Triadic Color
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+202122/212220 - Very dark (mostly black) green
+202022/202220 - Very dark (mostly black) lime green
+ff0202 - Vivid red
+6f7072/70726f - Very dark grayish green
+545456/545654 - Very dark grayish lime green
+2bff02 - Vivid lime green
+afb0b2/b0b2af - Dark grayish green
+1202ff/02ff12 - Vivid lime green
+bcbcbc - Gray
+02ff47 - Vivid cyan - lime green
+151516/151615 - Very dark (mostly black) lime green
+181818 - Very dark gray (mostly black)
+fbfbfb - Very light gray (mostly white)
+4e4e50/4e504e - Very dark grayish lime green
+3b3c3e/3c3e3b - Very dark grayish green
+4f4f4f - Very dark gray
+474f56/4f5647 - Very dark grayish green
+f4f4f4 - Very light gray (mostly white)
+434446/444643 - Very dark grayish green
+d7d7d7 - Light gray
+eeeeee - Very light gray
+12223f/223f12 - Very dark green
+722c2c - Very dark red
+6d0b0b - Very dark red
+414142/414241 - Very dark grayish lime green
+727274/727472 - Dark grayish lime green
+636365/636563 - Very dark grayish lime green
+2c2c2c - Very dark gray (mostly black)
+2e2e30/2e302e - Very dark (mostly black) lime green
+3e1313 - Very dark red
+1e1e1f/1e1f1e - Very dark (mostly black) lime green
 
