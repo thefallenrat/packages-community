@@ -1,3 +1,5 @@
+Use http://www.colorhexa.com/ and find triadic color replacements.
+
 assets.svg
 ------------
 ecf0f2/f0f2ec - Light grayish green - Triadic Color
@@ -48,3 +50,38 @@ ff9090 - Very light red
 2266ec/66ec22 - Vivid green - Triadic Color
 90b6ff/b6ff90 - Very light green - Triadic Color
 8d8d8f/8d8f8d - Dark grayish lime green - Triadic Color
+bababc/babcba - Grayish lime green - Triadic Color
+ceced0/ced0ce - Grayish lime green - Triadic Color
+3c3d3f/3d3f3c - Very dark grayish green - Triadic Color
+58595b/595b58 - Very dark grayish green - Triadic Color
+545556/555654 - Very dark grayish green - Triadic Color
+141414 - Very dark gray (mostly black)
+202122/212220 - Very dark (mostly black) green - Triadic Color
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
