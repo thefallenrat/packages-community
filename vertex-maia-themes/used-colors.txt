@@ -107,3 +107,28 @@ f5f5f5 - Very light gray (mostly white)
 191919 - Very dark gray (mostly black)
 aaaaac/aaacaa - Dark grayish lime green
 8e8f93/8f938e - Dark grayish lime green
+cdcdcd - Light gray
+606474/647460 - Dark grayish lime green
+9499a7/99a794 - Dark grayish green
+21304d/304d21 - Very dark desaturated green
+566990/699056 - Mostly desaturated dark green
+3f4143/41433f - Very dark grayish green
+585a5f/5a5f58 - Very dark grayish green
+ededed - Very light gray
+d3d3d3 - Light gray
+5b6464 - Very dark grayish cyan
+434a4a - Very dark grayish cyan
+393f3f - Very dark grayish cyan
+454c4c - Very dark grayish cyan
+2d3232 - Very dark (mostly black) cyan
+f3f3f5/f3f5f3 - Light grayish lime green
+515254/525451 - Very dark grayish green
+353638/363835 - Very dark grayish green
+313133/313331 - Very dark grayish lime green
+2a2a2a - Very dark gray (mostly black)
+79a6fc/a6fc79 - Soft green
+eaebed/ebedea - Light grayish green
+
+
+
+
