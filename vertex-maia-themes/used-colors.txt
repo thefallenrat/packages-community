@@ -17,3 +17,34 @@ ffffff - White
 0b0b0b - Very dark gray (mostly black)
 38393c/393c38 - Very dark grayish green - Triadic Color
 292a2b/2a2b29 - Very dark (mostly black) green - Triadic Color
+e8ecef/ecefe8 - Light grayish green - Triadic Color
+f5f7f4 - Light grayish green
+3c3b40/3b403c - Very dark grayish lime green - Triadic Color
+3a3c3b - Very dark grayish cyan - lime green
+858587/858785 - Dark grayish lime green - Triadic Color
+777779/777977 - Dark grayish lime green - Triadic Color
+f9f9fa/f9faf9 - Light grayish lime green - Triadic Color
+e7e7ea/e7eae7 - Light grayish lime green - Triadic Color
+909092/909290 - Dark grayish lime green - Triadic Color
+f7f7f9/f7f9f7 - Light grayish lime green - Triadic Color
+eaeaea - Very light gray
+4b4b4b - Very dark gray
+8b8b8b - Dark gray
+313131 - Very dark gray (mostly black)
+515151 - Very dark gray
+353537/353735 - Very dark grayish lime green - Triadic Color
+4d4f52/4f524d - Very dark grayish green - Triadic Color
+6c6c6e/6c6e6c - Very dark grayish lime green - Triadic Color
+bebebe - Gray
+1a1a1a - Very dark gray (mostly black)
+3f4042/40423f - Very dark grayish green - Triadic Color
+828284/828482 - Dark grayish lime green - Triadic Color
+810b0b - Dark red
+b81010 - Strong red
+0b3381/33810b - Dark green - Triadic Color
+1049b8/49b810 - Strong green - Triadic Color
+ec2222 - Vivid red
+ff9090 - Very light red
+2266ec/66ec22 - Vivid green - Triadic Color
+90b6ff/b6ff90 - Very light green - Triadic Color
+8d8d8f/8d8f8d - Dark grayish lime green - Triadic Color
