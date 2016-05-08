@@ -13,7 +13,6 @@ license=('GPL2')
 depends=('libxfce4ui' 'libwnck' 'libdrm' 'hicolor-icon-theme')
 makedepends=('intltool')
 optdepends=('compton: for OpenGL screen compositing')
-install="${_name}.install"
 provides=("${_name}=${pkgver}")
 conflicts=("${_name}")
 source=("http://archive.xfce.org/src/xfce/${_name}/${pkgver%.*}/${_name}-${pkgver}.tar.bz2"

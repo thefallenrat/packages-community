@@ -8,7 +8,6 @@ arch=('i686' 'x86_64')
 url="https://bitbucket.org/kachelaqa/$pkgname"
 license=('GPL2')
 depends=('pacman>=5.0' 'pacman<5.1' 'python>=3.2' 'python<3.6' 'python-pyqt5')
-install="$pkgname.install"
 source=("$url/downloads/$pkgname-$pkgver.tar.gz")
 md5sums=('c954b48f11cbb995fcb2a5005486bc38')
 

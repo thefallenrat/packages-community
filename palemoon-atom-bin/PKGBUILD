@@ -16,7 +16,6 @@ optdepends=('palemoon-i18n-default: language pack for system active language'
             'hyphen: library for hyphenation and justification')
 provides=("palemoon=$pkgver")
 conflicts=('palemoon')
-install=palemoon.install
 options=('!strip')
 source=("http://linux.palemoon.org/files/atom/$pkgver/palemoon-$pkgver-atom.en-US.linux-i686.tar.bz2"
         "palemoon.desktop")

@@ -17,12 +17,9 @@ pre_upgrade(){
 }
 
 post_remove() {
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
   # Lib replacement
 	  msg "Replacing Steam runtime libraries with originals"
 	  rm /var/lib/pacman/db.lck &> /dev/null
 	  pacman --noconfirm -Rdd lib32-libgudev-steamruntime lib32-libusb-steamruntime
 	  pacman --noconfirm -S --force lib32-libgudev lib32-libusb
 }
-

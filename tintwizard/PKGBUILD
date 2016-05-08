@@ -1,0 +1,27 @@
+# Maintainer: SpepS < dreamspepser at yahoo dot it >
+# Contributor: nTia89 <tia.tif@hotmail.it>
+
+pkgname=tintwizard
+pkgver=0.3.5
+pkgrel=1
+pkgdesc="A GUI wizard which generates config files for tint2 panels."
+arch=('any')
+url="https://github.com/luzfcb/tintwizard/"
+license=('GPL3')
+depends=('python2' 'pygtk' 'tint2')
+source=("https://github.com/luzfcb/tintwizard/archive/master.tar.gz"
+        "$pkgname.desktop")
+md5sums=('853432cbf919f95013770943f34e5171'
+         '5027b5ef0c8fd8c9e8d6d329a4722390')
+
+package() {
+  cd "$pkgname-master"
+
+  # Python2 fix
+  sed -i "s_python_&2_" $pkgname.py
+
+  # Install
+  mkdir -p "$pkgdir"/usr/{bin,share/applications}
+  install -Dm755 "$pkgname.py" "$pkgdir/usr/bin/$pkgname"
+  install -Dm644 "$srcdir/$pkgname.desktop" "$pkgdir/usr/share/applications"
+}
