@@ -5,7 +5,7 @@
 pkgname=parole
 pkgver=0.7.0
 _git=b71bd86995d476049b72d08d90636d5b0617db19
-pkgrel=2
+pkgrel=3
 pkgdesc="A modern media player based on the GStreamer framework"
 arch=('i686' 'x86_64')
 url="http://goodies.xfce.org/projects/applications/parole/"

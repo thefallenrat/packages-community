@@ -11,7 +11,7 @@ diff --git a/mugshot/MugshotWindow.py b/mugshot/MugshotWindow.py
 index 35323be..b557edf 100644
 --- a/mugshot/MugshotWindow.py
 +++ b/mugshot/MugshotWindow.py
-@@ -632,11 +632,18 @@ class MugshotWindow(Window):
+@@ -609,11 +609,18 @@ class MugshotWindow(Window):
              success = False
  
          logger.debug('Updating Office Phone...')

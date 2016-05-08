@@ -4,19 +4,19 @@
 
 pkgname=arc-themes
 _pkgname=arc-theme
-pkgver=20160424
+pkgver=20160430
 pkgrel=1
 pkgdesc='A flat theme with transparent elements (GNOME 3.20 version)'
 _gnomever=3.20
 # temporary grab for last commit
-_releasever=60466bb3d9b34ea90777c9dcfa575dc526b7fd4f
+_releasever=e4ae6f70a1e1f0d39d37e4a386e7128048aba262
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 conflicts=('gtk-theme-arc' 'gtk-theme-arc-git')
 source=("${pkgname}-${_releasever}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${_releasever}.tar.gz")
-sha256sums=('fc502cb958beaa7d95b0ec96bd5ea34b2a077a0d4990f0afc4242e512f78541a')
+sha256sums=('0672ccda741b44c1a834c2b42e1bde736a53fbed9fa52ada574e6131ef8b42d1')
 
 build() {
   cd "${_pkgname}-$_releasever"

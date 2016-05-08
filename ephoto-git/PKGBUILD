@@ -3,7 +3,7 @@
 
 _pkgname=ephoto
 pkgname=$_pkgname-git
-pkgver=0.1.1.475.f1df50a
+pkgver=0.9.99.713.2d61927
 pkgrel=1
 pkgdesc="A light image viewer based on EFL"
 arch=('i686' 'x86_64')
