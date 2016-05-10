@@ -6,22 +6,19 @@
 pkgname=breeze-maia-icon-themes
 _pkgname=breeze-icons
 pkgver=5.21.0
-pkgrel=5
+pkgrel=7
 pkgdesc='Breeze icon themes with Maia colors'
 arch=('any')
 url='https://community.kde.org/Frameworks'
-_commit=8984eb645635cd934c6bbc9a90fad2386fd4dc4a
+_commit=2c3510f42e7109a4452dd1aba67bf1719c7e9464
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'qt5-base')
-source=("$_pkgname.tar.gz::https://github.com/KDE/$_pkgname/archive/$_commit.tar.gz"
-	fix_size_field_errors.patch)
-md5sums=('0939351d5cdd7d7f514fe776e13d2f0c'
-         'e3a252deadd466b1104b5645bee67d53')
+source=("$_pkgname.tar.gz::https://github.com/KDE/$_pkgname/archive/$_commit.tar.gz")
+md5sums=('293977cacaafc00ab00b8abb6d43b1cd')
 
 prepare() {
   mkdir build
   cd $_pkgname-$_commit
-  patch  -Np1 -i $srcdir/fix_size_field_errors.patch
 }
 
 build() {
