@@ -8,10 +8,10 @@ arch=(any)
 groups=('i3-manjaro')
 license=(GPL3)
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=d4cbdc9edcdad6021776bed702856335a4288bbf
+_snapshot=d1d41ab1e638aad34fcf667514c86baebb6c053b
 conflicts=('i3-wallpapers')
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('2a472e288d6f475b2f78786a6cb079ee')
+md5sums=('975f0f94bed362b044d5848da27fea90')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
