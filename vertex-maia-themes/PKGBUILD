@@ -55,7 +55,7 @@ package() {
   msg "This next bit might take a little while..."
   
   cd "$pkgdir/usr/share/themes"
-  rm -r Chrome Firefox/Vertex-Light Vertex{-Plank,_alt_metacity}
+  rm -r Chrome Firefox/Vertex-Light Vertex{-Plank,_alt_metacity} Firefox/Vertex-Dark/chrome/userContent.css
   mv Vertex Vertex-Maia
   mv Vertex-Dark Vertex-Maia-Dark
   mv Firefox/Vertex Firefox/Vertex-Maia
@@ -327,7 +327,7 @@ package() {
   install -dm755 $pkgdir/usr/share/themes/Palemoon/Vertex-Maia{,-Dark}/chrome
   cp Palemoon/userChrome.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/userChrome.css  
   cp Palemoon/userChrome-dark.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userChrome.css
-  ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/userContent.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userContent.css
+  #ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/userContent.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userContent.css
   ln -s /usr/share/themes/Firefox/Vertex-Maia/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/images
   ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/images
 
