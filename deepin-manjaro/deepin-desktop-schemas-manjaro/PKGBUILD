@@ -23,12 +23,6 @@ groups=('deepin-manjaro')
 source=("git+$url.git#tag=$pkgver")
 sha256sums=('SKIP')
 
-prepare() {
-  cd "${pkgname}"
-  # don't override GNOME defaults
-  rm overrides/x86/{org.compiz,org.gnome.desktop,other}.override
-}
-
 build() {
   cd $pkgname
   make
