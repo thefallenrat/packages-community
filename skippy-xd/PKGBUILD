@@ -1,0 +1,31 @@
+
+# Maintainer Stefano Capitani <stefano@manjaro.org>
+# Original forked from <https://github.com/richardgv/skippy-xd>
+
+
+pkgname=skippy-xd
+pkgver=2015.12.21.r0.gd0a11f4
+pkgrel=1
+pkgdesc="A full-screen task-switcher for X11, similar to Apple's Expose."
+url="https://github.com/antonio-malcolm/skippy-xd/"
+license=('GPL')
+depends=('libxinerama' 'libxcomposite' 'libxdamage' 'libxft' 'xorg-server' 'giflib')
+makedepends=('git')
+arch=('i686' 'x86_64')
+source=("git://github.com/antonio-malcolm/skippy-xd.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd ${pkgname}
+    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+	cd "$srcdir/skippy-xd"
+	make
+}
+
+package() {
+	cd "$srcdir/skippy-xd"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+}
