@@ -14,7 +14,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160511
+pkgver=20160518
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -80,6 +80,7 @@ package_manjaro-cinnamon-settings() {
 		'cantarell-fonts'
 		'cinnamon'
 		'maia-icon-theme'
+		'ttf-comfortaa'
 		'vertex-maia-themes'
 		'xcursor-simpleandsoft')
 	optdepends=('plymouth-theme-manjaro-cinnamon')
