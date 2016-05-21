@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Manjaro Linux (Calamares)
+GenericName=Live Installer (Calamares)
+Comment=Install the operating system to disk
+Exec=sudo calamares
+Icon=calamares
+Terminal=false
+StartupNotify=false
+Type=Application
+Categories=Qt;System;
+Name[it_IT]=calamares
