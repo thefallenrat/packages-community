@@ -16,7 +16,8 @@ makedepends=('docbook2x' 'docbook-xsl' 'mate-common' 'yelp-tools')
 optdepends=('fortune-mod: for displaying fortune cookies in the Wanda the Fish applet'
             'yelp: for reading MATE help documents')
 groups=('mate-extra-gtk3')
-conflicts=("${_pkgbase}")
+conflicts=("${_pkgbase}" "mate-netspeed")
+replaces=("mate-netspeed")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
 sha1sums=('e316ade06cba447908120eee07b777dcfae436cd')
 

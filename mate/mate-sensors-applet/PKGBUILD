@@ -4,7 +4,7 @@
 _ver=1.14
 _pkgbase=mate-sensors-applet
 pkgname=(${_pkgbase})
-pkgver=${_ver}.1
+pkgver=${_ver}.0
 pkgrel=1
 pkgdesc="A MATE Panel applet to display readings from hardware sensors, including CPU temperature, fan speeds and voltage readings. (GTK2 version)"
 url="http://mate-desktop.org"
