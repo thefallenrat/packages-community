@@ -1,26 +1,24 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.12
 pkgbase=mate-system-monitor
-pkgname=(${pkgbase} ${pkgbase}-gtk3)
-pkgver=${_ver}.0
+pkgname=(${pkgbase})
+pkgver=${_ver}.2
 pkgrel=1
 pkgdesc="A system monitor for MATE"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm' 'gtkmm3' 'libgtop' 'libwnck'
-         'libwnck3' 'librsvg')
+depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm' 'libgtop' 'libwnck' 'librsvg')
 makedepends=('docbook2x' 'mate-common' 'yelp-tools')
 optdepends=('yelp: for reading MATE help documents')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgbase}-${pkgver}.tar.xz")
-sha1sums=('a9045ce34fe9c116b6afae08b04030ab9c2287ae')
+sha1sums=('aa53f50d8c94135b703fabe64a921e9fdeb61961')
 
 prepare() {
     cd "${srcdir}"
-    mv "${pkgname}-${pkgver}" "${pkgbase}-gtk2"
-    cp -a "${pkgbase}-gtk2" "${pkgbase}-gtk3"
+    mv "${pkgbase}-${pkgver}" "${pkgbase}-gtk2"
 }
 
 build() {
@@ -32,15 +30,6 @@ build() {
         --with-gtk=2.0 \
         --disable-static
     make
-
-    cd "${srcdir}/${pkgbase}-gtk3"
-    ./configure \
-        --prefix=/usr \
-        --libexecdir=/usr/lib/${pkgbase} \
-        --localstatedir=/var \
-        --with-gtk=3.0 \
-        --disable-static
-    make
 }
 
 package_mate-system-monitor() {
@@ -50,15 +39,5 @@ package_mate-system-monitor() {
     depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm' 'libgtop' 'libwnck' 'librsvg')
 
     cd "${srcdir}/${pkgbase}-gtk2"
-    make DESTDIR="${pkgdir}" install
-}
-
-package_mate-system-monitor-gtk3() {
-    pkgdesc+=' (GTK3 version [EXPERIMENTAL])'
-    groups=('mate-extra-gtk3')
-    conflicts=("${pkgbase}")
-    depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm3' 'libgtop' 'libwnck3' 'librsvg')
-
-    cd "${srcdir}/${pkgbase}-gtk3"
     make DESTDIR="${pkgdir}" install
 }
