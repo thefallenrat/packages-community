@@ -1,0 +1,3 @@
+[org.gnome.nautilus.preferences]
+executable-text-activation='ask'
+sort-directories-first=true

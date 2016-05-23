@@ -1,0 +1,59 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Felix Yan <felixonmars@archlinux.org>
+
+_pkgname=deepin-desktop-schemas
+pkgname=manjaro-deepin-settings
+pkgver=3.0.5
+pkgrel=1
+pkgdesc='Manjaro Linux deepin settings and gschemas'
+arch=('any')
+url="https://github.com/linuxdeepin/$_pkgname"
+license=('GPL3')
+groups=('deepin-manjaro')
+depends=('dconf'
+	'deepin-artwork-themes-manjaro'
+	'deepin-desktop'
+	'deepin-iconthemes-manjaro'
+	'deepin-launcher'
+	'deepin-session-ui-manjaro'
+	'deepin-sound-theme'
+	'deepin-wallpapers'
+	'manjaro-base-skel'
+	'numix-themes-archblue')
+optdepends=('plymouth-theme-manjaro-deepin-circle')
+makedepends=('git')
+conflicts=('dde-daemon<=2.92.1'
+	'deepin-desktop-schemas'
+	'manjaro-desktop-settings')
+provides=('deepin-desktop-schemas'
+	'manjaro-desktop-settings')
+replaces=('deepin-desktop-schemas-manjaro'
+	'deepin-default-gsettings'
+	'deepin-manjaro-gsettings')
+source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$pkgver"
+	'manjaro.diff'
+	'other.override'
+	"git+https://github.com/manjaro/desktop-settings.git")
+sha256sums=('SKIP'
+            '52b31113850e0e8b95228c4d4a60677404af3c83e49f6470cc82fceebec98098'
+            '8d3a72a019809b4bded0a7bf61f03c9ca9fe2b0e8ac6e9ed282f4616bc19f042'
+            'SKIP')
+
+prepare() {
+  cd $_pkgname
+  patch -p1 < ../manjaro.diff
+# don't override GNOME defaults
+  rm overrides/x86/org.gnome.desktop.override
+  cp $srcdir/other.override overrides/x86
+}
+
+build() {
+  cd $_pkgname
+  make
+}
+
+package() {
+  cd $_pkgname
+  make DESTDIR=$pkgdir install
+  cp -r $srcdir/desktop-settings/community/deepin/skel $pkgdir/etc
+}
