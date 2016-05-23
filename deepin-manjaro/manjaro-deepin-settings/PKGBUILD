@@ -38,7 +38,7 @@ source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	"git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP'
             '52b31113850e0e8b95228c4d4a60677404af3c83e49f6470cc82fceebec98098'
-            '8d3a72a019809b4bded0a7bf61f03c9ca9fe2b0e8ac6e9ed282f4616bc19f042'
+            '4e1c97eae6e86ce6411b3493cebd88da5a37a1d74bdd2999a368f6a882666c8a'
             'SKIP')
 
 prepare() {
