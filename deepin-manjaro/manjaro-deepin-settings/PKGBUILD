@@ -1,10 +1,11 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
-_pkgname=deepin-desktop-schemas
 pkgname=manjaro-deepin-settings
-pkgver=3.0.5
+pkgver=20160523
 pkgrel=1
+_pkgname=deepin-desktop-schemas
+_pkgver=3.0.5
 pkgdesc='Manjaro Linux deepin settings and gschemas'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
@@ -24,13 +25,14 @@ optdepends=('plymouth-theme-manjaro-deepin-circle')
 makedepends=('git')
 conflicts=('dde-daemon<=2.92.1'
 	'deepin-desktop-schemas'
+	'deepin-desktop-schemas-manjaro'
 	'manjaro-desktop-settings')
 provides=('deepin-desktop-schemas'
 	'manjaro-desktop-settings')
 replaces=('deepin-desktop-schemas-manjaro'
 	'deepin-default-gsettings'
 	'deepin-manjaro-gsettings')
-source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$pkgver"
+source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff'
 	'other.override'
 	"git+https://github.com/manjaro/desktop-settings.git")
