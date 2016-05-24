@@ -1,6 +1,0 @@
-[org.gnome.nautilus.preferences]
-executable-text-activation='ask'
-sort-directories-first=true
-
-[org.gnome.nautilus.icon-view]
-default-zoom-level='standard'

@@ -2,7 +2,7 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160523
+pkgver=20160524
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
@@ -34,11 +34,9 @@ replaces=('deepin-desktop-schemas-manjaro'
 	'deepin-manjaro-gsettings')
 source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff'
-	'other.override'
 	"git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP'
-            '52b31113850e0e8b95228c4d4a60677404af3c83e49f6470cc82fceebec98098'
-            '4e1c97eae6e86ce6411b3493cebd88da5a37a1d74bdd2999a368f6a882666c8a'
+            'e47b899671fe20d0f0d8c1a63363e185cced12779b9acae0c7a6083a3e001e13'
             'SKIP')
 
 prepare() {
@@ -46,7 +44,6 @@ prepare() {
   patch -p1 < ../manjaro.diff
 # don't override GNOME defaults
   rm overrides/x86/org.gnome.desktop.override
-  cp $srcdir/other.override overrides/x86
 }
 
 build() {
