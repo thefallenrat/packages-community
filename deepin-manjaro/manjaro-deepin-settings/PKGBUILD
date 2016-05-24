@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 pkgver=20160524
-pkgrel=1
+pkgrel=2
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -36,7 +36,7 @@ source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff'
 	"git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP'
-            'e47b899671fe20d0f0d8c1a63363e185cced12779b9acae0c7a6083a3e001e13'
+            '59942c094a3a5fba02d21fbf148139b9e838c19d74a37dbefc001fddfbe2f8fb'
             'SKIP')
 
 prepare() {
