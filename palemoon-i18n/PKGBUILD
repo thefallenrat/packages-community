@@ -2,7 +2,7 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgbase=palemoon-i18n
-pkgver=26.0
+pkgver=26.2
 pkgrel=1
 pkgdesc="Language pack for Palemoon"
 arch=('any')
@@ -85,7 +85,7 @@ md5sums=('1fbb4ba7066cadc3d885dc4aae57b5b3'
          'e55fafb18e68abcfc6eb2d6c58f3d581'
          '3601183e53d76ee5588aa029e48cd756'
          '7557b99ec186011406bb44dca1703e95'
-         '0504d2d4beb9ca667ff09b3bf8d2e172'
+         'b83544150e7f0dfade8b4f58f3e372e8'
          '174fead0e1e7cc01190f4f6f6c57d7c0'
          'fd087bd06805f24db53b3af2c4e47098'
          'f074fcf5f474a4113b2ce53e5dae093a'

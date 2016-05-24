@@ -7,17 +7,16 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=45.0
-pkgrel=1
+pkgver=45.1.0
+pkgrel=2
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
 arch=('i686' 'x86_64')
-license=('MPL' 'GPL')
+license=('MPL' 'GPL' 'LGPL')
 url="http://www.mozilla.org/thunderbird/"
 depends=('gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
-         'dbus-glib' 'alsa-lib' 'desktop-file-utils' 'hicolor-icon-theme'
-         'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 'sqlite' 'ttf-font' 
-         'nspr' 'libnotify')
+         'dbus-glib' 'alsa-lib' 'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 
+         'sqlite' 'ttf-font' 'nspr' 'libnotify')
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf' 
              'libpulse' 'inetutils' 'pkg-config' 'autoconf2.13' 'xorg-server-xvfb')
 optdepends=('thunderbird-i18n: for multilanguage support'
@@ -29,16 +28,20 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozconfig
         thunderbird.desktop
         thunderbird-install-dir.patch
+        firefox-gcc-6.0.patch mozilla-1228540.patch mozilla-1228540-1.patch
         vendor.js
         mozilla-kde.patch
         mozilla-language.patch
         mozilla-nongnome-proxies.patch
         kde.js)
-sha256sums=('15693897f1e46cbb5a95932b8c087a53004635415845fb4f50d4edfbba77d667'
-            '539d5495d8c36c2f49d1e0e6ad726c68ee0545c1a262a621d720674086ff8970'
+sha256sums=('8ae9ebe536895d69d99f412f2b3aba645b7dd839e520959330da13892d672309'
+            '3ae18949ebb4bfd3990258cc855bcc3ac46e3f1f3154780d3e3bd1524956593b'
             'b4371b9021fd5f65a1f546fca36c6c326a00ef0f57b448e86a33656ac7f780a8'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
-            'e4ea8e6788163d9f8db8f1f40023db3ea0a1358f9a4510169f2d4c4fe6a887ed'
+            '4d1e1ddabc9e975ed39f49e134559a29e01cd49439e358233f1ede43bf5a52bf'
+            '2588c567fec88b44b65f0cd111e8769361c138d4c964310684f7bb80066f8f9f'
+            'd1ccbaf0973615c57f7893355e5cd3a89efb4e91071d0ec376e429b50cf6ed19'
+            '8f9ee921896b939e36d089c8ff544bc2b0a8b56dd5a2b4f5e75a19a6e1849284'
             '3e7d8d65b481c03eb1da37b2e211f018e6fc9de381433205398e5ddaaff1c44a'
             'b9feb66a33dc1644d7d277dc3fc166c655735de7100bc4e93f1fe44567f35345'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
@@ -65,6 +68,11 @@ prepare(){
   cp ../mozconfig .mozconfig
   patch -Np1 -i ../thunderbird-install-dir.patch
 
+  # Required for GCC 6
+  patch -d mozilla -Np1 < ../firefox-gcc-6.0.patch
+  patch -d mozilla -Np1 < ../mozilla-1228540.patch
+  patch -d mozilla -Np1 < ../mozilla-1228540-1.patch
+
   echo -n "$_google_api_key" >google-api-key
   echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
 
@@ -78,22 +86,22 @@ prepare(){
   ln -s /usr/bin/python2 "$srcdir/path/python"
 
   msg "Patching for KDE"
-  cd mozilla
-  patch -Np1 -i "$srcdir/mozilla-language.patch"
-  patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
-  patch -Np1 -i "$srcdir/mozilla-kde.patch"
-  cd ..
-
-  # configure script misdetects the preprocessor without an optimization level
-  # https://bugs.archlinux.org/task/34644
-  sed -i '/ac_cpp=/s/$CPPFLAGS/& -O2/' mozilla/configure
+  patch -d mozilla -Np1 < ../mozilla-language.patch
+  patch -d mozilla -Np1 < ../mozilla-nongnome-proxies.patch
+  patch -d mozilla -Np1 < ../mozilla-kde.patch
 }
 
 build() {
   cd thunderbird-$pkgver
 
+  # _FORTIFY_SOURCE causes configure failures
+  CPPFLAGS+=" -O2"
+
+  # GCC 6
+  CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse"
+  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse"
+
   export PATH="$srcdir/path:$PATH"
-  export PYTHON="/usr/bin/python2"
 
   xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
     make -f client.mk profiledbuild

@@ -4,8 +4,8 @@
 
 _pkgname=deepin-artwork-themes
 pkgname=$_pkgname-manjaro
-pkgver=20160213
-_snapshot=14f6e6e3cc1a97cb8c5a3f115165643c62717e74
+pkgver=20160514
+_snapshot=9f97670fb4e96b4fd1439bdc3bf3b88675b61f48
 pkgrel=1
 pkgdesc='Default artwork themes for Manjaro-Deepin'
 arch=('any')
@@ -22,7 +22,7 @@ conflicts=('deepin-artwork-themes')
 provides=('deepin-artwork-themes')
 groups=('deepin-manjaro')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('d11e928c3b10aa64e4a74be4abb844f1')
+md5sums=('e26257192e2b0413bcfc6b3853270eea')
 
 build() {
   cd $pkgname-$_snapshot

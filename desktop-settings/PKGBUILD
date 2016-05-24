@@ -5,7 +5,6 @@ pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
 	'manjaro-budgie-settings'
 	'manjaro-cinnamon-settings'
-	'manjaro-deepin-settings'
 	'manjaro-fluxbox-settings'
 	'manjaro-gnome-settings'
 	'manjaro-i3-settings'
@@ -14,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160504
+pkgver=20160522
 pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -63,12 +62,10 @@ package_manjaro-bspwm-settings() {
 package_manjaro-budgie-settings() {
 	pkgdesc='Manjaro Linux budgie settings'
         depends=('budgie-desktop'
-		'arc-themes'
-		'arc-firefox-theme'
-		'moka-icon-theme'
+		'vertex-maia-themes'
+		'vertex-maia-icon-theme'
 		'budgie-wallpapers'
-		'xcursor-simpleandsoft'
-		'manjaro-budgie-settings-extra')
+		'xcursor-simpleandsoft')
 	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
@@ -82,6 +79,7 @@ package_manjaro-cinnamon-settings() {
 		'cantarell-fonts'
 		'cinnamon'
 		'maia-icon-theme'
+		'ttf-comfortaa'
 		'vertex-maia-themes'
 		'xcursor-simpleandsoft')
 	optdepends=('plymouth-theme-manjaro-cinnamon')
@@ -89,24 +87,6 @@ package_manjaro-cinnamon-settings() {
 	provides=('manjaro-desktop-settings')
 
 	_inst_dir 'community/cinnamon'
-}
-
-package_manjaro-deepin-settings() {
-	pkgdesc='Manjaro Linux deepin settings'
-	groups=('deepin-manjaro')
-	depends=('deepin-artwork-themes-manjaro'
-		'deepin-desktop'
-		'deepin-desktop-schemas-manjaro'
-		'deepin-iconthemes-manjaro'
-		'deepin-launcher'
-		'deepin-session-ui-manjaro'
-		'deepin-wallpapers'
-		'manjaro-base-skel')
-	optdepends=('plymouth-theme-manjaro-deepin-circle')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-
-	_inst_dir 'community/deepin'
 }
 
 package_manjaro-fluxbox-settings() {

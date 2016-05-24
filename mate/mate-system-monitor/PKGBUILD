@@ -1,0 +1,43 @@
+# Maintainer: Philip Müller <philm@manjaro.org>
+# Contributor : Martin Wimpress <code@flexion.org>
+
+_ver=1.12
+pkgbase=mate-system-monitor
+pkgname=(${pkgbase})
+pkgver=${_ver}.2
+pkgrel=1
+pkgdesc="A system monitor for MATE"
+url="http://mate-desktop.org"
+arch=('i686' 'x86_64')
+license=('GPL')
+depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm' 'libgtop' 'libwnck' 'librsvg')
+makedepends=('docbook2x' 'mate-common' 'yelp-tools')
+optdepends=('yelp: for reading MATE help documents')
+source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgbase}-${pkgver}.tar.xz")
+sha1sums=('aa53f50d8c94135b703fabe64a921e9fdeb61961')
+
+prepare() {
+    cd "${srcdir}"
+    mv "${pkgbase}-${pkgver}" "${pkgbase}-gtk2"
+}
+
+build() {
+    cd "${srcdir}/${pkgbase}-gtk2"
+    ./configure \
+        --prefix=/usr \
+        --libexecdir=/usr/lib/${pkgbase} \
+        --localstatedir=/var \
+        --with-gtk=2.0 \
+        --disable-static
+    make
+}
+
+package_mate-system-monitor() {
+    pkgdesc+=' (GTK2 version)'
+    groups=('mate-extra')
+    conflicts=("${pkgbase}-gtk3")
+    depends=('dconf' 'dbus-glib' 'glibmm' 'gtkmm' 'libgtop' 'libwnck' 'librsvg')
+
+    cd "${srcdir}/${pkgbase}-gtk2"
+    make DESTDIR="${pkgdir}" install
+}

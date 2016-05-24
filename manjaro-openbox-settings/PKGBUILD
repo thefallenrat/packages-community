@@ -2,8 +2,8 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-openbox-settings
-pkgver=20160405
-pkgrel=1
+pkgver=20160518
+pkgrel=2
 pkgdesc='Manjaro Linux openbox-minimal settings'
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -11,6 +11,10 @@ license=('GPL')
 depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh'
 	'openbox-themes' 'vertex-maia-themes' 'maia-icon-theme' 'maia-wallpaper')
 makedepends=('git')
+conflicts=('manjaro-bspwm-settings'
+	'manjaro-fluxbox-settings'
+	'manjaro-i3-settings'
+	'manjaro-JWM-settings')
 source=("git+$url.git")
 sha256sums=('SKIP')
 

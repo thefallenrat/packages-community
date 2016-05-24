@@ -2,18 +2,8 @@ post_install() {
   echo "Check https://forum.manjaro.org/index.php?topic=16054 for info"
 }
 
-pre_install(){
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
-}
-
 post_upgrade() {
-  echo "Check https://forum.manjaro.org/index.php?topic=16054 for info"
-}
-
-pre_upgrade(){
-  update-desktop-database -q
-  gtk-update-icon-cache -q -t -f usr/share/icons/hicolor
+  post_install
 }
 
 post_remove() {

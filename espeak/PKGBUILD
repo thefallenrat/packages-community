@@ -3,13 +3,13 @@
 pkgname=espeak
 _gitname=espeak-ng
 _commit=
-pkgver=1.48.15.r585.g26ecf79
+pkgver=1.48.15.r609.ga9ba5ff
 pkgrel=1
 pkgdesc="Next generation open source speech synthesizer based on Espeak (git version)"
 arch=(i686 x86_64)
 url="https://github.com/espeak-ng/espeak-ng"
 license=('GPL3')
-depends=(gcc-libs pcaudiolib)
+depends=(gcc-libs libpulse pcaudiolib)
 makedepends=('git')
 provides=(espeak)
 conflicts=(espeak espeak-test espeak-ng-git)

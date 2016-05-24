@@ -5,7 +5,7 @@
 # Contributor: David Manouchehri <d@32t.ca>
 
 pkgname=dropbox
-pkgver=3.18.1
+pkgver=3.20.1
 pkgrel=1
 pkgdesc="A free service that lets you bring your photos, docs, and videos anywhere and share them easily."
 arch=("i686" "x86_64")
@@ -32,8 +32,8 @@ sha256sums=('4240052a07a0f38dbdea6f199d5f1fc7b04ace9bf7474a63f09bdff7682a5154'
             '5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e'
             '85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a'
             'c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e')
-sha256sums_i686=('51b2c5bc82e61c5c842b92f1348aa53803b343c5288d080261caf326f294ab04')
-sha256sums_x86_64=('153e39f32363dff87e923dbaea8395cf3da1d4a0658c8476ce7fccdf5186aae1')
+sha256sums_i686=('0207f4b9a3c9be911228085b990f4cf0387cc15867aeca8129e562b1a229f328')
+sha256sums_x86_64=('6f7789e9c8183b2d1bf9a81659aca107193e2872e60893782cb4294d7bb61d9c')
 
 if [ "$CARCH" = "x86_64" ]; then
     _source_arch="x86_64"
