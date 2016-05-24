@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 pkgver=20160524
-pkgrel=2
+pkgrel=3
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -54,5 +54,6 @@ build() {
 package() {
   cd $_pkgname
   make DESTDIR=$pkgdir install
+  install -d $pkgdir/etc
   cp -r $srcdir/desktop-settings/community/deepin/skel $pkgdir/etc
 }
