@@ -2,12 +2,12 @@
 
 pkgname=fisherman
 pkgver=2.2.0
-pkgrel=2
+pkgrel=1
 pkgdesc="A blazing fast, modern plugin manager for fish"
 arch=('any')
 url="http://fisherman.sh/"
 license=('MIT')
-depends=('fish>=2.2.0' 'git')
+depends=('fish>=2.2.0')
 optdepends=()
 makedepends=('git')
 conflicts=('fisherman-git')
