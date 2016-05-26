@@ -6,7 +6,7 @@
 pkgname=breeze-maia-icon-themes
 _pkgname=breeze-icons
 pkgver=5.22.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Breeze icon themes with Maia colors'
 arch=('any')
 url='https://community.kde.org/Frameworks'
@@ -23,7 +23,7 @@ prepare() {
   ln -s icons/places/32/user-desktop.svg icons/apps/32/deepin-show-desktop.svg
   ln -s icons-dark/places/32/user-desktop.svg icons-dark/apps/32/deepin-show-desktop.svg
   ln -s icons/apps/48/utilities-terminal.svg icons/apps/48/deepin-terminal.svg
-  ln -s icons-dark/apps/48/utilities-terminal.svg icons/apps/48/deepin-terminal.svg
+  ln -s icons-dark/apps/48/utilities-terminal.svg icons-dark/apps/48/deepin-terminal.svg
   cp $srcdir/deepin-show-desktop.svg icons/apps/48/deepin-show-desktop.svg
   cp $srcdir/deepin-show-desktop.svg icons-dark/apps/48/deepin-show-desktop.svg
 }
