@@ -15,18 +15,18 @@ diff -ru a/overrides/mips/com.deepin.wrap.gnome.desktop.override b/overrides/mip
  
  [com.deepin.wrap.gnome.desktop.wm.preferences]
 -theme='deepin'
-+theme='Numix-ArchBlue'
++theme='Vertex-Maia'
  audible-bell=false
  mouse-button-modifier=''
  
  [com.deepin.wrap.gnome.desktop.interface]
 -cursor-theme='deepin'
-+cursor-theme='Chameleon-Pearl-Regular-0.5'
++cursor-theme='Chameleon-Pearl'
  gtk-key-theme='Default'
 -gtk-theme='deepin'
 -icon-theme='deepin'
-+gtk-theme='Numix-ArchBlue'
-+icon-theme='Compass'
++gtk-theme='Vertex-Maia'
++icon-theme='Vertex-Maia'
  gtk-im-module='fcitx'
  
  [com.deepin.wrap.gnome.desktop.wm.keybindings]
@@ -36,7 +36,7 @@ diff -ru a/overrides/mips/com.deepin.wrap.gnome.metacity.override b/overrides/mi
 @@ -1,5 +1,5 @@
  [com.deepin.wrap.gnome.metacity]
 -theme='deepin'
-+theme='Numix-ArchBlue'
++theme='Vertex-Maia'
  
  [com.deepin.wrap.gnome.metacity.keybindings]
  expose-all-windows=['<Super>A']
@@ -52,7 +52,7 @@ diff -ru a/overrides/mips/other.override b/overrides/mips/other.override
  sort-directories-first=true
 +
 +[org.gnome.nautilus.icon-view]
-+default-zoom-level='standard'
++default-zoom-level='small'
 diff -ru a/overrides/x86/com.deepin.dde.dock.override b/overrides/x86/com.deepin.dde.dock.override
 --- a/overrides/x86/com.deepin.dde.dock.override	2016-05-23 13:26:16.659245000 +0200
 +++ b/overrides/x86/com.deepin.dde.dock.override	2016-05-24 17:09:09.585788000 +0200
@@ -70,18 +70,18 @@ diff -ru a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/
  
  [com.deepin.wrap.gnome.desktop.wm.preferences]
 -theme='deepin'
-+theme='Numix-ArchBlue'
++theme='Vertex-Maia'
  audible-bell=false
  mouse-button-modifier=''
  
  [com.deepin.wrap.gnome.desktop.interface]
 -cursor-theme='deepin'
-+cursor-theme='Chameleon-Pearl-Regular-0.5'
++cursor-theme='Chameleon-Pearl'
  gtk-key-theme='Default'
 -gtk-theme='deepin'
 -icon-theme='deepin'
-+gtk-theme='Numix-ArchBlue'
-+icon-theme='Compass'
++gtk-theme='Vertex-Maia'
++icon-theme='Vertex-Maia'
  gtk-im-module='fcitx'
  
  [com.deepin.wrap.gnome.desktop.wm.keybindings]
@@ -91,7 +91,7 @@ diff -ru a/overrides/x86/com.deepin.wrap.gnome.metacity.override b/overrides/x86
 @@ -1,5 +1,5 @@
  [com.deepin.wrap.gnome.metacity]
 -theme='deepin'
-+theme='Numix-ArchBlue'
++theme='Vertex-Maia'
  
  [com.deepin.wrap.gnome.metacity.keybindings]
  expose-all-windows=['<Super>A']
@@ -108,7 +108,7 @@ diff -ru a/overrides/x86/other.override b/overrides/x86/other.override
  sort-directories-first=true
 +
 +[org.gnome.nautilus.icon-view]
-+default-zoom-level='standard'
++default-zoom-level='small'
 diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dde.appearance.gschema.xml
 --- a/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-23 13:26:16.659245000 +0200
 +++ b/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-24 17:09:09.585788000 +0200
@@ -117,7 +117,7 @@ diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dd
    <schema path="/com/deepin/dde/appearance/" id="com.deepin.dde.appearance" gettext-domain="DDE">
      <key type="s" name="gtk-theme">
 -      <default>'deepin'</default>
-+      <default>'Numix-ArchBlue'</default>
++      <default>'Vertex-Maia'</default>
        <summary>Gtk+ theme</summary>
        <description>
          Basename of the default theme used by gtk+.
@@ -125,7 +125,7 @@ diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dd
      </key>
      <key type="s" name="icon-theme">
 -      <default>'deepin'</default>
-+      <default>'Compass'</default>
++      <default>'Vertex-Maia'</default>
        <summary>Icon theme</summary>
        <description>
          Icon theme to use for the panel, nautilus etc.
@@ -133,7 +133,7 @@ diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dd
      </key>
      <key type="s" name="cursor-theme">
 -      <default>'deepin'</default>
-+      <default>'Chameleon-Pearl-Regular-0.5'</default>
++      <default>'Chameleon-Pearl'</default>
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
@@ -145,7 +145,7 @@ diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettin
      </key>
      <key type="s" name="icon-theme-name">
 -      <default>'deepin'</default>
-+      <default>'Compass'</default>
++      <default>'Vertex-Maia'</default>
        <summary>Icon theme</summary>
        <description>
          Icon theme to use for the panel, nautilus etc.
@@ -154,7 +154,7 @@ diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettin
      </key>
      <key type="s" name="gtk-theme-name">
 -      <default>'deepin'</default>
-+      <default>'Numix-ArchBlue'</default>
++      <default>'Vertex-Maia'</default>
        <summary>Gtk+ theme</summary>
        <description>
          Basename of the default theme used by gtk+.
@@ -162,7 +162,7 @@ diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettin
      </key>
      <key type="s" name="gtk-cursor-theme-name">
 -      <default>'deepin'</default>
-+      <default>'Chameleon-Pearl-Regular-0.5'</default>
++      <default>'Chameleon-Pearl'</default>
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.

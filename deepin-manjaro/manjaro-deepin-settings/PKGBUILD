@@ -2,8 +2,8 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160524
-pkgrel=3
+pkgver=20160527
+pkgrel=1
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -20,8 +20,9 @@ depends=('dconf'
 	'deepin-sound-theme'
 	'deepin-wallpapers'
 	'manjaro-base-skel'
-	'numix-themes-archblue')
-optdepends=('plymouth-theme-manjaro-deepin-circle')
+	'vertex-maia-themes')
+optdepends=('plymouth-theme-manjaro-deepin-circle'
+	'manjaro-backgrounds')
 makedepends=('git')
 conflicts=('dde-daemon<=2.92.1'
 	'deepin-desktop-schemas'
@@ -36,7 +37,7 @@ source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff'
 	"git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP'
-            '59942c094a3a5fba02d21fbf148139b9e838c19d74a37dbefc001fddfbe2f8fb'
+            ''
             'SKIP')
 
 prepare() {
