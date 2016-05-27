@@ -8,8 +8,6 @@ arch=('any')
 url="http://fisherman.sh/"
 license=('MIT')
 depends=('fish>=2.2.0')
-optdepends=()
-makedepends=('git')
 conflicts=('fisherman-git')
 install=fisherman.install
 source=(
