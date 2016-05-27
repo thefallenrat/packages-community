@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 pkgver=20160527
-pkgrel=1
+pkgrel=2
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
 pkgdesc='Manjaro Linux deepin settings and gschemas'
