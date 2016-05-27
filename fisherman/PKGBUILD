@@ -14,7 +14,7 @@ conflicts=('fisherman-git')
 install=fisherman.install
 source=(
   "https://github.com/$pkgname/$pkgname/archive/$pkgver.tar.gz"
-  "https://git.io/fisher-up-me"
+  "fisher-up-me::https://gist.githubusercontent.com/brj/ec07466c05e56784b0a036958f3a8694/raw/47dc0ac0d6ca6e56f9ba56b0c5e48637cd32e615/upgrade_to_fisher_2.fish"
   "fisher-up-me.patch"
 )
 sha512sums=('bc2e7534917591bcfcab2f0e04e8395fa9a6273ab14003c8729e448767fd5f92b63651bb789dbbb30c045230ef4bc75df3030c018a82e53d1b29d5e214f10bee'
