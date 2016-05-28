@@ -2,7 +2,7 @@
 
 pkgname=fisherman
 pkgver=2.8.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A blazing fast, modern plugin manager for fish"
 arch=('any')
 url="http://fisherman.sh/"
