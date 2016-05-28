@@ -7,7 +7,8 @@ pkgdesc="A blazing fast, modern plugin manager for fish"
 arch=('any')
 url="http://fisherman.sh/"
 license=('MIT')
-depends=('fish>=2.2.0')
+depends=('fish>=2.2.0'
+        'git')
 conflicts=('fisherman-git')
 install=fisherman.install
 source=(
