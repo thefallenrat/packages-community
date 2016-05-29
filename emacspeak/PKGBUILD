@@ -1,38 +1,42 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Steve Holmes <steve.holmes88@gmail.com>
 # Contributers: Chris Brannon <cmbrannon79@gmail.com>
+
 pkgname=emacspeak
 pkgver=44.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Emacs extension that provides spoken output"
 arch=('i686' 'x86_64')
 url="https://github.com/tvraman/emacspeak"
 license=('GPL' 'LGPL' 'APACHE')
 depends=('emacs' 'tcl' 'tclx' 'espeak')
 optdepends=('eflite: software speech via the FLite TTS engine'
-'python: Google client, and wrapper for Emacspeak speech servers.')
+	'python: Google client, and wrapper for Emacspeak speech servers.')
 install='emacspeak.install'
 source=("https://github.com/tvraman/emacspeak/releases/download/${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 md5sums=('e30f167b71c991b3f40cb6d9db02f81a')
+
 prepare() {
-export DTK_PROGRAM="espeak"
-cd "$srcdir/$pkgname-$pkgver"
-sed -i -e 's|/etc/info-dir|$(DESTDIR)/etc/info-dir|g' info/Makefile
-rm -f lisp/g-client/*.elc
-rm -f sounds/default-8k/*.elc
+  export DTK_PROGRAM="espeak"
+  cd "$srcdir/$pkgname-$pkgver"
+  sed -i -e 's|/etc/info-dir|$(DESTDIR)/etc/info-dir|g' info/Makefile
+  rm -f lisp/g-client/*.elc
+  rm -f sounds/default-8k/*.elc
 }
+
 build() {
-cd ${srcdir}/${pkgname}-${pkgver}
-make config
-make
-# Espeak isn't compiled by default, but lots of folks use it.
-cd "${srcdir}/${pkgname}-${pkgver}/servers/linux-espeak"
-make
-touch "${srcdir}/${pkgname}-${pkgver}/servers/linux-outloud/atcleci.so"
+  cd ${srcdir}/${pkgname}-${pkgver}
+  make config
+  make
+  # Espeak isn't compiled by default, but lots of folks use it.
+  cd "${srcdir}/${pkgname}-${pkgver}/servers/linux-espeak"
+  make
+  touch "${srcdir}/${pkgname}-${pkgver}/servers/linux-outloud/atcleci.so"
 }
+
 package() {
-cd ${srcdir}/${pkgname}-${pkgver}
-make prefix="${pkgdir}/usr" install
-gzip -9nf ${pkgdir}/usr/share/info/*
-rm -f "$pkgdir/usr/share/info/dir"
+  cd ${srcdir}/${pkgname}-${pkgver}
+  make prefix="${pkgdir}/usr" install
+  gzip -9nf ${pkgdir}/usr/share/info/*
+  rm -f "$pkgdir/usr/share/info/dir"
 }
