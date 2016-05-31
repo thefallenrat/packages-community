@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-pkgver=20160322
+pkgver=20160601
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
