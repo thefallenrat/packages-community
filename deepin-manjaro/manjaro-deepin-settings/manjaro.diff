@@ -1,6 +1,6 @@
 diff -ru a/overrides/mips/com.deepin.dde.dock.override b/overrides/mips/com.deepin.dde.dock.override
---- a/overrides/mips/com.deepin.dde.dock.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/mips/com.deepin.dde.dock.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/mips/com.deepin.dde.dock.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/mips/com.deepin.dde.dock.override	2016-05-31 15:09:06.967010496 +0200
 @@ -1,3 +1,3 @@
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','org.gnome.nautilus','audiacious-qt','smplayer','firefox','wps-office-wps','wps-office-wpp','wps-office-et','dde-control-center']
@@ -8,14 +8,14 @@ diff -ru a/overrides/mips/com.deepin.dde.dock.override b/overrides/mips/com.deep
 +docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru a/overrides/mips/com.deepin.wrap.gnome.desktop.override b/overrides/mips/com.deepin.wrap.gnome.desktop.override
---- a/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-05-31 15:09:06.970343874 +0200
 @@ -8,15 +8,15 @@
  event-sounds=true
  
  [com.deepin.wrap.gnome.desktop.wm.preferences]
 -theme='deepin'
-+theme='Vertex-Maia'
++theme='Vertex-Maia-Dark'
  audible-bell=false
  mouse-button-modifier=''
  
@@ -25,24 +25,24 @@ diff -ru a/overrides/mips/com.deepin.wrap.gnome.desktop.override b/overrides/mip
  gtk-key-theme='Default'
 -gtk-theme='deepin'
 -icon-theme='deepin'
-+gtk-theme='Vertex-Maia'
++gtk-theme='Vertex-Maia-Dark'
 +icon-theme='Vertex-Maia'
  gtk-im-module='fcitx'
  
  [com.deepin.wrap.gnome.desktop.wm.keybindings]
 diff -ru a/overrides/mips/com.deepin.wrap.gnome.metacity.override b/overrides/mips/com.deepin.wrap.gnome.metacity.override
---- a/overrides/mips/com.deepin.wrap.gnome.metacity.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/mips/com.deepin.wrap.gnome.metacity.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/mips/com.deepin.wrap.gnome.metacity.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/mips/com.deepin.wrap.gnome.metacity.override	2016-05-31 15:09:06.970343874 +0200
 @@ -1,5 +1,5 @@
  [com.deepin.wrap.gnome.metacity]
 -theme='deepin'
-+theme='Vertex-Maia'
++theme='Vertex-Maia-Dark'
  
  [com.deepin.wrap.gnome.metacity.keybindings]
  expose-all-windows=['<Super>A']
 diff -ru a/overrides/mips/other.override b/overrides/mips/other.override
---- a/overrides/mips/other.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/mips/other.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/mips/other.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/mips/other.override	2016-05-31 15:09:06.973677253 +0200
 @@ -1,6 +1,16 @@
 -[org.gnome.gedit.preferences.encodings]
 -candidate-encodings=['UTF-8','GB18030','GB2312','GBK','BIG5','CURRENT','UTF-16']
@@ -64,8 +64,8 @@ diff -ru a/overrides/mips/other.override b/overrides/mips/other.override
 +rewrap-on-resize=true
 +visible-name='manjaro'
 diff -ru a/overrides/x86/com.deepin.dde.dock.override b/overrides/x86/com.deepin.dde.dock.override
---- a/overrides/x86/com.deepin.dde.dock.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/x86/com.deepin.dde.dock.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/x86/com.deepin.dde.dock.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/x86/com.deepin.dde.dock.override	2016-05-31 15:09:06.973677253 +0200
 @@ -1,3 +1,3 @@
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','org.gnome.nautilus','deepin-appstore','deepin-music-player','deepin-movie','google-chrome','dde-control-center']
@@ -73,14 +73,14 @@ diff -ru a/overrides/x86/com.deepin.dde.dock.override b/overrides/x86/com.deepin
 +docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/com.deepin.wrap.gnome.desktop.override
---- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-05-31 15:09:06.973677253 +0200
 @@ -8,15 +8,15 @@
  event-sounds=true
  
  [com.deepin.wrap.gnome.desktop.wm.preferences]
 -theme='deepin'
-+theme='Vertex-Maia'
++theme='Vertex-Maia-Dark'
  audible-bell=false
  mouse-button-modifier=''
  
@@ -90,25 +90,24 @@ diff -ru a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/
  gtk-key-theme='Default'
 -gtk-theme='deepin'
 -icon-theme='deepin'
-+gtk-theme='Vertex-Maia'
++gtk-theme='Vertex-Maia-Dark'
 +icon-theme='Vertex-Maia'
  gtk-im-module='fcitx'
  
  [com.deepin.wrap.gnome.desktop.wm.keybindings]
 diff -ru a/overrides/x86/com.deepin.wrap.gnome.metacity.override b/overrides/x86/com.deepin.wrap.gnome.metacity.override
---- a/overrides/x86/com.deepin.wrap.gnome.metacity.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/x86/com.deepin.wrap.gnome.metacity.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/x86/com.deepin.wrap.gnome.metacity.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/x86/com.deepin.wrap.gnome.metacity.override	2016-05-31 15:09:06.977010632 +0200
 @@ -1,5 +1,5 @@
  [com.deepin.wrap.gnome.metacity]
 -theme='deepin'
-+theme='Vertex-Maia'
++theme='Vertex-Maia-Dark'
  
  [com.deepin.wrap.gnome.metacity.keybindings]
  expose-all-windows=['<Super>A']
-Only in b/overrides/x86: org.gnome.desktop.override
 diff -ru a/overrides/x86/other.override b/overrides/x86/other.override
---- a/overrides/x86/other.override	2016-05-28 17:10:13.442026202 +0200
-+++ b/overrides/x86/other.override	2016-05-28 17:13:32.969020327 +0200
+--- a/overrides/x86/other.override	2016-05-31 15:25:09.121940788 +0200
++++ b/overrides/x86/other.override	2016-05-31 15:09:06.977010632 +0200
 @@ -1,6 +1,16 @@
 -[org.gnome.gedit.preferences.encodings]
 -candidate-encodings=['UTF-8','GB18030','GB2312','GBK','BIG5','CURRENT','UTF-16']
@@ -130,14 +129,14 @@ diff -ru a/overrides/x86/other.override b/overrides/x86/other.override
 +rewrap-on-resize=true
 +visible-name='manjaro'
 diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dde.appearance.gschema.xml
---- a/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-28 17:10:13.442026202 +0200
-+++ b/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-28 17:13:32.969020327 +0200
+--- a/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-31 15:25:09.121940788 +0200
++++ b/schemas/com.deepin.dde.appearance.gschema.xml	2016-05-31 15:09:06.977010632 +0200
 @@ -2,21 +2,21 @@
  <schemalist>
    <schema path="/com/deepin/dde/appearance/" id="com.deepin.dde.appearance" gettext-domain="DDE">
      <key type="s" name="gtk-theme">
 -      <default>'deepin'</default>
-+      <default>'Vertex-Maia'</default>
++      <default>'Vertex-Maia-Dark'</default>
        <summary>Gtk+ theme</summary>
        <description>
          Basename of the default theme used by gtk+.
@@ -158,14 +157,14 @@ diff -ru a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dd
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
 diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettings.gschema.xml
---- a/schemas/com.deepin.xsettings.gschema.xml	2016-05-28 17:10:13.445359537 +0200
-+++ b/schemas/com.deepin.xsettings.gschema.xml	2016-05-28 18:15:33.690036101 +0200
+--- a/schemas/com.deepin.xsettings.gschema.xml	2016-05-31 15:25:09.125274157 +0200
++++ b/schemas/com.deepin.xsettings.gschema.xml	2016-05-31 15:09:06.977010632 +0200
 @@ -2,14 +2,14 @@
  <schemalist>
    <schema id="com.deepin.xsettings" path="/com/deepin/xsettings/">
      <key type="s" name="theme-name">
 -      <default>'deepin'</default>
-+      <default>'Vertex-Maia'</default>
++      <default>'Vertex-Maia-Dark'</default>
        <summary>System theme</summary>
        <description>
          Theme to use for gtk+ and qt.
@@ -182,7 +181,7 @@ diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettin
      </key>
      <key type="s" name="gtk-theme-name">
 -      <default>'deepin'</default>
-+      <default>'Vertex-Maia'</default>
++      <default>'Vertex-Maia-Dark'</default>
        <summary>Gtk+ theme</summary>
        <description>
          Basename of the default theme used by gtk+.
@@ -430,3 +429,32 @@ diff -ru a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettin
      <key type="b" name="xft-antialias">
        <default>true</default>
        <summary>Xft antialias</summary>
+diff -ru a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml
+--- a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-05-31 15:25:09.125274157 +0200
++++ b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-05-31 15:20:51.875740256 +0200
+@@ -83,14 +83,14 @@
+       </description>
+     </key>
+     <key name="icon-theme" type="s">
+-      <default>'Adwaita'</default>
++      <default>'Vertex-Maia'</default>
+       <summary>Icon Theme</summary>
+       <description>
+         Icon theme to use for the panel, nautilus etc.
+       </description>
+     </key>
+     <key name="gtk-theme" type="s">
+-      <default>'Adwaita'</default>
++      <default>'Vertex-Maia-Dark'</default>
+       <summary>Gtk+ Theme</summary>
+       <description>
+         Basename of the default theme used by gtk+.
+@@ -170,7 +170,7 @@
+       </description>
+     </key>
+     <key name="cursor-theme" type="s">
+-      <default>'Adwaita'</default>
++      <default>'Chameleon-Pearl'</default>
+       <summary>Cursor theme</summary>
+       <description>Cursor theme name. Used only by Xservers that support the Xcursor extension.</description>
+     </key>
