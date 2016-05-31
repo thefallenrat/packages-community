@@ -4,18 +4,13 @@
 
 _pkgname=deepin-artwork-themes
 pkgname=$_pkgname-manjaro
-pkgver=20160527
+pkgver=20160531
 pkgrel=1
 _snapshot=795237b7e78cca6f98e78ede13ce6ecfb83ef66c
 pkgdesc='Default artwork themes for Manjaro-Deepin'
 arch=('any')
 license=('LGPL3')
 url="https://github.com/oberon2007/deepin-artwork-themes-manjaro"
-depends=('cantarell-fonts'
-	'deepin-iconthemes-manjaro'
-	'deepin-wallpapers'
-	'numix-themes-archblue'
-	'xcursor-chameleon-pearl-deepin')
 makedepends=('git'
 	'python2')
 conflicts=('deepin-artwork-themes')
