@@ -11,7 +11,8 @@ arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL3')
 groups=('deepin-manjaro')
-depends=('dconf'
+depends=('cantarell-fonts'
+	'dconf'
 	'deepin-artwork-themes-manjaro'
 	'deepin-desktop'
 	'deepin-iconthemes-manjaro'
@@ -21,7 +22,8 @@ depends=('dconf'
 	'deepin-wallpapers'
 	'manjaro-base-skel'
 	'vertex-maia-icon-theme'
-	'vertex-maia-themes')
+	'vertex-maia-themes'
+	'xcursor-chameleon-pearl-deepin')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
 	'manjaro-backgrounds')
 makedepends=('git')
