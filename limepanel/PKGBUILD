@@ -2,8 +2,8 @@
 # Maintainer: Chrysostomus
 
 pkgname=limepanel
-_ver=0.23
-pkgver=0.23.r101.ge487906
+_ver=0.24
+pkgver=0.24.r102.g71593db
 pkgrel=1
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=('any')
