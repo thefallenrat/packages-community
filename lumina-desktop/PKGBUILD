@@ -3,8 +3,8 @@
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 pkgname=lumina-desktop
 pkgver=0.9.0
-pkgrel=1
-_snapshot=10ed6f0c1270534b3a31303fee24995b7fa2b40b
+pkgrel=2
+_snapshot=aa46846b54ca8273aba88426b640b256b69a542d
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
 url="https://github.com/pcbsd/lumina"
@@ -15,13 +15,13 @@ makedepends=('qt5-tools')
 options=('!makeflags')
 conflicts=("${pkgname}-git" "lumina-de-git")
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/pcbsd/lumina/archive/$_snapshot.tar.gz")
-md5sums=('ea3f921decdcabe7e379bd5df375b8e8')
+md5sums=('7701cd8a754f82e75cbb92682e9afc04')
 
 
 build(){
     cd $srcdir/lumina-$_snapshot
     find $srcdir/lumina-$_snapshot -name *.desktop -exec sed -i 's/usr\/local/usr/' {} \;
-    qmake PREFIX="/usr" QT5LIBDIR=/usr/lib/qt
+    qmake QMAKE_CFLAGS_ISYSTEM= PREFIX="/usr" QT5LIBDIR=/usr/lib/qt
     make
 }
 
