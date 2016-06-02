@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=('manjaro-i3-solarized-settings')
-pkgver=20160503
+pkgver=20160601
 pkgrel=3
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
