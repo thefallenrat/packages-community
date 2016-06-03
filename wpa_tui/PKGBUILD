@@ -1,6 +1,6 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 pkgname=wpa_tui
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="Script to easily setup systemd-networkd and connect to wireless networks"
 arch=(any)

@@ -310,6 +310,13 @@ XF86AudioLowerVolume
 
 XF86AudioMute
 	volume mute
+	
+XF86MonBrightnessDown
+ xbacklight -dec 10 
+
+XF86MonBrightnessUp
+ xbacklight -inc 10
+ 
 
 XF86Sleep
 	systemctl suspend
