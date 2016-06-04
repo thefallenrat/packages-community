@@ -209,18 +209,19 @@ super + button{4,5}
 # mouse bindings
 # __________________
 
-# Move or resize window
-super + button{1-3}
-	bspc pointer -g {move,resize_side,resize_corner}
-
-# Needed for ^^^^
-super + button{1-3}
-	; bspc pointer -g {move,resize_side,resize_corner}
-
-super + @button{1-3}
-	bspc pointer -u
-# Needed to focus windows by clicking, if you wish to disable 
-# focus_follows_mouse behavior (required to use menu of xfdesktop, whiskermenu or click java apps)
+### Legacy mousebindings used with older versions of bspwm
+## Move or resize window
+##super + button{1-3}
+##	bspc pointer -g {move,resize_side,resize_corner}
+#
+## Needed for ^^^^
+##super + button{1-3}
+##	; bspc pointer -g {move,resize_side,resize_corner}
+#
+##super + @button{1-3}
+##	bspc pointer -u
+## Needed to focus windows by clicking, if you wish to disable 
+## focus_follows_mouse behavior (required to use menu of xfdesktop, whiskermenu or click java apps)
 ~button1
 	bspc pointer -g focus && xdo raise $(pfw)
 ## Alternative that allows clicking otherwise problematic stuff
@@ -310,6 +311,13 @@ XF86AudioLowerVolume
 
 XF86AudioMute
 	volume mute
+	
+XF86MonBrightnessDown
+ xbacklight -dec 10 
+
+XF86MonBrightnessUp
+ xbacklight -inc 10
+ 
 
 XF86Sleep
 	systemctl suspend
