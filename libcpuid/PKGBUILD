@@ -3,7 +3,7 @@
 # Contributor: eloaders <eloaders at linux dot pl>
 
 pkgname=libcpuid
-pkgver=0.2.2.r55.g86cf1df
+pkgver=0.2.2.r59.g5f99a45
 pkgrel=1
 pkgdesc="Provides CPU identification for x86 (and x86_64)"
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ license=('BSD-2-Clause')
 depends=('glibc')
 makedepends=('git' 'libtool' 'autoconf')
 conflicts=('libcpuid-git')
-source=("git://github.com/anrieff/${pkgname}.git")
+source=("git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
