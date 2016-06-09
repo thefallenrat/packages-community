@@ -2,17 +2,17 @@
 # Maintainer: Ramon Buldó <rbuldo@gmail.com>
 
 pkgname=gtk-theme-maia
-pkgver=5.6.0
-pkgrel=4
-_gitcommit=0ed236fbc31409a31c54031d91c909f76864d70c
+pkgver=5.6.4
+pkgrel=1
+_gitcommit=416ff43e8e442e3e859e618eeb8162068d415f1e
 pkgdesc="Maia widget theme for GTK 2 and 3"
 arch=(any)
 url='https://github.com/manjaro/artwork-maia-gtk'
 license=(LGPL)
-makedepends=(extra-cmake-modules)
+makedepends=(extra-cmake-modules qt5-tools)
 conflicts=(gnome-themes-maia)
 source=("maia-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('49291fa6e9f5c51c869ddc85dbd89cc2')
+md5sums=('1bdb3682cd348639c9d5c8198e395356')
 
 prepare(){
   mv $srcdir/artwork-maia-gtk-$_gitcommit $srcdir/$pkgname
@@ -24,14 +24,12 @@ build(){
   cmake ../$pkgname \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=lib
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DWITH_GTK3_VERSION=3.20
   make
 }
 
 package() {
   cd build
   make DESTDIR="$pkgdir" install
-  
-  #rm -rf $pkgdir/usr/share/themes/Maia/gtk-3.0
 }
- 

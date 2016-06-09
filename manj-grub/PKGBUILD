@@ -6,7 +6,7 @@
 pkgname=manj-grub
 _author=Ste74
 pkgver=1.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Manjaro grub-theme, based on Journey theme."
 url="https://github.com/$_author/$pkgname"
 arch=('any')
