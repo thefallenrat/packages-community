@@ -2,7 +2,7 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160601
+pkgver=20160613
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
@@ -23,7 +23,9 @@ depends=('cantarell-fonts'
 	'manjaro-base-skel'
 	'vertex-maia-icon-theme'
 	'vertex-maia-themes'
-	'xcursor-chameleon-pearl-deepin')
+	'xcursor-chameleon-pearl-deepin'
+# currently still needed for control-panel mouse-widget: 
+	'xf86-input-synaptics')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
 	'manjaro-backgrounds')
 makedepends=('git')
