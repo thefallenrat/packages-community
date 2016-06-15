@@ -1,6 +1,6 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 pkgname=wpa_tui
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Script to easily setup systemd-networkd and connect to wireless networks"
 arch=(any)
@@ -17,7 +17,7 @@ md5sums=('SKIP')
 package () {
   cd "$pkgname"
   install -Dm644 wireless.network "$pkgdir/usr/share/wpa_tui/wireless.network"
-  install -Dm644 wired.network "$pkgdir/usr/share/wp_tui/wired.network"
+  install -Dm644 wired.network "$pkgdir/usr/share/wpa_tui/wired.network"
   install -Dm755 wpa_tui "$pkgdir/usr/bin/wpa_tui"
   install -Dm664 wpa_supplicant-interface.conf "$pkgdir/etc/wpa_supplicant/wpa_supplicant-interface.conf"
   chown :wheel "$pkgdir/etc/wpa_supplicant/wpa_supplicant-interface.conf"
