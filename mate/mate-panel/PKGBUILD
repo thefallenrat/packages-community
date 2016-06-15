@@ -4,8 +4,8 @@
 _ver=1.14
 _pkgbase=mate-panel
 pkgname=${_pkgbase}
-pkgver=${_ver}.0
-pkgrel=2
+pkgver=${_ver}.1
+pkgrel=1
 pkgdesc="The MATE Panel (GTK2 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
@@ -15,16 +15,14 @@ depends=('dbus-glib' 'dconf' 'gtk2' 'libwnck' 'libcanberra' 'libice'
          'mate-menus>=1.14' 'mate-desktop>=1.14')
 makedepends=('gobject-introspection' 'mate-common' 'yelp-tools')
 optdepends=('yelp: for reading MATE help documents')
-source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz"
-	"include_GTK_Version_Check.patch::https://github.com/mate-desktop/mate-panel/commit/b24f7fab61d11b04ab0714a5137073e668c677f5.patch")
+source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
 groups=('mate')
 conflicts=("${_pkgbase}-gtk3")
-sha1sums=('793a8714a47a9e00c68f9dc3b59457054e45e46a'
-          'e29ccc8b76995c7934651b8025837d92fda5d3a4')
+sha1sums=('c7dac4caafef90b6f639b8a6a43ca1e98c1802cc')
 
 prepare() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
-    patch -Np1 -i ${srcdir}/include_GTK_Version_Check.patch
+    # patches here
 }
 
 build() {
