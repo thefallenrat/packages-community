@@ -75,7 +75,7 @@ ctrl + space
 	
 # Presel window for splitting in certain direction
 alt + ctrl + {a,s,w,d}
-	bspc node -p \~{west,south,north,east}
+	bspc node -p \~{west,south,north,east} -i
 
 alt + ctrl + {h,j,k,l}
 	bspc node -p \~{west,south,north,east}
@@ -250,10 +250,10 @@ mod1 + @button1
 
 # These two are needed if you want to use xfdesktops menus while 
 # focus_follows_pointer is on
-@button3
-	clickpasser 3
-@button2
-	clickpasser 2
+#@button3
+#	clickpasser 3
+#@button2
+#	clickpasser 2
 
 #
 # Touchpad "gestures" (depend on your touchpad driver, very likely to be unavailable)
@@ -336,3 +336,7 @@ alt + ctrl + space
 super + ctrl + space
 	{pkill compton ,\
 	compton -b }
+
+# Remove receptacles
+super + BackSpace
+  for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done

@@ -23,7 +23,8 @@ bspc config history_aware_focus    true
 #bspc config initial_polarity second_child
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
-
+## Honor size hints: do not make windows smaller than they wish to be
+#bspc config honor_size_hints true 
 
 ##Color settings
 bspc config normal_frame_opacity 1.0
