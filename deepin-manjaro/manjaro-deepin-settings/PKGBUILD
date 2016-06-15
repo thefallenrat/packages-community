@@ -2,7 +2,7 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160613
+pkgver=20160614
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.5
