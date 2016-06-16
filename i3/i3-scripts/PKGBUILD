@@ -1,14 +1,14 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-pkgver=20160604
-pkgrel=2
+pkgver=20160615
+pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
 license=('GPL')
 makedepends=('git')
-conflicts=('bspwm-scripts')
+conflicts=('lemonpanel')
 source=("git+$url.git")
 sha1sums=('SKIP')
 

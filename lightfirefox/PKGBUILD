@@ -3,7 +3,7 @@
 pkgname=lightfirefox
 pkgver=47.0
 _pkgver=${pkgver%%.*}
-pkgrel=1
+pkgrel=2
 pkgdesc="A light Firefox edition"
 url="http://sourceforge.net/projects/lightfirefox"
 license=('MPL')
