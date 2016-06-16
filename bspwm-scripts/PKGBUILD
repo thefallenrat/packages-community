@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=bspwm-scripts
-pkgver=0.26
+pkgver=0.27
 pkgrel=1
 pkgdesc="Scripts for controlling bspwm"
 arch=(any)
