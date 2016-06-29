@@ -77,14 +77,14 @@ cd "$pkgdir/usr/share/themes"
 
 cd "$pkgdir/usr/share/themes/Adapta-Maia-Nokto"
 
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/xfwm4" xfwm4
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/xfce-notify-4.0" xfce-notify-4.0
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/unity" unity
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/plank" plank
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/metacity-1" metacity-1
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/gtk-3.22" gtk-3.22 
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/gtk-3.20" gtk-3.20
-    ln -sf "$pkgdir/usr/share/themes/Adapta-Maia/gtk-3.0" gtk-3.0
+    ln -sf /usr/share/themes/Adapta-Maia/xfwm4 xfwm4
+    ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
+    ln -sf /usr/share/themes/Adapta-Maia/unity unity
+    ln -sf /usr/share/themes/Adapta-Maia/plank plank
+    ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
+    ln -sf /usr/share/themes/Adapta-Maia/gtk-3.22 gtk-3.22 
+    ln -sf /usr/share/themes/Adapta-Maia/gtk-3.20 gtk-3.20
+    ln -sf /usr/share/themes/Adapta-Maia/gtk-3.0 gtk-3.0
 
 # Move Background
 cd "$pkgdir/usr/share/backgrounds"
