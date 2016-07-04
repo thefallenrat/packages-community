@@ -2,9 +2,9 @@
 # Contributor: Chad "crossroads1112" Sharp <crossroads1112@riseup.net>
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 pkgname=lumina-desktop
-pkgver=0.9.0
-pkgrel=2
-_snapshot=aa46846b54ca8273aba88426b640b256b69a542d
+pkgver=1.0b1
+pkgrel=1
+_snapshot=3b18a492b54c50003ed94da34d9ad32d126f91f0
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
 url="https://github.com/pcbsd/lumina"
@@ -15,7 +15,7 @@ makedepends=('qt5-tools')
 options=('!makeflags')
 conflicts=("${pkgname}-git" "lumina-de-git")
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/pcbsd/lumina/archive/$_snapshot.tar.gz")
-md5sums=('7701cd8a754f82e75cbb92682e9afc04')
+md5sums=('a01b9648869554d0d43332680b9e3a84')
 
 
 build(){
