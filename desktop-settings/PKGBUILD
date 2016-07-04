@@ -113,7 +113,6 @@ package_manjaro-gnome-settings() {
 	depends=('gnome-shell'
 		'gnome-shell-extensions'
 		'gnome-shell-extension-openweather'
-		'gnome-shell-extension-mediaplayer'
 		'gnome-shell-extension-gnomenu'
 		'gnome-shell-extension-dash-to-dock'
 		'gnome-wallpapers'
