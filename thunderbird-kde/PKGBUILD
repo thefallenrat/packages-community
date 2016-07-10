@@ -7,16 +7,16 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=45.1.1
-pkgrel=2
+pkgver=45.2.0
+pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
-url="http://www.mozilla.org/thunderbird/"
+url="https://www.mozilla.org/thunderbird/"
 depends=('gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
-         'dbus-glib' 'alsa-lib' 'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 
-         'sqlite' 'ttf-font' 'nspr' 'libnotify')
+         'dbus-glib' 'alsa-lib' 'libvpx' 'libevent' 'nss' 'hunspell' 
+         'sqlite' 'ttf-font' 'icu' 'nspr' 'libnotify')
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf' 
              'libpulse' 'inetutils' 'pkg-config' 'autoconf2.13' 'xorg-server-xvfb')
 optdepends=('thunderbird-i18n: for multilanguage support'
@@ -34,12 +34,12 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozilla-language.patch
         mozilla-nongnome-proxies.patch
         kde.js)
-sha256sums=('107d103c30b4f666ede1ec197156f94456117783087518fe1af4557d548b718e'
+sha256sums=('bd2389cbb28138668ab41b26f1dce49c455807e09b43fd370ee765ae3f0937c0'
             'ac6354b036ac4be3fa6e6d75435419f29fb96087e04046eeb3557ecaf6916047'
             'b4371b9021fd5f65a1f546fca36c6c326a00ef0f57b448e86a33656ac7f780a8'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
             '4d1e1ddabc9e975ed39f49e134559a29e01cd49439e358233f1ede43bf5a52bf'
-            '2588c567fec88b44b65f0cd111e8769361c138d4c964310684f7bb80066f8f9f'
+            '3a3e84c702ee31450a3e84698441aceb11cf44e64c9fedcaddb8cb50db759417'
             'd1ccbaf0973615c57f7893355e5cd3a89efb4e91071d0ec376e429b50cf6ed19'
             'e4ea8e6788163d9f8db8f1f40023db3ea0a1358f9a4510169f2d4c4fe6a887ed'
             '3e7d8d65b481c03eb1da37b2e211f018e6fc9de381433205398e5ddaaff1c44a'
