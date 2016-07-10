@@ -1,7 +1,7 @@
 # Maintainer: Storm Dragon <stormdragon2976@gmail.com>
 
 pkgname=tintin-alteraeon
-pkgver=2016.04.20+255.36bd773
+pkgver=2016.04.20+258.08728d4
 pkgrel=1
 pkgdesc="Play Alter Aeon with sounds and other game enhancements. Uses the tintin++ mud client."
 arch=('any')
