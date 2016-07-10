@@ -67,7 +67,8 @@ package() {
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img"
 	rm *png	
 	cd "$srcdir"
-	cp -r *.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
+	install -m 644 manjaro.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
+	install -m 644 manjaro-logo-user.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
 
 #Set theme
 	cd "$pkgdir/etc/lightdm"
