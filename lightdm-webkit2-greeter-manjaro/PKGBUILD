@@ -1,0 +1,78 @@
+
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+# Maintainer: Dustin Falgout <dustin@antergos.com>
+
+pkgname=lightdm-webkit2-greeter-manjaro
+pkgver=1.0
+pkgrel=1
+_pkgname=lightdm-webkit2-greeter
+_pkgver=2.1.4
+pkgdesc="A webkit2 greeter for LightDM fo Manjaro"
+arch=('i686' 'x86_64')
+url="https://github.com/antergos/lightdm-webkit2-greeter"
+license=('GPL3')
+source=("${_pkgname}-${_pkgver}.zip::https://github.com/antergos/${_pkgname}/archive/${_pkgver}.zip"
+	'manjaro.png'
+	'manjaro-logo-user.png')
+makedepends=('gnome-doc-utils' 'gobject-introspection' 'intltool' 'gnome-common' 'exo' 'git')
+depends=('lightdm' 'webkit2gtk>=2.10.8' 'gtk3>=3.18')
+provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+#replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+backup=("etc/lightdm/${_pkgname}.conf")
+md5sums=('5e1a2f99216724a5ddb38ff60ed51a45'
+         '3b52ce0bbd9a0184c755a8fbc70c62ae'
+         'ef9ec9249b0a1556fe52e1c5e2be3cd8')
+
+build() {
+	cd "${srcdir}/${_pkgname}-${_pkgver}"
+
+	LIBS+="-ljavascriptcoregtk-4.0" \
+		./autogen.sh \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--libexecdir=/usr/lib/lightdm \
+			--bindir=/usr/bin \
+			--sbindir=/usr/bin
+	make
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}-${_pkgver}"
+	make DESTDIR="${pkgdir}" install 
+
+#Start the transformation
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/"
+	mv  antergos manjaro
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro"
+	find . -type f -name 'index.theme' -exec sed -i "s/Antergos/Manjaro/g" {} \;
+	
+
+#change color
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/css"
+	find . -type f -name 'style.css' -exec sed -i \
+	"s/EAEAEA/16A085/g;\
+	s/ECF0F1/16A085/g;
+	s/3D73C5/16A085/g;
+	s/77ADFF/16A085/g;
+	s/2196F3/16A085/g" {} \;
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/_vendor"
+	find . -type f -name 'bootswatch-paper.bootstrap.min.css' -exec sed -i \
+	"s/2196f3/16A085/g;\
+	s/0c7cd5/16A085/g" {} \;
+
+#New brand/icon
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img"
+	rm *png	
+	cd "$srcdir"
+	cp -r *.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
+
+#Set theme
+	cd "$pkgdir/etc/lightdm"
+	find . -type f -name 'lightdm-webkit2-greeter.conf' -exec sed -i "s/antergos/manjaro/g" {} \;
+
+
+}
+
