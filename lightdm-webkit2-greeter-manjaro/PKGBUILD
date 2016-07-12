@@ -4,7 +4,7 @@
 
 pkgname=lightdm-webkit2-greeter-manjaro
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 _pkgname=lightdm-webkit2-greeter
 _pkgver=2.1.4
 pkgdesc="A webkit2 greeter for LightDM fo Manjaro"
@@ -15,7 +15,8 @@ source=("${_pkgname}-${_pkgver}.zip::https://github.com/antergos/${_pkgname}/arc
 	'manjaro.png'
 	'manjaro-logo-user.png')
 makedepends=('gnome-doc-utils' 'gobject-introspection' 'intltool' 'gnome-common' 'exo' 'git')
-depends=('lightdm' 'webkit2gtk>=2.10.8' 'gtk3>=3.18')
+depends=('lightdm' 'webkit2gtk>=2.10.8' 'gtk3>=3.18' 'accountsservice' 'manjaro-artwork' 'gnome-backgrounds')
+optdepends=('manjaro-backgrounds')
 provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
