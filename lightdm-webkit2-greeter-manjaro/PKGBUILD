@@ -22,7 +22,7 @@ conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 backup=("etc/lightdm/${_pkgname}.conf")
 md5sums=('5e1a2f99216724a5ddb38ff60ed51a45'
-         '3b52ce0bbd9a0184c755a8fbc70c62ae'
+         'eff26e667ba1e3ceaa4a97344516f201'
          'ef9ec9249b0a1556fe52e1c5e2be3cd8')
 
 build() {
@@ -62,7 +62,8 @@ package() {
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/_vendor"
 	find . -type f -name 'bootswatch-paper.bootstrap.min.css' -exec sed -i \
 	"s/2196f3/16A085/g;\
-	s/0c7cd5/16A085/g" {} \;
+	s/0c7cd5/16A085/g;
+	s/0a68b4/29806F/g" {} \;
 
 #New brand/icon
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img"
