@@ -11,11 +11,11 @@ pkgbase=linux-rt             # Build kernel with a different name
 pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _srcname=linux-4.6
 _basekernel=4.6
-_basever=rt
+_basever=46-rt
 _pkgver=${_basekernel}.4
 _pkgverrt=4.6.4
 _bfq=v7r11
-_rtpatchver=rt6
+_rtpatchver=rt7
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'config.x86_64'
         'config.rt'
         # standard config files for mkinitcpio ramdisk
-        "linux${_basever}.preset"
+        "${pkgname}.preset"
         'http://sources.gentoo.org/cgi-bin/viewvc.cgi/linux-patches/genpatches-2.6/trunk/3.15/1700_enable-thinkpad-micled.patch'
         'http://sources.gentoo.org/cgi-bin/viewvc.cgi/linux-patches/genpatches-2.6/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
         "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-4.4.0.patch"
@@ -64,7 +64,7 @@ sha256sums=('1f2bcc9167668eca62fda7d22b6dd07052c87420bacc6d47d451ed6d441daf61'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '030deb6b46cea9a3f037b03af4e53d27aa70537d42c535cf30db5c02e4a8ab43'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
-            'e5789831210983feb5b7d7d6ce34b0d40f2da527f9b450835ebbd7b8155f64cf'
+            'f5dcc15edf7caaeb0c9facf463f0894e6327f4d75162265a219a0c9a83cf638d'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 
@@ -193,7 +193,7 @@ package_linux-rt-manjaro() {
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}")
-  install=linux${_basever}.install
+  install=${pkgname}.install
 
   cd "${srcdir}/${_srcname}"
 
@@ -208,9 +208,9 @@ package_linux-rt-manjaro() {
 
   # add kernel version
   if [ "${CARCH}" = "x86_64" ]; then
-     echo "${_pkgver}-${pkgrel}-${_rtpatchver}-MANJARO x64" > "${pkgdir}/boot/linux${_basever}-${CARCH}.kver"
+     echo "${_pkgver}-${pkgrel}-${_rtpatchver}-MANJARO x64" > "${pkgdir}/boot/linux-${_basever}-${CARCH}.kver"
   else
-     echo "${_pkgver}-${pkgrel}-${_rtpatchver}-MANJARO x32" > "${pkgdir}/boot/linux${_basever}-${CARCH}.kver"
+     echo "${_pkgver}-${pkgrel}-${_rtpatchver}-MANJARO x32" > "${pkgdir}/boot/linux-${_basever}-${CARCH}.kver"
   fi
 
   # set correct depmod command for install
@@ -220,22 +220,24 @@ package_linux-rt-manjaro() {
     -e  "s/RELEASE=.*/RELEASE=${_pkgver}-${pkgrel}-${_rtpatchver}/g" \
     -e  "s/KERNEL_VERSION=.*/KERNEL_VERSION=${_kernver}/g" \
     -e  "s/KERNEL_BASE=.*/KERNEL_BASE=${_basekernel}${_kernelname}/g" \
-    -e  "s/BASEVER=.*/BASEVER=${_basever}/g" \
+    -e  "s/BASEVER=.*/BASEVER=${_kernelname}-manjaro/g" \
     -e  "s/ARCH=.*/ARCH=${CARCH}/g" \
     -i "${startdir}/${install}"
 
   # install mkinitcpio preset file for kernel
-  install -D -m644 "${srcdir}/linux${_basever}.preset" "${pkgdir}/etc/mkinitcpio.d/linux${_basever}.preset"
+  install -D -m644 "${srcdir}/${pkgname}.preset" "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
   sed \
     -e "s|ALL_kver=.*|ALL_kver=\"/boot/vmlinuz-${_basekernel}${_kernelname}-${CARCH}\"|g" \
     -e "s|default_image=.*|default_image=\"/boot/initramfs-${_basekernel}${_kernelname}-${CARCH}.img\"|g" \
     -e "s|fallback_image=.*|fallback_image=\"/boot/initramfs-${_basekernel}${_kernelname}-${CARCH}-fallback.img\"|g" \
-    -i "${pkgdir}/etc/mkinitcpio.d/linux${_basever}.preset"
+    -i "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
 
   # remove build and source links
   rm -f "${pkgdir}"/lib/modules/${_kernver}/{source,build}
   # remove the firmware
   rm -rf "${pkgdir}/lib/firmware"
+  # gzip -9 all modules to save 100MB of space
+  find "${pkgdir}" -name '*.ko' -exec gzip -9 {} \;
   # make room for external modules
   ln -s "../extramodules-${_basekernel}${_kernelname:--MANJARO}-MANJARO" "${pkgdir}/lib/modules/${_kernver}/extramodules"
   # add real version for building modules and running depmod from post_install/upgrade
@@ -381,5 +383,3 @@ package_linux-rt-manjaro-headers() {
   rm -f "${pkgdir}/usr/lib/modules/${_kernver}/build/Documentation/kbuild/Kconfig.recursion-issue-02"
   rm -f "${pkgdir}/usr/lib/modules/${_kernver}/build/Documentation/kbuild/Kconfig.select-break"
 }
-
-
