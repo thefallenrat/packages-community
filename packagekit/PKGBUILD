@@ -3,8 +3,8 @@
 # Contributor: Jonathan Conder <jonno.conder@gmail.com>
 
 pkgname='packagekit'
-pkgver=1.1.1
-pkgrel=2.1
+pkgver=1.1.3
+pkgrel=1.1
 pkgdesc='A system designed to make installation and updates of packages easier'
 arch=('i686' 'x86_64')
 url='http://www.packagekit.org/'
@@ -17,10 +17,13 @@ optdepends=('networkmanager: detect connection status'
 backup=('var/lib/PackageKit/transactions.db'
 	'etc/PackageKit/alpm.d/pacman.conf'
 	'etc/PackageKit/alpm.d/repos.list')
-#validpgpkeys=('163EB50119225DB3DF8F49EA17ACBA8DFA970E17') # Richard Hughes
-source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz"
+validpgpkeys=(
+	'163EB50119225DB3DF8F49EA17ACBA8DFA970E17'	# Richard Hughes <richard@hughsie.com>
+	'EC60AABDF42AAE8FB062640480858FA38F62AF74')	# Kalev Lember <klember@redhat.com>
+source=("http://www.freedesktop.org/software/PackageKit/releases/PackageKit-${pkgver}.tar.xz"{,.asc}
 	'0001-Fix-SyncFirst-crash.patch')
-sha256sums=('483348a54c92419d713a8a153926ec6e1ab70ba64ae4afd3f0a6d63d10b1cac4'
+sha256sums=('e8d42d1c49b58f9dba85dbb634bcdc986f5f478ef26d1f50a3453353cd33b841'
+            'SKIP'
             'ef6f5dfec55dd535e17ee89e51b94101658305b497f674e1c7f0fa0c077a5b9d')
 
 prepare() {
@@ -58,4 +61,3 @@ package() {
 
 	make DESTDIR="${pkgdir}" install
 }
-
