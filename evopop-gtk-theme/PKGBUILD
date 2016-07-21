@@ -1,33 +1,22 @@
-# Maintainer: Michael Wendland <michael@michiwend.com>
-# Contributor: Adri�n P�rez de Castro <aperez@igalia.com>
-# Contributor: Jo�o Guerra <joca.bt@gmail.com>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+# Maintainer: Marcel Hoppe <hoppe.marcel@gmail.com>
 
 pkgname=evopop-gtk-theme
-pkgver=0.29.r13.gdc603c1
+_gitsource=solus-cold-storage
+pkgver=1.7.2
 pkgrel=1
-pkgdesc="A simple, flat, and bold GTK+ theme for Solus OS and Budgie Desktop update to gtk=>3.18.5"
+pkgdesc='GTK theme from Solus OS and Budgie Desktop'
 arch=('any')
-url="https://github.com/fdinardo/evopop-gtk-theme"
-license=('GPL3')
-depends=('gtk3>=3.18.5' 'gtk-engine-murrine')
-makedepends=('git')
-source=("git+${url}")
-sha256sums=('SKIP')
+url="https://github.com/$_gitsource/$pkgname"
+license=('GPL')
+depends=('gtk3' 'gtk-engine-murrine')
+source=("https://github.com/$_gitsource/$pkgname/archive/$pkgver.tar.gz")
+md5sums=('c50f96a17269938e1b27c83c15512d7e')
 
-pkgver () {
-  cd "${pkgname}"
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
-
-build() {
-  cd "${srcdir}/${pkgname}"
-  autoreconf -vfi
-  ./configure --prefix=/usr $*
-}
 
 package() {
-  cd "${srcdir}/${pkgname}"
-  make DESTDIR=${pkgdir} install
+  cd "$srcdir/$_gitsource-$pkgver"
+  DESTDIR="$pkgdir/usr/share/themes"
+  mkdir -p "$DESTDIR"
+	cp -r EvoPop "$DESTDIR/"
 }
-
-# vim: ts=2 sw=2 et: 
