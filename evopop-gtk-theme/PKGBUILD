@@ -13,10 +13,13 @@ depends=('gtk3' 'gtk-engine-murrine')
 source=("https://github.com/$_gitsource/$pkgname/archive/$pkgver.tar.gz")
 md5sums=('c50f96a17269938e1b27c83c15512d7e')
 
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  ./autogen.sh
+  make
+}
 
 package() {
-  cd "$srcdir/$_gitsource-$pkgver"
-  DESTDIR="$pkgdir/usr/share/themes"
-  mkdir -p "$DESTDIR"
-	cp -r EvoPop "$DESTDIR/"
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR=${pkgdir} install
 }
