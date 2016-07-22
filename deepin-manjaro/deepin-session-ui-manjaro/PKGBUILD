@@ -17,6 +17,7 @@ depends=('deepin-control-center'
 	'gsettings-qt'
 	'gtk2'
 	'liblightdm-qt5'
+	'pam'
 	'qt5-svg'
 	'startdde'
 	'xorg-xrandr')
