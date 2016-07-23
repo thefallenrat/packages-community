@@ -2,8 +2,8 @@
 
 pkgname=gnome-wallpapers
 _repo=Gnome-Artwork
-pkgver=20160321
-pkgrel=1
+pkgver=20160723
+pkgrel=2
 _snapshot=a520c24412ad5a94367b3a37705e4343f52c6cc2
 pkgdesc='Manjaro Linux Gnome wallpapers'
 arch=('any')
@@ -20,5 +20,6 @@ package() {
 	cd $srcdir
 	install -dm755 $pkgdir/usr/share/backgrounds
 	cd $_repo-$_snapshot
+	rm README.md
 	cp * $pkgdir/usr/share/backgrounds/
 }
