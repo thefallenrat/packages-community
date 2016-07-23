@@ -10,7 +10,7 @@ arch=('any')
 url="https://github.com/Ste74/$_repo"
 license=('GPL')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('f201fefc9e05f401f3eaa01ca8f8ed7671aa34726a0d3338e0caf1e7dd8ccd79')
+sha256sums=('51759059d041ba924eb065c2c54e67328f0f03943c77ca718c96b03b86a05a61')
 
 pkgver() {
 	date +%Y%m%d
