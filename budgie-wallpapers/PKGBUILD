@@ -2,7 +2,7 @@
 
 pkgname=budgie-wallpapers
 pkgver=20160723
-pkgrel=1
+pkgrel=2
 _snapshot=73b728b7a7663d3a4f34c92cdb5250160cce4cd8
 _repo=Budgie-Artwork
 pkgdesc='Manjaro Linux Budgie wallpapers'
@@ -20,5 +20,6 @@ package() {
 	cd $srcdir
 	install -dm755 $pkgdir/usr/share/backgrounds
 	cd $_repo-$_snapshot
+	rm README.md
 	cp * $pkgdir/usr/share/backgrounds/
 }
