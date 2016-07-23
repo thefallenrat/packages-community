@@ -1,11 +1,10 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgname=gnome-wallpapers
-_pkgname=black_leather_manjaro_linux_by_tefrem34.jpg
-_repo=art-works
+_repo=Gnome-Artwork
 pkgver=20160321
 pkgrel=1
-_snapshot=59194fd37ce339b1719a3a4a00857ed7a3a72ddc 
+_snapshot=a520c24412ad5a94367b3a37705e4343f52c6cc2
 pkgdesc='Manjaro Linux Gnome wallpapers'
 arch=('any')
 url="https://github.com/Ste74/$_repo"
@@ -21,5 +20,5 @@ package() {
 	cd $srcdir
 	install -dm755 $pkgdir/usr/share/backgrounds
 	cd $_repo-$_snapshot
-	cp $_pkgname $pkgdir/usr/share/backgrounds/
+	cp * $pkgdir/usr/share/backgrounds/
 }
