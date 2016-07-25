@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3exit
-pkgver=20160308
+pkgver=20160725
 pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible exit-script for i3, including 'blurlock'"
 arch=('any')
@@ -15,7 +15,7 @@ install=$pkgname.install
 source=($pkgname
 	blurlock)
 md5sums=('a38f67f9685acc183c78f472c3fb1262'
-         '922f7c9a30bc5e2b30cafa9103bb05cd')
+         '9bfea2fa27a472dc8ae9273618da915e')
 
 pkgver() {
 	date +'%Y%m%d'
