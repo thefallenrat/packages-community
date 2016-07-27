@@ -13,7 +13,6 @@ url='https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer'
 license=('GPL2')
 makedepends=('gnome-common' 'intltool')
 optdepends=('mpdris2-git: MPD support')
-install=gschemas.install
 
 makedepends+=('git')
 source+=("${_gitname:=${pkgname%-git}}::${_giturl:-git+$url}")

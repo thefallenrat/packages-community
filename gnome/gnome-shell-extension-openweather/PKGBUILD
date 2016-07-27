@@ -20,7 +20,6 @@ provides=('gnome-shell-extension-weather-neroth-git'
 conflicts=('gnome-shell-extension-weather-neroth-git'
 	  'gnome-shell-extension-weather-git'
 	  'gnome-shell-extension-yawe-git')
-install=gschemas.install
 source=("$pkgname::git+$url#branch=master")
 sha256sums=('SKIP')
 

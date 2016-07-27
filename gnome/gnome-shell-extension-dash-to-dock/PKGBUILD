@@ -19,7 +19,6 @@ license=("GPL2")
 depends=('dconf' 'gnome-shell>=3.18') 
 makedepends=("gnome-common" "intltool")
 conflicts=("gnome-shell-extensions-dash-to-dock-git")
-install="gschemas.install"
 source=("https://github.com/${_author}/${_extname}/archive/extensions.gnome.org-v${pkgver}.tar.gz")
 noextract=()
 sha256sums=('0b6951a9b4922361374f9bc902295fa6b4eba5dfde8c1cb9eee68ce771fa5a5c')

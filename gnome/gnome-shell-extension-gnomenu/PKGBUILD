@@ -11,7 +11,6 @@ url="https://github.com/The-Panacea-Projects/Gnomenu"
 license=(GPL3)
 depends=('gnome-shell>=3.20' 'gnome-tweak-tool')
 makedepends=(git)
-install='gnome-shell-extension.install'
 source=("https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz")
 sha256sums=('9f5ed3cb8401a9fca025f809f99002a2f3956721b05b789e4979c67c6e2c24b0')
 
