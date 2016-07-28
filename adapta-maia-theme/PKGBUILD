@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='3.21'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="${_gtk3_max}.3.62"
+pkgver="${_gtk3_max}.4.90"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -24,17 +24,17 @@ optdepends=("gnome-shell>=${_gtk3_min}: The GNOME Shell"
             'cinnamon>=2.8: The Cinnamon desktop'
             'xfdesktop>=4.12.2: The Xfce desktop'
             'paper-icon-theme: A fitting icon theme'
-            'gnome-tweak-tool: A graphical tool to tweak gnome settings'
-            "unity>=7.4.0: Ubuntu's Unity desktop")
+            'gnome-tweak-tool: A graphical tool to tweak gnome settings')
 makedepends=('glib2>=2.48.0'
              'libxml2'
              'ruby-bundler>=1.11.0'
              'inkscape'
-	     'libcanberra')
+	     'libcanberra'
+	     'parallel')
 _tri_fadeno="tri-fadeno.jpg"
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "${pkgver}-${_tri_fadeno}::${url}/raw/master/.github/img/${_tri_fadeno}")
-sha256sums=('c0d3010ae9921900dada3c1fb67280d81a602df0203f6c3fd7d501a127fa2a01'
+sha256sums=('d1eb1b9f9750404422ba04d59c7b254dc174056ef5e96a9e143fabe5cc7e5d1f'
             '807bd3d99fb492569caf050cfa9b5c75d4e6a072007637fe8e583a3f5c0bea24')
 
 _bundle="ruby-bundle"
@@ -50,13 +50,17 @@ build() {
     export PATH="${BUNDLE_PATH}/bin:${PATH}"
     cd "${_theme_name}-${pkgver}"
     echo "PATH: ${PATH}"
-    ./autogen.sh --prefix "${pkgdir}/usr" --enable-gtk_next --enable-chrome --enable-plank --with-selection_color=#16A085 --with-second_selection_color=#16A085
+    ./autogen.sh --prefix "${pkgdir}/usr" \
+                 --enable-gtk_next \
+                 --enable-chrome \
+                 --enable-plank \
+                 --enable-parallel
     make
 }
 
 package() {
     cd "${_theme_name}-${pkgver}"
-    make install
+    make install -j 8
 
     
     # The backgrounds
