@@ -3,7 +3,7 @@
 
 pkgname=morc_menu
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="A categorized applications menu using dmenu and bash"
 arch=(any)
 url="https://github.com/Boruch-Baum/$pkgname"
@@ -24,7 +24,6 @@ install=$pkgname.install
 package() {
 	cd $pkgname
 	install -Dm755 morc_menu $pkgdir/usr/bin/morc_menu
-	install -Dm644 morc_menu_v1.conf $pkgdir/etc/skel/.config/morc_menu/morc_menu_v1.conf
 	install -Dm644 morc_menu_v1.conf $pkgdir/usr/share/morc_menu/morc_menu_v1.conf
 	install -Dm644 morc_menu.1 $pkgdir/usr/share/man/man1/morc_menu.1
 	gzip $pkgdir/usr/share/man/man1/morc_menu.1 
