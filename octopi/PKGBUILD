@@ -12,10 +12,10 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
-pkgver=0.8.1
+pkgver=0.8.2
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-#_gitcommit="5abb0fca0f5f6b5107dd89ea4e1071d71d70366a"
+_gitcommit="752e52f75ef1f569063dfb74ee73b6d59ff9c28b"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -26,7 +26,11 @@ if [ "${_gitcommit}" != "" ]; then
 else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
-sha256sums=('e01c6d959e5663797771b95b47951e3ad11a9abbc7cbb009f1f835404c5ff43e')
+source+=("rss-feed.patch::https://patch-diff.githubusercontent.com/raw/aarnt/octopi/pull/174.patch")
+
+sha256sums=('39e40bdde69cdf4ea0ad27e5dac5e6aa9be4fb86dec5e49b17aad0e10840f721'
+            '0ef66347e74f7643a5226c34011a26cbc5787eb778be20cea162349fd87ddee6')
+
 
 prepare() {
   if [ "${_gitcommit}" != "" ]; then
@@ -35,8 +39,11 @@ prepare() {
     cd "${srcdir}/${pkgbase}-${pkgver}"
   fi
 
+  # patch rss-feed
+  patch -p1 -i "${srcdir}/rss-feed.patch"
+
   # sed version
-  sed -i -e "s|0.8.1|${pkgver}-${pkgrel}|g" src/strconstants.h
+  sed -i -e "s|0.9.0 (dev)|${pkgver}-${pkgrel}|g" src/strconstants.h
 
   cp -r notifier notifier-qt4
   cp -r notifier notifier-qt5
