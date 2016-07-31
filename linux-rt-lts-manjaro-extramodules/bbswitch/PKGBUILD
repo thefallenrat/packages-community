@@ -1,27 +1,25 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-_linuxprefix=linux-rt-lts-manjaro
-_extramodules=extramodules-4.4-rt-lts-MANJARO
-pkgname=$_linuxprefix-bbswitch
+pkgname=linux-rt-lts-manjaro-bbswitch
 _pkgname=bbswitch
+_extramodules=extramodules-4.4-rt-lts-MANJARO
+_kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
 pkgver=0.8
 pkgrel=1
 pkgdesc="kernel module allowing to switch dedicated graphics card on Optimus laptops"
 arch=('x86_64')
 url="http://github.com/Bumblebee-Project/bbswitch"
 license=('GPL')
-depends=("$_linuxprefix")
-makedepends=("$_linuxprefix-headers")
+depends=('linux-rt-lts-manjaro')
+makedepends=('linux-rt-lts-manjaro-headers')
 provides=("$_pkgname=$pkgver")
-groups=("$_linuxprefix-extramodules")
+groups=('linux-rt-lts-manjaro-extramodules')
 install=bbswitch.install
 source=("$pkgname-$pkgver.tar.gz::https://github.com/Bumblebee-Project/bbswitch/archive/v${pkgver}.tar.gz")
 sha256sums=('76cabd3f734fb4fe6ebfe3ec9814138d0d6f47d47238521ecbd6a986b60d1477')
 
 build() {
-  _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
-
   cd ${srcdir}/${_pkgname}-${pkgver}
   # KDIR is necessary even when cleaning
   #make KDIR=/usr/lib/modules/-${_kernver} clean

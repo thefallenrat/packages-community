@@ -1,5 +1,5 @@
-# Maintainer: Jesus Alvarez <jeezusjr at gmail dot com>
-# Contributor: Kyle Fuller <inbox at kylefuller dot co dot uk>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 _linuxprefix=linux-rt-lts-manjaro
 _extramodules=extramodules-4.4-rt-lts-MANJARO

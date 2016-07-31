@@ -1,5 +1,6 @@
 # Based on the file created for Arch Linux by:
 # Thomas Baechler <thomas@archlinux.org>
+
 # Maintainer: Philip Müller <philm@manjaro.org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
@@ -8,7 +9,7 @@ _extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=367.35
-pkgrel=1
+pkgrel=2
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")

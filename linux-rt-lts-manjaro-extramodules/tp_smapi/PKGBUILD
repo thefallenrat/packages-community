@@ -7,22 +7,23 @@
 # Contributor: Stefan Rupp <archlinux ð stefanrupp đ de>
 # Contributor: Ignas Anikevicius <anikevicius ð gmail đ com>
 
-_linuxprefix=linux-rt-lts-manjaro
-_extraver=extramodules-4.4-rt-lts-MANJARO
+_extramodules=extramodules-4.4-rt-lts-MANJARO
+_kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
+_extramodules=$(readlink -f "/usr/lib/modules/${_kernver}/extramodules")
 _pkgname=tp_smapi
-pkgname=$_linuxprefix-tp_smapi
+pkgname=linux-rt-lts-manjaro-tp_smapi
 pkgver=0.41
 pkgrel=1
 pkgdesc="Modules for ThinkPad's SMAPI functionality"
 arch=('x86_64')
 url='https://github.com/evgeni/tp_smapi'
 license=('GPL')
-depends=("$_linuxprefix")
-makedepends=("$_linuxprefix-headers")
-groups=("$_linuxprefix-extramodules")
+depends=('linux-rt-lts-manjaro')
+makedepends=('linux-rt-lts-manjaro-headers')
+groups=('linux-rt-lts-manjaro-extramodules')
 install="${_pkgname}.install"
 source=("https://github.com/downloads/evgeni/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
-        "change_type_of_force_io_to_bool.patch::https://github.com/evgeni/tp_smapi/commit/8f40fcf3d9a4bfb9c3dae1caa2107ea3a367a609.patch")
+		'change_type_of_force_io_to_bool.patch')
 md5sums=('63c683415c764568f6bf17c7eabe4752'
          'fd46e3ac1b0e2ab7d0614531a693ccae')
 
@@ -33,20 +34,15 @@ prepare() {
 }
 
 build() {
-  _kernver="$(cat /usr/lib/modules/${_extraver}/version)"
-  _extramodules=$(readlink -f "/usr/lib/modules/${_kernver}/extramodules")
-
   cd "${srcdir}/${_pkgname}-${pkgver}"
 
   sed -ri -e "s/^(KVER\s*:=).*$/\1 ${_kernver}/" \
-          -e "s#^(KBASE\s*:=).*\$#\1 ${_extramodules%/*}/${_kernver}#" Makefile
+	  -e "s#^(KBASE\s*:=).*\$#\1 ${_extramodules%/*}/${_kernver}#" Makefile
+
   make HDAPS=1
 }
 
 package() {
-  _kernver="$(cat /usr/lib/modules/${_extraver}/version)"
-  _extramodules=$(readlink -f "/usr/lib/modules/${_kernver}/extramodules")
-
   make -C "${_extramodules%/*}/${_kernver}/build" \
     INSTALL_MOD_PATH="${pkgdir}/${_extramodules%%/lib/*}" \
     M="${srcdir}/${_pkgname}-${pkgver}" modules_install

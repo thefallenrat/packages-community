@@ -18,4 +18,3 @@ post_remove() {
   _updatemod
   groupdel cdemu
 }
-

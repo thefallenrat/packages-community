@@ -1,7 +1,9 @@
 # Based on the file created for Arch Linux by:
 # Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Krzysztof Raczkowski <raczkow@gmail.com>
-# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+
+# Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=linux-rt-lts-manjaro-open-vm-tools-modules
 _pkgname=open-vm-tools-modules
@@ -67,3 +69,4 @@ package() {
   install -D -m 644 ${srcdir}/modprobe.conf ${pkgdir}/etc/modprobe.d/${pkgname}.conf
   sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='$_extramodules'/" "${startdir}/${_pkgname}.install"
 }
+

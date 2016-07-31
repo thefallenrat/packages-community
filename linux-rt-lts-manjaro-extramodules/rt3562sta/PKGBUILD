@@ -3,14 +3,12 @@
 # Based on SUSE spec https://build.opensuse.org/package/files?package=rt3562sta&project=driver%3Awireless
 
 # Maintainer: Philip Müller <philm@manjaro.org>
-# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Co-Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-_linuxprefix=linux-rt-lts-manjaro
-_extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgbase=rt3562sta
-pkgname=("$_linuxprefix-rt3562sta"
+pkgname=('linux-rt-lts-manjaro-rt3562sta'
 	#'rt3562sta-common'
-)
+	)
 pkgver=2.4.1.1_r3
 _patchrel=${pkgver/*_r/}
 pkgrel=1
@@ -18,39 +16,41 @@ _subpkgrel=1
 arch=('x86_64')
 url="http://www.mediatek.com/en/Products/support.php?sn=501"
 license=('GPL')
-makedepends=("$_linuxprefix" "$_linuxprefix-headers")
+makedepends=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 source=($pkgname-$pkgver.tar.gz::https://github.com/mtorromeo/rt3562sta-linux/archive/r${_patchrel}.tar.gz)
 sha256sums=('3428c37e91f04dfb0d5e4aae9bbcbf72a3816e8804d0735110a53d1140c37eaa')
 
 build() {
-	_kernver="$(cat /usr/lib/modules/$_extramodules/version)"
+	_extramodules=extramodules-4.4-rt-lts-MANJARO
+	KERNEL_RELEASE="$(cat /usr/lib/modules/$_extramodules/version)"
 
 	cd "$srcdir"/rt3562sta-linux-r$_patchrel
 
 	EXTRA_CFLAGS="-DVERSION=$pkgver" \
-	LINUX_SRC="/usr/lib/modules/$_kernver/build" \
+	LINUX_SRC="/usr/lib/modules/$KERNEL_RELEASE/build" \
 		make
 }
 
-#package_rt3562sta-common() {
-#	pkgdesc="Ralink RT3562 PCI WLAN adaptors common files"
-#        arch=(any)
-#        pkgrel="$_subpkgrel"
-#
-#	cd "$srcdir/rt3562sta-linux-r$_patchrel"
-#
-#	install -Dm 0640 RT3562STA.dat "$pkgdir/etc/Wireless/RT3562STA/RT3562STA.dat"
-#	install -dm 0755 "$pkgdir/usr/share/doc/$pkgbase"
-#	install -m 0644 iwpriv_usage.txt README* RT3562STA* sta_ate_iwpriv_usage.txt "$pkgdir/usr/share/doc/$pkgbase"
-#}
+package_rt3562sta-common() {
+	pkgdesc="Ralink RT3562 PCI WLAN adaptors common files"
+        arch=(any)
+        pkgrel="$_subpkgrel"
+	cd "$srcdir/rt3562sta-linux-r$_patchrel"
+
+	install -Dm 0640 RT3562STA.dat "$pkgdir/etc/Wireless/RT3562STA/RT3562STA.dat"
+	install -dm 0755 "$pkgdir/usr/share/doc/$pkgbase"
+	install -m 0644 iwpriv_usage.txt README* RT3562STA* sta_ate_iwpriv_usage.txt "$pkgdir/usr/share/doc/$pkgbase"
+}
 
 package_linux-rt-lts-manjaro-rt3562sta() {
-	pkgdesc="Ralink RT3562 PCI WLAN adaptors kernel module"
+	_extramodules=extramodules-4.4-rt-lts-MANJARO
+	_kernver="$(cat /usr/lib/modules/$_extramodules/version)"
 	provides=("$pkgbase=$pkgver")
-	groups=("$_linuxprefix-extramodules")
-	depends=("$_linuxprefix" 'rt3562sta-common')
+	groups=('linux-rt-lts-manjaro-extramodules')
+	pkgdesc="Ralink RT3562 PCI WLAN adaptors kernel module"
+	depends=('linux-rt-lts-manjaro' 'rt3562sta-common')
+	groups=('linux-rt-lts-manjaro-extramodules')
         install=$pkgbase.install
-
 	cd "$srcdir/rt3562sta-linux-r$_patchrel"
 
 	install -Dm 0644 os/linux/$pkgbase.ko "$pkgdir/usr/lib/modules/$_extramodules/$pkgbase.ko"

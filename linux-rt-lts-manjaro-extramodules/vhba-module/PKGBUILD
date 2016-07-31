@@ -3,23 +3,22 @@
 # Mateusz Herych <heniekk@gmail.com>
 # Charles Lindsay <charles@chaoslizard.org>
 
-# Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-_linuxprefix=linux-rt-lts-manjaro
-_extramodules=extramodules-4.4-rt-lts-MANJARO
-pkgname=$_linuxprefix-vhba-module
+pkgname=linux-rt-lts-manjaro-vhba-module
 _pkgname=vhba-module
 pkgver=20140629
+_extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgrel=1
 pkgdesc="Kernel module that emulates SCSI devices"
 arch=('x86_64')
 url="http://cdemu.sourceforge.net/"
 license=('GPL')
-depends=("$_linuxprefix")
-makedepends=("$_linuxprefix-headers")
+depends=('linux-rt-lts-manjaro')
+makedepends=('linux-rt-lts-manjaro-headers')
 provides=("$_pkgname=$pkgver")
-groups=("$_linuxprefix-extramodules")
+groups=('linux-rt-lts-manjaro-extramodules')
 install=$_pkgname.install
 source=("http://downloads.sourceforge.net/cdemu/$_pkgname-$pkgver.tar.bz2"
         '60-vhba.rules')
@@ -31,9 +30,9 @@ prepare() {
 }
 
 build() {
-  _kernver="$(cat /usr/lib/modules/$_extramodules/version)"
-  
   cd "$srcdir/$_pkgname-$pkgver"
+
+  _kernver="$(cat /usr/lib/modules/$_extramodules/version)"
 
   make -j1 KDIR=/usr/lib/modules/${_kernver}/build
 }
@@ -49,5 +48,5 @@ package() {
   find "$pkgdir" -name '*.ko' -exec gzip -9 {} \;
 
   install -Dm644 "$srcdir/60-vhba.rules" \
-          "$pkgdir/usr/lib/udev/rules.d/60-$_linuxprefix-vhba.rules"
+    "$pkgdir/usr/lib/udev/rules.d/60-linux-rt-lts-manjaro-vhba.rules"
 }
