@@ -8,7 +8,9 @@
 
 _pkgname=ndiswrapper
 pkgbase=ndiswrapper
-pkgname=('linux-rt-lts-manjaro-ndiswrapper' 'ndiswrapper-utils')
+pkgname=('linux-rt-lts-manjaro-ndiswrapper'
+	#'ndiswrapper-utils'
+	)
 groups=('linux-rt-lts-manjaro-extramodules')
 pkgver=1.59
 pkgrel=1
