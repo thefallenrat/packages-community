@@ -1,14 +1,14 @@
 # mkinitcpio preset file for the 'linux-rt-lts' package
 
 ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="/boot/vmlinuz-rt-lts"
+ALL_kver="/boot/vmlinuz-rt-lts-manjaro"
 
 PRESETS=('default' 'fallback')
 
 #default_config="/etc/mkinitcpio.conf"
-default_image="/boot/initramfs-rt-lts.img"
+default_image="/boot/initramfs-rt-lts-manjaro.img"
 #default_options=""
 
 #fallback_config="/etc/mkinitcpio.conf"
-fallback_image="/boot/initramfs-rt-lts-fallback.img" 
+fallback_image="/boot/initramfs-rt-lts-manjaro-fallback.img" 
 fallback_options="-S autodetect"
