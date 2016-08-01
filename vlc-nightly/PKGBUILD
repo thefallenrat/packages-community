@@ -9,12 +9,12 @@ _pkgver=3.0.0
 _snapshot_=20160704
 _snapver_=0536
 _nightly_=${_snapshot_}-${_snapver_}
-pkgrel=1.1
+pkgrel=2
 pkgdesc="A multi-platform MPEG, VCD/DVD, and DivX player - nightly snapshot"
 arch=("i686" "x86_64")
 url="http://www.videolan.org/vlc/"
 license=("LGPL2.1" "GPL2")
-depends=("a52dec" "libdvbpsi" "libxpm" "libdca" "qt5-base" "libproxy"
+depends=("a52dec" "libdvbpsi" "libxpm" "libdca" "qt5-x11extras" "libproxy"
          "sdl_image" "libdvdnav" "libtiger" "lua" "libmatroska"
          "zvbi" "taglib" "libmpcdec" "ffmpeg" "faad2" "libupnp"
          "libshout" "libmad" "directfb" "libmpeg2" "libmodplug" "libass"
