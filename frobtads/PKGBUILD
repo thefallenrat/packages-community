@@ -10,6 +10,7 @@ arch=('i686' 'x86_64')
 url="http://www.tads.org/frobtads.htm"
 license=('custom: freeware')
 depends=('ncurses' 'curl')
+makedepends=('gcc5')
 #groups=(tads)
 source=(http://www.tads.org/frobtads/${pkgname}-${pkgver}.tar.gz)
 md5sums=('c6ed8cd6dac04b3ee6f4422cea688979')
@@ -18,8 +19,8 @@ md5sums=('c6ed8cd6dac04b3ee6f4422cea688979')
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	./configure --prefix=/usr
-	make
+	CC="gcc-5" CXX="g++-5" ./configure --prefix=/usr
+	CC="gcc-5" CXX="g++-5" make
 }
 
 package(){
