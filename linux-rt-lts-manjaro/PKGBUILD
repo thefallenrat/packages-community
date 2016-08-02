@@ -129,6 +129,11 @@ prepare() {
   msg2 "...Nvidia 304xx patch"
   patch -Np1 -i "${srcdir}/nvidia-304xx-mtrr-unknown-symbol.patch"
 
+  # A patch to fix a problem that ought to be fixed in the NVIDIA source code.
+  # Stops X from hanging on certain NVIDIA cards
+  msg2 "fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
+  patch -p1 -i "${srcdir}/fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
+
   msg2 "All patches have successfully been applied"
 
   # kernel configuration
