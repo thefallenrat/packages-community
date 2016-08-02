@@ -78,7 +78,7 @@ _kernelname=${pkgbase#linux}
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  msg2 add upstream patch
+  msg2 "add upstream patch"
   patch -p1 -i "${srcdir}/patch-${_pkgver}"
 
   # add latest fixes from stable queue, if needed
