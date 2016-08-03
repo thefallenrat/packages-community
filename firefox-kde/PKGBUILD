@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=47.0.1
+pkgver=48.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -15,13 +15,13 @@ depends=('gtk3' 'gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-typ
          'sqlite' 'ttf-font' 'icu'
          'kmozillahelper' 'nspr')  
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13')
+             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13' 'rust')
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'upower: Battery API')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=('!emptydirs' '!makeflags')
-_patchrev=2f9f2e040647
+_patchrev=199d5cf40e86
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
@@ -30,8 +30,6 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         vendor.js
         firefox-symbolic.svg
         firefox-gtk3-20.patch
-        mozilla-1245076.patch
-        mozilla-1245076-1.patch
         no-libnotify.patch
         kde.js
         # Firefox patchset
@@ -44,21 +42,19 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('5ac36c3481dde80ef2e36237badef6cb8ec5fe7e3b5ac1728839477de0cc034c'
-            '5ee9bb859b7cf20d0d5ce52cc3f8ee32594ab2f82346627e2eeabdde63b1e8b2'
+sha256sums=('f474113a1ee75a01d43e270bf438ba78b9f7f2e397a66652b43603235fa76e21'
+            '457f2c2628196b15ab13cf5e2ad40823a7bd4d60b38493dcb0050f8220682703'
             'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
-            'd5e1b9a702dc693184494899fc4cd57ac206e1fd5415a8e5520b8ff3b822e734'
-            '05574c7d0f259da161bcd0e2e8bc9a19401e620ff29439da935d349eebb60efa'
-            '6e7cba25c52b246da183b8309e7b56208bd991d1a7adb40063c5702a6f3722ea'
+            'c984c8bda3c173349d98f3fa71ec8ff8e8b74e6ca20a3f39f33596dbb4c4d1e8'
             'e4ebdd14096d177d264a7993dbd5df46463605ff45f783732c26d30b9caa53a7'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
-            '33bec5cc4da0a94d6c113775da981605adba1ce2199044e6550356baa686cc65'
-            'f35fd058cd07ea25980a95351e7195eb46f293c1cdb132dcca4739af946e4183'
-            'c3f50c89379351609cd9f8c3f1a1ef7f246da6ea463760932436384a2f428d1e'
-            'ac585ea642e2e43e7c65448d9af504233e2f00e1f981cd60d34db57877aceaf3'
+            'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
+            '28790588c7bcdc3f20841b5285c9ad013233199794b99045d3b7645ed6129b4b'
+            'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
+            'ab4e354d47a900757ac53b8e53726a0c595e5a578b12c70c90b58439885d91d6'
             'feede2fb86527c4a5d90bd5458fe582da920ab02dd25ec656236d87caf8888ba'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
@@ -97,7 +93,6 @@ prepare() {
   echo -n "$_mozilla_api_key" >mozilla-api-key
   echo "ac_add_options --with-mozilla-api-keyfile=\"$PWD/mozilla-api-key\"" >>.mozconfig
 
-
   msg "Patching for KDE"
   patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
   patch -Np1 -i "$srcdir/mozilla-kde.patch"
@@ -107,16 +102,12 @@ prepare() {
   patch -Np1 -i "$srcdir/firefox-no-default-ualocale.patch"
   patch -Np1 -i "$srcdir/firefox-branded-icons.patch"
 
-  msg "Add missing file in Makefile for pgo builds"
-  patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
+  #msg "Add missing file in Makefile for pgo builds"
+  #patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
 
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1234158
   msg "Patching for GTK 3.20 changes"
   patch -Np1 -i "$srcdir/firefox-gtk3-20.patch"
-  
-  # GCC 6
-  patch -Np1 -i ../mozilla-1245076.patch
-  patch -Np1 -i ../mozilla-1245076-1.patch
 
   mkdir "$srcdir/path"
   ln -s /usr/bin/python2 "$srcdir/path/python"
@@ -132,20 +123,20 @@ build() {
   LDFLAGS+=" -Wl,-z,now"
 
   # GCC 6
-  CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
   CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
 
   export PATH="$srcdir/path:$PATH"
 
-  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-    make -f client.mk profiledbuild
+  #xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
+  #  make -f client.mk profiledbuild
+
+  make -f client.mk build  
 }
 
 package() {
   cd $_pkgname-$pkgver
 
-  [[ "$CARCH" == "i686" ]] && cp "$srcdir/kde.js" obj-i686-pc-linux-gnu/dist/bin/defaults/pref
-  [[ "$CARCH" == "x86_64" ]] && cp "$srcdir/kde.js" obj-x86_64-unknown-linux-gnu/dist/bin/defaults/pref
+  cp "$srcdir/kde.js" obj-$CARCH-pc-linux-gnu/dist/bin/defaults/pref
 
   make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
 
