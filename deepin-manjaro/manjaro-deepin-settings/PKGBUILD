@@ -2,7 +2,7 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160728
+pkgver=20160803
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 _pkgver=3.0.6
@@ -44,6 +44,10 @@ source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 sha256sums=('SKIP'
             '82e96badfc22b768b63dcc09c04b4557df6d91c2ad714d7c383de7be744f6187'
             'SKIP')
+
+pkgver() {
+	date +%Y%m%d
+}
 
 prepare() {
   cd $_pkgname
