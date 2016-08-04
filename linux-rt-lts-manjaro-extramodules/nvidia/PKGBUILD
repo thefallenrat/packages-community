@@ -8,8 +8,8 @@ _linuxprefix=linux-rt-lts-manjaro
 _extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
-pkgver=367.35
-pkgrel=3
+pkgver=367.36.02
+pkgrel=1
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
@@ -22,10 +22,13 @@ conflicts=('nvidia-96xx' 'nvidia-173xx')
 license=('custom')
 install=nvidia.install
 options=(!strip)
-source=("http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-md5sums=('24f1fc19fe10bcc6ff264fb5034c4ccc')
+#durl="http://us.download.nvidia.com/XFree86/Linux-x86/${pkgver}"
+durl="http://developer.download.nvidia.com/assets/opengl/369.00"
+source=("${durl}/NVIDIA-Linux-x86_64-${pkgver}.run")
+#source=("${durl}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
+sha256sums=('9ad5219a7994be667f7448964040d3f64f73cf6169ada5ac8b58255244b19618')
 
-_pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
+_pkg="NVIDIA-Linux-x86_64-${pkgver}"
 
 prepare() {
     sh "${_pkg}.run" --extract-only
