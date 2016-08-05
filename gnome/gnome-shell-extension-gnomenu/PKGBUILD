@@ -4,21 +4,26 @@
 pkgname=gnome-shell-extension-gnomenu
 _pkgname=gno-menu
 pkgver=19
-pkgrel=1
+pkgrel=2
 pkgdesc="GnoMenu is a traditional styled full featured Gnome-Shell apps-menu, that aims to offer all the essentials in a simple uncluttered intuitive interface."
 arch=(any)
 url="https://github.com/The-Panacea-Projects/Gnomenu"
 license=(GPL3)
 depends=('gnome-shell>=3.20' 'gnome-tweak-tool')
 makedepends=(git)
-source=("https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz")
-sha256sums=('9f5ed3cb8401a9fca025f809f99002a2f3956721b05b789e4979c67c6e2c24b0')
+source=("https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz"
+	"org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
+sha256sums=('9f5ed3cb8401a9fca025f809f99002a2f3956721b05b789e4979c67c6e2c24b0'
+            '4651cc5bfa5c5ab855fceee62bdcf1db18bc294afb57fcd3341a251ffb7e9a24')
 
-#prepare() {
-#  cd Gnomenu-${_pkgname}.v${pkgver}
+prepare() {
 
-#  patch -N -i ${srcdir}/metadata.json.patch
-#}
+# Override the shortcut to call gnomenu: default is F2 now <Shift>F3
+
+  cd Gnomenu-${_pkgname}.v${pkgver}/schemas
+
+  patch -N -i ${srcdir}/org.gnome.shell.extensions.gnomenu.gschema.xml.patch
+}
 
 package() {
 	install -dm755 $srcdir/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
