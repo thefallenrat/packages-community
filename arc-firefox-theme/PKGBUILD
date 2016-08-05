@@ -3,8 +3,8 @@
 # Contributor: Stefano Capitani <stefano@manjaro.org>
 
 pkgname="arc-firefox-theme"
-pkgver=20160607
-_pkgver="47.$pkgver"
+pkgver=20160802
+_pkgver="48.$pkgver"
 pkgrel=1
 pkgdesc="Arc Firefox Theme"
 url="https://github.com/horst3180/$pkgname"
@@ -14,7 +14,7 @@ depends=('firefox')
 makedepends=('autoconf' 'automake' 'unzip' 'zip')
 source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz")
 conflicts=('arc-firefox-theme-git')
-md5sums=('c86cdd4741e63fea3351b73bc7a92e8e')
+md5sums=('2046d3d3186f369d495fb07131e7148c')
 
 build() {
   cd "$srcdir/$pkgname-$_pkgver"
