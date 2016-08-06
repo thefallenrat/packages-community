@@ -8,7 +8,7 @@
 
 pkgname=thunderbird-kde
 pkgver=45.2.0
-pkgrel=1
+pkgrel=2
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
 arch=('i686' 'x86_64')
@@ -106,8 +106,7 @@ build() {
 
   export PATH="$srcdir/path:$PATH"
 
-  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-    make -f client.mk profiledbuild
+  make -f client.mk build
 }
 
 package() {
