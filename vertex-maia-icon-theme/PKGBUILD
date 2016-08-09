@@ -4,16 +4,16 @@
 
 pkgname=vertex-maia-icon-theme
 _folder=vertex-maia-icon-themes
-pkgver=20160805
+pkgver=20160809
 pkgrel=1
-_commit=963cbb44c6a990c41e6cc0cde1a8f37a95caa143
+_commit=4ab887ef1469e3232a1e619f95b924001493e5b1
 arch=('any')
 url="https://github.com/manjaro/vertex-maia-icon-themes"
 license=('GPL')
 depends=('hicolor-icon-theme' 'librsvg')
 options=('!emptydirs' '!strip')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_commit.tar.gz")
-md5sums=('2855d6f0ce8046930e380e37da41e91c')
+md5sums=('94e9bebcb37e0320eee54cbfde576b38')
 
 pkgver() {
 	date +%Y%m%d
