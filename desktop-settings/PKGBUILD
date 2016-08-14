@@ -13,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160731
+pkgver=20160814
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -174,7 +174,12 @@ package_manjaro-lxde-settings() {
 
 package_manjaro-mate-settings() {
 	pkgdesc='Manjaro Linux mate settings'
-	depends=('manjaro-base-skel')
+	depends=('manjaro-base-skel'
+                 'xcursor-maia'
+                 'vertex-maia-themes'
+                 'vertex-maia-icon-theme'
+                 'maia-wallpaper'
+                 'qt5ct')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
