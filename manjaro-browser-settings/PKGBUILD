@@ -2,7 +2,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org
 
 pkgname=manjaro-browser-settings
-pkgver=20160503
+pkgver=20160815
 pkgrel=1
 pkgdesc="Manjaro Linux settings browser defaults"
 arch=('any')
