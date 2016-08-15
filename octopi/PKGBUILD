@@ -6,8 +6,8 @@
 # Maintainer: Tomasz Przybył <fademind[at]manaro[dot]org>
 
 ## Why there are 3 notifier packages:
-## https://forum.manjaro.org/index.php?topic=17673.msg163296#msg163296
-## https://forum.manjaro.org/index.php?topic=17673.msg171500#msg171500
+## https://classicforum.manjaro.org/index.php?topic=17673.msg163296#msg163296
+## https://classicforum.manjaro.org/index.php?topic=17673.msg171500#msg171500
 
 pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
@@ -15,7 +15,7 @@ pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner
 pkgver=0.8.3
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="28777174bc7e1ffe4f6914e415eea2cccc8f11d5"
+_gitcommit="f07959e06ba5033c99a75ef2710dbd56f8d618a1"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -27,7 +27,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('63e8838293e0cee7c15f287500ccc98ab8cf8f865d63fd631bf03f0647236bf4')
+sha256sums=('2dc9e18c0e8676e6db35d5bbf8462ccd88088e73776538c317df45ca969350e4')
 
 
 prepare() {

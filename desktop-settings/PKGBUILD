@@ -14,7 +14,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
 pkgver=20160814
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -179,6 +179,7 @@ package_manjaro-mate-settings() {
                  'vertex-maia-themes'
                  'vertex-maia-icon-theme'
                  'maia-wallpaper'
+                 'qt5-styleplugins'
                  'qt5ct')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
