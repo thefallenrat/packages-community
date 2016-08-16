@@ -8,7 +8,7 @@ _gtk3_max='3.21'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
 pkgver="${_gtk3_max}.4.188"
-pkgrel=1
+pkgrel=2
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
 url="https://github.com/tista500/${_theme_name}"
@@ -50,11 +50,8 @@ build() {
     export PATH="${BUNDLE_PATH}/bin:${PATH}"
     cd "${_theme_name}-${pkgver}"
     echo "PATH: ${PATH}"
-    ./autogen.sh --prefix "${pkgdir}/usr" \
-                 --enable-gtk_next \
-                 --enable-chrome \
-                 --enable-plank \
-                 --enable-parallel
+    ./autogen.sh --prefix "${pkgdir}/usr" --enable-gtk_next --enable-chrome --enable-plank --with-selection_color=#16A085 --with-second_selection_color=#16A085 --enable-parallel
+
     make
 }
 
