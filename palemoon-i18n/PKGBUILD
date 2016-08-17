@@ -2,7 +2,7 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgbase=palemoon-i18n
-pkgver=26.3
+pkgver=26.4
 pkgrel=1
 pkgdesc="Language pack for Palemoon"
 arch=('any')
