@@ -11,7 +11,7 @@ pkgname=('virtualbox'
          'virtualbox-guest-utils-nox'
          'virtualbox-ext-vnc')
 pkgver=5.1.4
-pkgrel=0.1
+pkgrel=0.3
 arch=('i686' 'x86_64')
 url='http://virtualbox.org'
 license=('GPL' 'custom')
@@ -68,7 +68,8 @@ source=("http://download.virtualbox.org/virtualbox/$pkgver/VirtualBox-$pkgver.ta
         '003-ogl-include-path.patch'
         '005-gsoap-build.patch'
         '006-rdesktop-vrdp-keymap-path.patch'
-        '007-python2-path.patch')
+        '007-python2-path.patch'
+        'rm_mod_timer_pinned.patch')
         
 md5sums=('e25a6a1f3c113c373dc0433f9c2526f3'
          'a19774e8c56f2c4d12c528992525c444'
@@ -86,7 +87,8 @@ md5sums=('e25a6a1f3c113c373dc0433f9c2526f3'
          '9e49bbaa2192b141c27ee43cef8cbab7'
          '820557807d21934e10c976a7a664057a'
          'd82a6f19be739341ed7f1cf4ee8070ca'
-         '188ea65918309f737ce28216c2b07c3b')
+         '188ea65918309f737ce28216c2b07c3b'
+         'a64e6e04d4643a10ffed967a64e2c3bb')
 
 prepare() {
     cd "VirtualBox-$pkgver"

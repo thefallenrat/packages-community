@@ -17,7 +17,7 @@ _pkgverrt=4.6.5
 _bfq=v7r11
 _rtpatchver=rt10
 pkgver=${_pkgver}_${_rtpatchver}
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -166,6 +166,9 @@ prepare() {
 
   # set extraversion to pkgrel
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
+  
+  # add RT-specific define (for vbox)
+  sed -i "s|__KERNEL__|__KERNEL__ -DRT_PATCHED|" Makefile
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
