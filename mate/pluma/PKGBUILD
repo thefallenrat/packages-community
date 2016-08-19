@@ -4,20 +4,18 @@
 _ver=1.14
 _pkgbase=pluma
 pkgname=${_pkgbase}
-pkgver=${_ver}.0
-pkgrel=1
+pkgver=${_ver}.1
+pkgrel=0.1
 pkgdesc="A powerful text editor for MATE (GTK2 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('desktop-file-utils' 'enchant' 'gtk2' 'gtksourceview2' 'iso-codes'
-         'libsm' 'mate-desktop>=1.12' 'pygtksourceview2' 'python2-gobject' 'zenity')
-makedepends=('mate-common' 'yelp-tools')
-optdepends=('yelp: for reading MATE help documents')
+depends=('iso-codes' 'mate-desktop' 'pygtksourceview2' 'zenity')
+makedepends=('intltool' 'itstool')
 groups=('mate-extra')
 conflicts=("${_pkgbase}-gtk3")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('e521a50260b46af94adf43078dc430c0f590a24a')
+sha1sums=('4546bf71ffabbe1da65d574b510e60cd4358f486')
 
 prepare() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -32,6 +30,10 @@ build() {
         --with-gtk=2.0 \
         --enable-gtk-doc=no \
         --enable-python
+
+    #https://bugzilla.gnome.org/show_bug.cgi?id=656231
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
     make
 }
 
@@ -39,3 +41,4 @@ package() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
     make DESTDIR="${pkgdir}" install
 }
+
