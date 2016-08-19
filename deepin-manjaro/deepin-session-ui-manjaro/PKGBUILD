@@ -4,9 +4,9 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-session-ui-manjaro
-pkgver=3.0.14
+pkgver=3.0.15
 pkgrel=1
-#_commit=633276fbb8e82df26cc1759223dfda9946132d59
+_commit=6076080b5e15907c8c6fe938d93788053ddf7c1b
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url="https://github.com/oberon2007/$pkgname"
@@ -29,6 +29,7 @@ provides=('lightdm-deepin-greeter' 'deepin-session-ui')
 conflicts=('dde-workspace' 'dde-session-ui' 'deepin-session-ui')
 replaces=('dde-workspace' 'dde-session-ui')
 source=("git+$url#tag=$pkgver")
+#source=("git+$url#commit=$_commit")
 sha256sums=('SKIP')
 
 build() {
@@ -40,4 +41,7 @@ build() {
 package() {
   cd $pkgname
   make INSTALL_ROOT="${pkgdir}" install
+
+  ## avoid conflict with dde-daemon https://github.com/linuxdeepin/dde-session-ui/issues/6
+  rm $pkgdir/usr/share/applications/deepin-toggle-desktop.desktop
 }
