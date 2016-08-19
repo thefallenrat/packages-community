@@ -2,10 +2,10 @@
 # Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160803
+_pkgver=3.0.7
+pkgver=20160819+3.0.7
 pkgrel=1
 _pkgname=deepin-desktop-schemas
-_pkgver=3.0.6
 pkgdesc='Manjaro Linux deepin settings and gschemas'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
@@ -46,7 +46,7 @@ sha256sums=('SKIP'
             'SKIP')
 
 pkgver() {
-	date +%Y%m%d
+  echo "$(date +%Y%m%d)+${_pkgver}"
 }
 
 prepare() {
