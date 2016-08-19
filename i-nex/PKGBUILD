@@ -10,18 +10,18 @@ pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
 url="http://i-nex.linux.pl/"
 license=('LGPL3')
-depends=('gambas3-runtime' 
-	 'gambas3-gb-image' 
-	 'gambas3-gb-form'
-         'gambas3-gb-desktop'
-         'gambas3-gb-qt4'
-         'gambas3-gb-desktop-x11'
-         'python2' 
-         'libcpuid'
-         'xorg-server-utils' 
-         'lsb-release' 
-         'curl'
-	 'procps-ng')
+depends=('gambas3-runtime'
+	'gambas3-gb-image'
+	'gambas3-gb-form'
+	'gambas3-gb-desktop'
+	'gambas3-gb-qt5'
+	'gambas3-gb-desktop-x11'
+	'python2'
+	'libcpuid'
+	'xorg-server-utils'
+	'lsb-release'
+	'curl'
+	'procps-ng')
 makedepends=('gambas3-devel' 'gcc' 'imagemagick' 'git')
 source=("git+https://github.com/eloaders/${_gitname}.git#commit=${_gitcommit}")
 md5sums=('SKIP')
