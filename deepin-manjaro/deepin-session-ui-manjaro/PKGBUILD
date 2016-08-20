@@ -41,7 +41,4 @@ build() {
 package() {
   cd $pkgname
   make INSTALL_ROOT="${pkgdir}" install
-
-  ## avoid conflict with dde-daemon https://github.com/linuxdeepin/dde-session-ui/issues/6
-  rm $pkgdir/usr/share/applications/deepin-toggle-desktop.desktop
 }
