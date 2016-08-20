@@ -3,8 +3,8 @@
 
 pkgname=veracrypt
 _pkgname=VeraCrypt
-pkgver=1.17
-pkgrel=3
+pkgver=1.18
+pkgrel=1
 pkgdesc="Disk encryption with strong security based on TrueCrypt"
 arch=('i686' 'x86_64') # 'armv6h' 'armv7h')
 url="http://veracrypt.codeplex.com/"
@@ -13,14 +13,13 @@ depends=('fuse' 'wxgtk>=3.0')
 makedepends=('nasm')
 install='veracrypt.install'
 
-source=("${pkgname}_${pkgver}_Source.tar.bz2::https://sourceforge.net/projects/${pkgname}/files/${_pkgname} ${pkgver}/${pkgname}_${pkgver}_Source.tar.bz2/download"
+source=("${pkgname}_${pkgver}_Source.tar.bz2::http://downloads.sourceforge.net/project/${pkgname}/${_pkgname}%20${pkgver}/${_pkgname}_${pkgver}_Source.tar.bz2"
+#       "${pkgname}_${pkgver}_Source.tar.bz2::https://sourceforge.net/projects/${pkgname}/files/${_pkgname} ${pkgver}/${pkgname}_${pkgver}_Source.tar.bz2/download"
 #       "${pkgname}_${pkgver}_Source.tar.bz2.sig::https://sourceforge.net/projects/${pkgname}/files/${_pkgname} ${pkgver}/${pkgname}_${pkgver}_Source.tar.bz2.sig/download"
         "0001_no_makeself.patch"
-        "0002_gcc5_invalid_chars.patch"
         "veracrypt.desktop")
-sha1sums=('cd27cf9b6853aac104a33fac0f1d8733765042ba'
+sha1sums=('055cfafcd670f169b585611d732edecb53df0249'
           '0cbe9f7875ab52be125cc575533f76fab60314a5'
-          '03b0287022e8c906f01e95a22a83ee8b90c42951'
           'ebdd450e719fe3cff5e459f027856cbaf03db13a')
 #validpgpkeys=('993B7D7E8E413809828F0F29EB559C7C54DDD393')
 
@@ -29,7 +28,6 @@ prepare() {
 
   msg2 "Applying patches..."
   patch -Np1 -i ../0001_no_makeself.patch  # disable sfx archive
-  patch -Np1 -i ../0002_gcc5_invalid_chars.patch  # compatibility with new gcc5 ABI
 }
 
 build() {
