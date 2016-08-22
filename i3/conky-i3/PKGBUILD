@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=conky-i3
-pkgver=20160606
+pkgver=20160822
 pkgrel=1
 pkgdesc="Conkies for manjaro-i3 in grey, green, solarized or 'maia' colors"
 _repo=conkies
@@ -23,6 +23,10 @@ backup=('usr/share/conky/conky_green'
         'usr/share/conky/conky1.10_shortcuts_solarized')
 source=("git://$url.git")
 md5sums=('SKIP')
+
+pkgver() {
+	date +%Y%m%d
+}
 
 package() {
 	cd $srcdir/$_repo

@@ -9,12 +9,12 @@
 pkgname=dmenu-manjaro
 _pkgname=dmenu
 pkgver=4.6
-pkgrel=6
+pkgrel=7
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 groups=('i3-manjaro')
 license=('MIT')
-depends=('sh' 'libxinerama' 'libxft' 'cantarell-fonts')
+depends=('sh' 'libxinerama' 'libxft' 'noto-fonts')
 conflicts=('dmenu' 'dmenu-xft')
 provides=('dmenu' 'dmenu-xft')
 install=$pkgname.install
@@ -29,7 +29,7 @@ md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
          '90ace6ce00d5eca669cb6039583413fe'
          '75ce132d2f30208b7cdef0d70339bae2'
          '584eef3b98587b4653b8231f7e991ee4'
-         '9544878bacc0f032bf0259a9d5b62019')
+         '328cae6ab0094d2c7efb5ea4d77e5597')
 
 prepare() {
 	cd $srcdir/$_pkgname-$pkgver

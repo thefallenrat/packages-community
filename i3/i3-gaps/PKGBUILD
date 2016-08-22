@@ -1,7 +1,8 @@
 # Maintainer: Ingo Bürk <admin at airblader dot de>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-gaps
-pkgver=4.12.r82.gaf1ab57
+pkgver=4.12.r118.g155f034
 pkgrel=1
 pkgdesc='A fork of i3wm tiling window manager with more features, including gaps'
 arch=('i686' 'x86_64')
