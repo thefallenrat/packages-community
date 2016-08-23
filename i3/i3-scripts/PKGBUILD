@@ -16,4 +16,5 @@ package() {
   install -dm755 $pkgdir/usr/{,local/}bin
   cp $pkgname/bin/* $pkgdir/usr/bin
   cp $pkgname/local/xflock4 $pkgdir/usr/local/bin
+  ln -s setcursor $pkgdir/usr/bin/fix_xcursor
 }
