@@ -4,7 +4,7 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-session-ui-manjaro
-pkgver=3.0.15
+pkgver=3.0.16
 pkgrel=1
 _commit=6076080b5e15907c8c6fe938d93788053ddf7c1b
 pkgdesc='Deepin desktop-environment - Session UI module'
