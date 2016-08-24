@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-pkgver=20160615
+pkgver=20160824
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
@@ -11,6 +11,10 @@ makedepends=('git')
 conflicts=('lemonpanel')
 source=("git+$url.git")
 sha1sums=('SKIP')
+
+pkgver() {
+	date +%Y%m%d
+}
 
 package() {
   install -dm755 $pkgdir/usr/{,local/}bin
