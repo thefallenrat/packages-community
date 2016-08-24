@@ -13,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160821
+pkgver=20160824
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -23,7 +23,7 @@ source=("git+$url.git")
 sha256sums=('SKIP')
 
 _inst_dir(){
-	if [[ -d $srcdir/$pkgbase/$1/skel ]];then
+	if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
 		install -d $pkgdir/etc
 		cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
 	fi
