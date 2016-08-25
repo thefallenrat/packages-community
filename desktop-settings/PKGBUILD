@@ -13,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160824
+pkgver=20160825
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -143,7 +143,7 @@ package_manjaro-i3-settings() {
 		'manjaro-base-skel'
 		'nitrogen'
 		'vertex-maia-themes'
-		'xcursor-chameleon-pearl')
+		'xcursor-breeze')
 	optdepends=('manjaro-backgrounds: Manjaro wallpapers'
 		'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
 	conflicts=('manjaro-desktop-settings')
