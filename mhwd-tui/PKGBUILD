@@ -1,12 +1,12 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=mhwd-tui
-pkgver=0.2
-pkgrel=3
+pkgver=0.3
+pkgrel=1
 pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
-url="https://github.com/Chrysostomus/$pkgname"
-license=MIT
+url="https://github.com/oberon2007/$pkgname"
+license=(MIT)
 depends=('awk'
 	'bash'
 	'mhwd')
@@ -19,3 +19,4 @@ package () {
 	cd "$srcdir"
         install -Dm755 "$srcdir/$pkgname/mhwd-tui" "$pkgdir/usr/bin/mhwd-tui"
 }
+
