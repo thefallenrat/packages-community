@@ -5,7 +5,7 @@ pkgver=0.3
 pkgrel=1
 pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
-url="https://github.com/oberon2007/$pkgname"
+url="https://github.com/Chrysostomus/$pkgname"
 license=(MIT)
 depends=('awk'
 	'bash'
