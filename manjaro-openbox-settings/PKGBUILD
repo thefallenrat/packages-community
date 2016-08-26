@@ -3,7 +3,7 @@
 
 pkgname=manjaro-openbox-settings
 pkgver=20160826
-pkgrel=1
+pkgrel=2
 pkgdesc='Manjaro Linux openbox settings'
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
