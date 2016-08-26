@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='3.21'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="${_gtk3_max}.4.188"
+pkgver="${_gtk3_max}.4.236"
 pkgrel=2
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -34,7 +34,7 @@ makedepends=('glib2>=2.48.0'
 _tri_fadeno="tri-fadeno.jpg"
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "${pkgver}-${_tri_fadeno}::${url}/raw/master/.github/img/${_tri_fadeno}")
-sha256sums=('53bec48cdb5e24132c93fe222d987fb0009b4d60e7b83f89610b64f96941d725'
+sha256sums=('b054e81a1714df880d9e255a72e795311ede59c27c9698b671850a743823dac9'
             '807bd3d99fb492569caf050cfa9b5c75d4e6a072007637fe8e583a3f5c0bea24')
 
 _bundle="ruby-bundle"
@@ -50,7 +50,13 @@ build() {
     export PATH="${BUNDLE_PATH}/bin:${PATH}"
     cd "${_theme_name}-${pkgver}"
     echo "PATH: ${PATH}"
-    ./autogen.sh --prefix "${pkgdir}/usr" --enable-gtk_next --enable-chrome --enable-plank --with-selection_color=#16A085 --with-second_selection_color=#16A085 --enable-parallel
+    ./autogen.sh --prefix "${pkgdir}/usr" \
+	         --enable-gtk_next \
+                 --enable-chrome \
+		 --enable-plank \
+	         --with-selection_color=#16A085 \
+		 --with-second_selection_color=#16A085 \
+		 --enable-parallel
 
     make
 }
