@@ -14,7 +14,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
 pkgver=20160826
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -120,7 +120,7 @@ package_manjaro-gnome-settings() {
 		'gnome-shell-extension-gnomenu'
 		'gnome-shell-extension-dash-to-dock'
 		'gnome-wallpapers'
-		'xcursor-simpleandsoft'
+		'xcursor-maia'
 		'manjaro-base-skel')
 	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
