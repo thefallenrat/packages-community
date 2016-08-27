@@ -2,7 +2,7 @@
 
 pkgname=i3-scripts
 _commit=4c90881f2232aee8e6af4b761d6fb031c376662b
-pkgver=20160827
+pkgver=20160828
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
@@ -13,9 +13,9 @@ conflicts=('lemonpanel')
 source=("$pkgname-$_commit.tar.gz::$url/archive/$_commit.tar.gz")
 sha1sums=('f51feb4756c5745cf4d31e77048237ec8edccdb6')
 
-pkgver() {
-	date +%Y%m%d
-}
+#pkgver() {
+#	date +%Y%m%d
+#}
 
 package() {
   cd $pkgname-$_commit
