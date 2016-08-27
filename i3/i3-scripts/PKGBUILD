@@ -1,7 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-pkgver=20160824
+_commit=4c90881f2232aee8e6af4b761d6fb031c376662b
+pkgver=20160827
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
@@ -9,16 +10,17 @@ url="https://github.com/oberon2007/$pkgname"
 license=('GPL')
 makedepends=('git')
 conflicts=('lemonpanel')
-source=("git+$url.git")
-sha1sums=('SKIP')
+source=("$pkgname-$_commit.tar.gz::$url/archive/$_commit.tar.gz")
+sha1sums=('f51feb4756c5745cf4d31e77048237ec8edccdb6')
 
 pkgver() {
 	date +%Y%m%d
 }
 
 package() {
+  cd $pkgname-$_commit
   install -dm755 $pkgdir/usr/{,local/}bin
-  cp $pkgname/bin/* $pkgdir/usr/bin
-  cp $pkgname/local/xflock4 $pkgdir/usr/local/bin
+  cp bin/* $pkgdir/usr/bin
+  cp local/xflock4 $pkgdir/usr/local/bin
   ln -s setcursor $pkgdir/usr/bin/fix_xcursor
 }

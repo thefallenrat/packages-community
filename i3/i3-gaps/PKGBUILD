@@ -2,7 +2,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-gaps
-pkgver=4.12.r118.g155f034
+pkgver=4.12.1
 pkgrel=1
 pkgdesc='A fork of i3wm tiling window manager with more features, including gaps'
 arch=('i686' 'x86_64')
@@ -11,7 +11,6 @@ url='https://github.com/Airblader/i3/tree/gaps-next'
 license=('BSD')
 provides=('i3-wm')
 conflicts=('i3-wm' 'i3bar' 'i3bar-git' 'i3-git' 'i3-gaps-next-git')
-groups=('i3-vcs')
 depends=('libev'
 	'libxkbcommon-x11'
 	'pango'
@@ -20,7 +19,7 @@ depends=('libev'
 	'xcb-util-cursor'
 	'xcb-util-keysyms'
 	'xcb-util-wm'
-	'xcb-util-xrm'
+#	'xcb-util-xrm' #only required for gaps-next branch
 	'yajl')
 makedepends=('asciidoc'
 	'docbook-xsl'
@@ -33,15 +32,15 @@ optdepends=('dmenu: As menu.'
 	'perl-json-xs: For i3-save-tree'
 	'rxvt-unicode: The terminal emulator used in the default config.')
 options=('docs' '!strip')
-source=('git://github.com/Airblader/i3#branch=gaps-next')
+source=('git://github.com/Airblader/i3#branch=gaps')
 sha1sums=('SKIP')
 
 _gitname='i3'
 
-pkgver() {
-  cd "$_gitname"
-  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+#pkgver() {
+#  cd "$_gitname"
+#  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+#}
 
 build() {
   cd "$_gitname"
