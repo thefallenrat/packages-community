@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 _pkgver=3.0.8
-pkgver=20160824+3.0.8
+pkgver=20160826+3.0.8
 pkgrel=2
 _pkgname=deepin-desktop-schemas
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -46,7 +46,7 @@ sha256sums=('SKIP'
             'SKIP')
 
 pkgver() {
-  echo "$(date +%Y%m%d)+${_pkgver}"
+  printf "$(date +%Y%m%d)+${_pkgver}"
 }
 
 prepare() {
