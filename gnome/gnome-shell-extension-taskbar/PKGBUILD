@@ -2,15 +2,23 @@
 
 pkgname=gnome-shell-extension-taskbar
 pkgver=52.0
-pkgrel=1
+pkgrel=2
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
 url="https://extensions.gnome.org/extension/584/taskbar/"
 license=('GPL')
 depends=('gnome-shell')
-source=("https://github.com/${_author}/${pkgname}/archive/${pkgver}.tar.gz")
-md5sums=('3ec07bd499ce4608690828afdedd8434')
+source=("https://github.com/${_author}/${pkgname}/archive/${pkgver}.tar.gz"
+	'org.gnome.shell.extensions.TaskBar.gschema.xml.patch')
+md5sums=('3ec07bd499ce4608690828afdedd8434'
+         '6feb842e3e12d02195c94e1dbcdfe893')
+
+prepare() {
+#Add patch to inhibit configuration at the first launch
+	cd "${srcdir}/${pkgname}-${pkgver}/schemas"
+	patch -Ni ${srcdir}/org.gnome.shell.extensions.TaskBar.gschema.xml.patch
+}
 
 package() {
   cd $pkgname-$pkgver

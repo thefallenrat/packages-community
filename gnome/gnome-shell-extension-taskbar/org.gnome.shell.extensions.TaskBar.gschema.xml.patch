@@ -1,0 +1,11 @@
+--- org.gnome.shell.extensions.TaskBar.gschema.xml	2016-08-27 16:27:38.983310061 +0200
++++ org.gnome.shell.extensions.TaskBar.gschema.xml.new	2016-08-27 16:29:03.063985000 +0200
+@@ -85,7 +85,7 @@
+     </enum>
+     <schema path="/org/gnome/shell/extensions/TaskBar/" id="org.gnome.shell.extensions.TaskBar">
+         <key name="first-start" type="b">
+-            <default>true</default>
++            <default>false</default>
+             <summary>Display Preferences on the first start of TaskBar</summary>
+             <description/>
+         </key>
