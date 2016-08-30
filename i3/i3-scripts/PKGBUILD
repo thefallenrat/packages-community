@@ -2,7 +2,7 @@
 
 pkgname=i3-scripts
 _commit=99a62b08cefe6c423b9860ae96342abcf4d607f6
-pkgver=20160828
+pkgver=20160830
 pkgrel=1
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
