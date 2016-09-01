@@ -1,9 +1,9 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-scripts
-_commit=99a62b08cefe6c423b9860ae96342abcf4d607f6
+_commit=2405b70f16729c6c9e3f58a87adf7425d984b4af
 pkgver=20160830
-pkgrel=1
+pkgrel=2
 pkgdesc="Scripts for manjaro-i3"
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
@@ -11,7 +11,7 @@ license=('GPL')
 makedepends=('git')
 conflicts=('lemonpanel')
 source=("$pkgname-$_commit.tar.gz::$url/archive/$_commit.tar.gz")
-sha1sums=('25985d0ef69e54ae80cab4000c347f557f9997af')
+sha1sums=('01af9734670757344c0c7817f4fcaba5b54be83d')
 
 pkgver() {
 	date +%Y%m%d
