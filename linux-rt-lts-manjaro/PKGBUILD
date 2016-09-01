@@ -6,16 +6,15 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
-#pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-rt-lts         # Build kernel with a different name
 pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _srcname=linux-4.4
 _basekernel=4.4
 _basever=44-rt-lts
-_pkgver=${_basekernel}.17
-_pkgverrt=4.4.17
+_pkgver=${_basekernel}.19
+_pkgverrt=4.4.19
 _bfq=v7r11
-_rtpatchver=rt25
+_rtpatchver=rt27
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -47,7 +46,7 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'config.diff'
 )
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            '294960bddb6dcef7c80d80aa13b7d1fb9c4555975f16196b9dddb05728436604'
+            '61b34a8ab4ba778c50a6fb04471cb34192e179db68440d81b12694e45dea00fc'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '4134c9ca56e2be2072122364871f7a5feedfb1acb12cadf6e41c09c9c068ce70'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
@@ -59,7 +58,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
-            '102eb54d7593d45a1a837c37a51551623681fcd2b0f0f03deea08f635cfc869c'
+            'bce223bb6b00d7bd9479edcc75a5042925140a45de46269ad274726894d61af9'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
