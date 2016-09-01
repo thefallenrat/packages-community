@@ -4,9 +4,8 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-session-ui-manjaro
-pkgver=3.0.16
-pkgrel=2
-_commit=9b0605812a994ab89e87a382e19c8968a2bc871d
+pkgver=3.0.17
+pkgrel=1
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url="https://github.com/oberon2007/$pkgname"
@@ -28,8 +27,7 @@ conflicts=('deepin-manjaro-workspace' 'lightdm-deepin-greeter' 'lightdm-deepin-g
 provides=('lightdm-deepin-greeter' 'deepin-session-ui')
 conflicts=('dde-workspace' 'dde-session-ui' 'deepin-session-ui')
 replaces=('dde-workspace' 'dde-session-ui')
-#source=("git+$url#tag=$pkgver")
-source=("git+$url#commit=$_commit")
+source=("git+$url#tag=$pkgver")
 sha256sums=('SKIP')
 
 build() {
