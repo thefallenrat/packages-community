@@ -1,0 +1,78 @@
+diff -ru a/cinnamon-session/main.c b/cinnamon-session/main.c
+--- a/cinnamon-session/main.c	2016-05-20 13:03:13.000000000 +0200
++++ b/cinnamon-session/main.c	2016-09-02 01:09:22.414223146 +0200
+@@ -296,6 +296,7 @@
+                 { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
+                 { NULL, 0, 0, 0, NULL, NULL, NULL }
+         };
++        char *qt_platform_theme_new = NULL;
+ 
+         /* Make sure that we have a session bus */
+         if (!require_dbus_session (argc, argv, &error)) {
+@@ -383,8 +384,14 @@
+          */
+         csm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
+ 
+-        /* Make QT5 apps follow the GTK style */
+-        csm_util_setenv ("QT_STYLE_OVERRIDE", "gtk");
++        /* Make QT5 apps follow the GTK style. Starting with QT 5.7, a different
++         * env var has to be set than what worked in previous versions.
++         */
++        qt_platform_theme_new = HAVE_QT57 ? "qt5ct" : "qgnomeplatform";
++
++        if (NULL == g_getenv ("QT_QPA_PLATFORMTHEME")) {
++            csm_util_setenv ("QT_QPA_PLATFORMTHEME", qt_platform_theme_new);
++        }
+ 
+         /* GTK Overlay scrollbars */
+         settings = g_settings_new ("org.cinnamon.desktop.interface");
+diff -ru a/configure.ac b/configure.ac
+--- a/configure.ac	2016-09-02 01:04:15.478982566 +0200
++++ b/configure.ac	2016-09-02 01:03:23.457591000 +0200
+@@ -108,6 +108,20 @@
+ AC_SUBST(LOGIND_LIBS)
+ 
+ dnl ====================================================================
++dnl Check for qt 5.7+ to set correct env var for theme/styling
++dnl ====================================================================
++AC_ARG_ENABLE(qt57_theme_support,
++              AS_HELP_STRING([--enable-qt57-theme-support], [Support GTK styles for QT apps with QT 5.7+]),
++              [enable_qt57_theme_support=yes],
++              [enable_qt57_theme_support=no])
++
++if test x$enable_qt57_theme_support = xyes; then
++    AC_DEFINE([HAVE_QT57], [1], [Have QT 5.7+])
++else
++    AC_DEFINE([HAVE_QT57], [0], [Have QT 5.7+])
++fi
++
++dnl ====================================================================
+ dnl X development libraries check
+ dnl ====================================================================
+ 
+@@ -349,12 +363,13 @@
+ 
+         GConf support:            ${enable_gconf}
+         Logind support:           ${have_logind}
++        Qt 5.7+ theme support:    ${enable_qt57_theme_support}
+         IPv6 support:             ${have_full_ipv6}
+         Backtrace support:        ${have_backtrace}
+         XRender support:          ${have_xrender}
+         XSync support:            ${have_xsync}
+         XTest support:            ${have_xtest}
+-	Legacy UPower backend:    ${have_old_upower}
++        Legacy UPower backend:    ${have_old_upower}
+         Build documentation:      ${enable_docbook_docs}
+ 
+ "
+diff -ru a/.gitignore b/.gitignore
+--- a/.gitignore	2016-05-20 13:03:13.000000000 +0200
++++ b/.gitignore	2016-09-02 01:03:23.444257000 +0200
+@@ -38,3 +38,7 @@
+ *.old
+ *.bak
+ 
++## IDE files ##
++.idea
++CMakeLists.txt
++
