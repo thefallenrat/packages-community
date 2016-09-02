@@ -36,9 +36,12 @@ package_virtualbox-host-dkms() {
 	sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
 	  usr/src/vboxhost-${pkgver}_OSE/vboxdrv/r0drv/linux/timer-r0drv-linux.c
 	  
+    install -Dm644 $srcdir/usr/lib/modules-load.d/$pkgname.conf \
+      $pkgdir/usr/lib/modules-load.d/$pkgname.conf
+    install -Dm644 $srcdir/usr/share/licenses/$pkgname/LICENSE \
+      $pkgdir/usr/share/licenses/$pkgname/LICENSE
     install -dm755 $pkgdir/usr/src
-    cp -r $srcdir/usr/{share,lib} $pkgdir/usr
-    cp -r "$srcdir/usr/src/vboxhost-${pkgver}_OSE" $pkgdir/usr/src/vboxhost-${pkgver}_OSE
+    cp -r "$srcdir/usr/src/vboxhost-${pkgver}_OSE" $pkgdir/usr/src/
 }
 
 package_virtualbox-guest-dkms() {
@@ -58,7 +61,10 @@ package_virtualbox-guest-dkms() {
 	sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
 	  usr/src/vboxguest-${pkgver}_OSE/vboxguest/r0drv/linux/timer-r0drv-linux.c
 	  
+    install -Dm644 $srcdir/usr/lib/modules-load.d/$pkgname.conf \
+      $pkgdir/usr/lib/modules-load.d/$pkgname.conf
+    install -Dm644 $srcdir/usr/share/licenses/$pkgname/LICENSE \
+      $pkgdir/usr/share/licenses/$pkgname/LICENSE
     install -dm755 $pkgdir/usr/src
-    cp -r $srcdir/usr/{share,lib} $pkgdir/usr
-    cp -r "$srcdir/usr/src/vboxguest-${pkgver}_OSE" $pkgdir/usr/src/vboxguest-${pkgver}_OSE
+    cp -r "$srcdir/usr/src/vboxguest-${pkgver}_OSE" $pkgdir/usr/src/
 }
