@@ -32,9 +32,9 @@ package_virtualbox-host-dkms() {
                 'linux-zen-headers: build modules against ZEN kernel')
     install=$pkgname.install
 
-	# rm mod_timer_pinned() for rt-patched kernels >=4.6 <4.8
-	sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
-	  usr/src/vboxhost-${pkgver}_OSE/vboxdrv/r0drv/linux/timer-r0drv-linux.c
+    # rm mod_timer_pinned() for rt-patched kernels >=4.6 <4.8
+    sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
+      usr/src/vboxhost-${pkgver}_OSE/vboxdrv/r0drv/linux/timer-r0drv-linux.c
 	  
     install -Dm644 $srcdir/usr/lib/modules-load.d/$pkgname.conf \
       $pkgdir/usr/lib/modules-load.d/$pkgname.conf
@@ -57,9 +57,9 @@ package_virtualbox-guest-dkms() {
                 'linux-zen-headers: build modules against ZEN kernel')
     install=$pkgname.install
 
-	# rm mod_timer_pinned() for rt-patched kernels >=4.6 <4.8
-	sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
-	  usr/src/vboxguest-${pkgver}_OSE/vboxguest/r0drv/linux/timer-r0drv-linux.c
+    # rm mod_timer_pinned() for rt-patched kernels >=4.6 <4.8
+    sed -i 's/VERSION(4, 8, 0)/VERSION(4, 8, 0) || defined(RT_PATCHED)/g' \
+      usr/src/vboxguest-${pkgver}_OSE/vboxguest/r0drv/linux/timer-r0drv-linux.c
 	  
     install -Dm644 $srcdir/usr/lib/modules-load.d/$pkgname.conf \
       $pkgdir/usr/lib/modules-load.d/$pkgname.conf
