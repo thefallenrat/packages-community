@@ -1,21 +1,21 @@
-# Maintainer: Philip Müller <philm@manjaro.org>
-# Contributor : Martin Wimpress <code@flexion.org>
+# Contributor: Martin Wimpress <code@flexion.org>
 
-_ver=1.12
+_ver=1.14
 _pkgbase=mozo
 pkgname=${_pkgbase}
-pkgver=${_ver}.0
-pkgrel=2
-pkgdesc="MATE menu editing tool (GTK2 version)"
+pkgver=${_ver}.1
+pkgrel=0.1
+pkgdesc="MATE menu editing tool"
 url="http://mate-desktop.org"
 arch=('any')
 license=('GPL')
-depends=('mate-menus>=1.12' 'pygtk' 'python2-gobject' 'gtk2')
-makedepends=('mate-common')
-groups=('mate-extra')
+depends=('gtk3' 'mate-menus' 'python2-gobject')
+makedepends=('intltool')
+groups=('mate-extra' 'mate-extra-gtk3')
 conflicts=("${_pkgbase}-gtk3")
+replaces=("${_pkgbase}-gtk3")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('7538b8e6e72a6ef6a7b146cdb807bc64e1453734')
+sha1sums=('a40f1d193431d8c8a2647be2861fcf31e9b491e0')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
