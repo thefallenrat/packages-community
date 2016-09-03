@@ -67,7 +67,7 @@ sha256sums=('1f2bcc9167668eca62fda7d22b6dd07052c87420bacc6d47d451ed6d441daf61'
             '49ef783f4de2d57165135083a1b84cea1aab4e8f8f44571e2d7565448c69c3db'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
-            '')
+            '8b96ecc7c4c1dc5fc81162d010d69606b590f0feee0563aee875706e0ab4d5f9')
 
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
              )
