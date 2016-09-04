@@ -4,7 +4,7 @@
 
 pkgname=cinnamon-session
 pkgver=3.0.1
-pkgrel=1.5
+pkgrel=1.6
 pkgdesc="The Cinnamon Session Handler"
 arch=(i686 x86_64)
 license=(GPL LGPL)
@@ -19,7 +19,7 @@ source=(${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-sessi
 sha256sums=('d8935747bc8aa70518e70a7d338eaf9109b5307d8a44d49dc57e0f15d69e9c89'
             'ef421a14814c7858490b3a806568ab4ec8a0dc21d390e94f801771c1261bb24a'
             '32a95e2c5828ec9b93e0e8d8ed2f7ae20e11635d0afcf2e0bcb285d9985f7039'
-            '5cdad6e088e1bab501518db624f12938d8502077d5b3429c8874d1b0951fec3b')
+            'b90e9ffc829618456d53980cbf30b902ce54981eb44a2555f166ebcb0720a37d')
 
 prepare() {
   cd $pkgname-$pkgver
