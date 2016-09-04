@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 _pkgver=3.0.9
-pkgver=20160903+3.0.9
+pkgver=20160904+3.0.9
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -11,8 +11,7 @@ arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL3')
 groups=('deepin-manjaro')
-depends=('cantarell-fonts'
-	'dconf'
+depends=('dconf'
 	'deepin-artwork-themes-manjaro'
 	'deepin-desktop'
 	'deepin-iconthemes-manjaro'
@@ -21,6 +20,7 @@ depends=('cantarell-fonts'
 	'deepin-sound-theme'
 	'deepin-wallpapers'
 	'manjaro-base-skel'
+	'noto-fonts'
 	'vertex-maia-icon-theme'
 	'vertex-maia-themes'
 	'xcursor-breeze'
