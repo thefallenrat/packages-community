@@ -15,7 +15,7 @@ diff -ru --no-dereference a/overrides/mips/com.deepin.wrap.gnome.desktop.overrid
  
  [com.deepin.wrap.gnome.desktop.interface]
 -cursor-theme='deepin'
-+cursor-theme='Chameleon-Pearl'
++cursor-theme='Breeze'
  gtk-key-theme='Default'
  gtk-theme='deepin'
  icon-theme='deepin'
@@ -57,7 +57,7 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override
  
  [com.deepin.wrap.gnome.desktop.interface]
 -cursor-theme='deepin'
-+cursor-theme='Chameleon-Pearl'
++cursor-theme='Breeze'
  gtk-key-theme='Default'
  gtk-theme='deepin'
  icon-theme='deepin'
@@ -89,7 +89,7 @@ diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/sche
      </key>
      <key type="s" name="cursor-theme">
 -      <default>'deepin'</default>
-+      <default>'Chameleon-Pearl'</default>
++      <default>'Breeze'</default>
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
@@ -122,7 +122,7 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
      </key>
      <key type="s" name="gtk-cursor-theme-name">
 -      <default>'deepin'</default>
-+      <default>'Chameleon-Pearl'</default>
++      <default>'Breeze'</default>
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
@@ -387,7 +387,7 @@ diff -ru --no-dereference a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface
      </key>
      <key name="cursor-theme" type="s">
 -      <default>'Adwaita'</default>
-+      <default>'Chameleon-Pearl'</default>
++      <default>'Breeze'</default>
        <summary>Cursor theme</summary>
        <description>Cursor theme name. Used only by Xservers that support the Xcursor extension.</description>
      </key>

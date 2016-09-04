@@ -3,7 +3,7 @@
 
 pkgname=manjaro-deepin-settings
 _pkgver=3.0.9
-pkgver=20160901+3.0.9
+pkgver=20160904+3.0.9
 pkgrel=1
 _pkgname=deepin-desktop-schemas
 pkgdesc='Manjaro Linux deepin settings and gschemas'
@@ -11,8 +11,7 @@ arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL3')
 groups=('deepin-manjaro')
-depends=('cantarell-fonts'
-	'dconf'
+depends=('dconf'
 	'deepin-artwork-themes-manjaro'
 	'deepin-desktop'
 	'deepin-iconthemes-manjaro'
@@ -21,9 +20,10 @@ depends=('cantarell-fonts'
 	'deepin-sound-theme'
 	'deepin-wallpapers'
 	'manjaro-base-skel'
+	'noto-fonts'
 	'vertex-maia-icon-theme'
 	'vertex-maia-themes'
-	'xcursor-chameleon-pearl-deepin'
+	'xcursor-breeze'
 # currently still needed for control-panel mouse-widget: 
 	'xf86-input-synaptics')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
@@ -42,7 +42,7 @@ source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff'
 	"git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP'
-            '0907ef38515e6452befd3a89e940ed69ea3df414972203f21e1fcbfa61cb5655'
+            'eb99a5d079a7cd71ac0bde833f35d33b9c0fb7e5cdd4ab34bdabddfbd7c50d5a'
             'SKIP')
 
 pkgver() {
