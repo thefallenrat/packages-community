@@ -19,7 +19,7 @@ diff -Npur cinnamon-session-3.0.1.orig/cinnamon-session/main.c cinnamon-session-
 -        if (NULL == g_getenv ("QT_STYLE_OVERRIDE")) {
 -            csm_util_setenv ("QT_STYLE_OVERRIDE", "gtk");
 +        if (strcmp(g_getenv ("QT_QPA_PLATFORMTHEME"), "qt5ct") == 0) {
-+            csm_util_setenv ("QT_STYLE_OVERRIDE", "");
++            g_unsetenv ("QT_STYLE_OVERRIDE");
          }
  
 -
