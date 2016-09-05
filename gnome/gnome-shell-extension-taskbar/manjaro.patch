@@ -1,0 +1,11 @@
+--- extension.js	2016-04-23 20:45:44.000000000 +0200
++++ extension-new.js	2016-09-05 22:12:47.316825000 +0200
+@@ -732,7 +732,7 @@
+         }
+         if ((this.settings.get_boolean("first-start")) && (Main.sessionMode.currentMode === 'user'))
+         {
+-            Main.Util.trySpawnCommandLine('gnome-shell-extension-prefs ' + Extension.metadata.uuid);
++            //Main.Util.trySpawnCommandLine('gnome-shell-extension-prefs ' + Extension.metadata.uuid);
+             this.settings.set_boolean("first-start", false);
+         }
+ 	// Find out if the bottom panel extension is enabled
