@@ -7,7 +7,7 @@
 
 pkgname=lightdm-webkit2-greeter-manjaro
 pkgver=1.0
-pkgrel=4
+pkgrel=5
 _pkgname=lightdm-webkit2-greeter
 _pkgver=2.1.4
 pkgdesc="A webkit2 greeter for LightDM fo Manjaro"
@@ -46,9 +46,12 @@ package() {
 	make DESTDIR="${pkgdir}" install 
 
 #Start the transformation
-
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/"
 	mv  antergos manjaro
+	
+#Set theme into theme manjaro
+	find . -type f -name '*.*' -exec sed -i "s/antergos/manjaro/g" {} \;
+
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro"
 	find . -type f -name 'index.theme' -exec sed -i "s/Antergos/Manjaro/g" {} \;
 	
@@ -57,15 +60,15 @@ package() {
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/css"
 	find . -type f -name 'style.css' -exec sed -i \
 	"s/EAEAEA/16A085/g;\
-	s/ECF0F1/16A085/g;
-	s/3D73C5/16A085/g;
-	s/77ADFF/16A085/g;
+	s/ECF0F1/16A085/g;\
+	s/3D73C5/16A085/g;\
+	s/77ADFF/16A085/g;\
 	s/2196F3/16A085/g" {} \;
 
 	cd "$pkgdir/usr/share/lightdm-webkit/themes/_vendor"
 	find . -type f -name 'bootswatch-paper.bootstrap.min.css' -exec sed -i \
 	"s/2196f3/16A085/g;\
-	s/0c7cd5/16A085/g;
+	s/0c7cd5/16A085/g;\
 	s/0a68b4/29806F/g" {} \;
 
 #New brand/icon
