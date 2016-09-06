@@ -2,7 +2,7 @@
 
 pkgname=gnome-shell-extension-taskbar
 pkgver=52.0
-pkgrel=5
+pkgrel=4
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
