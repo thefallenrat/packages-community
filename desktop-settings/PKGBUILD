@@ -13,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
 	'manjaro-mate-settings'
 	'manjaro-netbook-settings'
 	'manjaro-pantheon-settings')
-pkgver=20160830
+pkgver=20160906
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -66,7 +66,7 @@ package_manjaro-budgie-settings() {
 		'vertex-maia-themes'
 		'vertex-maia-icon-theme'
 		'budgie-wallpapers'
-		'xcursor-simpleandsoft'
+		'xcursor-breeze'
 		'manjaro-base-skel')
 	optdepends=('plymouth-theme-manjaro-fancy-budgie')
 	conflicts=('manjaro-desktop-settings')
@@ -120,7 +120,7 @@ package_manjaro-gnome-settings() {
 		'gnome-shell-extension-gnomenu'
 		'gnome-shell-extension-dash-to-dock'
 		'gnome-wallpapers'
-		'xcursor-maia'
+		'xcursor-breeze'
 		'manjaro-base-skel')
 	optdepends=('plymouth-theme-manjaro-gnome')
 	conflicts=('manjaro-desktop-settings')
