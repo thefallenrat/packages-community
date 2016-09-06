@@ -3,7 +3,7 @@
 pkgname=espeak
 _gitname=espeak-ng
 _commit=
-pkgver=1.48.15.r647.g252c894
+pkgver=1.48.15.r660.gb784e77
 pkgrel=1
 pkgdesc="Next generation open source speech synthesizer based on Espeak (git version)"
 arch=(i686 x86_64)
