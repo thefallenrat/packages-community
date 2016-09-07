@@ -2,21 +2,26 @@
 # Autor: Moka Project
 
 pkgname=faba-icon-theme
-pkgver=20150802
+pkgver=4.1.2
 pkgrel=1
+epoch=1
 pkgdesc="Faba is a sexy and modern icon theme with Tango influences."
 arch=('any')
 url="http://snwh.org/moka/"
-license=('GPL3')
+license=('GPL3' 'CCPL-4.0:by-sa')
 depends=('gtk-update-icon-cache')
-_grab=6f1cea3fcd0720d952145dfa6b0415ab2b4ca9d7
 options=(!strip)
-source=("https://github.com/moka-project/$pkgname/archive/$_grab.tar.gz")
-sha256sums=('47842eadbdb668a266e31643f91c27ceaf8ff002e7ae76e70cd226017afb9462')
+source=($pkgname-$pkgver.tar.gz::https://github.com/moka-project/$pkgname/archive/v$pkgver.tar.gz)
+sha256sums=('c7af0409846af799e15910257021a9c898167f4fddec6161b4ceab230c6d2242')
+
+build() {
+  cd "$pkgname-$pkgver"
+  bash autogen.sh
+  make
+}
 
 package() {
-    install -d -m 755 "${pkgdir}"/usr/share/icons/Faba
-    cp -dr --no-preserve=ownership "${pkgname}-${_grab}"/Faba "${pkgdir}"/usr/share/icons/
-    find "${pkgdir}"/usr/share/icons/ -type d -exec chmod 755 {} \;
-    find "${pkgdir}"/usr/share/icons/ -type f -exec chmod 644 {} \;
+  cd "$pkgname-$pkgver"
+  make DESTDIR="$pkgdir/" install
 }
+
