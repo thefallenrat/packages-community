@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=deepin-iconthemes-manjaro
-pkgver=20160527
+pkgver=20160907
 pkgrel=1
 _repo=deepin-iconthemes
 _snapshot=13819db8096724cddd5111d23a3373e08176b584
@@ -15,6 +15,10 @@ provides=('deepin-icontheme-pack')
 groups=('deepin-manjaro')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
 md5sums=('aff4f22e2159928f441d92782a542039')
+
+pkgver() {
+date +%Y%m%d
+}
 
 package() {
 	cd $_repo-$_snapshot

@@ -1,6 +1,6 @@
 diff -ru --no-dereference a/overrides/mips/com.deepin.dde.dock.override b/overrides/mips/com.deepin.dde.dock.override
---- a/overrides/mips/com.deepin.dde.dock.override	2016-08-23 17:33:20.818596651 +0200
-+++ b/overrides/mips/com.deepin.dde.dock.override	2016-08-23 17:45:31.597374620 +0200
+--- a/overrides/mips/com.deepin.dde.dock.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/mips/com.deepin.dde.dock.override	2016-09-03 19:27:55.026379607 +0200
 @@ -1,3 +1,3 @@
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','org.gnome.nautilus','audacious-qt','smplayer','firefox','wps-office-wps','wps-office-wpp','wps-office-et','dde-control-center']
@@ -8,8 +8,8 @@ diff -ru --no-dereference a/overrides/mips/com.deepin.dde.dock.override b/overri
 +docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru --no-dereference a/overrides/mips/com.deepin.wrap.gnome.desktop.override b/overrides/mips/com.deepin.wrap.gnome.desktop.override
---- a/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-08-23 17:33:20.818596651 +0200
-+++ b/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-08-23 17:45:31.597374620 +0200
+--- a/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-09-03 19:27:55.026379607 +0200
 @@ -13,7 +13,7 @@
  mouse-button-modifier=''
  
@@ -20,8 +20,8 @@ diff -ru --no-dereference a/overrides/mips/com.deepin.wrap.gnome.desktop.overrid
  gtk-theme='deepin'
  icon-theme='deepin'
 diff -ru --no-dereference a/overrides/mips/other.override b/overrides/mips/other.override
---- a/overrides/mips/other.override	2016-08-23 17:33:20.818596651 +0200
-+++ b/overrides/mips/other.override	2016-08-23 17:45:31.597374620 +0200
+--- a/overrides/mips/other.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/mips/other.override	2016-09-03 19:27:55.026379607 +0200
 @@ -4,3 +4,17 @@
  [org.gnome.nautilus.preferences]
  executable-text-activation='ask'
@@ -41,8 +41,8 @@ diff -ru --no-dereference a/overrides/mips/other.override b/overrides/mips/other
 +visible-name='manjaro'
 +
 diff -ru --no-dereference a/overrides/x86/com.deepin.dde.dock.override b/overrides/x86/com.deepin.dde.dock.override
---- a/overrides/x86/com.deepin.dde.dock.override	2016-08-23 17:33:20.818596651 +0200
-+++ b/overrides/x86/com.deepin.dde.dock.override	2016-08-23 17:45:31.598374632 +0200
+--- a/overrides/x86/com.deepin.dde.dock.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/x86/com.deepin.dde.dock.override	2016-09-03 19:27:55.026379607 +0200
 @@ -1,3 +1,3 @@
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','dde-file-manager','deepin-appstore','deepin-music-player','deepin-movie','google-chrome','dde-control-center']
@@ -50,8 +50,8 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.dde.dock.override b/overrid
 +docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/com.deepin.wrap.gnome.desktop.override
---- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-08-23 17:33:20.819596663 +0200
-+++ b/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-08-23 17:45:31.598374632 +0200
+--- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-09-03 19:27:55.026379607 +0200
 @@ -13,7 +13,7 @@
  mouse-button-modifier=''
  
@@ -62,8 +62,8 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override
  gtk-theme='deepin'
  icon-theme='deepin'
 diff -ru --no-dereference a/overrides/x86/other.override b/overrides/x86/other.override
---- a/overrides/x86/other.override	2016-08-23 17:33:20.819596663 +0200
-+++ b/overrides/x86/other.override	2016-08-23 17:45:31.598374632 +0200
+--- a/overrides/x86/other.override	2016-09-04 19:06:09.918990868 +0200
++++ b/overrides/x86/other.override	2016-09-03 19:27:55.026379607 +0200
 @@ -4,3 +4,16 @@
  [org.gnome.nautilus.preferences]
  executable-text-activation='ask'
@@ -82,8 +82,8 @@ diff -ru --no-dereference a/overrides/x86/other.override b/overrides/x86/other.o
 +rewrap-on-resize=true
 +visible-name='manjaro'
 diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/schemas/com.deepin.dde.appearance.gschema.xml
---- a/schemas/com.deepin.dde.appearance.gschema.xml	2016-08-23 17:33:20.819596663 +0200
-+++ b/schemas/com.deepin.dde.appearance.gschema.xml	2016-08-23 17:45:31.599374644 +0200
+--- a/schemas/com.deepin.dde.appearance.gschema.xml	2016-09-04 19:06:09.918990868 +0200
++++ b/schemas/com.deepin.dde.appearance.gschema.xml	2016-09-04 19:03:58.311280183 +0200
 @@ -16,7 +16,7 @@
        </description>
      </key>
@@ -93,6 +93,21 @@ diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/sche
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
+@@ -28,12 +28,12 @@
+       <description>Set the system sound theme</description>
+     </key>
+     <key type="s" name="font-standard">
+-      <default>'sans-serif'</default>
++      <default>'Noto Sans'</default>
+       <summary>Standard Font</summary>
+       <description>The standard font for desktop</description>
+     </key>
+     <key type="s" name="font-monospace">
+-      <default>'monospace'</default>
++      <default>'Droid Sans Mono Regular'</default>
+       <summary>Monospace Font</summary>
+       <description>The monospace font for desktop</description>
+     </key>
 @@ -43,14 +43,12 @@
        <description>The desktop font size</description>
      </key>
@@ -115,8 +130,8 @@ diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/sche
      <key name="excluded-icon-themes" type="as">
        <default>['hicolor','gnome','Adwaita']</default>
 diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettings.gschema.xml
---- a/schemas/com.deepin.xsettings.gschema.xml	2016-08-23 17:33:20.821596687 +0200
-+++ b/schemas/com.deepin.xsettings.gschema.xml	2016-08-23 17:45:31.599374644 +0200
+--- a/schemas/com.deepin.xsettings.gschema.xml	2016-09-04 19:06:09.922324228 +0200
++++ b/schemas/com.deepin.xsettings.gschema.xml	2016-09-03 19:27:55.029712985 +0200
 @@ -35,14 +35,14 @@
        </description>
      </key>
@@ -363,8 +378,8 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
        <default>true</default>
        <summary>Xft antialias</summary>
 diff -ru --no-dereference a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml
---- a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-08-23 17:33:20.822596699 +0200
-+++ b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-08-23 17:45:31.600374656 +0200
+--- a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-09-04 19:06:09.922324228 +0200
++++ b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-09-03 19:27:55.029712985 +0200
 @@ -83,14 +83,14 @@
        </description>
      </key>
