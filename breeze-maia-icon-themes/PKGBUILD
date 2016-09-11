@@ -5,7 +5,7 @@
 
 pkgname=breeze-maia-icon-themes
 _pkgname=breeze-icons
-pkgver=5.25.0
+pkgver=5.26.0
 pkgrel=1
 pkgdesc='Breeze icon themes with Maia colors'
 arch=('any')
@@ -15,18 +15,8 @@ license=('LGPL')
 makedepends=("extra-cmake-modules>=${pkgver}" 'qt5-base')
 source=("https://github.com/KDE/$_pkgname/archive/v$pkgver.tar.gz"
 	'deepin-show-desktop.svg')
-md5sums=('440523e9218185da8c54bf000429abfb'
+md5sums=('c8082bd6caf2b05a28973f416adadde1'
          '8e4deb556453e0ff6dd5f415fd7aa4c6')
-
-prepare() {
-  cd $_pkgname-$pkgver
-  ln -s icons/places/32/user-desktop.svg icons/apps/32/deepin-show-desktop.svg
-  ln -s icons-dark/places/32/user-desktop.svg icons-dark/apps/32/deepin-show-desktop.svg
-  ln -s icons/apps/48/utilities-terminal.svg icons/apps/48/deepin-terminal.svg
-  ln -s icons-dark/apps/48/utilities-terminal.svg icons-dark/apps/48/deepin-terminal.svg
-  cp $srcdir/deepin-show-desktop.svg icons/apps/48/deepin-show-desktop.svg
-  cp $srcdir/deepin-show-desktop.svg icons-dark/apps/48/deepin-show-desktop.svg
-}
 
 build() {
   mkdir build
@@ -60,5 +50,12 @@ package() {
   find . -name "index.*" -exec sed -i "s/Breeze/Breeze-Maia/g;s/Maia Dark/Maia-Dark/g" '{}' \;
   mv breeze Breeze-Maia
   mv breeze-dark Breeze-Maia-Dark
+  
+  ln -s ../../places/32/user-desktop.svg Breeze-Maia/apps/32/deepin-show-desktop.svg
+  ln -s ../../places/32/user-desktop.svg Breeze-Maia-Dark/apps/32/deepin-show-desktop.svg
+  ln -s utilities-terminal.svg Breeze-Maia/apps/48/deepin-terminal.svg
+  ln -s utilities-terminal.svg Breeze-Maia-Dark/apps/48/deepin-terminal.svg
+  cp $srcdir/deepin-show-desktop.svg Breeze-Maia/apps/48/deepin-show-desktop.svg
+  cp $srcdir/deepin-show-desktop.svg Breeze-Maia-Dark/apps/48/deepin-show-desktop.svg
 }
 
