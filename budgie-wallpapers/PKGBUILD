@@ -1,8 +1,8 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgname=budgie-wallpapers
-pkgver=20160723
-pkgrel=2
+pkgver=20160911
+pkgrel=1
 _snapshot=73b728b7a7663d3a4f34c92cdb5250160cce4cd8
 _repo=Budgie-Artwork
 pkgdesc='Manjaro Linux Budgie wallpapers'
