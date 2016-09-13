@@ -13,7 +13,7 @@ license=('LGPL3' 'GPL3')
 depends=('efl>=1.18.0' "$_python-dbus")
 #depends=('elementary' "$_python-dbus") elementary is included in efl
 source=("http://download.enlightenment.org/rel/bindings/python/$_pkgname-$pkgver.tar.xz")
-sha256sums=('9ea0fe0938bd4a970206b2b18f46f4d2a4fd1994e9b5f84af2d5f9fa98739179')
+sha256sums=('1751e119c3fc4ee842c00ae3d667d6bda88d92eff424b06a31e9407db8ee225d')
 
 build() {
   cd $_pkgname-$pkgver
