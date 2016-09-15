@@ -11,7 +11,6 @@ depends=('i3-wm'
 	'i3lock'
 	'imagemagick')
 optdepends=('lightdm-gtk-greeter: switch user with lightdm')
-install=$pkgname.install
 source=($pkgname
 	blurlock)
 md5sums=('a38f67f9685acc183c78f472c3fb1262'
