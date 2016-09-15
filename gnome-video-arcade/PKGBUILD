@@ -1,5 +1,6 @@
 # Maintainer: Kendell Clark <coffeekingms@gmail.com>
-# Contributor: ianux <ianux@free.fr>pkgname=gnome-video-arcade
+# Contributor: ianux <ianux@free.fr>
+pkgname=gnome-video-arcade
 pkgver=0.8.6
 pkgrel=1
 pkgdesc="Simple GTK3 MAME front-end wich supports both XMAME and SDLMAME."
