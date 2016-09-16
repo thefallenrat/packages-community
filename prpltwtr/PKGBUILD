@@ -1,7 +1,7 @@
 # Maintainer :  Kendell Clark <coffeekingms@gmail.com>
 
 # Contributor: sumt <sumt at sci dot fi>
-pkgname=prpltwtr-git
+pkgname=prpltwtr
 pkgver=0.14.0.r7.g71c4d4f
 pkgrel=1
 pkgdesc="A libpurple plugin which treats microblogging (Twitter, identi.ca) as IM protocols"
@@ -10,6 +10,7 @@ url="https://github.com/mikeage/prpltwtr"
 license=('GPL')
 depends=('libpurple' 'json-glib')
 makedepends=('pidgin' 'intltool' 'libtool' 'git')
+replace=('prpltwtr-git') #remove this at the next update
 source=("prpltwtr::git+https://github.com/mikeage/prpltwtr.git")
 md5sums=('SKIP')
 conflicts=('prpltwtr')

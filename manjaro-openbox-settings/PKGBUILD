@@ -2,8 +2,8 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-openbox-settings
-pkgver=20160826
-pkgrel=2
+pkgver=20160916
+pkgrel=1
 pkgdesc='Manjaro Linux openbox settings'
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
