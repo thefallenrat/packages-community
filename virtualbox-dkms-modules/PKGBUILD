@@ -4,7 +4,7 @@
 pkgbase=virtualbox-dkms-modules
 pkgname=('virtualbox-host-dkms'
          'virtualbox-guest-dkms')
-pkgver=5.1.4
+pkgver=5.1.6
 _pkgrel=1
 pkgrel=${_pkgrel}.1
 arch=('i686' 'x86_64')
@@ -14,10 +14,10 @@ source_x86_64=("http://mirror.f4st.host/archlinux/pool/community/virtualbox-host
 		"http://mirror.f4st.host/archlinux/pool/community/virtualbox-guest-dkms-$pkgver-$_pkgrel-x86_64.pkg.tar.xz")
 source_i686=("http://mirror.f4st.host/archlinux/pool/community/virtualbox-host-dkms-$pkgver-$_pkgrel-i686.pkg.tar.xz"
 		"http://mirror.f4st.host/archlinux/pool/community/virtualbox-guest-dkms-$pkgver-$_pkgrel-i686.pkg.tar.xz")
-md5sums_i686=('0ea6905cd966b5deb5781e27db505c96'
-              'c67c08bc43657318b383e82ab5681b20')
-md5sums_x86_64=('49a7a7d88057ea7146c526bc45b9d09c'
-                '617183b266d79993608f54e92730af4f')
+md5sums_i686=('5d9096dbb04455bd74ba31f2e533d6f0'
+              '6ee341617490cfd5a7dc0aab48732a65')
+md5sums_x86_64=('03e5ab7bd030c008f314a585a7e8b4ce'
+                'af56aa0ffedd603426c129b4fcd30ace')
 
 package_virtualbox-host-dkms() {
     pkgdesc='VirtualBox Host kernel modules sources'
