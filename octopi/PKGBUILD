@@ -12,10 +12,10 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt4' 'octopi-notifier-qt5' 'octopi-notifier-frameworks')
-pkgver=0.8.3
+pkgver=0.8.4
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="f07959e06ba5033c99a75ef2710dbd56f8d618a1"
+_gitcommit="eeefd390358c75d3af24b732c250ef092fd3250d"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -27,7 +27,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('2dc9e18c0e8676e6db35d5bbf8462ccd88088e73776538c317df45ca969350e4')
+sha256sums=('c113995eeeb4e40d5f1400b53e36a0ddabc9c39c773dfc7cecd9943a70aef558')
 
 
 prepare() {
