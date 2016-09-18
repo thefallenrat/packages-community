@@ -1,0 +1,41 @@
+## Sea Island experimental support
+## in experimental support
+# Kabini [Radeon HD 8400 / R3 Series]
+9830
+# Kaveri [Radeon R7 Graphics]
+130F
+# Tobago PRO [Radeon R7 360 / R9 360 OEM]
+665F
+# Hawaii XT [Radeon R9 290X]
+67B0
+# Hawaii PRO [Radeon R9 290/390]
+67B1
+## broken Hardware
+# none
+#
+# #Volcanic & Arctic Islands (Official support)
+# #in support
+67C0
+67DF
+67E0
+67E1
+67E8
+67E9
+67EB
+67FF
+6920
+6921
+6928
+6929
+692B
+692F
+6930
+6938
+6939
+7300
+9870
+9874
+9875
+9876
+9877
+98E4 
