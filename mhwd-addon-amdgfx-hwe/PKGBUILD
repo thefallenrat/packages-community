@@ -9,9 +9,9 @@ license=('custom')
 depends=('mhwd-db' 'grub')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('MHWDCONFIG_amdgpu-hwe' 'MHWDCONFIG_ati-hwe' 'amdgpu-hwe.ids')
-md5sums=('461a13e461fed14e2ab9af743a60415e'
+md5sums=('2e8f3cda3d74379adcf116e017720151'
          'e67e769e3edf11a7f2fae7782b3512a4'
-         'c30c275e3a9ddf8e40c57310b30cb197')
+         '8451ba8b2ca4a42d5bfcd5a160333cb3')
 
 
 package() {
