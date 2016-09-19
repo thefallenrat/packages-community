@@ -1,0 +1,207 @@
+
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+
+pkgbase=lightfirefox-i18n
+_pkgbase=lightfirefox
+pkgver=48.0
+pkgrel=1
+pkgdesc="Language pack for LightFirefox"
+arch=('any')
+url="https://sourceforge.net/projects/lightfirefox/"
+license=('MPL' 'GPL')
+
+_languages=(
+  'ach    "Acholi"'
+  'af     "Afrikaans"'
+  'ar     "Arabic"'
+  'as     "Assamese"'
+  'ast    "Asturian"'
+  'be     "Belarusian"'
+  'bg     "Bulgarian"'
+  'bn-BD  "Bengali (Bangladesh)"'
+  'bn-IN  "Bengali (India)"'
+  'br     "Breton"'
+  'bs     "Bosnian"'
+  'ca     "Catalan"'
+  'cs     "Czech"'
+  'cy     "Welsh"'
+  'da     "Danish"'
+  'de     "German"'
+  'el     "Greek"'
+  'en-GB  "English (British)"'
+  'en-ZA  "English (South African)"'
+  'eo     "Esperanto"'
+  'es-AR  "Spanish (Argentina)"'
+  'es-CL  "Spanish (Chile)"'
+  'es-ES  "Spanish (Spain)"'
+  'es-MX  "Spanish (Mexico)"'
+  'et     "Estonian"'
+  'eu     "Basque"'
+  'fa     "Persian"'
+  'ff     "Fulah"'
+  'fi     "Finnish"'
+  'fr     "French"'
+  'fy-NL  "Frisian"'
+  'ga-IE  "Irish"'
+  'gd     "Gaelic (Scotland)"'
+  'gl     "Galician"'
+  'gu-IN  "Gujarati (India)"'
+  'he     "Hebrew"'
+  'hi-IN  "Hindi (India)"'
+  'hr     "Croatian"'
+  'hu     "Hungarian"'
+  'hy-AM  "Armenian"'
+  'id     "Indonesian"'
+  'is     "Icelandic"'
+  'it     "Italian"'
+  'ja     "Japanese"'
+  'kk     "Kazakh"'
+  'km     "Khmer"'
+  'kn     "Kannada"'
+  'ko     "Korean"'
+  'lij    "Ligurian"'
+  'lt     "Lithuanian"'
+  'lv     "Latvian"'
+  'mai    "Maithili"'
+  'mk     "Macedonian"'
+  'ml     "Malayalam"'
+  'mr     "Marathi"'
+  'ms     "Malay"'
+  'nb-NO  "Norwegian (Bokmål)"'
+  'nl     "Dutch"'
+  'nn-NO  "Norwegian (Nynorsk)"'
+  'or     "Oriya"'
+  'pa-IN  "Punjabi (India)"'
+  'pl     "Polish"'
+  'pt-BR  "Portuguese (Brazilian)"'
+  'pt-PT  "Portuguese (Portugal)"'
+  'rm     "Romansh"'
+  'ro     "Romanian"'
+  'ru     "Russian"'
+  'si     "Sinhala"'
+  'sk     "Slovak"'
+  'sl     "Slovenian"'
+  'son    "Songhai"'
+  'sq     "Albanian"'
+  'sr     "Serbian"'
+  'sv-SE  "Swedish"'
+  'ta     "Tamil"'
+  'te     "Telugu"'
+  'th     "Thai"'
+  'tr     "Turkish"'
+  'uk     "Ukrainian"'
+  'vi     "Vietnamese"'
+  'xh     "Xhosa"'
+  'zh-CN  "Chinese (Simplified)"'
+  'zh-TW  "Chinese (Traditional)"'
+)
+
+pkgname=()
+source=()
+_url=https://sourceforge.net/projects/$_pkgbase/files/48/201607301025_lp
+
+for _lang in "${_languages[@]}"; do
+  _locale=${_lang%% *}
+  _pkgname=light-$pkgver.${_locale,,}.langpack
+
+  pkgname+=($_pkgname)
+  source+=("firefox-i18n-$pkgver-$_locale.xpi::$_url/light-$pkgver.$_locale.langpack.xpi")
+  eval "package_$_pkgname() {
+    _package $_lang
+  }"
+done
+
+# Don't extract anything
+noextract=(${source[@]%%::*})
+
+_package() {
+  pkgdesc="$2 language pack for LightFirefox"
+  depends=("lightfirefox>=$pkgver")
+  install -Dm644 firefox-i18n-$pkgver-$1.xpi \
+    "$pkgdir/usr/lib/light/browser/extensions/langpack-$1@firefox.mozilla.org.xpi"
+}
+
+md5sums=('0f34f2714e3178caaf3b918bf3b84226'
+         '127d4dafcf1173954eeb6c2744cd37c8'
+         '528be7d66306804f0c32196a01f8422a'
+         '0071aedf249937620734eb7a88bb025c'
+         '84499580ba5f5648373d9422e602a1d5'
+         'c91f5508796a17e2304224d616e4890a'
+         '4f40dc8e5f41ce2022bdf80ac56ef839'
+         '5a95a0d25e66b66768f121ea70643e56'
+         'f6e5bfef62b4054e4fa6fcc4ef44e05a'
+         'c5779e4b4624f62980fbc6c2807b10a0'
+         '566a37ff9a659dc44377188b0a43917e'
+         'fe2c69f64e1fd80abd77b283ded9d21d'
+         '621a0f2b191972468c01a41aadaefe13'
+         'b4e861e558df908cedb3e0f8a5f1cc01'
+         'ef9020a50fbad0cbe4a5cac81483fba5'
+         'd2c830d37149ee0eebf9205f2e9d9013'
+         '62728a090c749242af0794fd2b82e1c2'
+         '4a72bfb9ed550fde2f25b1d0834750ca'
+         'd5ab0ff484d334fdeea770af24883933'
+         '09d719db3ec8ef47e8d76b1581aa6dcd'
+         '0c61fe606ba4df6588be10265fb7efb5'
+         '1de6e553332a4dc79d98d147384d076f'
+         '471617714818b3aa141bc4aafaafbb9b'
+         'adaa5ec50b569bc1dfa8b2b0ad63d364'
+         'a13352accd0c894d27ea3fe10e142a5f'
+         '8d74bb7beaa163a9b37c76500e789dbc'
+         '07673a9dd4c4f5b03d3a0338952fcb97'
+         '07ddabb597d275045d6388b47ce4ac0f'
+         'ef93402522c5a0afa5fefff3ec5190c4'
+         'e1d9206a6c0e567e9e1691eb097fbabe'
+         '740ebf59db2bd56b73a308e7ca2f7805'
+         'f00c616136a27a4ce2e043c52f4fcdbc'
+         'e08c69b5da279337a2a5041b1a0548b2'
+         'ca64dcea464f6d2db7d8ac07ea5c852b'
+         '9d90b59f7ef858a0086347af59aa98ed'
+         '04677a3be999307802737bc05f113d2c'
+         'a0b33a5fddbd9295968cc9795fdbbd52'
+         '2e952c26872932d6aaa8733a1715d2e1'
+         '4001d61d2f9aca9f3d964e85411e83a4'
+         '8cede98fea1f1436f1c6a5aa1204240a'
+         '947575cd21f0a4c3940258680634d504'
+         'd9c3a1fd6170c765c23eff22e31c12a0'
+         '2e21cf6d5351dac5d0742dcc63de085a'
+         '3a2ed51c8ad6a2f6c3f49c3f3e0470df'
+         'a193eb2c7c937af17ada9be938351770'
+         '4ec2774927a506a9b012b5630fedb5e0'
+         '70eeb0aa91d149d77683c18e7820610e'
+         'f9e2b612f3f0de3d5141fca42d8ec254'
+         'ed8b62e81bf8fb310392288929d0d002'
+         '3ce452ed3748543c033c47f0368ad268'
+         '72072feb0287d41beaef4f9eaf3a1d2e'
+         'a7cb80a9395e877f3a79a865f3258054'
+         '4043959d279b76e6dea1f4127e90a0e3'
+         '0b03964ae74d9c25b61c7a548bfa3eac'
+         '5cfdf5213fe6ad46f3e3a521581d7df0'
+         'ef5c787fcb61308a4802301f51d54899'
+         '4d8948752f057ebd72a12d657636628e'
+         'cc19662310215d2da65171646f34b698'
+         '2d0460363a69006d8fa5eaf1ba0cf11c'
+         '2960c3f2e9644fe75ea0dc8208f5bedb'
+         '01cf2b370678c3c6c3c985ab2057cfad'
+         '0cee0f26d366633b5858117b1c2ba938'
+         'adfba3b3281bdb2ae1c4b5c502ff7195'
+         '0d8d8f22f35af7e4ce1a925e603ab29d'
+         '1d3495bc1e1c337fbf543cdeca1a8978'
+         'e376101ac00a87092dbba5961d643157'
+         '61f9624b70baf5eb6b4f33bc059e4b11'
+         'b277262af57f39d957f02ef670e57120'
+         '02cf072eb0045663ecfc9ffd33be1538'
+         '880d01b402c2b76a24664d5a063d9ecb'
+         '6ada2cb3504d766e64aa5cc04e34969d'
+         '1f36fb156b36bc0642da592e3e5bfe15'
+         'af03c2c043b8fc6393bae8fe637e1cd5'
+         '02fb71f8b4f97fe38e9686fff32ce0cb'
+         '764e63b46f45fe3be1ab335162819af7'
+         '7df66a7d97e58b037d3ddac97e5ad68f'
+         '825ea82c088a1fd4468b952f2c434d83'
+         '2d3abbd279528d8f47e9619a05d6b8d3'
+         '5a6b9f9e9084a58ebc70ac43d338533e'
+         '862e246029bd76e807dc17ac3342c262'
+         'a8899b444636457cc536a6f78f0648c0'
+         '804b4049a278f0005c469d1bfbcad9ef'
+         '56f9811b448a36b44e328675d2814e08')
+

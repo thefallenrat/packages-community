@@ -14,7 +14,6 @@ url='http://virtualbox.org'
 license=('GPL')
 makedepends=("virtualbox-host-dkms>=$pkgver"
              "virtualbox-guest-dkms>=$pkgver"
-#             'virtualbox-dkms-manjaro'
              'dkms'
              'linux-rt-lts-manjaro'
              'linux-rt-lts-manjaro-headers')

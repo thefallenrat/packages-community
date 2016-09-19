@@ -7,7 +7,7 @@ arch=('i686' 'x86_64')
 url="http://linux.palemoon.org/"
 license=('MPL' 'GPL' 'LGPL')
 depends=('gtk2' 'dbus-glib' 'desktop-file-utils' 'libxt' 'mime-types' 'nss' 'alsa-lib')
-optdepends=('palemoon-i18n-default: language pack for system active language'
+optdepends=('palemoon-i18n: language pack for system'
             'gst-plugins-good: h.264 video, aac and mp3 audio playback'
             'gst-libav: h.264 video, aac and mp3 audio playback'
             'hunspell: spell checker and morphological analyzer'
