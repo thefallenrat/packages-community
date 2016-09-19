@@ -7,14 +7,14 @@
 
 pkgbase=linux-rt-lts-manjaro-virtualbox-modules
 pkgname=('linux-rt-lts-manjaro-virtualbox-host-modules' 'linux-rt-lts-manjaro-virtualbox-guest-modules')
-pkgver=5.1.4
-pkgrel=2
+pkgver=5.1.6
+pkgrel=1
 arch=('x86_64')
 url='http://virtualbox.org'
 license=('GPL')
 makedepends=("virtualbox-host-dkms>=$pkgver"
              "virtualbox-guest-dkms>=$pkgver"
-             'virtualbox-dkms-manjaro'
+#             'virtualbox-dkms-manjaro'
              'dkms'
              'linux-rt-lts-manjaro'
              'linux-rt-lts-manjaro-headers')
