@@ -3,7 +3,8 @@
 
 pkgbase=lightfirefox-i18n
 _pkgbase=lightfirefox
-pkgver=48.0
+_pkgver=48
+pkgver=$_pkgver.0
 pkgrel=1
 pkgdesc="Language pack for LightFirefox"
 arch=('any')
@@ -98,12 +99,11 @@ _languages=(
 
 pkgname=()
 source=()
-_url=https://sourceforge.net/projects/$_pkgbase/files/48/201607301025_lp
+_url=https://sourceforge.net/projects/$_pkgbase/files/$_pkgver/201607301025_lp
 
 for _lang in "${_languages[@]}"; do
   _locale=${_lang%% *}
-  _pkgname=light-$pkgver.${_locale,,}.langpack
-
+  _pkgname=lightfirefox-$pkgver.${_locale,,}.langpack
   pkgname+=($_pkgname)
   source+=("firefox-i18n-$pkgver-$_locale.xpi::$_url/light-$pkgver.$_locale.langpack.xpi")
   eval "package_$_pkgname() {
@@ -117,6 +117,9 @@ noextract=(${source[@]%%::*})
 _package() {
   pkgdesc="$2 language pack for LightFirefox"
   depends=("lightfirefox>=$pkgver")
+  __locale=$1
+  conflicts=("light-$pkgver.${__locale,,}.langpack"
+             "lightfirefox-$pkgver.${__locale,,}.langpack")
   install -Dm644 firefox-i18n-$pkgver-$1.xpi \
     "$pkgdir/usr/lib/light/browser/extensions/langpack-$1@firefox.mozilla.org.xpi"
 }
