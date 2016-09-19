@@ -2,7 +2,7 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-openbox-settings
-pkgver=20160916
+pkgver=20160919
 pkgrel=1
 pkgdesc='Manjaro Linux openbox settings'
 arch=('any')

@@ -4,7 +4,7 @@
 pkgbase=desktop-settings
 pkgname=('manjaro-lxqt-settings'
 	'manjaro-lxqt-minimal-settings')
-pkgver=20160916
+pkgver=20160919
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
