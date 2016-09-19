@@ -5,7 +5,7 @@ pkgbase=lightfirefox-i18n
 _pkgbase=lightfirefox
 _pkgver=48
 pkgver=$_pkgver.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Language pack for LightFirefox"
 arch=('any')
 url="https://sourceforge.net/projects/lightfirefox/"
@@ -120,6 +120,7 @@ _package() {
   __locale=$1
   conflicts=("light-$pkgver.${__locale,,}.langpack"
              "lightfirefox-$pkgver.${__locale,,}.langpack")
+  replaces=("light-$pkgver.${__locale,,}.langpack")
   install -Dm644 firefox-i18n-$pkgver-$1.xpi \
     "$pkgdir/usr/lib/light/browser/extensions/langpack-$1@firefox.mozilla.org.xpi"
 }
