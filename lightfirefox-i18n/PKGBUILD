@@ -103,7 +103,7 @@ _url=https://sourceforge.net/projects/$_pkgbase/files/$_pkgver/201607301025_lp
 
 for _lang in "${_languages[@]}"; do
   _locale=${_lang%% *}
-  _pkgname=lightfirefox-$pkgver.${_locale,,}.langpack
+  _pkgname=lightfirefox-i18n-${_locale,,}
   pkgname+=($_pkgname)
   source+=("firefox-i18n-$pkgver-$_locale.xpi::$_url/light-$pkgver.$_locale.langpack.xpi")
   eval "package_$_pkgname() {
