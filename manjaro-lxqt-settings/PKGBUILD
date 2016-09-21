@@ -4,7 +4,7 @@
 pkgbase=desktop-settings
 pkgname=('manjaro-lxqt-settings'
 	'manjaro-lxqt-minimal-settings')
-pkgver=20160919
+pkgver=20160921
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -26,7 +26,8 @@ pkgver() {
 
 package_manjaro-lxqt-settings() {
 	pkgdesc='Manjaro Linux lxqt settings'
-	depends=('manjaro-base-skel')
+	depends=('gcc' # needed for .extend.Xresources
+		'manjaro-base-skel')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
