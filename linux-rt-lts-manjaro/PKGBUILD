@@ -11,10 +11,10 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _srcname=linux-4.4
 _basekernel=4.4
 _basever=44-rt-lts
-_pkgver=${_basekernel}.19
-_pkgverrt=4.4.19
+_pkgver=${_basekernel}.21
+_pkgverrt=$_pkgver
 _bfq=v7r11
-_rtpatchver=rt27
+_rtpatchver=rt30
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -43,12 +43,9 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
-        'config.diff'
-        # extra fixes needed for rt-patched kernel
-        hyper_v_add_interrupt_randomness.patch
-)
+        'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            '61b34a8ab4ba778c50a6fb04471cb34192e179db68440d81b12694e45dea00fc'
+            '278c4ea17ef539e81cb597f0e7e84750649d0f7fddcb27d99abfcb46da9db737'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '4134c9ca56e2be2072122364871f7a5feedfb1acb12cadf6e41c09c9c068ce70'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
@@ -60,11 +57,10 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
-            'bce223bb6b00d7bd9479edcc75a5042925140a45de46269ad274726894d61af9'
+            'd5d0b6e991a4436d7e0e02f32e7f8580555be6d0d8886d1205aa841b89781a13'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
-            '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2'
-            '05b29eb5516a34ae4fff3897030e60a27ea86f2dbae6e58839bcbb9e5d3b8a2b')
+            '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
             
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
@@ -126,9 +122,6 @@ prepare() {
   # Stops X from hanging on certain NVIDIA cards
   msg2 "fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
   patch -p1 -i "${srcdir}/fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
-  
-  # add_interrupt_randomness() build fix for hyper-v driver
-  patch -p1 -i "${srcdir}/hyper_v_add_interrupt_randomness.patch"
 
   msg2 "All patches have successfully been applied"
 
