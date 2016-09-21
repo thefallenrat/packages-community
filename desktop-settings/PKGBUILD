@@ -3,16 +3,15 @@
 
 pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
-	'manjaro-budgie-settings'
-	'manjaro-cinnamon-settings'
-	'manjaro-fluxbox-settings'
-	'manjaro-gnome-settings'
-	'manjaro-i3-settings'
-	'manjaro-jwm-settings'
-	'manjaro-lxde-settings'
-	'manjaro-mate-settings'
-	'manjaro-netbook-settings'
-	'manjaro-pantheon-settings')
+        'manjaro-budgie-settings'
+        'manjaro-cinnamon-settings'
+        'manjaro-gnome-settings'
+        'manjaro-i3-settings'
+        'manjaro-jwm-settings'
+        'manjaro-lxde-settings'
+        'manjaro-mate-settings'
+        'manjaro-netbook-settings'
+        'manjaro-pantheon-settings')
 pkgver=20160921
 pkgrel=2
 arch=('any')
@@ -23,198 +22,178 @@ source=("git+$url.git")
 sha256sums=('SKIP')
 
 _inst_dir(){
-	if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
-		install -d $pkgdir/etc
-		cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
-	fi
+    if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
+        install -d $pkgdir/etc
+        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
+    fi
 
-	if [[ -d $srcdir/$pkgbase/$1/scripts ]]; then
-		install -d $pkgdir/usr/bin
-		cp $srcdir/$pkgbase/$1/scripts/* $pkgdir/usr/bin
-	fi
+    if [[ -d $srcdir/$pkgbase/$1/scripts ]]; then
+        install -d $pkgdir/usr/bin
+        cp $srcdir/$pkgbase/$1/scripts/* $pkgdir/usr/bin
+    fi
 
-	if [[ -d $srcdir/$pkgbase/$1/schemas ]]; then
-		install -d $pkgdir/usr/share/glib-2.0/schemas
-		cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
-	fi
+    if [[ -d $srcdir/$pkgbase/$1/schemas ]]; then
+        install -d $pkgdir/usr/share/glib-2.0/schemas
+        cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+    fi
 }
 
 pkgver() {
-date +%Y%m%d
+    date +%Y%m%d
 }
 
 package_manjaro-bspwm-settings() {
-	pkgdesc='Manjaro Linux bspwm settings'
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-	depends=('bspwm-wallpapers'
-		'xcursor-breeze'
-		'feh'
-		'gcc' # needed for .extend.Xresources
-		'rootmenu'
-		'mygtkmenui'
-		'limepanel'
-		'bspwm-manjaro'
-		'bspwm-scripts'
-		'sxhkd'
-		'manjaro-base-skel')
-	_inst_dir 'community/bspwm'
+    pkgdesc='Manjaro Linux bspwm settings'
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
+    depends=('bspwm-wallpapers'
+        'xcursor-breeze'
+        'feh'
+        'gcc' # needed for .extend.Xresources
+        'rootmenu'
+        'mygtkmenui'
+        'limepanel'
+        'bspwm-manjaro'
+        'bspwm-scripts'
+        'sxhkd'
+        'manjaro-base-skel')
+    _inst_dir 'community/bspwm'
 }
 
 package_manjaro-budgie-settings() {
-	pkgdesc='Manjaro Linux budgie settings'
-	depends=('budgie-desktop'
-		'vertex-maia-themes'
-		'vertex-maia-icon-theme'
-		'budgie-wallpapers'
-		'xcursor-breeze'
-		'manjaro-base-skel')
-	optdepends=('plymouth-theme-manjaro-fancy-budgie')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux budgie settings'
+    depends=('budgie-desktop'
+        'vertex-maia-themes'
+        'vertex-maia-icon-theme'
+        'budgie-wallpapers'
+        'xcursor-breeze'
+        'manjaro-base-skel')
+    optdepends=('plymouth-theme-manjaro-fancy-budgie')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/budgie'
+    _inst_dir 'community/budgie'
 }
 
 package_manjaro-cinnamon-settings() {
-	pkgdesc='Manjaro Linux cinnamon settings'
-	depends=('artwork-cinnamon-minimal'
-		'cantarell-fonts'
-		'cinnamon'
-		'maia-icon-theme'
-		'ttf-comfortaa'
-		'vertex-maia-themes'
-		'xcursor-simpleandsoft'
-		'manjaro-base-skel')
-	optdepends=('plymouth-theme-manjaro-cinnamon')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux cinnamon settings'
+    depends=('artwork-cinnamon-minimal'
+        'cantarell-fonts'
+        'cinnamon'
+        'maia-icon-theme'
+        'ttf-comfortaa'
+        'vertex-maia-themes'
+        'xcursor-simpleandsoft'
+        'manjaro-base-skel')
+    optdepends=('plymouth-theme-manjaro-cinnamon')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/cinnamon'
-}
-
-package_manjaro-fluxbox-settings() {
-	pkgdesc='Manjaro Linux fluxbox settings'
-	depends=('manjaro-base-skel'
-                'cantarell-fonts'
-                'fbmenugen'
-                'fluxbox-theme-manjaro'
-                'fluxbox-wallpapers'
-                'gcc' # needed for .extend.Xresources
-                'menda-themes-dark'
-                'numix-reborn-icon-themes'
-                'oblogout-manjaro'
-                'xcursor-menda'
-                'xfce-theme-greenbird')
-	optdepends=('plymouth-theme-manjaro-circle')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
-
-	_inst_dir 'community/fluxbox'
+    _inst_dir 'community/cinnamon'
 }
 
 package_manjaro-gnome-settings() {
-	pkgdesc='Manjaro Linux gnome settings'
-	depends=('gnome-shell'
-		'gnome-shell-extension-taskbar'
-		'gnome-shell-extensions'
-		'gnome-shell-extension-openweather'
-		'gnome-shell-extension-gnomenu'
-		'gnome-shell-extension-dash-to-dock'
-		'gnome-wallpapers'
-		'xcursor-breeze'
-		'manjaro-base-skel')
-	optdepends=('plymouth-theme-manjaro-gnome')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux gnome settings'
+    depends=('gnome-shell'
+        'gnome-shell-extension-taskbar'
+        'gnome-shell-extensions'
+        'gnome-shell-extension-openweather'
+        'gnome-shell-extension-gnomenu'
+        'gnome-shell-extension-dash-to-dock'
+        'gnome-wallpapers'
+        'xcursor-breeze'
+        'manjaro-base-skel')
+    optdepends=('plymouth-theme-manjaro-gnome')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/gnome'
+    _inst_dir 'community/gnome'
 }
 
 package_manjaro-i3-settings() {
-	pkgdesc='Manjaro Linux i3 settings'
-	groups=('i3-manjaro')
-	depends=('breeze-maia-icon-themes'
-		'compton'
-		'conky-i3'
-		'dmenu-manjaro'
-		'dunst'
-		'gcc' # needed for .extend.Xresources
-		'i3-default-artwork'
-		'i3exit'
-		'i3-scripts'
-		'i3-scrot'
-		'i3-gaps'
-		'i3-help'
-		'i3status-manjaro'
-		'manjaro-base-skel'
-		'nitrogen'
-		'urxvt-perls'
-		'vertex-maia-themes'
-		'xcursor-breeze')
-	optdepends=('artwork-i3: Manjaro-i3 wallpapers'
-	    'manjaro-backgrounds: Collection of Manjaro wallpapers'
-		'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux i3 settings'
+    groups=('i3-manjaro')
+    depends=('breeze-maia-icon-themes'
+        'compton'
+        'conky-i3'
+        'dmenu-manjaro'
+        'dunst'
+        'gcc' # needed for .extend.Xresources
+        'i3-default-artwork'
+        'i3exit'
+        'i3-scripts'
+        'i3-scrot'
+        'i3-gaps'
+        'i3-help'
+        'i3status-manjaro'
+        'manjaro-base-skel'
+        'nitrogen'
+        'urxvt-perls'
+        'vertex-maia-themes'
+        'xcursor-breeze')
+    optdepends=('artwork-i3: Manjaro-i3 wallpapers'
+        'manjaro-backgrounds: Collection of Manjaro wallpapers'
+        'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/i3'
+    _inst_dir 'community/i3'
 }
 
 package_manjaro-jwm-settings() {
-	pkgdesc='Manjaro Linux jwm settings'
-	depends=('cantarell-fonts'
-		'gcc' # needed for .extend.Xresources
-		'gtk-theme-stylishdark'
-		'jwm-artwork'
-		'jwm-wallpapers'
-		'ultraflatorange-icon-theme'
-		'xcursor-rezowhite'
-		'manjaro-base-skel')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux jwm settings'
+    depends=('cantarell-fonts'
+        'gcc' # needed for .extend.Xresources
+        'gtk-theme-stylishdark'
+        'jwm-artwork'
+        'jwm-wallpapers'
+        'ultraflatorange-icon-theme'
+        'xcursor-rezowhite'
+        'manjaro-base-skel')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/jwm'
+    _inst_dir 'community/jwm'
 }
 
 package_manjaro-lxde-settings() {
-	pkgdesc='Manjaro Linux lxde settings'
-	depends=('manjaro-base-skel')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux lxde settings'
+    depends=('manjaro-base-skel')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/lxde'
+    _inst_dir 'community/lxde'
 }
 
 package_manjaro-mate-settings() {
-	pkgdesc='Manjaro Linux mate settings'
-	depends=('manjaro-base-skel'
-                 'xcursor-maia'
-                 'vertex-maia-themes'
-                 'vertex-maia-icon-theme'
-                 'maia-wallpaper'
-                 'qt5-styleplugins'
-                 'qt5ct')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux mate settings'
+    depends=('manjaro-base-skel'
+                'xcursor-maia'
+                'vertex-maia-themes'
+                'vertex-maia-icon-theme'
+                'maia-wallpaper'
+                'qt5-styleplugins'
+                'qt5ct')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/mate'
+    _inst_dir 'community/mate'
 }
 
 package_manjaro-netbook-settings() {
-	pkgdesc='Manjaro Linux netbook settings'
-	depends=('manjaro-base-skel')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux netbook settings'
+    depends=('manjaro-base-skel')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/netbook'
+    _inst_dir 'community/netbook'
 }
 
 package_manjaro-pantheon-settings() {
-	pkgdesc='Manjaro Linux pantheon settings'
-	depends=('manjaro-base-skel')
-	conflicts=('manjaro-desktop-settings')
-	provides=('manjaro-desktop-settings')
+    pkgdesc='Manjaro Linux pantheon settings'
+    depends=('manjaro-base-skel')
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
 
-	_inst_dir 'community/pantheon'
+    _inst_dir 'community/pantheon'
 }
