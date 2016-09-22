@@ -11,6 +11,8 @@ license=('GPL')
 depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes'
         'vertex-maia-themes' 'andromeda-icon-theme' 'andromeda-wallpaper')
 makedepends=('git')
+optdepends=('pcmanfm-qt: Lightweight file manager'
+            'network-manager-applet: Applet for managing network connections')
 conflicts=('manjaro-bspwm-settings' 'manjaro-fluxbox-settings'
             'manjaro-i3-settings' 'manjaro-jwm-settings')
 source=("git+$url.git")

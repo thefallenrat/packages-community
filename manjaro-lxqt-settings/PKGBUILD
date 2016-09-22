@@ -39,6 +39,7 @@ package_manjaro-lxqt-minimal-settings() {
             'xcursor-breeze'
             'andromeda-icon-theme'
             'andromeda-wallpaper')
+    optdepends=('manjaro-openbox-settings: Manjaro Linux Openbox settings')
     provides=('manjaro-desktop-settings')
     conflicts=('manjaro-desktop-settings')
 

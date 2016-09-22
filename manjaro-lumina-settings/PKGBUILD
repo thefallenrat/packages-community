@@ -15,6 +15,7 @@ depends=('manjaro-base-skel'
         'andromeda-icon-theme'
         'andromeda-wallpaper')
 makedepends=('git')
+optdepends=('manjaro-fluxbox-settings: Manjaro Linux Fluxbox settings')
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-desktop-settings')
 source=("git+$url.git")
