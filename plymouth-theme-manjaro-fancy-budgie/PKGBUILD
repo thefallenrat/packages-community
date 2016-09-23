@@ -4,8 +4,8 @@
 
 pkgname=plymouth-theme-manjaro-fancy-budgie
 _basename=manjaro-fancy-budgie
-pkgver=1.0
-pkgrel=2
+pkgver=1.r0.gd7207fd
+pkgrel=1
 pkgdesc="Manjaro Plymouth theme for Budgie Desktop."
 arch=('any')
 license=('GPL')
@@ -17,6 +17,11 @@ source=("$_basename::git+https://github.com/Ste74/$pkgname.git"
        )
 md5sums=('SKIP'
          '3ea23bac34516f532e47b3224f942e7e')
+
+pkgver() {
+    cd ${_basename}
+    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 package() {
   cd $srcdir/${_basename}
