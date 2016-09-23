@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=48.0.2
+pkgver=49.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=('!emptydirs' '!makeflags')
-_patchrev=199d5cf40e86
+_patchrev=9fc2ebe6d7f1
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
@@ -29,8 +29,6 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         firefox-install-dir.patch 
         vendor.js
         firefox-symbolic.svg
-        firefox-gtk3-20.patch
-        no-libnotify.patch
         kde.js
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -42,19 +40,17 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('6efbe0cc8dd120f16ff6d9394d96ea1b13bf6b4163d3b25d4210e06d23ea44b3'
+sha256sums=('fcbbe63eea1eda0c2f51e408779808615b77f3047b74dd3e8f41342486dc752f'
             '0a07bc48e9bc112f8147d087cc199c339a5db0a077c8ff6efcf2d4e6308b3624'
-            'fde2daaf082fb8ffcb107fa04ae26698b75083e34d984a7f4073b3407af9273e'
+            '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
-            'c984c8bda3c173349d98f3fa71ec8ff8e8b74e6ca20a3f39f33596dbb4c4d1e8'
-            'e4ebdd14096d177d264a7993dbd5df46463605ff45f783732c26d30b9caa53a7'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
-            '28790588c7bcdc3f20841b5285c9ad013233199794b99045d3b7645ed6129b4b'
+            'e35878951d4f6aa9c4bc20710299a94b5af2cdc8b2c0bc8610720fc4e827e1a8'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            'ab4e354d47a900757ac53b8e53726a0c595e5a578b12c70c90b58439885d91d6'
+            'ddf725d32bee77eb6962393a63022bc85e284403aa423d4c743ce70911243374'
             'feede2fb86527c4a5d90bd5458fe582da920ab02dd25ec656236d87caf8888ba'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
@@ -64,8 +60,6 @@ sha256sums=('6efbe0cc8dd120f16ff6d9394d96ea1b13bf6b4163d3b25d4210e06d23ea44b3'
 # get your own set of keys. Feel free to contact foutrelis@archlinux.org for
 # more information.
 _google_api_key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM
-_google_default_client_id=413772536636.apps.googleusercontent.com
-_google_default_client_secret=0ZChLK6AxeA3Isu96MkwqDR4
 
 # Mozilla API keys (see https://location.services.mozilla.com/api)
 # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -80,15 +74,8 @@ prepare() {
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
 
-  # Notifications with libnotify are broken
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1236150
-  patch -Np1 -i ../no-libnotify.patch
-
   echo -n "$_google_api_key" >google-api-key
   echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
-
-  echo -n "$_google_default_client_id $_google_default_client_secret" >google-oauth-api-key
-  echo "ac_add_options --with-google-oauth-api-keyfile=\"$PWD/google-oauth-api-key\"" >>.mozconfig
 
   echo -n "$_mozilla_api_key" >mozilla-api-key
   echo "ac_add_options --with-mozilla-api-keyfile=\"$PWD/mozilla-api-key\"" >>.mozconfig
@@ -103,11 +90,7 @@ prepare() {
   patch -Np1 -i "$srcdir/firefox-branded-icons.patch"
 
   #msg "Add missing file in Makefile for pgo builds"
-  #patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1234158
-  msg "Patching for GTK 3.20 changes"
-  patch -Np1 -i "$srcdir/firefox-gtk3-20.patch"
+  patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
 
   mkdir "$srcdir/path"
   ln -s /usr/bin/python2 "$srcdir/path/python"
@@ -123,14 +106,14 @@ build() {
   LDFLAGS+=" -Wl,-z,now"
 
   # GCC 6
-  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-schedule-insns2"
 
   export PATH="$srcdir/path:$PATH"
 
-  #xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-  #  make -f client.mk profiledbuild
+  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
+    make -f client.mk profiledbuild
 
-  make -f client.mk build  
+  #make -f client.mk build  
 }
 
 package() {
