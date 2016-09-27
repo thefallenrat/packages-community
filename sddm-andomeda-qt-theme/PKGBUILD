@@ -12,6 +12,6 @@ sha256sums=('SKIP')
 package() {
     cd ${srcdir}/desktop-settings
     
-    install -d ${pkgdir}/usr/share/sddm/themes/andromeda
-    cp ${srcdir}/desktop-settings/shared/andromeda/* ${pkgdir}/usr/share/sddm/themes/andromeda
+    install -d ${pkgdir}/usr/share/sddm/themes/andromeda-qt
+    cp shared/andromeda-qt/* ${pkgdir}/usr/share/sddm/themes/andromeda-qt
 }
