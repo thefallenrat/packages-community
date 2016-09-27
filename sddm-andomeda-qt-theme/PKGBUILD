@@ -5,6 +5,7 @@ pkgdesc="Manjaro andromeda theme for SDDM"
 arch=('any')
 url="http://manjaro.org"
 license=('GPL')
+makedepends=('git')
 depends=('sddm' 'andromeda-wallpaper')
 source=("git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP')
