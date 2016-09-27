@@ -1,0 +1,17 @@
+pkgname=sddm-andromeda-qt-theme
+pkgver=$(date +%m%d)
+pkgrel=1
+pkgdesc="Manjaro andromeda theme for SDDM"
+arch=('any')
+url="http://manjaro.org"
+license=('GPL')
+depends=('sddm' 'andromeda-wallpaper')
+source=("git+https://github.com/manjaro/desktop-settings.git")
+sha256sums=('SKIP')
+
+package() {
+    cd ${srcdir}/desktop-settings
+    
+    install -d ${pkgdir}/usr/share/sddm/themes/andromeda
+    cp ${srcdir}/desktop-settings/shared/andromeda/* ${pkgdir}/usr/share/sddm/themes/andromeda
+}
