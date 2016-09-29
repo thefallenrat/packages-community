@@ -11,8 +11,8 @@ pkgname=('linux-rt-lts-manjaro-rt3562sta'
 	)
 pkgver=2.4.1.1_r3
 _patchrel=${pkgver/*_r/}
-pkgrel=4
-_subpkgrel=4
+pkgrel=5
+_subpkgrel=5
 arch=('x86_64')
 url="http://www.mediatek.com/en/Products/support.php?sn=501"
 license=('GPL')
