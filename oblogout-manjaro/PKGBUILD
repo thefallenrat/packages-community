@@ -3,7 +3,7 @@
 # Contributor: Robert Orzanna <orschiro@googlemail.com>
 
 pkgname=oblogout-manjaro
-pkgver=20160915
+pkgver=20160929
 pkgrel=1
 pkgdesc="Systemd/OpenRC-compatible logout script for Openbox, Fluxbox and others. Including blurlock"
 url="https://github.com/oberon2007/oblogout-blurlock"
