@@ -1,39 +1,47 @@
 # Maintainer: Fabian(Tids) <plusfabi@gmail.com>
 pkgname=mhwd-addon-amdgfx-hwe
-pkgver=20160917BETA
+pkgver=20$(date +%y%m%d)
 pkgrel=1
 pkgdesc="Enables some extras for the AMDGPU-open, and radeon(ati) stack, like OpenCL, VAAPI & VDPAU in Manjaro"
 arch=('any')
 url="https://forum.manjaro.org/t/amdgpu-improvements-for-manjaro"
+install='INSTALL'
 license=('custom')
 depends=('mhwd-db' 'grub')
 conflicts=('mhwd-addon-amdgpu-hwe')
-source=('MHWDCONFIG_amdgpu-hwe' 'MHWDCONFIG_ati-hwe' 'amdgpu-hwe.ids')
-md5sums=('2e8f3cda3d74379adcf116e017720151'
-         'e67e769e3edf11a7f2fae7782b3512a4'
-         '8451ba8b2ca4a42d5bfcd5a160333cb3')
+source=('MHWDCONFIG_amdgpu-experimental-mesa-extras' 'MHWDCONFIG_amdgpu-mesa-extras' 'MHWDCONFIG_ati-mesa-extras' 'amdgpu-experimental.ids' 'odamdgpu')
+md5sums=('f5d050197ac74fc61371e4cd184e5961'
+         '36fe2580a4d3d3a3c8922fed6d087eaf'
+         '5607a239601fca1d851915fa981c59d1'
+         'c790325bf284f9669a62845aef0b4702'
+         '246f3a7e35611179823d72968866c8f4')
 
 
 package() {
     cd "${srcdir}"
     # Create Directories we need
-    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-hwe"
-    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-hwe"
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras"
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras"
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras"
     mkdir -p "${pkgdir}/var/lib/mhwd/ids/pci"
     
-    # Install AMDGPU config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-hwe" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-hwe/MHWDCONFIG"
+    # Install AMDGPU-experimental config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-experimental-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras/MHWDCONFIG"
     
     # Install PCI-ID file for AMDGPU Cards
-    mkdir -p "${pkgdir}/var/lib/mhwd/ids/pci"
-    install -D -m644 "${srcdir}/amdgpu-hwe.ids" \
-    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-hwe.ids"
+    install -D -m644 "${srcdir}/amdgpu-experimental.ids" \
+    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-experimental.ids"
     
-    # Install ATI(radeon) config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_ati-hwe" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-hwe/MHWDCONFIG"
-    # Note
-    # We dont need a PCI-ID file for ati-hwe, since we use 
-    # the file from mhwd without modifications    
+    # Install AMDGPU config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras/MHWDCONFIG"
+    
+    # Install AMDGPU config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_ati-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras/MHWDCONFIG"
+    
+    # Install odamdgpu
+    install -D -m755 "${srcdir}/odamdgpu" \
+    "${pkgdir}/usr/bin/odamdgpu"    
 }

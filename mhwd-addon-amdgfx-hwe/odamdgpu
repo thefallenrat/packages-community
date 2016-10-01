@@ -1,0 +1,149 @@
+#! /bin/bash
+#this is a helper script to overclock your GPU
+#it's risky to do this but hey - FUN!
+
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## check if this system is supported
+    ## yeah, we need a better check :D
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+if [ ! -f /sys/class/drm/card0/device/pp_sclk_od ] || [ ! -f /var/lib/mhwd/local/pci/video-amdgpu-mesa-extras/MHWDCONFIG ]; then
+    echo "your System don't supports AMDGPU OverDrive"
+    echo -e "minimum requirements are\n"
+    echo -e "Linux:\t4.8"
+    echo -e "Driver:\tAMDGPU (Catalyst and AMDGPU-Pro are *not* supported)"
+    echo -e "GPU:\tAMD Vulcanic or Arctic Island Generations"
+    exit 1
+fi
+
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## show help and the minimal output
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+case "$@" in
+    show|--show|"")
+        echo -e "OverDrive AMDGPU on $(uname -r)\n"
+        echo -e "GPU Core:\t+$(cat /sys/class/drm/card0/device/pp_sclk_od)%"
+        echo -e "VMemory:\t+$(cat /sys/class/drm/card0/device/pp_mclk_od)%"
+        exit 0
+    ;;
+    -h|--help)
+        echo "AMD OverDrive AMDGPU helper"
+        echo -e "usage:\todamdgpu <operation>" 
+        echo -e "operations:\n"
+        echo -e "\t--show\t\tshows OverDrive Informations"
+        echo -e "\t-g <value>\tuses only this GPU instead of \"card0\" (Not supported yet)"
+        echo -e "\t-m <value>\tpercentage value (0-20) to overclock videomemory"
+        echo -e "\t-c <value>\tpercentage value (0-20) to overclock GPU-core speed"
+        echo -e "\t-r\t\tresets everything to default"
+        echo -e "\nodamdgpu -m 1 -c 2"
+        exit 0
+    ;;
+    *)
+    ;;
+esac
+    
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## Functions
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+function fn_rootcheck()
+{
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## We need root!
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    if [ "$(whoami)" != "root" ]; then
+        echo -e "odamdgpu needs root\n"
+        exit 1
+    fi
+}
+
+function fn_overclock_CORE()
+{
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## First lets check if there is a usable value
+    ## in our CORE VAR, otherwise dont touch them
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    if [[ "${SETCORE}" =~ ^[0-9]+$ ]] && [ "${SETCORE}" -ge 0 -a "${SETCORE}" -le 20 ]; then
+        echo -e "GPU core:\t$(cat /sys/class/drm/card0/device/pp_sclk_od)% -> ${SETCORE}%"
+        echo ${SETCORE} > "/sys/class/drm/card0/device/pp_sclk_od"
+    fi
+}
+
+function fn_overclock_VMEM()
+{
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## First lets check if there is a usable value
+    ## in our VMemory VAR, otherwise dont touch them
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    if [[ "${SETVMEM}" =~ ^[0-9]+$ ]] && [ "${SETVMEM}" -ge 0 -a "${SETVMEM}" -le 20 ]; then
+        echo -e "VMemory:\t$(cat /sys/class/drm/card0/device/pp_mclk_od)% -> ${SETVMEM}%"
+        echo ${SETVMEM} > "/sys/class/drm/card0/device/pp_mclk_od"
+    fi
+}
+
+function fn_hwdamageoutput()
+{
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## To Inform our users that there is a risk
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    if [ ${SETVMEM} -ge 1 ] || [ ${SETCORE} -ge 1 ]; then
+        echo -e "\t\t^~~~~~~~ \033[1mThis may damage your hardware\033[0m"
+    fi
+}
+
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## now fly *-*
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    
+fn_rootcheck
+
+while getopts c:m:r opt
+do
+case $opt in
+    c)
+        SETCORE=${OPTARG}
+    ;;
+    m)
+        SETVMEM=${OPTARG}
+    ;;
+    r)
+        SETVMEM=0
+        SETCORE=0
+        fn_overclock_VMEM
+        fn_overclock_CORE
+        exit 0;
+    ;;
+esac
+done
+
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+    ##
+    ## only start the function we actually need
+    ##
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+if [ ${SETVMEM} ]; then
+    fn_overclock_VMEM
+fi
+if [ ${SETCORE} ]; then
+    fn_overclock_CORE
+fi
+
+fn_hwdamageoutput
+
+exit 0
