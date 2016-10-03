@@ -9,7 +9,7 @@ pkgdesc="The MATE Session Handler (GTK3 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('mate-desktop-gtk3' 'mate-polkit-gtk3' 'mate-settings-daemon-gtk3')
+depends=('mate-desktop-gtk3' 'mate-polkit' 'mate-settings-daemon-gtk3')
 makedepends=('intltool')
 optdepends=('gnome-keyring: keyring support'
             'xdg-user-dirs-gtk: manage user directories')
