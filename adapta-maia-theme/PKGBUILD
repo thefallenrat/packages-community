@@ -4,10 +4,10 @@
 pkgname=adapta-maia-theme
 _pkgname=adapta-gtk-theme
 _gtk3_min='3.18'
-_gtk3_max='3.21'
+_gtk3_max='3.22'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="${_gtk3_max}.6.24"
+pkgver="${_gtk3_max}.1.10"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -25,7 +25,8 @@ optdepends=("gnome-shell>=${_gtk3_min}.3: The GNOME Shell"
             'xfdesktop>=4.12.2: The Xfce desktop'
             'paper-icon-theme: A fitting icon theme'
             'marco-gtk3>=1.14.0: The mate desktop in its GTK3 version'
-            'gnome-tweak-tool: A graphical tool to tweak gnome settings')
+            'gnome-tweak-tool: A graphical tool to tweak gnome settings'
+            'arc-firefox-theme-maia: Arc theme with maia colour')
 makedepends=('glib2>=2.48.0'
              'libxml2'
              'ruby-bundler>=1.11.0'
@@ -35,7 +36,7 @@ makedepends=('glib2>=2.48.0'
 _tri_fadeno="tri-fadeno.jpg"
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "${pkgver}-${_tri_fadeno}::${url}/raw/master/.github/img/${_tri_fadeno}")
-sha256sums=('4662423988e0b840ee1f5620e474ecad630cc9f5413715ff554babc43e607b03'
+sha256sums=('7d039bfd0ab17166484a643d042708bb711c34472a24f4b5ad41877071211e92'
             '807bd3d99fb492569caf050cfa9b5c75d4e6a072007637fe8e583a3f5c0bea24')
 
 _bundle="ruby-bundle"
