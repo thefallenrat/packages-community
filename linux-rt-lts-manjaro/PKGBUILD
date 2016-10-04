@@ -14,7 +14,7 @@ _basever=44-rt-lts
 _pkgver=${_basekernel}.21
 _pkgverrt=$_pkgver
 _bfq=v7r11
-_rtpatchver=rt30
+_rtpatchver=rt31
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -57,7 +57,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
-            'd5d0b6e991a4436d7e0e02f32e7f8580555be6d0d8886d1205aa841b89781a13'
+            '0005014b3a72004a14171464dff3184601d25805e012eba2208a4f358cf61ddb'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
