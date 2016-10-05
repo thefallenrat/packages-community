@@ -19,7 +19,9 @@ optdepends=('cmus: Music player'
 'pianobar: Pandora support'
 	'xmms2: Music player'
 		'audacious: Music player'
-'elinks: Weather forecast support')
+'elinks: Weather forecast support'
+'oysttyer: posting of achievements to twitter'
+'fbcmd: posting of achievements to facebook')
 
 source=("$pkgname::git+git://github.com/stormdragon2976/${pkgname}.git")
 install="${pkgname}.install"
