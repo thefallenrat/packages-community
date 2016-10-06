@@ -1,29 +1,202 @@
-# Maintainer: zach <zach {at} zach-adams {dot} com>
-# Contributor: Gordian Edenhofer <gordian.edenhofer[at]yahoo[dot]de
-# Author: horst3180 @ deviantart
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+# Author: horst3180 @ deviantart 
 
-pkgname=arc-themes
+pkgbase=arc-themes
+pkgname=('arc-themes'
+	 'arc-themes-maia')
 _pkgname=arc-theme
-pkgver=20160530
+_pkgbase=arc-themes-maia
+pkgver=20161005
 pkgrel=1
-pkgdesc='A flat theme with transparent elements (GNOME 3.20 version)'
 _gnomever=3.20
-# temporary grab for last commit
-_releasever=226098a06b646981022f0e260fd4d3ca64ff5616
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
 license=('GPL3')
 depends=('gtk-engine-murrine')
-conflicts=('gtk-theme-arc' 'gtk-theme-arc-git')
-source=("${pkgname}-${_releasever}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${_releasever}.tar.gz")
-sha256sums=('787522c62d13a54d4333abdec3fe9e382f86a6f4195fc6c045745f1fd6e7f251')
+makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'gtk3')
+source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
+sha256sums=('09167228e286c3decedd2197ed6915d70d8601e7274f81cd368ac097f6c4f7e4')
 
-build() {
-  cd "${_pkgname}-$_releasever"
+#ALL arc color
+_blue=5294e2 
+_BLUE=5294E2
+_blue1=2679db
+_BLUE1=2679DB
+_blue2=1e61b0
+_BLUE2=1E61B0
+_blue3=4dadd4
+_BLUE3=4DADD4
+_blue4=76c0de
+_BLUE4=76C0DE
+_blue5=2e96c0
+_BLUE5=2E96C0
+_blue6='82, 148, 226'
+_blue7='65, 137, 223'
+_blue8=a9caf1
+_Blue8=A9CAF1
+_blue9=97bfee
+_BLUE9=97BFEE
+_blue10=577ba7
+_BLUE10=577BA7
+_blue11=7eafe9
+_BLUE11=7EAFE9
+_blue12=4a85cb
+_BLUE12=4A85CB
+_blue13='38, 121, 219'
+_blue14=639fe5
+_BLUE14=639FE5
+_blue15=4189df
+_BLUE15=4189DF
+
+#All Maia color variation
+_maia=16A085
+_maia1=0B9D67
+_maia2=19E89C
+_maia3=7EEEC7
+_maia4=20E6A1
+_maia5=2BC18D
+_maia6='43, 193, 141'
+_maia7='11, 57, 103'
+_maia8=00FDAF
+_maia9=00FDAF
+_maia10=2AC18D
+_maia11=0B9D67
+_maia12=0ACE7E
+_maia13='11, 57, 103'
+_maia14=0ACE7E
+_maia15=2BC18D
+
+_build_arc-themes() {
+  
+msg "Build arc-themes"
+echo
+  cd $srcdir
+  cp -R "$_pkgname-$pkgver" "$_pkgbase-$pkgver"
+  cd "${_pkgname}-$pkgver"
   ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
 }
-package() {
-  make -C "${_pkgname}-$_releasever" DESTDIR="${pkgdir}" install
+
+_build_arc-themes-maia() {
+
+cd $srcdir/$_pkgbase-$pkgver
+msg "Build arc-themes-maia" 
+echo
+msg "Create arc-themes-maia:this next bit might take a little while..."
+echo
+msg "Create new name"
+echo
+#Add Maia suffix
+find . -type f -name '*.*' -exec sed -i \
+  "s/Arc/Arc-Maia/g;\
+  s/Arc-Darker/Arc-Darker-Maia/g;\
+  s/Arc-Dark/Arc-Dark-Maia/g" {} \;
+
+#Change the color Blue > Maia
+msg "Manjarification"
+echo
+
+#tranform in lowercase in uppercase 
+find . -type f -name '*.*' -exec sed -i 's/'$_blue'/'$_BLUE'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue1'/'$_BLUE1'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue2'/'$_BLUE2'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue3'/'$_BLUE3'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue4'/'$_BLUE4'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue5'/'$_BLUE5'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue8'/'$_BLUE8'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue9'/'$_BLUE9'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue10'/'$_BLUE10'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue11'/'$_BLUE11'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue12'/'$_BLUE12'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue14'/'$_BLUE14'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_blue15'/'$_BLUE15'/g' {} \;
+
+#apply maia variation
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE'/'$_maia'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE1'/'$_maia1'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE2'/'$_maia2'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE3'/'$_maia3'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE4'/'$_maia4'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE5'/'$_maia5'/g' {} \;
+find . -type f -name '*.*' -exec sed -i "s|82, 148, 226|43, 193, 141|g" {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE8'/'$_maia8'/g' {} \;
+find . -type f -name '*.*' -exec sed -i "s|65, 137, 223|11, 57, 103|g" {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE9'/'$_maia9'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE10'/'$_maia10'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE11'/'$_maia11'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE12'/'$_maia12'/g' {} \;
+find . -type f -name '*.*' -exec sed -i "s|38, 121, 219|11, 57, 103|g" {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE14'/'$_maia14'/g' {} \;
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE15'/'$_maia15'/g' {} \;
+
+#Deleting all assets i.e. png in the common folder
+msg "Rebuild png file : waiting"
+echo
+
+cd $srcdir/$_pkgbase-$pkgver
+rm -rf common/gtk-2.0/assets/*
+rm -rf common/gtk-2.0/assets-dark/*
+rm -rf common/gtk-3.0/3.14/assets/*
+rm -rf common/gtk-3.0/3.16/assets/*
+rm -rf common/gtk-3.0/3.18/assets/*
+rm -rf common/gtk-3.0/3.20/assets/*
+rm -rf common/gtk-3.0/3.22/assets/*
+rm -rf common/xfwm4/assets/*
+rm -rf common/xfwm4/assets-dark/*
+
+#Make new assets
+msg "making the assets of gtk-2.0"
+echo
+cd common/gtk-2.0
+msg "making the assets of gtk-2.0/render-assets"
+echo
+sh render-assets.sh
+msg "making the assets of gtk-3.0"
+echo
+cd ../gtk-3.0/3.14/
+msg "making the assets of gtk-3.0/3.14"
+echo
+sh render-assets.sh
+cd ../3.16/
+msg "making the assets of gtk-3.0/3.16"
+echo
+sh render-assets.sh
+cd ../3.18/
+msg "making the assets of gtk-3.0/3.18"
+echo
+sh render-assets.sh
+cd ../3.20/
+msg "making the assets of gtk-3.0/3.20"
+echo
+sh render-assets.sh
+cd ../../xfwm4
+msg "making the assets of xfwm4"
+echo
+sh render-assets.sh
+
+msg "Building maia-theme"
+echo
+
+  cd $srcdir/$_pkgbase-$pkgver
+  ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
 }
 
-# vim: ts=2 sw=2 et:
+build() {
+  _build_arc-themes
+  _build_arc-themes-maia
+}
+  
+package_arc-themes() {
+pkgdesc="A flat theme with transparent elements"
+optdepends=('arc-firefox-themes: Firefox theme to complete arc-theme experience')
+conflicts=('gtk-theme-arc' 'gtk-theme-arc-git')
+cd $srcdir
+  make -C "${_pkgname}-$pkgver" DESTDIR="${pkgdir}" install
+}
+
+package_arc-themes-maia() {
+pkgdesc="A flat theme with transparent elements Manjaro variant"
+optdepends=('arc-firefox-theme: Firefox theme to complete arc-theme-maia experience')
+cd $srcdir  
+make -C "$_pkgbase-$pkgver" DESTDIR="${pkgdir}" install
+}
+
