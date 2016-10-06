@@ -20,9 +20,7 @@ optdepends=('cmus: Music player'
 	'xmms2: Music player'
 		'audacious: Music player'
 'elinks: Weather forecast support'
-'oysttyer: posting of achievements to twitter'
-'fbcmd: posting of achievements to facebook')
-
+'oysttyer: posting of achievements to twitter')
 source=("$pkgname::git+git://github.com/stormdragon2976/${pkgname}.git")
 install="${pkgname}.install"
 md5sums=('SKIP')
