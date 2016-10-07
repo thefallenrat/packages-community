@@ -33,7 +33,7 @@ _BLUE5=2E96C0
 _blue6='82, 148, 226'
 _blue7='65, 137, 223'
 _blue8=a9caf1
-_Blue8=A9CAF1
+_BLUE8=A9CAF1
 _blue9=97bfee
 _BLUE9=97BFEE
 _blue10=577ba7
@@ -83,50 +83,81 @@ msg "Build arc-themes-maia"
 echo
 msg "Create arc-themes-maia:this next bit might take a little while..."
 echo
-msg "Create new name"
+msg "Create new name : *-Maia"
 echo
-#Add Maia suffix
+#Add Maia suffix (don't change this order)
 find . -type f -name '*.*' -exec sed -i \
   "s/Arc/Arc-Maia/g;\
   s/Arc-Darker/Arc-Darker-Maia/g;\
   s/Arc-Dark/Arc-Dark-Maia/g" {} \;
 
 #Change the color Blue > Maia
-msg "Manjarification"
+msg "Manjarification : Change all arc color to green maia"
 echo
 
-#tranform in lowercase in uppercase 
-find . -type f -name '*.*' -exec sed -i 's/'$_blue'/'$_BLUE'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue1'/'$_BLUE1'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue2'/'$_BLUE2'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue3'/'$_BLUE3'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue4'/'$_BLUE4'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue5'/'$_BLUE5'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue8'/'$_BLUE8'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue9'/'$_BLUE9'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue10'/'$_BLUE10'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue11'/'$_BLUE11'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue12'/'$_BLUE12'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue14'/'$_BLUE14'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_blue15'/'$_BLUE15'/g' {} \;
+#rgb color
+find . -type f -name '*.*' -exec sed -i "s|$_blue6|$_maia6|g" {} \;
+msg "done1"
+find . -type f -name '*.*' -exec sed -i "s|$_blue7|$_maia7|g" {} \;
+msg "done2"
+find . -type f -name '*.*' -exec sed -i "s|$_blue13|$_maia13|g" {} \;
+msg "done3"
+#transform in lowercase in uppercase 
+find . -type f -name '*.*' -exec sed -i "s|$_blue|$_BLUE|g" {} \;
+msg "done4"
+find . -type f -name '*.*' -exec sed -i "s|$_blue1|$_BLUE1|g" {} \;
+msg "done5"
+find . -type f -name '*.*' -exec sed -i "s|$_blue2|$_BLUE2|g" {} \;
+msg "done6"
+find . -type f -name '*.*' -exec sed -i "s|$_blue3|$_BLUE3|g" {} \;
+msg "done7"
+find . -type f -name '*.*' -exec sed -i "s|$_blue4|$_BLUE4|g" {} \;
+msg "done8"
+find . -type f -name '*.*' -exec sed -i "s|$_blue5|$_BLUE5|g" {} \;
+msg "done9"
+find . -type f -name '*.*' -exec sed -i "s|$_blue8|$_BLUE8|g" {} \;
+msg "done10"
+find . -type f -name '*.*' -exec sed -i "s|$_blue9|$_BLUE9|g" {} \;
+msg "done11"
+find . -type f -name '*.*' -exec sed -i "s|$_blue10|$_BLUE10|g" {} \;
+msg "done12"
+find . -type f -name '*.*' -exec sed -i "s|$_blue11|$_BLUE11|g" {} \;
+msg "done13"
+find . -type f -name '*.*' -exec sed -i "s|$_blue12|$_BLUE12|g" {} \;
+msg "done14"
+find . -type f -name '*.*' -exec sed -i "s|$_blue14|$_BLUE14|g" {} \;
+msg "done15"
+find . -type f -name '*.*' -exec sed -i "s|$_blue15|$_BLUE15|g" {} \;
+msg "done16"
 
 #apply maia variation
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE'/'$_maia'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE1'/'$_maia1'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE2'/'$_maia2'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE3'/'$_maia3'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE4'/'$_maia4'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE5'/'$_maia5'/g' {} \;
-find . -type f -name '*.*' -exec sed -i "s|82, 148, 226|43, 193, 141|g" {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE8'/'$_maia8'/g' {} \;
-find . -type f -name '*.*' -exec sed -i "s|65, 137, 223|11, 57, 103|g" {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE9'/'$_maia9'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE10'/'$_maia10'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE11'/'$_maia11'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE12'/'$_maia12'/g' {} \;
-find . -type f -name '*.*' -exec sed -i "s|38, 121, 219|11, 57, 103|g" {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE14'/'$_maia14'/g' {} \;
-find . -type f -name '*.*' -exec sed -i 's/'$_BLUE15'/'$_maia15'/g' {} \;
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE|$_maia|g" {} \;
+msg "done17"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE1|$_maia1|g" {} \;
+msg "done18"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE2|$_maia2|g" {} \;
+msg "done19"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE3|$_maia3|g" {} \;
+msg "done20"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE4|$_maia4|g" {} \;
+msg "done21"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE5|$_maia5|g" {} \;
+msg "done22"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE8|$_maia8|g" {} \;
+msg "done23"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE9|$_maia9|g" {} \;
+msg "done24"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE10|$_maia10|g" {} \;
+msg "done25"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE11|$_maia11|g" {} \;
+msg "done26"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE12|$_maia12|g" {} \;
+msg "done27"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE14|$_maia14|g" {} \;
+msg "done28"
+find . -type f -name '*.*' -exec sed -i "s|$_BLUE15|$_maia15|g" {} \;
+msg "done29"
+echo
 
 #Deleting all assets i.e. png in the common folder
 msg "Rebuild png file : waiting"
