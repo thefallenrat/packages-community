@@ -5,7 +5,7 @@
 
 pkgname=breeze-maia-icon-themes
 _pkgname=breeze-icons
-pkgver=5.26.0
+pkgver=5.27.0
 pkgrel=1
 pkgdesc='Breeze icon themes with Maia colors'
 arch=('any')
@@ -15,7 +15,7 @@ license=('LGPL')
 makedepends=("extra-cmake-modules>=${pkgver}" 'qt5-base')
 source=("https://github.com/KDE/$_pkgname/archive/v$pkgver.tar.gz"
 	'deepin-show-desktop.svg')
-md5sums=('c8082bd6caf2b05a28973f416adadde1'
+md5sums=('511d870ba5e6926daea0a353be91d172'
          '8e4deb556453e0ff6dd5f415fd7aa4c6')
 
 build() {
