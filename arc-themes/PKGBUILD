@@ -13,7 +13,7 @@ arch=('any')
 url='https://github.com/horst3180/arc-theme'
 license=('GPL3')
 depends=('gtk-engine-murrine')
-makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'gtk3')
+makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'gtk3' 'libcanberra')
 source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
 sha256sums=('09167228e286c3decedd2197ed6915d70d8601e7274f81cd368ac097f6c4f7e4')
 
@@ -93,8 +93,8 @@ msg "Create new name : *-Maia"
 echo
 #Add Maia suffix (don't change this order)
 find . -type f -name '*.*' -exec sed -i \
-  "s/Arc/Arc-Maia/g;\
-  s/Arc-Darker/Arc-Darker-Maia/g;\
+   "s/Arc/Arc-Maia/g;\
+   s/Arc-Darker/Arc-Darker-Maia/g;\
   s/Arc-Dark/Arc-Dark-Maia/g" {} \;
 
 #Change the color Blue > Maia
