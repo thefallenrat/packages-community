@@ -2,9 +2,8 @@
 # Autor: Moka Project
 
 pkgname=moka-icon-theme
-pkgver=5.3.2
+pkgver=5.3.5
 pkgrel=1
-epoch=1
 pkgdesc="An icon theme designed with a minimal, flat style, using simple geometry & colours."
 arch=('any')
 url="http://snwh.org/moka/"
@@ -12,7 +11,7 @@ license=('GPL3' 'CCPL-4.0:by-sa')
 depends=('faba-icon-theme')
 options=(!strip)
 source=($pkgname-$pkgver.tar.gz::https://github.com/moka-project/$pkgname/archive/v$pkgver.tar.gz)
-sha256sums=('6d414af15c70f56b0c68afb6a3b3b743e364a8b55e0c56c4956c67c828f96531')
+sha256sums=('91d1d702501fca85b7c8dedbc690884d697e482b732cd3801febd5f7c0525918')
 
 build() {
   cd "$pkgname-$pkgver"
