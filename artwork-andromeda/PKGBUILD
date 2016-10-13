@@ -2,16 +2,16 @@
 
 pkgbase=artwork-andromeda
 pkgname=('andromeda-icon-theme' 'plasma5-themes-andromeda' 'sddm-andromeda-theme' 'andromeda-wallpaper')
-pkgver=0.1.5
+pkgver=0.2.0
 pkgrel=1
-_gitcommit=abe9c15898513e2a02ea5929807430a6b909fb69
+_gitcommit=0c57b84c9d2aea4dc43a202b1e1ab888303bd3c8
 url=https://github.com/manjaro/artwork-andromeda/
 arch=('any')
 license=('LGPL')
 makedepends=('extra-cmake-modules' 'plasma-framework')
 
 source=("andromeda-$pkgver-$pkgrel.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('fe239e4dcc5db974084472c778baeeba')
+md5sums=('a1820f5b360f9b28b85c611b3835a6c1')
 
 prepare() {
   mv $srcdir/artwork-andromeda-$_gitcommit $srcdir/andromeda
@@ -38,6 +38,7 @@ package_andromeda-icon-theme() {
   make DESTDIR="${pkgdir}" install
   rm -rf "${pkgdir}/usr/share/color-schemes"
   rm -rf "${pkgdir}/usr/share/kservices5"
+  rm -rf "${pkgdir}/usr/share/metainfo"
   rm -rf "${pkgdir}/usr/share/plasma"
   rm -rf "${pkgdir}/usr/share/sddm"
   rm -rf "${pkgdir}/usr/share/wallpapers"
@@ -61,6 +62,7 @@ package_sddm-andromeda-theme() {
   rm -rf "${pkgdir}/usr/share/color-schemes"
   rm -rf "${pkgdir}/usr/share/icons"
   rm -rf "${pkgdir}/usr/share/kservices5"
+  rm -rf "${pkgdir}/usr/share/metainfo"
   rm -rf "${pkgdir}/usr/share/plasma"
   rm -rf "${pkgdir}/usr/share/wallpapers"
 }
