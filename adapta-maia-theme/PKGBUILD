@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='3.22'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="${_gtk3_max}.1.10"
+pkgver="${_gtk3_max}.1.77"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -36,7 +36,7 @@ makedepends=('glib2>=2.48.0'
 _tri_fadeno="tri-fadeno.jpg"
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "${pkgver}-${_tri_fadeno}::${url}/raw/master/.github/img/${_tri_fadeno}")
-sha256sums=('7d039bfd0ab17166484a643d042708bb711c34472a24f4b5ad41877071211e92'
+sha256sums=('0382cfdcf7cb919216b802c4188e545bb1c56ce7972b9bb841dacad8d1c45717'
             '807bd3d99fb492569caf050cfa9b5c75d4e6a072007637fe8e583a3f5c0bea24')
 
 _bundle="ruby-bundle"
