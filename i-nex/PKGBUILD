@@ -3,9 +3,9 @@
 
 pkgname=i-nex
 _gitname=I-Nex
-_gitcommit=0c37f17
-pkgver=7.4.0
-pkgrel=6
+_gitcommit=08cd99f
+pkgver=7.6.0
+pkgrel=1
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
 url="http://i-nex.linux.pl/"
