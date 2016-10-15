@@ -62,7 +62,7 @@ post_install()
     mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
     # Set some options to (hopefully) improve R600 and RadeonSI a little
-    echo -e "# Set some options to (hopefully) improve R600 and RadeonSI a little\nexport R600_DEBUG=\"forcedma,hyperz,llvm,precompile,sbcl,sisched\"" > "${R600OPSFILE}"
+    echo -e "# Set some options to (hopefully) improve R600 and RadeonSI a little\nexport R600_DEBUG=\"forcedma,hyperz,llvm,precompile,sbcl,sisched,switch_on_eop\"" > "${R600OPSFILE}"
     chmod 755 "${R600OPSFILE}"
 }
 

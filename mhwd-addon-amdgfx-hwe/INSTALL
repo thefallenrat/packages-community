@@ -6,6 +6,7 @@ pre_install()
         echo "CONFIG_DRM_AMDGPU_CIK is missing"
     fi
 }
+
 pre_upgrade() 
 {
     #check for kernel support cause we use some experimental things
@@ -17,7 +18,9 @@ pre_upgrade()
 
 post_upgrade() 
 {
-    ##lets make sure that the unused parts are removed
+
+    ## lets make sure that the unused parts are removed
+    ## remove this Part in 2017 ;)
     if [ -f "/var/lib/mhwd/local/pci/video-ati-hwe/MHWDCONFIG" ]; then
         rm "/var/lib/mhwd/local/pci/video-ati-hwe/MHWDCONFIG"
         rm -r "/var/lib/mhwd/local/pci/video-ati-hwe"
@@ -36,5 +39,8 @@ post_upgrade()
     if [ -f "/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-hwe/MHWDCONFIG" ]; then
         rm "/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-hwe/MHWDCONFIG"
         rm -r "/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-hwe"
+    fi
+    if [ -f "/var/lib/mhwd/ids/pci/amdgpu-experimental.ids" ]; then
+        rm "/var/lib/mhwd/ids/pci/amdgpu-experimental.ids"
     fi
 }

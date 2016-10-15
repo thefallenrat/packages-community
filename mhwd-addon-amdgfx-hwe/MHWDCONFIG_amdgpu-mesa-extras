@@ -8,7 +8,7 @@ PRIORITY="2"
 
 CLASSIDS="0300 0380"
 VENDORIDS="1002"
-DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu.ids"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu-mesa.ids"
 
 # Conflicts
 MHWDCONFLICTS="video-amdgpu video-ati video-catalyst video-vesa video-ati-mesa-extras video-amdgpu-experimental-mesa-extras"
@@ -62,7 +62,7 @@ post_install()
     mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
     
     # Set some options to (hopefully) improve R600 and RadeonSI a little
-    echo -e "# Set some options to (hopefully) improve R600 and RadeonSI a little\nexport R600_DEBUG=\"forcedma,hyperz,llvm,precompile,sbcl,sisched\"" > "${R600OPSFILE}"
+    echo -e "# Set some options to (hopefully) improve R600 and RadeonSI a little\nexport R600_DEBUG=\"forcedma,hyperz,llvm,precompile,sbcl,sisched,switch_on_eop\"" > "${R600OPSFILE}"
     chmod 755 "${R600OPSFILE}"
 }
 
