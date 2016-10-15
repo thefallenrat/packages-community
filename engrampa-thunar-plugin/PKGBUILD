@@ -2,7 +2,7 @@
 
 pkgname=engrampa-thunar-plugin
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Engrampa Thunar-Plugin"
 url="http://mate-desktop.org"
 arch=('any')
