@@ -42,7 +42,7 @@ prepare() {
 
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
-  sed -i 's|#DEFINES += KSTATUS|DEFINES += KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+  sed -i 's|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
 }
 
 build() {
