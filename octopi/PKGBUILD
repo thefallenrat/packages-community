@@ -13,9 +13,9 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.8.5
-pkgrel=1
+pkgrel=2
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="dfaa9b0a003bb050c4bc2f6c414de99c96ae6761"
+_gitcommit="4d0bc6caa92eaf9637af8970dd57779208c5281c"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -27,7 +27,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('e54f13d8c4257828bebe9dabd06bcb12a5b96a51670233f8e9889cda3cf93b1d')
+sha256sums=('7c47ac8e94157a7ee483b249aa45d85c53d410ac588c52477c77c2f3d714d718')
 
 
 prepare() {
@@ -42,7 +42,7 @@ prepare() {
 
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
-  sed -i 's|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+  sed -i 's|#KSTATUS|KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
 }
 
 build() {
