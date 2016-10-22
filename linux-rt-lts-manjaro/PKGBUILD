@@ -11,7 +11,7 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _srcname=linux-4.4
 _basekernel=4.4
 _basever=44-rt-lts
-_pkgver=${_basekernel}.26
+_pkgver=${_basekernel}.27
 #_pkgverrt=$_pkgver
 _pkgverrt=${_basekernel}.25
 _bfq=v7r11
@@ -46,7 +46,7 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            '100bb46956585d418a6950bc898c5abc8206c3e34adfaf7ce4f6d14598918f72'
+            '578caffa00f5056a921f672c585734cd572b1e3e33227b71a54ef27873f7ea20'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '4134c9ca56e2be2072122364871f7a5feedfb1acb12cadf6e41c09c9c068ce70'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
