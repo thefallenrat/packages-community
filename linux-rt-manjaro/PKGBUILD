@@ -12,9 +12,10 @@ pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _srcname=linux-4.8
 _basekernel=4.8
 _basever=48-rt
-_sublevel=2
+_sublevel=3
 _pkgver=${_basekernel}.${_sublevel}
-_pkgverrt=$_pkgver
+#_pkgverrt=$_pkgver
+_pkgverrt=${_basekernel}.2
 _bfq=v8r4
 _rtpatchver=rt2
 pkgver=${_pkgver}_${_rtpatchver}
@@ -25,7 +26,9 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils')
 options=('!strip')
 source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
-        "http://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
+        #"https://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
+        "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgverrt}.xz"
+        "https://www.kernel.org/pub/linux/kernel/v4.x/incr/patch-${_pkgverrt}-${_sublevel}.xz"
         # the main kernel config files
         'config'
         'config.x86_64'
@@ -51,8 +54,9 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('ce9fc13dbfa548a751a583a95f8ee39c9750d479f34c587116bf340f2ef3a493'
             'edb6e8022172df2b020b53e1cfa32bcde070f3119a6618766066098c46008a9b'
-            'a9efde59ed7eda3027bd452e44b05655f4590ef00eb91eea1cdc1837bd04062a'
-            'f1984ed91b1acccee48254ec81d25b57d20c25f5a32d49870389b35d14ec0011'
+            '3c6da7730bd884449d34c2e601ac0d14132e745745b5f761aaa80a361c560458'
+            '47e6b2e209da0f89730e3b9c2625b5c46226b95c2bd39f2a322e6c6421631517'
+            'c0450710a037e6c32d762a855359d26d1202cf3ad19705f6b73f3e53ec4f9943'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '8e05eb21098e4ced73461e3e6b18e6776ad1b4bd4999f526e93c6cf7a025e120'
@@ -74,7 +78,10 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${_pkgver}"
+  #msg "applying patch-${_pkgver}
+  #patch -p1 -i "${srcdir}/patch-${_pkgver}"
+  msg "applying patch-${_pkgverrt}
+  patch -p1 -i "${srcdir}/patch-${_pkgverrt}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
@@ -82,6 +89,10 @@ prepare() {
   # Add RT patch
   msg "applying patch-${_pkgverrt}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_rtpatchver}.patch"
+
+  # Add upstream incr patch
+  msg "applying patch-${_pkgverrt}-${_sublevel}"
+  patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_sublevel}"
 
   # set DEFAULT_CONSOLE_LOGLEVEL to 4 (same value as the 'quiet' kernel param)
   # remove this when a Kconfig knob is made available by upstream
