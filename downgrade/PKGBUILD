@@ -1,7 +1,7 @@
 # Author: Patrick Brisbin <pbrisbin@gmail.com>
 pkgname=downgrade
 pkgver=5.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Bash script for downgrading one or more packages to a version in your cache (or optionally in the A.R.M.)"
 arch=('any')
 url="https://github.com/pbrisbin/$pkgname"
@@ -16,11 +16,11 @@ package() {
   cd "$pkgname-$pkgver"
   sed -i -e 's,.*NOARM=${NOARM:-0}.*, \
 #Disable A.L.A. only in stable branch\
-grep "Branch = stable" /etc/pacman-mirrors.conf\
+grep '^[[:space:]]*Branch[[:space:]]*=[[:space:]]*stable' /etc/pacman-mirrors.conf\
 if [ $? -eq 1 ] ; then\
    NOARM=${NOARM:-0}\
   else\
-   echo "A.L.A. disabled see https://wiki.archlinux.org/index.php/downgrading_packages for more details"\
+  echo "Downgrading from A.L.A. is disabled on the stable branch. See https://wiki.archlinux.org/index.php/downgrading_packages for more details."\
    NOARM=${NOARM:-1}\
 fi\
  ,' downgrade
