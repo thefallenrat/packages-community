@@ -12,7 +12,7 @@ pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _srcname=linux-4.8
 _basekernel=4.8
 _basever=48-rt
-_sublevel=3
+_sublevel=4
 _pkgver=${_basekernel}.${_sublevel}
 #_pkgverrt=$_pkgver
 _pkgverrt=${_basekernel}.2
@@ -25,10 +25,8 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils')
 options=('!strip')
-source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
-        #"https://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgverrt}.xz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/incr/patch-${_pkgverrt}-${_sublevel}.xz"
+source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
+        "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
         # the main kernel config files
         'config'
         'config.x86_64'
@@ -36,8 +34,8 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'config.no_hz'
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
-		#'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
-		#'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
+        #'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
+        #'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
         #"0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-4.4.0.patch"
         #"0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched-for-4.4.0.patch"
         #"0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}-for.patch"
@@ -48,13 +46,16 @@ source=(https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz
         'nvidia-304xx-mtrr-unknown-symbol.patch'
         'revert-intel-asoc.patch'
         'i8042-asus-x455lab-dmi.patch'
+        # Some reverts so RT patch applies
+        'https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/releases/4.8.4/mm-filemap-don-t-plant-shadow-entries-without-radix-tree-node.patch'
+        'https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/releases/4.8.4/mm-filemap-fix-mapping-nrpages-double-accounting-in-fuse.patch'
+        'https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/releases/4.8.4/jbd2-fix-lockdep-annotation-in-add_transaction_credits.patch'
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('ce9fc13dbfa548a751a583a95f8ee39c9750d479f34c587116bf340f2ef3a493'
-            'edb6e8022172df2b020b53e1cfa32bcde070f3119a6618766066098c46008a9b'
-            '3c6da7730bd884449d34c2e601ac0d14132e745745b5f761aaa80a361c560458'
+            '86e246b19253ee3aa971403a5990376a5e33667122f7c8742cc0ee807f204403'
             '47e6b2e209da0f89730e3b9c2625b5c46226b95c2bd39f2a322e6c6421631517'
             'c0450710a037e6c32d762a855359d26d1202cf3ad19705f6b73f3e53ec4f9943'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
@@ -65,6 +66,9 @@ sha256sums=('ce9fc13dbfa548a751a583a95f8ee39c9750d479f34c587116bf340f2ef3a493'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '030deb6b46cea9a3f037b03af4e53d27aa70537d42c535cf30db5c02e4a8ab43'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
+            'b7237576ef4c88be073558c6294bdc663dbaed52f68a56ab13fa6359e5dbfe7a'
+            'db1f9b400044f40567a2c3b8ac71fec08e8e5baae2fbaeaee8c62764c26357dc'
+            '7bcbbf48abc65c6a7cd685203fd15f66df481ddd15dcc48b9c2091c9b277a946'
             '559f4f1fa49a7a362cd26bccad609f3f25c7c5be58f7d6404c73aa05349bb362'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
@@ -82,21 +86,23 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  #msg "applying patch-${_pkgver}
-  #patch -p1 -i "${srcdir}/patch-${_pkgver}"
-  msg "applying patch-${_pkgverrt}
-  patch -p1 -i "${srcdir}/patch-${_pkgverrt}"
+  msg "applying patch-${_pkgver}"
+  patch -p1 -i "${srcdir}/patch-${_pkgver}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
+
+  # Revert some patches
+  msg "reverting mm-filemap-don-t-plant-shadow-entries-without-radix-tree-node.patch"
+  patch -Rp1 -i "${srcdir}/mm-filemap-don-t-plant-shadow-entries-without-radix-tree-node.patch"
+  msg "reverting mm-filemap-fix-mapping-nrpages-double-accounting-in-fuse.patch"
+  patch -Rp1 -i "${srcdir}/mm-filemap-fix-mapping-nrpages-double-accounting-in-fuse.patch"
+  msg "reverting jbd2-fix-lockdep-annotation-in-add_transaction_credits.patch"
+  patch -Rp1 -i "${srcdir}/jbd2-fix-lockdep-annotation-in-add_transaction_credits.patch"
   
   # Add RT patch
   msg "applying patch-${_pkgverrt}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_rtpatchver}.patch"
-
-  # Add upstream incr patch
-  msg "applying patch-${_pkgverrt}-${_sublevel}"
-  patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_sublevel}"
 
   # set DEFAULT_CONSOLE_LOGLEVEL to 4 (same value as the 'quiet' kernel param)
   # remove this when a Kconfig knob is made available by upstream
