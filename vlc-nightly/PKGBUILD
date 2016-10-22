@@ -4,12 +4,12 @@
 
 _appname_=vlc
 pkgname=${_appname_}-nightly
-pkgver=3.0.0v20160704
+pkgver=3.0.0v20161022
 _pkgver=3.0.0
-_snapshot_=20160704
-_snapver_=0536
+_snapshot_=20161022
+_snapver_=0235
 _nightly_=${_snapshot_}-${_snapver_}
-pkgrel=4
+pkgrel=1
 pkgdesc="A multi-platform MPEG, VCD/DVD, and DivX player - nightly snapshot"
 arch=("i686" "x86_64")
 url="http://www.videolan.org/vlc/"
@@ -62,7 +62,7 @@ replaces=("${_appname_}-plugin")
 #backup=("usr/share/${_appname_}/lua/http/.hosts"
 #        "usr/share/${_appname_}/lua/http/dialogs/.hosts")
 options=("!libtool" "!emptydirs")
-source=("http://altair.videolan.org/build/source/vlc-${_pkgver}-${_nightly_}.tar.xz"
+source=("http://nightlies.videolan.org/build/source/vlc-${_pkgver}-${_nightly_}-git.tar.xz"
         "update-vlc-plugin-cache.hook")
 
 pkgver() {
@@ -113,5 +113,5 @@ package() {
 	install -Dm644 "$srcdir"/update-vlc-plugin-cache.hook "$pkgdir"/usr/share/libalpm/hooks/update-vlc-plugin-cache.hook
 }
 
-sha1sums=('9bfd839e48d1fa41de91c953617386968ecd3bf3'
+sha1sums=('3fda6d443f65ecc871ae76bc3248c8107943ca2c'
           'c3a35ba4dbd6c8e4e5b032664f50b9f0dcf579ee')
