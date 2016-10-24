@@ -7,7 +7,7 @@ pkgname=('arc-themes'
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
 pkgver=20161005
-pkgrel=3
+pkgrel=4
 _gnomever=3.22
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
@@ -242,7 +242,7 @@ build() {
   
 package_arc-themes() {
 pkgdesc="A flat theme with transparent elements"
-optdepends=('arc-firefox-themes: Firefox theme to complete arc-theme experience')
+optdepends=('arc-firefox-theme: Firefox theme to complete arc-theme experience')
 conflicts=('gtk-theme-arc' 'gtk-theme-arc-git')
 cd $srcdir
   make -C "${_pkgname}-$pkgver" DESTDIR="${pkgdir}" install
