@@ -5,7 +5,7 @@ diff -ru --no-dereference a/overrides/mips/com.deepin.dde.dock.override b/overri
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','org.gnome.nautilus','audacious-qt','smplayer','firefox','wps-office-wps','wps-office-wpp','wps-office-et','dde-control-center']
 -hide-mode='keep-showing'
-+docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
++docked-apps=['dde-file-manager','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru --no-dereference a/overrides/mips/com.deepin.wrap.gnome.desktop.override b/overrides/mips/com.deepin.wrap.gnome.desktop.override
 --- a/overrides/mips/com.deepin.wrap.gnome.desktop.override	2016-09-04 19:06:09.918990868 +0200
@@ -47,7 +47,7 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.dde.dock.override b/overrid
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','dde-file-manager','deepin-appstore','deepin-music-player','deepin-movie','google-chrome','dde-control-center']
 -hide-mode='keep-showing'
-+docked-apps=['org.gnome.nautilus','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
++docked-apps=['dde-file-manager','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/com.deepin.wrap.gnome.desktop.override
 --- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2016-09-04 19:06:09.918990868 +0200
@@ -240,7 +240,7 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
      <key type="s" name="xft-hintstyle">
        <default>'hintfull'</default>
        <summary>Xft hintstyle</summary>
-@@ -201,48 +117,6 @@
+@@ -201,28 +117,6 @@
          Timeout in milliseconds before a click starts repeating (onspinner buttons for example).
        </description>
      </key>
@@ -266,30 +266,10 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
 -      </description>
 -    </key>
 -    -->
--    <key type="i" name="gtk-recent-files-max-age">
--      <range min="-1" max="2147483647" />
--      <default>30</default>
--      <summary></summary>
--      <description>
--        The maximum age, in days, of the items inside the recently used resources list.
--        Items older than this setting will be excised from the list.
--        If set to 0, the list will always be empty; if set to -1, no item will be removed.
--      </description>
--    </key>
--    <!--
--    <key type="i" name="xft-dpi">
--      <range min="-1" max="1048576" />
--      <default>-1</default>
--      <summary>Xft DPI</summary>
--      <description>
--        Resolution for Xft, in 1024 * dots/inch. -1 to use default value.
--      </description>
--    </key>
--    -->
-     <key type="b" name="cursor-blink">
-       <default>true</default>
-       <summary>Cursor Blink</summary>
-@@ -264,71 +138,6 @@
+     <key type="i" name="gtk-recent-files-max-age">
+       <range min="-1" max="2147483647" />
+       <default>30</default>
+@@ -263,71 +138,6 @@
          Whether to play event sounds as feedback to user input.
        </description>
      </key>
@@ -361,7 +341,7 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
      <key type="b" name="gtk-recent-files-enabled">
        <default>true</default>
        <summary>Recent files enabled</summary>
-@@ -336,15 +145,6 @@
+@@ -335,15 +145,6 @@
          Whether GTK+ should keep track of items inside the recently used resources list.
        </description>
      </key>

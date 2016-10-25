@@ -1,0 +1,45 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Felix Yan <felixonmars@archlinux.org>
+
+_pkgname=deepin-desktop-schemas
+pkgname=$_pkgname-manjaro
+pkgver=3.0.11
+pkgrel=2
+pkgdesc='Manjaro Linux Deepin gschemas'
+arch=('any')
+url="https://github.com/linuxdeepin/$_pkgname"
+license=('GPL3')
+groups=('deepin-manjaro')
+depends=('dconf'
+    'deepin-artwork-themes-manjaro'
+	'deepin-iconthemes-manjaro'
+	'deepin-sound-theme'
+	'deepin-wallpapers'
+	'noto-fonts'
+	'vertex-maia-icon-theme'
+	'vertex-maia-themes'
+	'xcursor-breeze')
+makedepends=('git')
+conflicts=('dde-daemon<=2.92.1' "$_pkgname")
+provides=("$_pkgname")
+source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
+	'manjaro.diff')
+sha256sums=('SKIP'
+            'd60ceef7335bea1588a6fbf26c067ed015325f3f0ccdd7f448db16e67f0cfc75')
+
+prepare() {
+  cd $_pkgname
+  patch -p1 < ../manjaro.diff
+# don't override GNOME defaults
+  rm overrides/x86/org.gnome.desktop.override
+}
+
+build() {
+  cd $_pkgname
+  make
+}
+
+package() {
+  cd $_pkgname
+  make DESTDIR=$pkgdir install
+}
