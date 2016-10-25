@@ -39,7 +39,7 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         #"0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-4.4.0.patch"
         #"0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched-for-4.4.0.patch"
         #"0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/4.4.0-${_bfq}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}-for.patch"
-        "0001-BFQ-${_bfq}-v${pkgver}.patch::https://github.com/linusw/linux-bfq/compare/c8d2bc9...5d646b8.patch"
+        "0001-BFQ-${_bfq}-v${_basekernel}.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
         # MANJARO Patches
@@ -61,7 +61,7 @@ sha256sums=('ce9fc13dbfa548a751a583a95f8ee39c9750d479f34c587116bf340f2ef3a493'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '8e05eb21098e4ced73461e3e6b18e6776ad1b4bd4999f526e93c6cf7a025e120'
-            '357c83b5f4d2654d5327fee591db44e99cc8a3718a3ed812bcdedd4a8a60461e'
+            '319d01968b718983d6db8af20bb820e8dc499ba47f9231f30e9f8489cab18e49'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '030deb6b46cea9a3f037b03af4e53d27aa70537d42c535cf30db5c02e4a8ab43'
@@ -133,9 +133,9 @@ prepare() {
   #patch -Np1 -i "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
   #msg "0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
   #patch -Np1 -i "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  msg "0001-BFQ-${_bfq}-v${pkgver}.patch"
+  msg "0001-BFQ-${_bfq}-v${_basekernel}.patch"
   sed -i -e "s|SUBLEVEL = 0|SUBLEVEL = ${_sublevel}|g" "${srcdir}/0001-BFQ-${_bfq}-v${pkgver}.patch"
-  patch -Np1 -i "${srcdir}/0001-BFQ-${_bfq}-v${pkgver}.patch"
+  patch -Np1 -i "${srcdir}/0001-BFQ-${_bfq}-v${_basekernel}.patch"
 
   # Fix Nvidia 304xx issue
   # https://bugs.archlinux.org/task/47092
