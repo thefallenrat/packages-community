@@ -56,8 +56,8 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('ce9fc13dbfa548a751a583a95f8ee39c9750d479f34c587116bf340f2ef3a493'
             '86e246b19253ee3aa971403a5990376a5e33667122f7c8742cc0ee807f204403'
-            '47e6b2e209da0f89730e3b9c2625b5c46226b95c2bd39f2a322e6c6421631517'
-            'c0450710a037e6c32d762a855359d26d1202cf3ad19705f6b73f3e53ec4f9943'
+            'c22ddf3a9ec313c26f21c4eb7fbc437d782b6e1137901dd235473004a26cfd22'
+            '2d2cce9bfda9d4b83d0fd83ec7227fb8409c29dfcd17a514ecdf043587fa24db'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '8e05eb21098e4ced73461e3e6b18e6776ad1b4bd4999f526e93c6cf7a025e120'
@@ -120,32 +120,10 @@ prepare() {
   msg "i8042-asus-x455lab-dmi.patch"
   patch -p1 -i "${srcdir}/i8042-asus-x455lab-dmi.patch"
 
-  # add Gentoo patches
-  #msg "1700_enable-thinkpad-micled.patch"
-  #patch -Np1 -i "${srcdir}/1700_enable-thinkpad-micled.patch"
-  #msg "2700_ThinkPad-30-brightness-control-fix.patch"
-  #patch -Np1 -i "${srcdir}/2700_ThinkPad-30-brightness-control-fix.patch"
-
   # add BFQ scheduler
-  #msg "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch"
-  #patch -Np1 -i "${srcdir}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch"
-  #msg "0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
-  #patch -Np1 -i "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
-  #msg "0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  #patch -Np1 -i "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
   msg "0001-BFQ-${_bfq}-v${_basekernel}.patch"
   sed -i -e "s|SUBLEVEL = 0|SUBLEVEL = ${_sublevel}|g" "${srcdir}/0001-BFQ-${_bfq}-v${pkgver}.patch"
   patch -Np1 -i "${srcdir}/0001-BFQ-${_bfq}-v${_basekernel}.patch"
-
-  # Fix Nvidia 304xx issue
-  # https://bugs.archlinux.org/task/47092
-  #msg "nvidia-304xx-mtrr-unknown-symbol.patch"
-  #patch -Np1 -i "${srcdir}/nvidia-304xx-mtrr-unknown-symbol.patch"
-
-  # Deal with the Intel ASoC issue
-  # https://github.com/manjaro/packages-core/issues/35
-  #msg "revert-intel-asoc.patch"
-  #patch -Rp1 -i "${srcdir}/revert-intel-asoc.patch"
 
   msg "All patches have successfully been applied"
 
