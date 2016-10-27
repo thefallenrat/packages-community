@@ -12,10 +12,10 @@ _srcname=linux-4.4
 _basekernel=4.4
 _basever=44-rt-lts
 _pkgver=${_basekernel}.27
-#_pkgverrt=$_pkgver
-_pkgverrt=${_basekernel}.25
+_pkgverrt=$_pkgver
+#_pkgverrt=${_basekernel}.25
 _bfq=v7r11
-_rtpatchver=rt35
+_rtpatchver=rt37
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -58,7 +58,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             'af8f29631892bd3bb2654ff7b701f80f438832fd68a5e18896ef3ffe98363b9d'
-            '9ed2d324283da94adc6a44704cc60340e5391617036631a758d17b548ca5945c'
+            'fcbcda45be2bdb11c81cabdd5e88069731a7a88cdde5e60ad91b3e9bccded7b9'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
