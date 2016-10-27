@@ -2,12 +2,12 @@
 # Contributor: Kyle Fuller <inbox at kylefuller dot co dot uk>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.6-rt-MANJARO
+_extramodules=extramodules-4.8-rt-MANJARO
 pkgbase=$_linuxprefix-spl_zfs
 pkgname=("$_linuxprefix-spl" "$_linuxprefix-zfs")
 pkgver=0.7.0_rc1
 _pkgver=0.7.0-rc1
-pkgrel=3
+pkgrel=5
 url="http://zfsonlinux.org/"
 _url="https://github.com/zfsonlinux"
 arch=('i686' 'x86_64')

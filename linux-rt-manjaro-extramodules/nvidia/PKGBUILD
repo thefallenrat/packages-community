@@ -5,11 +5,11 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.6-rt-MANJARO
+_extramodules=extramodules-4.8-rt-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=370.28
-pkgrel=4
+pkgrel=6
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")

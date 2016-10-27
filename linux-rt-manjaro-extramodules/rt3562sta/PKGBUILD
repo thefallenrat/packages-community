@@ -6,15 +6,15 @@
 # Co-Maintainer: Clittle <philm@manjarolinux.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.6-rt-MANJARO
+_extramodules=extramodules-4.8-rt-MANJARO
 pkgbase=rt3562sta
 pkgname=("$_linuxprefix-rt3562sta"
 	#'rt3562sta-common'
 	)
 pkgver=2.4.1.1_r3
 _patchrel=${pkgver/*_r/}
-pkgrel=11
-_subpkgrel=11
+pkgrel=13
+_subpkgrel=13
 arch=(i686 x86_64)
 url="http://www.mediatek.com/en/Products/support.php?sn=501"
 license=('GPL')
