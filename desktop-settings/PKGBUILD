@@ -13,7 +13,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
 pkgver=20161028
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -83,7 +83,7 @@ package_manjaro-cinnamon-settings() {
         'maia-icon-theme'
         'ttf-comfortaa'
         'vertex-maia-themes'
-        'xcursor-simpleandsoft'
+        'xcursor-breeze'
         'manjaro-base-skel')
     optdepends=('plymouth-theme-manjaro-cinnamon')
     conflicts=('manjaro-desktop-settings')
