@@ -7,11 +7,11 @@ _gtk3_min='3.18'
 _gtk3_max='3.22'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="${_gtk3_max}.1.77"
+pkgver="${_gtk3_max}.2.22"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
-url="https://github.com/tista500/${_theme_name}"
+url="https://github.com/adapta-project/${_theme_name}"
 license=('GPL2' 'CCPL')
 depends=("gtk2>=${_gtk2_min}"
          "gtk3>=${_gtk3_min}.9"
@@ -23,26 +23,25 @@ optdepends=("gnome-shell>=${_gtk3_min}.3: The GNOME Shell"
             'budgie-desktop>=10.2.5: The Budgie desktop'
             'cinnamon>=2.8.6: The Cinnamon desktop'
             'xfdesktop>=4.12.2: The Xfce desktop'
+	    'openbox>=3.6.1: The openbox window manager'
+	    'marco-gtk3>=1.14.0: The Mate Desktop GTK3 version'
             'paper-icon-theme: A fitting icon theme'
-            'marco-gtk3>=1.14.0: The mate desktop in its GTK3 version'
             'gnome-tweak-tool: A graphical tool to tweak gnome settings'
-            'arc-firefox-theme-maia: Arc theme with maia colour')
+            'arc-firefox-theme-maia: Arc theme with maia color'
+  	    'adapta-backgrounds: The background of project')
 makedepends=('glib2>=2.48.0'
              'libxml2'
              'ruby-bundler>=1.11.0'
              'inkscape'
 	     'libcanberra'
 	     'parallel')
-_tri_fadeno="tri-fadeno.jpg"
-source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
-        "${pkgver}-${_tri_fadeno}::${url}/raw/master/.github/img/${_tri_fadeno}")
-sha256sums=('0382cfdcf7cb919216b802c4188e545bb1c56ce7972b9bb841dacad8d1c45717'
-            '807bd3d99fb492569caf050cfa9b5c75d4e6a072007637fe8e583a3f5c0bea24')
+source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+sha256sums=('ed42cd0223b74706c0649d6131466fb4e3ca4351559812abfde0da242f101c44')
 
 _bundle="ruby-bundle"
 
 prepare() {
-    cd "${_theme_name}-${pkgver}"
+    cd "${_pkgname}-${pkgver}"
     export BUNDLE_PATH="${srcdir}/${_bundle}"
     bundle install
 }
@@ -50,7 +49,7 @@ prepare() {
 build() {
     export BUNDLE_PATH="${srcdir}/${_bundle}"
     export PATH="${BUNDLE_PATH}/bin:${PATH}"
-    cd "${_theme_name}-${pkgver}"
+    cd "${_pkgname}-${pkgver}"
     echo "PATH: ${PATH}"
     ./autogen.sh --prefix "${pkgdir}/usr" \
 	         --enable-gtk_next \
@@ -64,27 +63,24 @@ build() {
 }
 
 package() {
-    cd "${_theme_name}-${pkgver}"
+    cd "${_pkgname}-${pkgver}"
     make install -j 8
 
-    
-    # The backgrounds
-    local bgdir="${pkgdir}/usr/share/backgrounds/${_theme_name}"
-    install -dm755 "$bgdir"
-    cp -dp --no-preserve=ownership "$(readlink "${srcdir}/${pkgver}-${_tri_fadeno}")" "${bgdir}/${_tri_fadeno}"
-    
 # Move the file into another folder to match with name
 cd "$pkgdir/usr/share/themes"
     mv Adapta Adapta-Maia
-    mv Adapta-Nokto Adapta-Maia-Nokto
+    mv Adapta-Nokto Adapta-Nokto-Maia
+    mv Adapta-Eta Adapta-Eta-Maia
+    mv Adapta-Nokto-Eta Adapta-Nokto-Eta-Maia
 
 # Modify the index theme
-    find . -type f -name 'index.theme' -exec sed -i "s/Adapta/Adapta-Maia/g" {} \;
-    find . -type f -name 'index.theme' -exec sed -i "s/Adapta-Nokto/Adapta-Maia-Nokto/g" {} \;
+    sed -i -e 's,.*Adapta.*,Adapta-Maia,' $pkgdir/usr/share/themes/Adapta-Maia/index.theme
+    sed -i -e 's,.*Adapta-Nokto.*,Adapta-Nokto-Maia,' $pkgdir/usr/share/themes/Adapta-Nokto-Maia/index.theme
+    sed -i -e 's,.*Adapta-Eta.*,Adapta-Eta-Maia,' $pkgdir/usr/share/themes/Adapta-Eta-Maia/index.theme
+    sed -i -e 's,.*Adapta-Nokto-Eta.*,Adapta-Nokto-Eta-Maia,' $pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia/index.theme
 
 # New symlink
-
-cd "$pkgdir/usr/share/themes/Adapta-Maia-Nokto"
+cd "$pkgdir/usr/share/themes/Adapta-Nokto-Maia"
 
     ln -sf /usr/share/themes/Adapta-Maia/xfwm4 xfwm4
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
@@ -94,9 +90,31 @@ cd "$pkgdir/usr/share/themes/Adapta-Maia-Nokto"
     ln -sf /usr/share/themes/Adapta-Maia/gtk-3.22 gtk-3.22 
     ln -sf /usr/share/themes/Adapta-Maia/gtk-3.20 gtk-3.20
     ln -sf /usr/share/themes/Adapta-Maia/gtk-3.0 gtk-3.0
+    ln -sf /usr/share/themes/Adapta-Maia/gtk-4.0 gtk-4.0
 
-# Move Background
-cd "$pkgdir/usr/share/backgrounds"
-    mv Adapta Adapta-Maia
+cd "$pkgdir/usr/share/themes/Adapta-Eta-Maia"
+    ln -sf /usr/share/themes/Adapta-Maia/chrome chrome
+    ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
+    ln -sf /usr/share/themes/Adapta-Maia/plank plank   
+    ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
+    ln -sf /usr/share/themes/Adapta-Maia/unity unity
+
+cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
+    ln -sf /usr/share/themes/Adapta-Nokto-Maia/chrome chrome
+    ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-3.20 gtk-3.20
+    ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-3.22 gtk-3.22 
+    ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-4.0 gtk-4.0 
+    ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
+    ln -sf /usr/share/themes/Adapta-Maia/plank plank
+    ln -sf /usr/share/themes/Adapta-Maia/unity unity
+    ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
+
 }
+
+
+
+
+
+
+
 
