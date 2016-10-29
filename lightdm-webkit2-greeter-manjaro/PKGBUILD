@@ -6,10 +6,10 @@
 #url="https://github.com/antergos/lightdm-webkit2-greeter"
 
 pkgname=lightdm-webkit2-greeter-manjaro
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 _pkgname=lightdm-webkit2-greeter
-_pkgver=2.1.5
+_pkgver=2.1.6
 pkgdesc="A webkit2 greeter for LightDM fo Manjaro"
 arch=('i686' 'x86_64')
 url="https://github.com/Ste74/lightdm-webkit2-greeter-manjaro"
@@ -24,7 +24,7 @@ provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 backup=("etc/lightdm/${_pkgname}.conf")
-md5sums=('eda7626d463c80e0dbb81a679b124911'
+md5sums=('29f653377cb59475cd478b650ed24aef'
          'eff26e667ba1e3ceaa4a97344516f201'
          'ef9ec9249b0a1556fe52e1c5e2be3cd8')
 
