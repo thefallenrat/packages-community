@@ -3,8 +3,9 @@
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
 
 pkgname=lumina-desktop
+_patch=p1
 pkgver=1.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
 url="https://github.com/trueos/lumina"
@@ -21,18 +22,18 @@ optdepends=('xorg-xbacklight: required for changing screen brightness'
 makedepends=('qt5-tools')
 options=('!makeflags')
 conflicts=("${pkgname}-git" "lumina-de-git")
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
-md5sums=('5c75175455f4eef374c6e904f1dee686')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}-${_patch}.tar.gz")
+md5sums=('603a9eef649979813a29b681a3396a50')
 
 
 build(){
-    cd $srcdir/lumina-${pkgver}
+    cd $srcdir/lumina-${pkgver}-${_patch}
     qmake-qt5 QMAKE_CFLAGS_ISYSTEM= PREFIX="/usr" QT5LIBDIR=/usr/lib/qt
     make
 }
 
 package() {
-    cd $srcdir/lumina-${pkgver}
+    cd $srcdir/lumina-${pkgver}-${_patch}
     make INSTALL_ROOT="${pkgdir}" install
     mv "${pkgdir}"/usr/etc "${pkgdir}"/etc
 }
