@@ -63,10 +63,13 @@ package_manjaro-bspwm-settings() {
 package_manjaro-budgie-settings() {
     pkgdesc='Manjaro Linux budgie settings'
     depends=('budgie-desktop'
-        'vertex-maia-themes'
+        'arc-themes-maia'
+	'arc-firefox-theme-maia'
         'vertex-maia-icon-theme'
         'budgie-wallpapers'
         'xcursor-breeze'
+	'qt5-styleplugins'
+        'qt5ct'
         'manjaro-base-skel')
     optdepends=('plymouth-theme-manjaro-fancy-budgie')
     conflicts=('manjaro-desktop-settings')
@@ -102,7 +105,9 @@ package_manjaro-gnome-settings() {
         'gnome-shell-extension-dash-to-dock'
         'gnome-wallpapers'
         'xcursor-breeze'
-        'manjaro-base-skel')
+        'manjaro-base-skel'
+	'qt5-styleplugins'
+        'qt5ct')
     optdepends=('plymouth-theme-manjaro-gnome')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
@@ -170,6 +175,7 @@ package_manjaro-mate-settings() {
     depends=('manjaro-base-skel'
                 'xcursor-breeze'
                 'arc-themes-maia'
+		'arc-firefox-theme-maia'
                 'vertex-maia-icon-theme'
                 'maia-wallpaper'
                 'qt5-styleplugins'
