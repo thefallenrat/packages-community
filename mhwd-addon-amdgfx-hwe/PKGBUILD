@@ -1,21 +1,21 @@
 # Maintainer: Fabian(Tids) <plusfabi@gmail.com>
 pkgname=mhwd-addon-amdgfx-hwe
-pkgver=20161015 #date +%Y%m%d
+pkgver=20161101 #date +%Y%m%d
 pkgrel=1
-pkgdesc="Enables some extras for the AMDGPU-open, and radeon(ati) stack, like OpenCL, VAAPI & VDPAU in Manjaro"
+pkgdesc="Extra Modules for MHWD to easily enable OpenCL, VDPAU, VAAPI and Vulkan on supported AMD-hardware"
 arch=('any')
-url="https://forum.manjaro.org/t/amdgpu-improvements-for-manjaro"
+url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
 install='INSTALL'
 license=('custom')
 depends=('mhwd-db' 'grub')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('MHWDCONFIG_amdgpu-experimental-mesa-extras' 'MHWDCONFIG_amdgpu-mesa-extras' 'MHWDCONFIG_ati-mesa-extras' 'amdgpu-mesa.ids' 'amdgpu-mesa-experimental.ids' 'odamdgpu')
-md5sums=('77a17c594a00288b320472b6ecd15f63'
-         'c3a15653109a62dfb3a490f0c32bf05d'
+md5sums=('60910cdc878ddf5d0abdc4f8ddd91dea'
+         'a0d8d1d0ed777fdc15d4c294cf520f95'
          '6a2aeac18b015a72855b28c5c34f1a98'
          '5695d0fdbafad7775d3bf3c72999af43'
          '50dde55099f875c70670c405d10424b6'
-         '246f3a7e35611179823d72968866c8f4')
+         '251375547e5c089758fe6072320efac8')
 
 package() 
 {

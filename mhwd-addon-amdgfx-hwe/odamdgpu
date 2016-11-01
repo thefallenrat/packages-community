@@ -100,7 +100,7 @@ function fn_hwdamageoutput()
     ##
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
     if [ ${SETVMEM} -ge 1 ] || [ ${SETCORE} -ge 1 ]; then
-        echo -e "\t\t^~~~~~~~ \033[1mThis may damage your hardware\033[0m"
+        echo -e "\033[1mThis may damage your hardware\033[0m"
     fi
 }
 
