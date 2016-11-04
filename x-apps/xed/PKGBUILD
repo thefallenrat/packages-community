@@ -1,0 +1,34 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# AUR-Maintainer: Nate Simon <aurpkg (at natesimon.net)>
+
+pkgname=xed
+pkgver=1.2.0.r1.gbc250a4
+pkgrel=1
+pkgdesc="A small and lightweight text editor. X-Apps Project (git version)."
+arch=('i686' 'x86_64')
+license=('GPL')
+groups=('x-apps')
+depends=('gtksourceview3' 'enchant' 'desktop-file-utils' 'libsm')
+makedepends=('git' 'gnome-common' 'iso-codes')
+url="https://github.com/linuxmint/${pkgname}"
+
+source=("git+${url}.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd ${srcdir}/${pkgname}
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    cd ${srcdir}/${pkgname}
+    ./autogen.sh --with-gtk=3.0 --prefix="/usr" \
+         --localstatedir="/var" \
+         --libexecdir="/usr/lib/xed"
+    make CFLAGS='-w -O2'
+}
+
+package(){
+    cd ${srcdir}/${pkgname}
+    make DESTDIR="$pkgdir/" install
+}
