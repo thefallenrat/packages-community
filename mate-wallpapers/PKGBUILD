@@ -1,0 +1,25 @@
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+
+pkgname=mate-wallpapers
+pkgver=20161105
+pkgrel=1
+_snapshot=b5ca92baa3bda8203d36cfc1365b8fcc27b798c4
+_repo=Mate-Artwork
+pkgdesc='Manjaro Linux Mate wallpapers'
+arch=('any')
+url="https://github.com/Ste74/$_repo"
+license=('GPL')
+source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
+sha256sums=('411aad051a695846eb56afcceb16f21b33305fa1ecc78c4be34d873cf55abe08')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+package() {
+	cd $srcdir
+	install -dm755 $pkgdir/usr/share/backgrounds
+	cd $_repo-$_snapshot
+	rm README.md
+	cp * $pkgdir/usr/share/backgrounds/
+}

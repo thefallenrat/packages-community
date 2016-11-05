@@ -12,8 +12,8 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20161101
-pkgrel=2
+pkgver=20161105
+pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
@@ -64,7 +64,7 @@ package_manjaro-budgie-settings() {
     pkgdesc='Manjaro Linux budgie settings'
     depends=('budgie-desktop'
         'arc-themes-maia'
-	'arc-firefox-theme-maia'
+	'firefox-arc-maia-settings'
         'vertex-maia-icon-theme'
         'budgie-wallpapers'
         'xcursor-breeze'
@@ -104,6 +104,8 @@ package_manjaro-gnome-settings() {
         'gnome-shell-extension-gnomenu'
         'gnome-shell-extension-dash-to-dock'
         'gnome-wallpapers'
+	'arc-themes-maia'
+	'firefox-arc-maia-settings'
         'xcursor-breeze'
         'manjaro-base-skel'
 	'qt5-styleplugins'
@@ -175,7 +177,7 @@ package_manjaro-mate-settings() {
     depends=('manjaro-base-skel'
                 'xcursor-breeze'
                 'arc-themes-maia'
-		'arc-firefox-theme-maia'
+		'firefox-arc-maia-settings'
                 'vertex-maia-icon-theme'
                 'maia-wallpaper'
 		'gnome-icon-theme'
