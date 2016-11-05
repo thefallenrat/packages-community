@@ -1,7 +1,7 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgname=firefox-arc-maia-settings
-pkgver=20161104
+pkgver=20161105
 pkgrel=1
 pkgdesc="Manjaro Linux settings Arc-Firefox-Theme-Maia default theme for Firefox"
 arch=('any')
