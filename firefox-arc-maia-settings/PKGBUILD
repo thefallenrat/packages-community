@@ -9,7 +9,7 @@ url="https://github.com/manjaro"
 license=('GPL')
 source=('arc-theme-prefs.js')
 depends=('firefox' 'arc-firefox-theme-maia')
-md5sums=('1c84eccb0c9bdfaacf3fb4c6c6734594')
+md5sums=('7d8af8bb20b9ee1c8da80078ed740a89')
 
 pkgver() {
   date +%Y%m%d

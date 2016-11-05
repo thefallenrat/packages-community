@@ -1,1 +1,1 @@
-pref("general.skins.selectedSkin", "arc-dark-theme");
+pref("general.skins.selectedSkin", "arc-darker-theme-maia");
