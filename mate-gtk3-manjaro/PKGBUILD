@@ -1,0 +1,39 @@
+#Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+
+pkgname=mate-gtk3-manjaro
+pkgver=1
+pkgrel=1
+pkgdesc="Manjaro meta packages to provide Mate GTK3"
+arch=('any')
+license=('GPL')
+groups=('mate-gtk3')
+depends=('caja-gtk3'
+	'marco-gtk3'
+	'mate-control-center-gtk3'
+	'mate-desktop-gtk3'
+	'mate-panel-gtk3'
+	'mate-settings-daemon-gtk3')
+conflicts=('caja'
+	'marco'
+	'mate-control-center'
+	'mate-desktop'
+	'mate-panel'
+	'mate-settings-daemon'
+	'atril'
+	'caja-gksu'
+	'caja-image-converter'
+	'caja-open-terminal'
+	'caja-sendto'
+	'caja-share'
+	'caja-wallpaper'
+	'eom'
+	'galculator-gtk2'
+	'mate-applets'
+	'mate-media'
+	'mate-netbook'
+	'mate-power-manager'
+	'mate-screensaver'
+	'mate-sensor-applet'
+	'mate-user-share'
+	'mate-utils'
+	'pluma')
