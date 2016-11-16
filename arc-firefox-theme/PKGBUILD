@@ -5,8 +5,8 @@
 pkgbase=arc-firefox-theme
 pkgname=('arc-firefox-theme'
 	 'arc-firefox-theme-maia')
-pkgver=20160920
-_pkgver="49.$pkgver"
+pkgver=20161114
+_pkgver="50.$pkgver"
 pkgrel=1
 url="https://github.com/horst3180/$pkgname"
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ depends=('firefox')
 makedepends=('autoconf' 'automake' 'unzip' 'zip')
 source=("$pkgbase-$_pkgver::$url/archive/$_pkgver.tar.gz")
 conflicts=('$pkgbase-git')
-md5sums=('549b7ee269a325915fe75d5f48f0cd6c')
+md5sums=('a96ddc9396dc773501d056c69e9799e0')
 #Both arc color
 _blue=5294e2 
 _BLUE=5294E2
@@ -64,7 +64,8 @@ find . -type f -name 'install.rdf' -exec sed -i \
   s/arc-theme/arc-theme-maia/g;\
   s/{03cb16aa-4675-11e5-b233-213b1d5d46b0}/arc-dark-theme-maia@manjaro.org/g;\
   s/{8a01dfcc-450f-11e5-909b-fb581d5d46b0}/arc-darker-theme-maia@manjaro.org/g;\
-  s/{52c2877e-44e1-11e5-8874-a62d1d5d46B0}/arc-theme-maia@manjaro.org/g" {} \;
+  s/{52c2877e-44e1-11e5-8874-a62d1d5d46B0}/arc-theme-maia@manjaro.org/g;\
+  s/horst3180/horst3180 - modified by Manjaro/g" {} \;
 
 find . -type f -name 'chrome.manifest' -exec sed -i \
   "s/arc-dark-theme/arc-dark-theme-maia/g;\
