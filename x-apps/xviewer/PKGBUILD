@@ -2,7 +2,7 @@
 # AUR-Maintainer: Nate Simon <aurpkg (at natesimon.net)>
 
 pkgname=xviewer
-pkgver=1.2.0.r0.g7cfa671
+pkgver=1.2.1
 pkgrel=1
 pkgdesc="A simple and easy to use image viewer. X-Apps Project (git version)."
 arch=('i686' 'x86_64')
@@ -11,16 +11,11 @@ groups=('x-apps')
 url="https://github.com/linuxmint/${pkgname}"
 depends=('exempi' 'glib2' 'gnome-desktop' 'gtk3' 'libpeas')
 makedepends=('git' 'gnome-common' 'gobject-introspection' 'libglade')
-source=("git+${url}.git")
-md5sums=('SKIP')
-
-pkgver() {
-    cd ${srcdir}/${pkgname}
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+source=("${url}/archive/${pkgver}.tar.gz")
+md5sums=('bd1f72354b051c32480965a21aefe0d2')
 
 build() {
-    cd ${srcdir}/${pkgname}
+    cd ${srcdir}/${pkgname}-${pkgver}
     gnome-autogen.sh --prefix="/usr" \
         --localstatedir="/var" \
          --libexecdir="/usr/lib/${pkgname}"
@@ -28,6 +23,6 @@ build() {
 }
 
 package(){
-    cd ${srcdir}/${pkgname}
+    cd ${srcdir}/${pkgname}-${pkgver}
     make DESTDIR="$pkgdir/" install
 }

@@ -2,16 +2,16 @@
 # AUR-Maintainer: Nate Simon <aurpkg (at natesimon.net)>
 
 pkgname=pix
-pkgver=1.0.6.r0.g1030538
+pkgver=1.2.0
 pkgrel=1
 pkgdesc="Image viewer and browser based on gthumb. X-Apps Project (git version)."
 arch=('i686' 'x86_64')
 license=('GPL')
-url='https://github.com/linuxmint/pix'
+url='https://github.com/linuxmint/${pkgname}'
 groups=('x-apps')
 depends=('desktop-file-utils' 'gconf' 'librsvg'
         'gst-plugins-base-libs' 'gsettings-desktop-schemas' 'libwebp' 'webkit2gtk')
-makedepends=('git' 'gnome-common' 'intltool' 'itstool' 'librsvg'
+makedepends=('gnome-common' 'intltool' 'itstool' 'librsvg'
         'liboauth')
 optdepends=('gstreamer: Video support'
     'exiv2: Embedded metadata support'
@@ -20,17 +20,11 @@ optdepends=('gstreamer: Video support'
     'libopenraw: Support for RAW photos'
     'brasero: Burn discs'
     'liboauth: Web albums')
-
-source=("git+${url}.git")
-md5sums=('SKIP')
-
-pkgver() {
-    cd ${srcdir}/${pkgname}
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+source=("${url}/archive/${pkgver}.tar.gz")
+md5sums=('94d8a6476ca972d78ca819b6e6b4efe3')
 
 build() {
-    cd ${srcdir}/${pkgname}
+    cd ${srcdir}/${pkgname}-${pkgver}
     gnome-autogen.sh --prefix="/usr" \
         --localstatedir="/var" \
         --libexecdir="/usr/lib/pix" \
@@ -51,6 +45,6 @@ build() {
 }
 
 package(){
-    cd ${srcdir}/${pkgname}
+    cd ${srcdir}/${pkgname}-${pkgver}
     make DESTDIR="$pkgdir/" install
 }
