@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=49.0.1
+pkgver=50.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -15,20 +15,22 @@ depends=('gtk3' 'gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-typ
          'sqlite' 'ttf-font' 'icu'
          'kmozillahelper' 'nspr')  
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13' 'rust')
+             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13' 'cargo')
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'upower: Battery API')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=('!emptydirs' '!makeflags')
-_patchrev=9fc2ebe6d7f1
+_patchrev=a58cc7936ce7
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
         firefox.desktop 
-        firefox-install-dir.patch 
+        firefox-install-dir.patch
+        rust-i686.patch
         vendor.js
         firefox-symbolic.svg
+        fix-wifi-scanner.diff
         kde.js
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -40,18 +42,20 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('eb43e24e644e3a9d663f896b96b57fb5e10195749f8a8dfe0300a626064b920d'
+sha256sums=('5da027350aee148dc62cc1ca897db30510be87ca8eab5e67a7adc7a2479b8616'
             '0a07bc48e9bc112f8147d087cc199c339a5db0a077c8ff6efcf2d4e6308b3624'
             '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
+            'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
             '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
+            '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
-            'e35878951d4f6aa9c4bc20710299a94b5af2cdc8b2c0bc8610720fc4e827e1a8'
+            '621b93af8968d3c5bc3b8db4dc707e460ab6d245b279c076cb82d96a3301cd2e'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            'ddf725d32bee77eb6962393a63022bc85e284403aa423d4c743ce70911243374'
-            'feede2fb86527c4a5d90bd5458fe582da920ab02dd25ec656236d87caf8888ba'
+            'd7cd27ea35289d3ec48d2083826f44a430f2661050bb5a3436cca86f7f29194b'
+            '71b5877ae375ba3a77b3fc7457829e4ef6b3b84f20abdf307533ebc18274ee89'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
 
@@ -73,6 +77,12 @@ prepare() {
 
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
+  
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
+  patch -Np1 -i ../fix-wifi-scanner.diff
+
+  # Build with the rust targets we actually ship
+  patch -Np1 -i ../rust-i686.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
@@ -110,10 +120,12 @@ build() {
 
   export PATH="$srcdir/path:$PATH"
 
-  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-    make -f client.mk profiledbuild
-
-  #make -f client.mk build  
+  if [[ $CARCH == i686 ]]; then
+    make -f client.mk build
+  else 
+    xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
+      make -f client.mk profiledbuild
+  fi
 }
 
 package() {
