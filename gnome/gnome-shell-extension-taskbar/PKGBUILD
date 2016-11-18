@@ -1,8 +1,8 @@
 #Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
 pkgname=gnome-shell-extension-taskbar
-pkgver=52.0
-pkgrel=4
+pkgver=53.0
+pkgrel=1
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
@@ -11,8 +11,8 @@ license=('GPL')
 depends=('gnome-shell')
 source=("https://github.com/${_author}/${pkgname}/archive/${pkgver}.tar.gz"
 	'manjaro.patch')
-md5sums=('3ec07bd499ce4608690828afdedd8434'
-         '094cd03aa76d3a9abe58f4bdfa5efd39')
+md5sums=('7abfa574f60d474baaa588c864b373f9'
+         '284c5e6f9e62d8a020392e47d0d2ff56')
 
 prepare() {
 
