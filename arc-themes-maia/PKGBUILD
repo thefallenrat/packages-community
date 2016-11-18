@@ -1,19 +1,20 @@
 # Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Author: horst3180 @ deviantart 
+# This pkgbuild provide maia variant of arc theme
 
 pkgbase=arc-themes
-pkgname=('arc-themes'
+pkgname=('arc-themes-solid-maia'
 	 'arc-themes-maia')
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
 pkgver=20161005
-pkgrel=4
-_gnomever=3.22
+pkgrel=1
+#_gnomever=3.22
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
 license=('GPL3')
-depends=('gtk-engine-murrine')
-makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'gtk3' 'libcanberra')
+depends=('gtk-engine-murrine' 'gtk3')
+makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'libcanberra')
 source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
 sha256sums=('09167228e286c3decedd2197ed6915d70d8601e7274f81cd368ac097f6c4f7e4')
 
@@ -72,18 +73,9 @@ _maia16='11, 103, 57, 0.95'
 _maia17='11, 103, 57, 0.8'
 _maia18='22, 160, 133, 0.9'
 
-_build_arc-themes() {
-  
-msg "Build arc-themes"
-echo
-  cd $srcdir
-  cp -R "$_pkgname-$pkgver" "$_pkgbase-$pkgver"
-  cd "${_pkgname}-$pkgver"
-  ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
-}
-
-_build_arc-themes-maia() {
-
+build() {
+cd $srcdir
+cp -R "$_pkgname-$pkgver" "$_pkgbase-$pkgver"
 cd $srcdir/$_pkgbase-$pkgver
 msg "Build arc-themes-maia" 
 echo
@@ -232,26 +224,24 @@ msg "Building maia-theme"
 echo
 
   cd $srcdir/$_pkgbase-$pkgver
-  ./autogen.sh --prefix=/usr --with-gnome=${_gnomever}
-}
-
-build() {
-  _build_arc-themes
-  _build_arc-themes-maia
+  ./autogen.sh --prefix=/usr
 }
   
-package_arc-themes() {
-pkgdesc="A flat theme with transparent elements"
+package_arc-themes-solid-maia() {
+pkgdesc="A flat theme without transparent elements Manjaro variant"
 optdepends=('arc-firefox-theme: Firefox theme to complete arc-theme experience')
-conflicts=('gtk-theme-arc' 'gtk-theme-arc-git')
-cd $srcdir
-  make -C "${_pkgname}-$pkgver" DESTDIR="${pkgdir}" install
+conflicts=('arc-themes-maia')
+cd $srcdir/$_pkgbase-$pkgver
+  ./configure --prefix=/usr --disable-transparency
+  make DESTDIR="${pkgdir}" install
 }
 
 package_arc-themes-maia() {
 pkgdesc="A flat theme with transparent elements Manjaro variant"
 optdepends=('arc-firefox-theme: Firefox theme to complete arc-theme-maia experience')
-cd $srcdir  
-make -C "$_pkgbase-$pkgver" DESTDIR="${pkgdir}" install
+#cd $srcdir  
+cd $srcdir/$_pkgbase-$pkgver
+  ./configure --prefix=/usr
+  make DESTDIR="${pkgdir}" install
 }
 
