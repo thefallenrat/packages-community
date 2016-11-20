@@ -26,7 +26,7 @@ durl="http://us.download.nvidia.com/XFree86/Linux-x86"
 #source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}.run")
 source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
 'fix-abi.patch')
-sha256sums=('f498bcf4ddf05725792bd4a1ca9720a88ade81de27bd27f2f3c313723f11444c'
+sha256sums=('ef2e71b6eef6ce2ee2556c1449d129380f0312b5a6a51bd8483fd60f8df0b9bf'
             '51317ed14937e934fdc13f814f36804275265d0912cce45714e1e4c9e911b3bb')
 
 #_pkg="NVIDIA-Linux-x86_64-${pkgver}"
