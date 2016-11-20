@@ -8,8 +8,8 @@ _linuxprefix=linux-rt-lts-manjaro
 _extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
-pkgver=370.28
-pkgrel=9
+pkgver=375.20
+pkgrel=1
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
