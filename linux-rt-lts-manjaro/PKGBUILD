@@ -50,8 +50,8 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '329b6b24e9e02b2e01ab13a9f62f853b37272c4f1c210cdcdda93937e0d0cb18'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
-            'd3ec6e33a6377714b4b92c37f358a2fe1cc3eab95c7d7211cd5ee5e19ca1c5ab'
-            '00fd00dab16ba56143bc189926251b746efe0f2fad4bfea38a6991403268d415'
+            '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
+            'b80ec1cc954cc35ffc4436a53598d9d6e5286780c79d345f3a728a8d82303ca4'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
             'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
             'd1cf14cc696b0f716454fe8eb9746383700889d5d22ad829611f0433cc77b4ce'
@@ -68,10 +68,10 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
             
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
-			'647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
-			'64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
-			'5ED9A48FC54C0A22D1D0804CEBC26CDB5A56DE73' # Steven Rostedt
-			'E644E2F1D45FA0B2EAA02F33109F098506FF0B14' # Thomas Gleixner
+            '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
+            '64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
+            '5ED9A48FC54C0A22D1D0804CEBC26CDB5A56DE73' # Steven Rostedt
+            'E644E2F1D45FA0B2EAA02F33109F098506FF0B14' # Thomas Gleixner
 			)
 
 _kernelname=${pkgbase#linux}
@@ -199,11 +199,11 @@ package_linux-rt-lts-manjaro() {
   true && install=${install}.pkg
 
   # install mkinitcpio preset file for kernel
-  sed "s|%PKGBASE%|${pkgbase}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.preset" |
+  sed "s|%PKGNAME%|${pkgname}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.preset" |
   install -D -m644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
 
   # install pacman hook for initramfs regeneration
-  sed "s|%PKGBASE%|${pkgbase}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.hook" |
+  sed "s|%PKGNAME%|${pkgname}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.hook" |
   install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/98-${pkgname}.hook"
 
   # remove build and source links
