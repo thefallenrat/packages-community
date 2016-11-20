@@ -1,0 +1,21 @@
+#Maintainer: Xyne <ac xunilhcra enyx, backwards>
+pkgname=python3-memoizedb
+pkgver=2016.5
+pkgrel=1
+pkgdesc='Generic data retrieval memoizer that uses an sqlite database to cache data.'
+arch=(any)
+license=(GPL)
+url="http://xyne.archlinux.ca/projects/python3-memoizedb"
+depends=(python3)
+source=(
+  http://xyne.archlinux.ca/projects/python3-memoizedb/src/python3-memoizedb-2016.5.tar.xz
+)
+md5sums=('0b75602e730773588686b6ec749b069d')
+sha512sums=('70ccffa3cd1e8ba860d5bba454e0cdc14fef37e70acdd5206bfb779451511d538c212ac2673c406506e1b96e13b9b1e5399b9035944915ffa8adb57b588a32a6')
+
+package ()
+{
+  cd "$srcdir/$pkgname-$pkgver"
+  python3 setup.py install --prefix=/usr --root="$pkgdir" --optimize=1
+}
+
