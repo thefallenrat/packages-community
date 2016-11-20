@@ -11,10 +11,10 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _basekernel=4.4
 _srcname=linux-${_basekernel}
 _basever=44-rt-lts
-_pkgver=${_basekernel}.30
+_pkgver=${_basekernel}.32
 _pkgverrt=$_pkgver
 #_pkgverrt=${_basekernel}.27
-_rtpatchver=rt41
+_rtpatchver=rt43
 _bfq=v7r11
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
@@ -29,6 +29,7 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'config.x86_64'
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
+        "${pkgname}.hook"
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
         "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/${_basekernel}.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-${_basekernel}.0.patch"
@@ -41,16 +42,16 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         "0004-block-bfq-update-migration-methods-attach-for-${_basekernel}-rc5-v7r8.patch"
         '0001-sdhci-revert.patch'
         'i8042-asus-notebook.patch::https://bugzilla.kernel.org/attachment.cgi?id=242001&action=diff&context=patch&collapsed=&headers=1&format=raw'
-        '4.4.27-4.4.30-rt37.patch'
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            'c310c7f64fb00b728729eb5b7588a1b10573acf5bfef920d28fe1da348e121c6'
+            '329b6b24e9e02b2e01ab13a9f62f853b37272c4f1c210cdcdda93937e0d0cb18'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
-            '4134c9ca56e2be2072122364871f7a5feedfb1acb12cadf6e41c09c9c068ce70'
+            'd3ec6e33a6377714b4b92c37f358a2fe1cc3eab95c7d7211cd5ee5e19ca1c5ab'
+            '00fd00dab16ba56143bc189926251b746efe0f2fad4bfea38a6991403268d415'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
             'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
             'd1cf14cc696b0f716454fe8eb9746383700889d5d22ad829611f0433cc77b4ce'
@@ -61,27 +62,21 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             'e7e824d6275073ddb9de10dd25afbfb0fe0a622d37afff7b7377e4882abc1c18'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'b1b2eaab9842b8aa8a9cfd6682059c42bffa441163b83c03a81869062adb4a21'
-            '493ac7bf65ab49c70d68af4c0c54762b479d92d21a27b2a64a0fa4e37104cb2d'
+            'd496b0432886a754d081a342e275f048e9567c9827972696ee9ab29cdccb9fb6'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
             
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
-              '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
-              '64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
-              '5ED9A48FC54C0A22D1D0804CEBC26CDB5A56DE73' # Steven Rostedt
-              'E644E2F1D45FA0B2EAA02F33109F098506FF0B14' # Thomas Gleixner
-             )
+			'647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
+			'64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
+			'5ED9A48FC54C0A22D1D0804CEBC26CDB5A56DE73' # Steven Rostedt
+			'E644E2F1D45FA0B2EAA02F33109F098506FF0B14' # Thomas Gleixner
+			)
 
 _kernelname=${pkgbase#linux}
 
 prepare() {
-  # Add RT buildfix patch
-  #msg2 "applying 4.4.27-4.4.30-rt37.patch"
-  #cd "${srcdir}"
-  #patch -p0 -i "${srcdir}/4.4.27-4.4.30-rt37.patch"
-
   cd "${srcdir}/${_srcname}"
 
   msg2 "add upstream patch"
@@ -107,8 +102,8 @@ prepare() {
 
   # fix X455LB touchpad issue
   # https://github.com/manjaro/packages-core/pull/39
-  # msg2 "...X455LB touchpad patch"
-  # patch -p1 -i "${srcdir}/i8042-asus-notebook.patch"
+  msg2 "...X455LB touchpad patch"
+  patch -p1 -i "${srcdir}/i8042-asus-notebook.patch"
 
   # add Gentoo patches
   msg2 "...thinkpad-micled patch"
@@ -126,7 +121,7 @@ prepare() {
   patch -Np1 -i "${srcdir}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch"
   patch -Np1 -i "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
   patch -Np1 -i "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  # patch -Np1 -i "${srcdir}/0004-block-bfq-update-migration-methods-attach-for-4.4-rc5-v7r8.patch"
+  #patch -Np1 -i "${srcdir}/0004-block-bfq-update-migration-methods-attach-for-4.4-rc5-v7r8.patch"
 
   # Fix Nvidia 304xx issue
   # https://bugs.archlinux.org/task/47092
@@ -160,6 +155,9 @@ prepare() {
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
 
+  # normally not needed
+  make clean
+  
   # get kernel version
   make prepare
 
@@ -196,23 +194,17 @@ package_linux-rt-lts-manjaro() {
   echo "${_pkgver}-${pkgrel}-${_rtpatchver}-MANJARO x64" > "${pkgdir}/boot/linux-${_basever}-${CARCH}.kver"
 
   # set correct depmod command for install
-  cp -f "${startdir}/${install}" "${startdir}/${install}.pkg"
+  sed -e "s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%KERNVER%|${_kernver}|g;s|%ARCH%|${CARCH}|g" \
+  "${startdir}/${install}" > "${startdir}/${install}.pkg"
   true && install=${install}.pkg
-  sed \
-    -e  "s/RELEASE=.*/RELEASE=${_pkgver}-${pkgrel}-${_rtpatchver}/g" \
-    -e  "s/KERNEL_VERSION=.*/KERNEL_VERSION=${_kernver}/g" \
-    -e  "s/KERNEL_BASE=.*/KERNEL_BASE=${_basekernel}${_kernelname}/g" \
-    -e  "s/BASEVER=.*/BASEVER=${_kernelname}-manjaro/g" \
-    -e  "s/ARCH=.*/ARCH=${CARCH}/g" \
-    -i "${startdir}/${install}"
 
   # install mkinitcpio preset file for kernel
-  install -D -m644 "${srcdir}/${pkgname}.preset" "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
-  sed \
-    -e "s|ALL_kver=.*|ALL_kver=\"/boot/vmlinuz-${_basekernel}${_kernelname}-${CARCH}\"|g" \
-    -e "s|default_image=.*|default_image=\"/boot/initramfs-${_basekernel}${_kernelname}-${CARCH}.img\"|g" \
-    -e "s|fallback_image=.*|fallback_image=\"/boot/initramfs-${_basekernel}${_kernelname}-${CARCH}-fallback.img\"|g" \
-    -i "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
+  sed "s|%PKGBASE%|${pkgbase}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.preset" |
+  install -D -m644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
+
+  # install pacman hook for initramfs regeneration
+  sed "s|%PKGBASE%|${pkgbase}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.hook" |
+  install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/98-${pkgname}.hook"
 
   # remove build and source links
   rm -f "${pkgdir}"/lib/modules/${_kernver}/{source,build}
