@@ -8,7 +8,7 @@
 
 pkgname=linux-rt-lts-manjaro-acpi_call
 pkgver=1.1.0
-pkgrel=12
+pkgrel=13
 _extramodules=extramodules-4.4-rt-lts-MANJARO
 pkgdesc='A linux kernel module that enables calls to ACPI methods through /proc/acpi/call'
 arch=('x86_64')
