@@ -4,7 +4,7 @@
 pkgbase=virtualbox-dkms-modules
 pkgname=('virtualbox-host-dkms'
          'virtualbox-guest-dkms')
-pkgver=5.1.10
+pkgver=5.1.10 ## can be dropped with next update
 _pkgrel=1
 pkgrel=${_pkgrel}.1
 arch=('i686' 'x86_64')
