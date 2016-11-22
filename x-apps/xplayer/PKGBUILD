@@ -4,7 +4,7 @@
 pkgname=xplayer
 pkgver=1.2.1
 pkgrel=1
-pkgdesc="Simple media player. X-Apps Project (git version)."
+pkgdesc="Simple media player. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
 groups=('x-apps')

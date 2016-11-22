@@ -4,7 +4,7 @@
 pkgname=xviewer-plugins
 pkgver=1.2.0
 pkgrel=1
-pkgdesc="Plugins for xviewer. X-Apps Project (git version)."
+pkgdesc="Plugins for xviewer. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/linuxmint/${pkgname}"

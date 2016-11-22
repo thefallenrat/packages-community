@@ -4,7 +4,7 @@
 pkgname=xviewer
 pkgver=1.2.1
 pkgrel=1
-pkgdesc="A simple and easy to use image viewer. X-Apps Project (git version)."
+pkgdesc="A simple and easy to use image viewer. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
 groups=('x-apps')
