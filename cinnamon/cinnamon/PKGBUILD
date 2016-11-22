@@ -29,7 +29,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/
 sha256sums=('4fc7021815fe138d932d63de95b879ae557bca90d39f41bc015d42ce131aa998'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
-            'c61beaea2bbf76a34155524a34e81032c44d3fd185815c09ae0c55fec7f46317')
+            '6403e9e8d8c978b4467b2b39c41d0ed21633789e1867004417b4ef519a375372')
 prepare() {
   cd ${srcdir}/Cinnamon*
 
