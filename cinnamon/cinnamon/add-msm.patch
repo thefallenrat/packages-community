@@ -1,0 +1,14 @@
+diff -ru --no-dereference a/files/usr/share/cinnamon/cinnamon-settings/cinnamon-settings.py b/files/usr/share/cinnamon/cinnamon-settings/cinnamon-settings.py
+--- a/files/usr/share/cinnamon/cinnamon-settings/cinnamon-settings.py	2016-11-08 15:27:01.000000000 +0100
++++ b/files/usr/share/cinnamon/cinnamon-settings/cinnamon-settings.py	2016-11-22 12:05:40.639972000 +0100
+@@ -83,7 +83,9 @@
+     [_("Driver Manager"),                "mintdrivers",                  "cs-drivers",         "admin",          _("video, driver, wifi, card, hardware, proprietary, nvidia, radeon, nouveau, fglrx")],
+     [_("Software Sources"),              "mintsources",                  "cs-sources",         "admin",          _("ppa, repository, package, source, download")],
+     [_("Users and Groups"),              "cinnamon-settings-users",      "cs-user-accounts",   "admin",          _("user, users, account, accounts, group, groups, password")],
+-    [_("Bluetooth"),                     "blueberry",                    "cs-bluetooth",       "hardware",       _("bluetooth, dongle, transfer, mobile")]
++    [_("Bluetooth"),                     "blueberry",                    "cs-bluetooth",       "hardware",       _("bluetooth, dongle, transfer, mobile")],
++    [_("Manjaro Settings Manager"),      "manjaro-settings-manager",     "cs-cat-hardware",    "admin",          _("manjaro, settings, manager, kernel, graphics, driver, foreign, language, user, account, time, date, keyboard, hardware")],
++    [_("Manjaro Notifier Settings"),     "msm_notifier --settings",      "cs-sources",         "admin",          _("manjaro, settings, notifier, kernel, language, foreign")]
+ ]
+ 
+ def print_timing(func):
