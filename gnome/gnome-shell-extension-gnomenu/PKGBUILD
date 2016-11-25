@@ -3,42 +3,62 @@
 
 pkgname=gnome-shell-extension-gnomenu
 _pkgname=gno-menu
-pkgver=19
-_snapshot='9c893b0b6e58d6781d9bf3d75e3f3c7dbf7df8ed'
-pkgrel=3
+pkgver=21
+pkgrel=1
+_git=no
 pkgdesc="GnoMenu is a traditional styled full featured Gnome-Shell apps-menu, that aims to offer all the essentials in a simple uncluttered intuitive interface."
 arch=(any)
 url="https://github.com/The-Panacea-Projects/Gnomenu"
 license=(GPL3)
 depends=('gnome-shell>=3.20' 'gnome-tweak-tool')
 makedepends=(git)
-source=(#"https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz"
-	"$_pkgname.v$pkgver.tar.gz::https://github.com/The-Panacea-Projects/Gnomenu/archive/$_snapshot.tar.gz"
-	"org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
-sha256sums=('78d465c649e71aae13ca917384c7d1f56d5688ee8ffee01b88920a20fef8c8b4'
-            '4651cc5bfa5c5ab855fceee62bdcf1db18bc294afb57fcd3341a251ffb7e9a24')
+md5sums=('70e2a05fed399fff7aeb0e595e30f914'
+         '44de36d617e1e660de9386d6b05d4e54')
+
+if [ "$_git" == "yes" ]; then
+_snapshot=$(git log --pretty=format:'%h' -n 1)
+   source=("$_pkgname.v$pkgver::git+$url"
+	   "org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
 
 prepare() {
 
 # Override the shortcut to call gnomenu: default is F2 now <Shift>F3
 
-  #cd Gnomenu-${_pkgname}.v${pkgver}/schemas
-  cd Gnomenu-$_snapshot/schemas
+cd ${_pkgname}.v${pkgver}/schemas
+  patch -N -i ${srcdir}/org.gnome.shell.extensions.gnomenu.gschema.xml.patch
+}
+
+package(){
+        install -dm755 $srcdir/$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
+	cp -r $srcdir/$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
+	mv $pkgdir/usr/share/gnome-shell/extensions/$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
+	cd $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/
+        rm -rf .git* Screenshot.png README.md
+}
+
+else
+
+   source=("https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz"
+	   "org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
+
+prepare() {
+
+# Override the shortcut to call gnomenu: default is F2 now <Shift>F3
+
+  cd Gnomenu-${_pkgname}.v${pkgver}/schemas
+
 
   patch -N -i ${srcdir}/org.gnome.shell.extensions.gnomenu.gschema.xml.patch
 }
 
-package() {
-	#install -dm755 $srcdir/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
-	#cp -r $srcdir/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
-	#mv $pkgdir/usr/share/gnome-shell/extensions/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
-	#cd $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/
-        #rm -rf .git* Screenshot.png README.md
 
-	install -dm755 $srcdir/Gnomenu-$_snapshot $pkgdir/usr/share/gnome-shell/extensions/
-	cp -r $srcdir/Gnomenu-$_snapshot $pkgdir/usr/share/gnome-shell/extensions/
-	mv $pkgdir/usr/share/gnome-shell/extensions/Gnomenu-$_snapshot $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
+
+   package(){
+        install -dm755 $srcdir/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
+	cp -r $srcdir/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/
+	mv $pkgdir/usr/share/gnome-shell/extensions/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
 	cd $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/
         rm -rf .git* Screenshot.png README.md
 }
+fi
 
