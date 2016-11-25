@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='4.0'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="3.22.3.14"
+pkgver="3.89.1.32"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -31,28 +31,19 @@ optdepends=('ttf-roboto: The recommended font'
             'gnome-tweak-tool: A graphical tool to tweak gnome settings'
             'arc-firefox-theme-maia: Arc theme with maia color'
   	    'adapta-backgrounds: The background of project')
-makedepends=('glib2>=2.48.0'
-             'libxml2'
-             'ruby-bundler>=1.11.0'
+makedepends=('libxml2'
+	     'libsass'
+	     'sassc'
+	     'librsvg'
              'inkscape'
 	     'libcanberra'
 	     'parallel')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('fb871fb77856b9a29fd39abd4c6517a6616be00a0b53983711d9b35ab1735e3d')
+sha256sums=('7ed9e4afed0fc83f425c0e145ba9c64787fa91f2c00df46e02eb79cc08331ce2')
 
-_bundle="ruby-bundle"
-
-prepare() {
-    cd "${_pkgname}-${pkgver}"
-    export BUNDLE_PATH="${srcdir}/${_bundle}"
-    bundle install
-}
 
 build() {
-    export BUNDLE_PATH="${srcdir}/${_bundle}"
-    export PATH="${BUNDLE_PATH}/bin:${PATH}"
     cd "${_pkgname}-${pkgver}"
-    echo "PATH: ${PATH}"
     ./autogen.sh --prefix "${pkgdir}/usr" \
 	         --enable-gtk_next \
                  --enable-chrome \
