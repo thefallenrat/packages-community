@@ -64,14 +64,13 @@ package_manjaro-budgie-settings() {
     pkgdesc='Manjaro Linux budgie settings'
     depends=('budgie-desktop'
         'arc-themes-maia'
-	'firefox-arc-maia-settings'
         'vertex-maia-icon-theme'
         'budgie-wallpapers'
         'xcursor-breeze'
 	'qt5-styleplugins'
         'qt5ct'
         'manjaro-base-skel')
-    optdepends=('plymouth-theme-manjaro-fancy-budgie')
+    optdepends=('plymouth-theme-manjaro-fancy-budgie' 'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
@@ -105,12 +104,11 @@ package_manjaro-gnome-settings() {
         'gnome-shell-extension-dash-to-dock'
         'gnome-wallpapers'
 	'arc-themes-maia'
-	'firefox-arc-maia-settings'
         'xcursor-breeze'
         'manjaro-base-skel'
 	'qt5-styleplugins'
         'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome')
+    optdepends=('plymouth-theme-manjaro-gnome' 'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
@@ -177,7 +175,6 @@ package_manjaro-mate-settings() {
     depends=('manjaro-base-skel'
                 'xcursor-breeze'
                 'arc-themes-maia'
-		'firefox-arc-maia-settings'
                 'vertex-maia-icon-theme'
                 'maia-wallpaper'
 		'gnome-icon-theme'
@@ -185,6 +182,7 @@ package_manjaro-mate-settings() {
 		'gnome-icon-theme-symbolic'
                 'qt5-styleplugins'
                 'qt5ct')
+    optdepends=('firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
