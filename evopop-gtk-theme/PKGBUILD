@@ -3,7 +3,7 @@
 
 pkgname=evopop-gtk-theme
 _gitsource=solus-cold-storage
-pkgver=1.8.0
+pkgver=2.0.4
 pkgrel=1
 pkgdesc='GTK theme from Solus OS and Budgie Desktop'
 arch=('any')
@@ -11,7 +11,7 @@ url="https://github.com/$_gitsource/$pkgname"
 license=('GPL')
 depends=('gtk3' 'gtk-engine-murrine')
 source=("https://github.com/$_gitsource/$pkgname/archive/$pkgver.tar.gz")
-md5sums=('1d981905e342dd83caad7b615a4cc2ea')
+md5sums=('bcface9c5c7cc333d45088f984f29d2a')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
