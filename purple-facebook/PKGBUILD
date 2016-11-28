@@ -2,7 +2,7 @@
 # Contributor: Christoph Wiechert <wio@psitrax.de>
 pkgname=purple-facebook
 pkgver=27
-pkgrel=1
+pkgrel=2
 VERSION=66ee77378d82
 pkgdesc="Facebook Messenger protocol into pidgin, finch, and libpurple"
 url="https://github.com/jgeboski/purple-facebook"
