@@ -93,21 +93,6 @@ diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/sche
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
-@@ -28,12 +28,12 @@
-       <description>Set the system sound theme</description>
-     </key>
-     <key type="s" name="font-standard">
--      <default>'sans-serif'</default>
-+      <default>'Noto Sans'</default>
-       <summary>Standard Font</summary>
-       <description>The standard font for desktop</description>
-     </key>
-     <key type="s" name="font-monospace">
--      <default>'monospace'</default>
-+      <default>'Droid Sans Mono Regular'</default>
-       <summary>Monospace Font</summary>
-       <description>The monospace font for desktop</description>
-     </key>
 @@ -43,14 +43,12 @@
        <description>The desktop font size</description>
      </key>

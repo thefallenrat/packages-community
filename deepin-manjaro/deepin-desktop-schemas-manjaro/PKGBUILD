@@ -25,7 +25,7 @@ provides=("$_pkgname")
 source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff')
 sha256sums=('SKIP'
-            'd60ceef7335bea1588a6fbf26c067ed015325f3f0ccdd7f448db16e67f0cfc75')
+            'b0352f5a3aad20dffcc57ef08cbcba6a1a7ed2c9ebaeaf1288e30b439684c042')
 
 prepare() {
   cd $_pkgname
