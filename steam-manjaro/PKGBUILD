@@ -26,18 +26,15 @@ depends_x86_64+=('lib32-sdl' 'lib32-sdl_image' 'lib32-sdl_mixer' 'lib32-sdl2' 'l
          'lib32-rtmpdump' 'lib32-libgnutls28' 'lib32-nettle4')
 
 
-optdepends_i686=('flashplugin: for flash videos')
 optdepends_x86_64=('lib32-mesa: for open source driver users'
          'lib32-catalyst-utils: for AMD Catalyst users'
          'lib32-nvidia-utils: for NVIDIA proprietary blob users'
-         'lib32-flashplugin: for flash video'
          'lib32-alsa-plugins: for pulseaudio on some games')
 
 provides=('steam')
 conflicts=('steam')
 install=steam.install
 source=("http://repo.steampowered.com/${_pkgname}/pool/${_pkgname}/s/${_pkgname}/${_pkgname}_${pkgver}.tar.gz"
-        'lib32-flashplugin-path.patch'
         'alsa_sdl_audiodriver.patch'
         'lib32_path_and_steam_runtime.patch'
         'lib_path_and_steam_runtime.patch' #removed steam-clean and steam-clean.desktop
@@ -46,18 +43,16 @@ source=("http://repo.steampowered.com/${_pkgname}/pool/${_pkgname}/s/${_pkgname}
         '51-steam.rules'
         '80-steam-controller-permission.rules')
 md5sums=('d1398490635615c428165e984a1ec71b'
-         '1d83a1df55d677f35ce415e0750f4448'
          'ac0e03d70f1101331598b2b32ed9bac3'
          'f30d98f9c24f6543706b5a99a12c8f6b'
          '73b0c71c91d5ed7cb7ae9e5ec05e1ca8'
-         '1dbfb03d21d1a24f5b42dacae9d86848'
+         'de3fcd83138666f3eb6dd898394dd06a'
          '5b5e074abf2b18034e644d5d37ceb06d'
          '752d7b9f8441943fab87f8c479bd8000'
          '5889a430de1e93f5886b015f336b2e88')
 
 if [[ "$CARCH" == "x86_64" ]]; then
 prepare() {
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/lib32-flashplugin-path.patch"
     patch -d "${_pkgname}" -Np1 -i "${srcdir}/alsa_sdl_audiodriver.patch"
     patch -d "${_pkgname}" -Np1 -i "${srcdir}/lib32_path_and_steam_runtime.patch"
     patch -d "${_pkgname}" -Np1 -i "${srcdir}/mesa_gfx_ldpreload.patch"
