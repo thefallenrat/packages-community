@@ -35,10 +35,10 @@ provides=('steam')
 conflicts=('steam')
 install=steam.install
 source=("http://repo.steampowered.com/${_pkgname}/pool/${_pkgname}/s/${_pkgname}/${_pkgname}_${pkgver}.tar.gz"
-        'alsa_sdl_audiodriver.patch'
-        'lib32_path_and_steam_runtime.patch'
-        'lib_path_and_steam_runtime.patch' #removed steam-clean and steam-clean.desktop
-        'mesa_gfx_ldpreload.patch'
+        '01-alsa_sdl_audiodriver.patch'
+        '02-lib32_path_and_steam_runtime.patch'
+        '03-lib_path_and_steam_runtime.patch' #removed steam-clean and steam-clean.desktop
+        '04-mesa_gfx_ldpreload.patch'
         'steam.desktop'
         '51-steam.rules'
         '80-steam-controller-permission.rules')
@@ -51,19 +51,17 @@ md5sums=('d1398490635615c428165e984a1ec71b'
          '752d7b9f8441943fab87f8c479bd8000'
          '5889a430de1e93f5886b015f336b2e88')
 
-if [[ "$CARCH" == "x86_64" ]]; then
-prepare() {
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/alsa_sdl_audiodriver.patch"
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/lib32_path_and_steam_runtime.patch"
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/mesa_gfx_ldpreload.patch"
+prepare()
+{
+    patch -d "${_pkgname}" -Np1 -i "${srcdir}/01-alsa_sdl_audiodriver.patch"
+    if [[ "$CARCH" == "x86_64" ]]
+        then
+            patch -d "${_pkgname}" -Np1 -i "${srcdir}/02-lib32_path_and_steam_runtime.patch"
+        else
+            patch -d "${_pkgname}" -Np1 -i "${srcdir}/03-lib_path_and_steam_runtime.patch"
+    fi
+    patch -d "${_pkgname}" -Np1 -i "${srcdir}/04-mesa_gfx_ldpreload.patch"
 }
-else
-prepare() {
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/alsa_sdl_audiodriver.patch"
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/lib_path_and_steam_runtime.patch"
-    patch -d "${_pkgname}" -Np1 -i "${srcdir}/mesa_gfx_ldpreload.patch"
-}
-fi
 
 package() {
     make -C "${_pkgname}" DESTDIR="${pkgdir}" install
