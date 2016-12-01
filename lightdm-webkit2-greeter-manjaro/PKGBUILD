@@ -11,7 +11,7 @@ pkgbase=lightdm-webkit2-greeter-manjaro
 pkgname=('lightdm-webkit2-greeter-manjaro'
 	 'lightdm-webkit2-greeter-manjaro-dark')
 pkgver=1.2
-pkgrel=2
+pkgrel=3
 _pkgname=lightdm-webkit2-greeter
 _pkgver=2.1.6
 
