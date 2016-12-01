@@ -1,6 +1,6 @@
-diff -rupN css/style.css css-dark/style.css
---- css/style.css	2016-11-14 22:16:35.000000000 +0100
-+++ css-dark/style.css	2016-11-29 11:40:24.000000000 +0100
+diff -rupN manjaro/css/style.css manjaro-dark/css/style.css
+--- manjaro/css/style.css	2016-11-14 22:16:35.000000000 +0100
++++ manjaro-dark/css/style.css	2016-12-01 11:21:08.000000000 +0100
 @@ -100,6 +100,7 @@ h3, .panel-heading {
  	font-size: 16px;
  	text-align: center;
@@ -242,3 +242,15 @@ diff -rupN css/style.css css-dark/style.css
 +.modal-header button:hover{
 +	color: #16A085 !important;
  }
+diff -rupN manjaro/js/greeter.js manjaro-dark/js/greeter.js
+--- manjaro/js/greeter.js	2016-11-14 22:16:35.000000000 +0100
++++ manjaro-dark/js/greeter.js	2016-12-01 11:21:08.000000000 +0100
+@@ -768,7 +768,7 @@ class AntergosTheme {
+ 	 */
+ 	authentication_complete() {
+ 		var selected_session = $( '.selected' ).attr( 'data-session-id' ),
+-			err_msg = _util.translations.auth_failed[ _self.lang ];
++			err_msg = _util.translations.auth_failed;
+ 
+ 		_self.auth_pending = false;
+ 		_util.cache_set( selected_session, 'user', lightdm.authentication_user, 'session' );

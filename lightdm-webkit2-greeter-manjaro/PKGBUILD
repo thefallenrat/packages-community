@@ -31,7 +31,7 @@ backup=("etc/lightdm/${_pkgname}.conf")
 md5sums=('29f653377cb59475cd478b650ed24aef'
          '168a0a818e886d1b1010f4dc431579a7'
          '1bf17235e845fc7bbcfe2882a453f13a'
-         'd2dfd45e0ce1a4184cc8cceb835749b4')
+         'c83dd3e5d8688ad9f37704bf4e1d2725')
 
 build() {
 	cd "${srcdir}/${_pkgname}-${_pkgver}"
@@ -47,7 +47,7 @@ build() {
 }
 
 package_lightdm-webkit2-greeter-manjaro() {
-pkgdesc="A webkit2 greeter for LightDM fo Manjaro"
+pkgdesc="A webkit2 greeter for LightDM for Manjaro"
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 
         cd "${srcdir}/${_pkgname}-${_pkgver}"
@@ -93,7 +93,7 @@ conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 }
 
 package_lightdm-webkit2-greeter-manjaro-dark() {
-pkgdesc="A webkit2 greeter for LightDM fo Manjaro Dark version"
+pkgdesc="A webkit2 greeter for LightDM for Manjaro Dark version"
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos' 'lightdm-webkit2-greeter-manjaro')
 cd "${srcdir}/${_pkgname}-${_pkgver}"
 	make DESTDIR="${pkgdir}" install 
@@ -136,7 +136,7 @@ cd "${srcdir}/${_pkgname}-${_pkgver}"
 	find . -type f -name 'lightdm-webkit2-greeter.conf' -exec sed -i "s/antergos/manjaro-dark/g" {} \;
 
 	cp $srcdir/manjaro.patch $pkgdir/
-	cd $pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark/css
+	cd $pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark
 	patch -p1 -i $pkgdir/manjaro.patch
 	rm $pkgdir/manjaro.patch
 }
