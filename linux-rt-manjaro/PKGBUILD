@@ -12,12 +12,12 @@ pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _srcname=linux-4.8
 _basekernel=4.8
 _basever=48-rt
-_sublevel=6
+_sublevel=11
 _pkgver=${_basekernel}.${_sublevel}
 _pkgverrt=$_pkgver
 #_pkgverrt=${_basekernel}.2
 _bfq=v8r4
-_rtpatchver=rt5
+_rtpatchver=rt7
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -46,17 +46,17 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
-            '3ac0ea443ac8a7aa40f8d5ce8ec33b84abbad4dbfc567c7699df728c2c21df37'
-            '2d2cce9bfda9d4b83d0fd83ec7227fb8409c29dfcd17a514ecdf043587fa24db'
+            '53d84946cbe641a2a74ed6cbdd35840bb4947cefd34a764c31b7dac5cde5c696'
+            '26c0929a8539120f546add80674efa7108b06ec8d073ebd6e83784940e2def94'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
-            '6bfd7b95c92a10b9e0cb9fe4bf8647bc7f206bb51df91d33856544b3f1245e6c'
+            'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             '319d01968b718983d6db8af20bb820e8dc499ba47f9231f30e9f8489cab18e49'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'f0e1bc55ec0288e54e84cc35a9e16a9df93be3772fda58b654ece6260f12699a'
+            'f258a256ebdb51ceabbe1e482706756437c7113c6d987025203468bfb8601f9a'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 
