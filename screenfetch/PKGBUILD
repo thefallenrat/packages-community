@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=screenfetch
-pkgver=3.7.0.r250.g7edac23
+pkgver=3.7.0.r252.g5f15e57
 pkgrel=1
 pkgdesc="CLI Bash script to show system/theme info in screenshots"
 arch=('any')
@@ -10,19 +10,12 @@ license=('GPL')
 depends=('bash' 'xorg-xdpyinfo' 'xorg-xprop')
 optdepends=('scrot: To take screenshot')
 makedepends=('git')
-source=("$pkgname::git+$url.git"
-        "update_Manjaro-logo.patch::$url/pull/420.patch")
-md5sums=('SKIP'
-         '50718051bdb2e74f94bd74a32bac83a1')
+source=("$pkgname::git+$url.git")
+md5sums=('SKIP')
 
 pkgver() {
   cd $pkgname
   git describe --tags --long | sed -r -e 's,^[^0-9]*,,;s,([^-]*-g),r\1,;s,[-_],.,g'
-}
-
-prepare() {
-  cd $pkgname
-  patch -Np1 -i ../update_Manjaro-logo.patch
 }
 
 package() {
