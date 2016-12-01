@@ -29,7 +29,7 @@ provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 backup=("etc/lightdm/${_pkgname}.conf")
 md5sums=('29f653377cb59475cd478b650ed24aef'
-         '9dd2ceeb08e7fcc33e9ea32176b36c6f'
+         '168a0a818e886d1b1010f4dc431579a7'
          '1bf17235e845fc7bbcfe2882a453f13a'
          'd2dfd45e0ce1a4184cc8cceb835749b4')
 
