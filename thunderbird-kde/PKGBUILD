@@ -7,7 +7,7 @@
 # Contributor: AlmAck <almack@chakra-project.org>
 
 pkgname=thunderbird-kde
-pkgver=45.4.0
+pkgver=45.5.1
 pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
@@ -34,7 +34,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozilla-language.patch
         mozilla-nongnome-proxies.patch
         kde.js)
-sha256sums=('36f66edbb9b0f1ff9d0de8f12eab6cccbfa23db79e01db307fb2186904a38e61'
+sha256sums=('15088086ab8643275f04775002aca02701e30b4d61f108d5380b6e6b7582a24c'
             'ac6354b036ac4be3fa6e6d75435419f29fb96087e04046eeb3557ecaf6916047'
             'b4371b9021fd5f65a1f546fca36c6c326a00ef0f57b448e86a33656ac7f780a8'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
