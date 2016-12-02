@@ -1,20 +1,25 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=artwork-i3
-pkgver=20160611
-pkgrel=1
-pkgdesc="Wallpapers and avatars for manjaro-i3"
+pkgver=20161130
+pkgrel=2
+pkgdesc="Wallpapers for manjaro-i3"
 arch=(any)
 groups=('i3-manjaro')
 license=(GPL3)
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=c0c72609fe5e10f36bc98a63df23c9a0bc8eb534
+_snapshot=53b532f22260e51993161b8fb0dfeeb044cd1682
+depends=('i3-default-artwork')
 conflicts=('i3-wallpapers')
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('bd83a7a55b093ba1e938d211c988193d')
+md5sums=('08e9208655cecefb3e7a22055d827899')
+
+pkgver() {
+date +%Y%m%d
+}
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot
-	install -dm755 $pkgdir/usr/share/pixmaps
-	cp -r * $pkgdir/usr/share
+	install -dm755 $pkgdir/usr/share
+	cp -r backgrounds $pkgdir/usr/share
 }

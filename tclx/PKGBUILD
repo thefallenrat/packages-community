@@ -5,17 +5,17 @@
 pkgname=tclx
 _vermaj=8.4
 pkgver=8.4.1
-_tclsrcver=8.6.5
-pkgrel=1
+_tclsrcver=8.6.6
+pkgrel=3
 pkgdesc="Provides OS primitives, file scanning, data records etc. for Tcl"
 url="http://tclx.sourceforge.net"
 arch=('i686' 'x86_64')
 license=('BSD')
-depends=('tcl=8.6.5' 'tk')
+depends=("tcl=${_tclsrcver}" 'tk')
 source=("http://downloads.sourceforge.net/sourceforge/tclx/tclx${pkgver}.tar.bz2"
         "http://downloads.sourceforge.net/sourceforge/tcl/tcl${_tclsrcver}-src.tar.gz")
 md5sums=('ac983708f23cf645c07058148f48440c'
-         '0e6426a4ca9401825fbc6ecf3d89a326')
+         '5193aea8107839a79df8ac709552ecb7')
 
 build() {
   cd $srcdir/${pkgname}${_vermaj}

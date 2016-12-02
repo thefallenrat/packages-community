@@ -1,65 +1,34 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Contributor: Felix Yan <felixonmars@archlinux.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20160614
+pkgver=20161124
 pkgrel=1
-_pkgname=deepin-desktop-schemas
-_pkgver=3.0.5
-pkgdesc='Manjaro Linux deepin settings and gschemas'
+pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
-license=('GPL3')
+license=('GPL')
 groups=('deepin-manjaro')
-depends=('cantarell-fonts'
-	'dconf'
-	'deepin-artwork-themes-manjaro'
-	'deepin-desktop'
-	'deepin-iconthemes-manjaro'
+depends=('deepin-desktop'
+	'deepin-desktop-schemas-manjaro'
 	'deepin-launcher'
 	'deepin-session-ui-manjaro'
-	'deepin-sound-theme'
-	'deepin-wallpapers'
 	'manjaro-base-skel'
-	'vertex-maia-icon-theme'
-	'vertex-maia-themes'
-	'xcursor-chameleon-pearl-deepin'
 # currently still needed for control-panel mouse-widget: 
 	'xf86-input-synaptics')
+makedepends=('git')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
 	'manjaro-backgrounds')
-makedepends=('git')
-conflicts=('dde-daemon<=2.92.1'
-	'deepin-desktop-schemas'
-	'deepin-desktop-schemas-manjaro'
-	'manjaro-desktop-settings')
-provides=('deepin-desktop-schemas'
-	'manjaro-desktop-settings')
-replaces=('deepin-desktop-schemas-manjaro'
-	'deepin-default-gsettings'
-	'deepin-manjaro-gsettings')
-source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
-	'manjaro.diff'
-	"git+https://github.com/manjaro/desktop-settings.git")
-sha256sums=('SKIP'
-            'fa0ab848df67ad64bdf2ec1fece4493e2f61dfbaa34fabbab1d3022851e6d193'
-            'SKIP')
+provides=('manjaro-desktop-settings')
+conflicts=('manjaro-desktop-settings')
+source=("git+https://github.com/manjaro/desktop-settings.git")
+sha256sums=('SKIP')
 
-prepare() {
-  cd $_pkgname
-  patch -p1 < ../manjaro.diff
-# don't override GNOME defaults
-  rm overrides/x86/org.gnome.desktop.override
-}
-
-build() {
-  cd $_pkgname
-  make
+pkgver() {
+  printf "$(date +%Y%m%d)"
 }
 
 package() {
   cd $_pkgname
-  make DESTDIR=$pkgdir install
   install -d $pkgdir/etc
   cp -r $srcdir/desktop-settings/community/deepin/skel $pkgdir/etc
 }

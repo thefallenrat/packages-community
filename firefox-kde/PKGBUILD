@@ -4,33 +4,33 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=46.0.1
-pkgrel=1
+pkgver=50.0.2
+pkgrel=2
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=('gtk3' 'gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
-         'dbus-glib' 'alsa-lib' 'ffmpeg' 'desktop-file-utils'
-         'libvpx' 'icu'  'libevent' 'nss' 'hunspell' 'sqlite' 'ttf-font'
-         'kmozillahelper' 'nspr')
+         'dbus-glib' 'alsa-lib' 'ffmpeg' 'libvpx' 'libevent' 'nss' 'hunspell'
+         'sqlite' 'ttf-font' 'icu'
+         'kmozillahelper' 'nspr')  
 makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'xorg-server-xvfb' 'libpulse' 'inetutils')
+             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13' 'cargo')
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'upower: Battery API')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=('!emptydirs' '!makeflags')
-_patchrev=32eafb4c7b34
+_patchrev=a58cc7936ce7
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
         firefox.desktop 
-        firefox-install-dir.patch 
+        firefox-install-dir.patch
+        rust-i686.patch
         vendor.js
         firefox-symbolic.svg
-        firefox-gtk3-20.patch
-        no-libnotify.patch
+        fix-wifi-scanner.diff
         kde.js
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -42,20 +42,20 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('98b8292a31b7e3e426f3204de1fed2a6ab38dcf64dd27bdfae556b407a198bf9'
-            'a25ecf8029ecd7238299059f5f39712c0f93fdc365e4ea3ee0b7b098e7346d44'
-            'c202e5e18da1eeddd2e1d81cb3436813f11e44585ca7357c4c5f1bddd4bec826'
+sha256sums=('aa770cb8552bdcf4a7e8bb0ecde27d41ee5b2a972335c6b24dd3afb4d911dfe3'
+            '0a07bc48e9bc112f8147d087cc199c339a5db0a077c8ff6efcf2d4e6308b3624'
+            '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
-            '4b50e9aec03432e21b44d18c4c97b2630bace606b033f7d556c9d3e3eb0f4fa4'
+            'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
+            '93c5df00f409988bbfa890ac175103476ead3af68f7501973ee70bd11dc472f8'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
-            '440c3e22d98ecf8c44dcedbe90bbb302da3a059e3fc3fba205d89f0eca329cbf'
-            'e4ebdd14096d177d264a7993dbd5df46463605ff45f783732c26d30b9caa53a7'
+            '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
-            '33bec5cc4da0a94d6c113775da981605adba1ce2199044e6550356baa686cc65'
-            'e21af645722430001052b8b9f935909d4b5048786f7d63a07ed97ba90253e7a8'
-            'c3f50c89379351609cd9f8c3f1a1ef7f246da6ea463760932436384a2f428d1e'
-            '065a5771f6b09f0bbadb4d038ecdf12a8656066c280a5e38b8ce8968be95835c'
-            'feede2fb86527c4a5d90bd5458fe582da920ab02dd25ec656236d87caf8888ba'
+            'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
+            '621b93af8968d3c5bc3b8db4dc707e460ab6d245b279c076cb82d96a3301cd2e'
+            'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
+            'd7cd27ea35289d3ec48d2083826f44a430f2661050bb5a3436cca86f7f29194b'
+            '71b5877ae375ba3a77b3fc7457829e4ef6b3b84f20abdf307533ebc18274ee89'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
 
@@ -64,8 +64,6 @@ sha256sums=('98b8292a31b7e3e426f3204de1fed2a6ab38dcf64dd27bdfae556b407a198bf9'
 # get your own set of keys. Feel free to contact foutrelis@archlinux.org for
 # more information.
 _google_api_key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM
-_google_default_client_id=413772536636.apps.googleusercontent.com
-_google_default_client_secret=0ZChLK6AxeA3Isu96MkwqDR4
 
 # Mozilla API keys (see https://location.services.mozilla.com/api)
 # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -79,20 +77,18 @@ prepare() {
 
   cp "$srcdir/mozconfig" .mozconfig
   patch -Np1 -i "$srcdir/firefox-install-dir.patch"
+  
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
+  patch -Np1 -i ../fix-wifi-scanner.diff
 
-  # Notifications with libnotify are broken
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1236150
-  patch -Np1 -i ../no-libnotify.patch
+  # Build with the rust targets we actually ship
+  patch -Np1 -i ../rust-i686.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
 
-  echo -n "$_google_default_client_id $_google_default_client_secret" >google-oauth-api-key
-  echo "ac_add_options --with-google-oauth-api-keyfile=\"$PWD/google-oauth-api-key\"" >>.mozconfig
-
   echo -n "$_mozilla_api_key" >mozilla-api-key
   echo "ac_add_options --with-mozilla-api-keyfile=\"$PWD/mozilla-api-key\"" >>.mozconfig
-
 
   msg "Patching for KDE"
   patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
@@ -103,12 +99,8 @@ prepare() {
   patch -Np1 -i "$srcdir/firefox-no-default-ualocale.patch"
   patch -Np1 -i "$srcdir/firefox-branded-icons.patch"
 
-  msg "Add missing file in Makefile for pgo builds"
+  #msg "Add missing file in Makefile for pgo builds"
   patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1234158
-  msg "Patching for GTK 3.20 changes"
-  patch -Np1 -i "$srcdir/firefox-gtk3-20.patch"
 
   mkdir "$srcdir/path"
   ln -s /usr/bin/python2 "$srcdir/path/python"
@@ -120,17 +112,26 @@ build() {
   # _FORTIFY_SOURCE causes configure failures
   CPPFLAGS+=" -O2"
 
+  # Hardening
+  LDFLAGS+=" -Wl,-z,now"
+
+  # GCC 6
+  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-schedule-insns2"
+
   export PATH="$srcdir/path:$PATH"
 
-  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-    make -f client.mk profiledbuild
+  if [[ $CARCH == i686 ]]; then
+    make -f client.mk build
+  else 
+    xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
+      make -f client.mk profiledbuild
+  fi
 }
 
 package() {
   cd $_pkgname-$pkgver
 
-  [[ "$CARCH" == "i686" ]] && cp "$srcdir/kde.js" obj-i686-pc-linux-gnu/dist/bin/defaults/pref
-  [[ "$CARCH" == "x86_64" ]] && cp "$srcdir/kde.js" obj-x86_64-unknown-linux-gnu/dist/bin/defaults/pref
+  cp "$srcdir/kde.js" obj-$CARCH-pc-linux-gnu/dist/bin/defaults/pref
 
   make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
 

@@ -2,7 +2,7 @@
 
 pkgname=pacli
 pkgver=0.10
-pkgrel=2
+pkgrel=3
 pkgdesc="An interactive pacman interface using fzf"
 arch=(any)
 url="https://github.com/Manjaro-Pek/$pkgname"

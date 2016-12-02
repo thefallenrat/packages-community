@@ -1,29 +1,20 @@
-# Maintainer: Philip Müller <philm@manjaro.org>
-# Contributor : Martin Wimpress <code@flexion.org>
+# Contributor: Martin Wimpress <code@flexion.org>
 
 _ver=1.14
 _pkgbase=mate-panel
 pkgname=${_pkgbase}
-pkgver=${_ver}.1
-pkgrel=1
+pkgver=${_ver}.2
+pkgrel=0.1
 pkgdesc="The MATE Panel (GTK2 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('dbus-glib' 'dconf' 'gtk2' 'libwnck' 'libcanberra' 'libice'
-         'libmateweather>=1.14' 'librsvg' 'libsm' 'libsoup' 'libxau'
-         'mate-menus>=1.14' 'mate-desktop>=1.14')
-makedepends=('gobject-introspection' 'mate-common' 'yelp-tools')
-optdepends=('yelp: for reading MATE help documents')
+depends=('dbus-glib' 'libwnck' 'libcanberra' 'libmateweather' 'libsm' 'mate-menus' 'mate-desktop')
+makedepends=('intltool' 'itstool' 'gobject-introspection')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
 groups=('mate')
 conflicts=("${_pkgbase}-gtk3")
-sha1sums=('c7dac4caafef90b6f639b8a6a43ca1e98c1802cc')
-
-prepare() {
-    cd "${srcdir}/${_pkgbase}-${pkgver}"
-    # patches here
-}
+sha1sums=('c71956a9316d8db99f48822e0e1dde85dd523259')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -33,8 +24,11 @@ build() {
         --sysconfdir=/etc \
         --localstatedir=/var \
         --with-gtk=2.0 \
-        --enable-introspection \
-        --disable-static
+        --enable-introspection
+
+    #https://bugzilla.gnome.org/show_bug.cgi?id=656231
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
     make
 }
 

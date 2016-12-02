@@ -1,25 +1,20 @@
-# Maintainer: Michael Tiebesl <email@tiebesl.com>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=masalla-icon-theme
-pkgver=0.8
+pkgver=1.0
 pkgrel=1
 pkgdesc="A flat design icon theme by Hayder Majid"
 arch=('any')
 url="https://github.com/hayderctee/masalla-icon-theme"
 license=('GPL3')
-depends=()
 makedepends=('git')
-optdepends=()
-conflicts=('masalla-icon-theme-git')
-source=('git+https://github.com/hayderctee/masalla-icon-theme.git')
-sha256sums=('SKIP')
+source=("${url}/releases/download/${pkgver}/${pkgname}_${pkgver}.tar.xz")
+md5sums=('943372d5cc324fdcb2ce2242e07b0101')
 
 package() {
-  # create theme dirs
-  install -d -m 755 "$pkgdir"/usr/share/icons/Masalla
-
- # install theme
-  cd $srcdir/$_pkgname/masalla-icon-theme
-  cp -r . "$pkgdir"/usr/share/icons/Masalla
+  cd $srcdir
+  install -d -m 755 ${pkgdir}/usr/share/icons
+  cp -r ${srcdir}/* ${pkgdir}/usr/share/icons
+  rm ${pkgdir}/usr/share/icons/{CLEAN,INSTALL,${pkgname}_${pkgver}.tar.xz,README.md,UNINSTALL}
 }
 

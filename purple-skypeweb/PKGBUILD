@@ -1,26 +1,34 @@
-#maintainer: Kendell Clark <coffeekingms@gmail.com>
+# Contributer : Jo De Boeck <deboeck.jo@gmail.com>
+# Maintainer : Kendell Clark <coffeekingms@gmail.com
+# Contributor: Colin Arnott <arnottcr@gmail.com> 
+
 pkgname=purple-skypeweb
-_pkgname=skypeweb
-_parentname=skype4pidgin
-pkgver=1.1
-pkgrel=2
+pkgver=20160708.1.1.32.g32b8255
+pkgrel=1
 arch=('any')
 license=('GPLv3')
 pkgdesc="SkypeWeb Plugin for Pidgin"
 url="https://github.com/EionRobb/skype4pidgin/tree/master/skypeweb"
 depends=('libpurple' 'json-glib')
-makedepends=('pkg-config')
-conflicts=('skype4pidgin')
+makedepends=('pkg-config' 'git')
+conflicts=('purple-skypeweb-git' 'skype4pidgin')
+provides=('purple-skypeweb')
 
-source=("$pkgname"::"https://github.com/EionRobb/$_parentname/archive/$pkgver.tar.gz")
-sha512sums=('bf293ddfac8839c720e6a1e3c594d764d9a2ec876ed201dfcaf62c3f6eba4d6260dcd0bd06e8af60e2c61942396cad9ff76c7be3f5586927ae6ebcd2971d7280')
+source=("$pkgname"::'git://github.com/EionRobb/skype4pidgin')
+md5sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$pkgname"
+    echo `date +%Y%m%d`.`git describe --tags | sed "s/-/./g"`
+
+}
 
 build() {
-    cd "$srcdir/$_parentname-$pkgver/$_pkgname"
+    cd "$srcdir/$pkgname/skypeweb"
     make
 }
 
 package() {
-    cd "$srcdir/$_parentname-$pkgver/$_pkgname"
+    cd "$srcdir/$pkgname/skypeweb"
     make DESTDIR="$pkgdir" install
 }

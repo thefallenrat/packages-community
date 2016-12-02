@@ -1,0 +1,25 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=screenfetch
+pkgver=3.7.0.r252.g5f15e57
+pkgrel=1
+pkgdesc="CLI Bash script to show system/theme info in screenshots"
+arch=('any')
+url="https://github.com/KittyKatt/screenFetch"
+license=('GPL')
+depends=('bash' 'xorg-xdpyinfo' 'xorg-xprop')
+optdepends=('scrot: To take screenshot')
+makedepends=('git')
+source=("$pkgname::git+$url.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd $pkgname
+  git describe --tags --long | sed -r -e 's,^[^0-9]*,,;s,([^-]*-g),r\1,;s,[-_],.,g'
+}
+
+package() {
+  cd $pkgname
+  install -Dm755 "screenfetch-dev" "$pkgdir/usr/bin/screenfetch"
+  install -Dm644 "screenfetch.1" "$pkgdir/usr/share/man/man1/screenfetch.1"
+}

@@ -1,0 +1,28 @@
+diff -Npur cinnamon-session-3.0.1.orig/cinnamon-session/main.c cinnamon-session-3.0.1/cinnamon-session/main.c
+--- cinnamon-session-3.0.1.orig/cinnamon-session/main.c	2016-09-04 22:28:35.094830000 +0200
++++ cinnamon-session-3.0.1/cinnamon-session/main.c	2016-09-04 22:32:51.399596064 +0200
+@@ -384,6 +384,10 @@ main (int argc, char **argv)
+          */
+         csm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
+ 
++        /* Make QT5 apps follow the GTK style */
++        if (NULL == g_getenv ("QT_STYLE_OVERRIDE")) {
++            csm_util_setenv ("QT_STYLE_OVERRIDE", "gtk");
++        }
+ 
+         /* Make QT5 apps follow the GTK style. Starting with QT 5.7, a different
+          * env var has to be set than what worked in previous versions.
+@@ -394,11 +398,10 @@ main (int argc, char **argv)
+             csm_util_setenv ("QT_QPA_PLATFORMTHEME", qt_platform_theme_new);
+         }
+ 
+-        if (NULL == g_getenv ("QT_STYLE_OVERRIDE")) {
+-            csm_util_setenv ("QT_STYLE_OVERRIDE", "gtk");
++        if (strcmp(g_getenv ("QT_QPA_PLATFORMTHEME"), "qt5ct") == 0) {
++            g_unsetenv ("QT_STYLE_OVERRIDE");
+         }
+ 
+-
+         /* GTK Overlay scrollbars */
+         settings = g_settings_new ("org.cinnamon.desktop.interface");
+ 

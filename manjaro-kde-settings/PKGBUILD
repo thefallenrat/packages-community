@@ -3,15 +3,15 @@
 pkgbase=manjaro-kde-settings
 pkgname=('manjaro-kde-settings'
          'manjaro-kde-minimal-settings')
-pkgver=20160420
+pkgver=20161025
 pkgrel=1
 pkgdesc="Manjaro Linux KDE settings"
 arch=('any')
 url="https://github.com/manjaro/manjaro-kde-settings"
 license=('GPL')
-_gitcommit=7b135468e3afa333ce8ab0d984338302493a6545
+_gitcommit=1ec269fc28d3368ae856f4c8751e1232fa1086ae
 source=("${pkgbase}-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('6f3756ba0b1a3c32f5e409d938f0adfd')
+md5sums=('81a0e9da79bab545aaa4299193725441')
 
 pkgver() {
   date +%Y%m%d
@@ -22,7 +22,7 @@ package_manjaro-kde-settings() {
   conflicts=('manjaro-desktop-settings')
   provides=('manjaro-desktop-settings')
   depends=('manjaro-base-skel' 'maia-icon-theme' 'gtk-theme-maia' 'plasma5-themes-maia')
-  
+
   cp -r ${srcdir}/${pkgbase}-${_gitcommit}/etc ${pkgdir}/etc
   cp -r ${srcdir}/${pkgbase}-${_gitcommit}/usr ${pkgdir}/usr
 }
@@ -31,8 +31,8 @@ package_manjaro-kde-minimal-settings() {
   pkgdesc="Manjaro Linux KDE minimal settings"
   conflicts=('manjaro-desktop-settings')
   provides=('manjaro-desktop-settings')
-  depends=('manjaro-base-skel' 'maia-icon-theme' 'gtk-theme-maia' 'plasma5-themes-maia')  
-  
+  depends=('manjaro-base-skel' 'maia-icon-theme' 'gtk-theme-maia' 'plasma5-themes-maia')
+
   cp -r "${srcdir}/${pkgbase}-${_gitcommit}/etc" "${pkgdir}/etc"
   cp -r "${srcdir}/${pkgbase}-${_gitcommit}/usr" "${pkgdir}/usr"
   cp -f "${srcdir}/${pkgbase}-${_gitcommit}/minimal/plasma-org.kde.plasma.desktop-appletsrc" "${pkgdir}/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc"

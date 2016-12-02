@@ -1,0 +1,52 @@
+# Maintainer: Fabian(Tids) <plusfabi@gmail.com>
+pkgname=mhwd-addon-amdgfx-hwe
+pkgver=20161101 #date +%Y%m%d
+pkgrel=1
+pkgdesc="Extra Modules for MHWD to easily enable OpenCL, VDPAU, VAAPI and Vulkan on supported AMD-hardware"
+arch=('any')
+url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
+install='INSTALL'
+license=('custom')
+depends=('mhwd-db' 'grub')
+conflicts=('mhwd-addon-amdgpu-hwe')
+source=('MHWDCONFIG_amdgpu-experimental-mesa-extras' 'MHWDCONFIG_amdgpu-mesa-extras' 'MHWDCONFIG_ati-mesa-extras' 'amdgpu-mesa.ids' 'amdgpu-mesa-experimental.ids' 'odamdgpu')
+md5sums=('60910cdc878ddf5d0abdc4f8ddd91dea'
+         'a0d8d1d0ed777fdc15d4c294cf520f95'
+         '6a2aeac18b015a72855b28c5c34f1a98'
+         '5695d0fdbafad7775d3bf3c72999af43'
+         '50dde55099f875c70670c405d10424b6'
+         '251375547e5c089758fe6072320efac8')
+
+package() 
+{
+    cd "${srcdir}"
+    # Create Directories we need
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras"
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras"
+    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras"
+    mkdir -p "${pkgdir}/var/lib/mhwd/ids/pci"
+    
+    # Install AMDGPU-experimental config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-experimental-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras/MHWDCONFIG"
+    
+    # Install PCI-ID file for AMDGPU-experimental Cards
+    install -D -m644 "${srcdir}/amdgpu-mesa-experimental.ids" \
+    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-mesa-experimental.ids"
+    
+    # Install AMDGPU config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras/MHWDCONFIG"
+    
+    # Install PCI-ID file for AMDGPU Cards
+    install -D -m644 "${srcdir}/amdgpu-mesa.ids" \
+    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-mesa.ids"
+    
+    # Install ATI/Radeon config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_ati-mesa-extras" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras/MHWDCONFIG"
+    
+    # Install odamdgpu
+    install -D -m755 "${srcdir}/odamdgpu" \
+    "${pkgdir}/usr/bin/odamdgpu"    
+}

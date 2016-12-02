@@ -2,19 +2,25 @@
 # Maintainer: gabrielsimoes <simoes.sgabriel@gmail.com>
 # Contributor: Stefano Capitani <stefano@manjaro.org>
 
-pkgname="arc-firefox-theme"
-pkgver=20160607
-_pkgver="47.$pkgver"
+pkgbase=arc-firefox-theme
+pkgname=('arc-firefox-theme'
+	 'arc-firefox-theme-maia')
+pkgver=20161114
+_pkgver="50.$pkgver"
 pkgrel=1
-pkgdesc="Arc Firefox Theme"
 url="https://github.com/horst3180/$pkgname"
 arch=('i686' 'x86_64')
 license=('Mozilla Public License version 2.0')
 depends=('firefox')
 makedepends=('autoconf' 'automake' 'unzip' 'zip')
-source=("$pkgname-$_pkgver::$url/archive/$_pkgver.tar.gz")
-conflicts=('arc-firefox-theme-git')
-md5sums=('c86cdd4741e63fea3351b73bc7a92e8e')
+source=("$pkgbase-$_pkgver::$url/archive/$_pkgver.tar.gz")
+conflicts=('$pkgbase-git')
+md5sums=('a96ddc9396dc773501d056c69e9799e0')
+#Both arc color
+_blue=5294e2 
+_BLUE=5294E2
+#Maia color
+_maia=16A085
 
 build() {
   cd "$srcdir/$pkgname-$_pkgver"
@@ -22,8 +28,54 @@ build() {
   make
 }
 
-package() {
-  cd "${srcdir}"/"$pkgname-$_pkgver"
+package_arc-firefox-theme() {
+pkgdesc="Arc Firefox Theme"
+  cd "$srcdir"/"$pkgname"-"$_pkgver"
   make DESTDIR="$pkgdir" install
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
+
+package_arc-firefox-theme-maia() {
+pkgdesc="Arc Firefox Theme Maia Variant"
+cd $srcdir
+   cp -R "$pkgbase-$_pkgver" "$pkgname-$_pkgver"
+cd "${srcdir}"/"$pkgname-$_pkgver"
+  make DESTDIR="$pkgdir" install
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+#Change arc theme with maia theme
+  
+  cd "${pkgdir}/usr/lib/firefox/browser/extensions/"
+  mv {03cb16aa-4675-11e5-b233-213b1d5d46b0} arc-dark-theme-maia@manjaro.org
+  mv {8a01dfcc-450f-11e5-909b-fb581d5d46b0} arc-darker-theme-maia@manjaro.org
+  mv {52c2877e-44e1-11e5-8874-a62d1d5d46B0} arc-theme-maia@manjaro.org
+
+#Change name of theme
+  
+find . -type f -name 'install.rdf' -exec sed -i \
+  "s/Arc Darker Theme/Arc Darker Theme Maia/g;\
+  s/Arc Darker Theme for Firefox/Arc Darker Theme Maia for Firefox/g;\
+  s/arc-darker-theme/arc-darker-theme-maia/g;\
+  s/Arc Dark Theme/Arc Dark Theme Maia/g;\
+  s/Arc Dark Theme for Firefox/Arc Dark Theme for Firefox Maia/g;\
+  s/arc-dark-theme/arc-dark-theme-maia/g;\
+  s/Arc Theme/Arc Theme Maia/g;\
+  s/Arc Theme for Firefox/Arc Theme Maia for Firefox/g;\
+  s/arc-theme/arc-theme-maia/g;\
+  s/{03cb16aa-4675-11e5-b233-213b1d5d46b0}/arc-dark-theme-maia@manjaro.org/g;\
+  s/{8a01dfcc-450f-11e5-909b-fb581d5d46b0}/arc-darker-theme-maia@manjaro.org/g;\
+  s/{52c2877e-44e1-11e5-8874-a62d1d5d46B0}/arc-theme-maia@manjaro.org/g;\
+  s/horst3180/horst3180 - modified by Manjaro/g" {} \;
+
+find . -type f -name 'chrome.manifest' -exec sed -i \
+  "s/arc-dark-theme/arc-dark-theme-maia/g;\
+  s/arc-darker-theme/arc-darker-theme-maia/g;\
+  s/arc-theme/arc-theme-maia/g" {} \;
+
+#Change the color Blue > Maia
+
+find . -type f -name '*.*' -exec sed -i 's/'$_blue'/'$_BLUE'/g' {} \;
+
+find . -type f -name '*.*' -exec sed -i 's/'$_BLUE'/'$_maia'/g' {} \;
+}
+

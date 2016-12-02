@@ -1,0 +1,99 @@
+#! /bin/bash
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+##
+## This script should generate a List of PCI-IDs
+## certain types of Graphicscardsgenerations
+##
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+##
+## Variables
+##
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+UPSTREAM_LISTFILE_LOCAL_PATH="/tmp/PCIIDLIST"
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+##
+## functions
+##
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+function fn_checkinput()
+{
+        if [ ! ${OUTPUTFILE} ] || [ ! ${UPSTREAM_LISTFILE_URL} ]
+        then
+            echo -e "This script requieres 3 inputs"
+            echo -e "    -o\tan output file (this has to be the first option)"
+            echo -e "    -u\tUpstream File URL (this has to be the secound option)"
+            echo -e "    -q\tdont add comments to the pciid files(optional)"
+            echo -e "    -a\tsets the name of the hardware generation (you can use this multiple times)"
+            echo
+            echo -e "usage:\n listgen -o /home/username/PCILIST -u https://cgit.freedesktop.org/xorg/driver/xf86-video-amdgpu/plain/src/pcidb/ati_pciids.csv -a polaris11 -a polaris10"
+            echo -e "\n\n"
+            echo -e "known URLS:"
+            echo -e "AMDGPU\nhttps://cgit.freedesktop.org/xorg/driver/xf86-video-amdgpu/plain/src/pcidb/ati_pciids.csv\n"
+            echo -e "RADEON/ATI\nhttps://cgit.freedesktop.org/xorg/driver/xf86-video-ati/plain/src/pcidb/ati_pciids.csv\n"
+            exit 1
+        fi
+}
+
+function fn_download()
+{
+    curl -o "${UPSTREAM_LISTFILE_LOCAL_PATH}" "${UPSTREAM_LISTFILE_URL}"
+    if [ ! -f "${UPSTREAM_LISTFILE_LOCAL_PATH}" ] || ! grep "#pciid" "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    then
+        echo "Missing or wrong file in downloadpath"
+        exit 1
+    fi
+    echo -e "\n"
+}
+
+function fn_cleanfile()
+{
+    echo -e "##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##\n##\n## Created by listgen-script\n## https://github.com/Tids/mhwd-addon-amdgfx-hwe\n## do not edit\n##\n##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##" > "${OUTPUTFILE}"
+}
+
+function fn_copyover()
+{
+    if grep -w "\"${SETGEN}\"\$" ${UPSTREAM_LISTFILE_LOCAL_PATH} > /dev/null
+    then
+        if [ "${COMMENTSNO}" != "yes" ]
+        then
+            echo -e "\n##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##\n##\n## ${SETGEN}\n##\n##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##" >> "${OUTPUTFILE}"
+        fi
+        grep -w ",\"${SETGEN}\"," "${UPSTREAM_LISTFILE_LOCAL_PATH}" | cut -c4-7 >> "${OUTPUTFILE}"
+    fi
+}
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+##
+## run 'n fly
+##
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
+
+while getopts qo:u:a: opt
+do
+case $opt in
+    o)
+        OUTPUTFILE="${OPTARG}"
+        fn_cleanfile
+    ;;
+    u)
+        UPSTREAM_LISTFILE_URL="${OPTARG}"
+        fn_download
+    ;;
+    a)
+        fn_checkinput
+        SETGEN=$(echo "${OPTARG}" | awk '{print toupper($0)}')
+        echo "+${SETGEN}"
+        fn_copyover
+    ;;
+    q)
+        COMMENTSNO="yes"
+    ;;
+esac
+done
+fn_checkinput
+exit 0

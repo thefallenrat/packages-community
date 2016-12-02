@@ -1,0 +1,105 @@
+# mhwd Driver Config
+
+NAME="video-amdgpu-experimental-mesa-extras"
+INFO="X.org amdgpu video driver. Standard open source driver for AMD graphic cards with OpenCL, VAAPI and VDPAU support."
+VERSION="2016.11.01"
+FREEDRIVER="true"
+PRIORITY="2"
+
+CLASSIDS="0300 0380"
+VENDORIDS="1002"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu-mesa-experimental.ids"
+
+# Conflicts
+MHWDCONFLICTS="video-amdgpu video-ati video-catalyst video-ati-mesa-extras video-amdgpu-mesa-extras"
+CONFLICTS="opencl-catalyst catalyst-video catalyst-utils-openrc catalyst-utils catalyst-server catalyst-input"
+
+# Dependencies
+DEPENDS="xf86-video-amdgpu xf86-input-libinput libva-mesa-driver libva-vdpau-driver mesa-libgl mesa-vdpau opencl-mesa vulkan-radeon"
+DEPENDS_64="lib32-libva-vdpau-driver lib32-mesa-libgl lib32-mesa-vdpau lib32-vulkan-radeon"
+
+XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
+GRUBFILE="/etc/default/grub"
+MODULESFILE="/etc/modules-load.d/mhwd-amdgpu.conf"
+MODULESBLACKLIST="/etc/modprobe.d/mhwd-amdgpu.conf"
+
+# Additionals
+R600OPSFILE="/etc/profile.d/10-amdgfx_r600ops.sh"
+
+pre_install()
+{
+    #check for kernel support cause we use some experimental things
+    if [ "$(zgrep -I 'CONFIG_DRM_AMDGPU_CIK' /proc/config.gz)" != "CONFIG_DRM_AMDGPU_CIK=y" ]; then 
+        echo "Kernel $(uname -r) not supported"
+        echo "CONFIG_DRM_AMDGPU_CIK is missing"
+        exit 1
+    fi
+}
+
+post_install()
+{
+    MHWD_HEADING "${XORGFILE}"
+    MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "amdgpu" "${XORGFILE}" 1002
+    MHWD_ADD_DRI "${XORGFILE}"
+    MHWD_ADD_COMPOSITING "${XORGFILE}"
+    MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+    # Enable next generation of DRI
+    sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
+
+    # Add a creation date to the xorg.config file
+    echo "#mhwd date: $(date +%Y-%m-%d)" >> "${XORGFILE}"
+    
+    # Backup the old xorg.conf file that could conflict with our config
+    if [ -f "/etc/X11/xorg.conf" ];	then
+        echo "found /etc/X11/xorg.conf, we backup this one to /etc/X11/xorg.conf.mhwdold"
+        mv -f "/etc/X11/xorg.conf" "/etc/X11/xorg.conf.mhwdold"
+    fi
+
+    MHWD_HEADING "${MODULESFILE}"
+    echo "amdgpu" >> "${MODULESFILE}"
+
+    MHWD_HEADING "${MODULESBLACKLIST}"
+    echo "blacklist radeon" >> "${MODULESBLACKLIST}"
+
+    # Unload modules if X is not running
+    if [ ! "$(pgrep X)" ];	then
+        rmmod -f radeon
+    fi
+
+    modprobe amdgpu
+
+    mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+
+    # Add experimental "CI" (and in future "SI") support to grub
+    sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"amdgpu.exp_hw_support=1 /g" "${GRUBFILE}"
+    update-grub
+
+    # Set some options to (hopefully) improve R600 and RadeonSI a little
+    echo -e "# Set some options to (hopefully) improve R600 and RadeonSI a little\nexport R600_DEBUG=\"forcedma,hyperz,llvm,precompile,sbcl,sisched,switch_on_eop\"" > "${R600OPSFILE}"
+    chmod 755 "${R600OPSFILE}"
+}
+
+post_remove()
+{
+    if [ -e "${XORGFILE}" ]; then
+        rm "${XORGFILE}"
+    fi
+    if [ -e "${MODULESFILE}" ]; then
+        rm "${MODULESFILE}"
+    fi
+    if [ -e "${MODULESBLACKLIST}" ]; then
+        rm "${MODULESBLACKLIST}"
+    fi
+    if [ -e "${R600OPSFILE}" ]; then
+        rm "${R600OPSFILE}"
+    fi
+
+    mhwd-gpu --check
+
+    ## make sure we remove this line again
+    sed -i "s/amdgpu.exp_hw_support=1 //g" "${GRUBFILE}"
+    sed -i "s/ amdgpu.exp_hw_support=1//g" "${GRUBFILE}"
+    sed -i "s/amdgpu.exp_hw_support=1//g" "${GRUBFILE}"
+    update-grub
+}

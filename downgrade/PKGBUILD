@@ -1,19 +1,29 @@
 # Author: Patrick Brisbin <pbrisbin@gmail.com>
 pkgname=downgrade
-pkgver=5.2.3
-pkgrel=1
-pkgdesc="Bash script for downgrading one or more packages to a version in your cache or the A.R.M."
+pkgver=5.3.0
+pkgrel=3
+pkgdesc="Bash script for downgrading one or more packages to a version in your cache (or optionally in the A.R.M.)"
 arch=('any')
 url="https://github.com/pbrisbin/$pkgname"
 license=('GPL')
 source=("https://github.com/pbrisbin/$pkgname/archive/v$pkgver.tar.gz")
 optdepends=('sudo: for installation via sudo')
-md5sums=('072805c8f9366948c755c9cdec3debc7')
+md5sums=('c5d5cca7d47a1ea01a3d59205a2a0feb')
 
 package() {
   local po_file
 
   cd "$pkgname-$pkgver"
+  sed -i -e 's,.*NOARM=${NOARM:-0}.*, \
+#Disable A.L.A. only in stable branch\
+grep '^[[:space:]]*Branch[[:space:]]*=[[:space:]]*stable' /etc/pacman-mirrors.conf\
+if [ $? -eq 1 ] ; then\
+   NOARM=${NOARM:-0}\
+  else\
+  echo "Downgrading from A.L.A. is disabled on the stable branch. See https://wiki.archlinux.org/index.php/downgrading_packages for more details."\
+   NOARM=${NOARM:-1}\
+fi\
+ ,' downgrade
 
   for po_file in locale/*.po; do
     locale="$(basename "$po_file" .po)"

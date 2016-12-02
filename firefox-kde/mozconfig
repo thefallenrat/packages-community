@@ -1,11 +1,16 @@
-. $topsrcdir/browser/config/mozconfig
+ac_add_options --enable-application=browser
 
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-gold
 ac_add_options --enable-pie
+ac_add_options --enable-rust
 
+# Release branding
 ac_add_options --enable-official-branding
+ac_add_options --enable-update-channel=release
+MOZ_ADDON_SIGNING=1
+MOZ_REQUIRE_SIGNING=1
 
 # System libraries
 ac_add_options --with-system-nspr
@@ -23,7 +28,6 @@ ac_add_options --enable-system-pixman
 
 # Features
 ac_add_options --enable-startup-notification
-ac_add_options --disable-gstreamer
 ac_add_options --disable-updater
 ac_add_options --disable-crashreporter
 

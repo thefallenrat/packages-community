@@ -1,16 +1,20 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname="deepin-wallpapers"
-pkgver=20160526
-pkgrel=1
-_snapshot=f3317946b2bcd8c15773897e511ab2b25ae9342a
+pkgver=20161130
+pkgrel=2
+_snapshot=479157de7b2ca77e2c61677f9d88faef68b5d3ca
 pkgdesc="Wallpapers for manjaro-deepin"
 arch=('any')
 license=('GPL3')
 url=https://github.com/oberon2007/$pkgname
 groups=('deepin-manjaro')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('aef97a1bf0023f72251cdaa3e28bb7ee')
+md5sums=('1e5028885b3f65f42ed71ca6d9740d33')
+
+pkgver() {
+    date +%Y%m%d
+}
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot

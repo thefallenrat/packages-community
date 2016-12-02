@@ -5,33 +5,23 @@
 
 pkgname=breeze-maia-icon-themes
 _pkgname=breeze-icons
-pkgver=5.22.0
-pkgrel=2
+pkgver=5.28.0
+pkgrel=1
 pkgdesc='Breeze icon themes with Maia colors'
 arch=('any')
 url='https://community.kde.org/Frameworks'
-_commit=8968fe82a5ed2bae7d51db0f6d71f61fb468c1f5
+#_commit=8968fe82a5ed2bae7d51db0f6d71f61fb468c1f5
 license=('LGPL')
-makedepends=('extra-cmake-modules' 'qt5-base')
-source=("$_pkgname.tar.gz::https://github.com/KDE/$_pkgname/archive/$_commit.tar.gz"
+makedepends=("extra-cmake-modules>=${pkgver}" 'qt5-base')
+source=("https://github.com/KDE/$_pkgname/archive/v$pkgver.tar.gz"
 	'deepin-show-desktop.svg')
-md5sums=('07c8fb0eded6d2afcef6b6cbe298a110'
+md5sums=('25aa0dd0ee71c17aa0f170c79d06ea70'
          '8e4deb556453e0ff6dd5f415fd7aa4c6')
-
-prepare() {
-  cd $_pkgname-$_commit
-  ln -s icons/places/32/user-desktop.svg icons/apps/32/deepin-show-desktop.svg
-  ln -s icons-dark/places/32/user-desktop.svg icons-dark/apps/32/deepin-show-desktop.svg
-  ln -s icons/apps/48/utilities-terminal.svg icons/apps/48/deepin-terminal.svg
-  ln -s icons-dark/apps/48/utilities-terminal.svg icons-dark/apps/48/deepin-terminal.svg
-  cp $srcdir/deepin-show-desktop.svg icons/apps/48/deepin-show-desktop.svg
-  cp $srcdir/deepin-show-desktop.svg icons-dark/apps/48/deepin-show-desktop.svg
-}
 
 build() {
   mkdir build
   cd $srcdir/build
-  cmake ../$_pkgname-$_commit \
+  cmake ../$_pkgname-$pkgver \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
@@ -60,5 +50,12 @@ package() {
   find . -name "index.*" -exec sed -i "s/Breeze/Breeze-Maia/g;s/Maia Dark/Maia-Dark/g" '{}' \;
   mv breeze Breeze-Maia
   mv breeze-dark Breeze-Maia-Dark
+  
+  ln -s ../../places/32/user-desktop.svg Breeze-Maia/apps/32/deepin-show-desktop.svg
+  ln -s ../../places/32/user-desktop.svg Breeze-Maia-Dark/apps/32/deepin-show-desktop.svg
+  ln -s utilities-terminal.svg Breeze-Maia/apps/48/deepin-terminal.svg
+  ln -s utilities-terminal.svg Breeze-Maia-Dark/apps/48/deepin-terminal.svg
+  cp $srcdir/deepin-show-desktop.svg Breeze-Maia/apps/48/deepin-show-desktop.svg
+  cp $srcdir/deepin-show-desktop.svg Breeze-Maia-Dark/apps/48/deepin-show-desktop.svg
 }
 

@@ -1,0 +1,44 @@
+From 3c121a4f86d01d27399f0c2bbace6df03800a1d1 Mon Sep 17 00:00:00 2001
+From: Kalev Lember <klember@redhat.com>
+Date: Mon, 25 Jul 2016 10:43:53 +0200
+Subject: [PATCH] engine: Don't crash when emitting PropertiesChanged for NULL
+ values
+
+When emitting PropertiesChanged, avoid putting NULL values into the
+changed_properties array (and then subsequently crashing for the NULL).
+Instead, use the invalidate_properties array that only lists the changed
+property names, avoiding issues with NULL GVariants.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1359479
+---
+ src/pk-engine.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/src/pk-engine.c b/src/pk-engine.c
+index f7ced65..f731f3a 100644
+--- a/src/pk-engine.c
++++ b/src/pk-engine.c
+@@ -251,11 +251,18 @@ pk_engine_emit_offline_property_changed (PkEngine *engine,
+ 
+ 	/* build the dict */
+ 	g_variant_builder_init (&invalidated_builder, G_VARIANT_TYPE ("as"));
+-	g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
+-	g_variant_builder_add (&builder,
+-			       "{sv}",
+-			       property_name,
+-			       property_value);
++	g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
++
++	if (property_value == NULL) {
++		g_variant_builder_add (&invalidated_builder,
++		                       "s",
++		                       property_name);
++	} else {
++		g_variant_builder_add (&builder,
++		                       "{sv}",
++		                       property_name,
++		                       property_value);
++	}
+ 	g_dbus_connection_emit_signal (engine->priv->connection,
+ 				       NULL,
+ 				       PK_DBUS_PATH,

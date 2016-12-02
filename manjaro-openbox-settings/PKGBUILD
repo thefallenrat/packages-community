@@ -2,19 +2,19 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-openbox-settings
-pkgver=20160610
+pkgver=20160922
 pkgrel=1
-pkgdesc='Manjaro Linux openbox-minimal settings'
+pkgdesc='Manjaro Linux openbox settings'
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
-depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh'
-	'openbox-themes' 'vertex-maia-themes' 'maia-icon-theme' 'maia-wallpaper')
+depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes'
+        'vertex-maia-themes' 'andromeda-icon-theme' 'andromeda-wallpaper')
 makedepends=('git')
-conflicts=('manjaro-bspwm-settings'
-	'manjaro-fluxbox-settings'
-	'manjaro-i3-settings'
-	'manjaro-JWM-settings')
+optdepends=('pcmanfm-qt: Lightweight file manager'
+            'network-manager-applet: Applet for managing network connections')
+conflicts=('manjaro-bspwm-settings' 'manjaro-fluxbox-settings'
+            'manjaro-i3-settings' 'manjaro-jwm-settings')
 source=("git+$url.git")
 sha256sums=('SKIP')
 
@@ -23,6 +23,6 @@ pkgver() {
 }
 
 package() {
-	install -d $pkgdir/etc
-	cp -r $srcdir/desktop-settings/minimal/openbox/skel $pkgdir/etc
+    install -d $pkgdir/etc
+    cp -r $srcdir/desktop-settings/minimal/openbox/skel $pkgdir/etc
 }

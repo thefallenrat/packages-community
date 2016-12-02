@@ -1,21 +1,22 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plymouth-theme-manjaro-cinnamon
-pkgver=1.3
+pkgver=2.0
 pkgrel=1
 pkgdesc="Green Manjaro Plymouth theme"
 repo="plymouth-themes-manjaro"
+_commit=499339f76fdbf16af2d194d9c2c2178b48513090
 arch=('any')
 url="https://github.com/oberon2007/$repo"
 license=('GPL')
 depends=('plymouth')
 install=$pkgname.install
 makedepends=('git')
-source=("git+$url.git")
-md5sums=('SKIP')
+source=("$url/archive/$_commit.tar.gz")
+md5sums=('b8ec91b3b1c08646f54bdc37be0d6caf')
 
 package() {
-	cd $srcdir/$repo
+	cd $srcdir/$repo-$_commit
 	install -dm755 "$pkgdir/usr/share/plymouth/themes"
 	cp -r manjaro-cinnamon "$pkgdir/usr/share/plymouth/themes"
 }

@@ -1,0 +1,31 @@
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+# Contributor: Sergej Pupykin <sergej@aur.archlinux.org>
+
+pkgname=manjaro-xdg-menu
+pkgver=0.7.6.2
+pkgrel=1
+pkgdesc="automatic generate WM menu from xdg files"
+arch=('any')
+url="https://github.com/Ste74/manjaro-xdg-menu"
+license=("GPL")
+depends=('perl' 'perl-xml-parser')
+conflicts=('archlinux-xdg-menu')
+optdepends=('sux: for xdg_menu_su')
+backup=("etc/update-menus.conf"
+	"etc/xdg/menus/manjaro-applications.menu")
+source=("$url/archive/v$pkgver.tar.gz")
+md5sums=('0e2dcc5af45397c7d25a8554f46db14c')
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+  install -D -m 0755 xdg_menu $pkgdir/usr/bin/xdg_menu
+  install -D -m 0755 xdg_menu_su $pkgdir/usr/bin/xdg_menu_su
+  install -D -m 0755 update-menus $pkgdir/usr/bin/update-menus
+  install -D -m 0644 update-menus.conf $pkgdir/etc/update-menus.conf
+  mkdir -p $pkgdir/usr/share/desktop-directories/
+  cp manjaro-desktop-directories/* $pkgdir/usr/share/desktop-directories/
+  mkdir -p $pkgdir/etc/xdg/menus/
+  cp manjaro-xdg-menu/* $pkgdir/etc/xdg/menus/
+  mkdir -p $pkgdir//var/cache/xdg-menu
+}
+

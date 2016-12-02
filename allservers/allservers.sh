@@ -6,6 +6,10 @@
 #
 # The most recent "reverse" history follows:.
 #
+# 18-July-2016: Added a sixth menu option that allows the user to delete
+# the db.lck file that obstructs an upgrade after an incomplete/interupted
+# upgrade attempt. This option will be a little time saver every now & then.
+#
 # 15-Jan-2015: Modified the script so that it is NOT called via an alias
 # with sudo su -c , the script now uses sudo internally.
 # Options [2] & [3] now have the --noconfirm parameter added, try it,
@@ -93,6 +97,8 @@ echo
 echo -e "   \e[0;32m [\e[1;37m5\e[0;32m] Upgrade the System & AUR only: \033[0myaourt -Syua "
 echo -e "       \e[0;33m &\e[0;32m then run pkgCacheClean: \033[0mpkgcacheclean "
 echo
+echo -e "   \e[0;32m [\e[1;37m6\e[0;32m] Delete \e[0;33mdb.lck\e[0;32m after interupted upgrade: \033[0mrm /var/lib/pacman/db.lck "
+echo -e "       \e[0;32m this should remedy the unable to lock database error. "
 echo 
 echo -e "\033[1m  Enter the Number of Your Choice: \033[0m"
 echo    
@@ -215,6 +221,17 @@ case "$option" in
  sudo pkgcacheclean
  echo
  msg "pkgCacheClean has done its job. "
+ echo
+ ;;
+# Note double semicolon to terminate each option.
+
+"6")
+ echo
+ msg "About to delete /var/lib/pacman/db.lck: "
+ echo
+ sudo rm /var/lib/pacman/db.lck
+ echo
+ msg "File db.lck removed, re-attempt your intended installation. "
  echo
  ;;
 # Note double semicolon to terminate each option.

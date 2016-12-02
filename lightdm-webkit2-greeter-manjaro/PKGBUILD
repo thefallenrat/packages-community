@@ -1,0 +1,142 @@
+
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+# Maintainer: Dustin Falgout <dustin@antergos.com>
+
+#Original Antergos Repo
+#url="https://github.com/antergos/lightdm-webkit2-greeter"
+
+# Manjaro Dark Version by Jonathan Geddes <Bob1234>
+
+pkgbase=lightdm-webkit2-greeter-manjaro
+pkgname=('lightdm-webkit2-greeter-manjaro'
+	 'lightdm-webkit2-greeter-manjaro-dark')
+pkgver=1.2
+pkgrel=3
+_pkgname=lightdm-webkit2-greeter
+_pkgver=2.1.6
+
+arch=('i686' 'x86_64')
+url="https://github.com/Ste74/lightdm-webkit2-greeter-manjaro"
+license=('GPL3')
+source=("${_pkgname}-${_pkgver}.zip::https://github.com/antergos/${_pkgname}/archive/${_pkgver}.zip"
+	'manjaro.png'
+	'manjaro-logo-user.png'
+	'manjaro.patch')
+makedepends=('gnome-doc-utils' 'gobject-introspection' 'intltool' 'gnome-common' 'exo' 'git')
+depends=('lightdm' 'webkit2gtk>=2.10.8' 'gtk3>=3.18' 'accountsservice')
+optdepends=('manjaro-backgrounds' 'manjaro-artwork' 'gnome-backgrounds')
+provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+#replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+backup=("etc/lightdm/${_pkgname}.conf")
+md5sums=('29f653377cb59475cd478b650ed24aef'
+         '168a0a818e886d1b1010f4dc431579a7'
+         '1bf17235e845fc7bbcfe2882a453f13a'
+         'c83dd3e5d8688ad9f37704bf4e1d2725')
+
+build() {
+	cd "${srcdir}/${_pkgname}-${_pkgver}"
+
+	LIBS+="-ljavascriptcoregtk-4.0" \
+		./autogen.sh \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--libexecdir=/usr/lib/lightdm \
+			--bindir=/usr/bin \
+			--sbindir=/usr/bin
+	make
+}
+
+package_lightdm-webkit2-greeter-manjaro() {
+pkgdesc="A webkit2 greeter for LightDM for Manjaro"
+conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
+
+        cd "${srcdir}/${_pkgname}-${_pkgver}"
+	make DESTDIR="${pkgdir}" install 
+
+#Start the transformation
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/"
+	mv  antergos manjaro
+	
+#Set theme into theme manjaro
+	find . -type f -name '*.*' -exec sed -i "s/antergos/manjaro/g" {} \;
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro"
+	find . -type f -name 'index.theme' -exec sed -i "s/Antergos/Manjaro/g" {} \;
+	
+
+#change color
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/css"
+	find . -type f -name 'style.css' -exec sed -i \
+	"s/EAEAEA/16A085/g;\
+	s/ECF0F1/16A085/g;\
+	s/3D73C5/16A085/g;\
+	s/77ADFF/16A085/g;\
+	s/2196F3/16A085/g" {} \;
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/_vendor"
+	find . -type f -name 'bootswatch-paper.bootstrap.min.css' -exec sed -i \
+	"s/2196f3/16A085/g;\
+	s/0c7cd5/16A085/g;\
+	s/0a68b4/29806F/g" {} \;
+
+#New brand/icon
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img"
+	rm *png	
+	cd "$srcdir"
+	install -m 644 manjaro.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
+	install -m 644 manjaro-logo-user.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro/img/"
+
+#Set theme
+	cd "$pkgdir/etc/lightdm"
+	find . -type f -name 'lightdm-webkit2-greeter.conf' -exec sed -i "s/antergos/manjaro/g" {} \;
+
+}
+
+package_lightdm-webkit2-greeter-manjaro-dark() {
+pkgdesc="A webkit2 greeter for LightDM for Manjaro Dark version"
+conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos' 'lightdm-webkit2-greeter-manjaro')
+cd "${srcdir}/${_pkgname}-${_pkgver}"
+	make DESTDIR="${pkgdir}" install 
+
+#Start the transformation
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/"
+	mv  antergos manjaro-dark
+	
+#Set theme into theme manjaro
+	find . -type f -name '*.*' -exec sed -i "s/antergos/manjaro/g" {} \;
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark"
+	find . -type f -name 'index.theme' -exec sed -i "s/Antergos/Manjaro-Dark/g" {} \;
+	
+
+#change color
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark/css"
+	find . -type f -name 'style.css' -exec sed -i \
+	"s/EAEAEA/16A085/g;\
+	s/ECF0F1/16A085/g;\
+	s/3D73C5/16A085/g;\
+	s/77ADFF/16A085/g;\
+	s/2196F3/16A085/g" {} \;
+
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/_vendor"
+	find . -type f -name 'bootswatch-paper.bootstrap.min.css' -exec sed -i \
+	"s/2196f3/16A085/g;\
+	s/0c7cd5/16A085/g;\
+	s/0a68b4/29806F/g" {} \;
+
+#New brand/icon
+	cd "$pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark/img"
+	rm *png	
+	cd "$srcdir"
+	install -m 644 manjaro.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark/img/"
+	install -m 644 manjaro-logo-user.png "$pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark/img/"
+
+#Set theme
+	cd "$pkgdir/etc/lightdm"
+	find . -type f -name 'lightdm-webkit2-greeter.conf' -exec sed -i "s/antergos/manjaro-dark/g" {} \;
+
+	cp $srcdir/manjaro.patch $pkgdir/
+	cd $pkgdir/usr/share/lightdm-webkit/themes/manjaro-dark
+	patch -p1 -i $pkgdir/manjaro.patch
+	rm $pkgdir/manjaro.patch
+}

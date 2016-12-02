@@ -1,32 +1,39 @@
 # Maintainer: Philip Müller <philm at manjaro dot org>
 # Contributor: Chad "crossroads1112" Sharp <crossroads1112@riseup.net>
 # Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+
 pkgname=lumina-desktop
-pkgver=0.9.0
+_patch=p1
+pkgver=1.1.0
 pkgrel=2
-_snapshot=aa46846b54ca8273aba88426b640b256b69a542d
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
-url="https://github.com/pcbsd/lumina"
+url="https://github.com/trueos/lumina"
 license=('BSD')
-depends=('qt5-base' 'qt5-svg' 'qt5-multimedia' 'qt5-x11extras' 'fluxbox' 'oxygen' 'oxygen-icons' 'xscreensaver' 'desktop-file-utils')
-optdepends=('xorg-xbacklight: required for changing screen brightness' 'alsa-utils: required for adjusting audio volume' 'acpi: required for monitoring battery life' 'numlockx: required for changign state of numlock at login' 'pavucontrol: required for detatched audio mixer' 'fluxmod-styles: A good set of Fluxbox themes to improve the appearence of window decorations')
+depends=('qt5-base' 'qt5-svg' 'qt5-multimedia' 'qt5-x11extras' 'fluxbox'
+        'andromeda-icon-theme' 'xscreensaver' 'desktop-file-utils')
+optdepends=('xorg-xbacklight: required for changing screen brightness'
+            'alsa-utils: required for adjusting audio volume'
+            'acpi: required for monitoring battery life'
+            'numlockx: required for changign state of numlock at login'
+            'pavucontrol: required for detatched audio mixer'
+            'fluxmod-styles: A good set of Fluxbox themes to improve the appearence of window decorations'
+            'andromeda-wallpaper: Andromeda wallpaper')
 makedepends=('qt5-tools')
 options=('!makeflags')
 conflicts=("${pkgname}-git" "lumina-de-git")
-source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/pcbsd/lumina/archive/$_snapshot.tar.gz")
-md5sums=('7701cd8a754f82e75cbb92682e9afc04')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}-${_patch}.tar.gz")
+md5sums=('603a9eef649979813a29b681a3396a50')
 
 
 build(){
-    cd $srcdir/lumina-$_snapshot
-    find $srcdir/lumina-$_snapshot -name *.desktop -exec sed -i 's/usr\/local/usr/' {} \;
-    qmake QMAKE_CFLAGS_ISYSTEM= PREFIX="/usr" QT5LIBDIR=/usr/lib/qt
+    cd $srcdir/lumina-${pkgver}-${_patch}
+    qmake-qt5 QMAKE_CFLAGS_ISYSTEM= PREFIX="/usr" QT5LIBDIR=/usr/lib/qt
     make
 }
 
 package() {
-    cd $srcdir/lumina-$_snapshot
+    cd $srcdir/lumina-${pkgver}-${_patch}
     make INSTALL_ROOT="${pkgdir}" install
     mv "${pkgdir}"/usr/etc "${pkgdir}"/etc
 }

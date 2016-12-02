@@ -1,0 +1,33 @@
+# Maintainer: speps <speps at aur dot archlinux dot org>
+
+pkgname=nomacs
+pkgver=3.4
+pkgrel=0.1
+_plugins=3ff8f79305beabcdf0e2418868fe99f1abe26b7e
+pkgdesc="A Qt image viewer"
+arch=('i686' 'x86_64')
+url="http://www.nomacs.org/"
+license=('GPL3')
+depends=('qt5-svg' 'exiv2' 'libraw' 'opencv' 'desktop-file-utils')
+makedepends=('cmake' 'qt5-tools')
+source=("https://github.com/${pkgname}/${pkgname}/archive/${pkgver}.tar.gz"
+        "https://github.com/${pkgname}/${pkgname}-plugins/archive/${_plugins}.zip")
+md5sums=('5f1a6586f51cebd01cb2ab71b38de649'
+         '0b3451952d30633de6f4abd17ad388b9')
+
+prepare() {
+  mv "nomacs-plugins-${_plugins}" $pkgname-$pkgver/plugins
+  cd $pkgname-$pkgver
+  [ -d build ] || mkdir build
+}
+
+build() {
+  cd $pkgname-$pkgver/build
+  cmake ../ImageLounge -DCMAKE_INSTALL_PREFIX=/usr
+  make -j1
+}
+
+package() {
+  cd $pkgname-$pkgver/build
+  make DESTDIR="$pkgdir/" install
+}

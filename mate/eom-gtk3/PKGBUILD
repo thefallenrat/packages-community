@@ -4,21 +4,18 @@
 _ver=1.14
 _pkgbase=eom
 pkgname=(${_pkgbase}-gtk3)
-pkgver=${_ver}.1
-pkgrel=1
-pkgdesc="An image viewing and cataloging program for MATE (GTK3 version [EXPERIMENTAL])"
+pkgver=${_ver}.2
+pkgrel=0.1
+pkgdesc="An image viewing and cataloging program for MATE (GTK3 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('dbus-glib' 'desktop-file-utils' 'gobject-introspection-runtime' 'gtk3' 'exempi'
-         'lcms2' 'libexif' 'libjpeg-turbo' 'librsvg' 'mate-desktop-gtk3>=1.14'
-         'startup-notification' 'zlib')
-makedepends=('mate-common' 'gobject-introspection' 'yelp-tools')
-optdepends=('yelp: for reading MATE help documents')
+depends=('dbus-glib' 'gobject-introspection-runtime' 'exempi' 'libexif' 'libjpeg-turbo' 'mate-desktop-gtk3')
+makedepends=('gobject-introspection' 'intltool' 'itstool')
 groups=('mate-extra-gtk3')
 conflicts=("${_pkgbase}")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('df3e91693122053e97a87ca02119b2deda74e475')
+sha1sums=('32afdaaa7fde94c935f4fe621d67bbf4acdc132a')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -28,6 +25,10 @@ build() {
         --with-gtk=3.0 \
         --with-librsvg \
         --disable-python
+
+    #https://bugzilla.gnome.org/show_bug.cgi?id=656231
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
     make
 }
 
@@ -35,3 +36,4 @@ package() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
     make DESTDIR="${pkgdir}" install
 }
+
