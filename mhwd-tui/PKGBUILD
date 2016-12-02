@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=mhwd-tui
-pkgver=0.3
+pkgver=0.4
 pkgrel=1
 pkgdesc="An interactive mhwd interface using bash"
 arch=(any)
@@ -9,7 +9,11 @@ url="https://github.com/Chrysostomus/$pkgname"
 license=(MIT)
 depends=('awk'
 	'bash'
-	'mhwd')
+	'mhwd'
+	'lshw'
+	'lm_sensors'
+	'dmidecode'
+	'inxi')
 optdepends=('pacli: package management menu item')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
