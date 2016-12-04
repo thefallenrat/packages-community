@@ -1,16 +1,17 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=artwork-cinnamon-minimal
-pkgver=20161130
+pkgver=20161204
 pkgrel=1
 pkgdesc="Wallpapers and avatars for Manjaro Cinnamon"
 arch=('any')
 license=('GPL3')
 url="https://github.com/oberon2007/$pkgname"
-_snapshot=2754ad7a88a5d084314004523574916174829968
+_snapshot=6c7a91882b0b681c8cf2b16204a3c3ed6551efe5
+depends=('manjaro-icons')
 optdepends=('cinnamon-wallpapers: more wallpapers for Manjaro Cinnamon')
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('add4bd5cae94bdb6c4414504002c6dc0')
+md5sums=('1854959fa36858de3155aab528b2d1a6')
 
 pkgver() {
     date +%Y%m%d
@@ -20,4 +21,5 @@ package() {
 	cd $srcdir/$pkgname-$_snapshot
 	install -dm755 $pkgdir/usr/share
 	cp -r * $pkgdir/usr/share
+	ln -s /usr/share/icons/manjaro/maia/48x48.png $pkgdir/usr/share/icons/manjaro-maia.png
 }
