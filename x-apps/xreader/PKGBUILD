@@ -17,7 +17,8 @@ depends=('desktop-file-utils'
          'gtk3'
          'gtk3-print-backends'
          'libsecret'
-         'poppler-glib')
+         'poppler-glib'
+         'yelp-tools')
 makedepends=('git' 'mate-common')
 optdepends=('nemo: nemo extension (must be enabled at compile time)'
     'caja-extensions-common: caja extension (must be enabled at compile time)')
