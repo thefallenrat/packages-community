@@ -17,9 +17,8 @@ depends=('desktop-file-utils'
          'gtk3'
          'gtk3-print-backends'
          'libsecret'
-         'poppler-glib'
-         'yelp-tools')
-makedepends=('git' 'mate-common')
+         'poppler-glib')
+makedepends=('mate-common' 'yelp-tools')
 optdepends=('nemo: nemo extension (must be enabled at compile time)'
     'caja-extensions-common: caja extension (must be enabled at compile time)')
 source=("${url}/archive/${pkgver}.tar.gz")
