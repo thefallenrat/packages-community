@@ -3,13 +3,21 @@
 
 pkgname=xreader
 pkgver=1.2.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Document viewer for files like PDF and Postscript. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/linuxmint/${pkgname}"
 groups=('x-apps')
-depends=('ghostscript' 'poppler-glib' 'djvulibre' 'desktop-file-utils' 'gsettings-desktop-schemas' 'gtk3' 'gtk2' 'libsecret')
+depends=('desktop-file-utils'
+         'djvulibre'
+         'ghostscript'
+         'gsettings-desktop-schemas'
+         'gtk2'
+         'gtk3'
+         'gtk3-print-backends'
+         'libsecret'
+         'poppler-glib')
 makedepends=('git' 'mate-common')
 optdepends=('nemo: nemo extension (must be enabled at compile time)'
     'caja-extensions-common: caja extension (must be enabled at compile time)')
