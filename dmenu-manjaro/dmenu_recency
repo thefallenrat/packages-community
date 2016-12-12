@@ -51,14 +51,16 @@ GREP_OPTIONS='--color=never'
 IFS=:
 if stest -dqr -n "$rest_cache" $PATH 2>/dev/null; then
      stest -flx $PATH | sort -u | grep -vf "$recent_cache" > "$rest_cache"
+     stest -flx $PATH | sort -u | grep -f "$recent_cache" > "$recent_cache.$$"
+     [ -s "$recent_cache.$$" ] && mv "$recent_cache.$$" "$recent_cache"
 fi
 
 IFS=" "
 cmd=$(cat "$recent_cache" "$rest_cache" | $dmenu_cmd -p run: "$@") || exit
 
 if ! grep -qx "$cmd" "$recent_cache" &> /dev/null; then
-    grep -vx "$cmd" "$rest_cache" > "$rest_cache.$$"
-    mv "$rest_cache.$$" "$rest_cache"
+    grep -vx "$cmd" "$rest_cache" > "$rest_cache.$$" ||  echo "dmenu recency grep error $? attempting to write to file "$rest_cache.$$" using pid $$, based upon dmenu output of $cmd" > ${HOME}/dmenu_recency_error
+    [ -s "$rest_cache.$$" ] && mv "$rest_cache.$$" "$rest_cache" ||  { aa=$$; echo "dmenu recency mv error $? attempting to write from file "$rest_cache.$$" using pid $$, file size $(du -b "$rest_cache.$aa" | cut -f1)" >> ${HOME}/dmenu_recency_error ;  }
 fi
 
 echo "$cmd" > "$recent_cache.$$"
