@@ -2,8 +2,8 @@
 
 pkgbase=palemoon-i18n
 pkgver=27.0.0
-pkgrel=0.1
-_rc=RC11
+pkgrel=0.2
+_rc=RC12
 pkgdesc="Language pack for Palemoon"
 arch=('any')
 url="http://www.palemoon.org/langpacks.shtml"
@@ -32,7 +32,7 @@ _languages=(
 #'ko    "Korean"'
 #'nl    "Dutch"'
 'pl    "Polish"'
-#'pt-BR "Portuguese (Brazil)"'
+'pt-BR "Portuguese (Brazil)"'
 #'pt-PT "Portuguese (Portugal)"'
 #'ro    "Romanian/Moldavian"'
 'ru    "Russian"'
@@ -71,17 +71,18 @@ _package() {
     "$pkgdir/usr/lib/palemoon/browser/extensions/langpack-$1@palemoon.org.xpi"
 }
 
-md5sums=('7d9e591c3fec8edd30457654c66f4227'
-         '7644db4c266c3e3b45a70bc06f9acc10'
-         '5e054e6e5837e56ab613e747a2375770'
-         '24e9bbada077845eff57ea3a4a9398ac'
-         '7eb903153c0ab82f390dd20305847698'
-         '0af2ca265a94bd8aa2753788d4cd959e'
-         '279e03eb0a88f411df8bfc88b8330cd2'
-         '439c9c599d199de8efb23eee51170b22'
-         'e8e04666823f3c80f3134720af681505'
-         '8f5c0b6b3abc1ceb9898ec4a550bdac8'
-         'd8d42d59c0ff87372ea63855d0f1a869'
-         'df9d474fa71e50c780355328282e669e'
-         'c8ef3ecc57b9c38cd78ebf03cce296aa'
-         '0cf40792a2d4314fb437f74ce4806165')
+md5sums=('c670c73ae980b3b18d6e8235edc14e17'
+         '3b581787ca445586fdf9e9f8c8b200f9'
+         '20083f4a9c5725127813e8dda7bafe18'
+         '83cb0ba929e003993ca7a6f32c49aedb'
+         '8a50d86a645b8889f4982b3cc9756bd7'
+         '70507403be86a09dddd3e6dd892f93b1'
+         '194af69cfd6fa934e4e095e922b2f8a1'
+         '862a77ff3ed495acaf2f15d735ef2984'
+         'ba9bee914c5f54e87c9bcd8bd6160d16'
+         '471c951054897db7a3d215ccbd0d5638'
+         '66f930d5c0646b22aa47ccd4ce31e494'
+         '27df278b4121e57cdc2d0d7c0c64a556'
+         '654a8e6d0413e2f98e9566a5a4687e09'
+         '40a1d44d750eef6671320bca0e2b6c0e'
+         '56b13ea15644a2875e7beaae8669cac5')
