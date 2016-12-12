@@ -6,7 +6,7 @@
 pkgname=steam-manjaro
 _pkgname=steam
 pkgver=1.0.0.54
-pkgrel=1
+pkgrel=2
 pkgdesc="Digital distribution client bootstrap package. Includes common game depends. See https://forum.manjaro.org/index.php?topic=16054 and https://bugs.manjaro.org/index.php?do=details&task_id=45"
 arch=("i686" "x86_64")
 url="http://steampowered.com/"
@@ -49,7 +49,7 @@ md5sums=('d1398490635615c428165e984a1ec71b'
          'de3fcd83138666f3eb6dd898394dd06a'
          '5b5e074abf2b18034e644d5d37ceb06d'
          '752d7b9f8441943fab87f8c479bd8000'
-         '5889a430de1e93f5886b015f336b2e88')
+         '8e602126fc303e7178b1053434d779fd')
 
 prepare()
 {
