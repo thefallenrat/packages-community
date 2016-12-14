@@ -322,7 +322,6 @@ package() {
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_vertex_commit/common/metacity-1/thumbnail.png >/dev/null
   
   ## add openbox themes
-  cd "$srcdir/vertex-manjaro-$_manjaro_commit"
-  cp -r Vertex-Maia $pkgdir/usr/share/themes
-  cp -r Vertex-Maia-Dark $pkgdir/usr/share/themes 
+  cd $srcdir/vertex-manjaro-$_manjaro_commit
+  cp -r Vertex-Maia{,-Dark} $pkgdir/usr/share/themes
 }
