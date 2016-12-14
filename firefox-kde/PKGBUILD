@@ -4,24 +4,22 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=50.0.2
-pkgrel=2
+pkgver=50.1.0
+pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
 license=('MPL' 'GPL' 'LGPL')
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
-depends=('gtk3' 'gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
-         'dbus-glib' 'alsa-lib' 'ffmpeg' 'libvpx' 'libevent' 'nss' 'hunspell'
-         'sqlite' 'ttf-font' 'icu'
-         'kmozillahelper' 'nspr')  
-makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake' 'gconf'
-             'libpulse' 'inetutils' 'xorg-server-xvfb' 'autoconf2.13' 'cargo')
+depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib ffmpeg
+         libvpx libevent nss hunspell sqlite ttf-font icu kmozillahelper nspr)
+makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils xorg-server-xvfb
+             autoconf2.13 cargo jack)
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'upower: Battery API')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
-options=('!emptydirs' '!makeflags')
-_patchrev=a58cc7936ce7
+options=(!emptydirs !makeflags)
+_patchrev=7f60766aae16
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
@@ -42,8 +40,8 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('aa770cb8552bdcf4a7e8bb0ecde27d41ee5b2a972335c6b24dd3afb4d911dfe3'
-            '0a07bc48e9bc112f8147d087cc199c339a5db0a077c8ff6efcf2d4e6308b3624'
+sha256sums=('54bb9bccbf9eed0c7715ae7f45330bf41ce24b756f5fdecb380e06709a6ac5a4'
+            '5dcc6ff06af95256d34a901ee1881400904e38665aa22ddf8e7d16e2ad76875c'
             '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
