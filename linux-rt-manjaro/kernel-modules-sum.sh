@@ -12,14 +12,14 @@
 
 arch=$(uname -m)
 
-if [ -e kernel-modules-$arch.sum ]; then
-	timestamp=$(stat -c %y kernel-modules-$arch.sum | sed s'~ ~-~'g | cut -d. -f1)
-	mv kernel-modules-$arch.sum kernel-modules-$timestamp-$arch.sum
+if [ -e rt-kernel-modules.sum ]; then
+	timestamp=$(stat -c %y rt-kernel-modules.sum | sed s'~ ~-~'g | cut -d. -f1)
+	mv rt-kernel-modules.sum rt-kernel-modules-$timestamp.sum
 fi
-md5sum /usr/lib/modules/*rt*/build/Module.symvers | sed s'~/usr/lib/modules/~Kernel: ~'g | sed s'~/build/Module.symvers~~'g > kernel-modules-$arch.sum
-if [ -e kernel-modules-$timestamp-$arch.sum ]; then
+md5sum /usr/lib/modules/*rt*/build/Module.symvers | sed s'~/usr/lib/modules/~Kernel: ~'g | sed s'~/build/Module.symvers~~'g > rt-kernel-modules.sum
+if [ -e rt-kernel-modules-$timestamp.sum ]; then
 	echo "Possible ABI-change detected. Please check:"
 	echo " "
-	diff -Npur kernel-modules-$timestamp-$arch.sum kernel-modules-$arch.sum > abi-change-since-$timestamp-$arch.abi
-	cat abi-change-since-$timestamp-$arch.abi
+	diff -Npur rt-kernel-modules-$timestamp.sum rt-kernel-modules.sum > abi-change-rt-since-$timestamp.abi
+	cat abi-change-rt-since-$timestamp.abi
 fi

@@ -6,12 +6,12 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20161125
-pkgrel=2
+pkgver=20161214
+pkgrel=1
 pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.22
 _vertex_commit=c861918a7fccf6d0768d45d790a19a13bb23485e
-_manjaro_commit=726a1c9c6dcd2793b27a7e6e4ce7246be9e1cf6c
+_manjaro_commit=084cd9576d280e306c00d58528375ed9743fa6fb
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
@@ -20,7 +20,7 @@ conflicts=('vertex-maia-themes')
 source=("vertex-$_vertex_commit.tar.gz::https://github.com/horst3180/Vertex-theme/archive/$_vertex_commit.tar.gz"
 	"vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz")
 sha256sums=('87c4c356fa10d7252270e6f3a8b0d459eedf5e4f9c9b904e3f5d8999c195638c'
-            'ea1ece13fbbb0b5a03e11b8265a791bf51de841165fc1c8026e83f89a5dadf1c')
+            'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71')
 options=('!strip')
 
 build() {
@@ -320,4 +320,8 @@ package() {
 
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_vertex_commit/common/metacity-1/thumbnail.png >/dev/null
+  
+  ## add openbox themes
+  cd $srcdir/vertex-manjaro-$_manjaro_commit
+  cp -r Vertex-Maia{,-Dark} $pkgdir/usr/share/themes
 }
