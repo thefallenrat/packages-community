@@ -2,7 +2,7 @@
 # Past Maintainer: Gaetan Bisson <bisson@archlinux.org>
 # Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
-pkgname=st-git
+pkgname=st-manjaro
 _pkgname=st
 pkgver=0.7.16.ge448324
 pkgrel=1
@@ -18,7 +18,7 @@ epoch=1
 source=('git://git.suckless.org/st'
 		'config.h')
 sha1sums=('SKIP'
-          'ab467386037b2734b89651494a02c574a8ec4c46')
+          '5038218af65a620fade6aa2d89d27776866083b1')
 
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
