@@ -2,7 +2,7 @@
 # Past Maintainer: Gaetan Bisson <bisson@archlinux.org>
 # Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
-pkgname=st-git
+pkgname=st-manjaro
 _pkgname=st
 pkgver=0.7.16.ge448324
 pkgrel=1
