@@ -5,9 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Terminus:pixelsize=14";
+static char font[] = "Terminus:pixelsize=13";
 static int borderpx = 2;
-#define histsize 2000
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -101,11 +100,9 @@ static const char *colorname[] = {
         "#6c71c4",  /* 13: brmagenta*/
         "#93a1a1",  /* 14: brcyan   */
         "#fdf6e3",  /* 15: brwhite  */
+        
+	[255] = 0,
 
-	//[255] = 0,
-
-	//[> more colors can be added after 255 to use with DefaultXX <]
-	//"#cccccc",
 };
 
 
@@ -146,14 +143,8 @@ static unsigned int defaultattr = 11;
  */
 static MouseShortcut mshortcuts[] = {
 	/* button               mask            string */
-	{ Button4,              XK_NO_MOD,      "\031" },
-	{ Button5,              XK_NO_MOD,      "\005" },
-};
-
-static MouseKey mkeys[] = {
-	/* button               mask            function        argument */
-	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
-	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
+	{ Button4,              XK_ANY_MOD,     "\031" },
+	{ Button5,              XK_ANY_MOD,     "\005" },
 };
 
 /* Internal keyboard shortcuts. */
@@ -176,8 +167,6 @@ static Shortcut shortcuts[] = {
 	{ ControlMask|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
