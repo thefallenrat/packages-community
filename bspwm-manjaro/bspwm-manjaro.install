@@ -26,6 +26,7 @@ function bspwm_fixer {
 	gives you the updated default bspwmrc to keep your system usable."
 	fi
 }
+
 post_upgrade() {
 	#Backup and fix configs
 	for user in $users; do
