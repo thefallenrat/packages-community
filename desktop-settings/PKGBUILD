@@ -12,7 +12,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20161208
+pkgver=20161214
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -118,8 +118,7 @@ package_manjaro-gnome-settings() {
 package_manjaro-i3-settings() {
     pkgdesc='Manjaro Linux i3 settings'
     groups=('i3-manjaro')
-    depends=('breeze-maia-icon-themes'
-        'compton'
+    depends=('compton'
         'conky-i3'
         'dmenu-manjaro'
         'dunst'
