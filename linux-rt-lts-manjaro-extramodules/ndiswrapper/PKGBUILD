@@ -13,7 +13,7 @@ pkgname=('linux-rt-lts-manjaro-ndiswrapper'
 	)
 groups=('linux-rt-lts-manjaro-extramodules')
 pkgver=1.59
-pkgrel=13
+pkgrel=14
 pkgdesc="Module for NDIS (Windows Network Drivers) drivers supplied by vendors."
 license=('GPL')
 arch=('x86_64')
@@ -75,7 +75,7 @@ package_linux-rt-lts-manjaro-ndiswrapper() {
 
 package_ndiswrapper-utils() {
   pkgdesc="Utils for NDIS (Windows Network Drivers) drivers supplied by vendors."
-  pkgrel=136
+  pkgrel=146
   depends=()
   groups=()
   cd $srcdir/tmp-ndis-utils
