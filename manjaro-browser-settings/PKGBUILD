@@ -2,17 +2,17 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org
 
 pkgname=manjaro-browser-settings
-pkgver=20160820
+pkgver=20161221
 pkgrel=1
 pkgdesc="Manjaro Linux settings browser defaults"
 arch=('any')
 url="https://github.com/manjaro/$pkgname"
 license=('GPL')
-_gitcommit=62fba9666c531ea3651587b320c7d2bf41a1c4c5
+_gitcommit=19f02dcc9e109fe08abb7b163ec537d0c5cb4fdf
 conflicts=('manjaro-firefox-settings')
 replaces=('manjaro-firefox-settings')
 source=("$pkgname-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('72ee715b730be8f61065f680374c4570')
+md5sums=('b91de27020a6faf58a0c720ef972e847')
 
 pkgver() {
   date +%Y%m%d
@@ -26,4 +26,6 @@ package() {
   cp firefox/* $pkgdir/usr/lib/firefox/distribution
   cp palemoon/* $pkgdir/usr/lib/palemoon/distribution
   ln -s /usr/lib/firefox/distribution $pkgdir/usr/lib/light/distribution
+  install -dm755 $pkgdir/etc/skel/.config/qupzilla/profiles
+  cp -r qupzilla/* $pkgdir/etc/skel/.config/qupzilla/profiles
 }
