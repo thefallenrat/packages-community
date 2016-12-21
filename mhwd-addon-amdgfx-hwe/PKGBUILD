@@ -1,52 +1,90 @@
-# Maintainer: Fabian(Tids) <plusfabi@gmail.com>
-pkgname=mhwd-addon-amdgfx-hwe
-pkgver=20161101 #date +%Y%m%d
-pkgrel=1
-pkgdesc="Extra Modules for MHWD to easily enable OpenCL, VDPAU, VAAPI and Vulkan on supported AMD-hardware"
+# Maintainer: Fabian Bornschein <plusfabi@gmail.com>
+pkgname=('mhwd-addon-amdgfx-hwe' 'amdgpu-experimental')
+pkgver=20161221 #date +%Y%m%d
+pkgrel=01
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
-install='INSTALL'
-license=('custom')
-depends=('mhwd-db' 'grub')
+license=('GPL3')
 conflicts=('mhwd-addon-amdgpu-hwe')
-source=('MHWDCONFIG_amdgpu-experimental-mesa-extras' 'MHWDCONFIG_amdgpu-mesa-extras' 'MHWDCONFIG_ati-mesa-extras' 'amdgpu-mesa.ids' 'amdgpu-mesa-experimental.ids' 'odamdgpu')
-md5sums=('60910cdc878ddf5d0abdc4f8ddd91dea'
-         'a0d8d1d0ed777fdc15d4c294cf520f95'
-         '6a2aeac18b015a72855b28c5c34f1a98'
-         '5695d0fdbafad7775d3bf3c72999af43'
-         '50dde55099f875c70670c405d10424b6'
-         '251375547e5c089758fe6072320efac8')
+source=('amdgpu-experimental.install'
+        'mhwd-addon-amdgfx-hwe.install'
+        'amdgpu.conf'
+        'radeon_blacklist.conf'
+        'amdgpu-exp_hw_support.conf'
+        'amdgpu-experimental-pci.ids'
+        'amdgpu-pci.ids'
+        'MHWDCONFIG_video-amdgpu+'
+        'MHWDCONFIG_video-amdgpu-experimental+'
+        'MHWDCONFIG_video-radeon+'
+        'catalystuninstall')
+md5sums=('421f0642556dca37903d2b0cf49eca0c'
+         '928a667f96be7ae1609c82d8d6f86c67'
+         '8eb145fd23b417694b36ef9e6113cb84'
+         '292741875989f13a508fc67a0ca60b0b'
+         '09d943b31ab898c2b45ba597f9e9cf94'
+         '58eb8d0213f03cc19a5ed74f4831c7bb'
+         '6a5beabef000cf05bb6aa6668aa60613'
+         'e8e61bd1915fcb606c089de8dae8f019'
+         '4910bfea628bee099c7c84f1fc1476c7'
+         'e11cbb13d5acabdc5d6db2ddfc9a1df0'
+         'dfa749c51d8fb44594450892b34246ef')
 
-package() 
+package_mhwd-addon-amdgfx-hwe()
 {
+    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)"
+    depends=('bash')
+    optdepends=('radeonjet-git: AMDGPU overclocking'
+                'radeontop: Radeon cards monitoring utility')
+    install='mhwd-addon-amdgfx-hwe.install'
+    
     cd "${srcdir}"
-    # Create Directories we need
-    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras"
-    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras"
-    mkdir -p "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras"
-    mkdir -p "${pkgdir}/var/lib/mhwd/ids/pci"
     
     # Install AMDGPU-experimental config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-experimental-mesa-extras" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-experimental-mesa-extras/MHWDCONFIG"
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu-experimental+" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu-experimental+/MHWDCONFIG"
     
     # Install PCI-ID file for AMDGPU-experimental Cards
-    install -D -m644 "${srcdir}/amdgpu-mesa-experimental.ids" \
-    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-mesa-experimental.ids"
+    install -D -m644 "${srcdir}/amdgpu-experimental-pci.ids" \
+    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-experimental-pci.ids"
+    
     
     # Install AMDGPU config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_amdgpu-mesa-extras" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-amdgpu-mesa-extras/MHWDCONFIG"
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu+" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu+/MHWDCONFIG"
     
     # Install PCI-ID file for AMDGPU Cards
-    install -D -m644 "${srcdir}/amdgpu-mesa.ids" \
-    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-mesa.ids"
+    install -D -m644 "${srcdir}/amdgpu-pci.ids" \
+    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-pci.ids"
+    
     
     # Install ATI/Radeon config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_ati-mesa-extras" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/xf86-video-ati-mesa-extras/MHWDCONFIG"
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-radeon+" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-radeon+/MHWDCONFIG"
     
-    # Install odamdgpu
-    install -D -m755 "${srcdir}/odamdgpu" \
-    "${pkgdir}/usr/bin/odamdgpu"    
+    # install catalystuninstaller
+    install -D -m755 "${srcdir}/catalystuninstall" \
+    "${pkgdir}/usr/bin/catalystuninstall"
+}
+
+package_amdgpu-experimental()
+{
+    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)"
+    depends=('linux>=4.9')
+    install='amdgpu-experimental.install'
+    
+    cd "${srcdir}"
+
+    ##################################################
+    ##
+    ## install module-load file 
+    ## and radeon blacklist
+    ## and exp_hw_support
+    ##
+    ##################################################
+    install -D -m644 "${srcdir}/amdgpu.conf" \
+    "${pkgdir}/etc/modules-load.d/amdgpu.conf"
+    install -D -m644 "${srcdir}/radeon_blacklist.conf" \
+    "${pkgdir}/etc/modprobe.d/radeon_blacklist.conf"
+    install -D -m644 "${srcdir}/amdgpu-exp_hw_support.conf" \
+    "${pkgdir}/etc/modprobe.d/amdgpu-exp_hw_support.conf"
 }
