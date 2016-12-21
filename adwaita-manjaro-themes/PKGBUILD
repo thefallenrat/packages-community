@@ -1,8 +1,8 @@
 # Maintainer : Rob McCathie <rob@manjaro.org>
 
 pkgname=adwaita-manjaro-themes
-pkgver=20160421
-pkgrel=2
+pkgver=20161221
+pkgrel=1
 _basegtkver=3.20
 _fullgtkver=${_basegtkver}.2
 _axcommit=cc3ffa01f27aa0b6e2f431034832d62fd65aac14
@@ -76,6 +76,23 @@ package() {
   sed -i "s/3583d5/019381/g" gtk-3.0/gtk{,-dark}.css
   sed -i "s/5094db/1ca487/g" gtk-3.0/gtk{,-dark}.css
   sed -i "s/8db9e8/59c994/g" gtk-3.0/gtk{,-dark}.css
+
+  ## All remainder blue->green
+  sed -i "s/215d9c/2fb08a/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/0f2b48/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/0b1e33/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1f5894/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1d538b/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1b4e83/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/2260a0/16a085/g" gtk-3.0/gtk{,-dark}.css  
+  sed -i "s/1d4877/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/6c88a7/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/33, 93, 156/22, 160, 133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/a6bed7/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/74aae2/007f66/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/a6bed7/1ca487/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/194776/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/22558b/006133/g" gtk-3.0/gtk{,-dark}.css
 
   ## Shift the hightlight-hue of all image files from blue to maia-greenish
   find . ! -type l -name "*.png" -exec mogrify -modulate 100,100,71 {} \;
