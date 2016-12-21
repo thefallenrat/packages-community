@@ -12,6 +12,7 @@
 ##
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
 
+UPSTREAM_LISTFILE_URL="https://raw.githubusercontent.com/pciutils/pciids/master/pci.ids"
 UPSTREAM_LISTFILE_LOCAL_PATH="/tmp/PCIIDLIST"
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -22,19 +23,14 @@ UPSTREAM_LISTFILE_LOCAL_PATH="/tmp/PCIIDLIST"
 
 function fn_checkinput()
 {
-        if [ ! ${OUTPUTFILE} ] || [ ! ${UPSTREAM_LISTFILE_URL} ]
+        if [ ! ${OUTPUTFILE} ]
         then
             echo -e "This script requieres 3 inputs"
             echo -e "    -o\tan output file (this has to be the first option)"
-            echo -e "    -u\tUpstream File URL (this has to be the secound option)"
             echo -e "    -q\tdont add comments to the pciid files(optional)"
             echo -e "    -a\tsets the name of the hardware generation (you can use this multiple times)"
             echo
-            echo -e "usage:\n listgen -o /home/username/PCILIST -u https://cgit.freedesktop.org/xorg/driver/xf86-video-amdgpu/plain/src/pcidb/ati_pciids.csv -a polaris11 -a polaris10"
-            echo -e "\n\n"
-            echo -e "known URLS:"
-            echo -e "AMDGPU\nhttps://cgit.freedesktop.org/xorg/driver/xf86-video-amdgpu/plain/src/pcidb/ati_pciids.csv\n"
-            echo -e "RADEON/ATI\nhttps://cgit.freedesktop.org/xorg/driver/xf86-video-ati/plain/src/pcidb/ati_pciids.csv\n"
+            echo -e "usage:\n listgen -o /home/username/PCILIST -a polaris11 -a polaris10"
             exit 1
         fi
 }
@@ -42,11 +38,23 @@ function fn_checkinput()
 function fn_download()
 {
     curl -o "${UPSTREAM_LISTFILE_LOCAL_PATH}" "${UPSTREAM_LISTFILE_URL}"
-    if [ ! -f "${UPSTREAM_LISTFILE_LOCAL_PATH}" ] || ! grep "#pciid" "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    if [ ! -f "${UPSTREAM_LISTFILE_LOCAL_PATH}" ] || ! grep "List of PCI ID's" "${UPSTREAM_LISTFILE_LOCAL_PATH}" > /dev/null
     then
         echo "Missing or wrong file in downloadpath"
         exit 1
     fi
+    
+    # extrackt AMD part
+    ## remove everything before ^1002
+    sed -i -n '/^1002/,$p' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    ## remove everything below ^1003
+    sed -i '/^1003/,$d' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    ## remove comments
+    sed -i '/^#/ d' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    ## remove sub-IDs
+    sed -i 's/^\t//g' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    sed -i '/^\t/ d' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
+    
     echo -e "\n"
 }
 
@@ -57,13 +65,13 @@ function fn_cleanfile()
 
 function fn_copyover()
 {
-    if grep -w "\"${SETGEN}\"\$" ${UPSTREAM_LISTFILE_LOCAL_PATH} > /dev/null
+    if grep -wi " ${SETGEN}" ${UPSTREAM_LISTFILE_LOCAL_PATH} > /dev/null
     then
         if [ "${COMMENTSNO}" != "yes" ]
         then
             echo -e "\n##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##\n##\n## ${SETGEN}\n##\n##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##" >> "${OUTPUTFILE}"
         fi
-        grep -w ",\"${SETGEN}\"," "${UPSTREAM_LISTFILE_LOCAL_PATH}" | cut -c4-7 >> "${OUTPUTFILE}"
+        grep -wi " ${SETGEN}" "${UPSTREAM_LISTFILE_LOCAL_PATH}" | grep -vi "audio" | grep -v "#" | cut -d" " -f1 >> "${OUTPUTFILE}"
     fi
 }
 
@@ -73,16 +81,13 @@ function fn_copyover()
 ##
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
 
-while getopts qo:u:a: opt
+fn_download
+while getopts qo:a: opt
 do
 case $opt in
     o)
         OUTPUTFILE="${OPTARG}"
         fn_cleanfile
-    ;;
-    u)
-        UPSTREAM_LISTFILE_URL="${OPTARG}"
-        fn_download
     ;;
     a)
         fn_checkinput

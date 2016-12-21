@@ -12,80 +12,38 @@ Here you will find some options, like
 * video-ati
 * video-amdgpu
 * video-vesa
-* video-ati-mesa-extras
-* video-amdgpu-mesa-extras
-* video-amdgpu-experimental-mesa-extras
+* video-radeon+
+* video-amdgpu+
+* video-amdgpu-experimental+
 
 video-vesa, video-amdgpu, video-ati, video-catalyst are provided by manjaro itself. they are useless for us ;) Make sure you uninstall them befor trying the others, otherwise it will simply not work.
 
 ##### **!!!attention!!!**
-if you are using *video-catalyst* it's recommended to re-install Manjaro. Because there is no easy/save way to uninstall this driver.
+if you are using *video-catalyst* you need to uninstall this via Manjaro Settings Manager & install xserver 1.18. 
+```
+pkexec mhwd -r pci video-catalyst
+sudo pacman -S xorg-server>=1.18 xf86-input-libinput
+```
+Otherwise you will not be able to switch to the new graphicsstack.
 
 ## whats the best driver?
 at first. these are no drivers, but installation scripts that install and configure drivers for you.
 
 
-### video-ati-mesa-extras
-Dependency | Minimum
----------- | -------
-Kernelmodule | radeon
-Xorg-Videodriver | ati(radeon)
-Mesa | 13
+MHWD-Script | Generation | Linux | Kernelmodule | Xorg-Videodriver | Mesa | OpenGL | OpenGL ES | Videodecoding | Vulkan | Wayland | HDMI-Audio
+----------- | ---------- | ----- | ------------ | ---------------- | ---- | ------ | --------- | ------------- | ------ | ------- | ----------
+video-ati | <=GCN 1.1 | all | Radeon | ati(radeon) | ??² | >=4.3² | ??² | No | No | Yes | Yes²
+video-amdgpu | >=GCN 1.2 | >= 4.6 | AMDGPU | AMDGPU | >=13.x(RadeonSI) | 4.3 | 3.1 | No | No | Yes | No
+video-radeon+ | <=GCN 1.1 | all | Radeon | ati(radeon) | ??² | >=4.3² | ??² | VAAPI, VDPAU | No | Yes | Yes
+video-amdgpu-experimental+¹ | GCN 1.1 | >= 4.6 | AMDGPU | AMDGPU | >=13.x(RadeonSI) | 4.3 | 3.1 | VAAPI, VDPAU | RadV | Yes | No
+video-amdgpu-experimental+¹ | GCN 1.0 | >= 4.9 | AMDGPU | AMDGPU | >=13.x(RadeonSI) | 4.3 | 3.1 | VAAPI, VDPAU | RadV | Yes | No
+video-amdgpu+ | >=GCN 1.2 | >= 4.6 | AMDGPU | AMDGPU | >=13.x(RadeonSI) | 4.3 | 3.1 | VAAPI, VDPAU | RadV | Yes | No
 
-Feature | Provider
-------- | --------
-OpenGL | up to 4.3
-Vulkan | no
-Videodecoding | VAAPI,VDPAU
-OpenCL | 1.2
-
-### video-amdgpu-mesa-extras
-Dependency | Minimum
----------- | -------
-GCN 1.2 | Linux >= 4.4
-GCN 4 | Linux >= 4.8
-Kernelmodule | amdgpu
-Xorg-Videodriver | amdgpu
-Mesa | 13
-
-Feature | Provider
-------- | --------
-OpenGL | 4.3
-Vulkan | RadV
-Videodecoding | VAAPI,VDPAU
-OpenCL | 1.2
-
-### video-amdgpu-experimental-mesa-extras
-Dependency | Minimum
----------- | -------
-GCN 1.1 | Linux >= 4.6
-GCN 1.0 | Linux >= 4.9
-Kernelmodule | amdgpu
-Xorg-Videodriver | amdgpu
-Mesa | 13
-
-Feature | Provider
-------- | --------
-OpenGL | 4.3
-Vulkan | RadV
-Videodecoding | VAAPI,VDPAU
-OpenCL | 1.2
+ ¹ Experimental means that it could destroy your system
+ ² Depends on your graphicscard generation
 
 ## Tools
-`odamdgpu` let you use OverDrive for AMDGPU. Be carefull, this might destroy your hardware and it will be only your fault!
-
-### usage
-```
-odamdgpu <operation>
-```
-If you want to "overdrive" your core GPU by 5% and you VMemory by 3% you can do this
-```
-odamdgpu -c 3 -m 5
-```
-you can always reset to the standard by using
-```
-odamdgpu -r
-```
+[radeonjet](https://github.com/p4block/radeonjet) let you use OverDrive for AMDGPU. Be carefull, this might destroy your hardware
 
 ## HELP!
 You will find help in the [Manjaro Forums](https://forum.manjaro.org/t/amdgpu-improvements-for-manjaro/7890/439) :)
