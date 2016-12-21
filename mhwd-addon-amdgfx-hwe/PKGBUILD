@@ -1,28 +1,30 @@
 # Maintainer: Fabian Bornschein <plusfabi@gmail.com>
 pkgname=('mhwd-addon-amdgfx-hwe' 'amdgpu-experimental')
 pkgver=20161221 #date +%Y%m%d
-pkgrel=01
+pkgrel=1
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
 license=('GPL3')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('amdgpu-experimental.install'
         'mhwd-addon-amdgfx-hwe.install'
-        'amdgpu.conf'
-        'radeon_blacklist.conf'
+        'amdgfx-hwe-amdgpu.conf'
+        'amdgfx-hwe-radeon_blacklist.conf'
         'amdgpu-exp_hw_support.conf'
         'amdgpu-experimental-pci.ids'
+        'amdgpu-experimental.hook'
         'amdgpu-pci.ids'
         'MHWDCONFIG_video-amdgpu+'
         'MHWDCONFIG_video-amdgpu-experimental+'
         'MHWDCONFIG_video-radeon+'
         'catalystuninstall')
-md5sums=('421f0642556dca37903d2b0cf49eca0c'
+md5sums=('67acec5caa9d5c46d3458c57b5bf738f'
          '928a667f96be7ae1609c82d8d6f86c67'
          '8eb145fd23b417694b36ef9e6113cb84'
          '292741875989f13a508fc67a0ca60b0b'
          '09d943b31ab898c2b45ba597f9e9cf94'
          '58eb8d0213f03cc19a5ed74f4831c7bb'
+         '5ea12c299007a61f7f2b866ea94f5b44'
          '6a5beabef000cf05bb6aa6668aa60613'
          'e8e61bd1915fcb606c089de8dae8f019'
          '4910bfea628bee099c7c84f1fc1476c7'
@@ -79,12 +81,15 @@ package_amdgpu-experimental()
     ## install module-load file 
     ## and radeon blacklist
     ## and exp_hw_support
+    ## and hook
     ##
     ##################################################
-    install -D -m644 "${srcdir}/amdgpu.conf" \
-    "${pkgdir}/etc/modules-load.d/amdgpu.conf"
-    install -D -m644 "${srcdir}/radeon_blacklist.conf" \
-    "${pkgdir}/etc/modprobe.d/radeon_blacklist.conf"
+    install -D -m644 "${srcdir}/amdgfx-hwe-amdgpu.conf" \
+    "${pkgdir}/etc/modules-load.d/amdgfx-hwe-amdgpu.conf"
+    install -D -m644 "${srcdir}/amdgfx-hwe-radeon_blacklist.conf" \
+    "${pkgdir}/etc/modprobe.d/amdgfx-hwe-radeon_blacklist.conf"
     install -D -m644 "${srcdir}/amdgpu-exp_hw_support.conf" \
     "${pkgdir}/etc/modprobe.d/amdgpu-exp_hw_support.conf"
+    install -D -m644 "${srcdir}/amdgpu-experimental.hook" \
+    "${pkgdir}/usr/share/libalpm/hooks/98-amdgpu-experimental.hook"
 }

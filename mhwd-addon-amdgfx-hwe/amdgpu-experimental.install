@@ -46,24 +46,18 @@ pre_install()
 
 post_install()
 {
-    fn_removegrubentry
-    mkinitcpio -P
-    
+    fn_removegrubentry   
     echo -e ":: Don't forget to change from radeon to \n   Driver\t\"amdgpu\"\n   in your xorg.conf-ig file." 
- }
+}
 
 post_upgrade()
 {
-    fn_removegrubentry
-    mkinitcpio -P
-    
+    fn_removegrubentry 
 }
 
 post_remove()
 {
     fn_removegrubentry
-    mkinitcpio -P
-    
     echo -e ":: Don't forget to change back to \n   Driver\t\"radeon\"\n   in your xorg.conf-ig file."
 }
 
