@@ -2,10 +2,10 @@
 # Maintainer : Chrysostomus
 
 pkgname=adwaita-maia-gtk3
-pkgver=20160505
+pkgver=20161221
 pkgrel=1
-_basegtkver=3.20
-_fullgtkver=${_basegtkver}.2
+_basegtkver=3.22
+_fullgtkver=${_basegtkver}.5
 _axcommit=cc3ffa01f27aa0b6e2f431034832d62fd65aac14
 _metacityver=3.18.3
 _vertexcommit=6c6cfdbaadb04fb2ccf3c8cf11ffcee84873af2f
@@ -15,11 +15,15 @@ url="https://www.gnome.org/"
 license=('GPL')
 makedepends=('imagemagick')
 source=("https://git.gnome.org/browse/gtk+/snapshot/gtk+-${_fullgtkver}.tar.xz"
-        "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}-1-x86_64.pkg.tar.xz"
+        "http://mirror.netzspielplatz.de/manjaro/packages/unstable/extra/x86_64/gnome-themes-standard-${_basegtkver}.2-1-x86_64.pkg.tar.xz"
+        "https://github.com/thearakattack/adwaita-xfce/archive/${_axcommit}.zip"
+        "https://git.gnome.org/browse/metacity/snapshot/metacity-${_metacityver}.tar.xz"
         "index.theme"
         "https://rawgit.com/Chrysostomus/adwaita-maia-gtk3/master/chrome.tar.gz")
-sha256sums=('ccfa0bf5509e120b3e249f20cedaa72d47b03ac998a5a98b6dc5ce9c846681dd'
-            '940b6d8d501f55a60279b4c0a1b591300e4c7a4083bbf4454b1820f42cd05703'
+sha256sums=('909cdce75c33dc5d370aec6b9486dfe1144a5d8963098425713620e99b8f32c6'
+            'a1074bdf354e1675447615de89236bccee6082c075179b41bbb89edfc34cd552'
+            'b45e219135add294284a40eb3f72466334f3634d23d3e92a5635e15857ea534d'
+            '2c71b9e157bdbcf5da03913e048c81de4b22ce71f8345ce5bcd03405e529ee7a'
             'c9f05e7d94f828a3876cab9bc9118fcfeed095a82c2e84867fd0760aed219b5c'
             '46da02cd70ec699ac01a9add574ee3b67cf49516187678059e459ed373abbc8c')
 options=('!strip')
@@ -63,6 +67,49 @@ package() {
   
   ## Replace some other blue with green
   sed -i "s/215d9c/1ABB9B/g" gtk-3.0/gtk{,-dark}.css  
+
+  ## All remainder blue->green
+  sed -i "s/215d9c/2fb08a/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/0f2b48/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/0b1e33/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1f5894/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1d538b/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1b4e83/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/2260a0/16a085/g" gtk-3.0/gtk{,-dark}.css  
+  sed -i "s/1d4877/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/6c88a7/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/33, 93, 156/22, 160, 133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/a6bed7/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/74aae2/007f66/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/a6bed7/1ca487/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/194776/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/22558b/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1d4b7b/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1b4672/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/1e5690/2fb08a/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/205b98/2fb08a/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/21558b/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/6f91b4/007f66/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/6c8aa9/019381/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/3180d4/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/438cd8/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/85b4e6/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/74, 144, 217/22, 160, 133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/428bd7/2fb08a/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/65a1df/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/9bc2ea/007f66/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/a5c8ec/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/92bce8/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/7fb0e4/55c944/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/4787c9/16a085/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/40, 98, 159/22, 160, 133/g" gtk-3.0/gtk{,-dark}.css  
+  sed -i "s/44, 100, 160/22, 160, 133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/90aece;/059681/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/7a9ec4;/006133/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/5681ad;/007f66/g" gtk-3.0/gtk{,-dark}.css
+  sed -i "s/366ca4;/007f66/g" gtk-3.0/gtk{,-dark}.css
+
+
 
   ## Shift the hightlight-hue of all image files from blue to maia-greenish
   find . ! -type l -name "*.png" -exec mogrify -modulate 100,100,71 {} \;
