@@ -9,8 +9,8 @@ _linuxprefix=linux-rt-manjaro
 _extramodules=extramodules-4.8-rt-MANJARO
 pkgbase=$_linuxprefix-virtualbox-modules
 pkgname=("$_linuxprefix-virtualbox-host-modules" "$_linuxprefix-virtualbox-guest-modules")
-pkgver=5.1.10
-pkgrel=3
+pkgver=5.1.12
+pkgrel=1
 _pkgver="${pkgver}_OSE"
 arch=('i686' 'x86_64')
 url='http://virtualbox.org'
@@ -88,3 +88,4 @@ package_linux-rt-manjaro-virtualbox-guest-modules(){
 }
 
 # vim:set ts=2 sw=2 et:
+
