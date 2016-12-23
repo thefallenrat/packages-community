@@ -3,15 +3,15 @@
 pkgbase=manjaro-kde-settings
 pkgname=('manjaro-kde-settings'
          'manjaro-kde-minimal-settings')
-pkgver=20161025
+pkgver=20161222
 pkgrel=1
 pkgdesc="Manjaro Linux KDE settings"
 arch=('any')
 url="https://github.com/manjaro/manjaro-kde-settings"
 license=('GPL')
-_gitcommit=1ec269fc28d3368ae856f4c8751e1232fa1086ae
+_gitcommit=b91c0a45710fc9319e04f10beaa93d1a56fd3629
 source=("${pkgbase}-$_gitcommit.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('81a0e9da79bab545aaa4299193725441')
+md5sums=('8077f4328c23a5cefa91d860affc6758')
 
 pkgver() {
   date +%Y%m%d
