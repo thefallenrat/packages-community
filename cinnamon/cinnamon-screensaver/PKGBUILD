@@ -1,0 +1,42 @@
+# Maintainer: Alexandre Filgueira <alexfilgueira@cinnarch.com>
+# Based on gnome-screensaver package:
+# Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Jan de Groot <jgc@archlinux.org>
+
+pkgname=cinnamon-screensaver
+pkgver=3.2.12
+pkgrel=0.1
+pkgdesc="Screensaver designed to integrate well with the Cinnamon desktop."
+arch=('i686' 'x86_64')
+license=('GPL')
+url="https://github.com/linuxmint/cinnamon-screensaver"
+backup=(etc/pam.d/cinnamon-screensaver)
+depends=('cinnamon-desktop' 'cinnamon-translations' 'dbus-glib' 'libgnomekbd' 'python-gobject' 'gobject-introspection' 'webkit2gtk' 'xapps' 'python-cairo')
+makedepends=('intltool' 'gnome-common')
+source=($pkgname-$pkgver.tar.gz::https://github.com/linuxmint/cinnamon-screensaver/archive/$pkgver.tar.gz
+       cinnamon-screensaver.pam)
+sha256sums=('d8ec85d3b984f527790d68d61156adea84f84f35bc956d32923d5116d4937df2'
+            'c34925177c883dc4935408a4679e984855b14ef18a208bb5c7c3e5be3817619a')
+
+prepare() {
+  cd $pkgname-$pkgver
+
+  # Support new libsystemd (which replaces libsystemd-login)
+  sed -i 's/libsystemd-login/libsystemd/' configure.ac
+}
+
+build() {
+  cd $pkgname-$pkgver
+
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc \
+               --libexecdir=/usr/lib/cinnamon-screensaver \
+               --localstatedir=/var \
+               --with-mit-ext --with-systemd
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+  install -Dm644 ../cinnamon-screensaver.pam "$pkgdir/etc/pam.d/cinnamon-screensaver"
+}
