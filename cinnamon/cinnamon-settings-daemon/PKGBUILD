@@ -15,7 +15,7 @@ makedepends=('intltool' 'docbook-xsl' 'gnome-common' 'xf86-input-wacom')
 options=('!emptydirs')
 url="https://github.com/linuxmint/cinnamon-settings-daemon"
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-settings-daemon/archive/${pkgver}.tar.gz")
-sha256sums=('0726e8ce4b1008229fe157ba0888a2effa1d9efa4e60735faf67af1fde8586f1')
+sha256sums=('7541b85934d8b632dda0f6ef48dc17f10163501560d95e9f2e23e3d1dfdadea8')
 
 prepare() {
   cd $pkgname-$pkgver

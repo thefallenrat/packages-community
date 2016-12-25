@@ -15,8 +15,8 @@ depends=('cinnamon-desktop' 'cinnamon-translations' 'dbus-glib' 'libgnomekbd' 'p
 makedepends=('intltool' 'gnome-common')
 source=($pkgname-$pkgver.tar.gz::https://github.com/linuxmint/cinnamon-screensaver/archive/$pkgver.tar.gz
        cinnamon-screensaver.pam)
-sha256sums=('d8ec85d3b984f527790d68d61156adea84f84f35bc956d32923d5116d4937df2'
-            'c34925177c883dc4935408a4679e984855b14ef18a208bb5c7c3e5be3817619a')
+sha256sums=('766d9cfd64260a5f92c94a2a608ca4aabaa5b6c3054352bf3a738731fab9f1e5'
+            '7148b3b1773fa312d6cd14798338cc70cffb6df7504ff1787687edd0363138d2')
 
 prepare() {
   cd $pkgname-$pkgver
