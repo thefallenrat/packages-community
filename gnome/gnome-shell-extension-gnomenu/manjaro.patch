@@ -1,0 +1,20 @@
+--- org.gnome.shell.extensions.gnomenu.gschema.xml	2016-11-22 13:48:48.000000000 +0100
++++ org.gnome.shell.extensions.gnomenu.gschema.new.xml	2016-12-23 20:44:37.457295000 +0100
+@@ -54,7 +54,7 @@
+       <description>Set the custom view button icon name</description>
+     </key>
+     <key type="b" name="hide-panel-apps">
+-      <default>false</default>
++      <default>true</default>
+       <summary>Remove the apps button from the panel</summary>
+       <description>Remove the apps button from the panel</description>
+     </key>
+@@ -109,7 +109,7 @@
+       <description>Disable the menu button keyboard shortcut</description>
+     </key>
+     <key type="as" name="panel-menu-keyboard-accelerator">
+-        <default><![CDATA[['F2']]]></default>
++        <default><![CDATA[['<Shift>F3']]]></default>
+       <summary>Disable the menu button keyboard shortcut</summary>
+       <description>Disable the menu button keyboard shortcut</description>
+     </key>

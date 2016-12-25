@@ -7,15 +7,15 @@ _gtk3_min='3.18'
 _gtk3_max='4.0'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="3.89.1.32"
+pkgver="3.89.2.5"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
-url="https://github.com/adapta-project/${_theme_name}"
+url="https://github.com/adapta-project/${_pkgname}"
 license=('GPL2' 'CCPL')
 depends=("gtk2>=${_gtk2_min}"
          "gtk3>=${_gtk3_min}.9"
-         "gtk3<=${_gtk3_max}.99"
+         #"gtk3<=${_gtk3_max}.99"
          'gtk-engines>=2.21.0'
          'gtk-engine-murrine>=0.98.2')
 optdepends=('ttf-roboto: The recommended font'
@@ -39,18 +39,17 @@ makedepends=('libxml2'
 	     'libcanberra'
 	     'parallel')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('7ed9e4afed0fc83f425c0e145ba9c64787fa91f2c00df46e02eb79cc08331ce2')
+sha256sums=('7d746692eaa61b3435ea5e12e77c786bbafbefa92a67839f17c9957449762764')
 
 
 build() {
     cd "${_pkgname}-${pkgver}"
     ./autogen.sh --prefix "${pkgdir}/usr" \
-	         --enable-gtk_next \
                  --enable-chrome \
 		 --enable-plank \
 	         --with-selection_color=#16A085 \
 		 --with-second_selection_color=#16A085 \
-		 --enable-parallel
+		 --enable-parallel #--enable-gtk_next
 
     make
 }

@@ -2,7 +2,7 @@
 
 pkgname=gnome-shell-extension-taskbar
 pkgver=53.0
-pkgrel=2
+pkgrel=3
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
@@ -12,7 +12,7 @@ depends=('gnome-shell')
 source=("https://github.com/${_author}/${pkgname}/archive/${pkgver}.tar.gz"
 	'manjaro.patch')
 md5sums=('7abfa574f60d474baaa588c864b373f9'
-         '15eda1a0dc9f740fdda73c5208dfd145')
+         'e373aed861a0fca00edb143298b1d9f1')
 
 prepare() {
 
