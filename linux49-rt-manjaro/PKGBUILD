@@ -38,10 +38,10 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         'change-default-console-loglevel.patch'
         # MANJARO Patches
         "enable-modversions-for-symbols-exported-from-asm.patch::https://github.com/torvalds/linux/commit/334bb773.patch"
-        "https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/queue-4.9/hotplug-make-register-and-unregister-notifier-api-symmetric.patch")
+        "https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/queue-4.9/hotplug-make-register-and-unregister-notifier-api-symmetric.patch"
         # RT Patch
-        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.xz"
-        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
+        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
+        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
             '7af47f8ffc5f734aa4cea2303dd8c162c5821523015197c1b7b7261e89fab7cd'
@@ -68,7 +68,7 @@ prepare() {
   #patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # Add RT patch
-  msg "applying patch-${_pkgverrt}-${_rtpatchver}.patch"
+  msg "applying patch-${_pkgver}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgver}-${_rtpatchver}.patch"
   
   # Fix issue with not able to boot, when modversions is enabled
