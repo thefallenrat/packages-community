@@ -1,22 +1,22 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 pkgname=kde-servicemenus-pkg-tools
-pkgver=0.9.3
+pkgver=0.9.4
 pkgrel=1
-pkgdesc="Servicemenu for makepkg, pactree graph, local repo, namcap & aur upload."
+pkgdesc="Servicemenu for makepkg, pactree graph, local repo, namcap."
 arch=('any')
 url="https://github.com/udeved/kde-servicemenus-pkg-tools"
 license=('GPL2')
-depends=('kdebase-kdialog' 'kdebase-runtime' 'namcap' 'graphviz' 'pkgbuild-introspection' 'curl')
-source=("$url/archive/$pkgname-$pkgver.tar.gz")
-sha256sums=('c998f66b8f0cd5bd96fd310c6934a8c4699a7ddea5363b114f21d4e18e4f535e')
+depends=('kdialog' 'konsole' 'namcap' 'graphviz' 'curl')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+sha256sums=('b672cf3a479bd475535d377fc42d53dd36760f2dcb36585e34e859e0b4e80324')
 
 build() {
-	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver}
 	make PREFIX=/usr
 }
 
 package() {
-	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver}
 	make PREFIX=/usr DESTDIR=${pkgdir} install
 }
