@@ -12,12 +12,12 @@ pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _srcname=linux-4.8
 _basekernel=4.8
 _basever=48-rt
-_sublevel=14
+_sublevel=15
 _pkgver=${_basekernel}.${_sublevel}
 _pkgverrt=$_pkgver
 #_pkgverrt=${_basekernel}.2
 _bfq=v8r4
-_rtpatchver=rt9
+_rtpatchver=rt10
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -47,7 +47,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
-            'efa9b7d87a6ca67426e3d7f206ac987eb7cb31602ad2011e81060626de790fcb'
+            'cdeff3a6e0dc3d6189d1b1d4d6318f0942b9a28409491cf65592879e4c42b1f7'
             '5f50bb28d77980b94e5bb1ab17f9d90af67f19385fd4ede987664b99ddb681f2'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
@@ -58,7 +58,7 @@ sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
             '9adfd80d61421bdeff168035d2fa39d73af1237d89b67ce37eff1f2cb3df032e'
-            '157492d303dd0504181e55cdcfe65471c578a3a540527c1c11b0a39297b23de5'
+            '41bc353a671287ad67d077635f072b82fe5d2523b86f4fb2e6c74aaa439759ff'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 
