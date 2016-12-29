@@ -1,0 +1,26 @@
+# Contributor: Philip Müller (manjaro)
+
+pkgname=brisk-menu
+pkgver=0.0.1
+pkgrel=1
+_commit=7c94bb669c8456bc74e981704295349c0ffac7ea
+pkgdesc="A modern, clean menu for the MATE Desktop"
+arch=('i686' 'x86_64')
+url="https://github.com/solus-project/brisk-menu"
+license=('GPL')
+depends=('mate-panel-gtk3')
+makedepends=('autogen')
+source=("$pkgname-$pkgver.tar.gz::${url}/archive/${_commit}.tar.gz")
+sha256sums=('ab88caf5a17f75ca7910ddeb5085850c5ec654d5c5af832d9a53b4cba2e88070')
+
+build() {
+  cd ${pkgname}-${_commit}
+  ./autogen.sh
+  make
+}
+
+
+package() {
+  cd ${pkgname}-${_commit}
+  make DESTDIR="${pkgdir}/" install
+}
