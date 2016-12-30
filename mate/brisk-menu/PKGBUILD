@@ -1,20 +1,22 @@
-# Contributor: Philip Müller (manjaro)
+# Maintainer: Stefano Capitani stefanoatmanjarodotorg
+# Maintainer: Philip Müller (manjaro)
 
 pkgname=brisk-menu
-pkgver=0.0.1
-pkgrel=2
-_commit=995b3db33b61ec9dcdf7bba8803143df04e182bc
+pkgver=0.1.0
+pkgrel=1
+#_commit=995b3db33b61ec9dcdf7bba8803143df04e182bc
 pkgdesc="An efficient menu for the MATE Desktop"
 arch=('i686' 'x86_64')
 url="https://github.com/solus-project/brisk-menu"
 license=('GPL')
 depends=('mate-panel-gtk3')
 makedepends=('autogen')
-source=("$pkgname-$pkgver-$pkgrel.tar.gz::${url}/archive/${_commit}.tar.gz")
-sha256sums=('fd767a198e92dfc69eaee7894ca1ec519d56decc96e7b8fcf5870845cce63143')
+#source=("$pkgname-$pkgver-$pkgrel.tar.gz::${url}/archive/${_commit}.tar.gz")
+source=("${url}/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz")
+sha256sums=('f0dbdf44280044beed2d085e250493aa2de3edf3c926c8af3c4a460e2495c26c')
 
 build() {
-  cd ${pkgname}-${_commit}
+  cd ${pkgname}-${pkgver}
   ./autogen.sh \
         --prefix=/usr \
         --libdir=/usr/lib \
@@ -24,6 +26,6 @@ build() {
 
 
 package() {
-  cd ${pkgname}-${_commit}
+  cd ${pkgname}-${pkgver}
   make DESTDIR="${pkgdir}/" install
 }
