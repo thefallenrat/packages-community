@@ -2,16 +2,16 @@
 
 pkgname=brisk-menu
 pkgver=0.0.1
-pkgrel=1
-_commit=fe249bb47b15803d049693808d27e8be352aeb99
+pkgrel=2
+_commit=995b3db33b61ec9dcdf7bba8803143df04e182bc
 pkgdesc="An efficient menu for the MATE Desktop"
 arch=('i686' 'x86_64')
 url="https://github.com/solus-project/brisk-menu"
 license=('GPL')
 depends=('mate-panel-gtk3')
 makedepends=('autogen')
-source=("$pkgname-$pkgver.tar.gz::${url}/archive/${_commit}.tar.gz")
-sha256sums=('a92d6c7e40d924e94b95a31da9fda1d604e99c47802caf6bd93f1b699cf18044')
+source=("$pkgname-$pkgver-$pkgrel.tar.gz::${url}/archive/${_commit}.tar.gz")
+sha256sums=('fd767a198e92dfc69eaee7894ca1ec519d56decc96e7b8fcf5870845cce63143')
 
 build() {
   cd ${pkgname}-${_commit}
