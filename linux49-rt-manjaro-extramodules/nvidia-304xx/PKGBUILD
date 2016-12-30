@@ -25,9 +25,9 @@ install=nvidia.install
 options=(!strip)
 source=("http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
         'nvidia-3.18.patch' 'disable-mtrr.patch' 'linux49.patch')
-md5sums=('79671a27131da619a33eb02ed0c2c031'
-         ''
-         ''
+md5sums=('2ecfa6bd145f673264f7977e0366e259'
+         '79671a27131da619a33eb02ed0c2c031'
+         'c4becf1145a139cc0121be9ad340bcd8'
          'f1003d21dcadde47d532a27bdfc79b55')
 
 _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"

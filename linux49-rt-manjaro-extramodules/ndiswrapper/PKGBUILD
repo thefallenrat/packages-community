@@ -8,8 +8,7 @@
 
 _linuxprefix=linux-rt-manjaro
 _extramodules=extramodules-4.9-rt-MANJARO
-pkgbase=ndiswrapper
-pkgname=("$_linuxprefix-ndiswrapper" 'ndiswrapper-utils')
+pkgname="$_linuxprefix-ndiswrapper"
 _pkgname=ndiswrapper
 groups=("$_linuxprefix-extramodules")
 pkgver=1.59
@@ -20,6 +19,8 @@ arch=('x86_64')
 url="http://ndiswrapper.sourceforge.net"
 depends=("$_linuxprefix" 'wireless_tools' 'perl' "$_pkgname-utils")
 makedepends=("$_linuxprefix-headers")
+provides=("$_pkgname=$pkgver")
+install=ndiswrapper.install
 source=("http://downloads.sourceforge.net/sourceforge/$_pkgname/$_pkgname-$pkgver.tar.gz"
         "kernel-3.14.patch"
         "kernel-4.0.patch"
@@ -54,11 +55,9 @@ build() {
   make KVERS=$_kernver
 }
 
-package_linux49-ndiswrapper() {
+package() {
   _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
-
-  provides=("$_pkgname=$pkgver")
-  install=ndiswrapper.install
+  
   cd "$srcdir/$_pkgname-$pkgver"
 
   make INST_DIR="usr/lib/modules/$_extramodules" \
@@ -73,13 +72,4 @@ package_linux49-ndiswrapper() {
   mkdir -p $srcdir/tmp-ndis-utils/usr
   mv -v "$pkgdir/usr/share" "$srcdir/tmp-ndis-utils/usr"
   mv -v "$pkgdir/usr/bin" "$srcdir/tmp-ndis-utils/usr"
-}
-
-package_ndiswrapper-utils() {
-  pkgdesc="Utils for NDIS (Windows Network Drivers) drivers supplied by vendors."
-  pkgrel=1.0
-  depends=()
-  groups=()
-  cd $srcdir/tmp-ndis-utils
-  mv -v usr "$pkgdir"
 }

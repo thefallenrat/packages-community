@@ -19,7 +19,6 @@ cd ${pwd}/*ndiswrapper && makepkg -sf --noconfirm
 cd ${pwd}/*nvidia && makepkg -sf -d --noconfirm
 cd ${pwd}/*nvidia-304xx && makepkg -d --noconfirm
 cd ${pwd}/*nvidiabl && makepkg -sf --noconfirm
-cd ${pwd}/*open-vm-tools-modules && makepkg -sf --noconfirm
 cd ${pwd}/*r8168 && makepkg -sf --noconfirm
 cd ${pwd}/*rt3562sta && makepkg -sf --noconfirm
 cd ${pwd}/*tp_smapi && makepkg -sf --noconfirm

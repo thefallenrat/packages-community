@@ -32,6 +32,7 @@ prepare() {
     sh "${_pkg}.run" --extract-only
     cd "${_pkg}"
     # patches here
+    sed -i -e 's|MODULE_LICENSE("MIT")|MODULE_LICENSE("GPL")|g' kernel/nvidia-drm/nvidia-drm-linux.c
 }
 
 build() {
