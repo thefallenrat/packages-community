@@ -16,9 +16,9 @@ source=("${url}/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz")
 sha256sums=('f0dbdf44280044beed2d085e250493aa2de3edf3c926c8af3c4a460e2495c26c')
 
 build() {
-  cd ${pkgname}-${pkgver}
-  ./autogen.sh \
-        --prefix=/usr \
+  cd $srcdir/${pkgname}-${pkgver}
+  ./configure \
+	--prefix=/usr \
         --libdir=/usr/lib \
         --sysconfdir=/etc
   make
