@@ -1,6 +1,6 @@
 # Maintainer: Fabian Bornschein <plusfabi@gmail.com>
 pkgname=('mhwd-addon-amdgfx-hwe' 'amdgpu-experimental')
-pkgver=20161221 #date +%Y%m%d
+pkgver=20161231 #date +%Y%m%d
 pkgrel=1
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
@@ -25,7 +25,7 @@ md5sums=('67acec5caa9d5c46d3458c57b5bf738f'
          '09d943b31ab898c2b45ba597f9e9cf94'
          '58eb8d0213f03cc19a5ed74f4831c7bb'
          '5ea12c299007a61f7f2b866ea94f5b44'
-         '6a5beabef000cf05bb6aa6668aa60613'
+         '392be8d374439f6759f827cf8a1d1afc'
          'e8e61bd1915fcb606c089de8dae8f019'
          '4910bfea628bee099c7c84f1fc1476c7'
          'e11cbb13d5acabdc5d6db2ddfc9a1df0'
@@ -38,31 +38,31 @@ package_mhwd-addon-amdgfx-hwe()
     optdepends=('radeonjet-git: AMDGPU overclocking'
                 'radeontop: Radeon cards monitoring utility')
     install='mhwd-addon-amdgfx-hwe.install'
-    
+
     cd "${srcdir}"
-    
+
     # Install AMDGPU-experimental config file
     install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu-experimental+" \
     "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu-experimental+/MHWDCONFIG"
-    
+
     # Install PCI-ID file for AMDGPU-experimental Cards
     install -D -m644 "${srcdir}/amdgpu-experimental-pci.ids" \
     "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-experimental-pci.ids"
-    
-    
+
+
     # Install AMDGPU config file
     install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu+" \
     "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu+/MHWDCONFIG"
-    
+
     # Install PCI-ID file for AMDGPU Cards
     install -D -m644 "${srcdir}/amdgpu-pci.ids" \
     "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-pci.ids"
-    
-    
+
+
     # Install ATI/Radeon config file
     install -D -m644 "${srcdir}/MHWDCONFIG_video-radeon+" \
     "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-radeon+/MHWDCONFIG"
-    
+
     # install catalystuninstaller
     install -D -m755 "${srcdir}/catalystuninstall" \
     "${pkgdir}/usr/bin/catalystuninstall"
@@ -73,15 +73,15 @@ package_amdgpu-experimental()
     pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)"
     depends=('linux>=4.9')
     install='amdgpu-experimental.install'
-    
+
     cd "${srcdir}"
 
     ##################################################
     ##
-    ## install module-load file 
-    ## and radeon blacklist
-    ## and exp_hw_support
-    ## and hook
+    ## install module-load file,
+    ## radeon blacklist,
+    ## exp_hw_support,
+    ## pacman hook
     ##
     ##################################################
     install -D -m644 "${srcdir}/amdgfx-hwe-amdgpu.conf" \
