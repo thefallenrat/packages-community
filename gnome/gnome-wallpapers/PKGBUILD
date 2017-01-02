@@ -2,9 +2,9 @@
 
 pkgname=gnome-wallpapers
 _repo=Gnome-Artwork
-pkgver=20161204
+pkgver=20170102
 pkgrel=1
-_snapshot=cb82a5e966e9a88bbf649d99592ae35a515cdefc
+_snapshot=c8815658d6e679d183fac594b4cf3fc062ea3434
 pkgdesc='Manjaro Linux Gnome wallpapers'
 arch=('any')
 url="https://github.com/Ste74/$_repo"
