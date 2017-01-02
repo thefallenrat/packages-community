@@ -1,18 +1,17 @@
 # Based on the file created for Arch Linux by: Frank Vanderham
 
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
-# Maintainer: Guinux <guillaume@manjaro.org>
-# Maintainer: Roland Singer <roland@manjaro.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.8-rt-MANJARO
+_extramodules=extramodules-4.9-rt-MANJARO
 pkgname=$_linuxprefix-broadcom-wl
 _pkgname=broadcom-wl
 pkgver=6.30.223.271
-pkgrel=1
+pkgrel=2
 pkgdesc='Broadcom 802.11 Linux STA wireless driver BCM43142.'
 url='https://bbs.archlinux.org/viewtopic.php?id=145884'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 license=('custom')
 depends=("$_linuxprefix")
 makedepends=("broadcom-wl-dkms>=$pkgver"

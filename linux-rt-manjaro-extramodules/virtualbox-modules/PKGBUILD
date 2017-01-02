@@ -2,21 +2,22 @@
 # Ionut Biru <ibiru@archlinux.org>
 # Sébastien Luttringer <seblu@aur.archlinux.org>
 
-# Maintainer: Philip Müller <philm@manjaro.org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Philip Müller <philm@manjaro.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.8-rt-MANJARO
+_extramodules=extramodules-4.9-rt-MANJARO
 pkgbase=$_linuxprefix-virtualbox-modules
 pkgname=("$_linuxprefix-virtualbox-host-modules" "$_linuxprefix-virtualbox-guest-modules")
 pkgver=5.1.12
-pkgrel=2
 _pkgver="${pkgver}_OSE"
-arch=('i686' 'x86_64')
+pkgrel=3
+arch=('x86_64')
 url='http://virtualbox.org'
 license=('GPL')
 depends=("$_linuxprefix")
 groups=("$_linuxprefix-extramodules")
+
 makedepends=("virtualbox-host-dkms>=$pkgver"
              "virtualbox-guest-dkms>=$pkgver"
              'dkms'
@@ -86,6 +87,4 @@ package_linux-rt-manjaro-virtualbox-guest-modules(){
   echo "vboxsf" >> "$pkgdir/etc/modules-load.d/$_linuxprefix-virtualbox-guest-modules.conf"
   echo "vboxvideo" >> "$pkgdir/etc/modules-load.d/$_linuxprefix-virtualbox-guest-modules.conf"
 }
-
-# vim:set ts=2 sw=2 et:
 
