@@ -5,7 +5,7 @@
 # Contributor: David Manouchehri <d@32t.ca>
 
 pkgname=dropbox
-pkgver=16.4.29
+pkgver=16.4.30
 pkgrel=1
 pkgdesc="A free service that lets you bring your photos, docs, and videos anywhere and share them easily."
 arch=("i686" "x86_64")
@@ -24,16 +24,16 @@ source=("dropbox"
         "dropbox.service"
         "dropbox@.service"
         "terms.txt")
-source_i686=("dropbox-lnx.x86-${pkgver}.tar.gz::https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86-${pkgver}.tar.gz")
-source_x86_64=("dropbox-lnx.x86_64-${pkgver}.tar.gz::https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86_64-${pkgver}.tar.gz")
+source_i686=("$pkgname-lnx.x86-$(date +%Y%m%d).tar.gz::$url/download?plat=lnx.x86")
+source_x86_64=("$pkgname-lnx.x86_64-$(date +%Y%m%d).tar.gz::$url/download?plat=lnx.x86_64")
 sha256sums=('4240052a07a0f38dbdea6f199d5f1fc7b04ace9bf7474a63f09bdff7682a5154'
             '541f2fd2de0d601a08cde7853e404062f542af21e6e7106825b5e68177168e0f'
             'e7d245f5d1a3d5322614b61400ae2913a8caef44bc86717ff7d8197a15dd7f01'
             '5ea25085d97708d9c9ffe3d0754dab3e09937ba8111a80b67e443dae3c15503e'
             '85ccabbe4e1f2dc67a480bc074d949578b148168a656dcb19860bb9c4f7b3e8a'
             'c39d63bcfc0d40002a5df052298feb79f2e8dd3d93da27ef31eb672b8d2fc70e')
-sha256sums_i686=('6b09d22a7e88f8b85651f286c2a06d53327b66f594f745d53e83b0a980768541')
-sha256sums_x86_64=('c118b90118b1203cdea0a213b9548b9d9015ee205989305a62232f1d710acf7e')
+sha256sums_i686=('dc409a6b23b2f33470fb3cf994eae24b197b41ca51e62cc73c61508a4a41b65d')
+sha256sums_x86_64=('8b1763083b8a2df0e7016cdb4281df479141d68f70754a9d7f2692d04460dc46')
 
 if [ "$CARCH" = "x86_64" ]; then
     _source_arch="x86_64"
@@ -42,15 +42,18 @@ else
 fi
 
 prepare() {
-    cd .dropbox-dist/dropbox-lnx.${_source_arch}-${pkgver}
+    cd .${pkgname}-dist/${pkgname}-lnx.${_source_arch}-*
     rm library.zip
-    ln -s dropbox library.zip
+    ln -s ${pkgname} library.zip
     chrpath -d plugins/platforms/libqxcb.so
 }
 
-package() {
-    cd .dropbox-dist
+pkgver() {
+    cat .$pkgname-dist/VERSION
+}
 
+package() {
+    cd .${pkgname}-dist
     install -dm755 "$pkgdir"/opt
     cp -dr --no-preserve='ownership' dropbox-lnx.${_source_arch}-${pkgver} "${pkgdir}"/opt/dropbox
     find "${pkgdir}"/opt/dropbox -type d -exec chmod 755 {} +
