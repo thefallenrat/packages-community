@@ -2,8 +2,7 @@
 
 pkgbase=palemoon-i18n
 pkgver=27.0.0
-pkgrel=0.3
-_rc=RC14
+pkgrel=1
 pkgdesc="Language pack for Palemoon"
 arch=('any')
 url="http://www.palemoon.org/langpacks.shtml"
@@ -17,6 +16,7 @@ _languages=(
 'de    "German"'
 #'el    "Greek (Modern)"'
 #'en-GB "English (U.K.)"'
+#'eo    "Esperanto"'
 'es-AR "Spanish (Argentina)"'
 'es-ES "Spanish (Spain)"'
 'es-MX "Spanish (Mexico)"'
@@ -48,8 +48,7 @@ _languages=(
 
 pkgname=()
 source=()
-#_url=http://relmirror.palemoon.org/langpacks/${pkgver%.*}.x
-_url="https://github.com/JustOff/pale-moon-localization/releases/download/${pkgver}_$_rc"
+_url="http://relmirror.palemoon.org/langpacks/${pkgver%.*.*}.x"
 
 for _lang in "${_languages[@]}"; do
   _locale=${_lang%% *}
@@ -71,15 +70,15 @@ _package() {
     "$pkgdir/usr/lib/palemoon/browser/extensions/langpack-$1@palemoon.org.xpi"
 }
 
-md5sums=('2ae0049027765808bd5177b205f15014'
-         '0cce607098111fda650ff77990e016ee'
-         'aa640496a79048a2445dda21424f33a0'
-         'cfec1a6360a011d3e47534cb24978bbf'
-         'b4c5eeff972a9f0d7d62bc80efb8c35e'
-         '8a2cb2200073ac639b3e7f292b5af793'
-         'c4d3e51d817a7cd61c2bd8ca4849f77a'
-         'bb3bc2f83fc79cfbc4e528702e15157e'
-         '1b18da75afe1ce2a4d42c0376bfae582'
-         'a12a2d704ce3bf7343cb2715a1e85c6f'
-         '6d06b932de92ef030198804b8e805500'
-         'de531537423d4d6037c9ef9dc5426569')
+md5sums=('688ee4526687bb07743f7d086ff7ef69'
+         'f6eaf9ea89c28a4e0b04f80a6dac2d3b'
+         'f898a853588e8092bbc68242bee7a33c'
+         '623575863ca4f01634b60e92dfd0a736'
+         '1a50ad124a252c646b99f9c80182e1ac'
+         'afe69dc69eccefc722ecfc7fdc5c58f9'
+         '2a4fe1dc7b03f4907cbad54eb113ea68'
+         '188b4467bcceca16a536a2c112962533'
+         'a61aed35e86829cd596a96339f0ea169'
+         'd19b077a5d5338e1bad50127923f8dd7'
+         '0acb895bdf74604c5ecf0bba8468d17b'
+         '903d1404634287de0bf1f6d1b20457b1')
