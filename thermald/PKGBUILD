@@ -2,31 +2,32 @@
 # Contributor: wallnuss <v dot churavy at gmail dot com
 # Contributor: WonderWoofy <sugar.and.scruffy@gmail.com>
 
+_commit=9da0730 # https://goo.gl/pbimFS
 _pkgname=thermal_daemon
 pkgname=thermald
 pkgver=1.5.3
-pkgrel=1
+pkgrel=2
 pkgdesc="The Linux Thermal Daemon program from 01.org"
 arch=('i686' 'x86_64')
 url="https://github.com/01org/${_pkgname}"
 license=('GPL2')
-makedepends=('systemd')
+makedepends=('bash' 'systemd' 'git')
 depends=('dbus-glib>=0.94' 'libxml2>=2.4')
 conflicts=('thermald-git')
 backup=('etc/thermald/thermal-conf.xml')
 install="${pkgname}.install"
-source=("${url}/archive/v${pkgver}.tar.gz")
-sha256sums=('e20b450ef27a5b5e45474c831663c8f5ecd14c82ace5a4b1e06c442e0a23b53e')
+source=("${_pkgname}::git+${url}.git#commit=${_commit}")
+sha256sums=('SKIP')
           
 build() {
-    cd ${_pkgname}-${pkgver}
+    cd ${_pkgname}
     ./autogen.sh
     ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin
     make
 }
 
 package() {
-    cd ${_pkgname}-${pkgver}
+    cd ${_pkgname}
     make DESTDIR="$pkgdir" install
     mkdir -p ${pkgdir}/etc/{systemd/system/thermald.service.d,modules-load.d}
     # required modules load during boot
