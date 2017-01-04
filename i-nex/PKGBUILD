@@ -3,9 +3,9 @@
 
 pkgname=i-nex
 _gitname=I-Nex
-_gitcommit=08cd99f
+_gitcommit=c307f07
 pkgver=7.6.0
-pkgrel=1
+pkgrel=2
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
 url="http://i-nex.linux.pl/"
@@ -21,6 +21,7 @@ depends=('gambas3-runtime'
 	'xorg-server-utils'
 	'lsb-release'
 	'curl'
+	'pastebinit'
 	'procps-ng')
 makedepends=('gambas3-devel' 'gcc' 'imagemagick' 'git')
 source=("git+https://github.com/eloaders/${_gitname}.git#commit=${_gitcommit}")
@@ -30,7 +31,6 @@ conflicts=('i-nex-git' 'i-nex-bzr' 'i-nex-dev')
 
 prepare() {
     cd ${_gitname}
-    sed -i 's|python3$|python2|' pastebinit
     sed -i -e 's|^STATIC.*|STATIC = false|' i-nex.mk
     sed -i -e 's|^UDEV_RULES_DIR.*|UDEV_RULES_DIR = /usr/lib/udev/rules.d|' i-nex.mk
     cd ${_gitname}
@@ -41,10 +41,10 @@ build() {
     cd ${_gitname}/${_gitname}
     ./configure --prefix=/usr
     cd ..
-    make
+    make -j1
 }
  
 package() {
     cd ${_gitname}
-    make install DESTDIR="$pkgdir"
+    make -j1 install DESTDIR="$pkgdir"
 }
