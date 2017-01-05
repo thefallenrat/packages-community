@@ -1,4 +1,4 @@
-# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgbase=desktop-settings
@@ -12,7 +12,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20161227
+pkgver=20170105
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -87,7 +87,8 @@ package_manjaro-cinnamon-settings() {
         'vertex-maia-themes'
         'xcursor-breeze'
         'manjaro-base-skel')
-    optdepends=('plymouth-theme-manjaro-cinnamon')
+    optdepends=('plymouth-theme-manjaro-cinnamon'
+                'cinnamon-sounds')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
