@@ -175,14 +175,14 @@ package_manjaro-mate-settings() {
     depends=('manjaro-base-skel'
                 'xcursor-breeze'
                 'arc-themes-maia'
-                'vertex-maia-icon-theme'
+		'arc-maia-icon-theme'
                 'maia-wallpaper'
 		'gnome-icon-theme'
 		'gnome-icon-theme-extras'
 		'gnome-icon-theme-symbolic'
                 'qt5-styleplugins'
                 'qt5ct')
-    optdepends=('firefox-arc-maia-settings')
+    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
