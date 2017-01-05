@@ -3,7 +3,7 @@
 
 _repo=desktop-settings
 pkgname=('manjaro-mate-panel-layout')
-pkgver=20161219
+pkgver=20170105
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
