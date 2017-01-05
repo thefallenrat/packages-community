@@ -6,10 +6,10 @@
 ### NOTE ### Forked sources have merged ALL major fixes from develop branch (https://github.com/Bumblebee-Project/Bumblebee/commits/develop)
 ### Reference: https://forum.manjaro.org/t/bumblebee-not-switching-back-to-igpu-after-quitting-optirun/1054/12?u=fademind
 
-_commit=101920c01c3f272933bd7bc56af29a9446c1a8d0 # lastest commit from 20160520
+_commit=c751fca79bfabf6e8cd7f33c68036b76ba0ef060 # lastest commit from 20170105
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=14
+pkgrel=15
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 depends=('kmod' 'primus' 'glib2' 'mesa-libgl')
@@ -29,7 +29,7 @@ backup=('etc/bumblebee/bumblebee.conf'
         'etc/bumblebee/xorg.conf.nvidia')
 install='bumblebee.install'
 source=("${pkgname}.zip::https://github.com/FadeMind/Bumblebee/archive/${_commit}.zip")
-sha256sums=('242b4a71228f0fbf7657c8d9a6231c93c24d20ffcbc7bc33af349b6f5b29707c')
+sha256sums=('2053485c47ddaa1ce5256c4026cbb50b79a511a6e87b700f43caa898f50793a8')
 
 build() {    
     cd "${srcdir}/Bumblebee-${_commit}"
@@ -56,9 +56,6 @@ package() {
     # Install systemd unit
     install -Dm644 "scripts/systemd/bumblebeed.service" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"    
     sed -i "s/sbin/bin/" "${pkgdir}/usr/lib/systemd/system/bumblebeed.service"
-
-    # Make bash_completion work
-    mv -v "${pkgdir}/etc/bash_completion.d/bumblebee" "${pkgdir}/etc/bash_completion.d/optirun"
     
     # Install udev rule to prevent GH-#144
     install -Dm644 "conf/99-bumblebee-nvidia-dev.rules" "${pkgdir}/usr/lib/udev/rules.d/99-bumblebee-nvidia-dev.rules"
