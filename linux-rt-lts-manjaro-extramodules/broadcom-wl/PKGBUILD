@@ -18,6 +18,7 @@ makedepends=("broadcom-wl-dkms>=$pkgver"
 groups=('linux-rt-lts-manjaro-extramodules')
 provides=("$_pkgname=$pkgver")
 install=broadcom-wl.install
+backup=('etc/modprobe.d/linux-rt-lts-manjaro-broadcom-wl.conf')
 source=(broadcom-wl-dkms.conf)
 sha256sums=('b97bc588420d1542f73279e71975ccb5d81d75e534e7b5717e01d6e6adf6a283')
 
