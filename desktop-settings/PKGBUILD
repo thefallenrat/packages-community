@@ -12,7 +12,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170106
+pkgver=20170107
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -173,6 +173,19 @@ package_manjaro-lxde-settings() {
 package_manjaro-mate-settings() {
     pkgdesc='Manjaro Linux mate settings'
     depends=('manjaro-base-skel'
+		'mate-desktop-gtk3'
+		'mate-menus'
+		'caja-gtk3'
+		'marco-gtk3'
+		'mate-control-center-gtk3'
+		'mate-gtk3-manjaro'
+		'mate-polkit'
+		'mate-session-manager'
+		'mate-settings-daemon-gtk3'	
+		'brisk-menu'
+		'manjaro-mate-panel-layout'
+		'mate-wallpapers'
+		'mate-notification-theme-slate'
                 'xcursor-breeze'
                 'arc-themes-maia'
 		'arc-maia-icon-theme'
@@ -182,7 +195,8 @@ package_manjaro-mate-settings() {
 		'gnome-icon-theme-symbolic'
                 'qt5-styleplugins'
                 'qt5ct')
-    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme')
+    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme' 
+'mate-icon-theme' 'mate-themes' 'mate-user-guide')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
