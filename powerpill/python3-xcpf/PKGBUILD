@@ -1,14 +1,14 @@
 #Maintainer: Xyne <ac xunilhcra enyx, backwards>
 pkgname=python3-xcpf
-pkgver=2016.11
+pkgver=2017
 pkgrel=1
 pkgdesc="Xyne's common Pacman functions, for internal use."
 arch=(any)
 license=(GPL)
 url="http://xyne.archlinux.ca/projects/python3-xcpf"
 depends=(python3 pyalpm python3-xcgf)
-source=(http://xyne.archlinux.ca/projects/python3-xcpf/src/python3-xcpf-${pkgver}.tar.xz)
-md5sums=('de1b5ef68b37e4145a7d030ada219538')
+source=($url/src/$pkgname-$pkgver.tar.xz)
+md5sums=('52fc784491685654fb5b6312d0e7aa63')
 
 package () {
   cd "$srcdir/$pkgname-$pkgver"
