@@ -5,8 +5,8 @@
 # Contributor: CReimer
 
 pkgname=cinnamon
-pkgver=3.2.7
-pkgrel=2.1
+pkgver=3.2.8
+pkgrel=1.1
 pkgdesc="Linux desktop which provides advanced innovative features and a traditional user experience"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/Cinnamon"
@@ -25,13 +25,12 @@ options=('!emptydirs')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/$pkgver.tar.gz"
         "set_wheel.patch"
         "default-theme.patch"
-        'add-msm.patch'
-        "Fix_tuples_for_python_3.6.patch::$url/commit/3936ac1e355e9a5f1c2edd1aae4e6da9d2855f45.patch")
-sha256sums=('69ab4510e4239f577a7acc7ea987d0522caa9796bfaa4a062a5009009ebc5a80'
+        'add-msm.patch')
+sha256sums=('b67ef52f239026930ba351f327e8298361dabf881a0af6c299530e83c62fac9a'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
-            '6403e9e8d8c978b4467b2b39c41d0ed21633789e1867004417b4ef519a375372'
-            '83b6c41300a90ab8c758f028abba3f51155614b4e86ceb8ac4f0e012447ef58d')
+            '6403e9e8d8c978b4467b2b39c41d0ed21633789e1867004417b4ef519a375372')
+            
 prepare() {
   cd ${srcdir}/Cinnamon*
 
@@ -47,9 +46,6 @@ prepare() {
   
   # add MSM to cinnamon-settings
   patch -Np1 -i ../add-msm.patch
-
-  # python 3.6 patch
-  patch -Np1 -i ../Fix_tuples_for_python_3.6.patch
   
   # Add polkit agent to required components
   sed -i 's/RequiredComponents=\(.*\)$/RequiredComponents=\1polkit-gnome-authentication-agent-1;/' \
