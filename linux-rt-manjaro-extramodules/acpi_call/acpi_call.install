@@ -1,4 +1,4 @@
-EXTRAMODULES=extramodules-4.8-rt-MANJARO
+EXTRAMODULES=extramodules-4.9-rt-MANJARO
 
 post_install() {
   echo "  > Updating module dependencies..."
@@ -12,5 +12,3 @@ post_upgrade() {
 post_remove() {
   post_install
 }
-
-# vim: ts=2 sw=2 et:

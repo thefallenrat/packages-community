@@ -1,0 +1,39 @@
+# Maintainer: Alexandre Filgueira <alexfilgueira@cinnarch.com>
+# Based on gnome-screensaver package:
+# Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Jan de Groot <jgc@archlinux.org>
+
+pkgname=cinnamon-screensaver
+pkgver=3.2.12
+pkgrel=0.2
+pkgdesc="Screensaver designed to integrate well with the Cinnamon desktop."
+arch=('i686' 'x86_64')
+license=('GPL')
+url="https://github.com/linuxmint/cinnamon-screensaver"
+backup=(etc/pam.d/cinnamon-screensaver)
+depends=('cinnamon-desktop' 'cinnamon-translations' 'dbus-glib' 'libgnomekbd' 'python-gobject' 'gobject-introspection' 'webkit2gtk' 'xapps' 'python-cairo' 'python-setproctitle')
+makedepends=('intltool' 'gnome-common')
+source=($pkgname-$pkgver.tar.gz::https://github.com/linuxmint/cinnamon-screensaver/archive/$pkgver.tar.gz
+        check_for_pamhelper_in_subdir.patch::$url/commit/82616b6bd19890797130d09be303b6bd23401ad8.patch)
+sha256sums=('766d9cfd64260a5f92c94a2a608ca4aabaa5b6c3054352bf3a738731fab9f1e5'
+            '3dc38955607610ace81e3998217d80a8e8fde6866713df73aab13925dcf3986d')
+
+prepare() {
+  cd $pkgname-$pkgver
+  patch -Np1 -i $srcdir/check_for_pamhelper_in_subdir.patch
+}
+
+build() {
+  cd $pkgname-$pkgver
+
+  ./autogen.sh --prefix=/usr --sysconfdir=/etc \
+               --libexecdir=/usr/lib/cinnamon-screensaver \
+               --localstatedir=/var \
+               --with-mit-ext --with-systemd
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}

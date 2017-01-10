@@ -1,0 +1,25 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=cinnamon-sounds
+_pkgname=mint-artwork-cinnamon
+pkgver=5.4
+_cpkg=mint-artwork-common
+_cver=2.1.0
+pkgrel=1
+pkgdesc='Original Linux Mint sounds for the Cinnamon desktop.'
+arch=('any')
+license=('GPL')
+depends=('cinnamon')
+conflicts=('mint-sounds' 'cinnamon-sound-effect')
+url='http://linuxmint.com'
+_durl='https://ftp.fau.de/mint/packages/pool/main/m'
+source=("$_durl/$_cpkg/${_cpkg}_$_cver.tar.gz"
+        "$_durl/$_pkgname/${_pkgname}_$pkgver.tar.gz")
+sha256sums=('d207586a139b950302a6aac31f413a7ae7a231f9f79713a800a8d1790dfb480b'
+            '1e90a255a9a8aed183fd5d1f8fb8fa93b367de278688c35f421573ca237efe4b')
+
+package() {
+    install -dm755 $pkgdir/usr/share/sounds
+	cp -r $_cpkg-$_cver/usr/share/sounds/LinuxMint $pkgdir/usr/share/sounds
+	cp $_pkgname-$pkgver/usr/share/$_pkgname/sounds/* $pkgdir/usr/share/sounds/LinuxMint/stereo
+}

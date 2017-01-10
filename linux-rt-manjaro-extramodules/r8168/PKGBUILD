@@ -3,16 +3,15 @@
 # Bob Fanger < bfanger(at)gmail >
 # Filip <fila pruda com>, Det < nimetonmaili(at)gmail >
 
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
-# Maintainer: Guinux <guillaume@manjaro.org>
-# Maintainer: Rob McCathie <rob@manjaro.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.8-rt-MANJARO
+_extramodules=extramodules-4.9-rt-MANJARO
 pkgname=$_linuxprefix-r8168
 _pkgname=r8168
 pkgver=8.040.00
-pkgrel=16
+pkgrel=18
 pkgdesc="A kernel module for Realtek 8168 network cards"
 url="http://www.realtek.com.tw"
 license=("GPL")
@@ -21,10 +20,9 @@ depends=('glibc' "$_linuxprefix")
 makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
-source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$pkgname-$pkgver.tar.gz"
-	kernel-47.patch)
+source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$_pkgname-$pkgver.tar.gz" kernel-47.patch)
 sha256sums=('1f7aad3a066c152837e03e558ba720742e792d281c96c5412cff32d68875415b'
-	'e07268ca066f3ebefa1455465eabb601a4670deef56313580de80eb45ef2e1ce')
+            'e07268ca066f3ebefa1455465eabb601a4670deef56313580de80eb45ef2e1ce')
 install=$_pkgname.install
 
 prepare() {

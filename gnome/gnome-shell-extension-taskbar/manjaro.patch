@@ -1,5 +1,6 @@
---- extension.js	2016-11-14 11:55:53.000000000 +0100
-+++ extension-new.js	2016-11-18 22:22:58.129127183 +0100
+diff -rupN gnome-shell-extension-taskbar-53.0/extension.js gnome-shell-extension-taskbar-53.0-new/extension.js
+--- gnome-shell-extension-taskbar-53.0/extension.js	2016-11-14 11:55:53.000000000 +0100
++++ gnome-shell-extension-taskbar-53.0-new/extension.js	2016-12-25 22:14:26.082166604 +0100
 @@ -771,7 +771,7 @@ TaskBar.prototype =
          if ((this.settings.get_boolean("first-start")) && (Main.sessionMode.currentMode === 'user'))
          {
@@ -9,3 +10,24 @@
              this.settings.set_boolean("first-start", false);
          }
          //Find out if the bottom panel extension is enabled
+diff -rupN gnome-shell-extension-taskbar-53.0/schemas/org.gnome.shell.extensions.TaskBar.gschema.xml gnome-shell-extension-taskbar-53.0-new/schemas/org.gnome.shell.extensions.TaskBar.gschema.xml
+--- gnome-shell-extension-taskbar-53.0/schemas/org.gnome.shell.extensions.TaskBar.gschema.xml	2016-11-14 11:55:53.000000000 +0100
++++ gnome-shell-extension-taskbar-53.0-new/schemas/org.gnome.shell.extensions.TaskBar.gschema.xml	2016-12-25 22:13:00.861570676 +0100
+@@ -90,7 +90,7 @@
+     </enum>
+     <schema path="/org/gnome/shell/extensions/TaskBar/" id="org.gnome.shell.extensions.TaskBar">
+         <key name="first-start" type="b">
+-            <default>true</default>
++            <default>false</default>
+             <summary>Display Preferences on the first start of TaskBar</summary>
+             <description/>
+         </key>
+@@ -115,7 +115,7 @@
+             <description/>
+         </key>
+         <key name="display-showapps-button" type="b">
+-            <default>true</default>
++            <default>false</default>
+             <summary>Display Show Applications Button</summary>
+             <description/>
+         </key>

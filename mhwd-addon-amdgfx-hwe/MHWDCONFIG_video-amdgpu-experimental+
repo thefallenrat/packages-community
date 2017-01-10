@@ -66,7 +66,7 @@ fn_pacman_install()
         else
             ${PACINST} ${PACMAN_S}
     fi
-    
+
     fn_exitOnFail
 }
 
@@ -78,7 +78,7 @@ fn_pacman_remove()
         else
             ${PACREM} ${PACMAN_R}
     fi
-    
+
     fn_exitOnFail
 }
 
@@ -99,7 +99,7 @@ post_install()
     mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
 
-post_remove() 
+post_remove()
 {
     fn_pacman_remove
     mhwd-gpu --check

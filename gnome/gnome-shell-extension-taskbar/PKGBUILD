@@ -2,7 +2,7 @@
 
 pkgname=gnome-shell-extension-taskbar
 pkgver=53.0
-pkgrel=1
+pkgrel=3
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
@@ -12,13 +12,13 @@ depends=('gnome-shell')
 source=("https://github.com/${_author}/${pkgname}/archive/${pkgver}.tar.gz"
 	'manjaro.patch')
 md5sums=('7abfa574f60d474baaa588c864b373f9'
-         '284c5e6f9e62d8a020392e47d0d2ff56')
+         'e373aed861a0fca00edb143298b1d9f1')
 
 prepare() {
 
-#Add patch to inhibit configuration at the first launch
+#Add patch to inhibit configuration at the first launch and show the apps menù
 	cd "${srcdir}/${pkgname}-${pkgver}/"
-	patch -i  ../manjaro.patch
+	patch -p1 -i ../manjaro.patch
 }
 
 package() {

@@ -7,8 +7,8 @@
 
 pkgname=conky-lua-nv
 _pkgname=conky
-pkgver=1.10.2
-pkgrel=1
+pkgver=1.10.6
+pkgrel=2
 pkgdesc="An advanced system monitor for X based on torsmo with lua and nvidia enabled"
 arch=('i686' 'x86_64')
 url="https://github.com/brndnmtthws/$_pkgname"
@@ -16,7 +16,7 @@ license=('GPL3' 'BSD')
 conflicts=('conky' 'conky-lua')
 provides=("conky=$pkgver" 'conky-lua')
 depends=('alsa-lib' 'libxml2' 'curl' 'cairo' 'wireless_tools'
-	'libxft' 'glib2' 'libxdamage' 'libxinerama' 'imlib2' 'lua51' 'librsvg' 'tolua++')
+	'libxft' 'libxnvctrl' 'glib2' 'libxdamage' 'libxinerama' 'imlib2' 'lua51' 'librsvg' 'tolua++')
 makedepends=('cmake' 'docbook2x' 'docbook-xml' 'docbook-xsl' 'libxnvctrl'
 	'man-db' 'perl-xml-libxml')
 optdepends=('nvidia: for GT4xx and newer GPUs',
@@ -25,7 +25,7 @@ optdepends=('nvidia: for GT4xx and newer GPUs',
 source=(https://github.com/brndnmtthws/$_pkgname/archive/v$pkgver.tar.gz
         ascii.patch
         fix_build.patch)
-sha1sums=('7392523d2eb9e2044faae8d44cbd006b387d0a85'
+sha1sums=('54cb3322dc3a969f1fda03383012c61d57261345'
           '96cdbc38e8706c8a3120601983df5c7265716128'
           '2ca9d68c6421f9f602bd85cc7b920faa68ae8fec')
 options=('!strip' 'debug')

@@ -4,28 +4,28 @@
 pkgname=gnome-shell-extension-gnomenu
 _pkgname=gno-menu
 pkgver=21
-pkgrel=1
-_git=no
+pkgrel=3
+_git=yes
 pkgdesc="GnoMenu is a traditional styled full featured Gnome-Shell apps-menu, that aims to offer all the essentials in a simple uncluttered intuitive interface."
 arch=(any)
 url="https://github.com/The-Panacea-Projects/Gnomenu"
 license=(GPL3)
 depends=('gnome-shell>=3.20' 'gnome-tweak-tool')
 makedepends=(git)
-md5sums=('70e2a05fed399fff7aeb0e595e30f914'
-         '44de36d617e1e660de9386d6b05d4e54')
+md5sums=('SKIP'
+         '84022d5e9ecb861601fbe86ce0ca7a06')
 
 if [ "$_git" == "yes" ]; then
 _snapshot=$(git log --pretty=format:'%h' -n 1)
    source=("$_pkgname.v$pkgver::git+$url"
-	   "org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
+	   "manjaro.patch")
 
 prepare() {
 
-# Override the shortcut to call gnomenu: default is F2 now <Shift>F3
+# Override the shortcut to call gnomenu (default is F2 now <Shift>F3)
 
 cd ${_pkgname}.v${pkgver}/schemas
-  patch -N -i ${srcdir}/org.gnome.shell.extensions.gnomenu.gschema.xml.patch
+  patch -N -i ${srcdir}/manjaro.patch
 }
 
 package(){
@@ -34,12 +34,15 @@ package(){
 	mv $pkgdir/usr/share/gnome-shell/extensions/$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
 	cd $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/
         rm -rf .git* Screenshot.png README.md
+#Remove the precompiled gschemas because with this i can't override the menù ( hide apps menù by default )
+	rm -f /usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/schemas/gschemas.compiled
+
 }
 
 else
 
    source=("https://github.com/The-Panacea-Projects/Gnomenu/archive/$_pkgname.v$pkgver.tar.gz"
-	   "org.gnome.shell.extensions.gnomenu.gschema.xml.patch")
+	   "manjaro.patch")
 
 prepare() {
 
@@ -48,7 +51,7 @@ prepare() {
   cd Gnomenu-${_pkgname}.v${pkgver}/schemas
 
 
-  patch -N -i ${srcdir}/org.gnome.shell.extensions.gnomenu.gschema.xml.patch
+  patch -N -i ${srcdir}/manjaro.patch
 }
 
 
@@ -59,6 +62,8 @@ prepare() {
 	mv $pkgdir/usr/share/gnome-shell/extensions/Gnomenu-$_pkgname.v$pkgver $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com
 	cd $pkgdir/usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/
         rm -rf .git* Screenshot.png README.md
+#Remove the precompiled gschemas because with this i can't override the menù ( hide apps menù by default )
+	rm -f /usr/share/gnome-shell/extensions/gnomenu@panacier.gmail.com/schemas/gschemas.compiled
 }
 fi
 

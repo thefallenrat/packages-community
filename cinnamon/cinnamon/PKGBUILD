@@ -1,12 +1,12 @@
-# $Id$
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Alexandre Filgueira <alexfilgueira@cinnarch.com>
 # Contributor: M0Rf30
 # Contributor: unifiedlinux
 # Contributor: CReimer
 
 pkgname=cinnamon
-pkgver=3.2.1
-pkgrel=4.1
+pkgver=3.2.8
+pkgrel=1.1
 pkgdesc="Linux desktop which provides advanced innovative features and a traditional user experience"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/Cinnamon"
@@ -26,10 +26,11 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/
         "set_wheel.patch"
         "default-theme.patch"
         'add-msm.patch')
-sha256sums=('4fc7021815fe138d932d63de95b879ae557bca90d39f41bc015d42ce131aa998'
+sha256sums=('b67ef52f239026930ba351f327e8298361dabf881a0af6c299530e83c62fac9a'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
             '6403e9e8d8c978b4467b2b39c41d0ed21633789e1867004417b4ef519a375372')
+            
 prepare() {
   cd ${srcdir}/Cinnamon*
 
@@ -45,7 +46,7 @@ prepare() {
   
   # add MSM to cinnamon-settings
   patch -Np1 -i ../add-msm.patch
-
+  
   # Add polkit agent to required components
   sed -i 's/RequiredComponents=\(.*\)$/RequiredComponents=\1polkit-gnome-authentication-agent-1;/' \
     files/usr/share/cinnamon-session/sessions/cinnamon*.session

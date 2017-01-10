@@ -1,14 +1,14 @@
 #Maintainer: Xyne <ac xunilhcra enyx, backwards>
 pkgname=python3-xcgf
-pkgver=2016.4.26
+pkgver=2017
 pkgrel=1
 pkgdesc="Xyne's common general functions, for internal use."
 arch=(any)
 license=(GPL)
 url="http://xyne.archlinux.ca/projects/python3-xcgf"
 depends=(python)
-source=(http://xyne.archlinux.ca/projects/python3-xcgf/src/python3-xcgf-${pkgver}.tar.xz)
-md5sums=('a7867d3651ba09812286915a1a5425d1')
+source=($url/src/$pkgname-$pkgver.tar.xz)
+md5sums=('37ef9d4a150e427d09312f1808ecc92a')
 
 package () {
   cd "$srcdir/$pkgname-$pkgver"

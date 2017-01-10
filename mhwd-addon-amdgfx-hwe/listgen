@@ -43,7 +43,7 @@ function fn_download()
         echo "Missing or wrong file in downloadpath"
         exit 1
     fi
-    
+
     # extrackt AMD part
     ## remove everything before ^1002
     sed -i -n '/^1002/,$p' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
@@ -54,7 +54,7 @@ function fn_download()
     ## remove sub-IDs
     sed -i 's/^\t//g' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
     sed -i '/^\t/ d' "${UPSTREAM_LISTFILE_LOCAL_PATH}"
-    
+
     echo -e "\n"
 }
 

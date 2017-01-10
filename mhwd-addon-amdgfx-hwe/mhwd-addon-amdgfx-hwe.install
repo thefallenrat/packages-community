@@ -43,7 +43,7 @@ fn_remover()
             if [ -f "${XORGFILELINK}" ]
                 then
                     rm "${XORGFILELINK}"
-            fi 
+            fi
     fi
 }
 
@@ -83,12 +83,12 @@ fn_removedriver_amdgpu-experimental-mesa-extras()
     fn_remover
 }
 
-pre_install() 
+pre_install()
 {
     pre_upgrade
 }
 
-pre_upgrade() 
+pre_upgrade()
 {
     _VOLD=$(echo "${2}" | cut -d"-" -f1)
     if [ ${_VOLD} -lt 20161201 ]

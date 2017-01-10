@@ -4,7 +4,8 @@
 pkgname=powerpill-dev
 _pkgname=powerpill
 pkgver=2016.5
-pkgrel=1
+pkgrel=2
+_pythonver=python3.6
 pkgdesc='Pacman wrapper for parallel and segmented downloads.'
 arch=(any)
 license=(GPL)
@@ -28,9 +29,9 @@ package ()
 
 #disable reflector function
 
-sed -i -e 's,.*import Reflector.*,#import Reflector,' $pkgdir/usr/lib/python3.5/site-packages/Powerpill.py
+sed -i -e 's,.*import Reflector.*,#import Reflector,' $pkgdir/usr/lib/$_pythonver/site-packages/Powerpill.py
 
-sed -i -e 's,.*OFFICIAL_REPOSITORIES = Reflector.MirrorStatus.REPOSITORIES.*,#OFFICIAL_REPOSITORIES = Reflector.MirrorStatus.REPOSITORIES,' $pkgdir/usr/lib/python3.5/site-packages/Powerpill.py
+sed -i -e 's,.*OFFICIAL_REPOSITORIES = Reflector.MirrorStatus.REPOSITORIES.*,#OFFICIAL_REPOSITORIES = Reflector.MirrorStatus.REPOSITORIES,' $pkgdir/usr/lib/$_pythonver/site-packages/Powerpill.py
 
 }
 

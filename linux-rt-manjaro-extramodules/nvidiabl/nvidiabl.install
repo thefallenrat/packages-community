@@ -1,4 +1,4 @@
-EXTRAMODULES='extramodules-4.8-rt-MANJARO'
+EXTRAMODULES='extramodules-4.9-rt-MANJARO'
 VERSION='linux-rt-manjaro'
 
 post_install() {
@@ -10,7 +10,6 @@ post_upgrade() {
     depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
     echo "nvidiabl" > /etc/modules-load.d/$VERSION-nvidiabl.conf
 }
-
 
 post_remove() {
     depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
