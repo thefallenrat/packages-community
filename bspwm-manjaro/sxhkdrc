@@ -275,7 +275,7 @@ super + shift + b
 	$BROWSER
     		
 super + e
-	spacefm
+	spacefm -n
 
 super + shift + e
 	$TERMINAL -e ranger
