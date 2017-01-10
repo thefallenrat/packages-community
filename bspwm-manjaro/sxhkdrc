@@ -209,24 +209,20 @@ super + button{4,5}
 # mouse bindings
 # __________________
 
-### Legacy mousebindings used with older versions of bspwm
-## Move or resize window
-##super + button{1-3}
-##	bspc pointer -g {move,resize_side,resize_corner}
-#
-## Needed for ^^^^
-##super + button{1-3}
-##	; bspc pointer -g {move,resize_side,resize_corner}
-#
-##super + @button{1-3}
-##	bspc pointer -u
-## Needed to focus windows by clicking, if you wish to disable 
-## focus_follows_mouse behavior (required to use menu of xfdesktop, whiskermenu or click java apps)
-#~button1
-#	bspc pointer -g focus && xdo raise $(pfw)
-## Alternative that allows clicking otherwise problematic stuff
-#button1
-#	bspc pointer -g focus &&clickpasser 1
+~button1
+	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
+
+~button2
+	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+		
+~button3
+	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
+
+~button4
+	DidIClickDesktop.sh && bspc desktop -f next
+~button5
+	DidIClickDesktop.sh && bspc desktop -f prev
+	
 ### Add or remove desktops by scrolling
 super + ctrl + button5
     bspcp dsktp rm
@@ -248,24 +244,10 @@ mod1 + @button1
 #    BspwmWindowMenu
     mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
 
-# These two are needed if you want to use xfdesktops menus while 
-# focus_follows_pointer is on
-#@button3
-#	clickpasser 3
-#@button2
-#	clickpasser 2
 
 #
 # Touchpad "gestures" (depend on your touchpad driver, very likely to be unavailable)
 #_____________________
-
-### Three finger swipe (left or right) to change desktop
-@button{10,11}
-    bspc desktop -f {prev,next}
-
-### Three finger swipe (up) to launch dswitcher
-@button8
-    dswitcher & xdotool mousemove 640 400
     
 #
 # spawn programs
@@ -273,15 +255,18 @@ mod1 + @button1
 
 # run applications
 super + space
-	dmouse
+	dmenu_recent -fn 'xos4 Terminus:size=15' -i -l 14 -w 600 -y $PANEL_HEIGHT
 
 super + p
-	dmenu_recent -h $PANEL_HEIGHT
+	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
 
 super + shift + Return
-	$TERMINAL
+	default-terminal
 super + z
-	$TERMINAL
+	default-terminal
+
+super + z
+	open-terminal-here
 	
 super + r
 	finder
