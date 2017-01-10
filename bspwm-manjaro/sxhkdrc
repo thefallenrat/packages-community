@@ -265,7 +265,7 @@ super + shift + Return
 super + z
 	default-terminal
 
-super + z
+super + shift + z
 	open-terminal-here
 	
 super + r
