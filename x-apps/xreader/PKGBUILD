@@ -3,7 +3,7 @@
 
 pkgname=xreader
 pkgver=1.2.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Document viewer for files like PDF and Postscript. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -27,9 +27,10 @@ md5sums=('ae878ed2658747c42bce2fd6ebb18a0a')
 build() {
     cd ${srcdir}/${pkgname}-${pkgver}
     ./autogen.sh --prefix="/usr" \
-         --localstatedir="/var" \
-         --libexecdir="/usr/lib/${pkgname}" \
-        --disable-caja --disable-nemo
+        --localstatedir="/var" \
+        --libexecdir="/usr/lib/${pkgname}" \
+        --disable-caja --disable-nemo \
+        --enable-epub
     make
 }
 
