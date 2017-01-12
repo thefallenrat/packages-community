@@ -218,10 +218,11 @@ super + button{4,5}
 ~button3
 	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
 
-~button4
-	DidIClickDesktop.sh && bspc desktop -f next
-~button5
-	DidIClickDesktop.sh && bspc desktop -f prev
+# Switch workspace by scrolling on the desktop. Causes scrolling issues on some systems.
+#~button4
+#	DidIClickDesktop.sh && bspc desktop -f next
+#~button5
+#	DidIClickDesktop.sh && bspc desktop -f prev
 	
 ### Add or remove desktops by scrolling
 super + ctrl + button5
