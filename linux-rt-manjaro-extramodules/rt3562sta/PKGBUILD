@@ -7,39 +7,38 @@
 
 _linuxprefix=linux-rt-manjaro
 _extramodules=extramodules-4.9-rt-MANJARO
-_pkgname=rt3562sta
-pkgname="$_linuxprefix-$_pkgname"
-pkgver=2.4.1.1_r3
+pkgbase=rt3562sta
+pkgname="$_linuxprefix-$pkgbase"
+pkgver=2.4.1.1_r4
 _patchrel=${pkgver/*_r/}
-pkgrel=18
-_subpkgrel=1
+pkgrel=1
 pkgdesc="Ralink RT3562 PCI WLAN adaptors kernel module"
 arch=('x86_64')
 url="http://www.mediatek.com/en/Products/support.php?sn=501"
 license=('GPL')
 depends=("$_linuxprefix" 'rt3562sta-common')
 makedepends=("$_linuxprefix" "$_linuxprefix-headers")
-provides=("$_pkgname=$pkgver")
+provides=("$pkgbase=$pkgver")
 groups=("$_linuxprefix-extramodules")
-install=$_pkgname.install
-source=($pkgname-$pkgver.tar.gz::https://github.com/mtorromeo/rt3562sta-linux/archive/r${_patchrel}.tar.gz)
-sha256sums=('3428c37e91f04dfb0d5e4aae9bbcbf72a3816e8804d0735110a53d1140c37eaa')
+install=$pkgbase.install
+source=($pkgbase-$pkgver.tar.gz::https://github.com/mtorromeo/$pkgbase-linux/archive/r$_patchrel.tar.gz)
+sha256sums=('6af6dd13ae1e1075974c8d0a54a0c9f73624cecf153f1f75c8c4f106f4719a1d')
 
 build() {
     _kernver="$(cat /usr/lib/modules/$_extramodules/version)"
 
-    cd "$srcdir"/rt3562sta-linux-r$_patchrel
+    cd $srcdir/$pkgbase-linux-r$_patchrel
     EXTRA_CFLAGS="-DVERSION=$pkgver" \
     LINUX_SRC="/usr/lib/modules/$_kernver/build" \
     make
 }
 
 package() {
-    cd "$srcdir/rt3562sta-linux-r$_patchrel"
-    install -Dm 0644 os/linux/$_pkgname.ko "$pkgdir/usr/lib/modules/$_extramodules/$_pkgname.ko"
+    cd $srcdir/$pkgbase-linux-r$_patchrel
+    install -Dm 0644 os/linux/$pkgbase.ko "$pkgdir/usr/lib/modules/$_extramodules/$pkgbase.ko"
 
     # set the kernel we've built for inside the install script
-    sed -i -e "s/EXTRAMODULES=.*/EXTRAMODULES=${_extramodules}/g" "${startdir}/$_pkgname.install"
+    sed -i -e "s/EXTRAMODULES=.*/EXTRAMODULES=${_extramodules}/g" "${startdir}/$pkgbase.install"
 
     find "$pkgdir" -name '*.ko' -exec gzip -9 {} \;
 }
