@@ -38,10 +38,10 @@ package() {
 
   install -Dm644 "$srcdir/$pkgname-$pkgver/75-yes-terminus.conf" \
     "$pkgdir/etc/fonts/conf.avail/75-yes-terminus.conf"
-  install "$srcdir/33-TerminusPcfFont.conf \
+  install "$srcdir/33-TerminusPcfFont.conf" \
     "$pkgdir/etc/fonts/conf.avail/33-TerminusPcfFont.conf"
   install -Dm644 "$srcdir/$pkgname-$pkgver/OFL.TXT" \
-    "$pkgdir/usr/share/licenses/$pkgname/LICENSE
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   
   install -d "$pkgdir/etc/fonts/conf.d"
   cd "$pkgdir/etc/fonts/conf.d"
