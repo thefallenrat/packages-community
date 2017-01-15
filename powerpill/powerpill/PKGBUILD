@@ -3,7 +3,7 @@
 
 pkgname=powerpill
 pkgver=2016.5
-pkgrel=1
+pkgrel=2
 _pythonver=python3.6
 pkgdesc='Pacman wrapper for parallel and segmented downloads. ( This version not provide reflector:Manjaro use pacman-mirrors )'
 arch=(any)
@@ -14,8 +14,8 @@ optdepends=('rsync: Rsync download support')
 backup=(etc/powerpill/powerpill.json)
 source=(http://xyne.archlinux.ca/projects/powerpill/src/powerpill-2016.5.tar.xz)
 md5sums=('96e486671237aa0eb972f690aa926c76')
-conflict=('powerpill-dev')
-replace=('powerpill-dev')
+conflicts=('powerpill-dev')
+replaces=('powerpill-dev')
 
 package () {
   cd "$srcdir/$pkgname-$pkgver"
