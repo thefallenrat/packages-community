@@ -1,19 +1,22 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=corebird
-pkgver=1.3
+pkgver=1.4.1
 pkgrel=1
 pkgdesc="Native Gtk+ Twitter Client"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/baedert/corebird"
-depends=('glib2'
+depends=('gettext'
+    'glib2'
 	'gst-libav'
+	'gst-plugins-base'
 	'gst-plugins-bad'
 	'gst-plugins-good'
-	'gstreamer'
+	'gspell'
+#	'gstreamer'
 	'gtk3'
-	'intltool'
+#	'intltool'
 	'libgee'
 	'json-glib'
 	'libsoup'
@@ -22,7 +25,8 @@ depends=('glib2'
 makedepends=('automake'
 	'vala')
 source=(https://github.com/baedert/$pkgname/archive/$pkgver.tar.gz)
-sha1sums=('b2669bc794bfea2b5caa236221d91068406e458e')
+sha1sums=('3ca1bd4400165f82fd305eb8fc486ad7542c49a2')
+
 build() {
   cd corebird-$pkgver
   # Add --disable-video here if you don't like the gstreamer deps
