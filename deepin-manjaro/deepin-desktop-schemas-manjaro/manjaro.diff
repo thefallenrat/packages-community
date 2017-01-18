@@ -93,27 +93,6 @@ diff -ru --no-dereference a/schemas/com.deepin.dde.appearance.gschema.xml b/sche
        <summary>Cursor theme</summary>
        <description>
          Cursor theme name. Used only by Xservers that support the Xcursor extension.
-@@ -43,14 +43,12 @@
-       <description>The desktop font size</description>
-     </key>
-     <key name="extra-picture-uris" type="as">
--        <default>[]</default>
--        <summary>Deprecated</summary>
--        <description></description>
--    </key>
--    <key name="background-uris" type="as">
--        <default>[]</default>
--        <summary>desktop background picture URIs for workspaces</summary>
--        <description>Note that the backend only supports local (file://) URIs.</description>
-+      <default>[]</default>
-+      <summary>Extra Picture URIs for multiple background</summary>
-+      <description>
-+        URIs to use for the background images since 2nd workspace. Note
-+        that the backend only supports local (file://) URIs.
-+      </description>
-     </key>
-     <key name="excluded-icon-themes" type="as">
-       <default>['hicolor','gnome','Adwaita']</default>
 diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/com.deepin.xsettings.gschema.xml
 --- a/schemas/com.deepin.xsettings.gschema.xml	2016-09-04 19:06:09.922324228 +0200
 +++ b/schemas/com.deepin.xsettings.gschema.xml	2016-09-03 19:27:55.029712985 +0200

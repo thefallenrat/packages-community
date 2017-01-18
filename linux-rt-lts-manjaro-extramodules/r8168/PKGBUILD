@@ -8,8 +8,8 @@
 
 pkgname=linux-rt-lts-manjaro-r8168
 _pkgname=r8168
-pkgver=8.040.00
-pkgrel=15
+pkgver=8.043.02
+pkgrel=1
 pkgdesc="A kernel module for Realtek 8168 network cards"
 url="http://www.realtek.com.tw"
 license=("GPL")
@@ -18,8 +18,8 @@ depends=('glibc' 'linux-rt-lts-manjaro')
 makedepends=('linux-rt-lts-manjaro-headers')
 provides=("$_pkgname=$pkgver")
 groups=('linux-rt-lts-manjaro-extramodules')
-source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$pkgname-$pkgver.tar.gz")
-sha256sums=('1f7aad3a066c152837e03e558ba720742e792d281c96c5412cff32d68875415b')
+source=("https://github.com/mtorromeo/$_pkgname/archive/$pkgver/$pkgver.tar.gz")
+sha256sums=('ea22aa1dfda20615f5e114f982f7e61385f871f682eea0c154245760a439abc4')
 install=$_pkgname.install
 
 build() {
@@ -30,9 +30,9 @@ build() {
 	# avoid using the Makefile directly -- it doesn't understand
 	# any kernel but the current.
 	make -C /usr/lib/modules/$_kernver/build \
-	SUBDIRS="$srcdir/$_pkgname-$pkgver/src" \
-	EXTRA_CFLAGS="-DCONFIG_R8168_NAPI -DCONFIG_R8168_VLAN" \
-	modules
+	  SUBDIRS="$srcdir/$_pkgname-$pkgver/src" \
+	  EXTRA_CFLAGS="-DCONFIG_R8168_NAPI -DCONFIG_R8168_VLAN" \
+	  modules
 }
 
 package() {
