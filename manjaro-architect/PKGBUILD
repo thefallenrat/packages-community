@@ -5,7 +5,7 @@ pkgver=0.3-beta
 pkgrel=1
 pkgdesc="A clone of architect installer modified to install manjaro instead of arch linux"
 arch=(any)
-url="https://github.com/Manjaro-Pek/$pkgname"
+url="https://github.com/Chrysostomus/aif-dev"
 license=(GPL2)
 depends=('pacman'
 	'arch-install-scripts'
