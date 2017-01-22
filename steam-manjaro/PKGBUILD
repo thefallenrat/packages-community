@@ -16,8 +16,8 @@ license=('custom')
 depends=('lsb-release' 'desktop-file-utils' 'curl' 'dbus' 'freetype2' 'gdk-pixbuf2' 'ttf-font' 'zenity')
 depends_x86_64=('lib32-libgl' 'lib32-libgl' 'lib32-gcc-libs' 'lib32-libx11' 'lib32-libxss' 'lib32-alsa-plugins')
 optdepends=('steam-native: steam native runtime support')
-provides=('steam-manjaro' 'steam')
-conflicts=('steam-manjaro' 'steam')
+provides=('steam')
+conflicts=('steam')
 install=steam-manjaro.install
 source=(http://repo.steampowered.com/${_package}/pool/${_package}/s/${_package}/${_package}_${pkgver}.tar.gz
         'steam-manjaro.install'
