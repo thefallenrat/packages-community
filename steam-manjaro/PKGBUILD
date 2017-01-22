@@ -8,7 +8,7 @@
 pkgname=steam-manjaro
 _package=steam
 pkgver=1.0.0.54
-pkgrel=1
+pkgrel=3
 pkgdesc="Valve's digital software delivery system"
 url='http://steampowered.com/'
 arch=('i686' 'x86_64')
