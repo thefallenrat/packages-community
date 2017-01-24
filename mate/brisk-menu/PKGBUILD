@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/solus-project/brisk-menu"
 license=('GPL')
 depends=('mate-panel-gtk3')
-#makedepends=('autogen')
+makedepends=('gnome-common')
 #source=("$pkgname-$pkgver-$pkgrel.tar.gz::${url}/archive/${_commit}.tar.gz")
 source=("${url}/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz")
 sha256sums=('376d7df2ce221fb49280d07c00f66178f98c2261b5fafb2a17715fad4d572109')
@@ -19,8 +19,11 @@ build() {
   cd $srcdir/${pkgname}-${pkgver}
   ./configure \
 	--prefix=/usr \
-        --libdir=/usr/lib \
-        --sysconfdir=/etc
+	--bindir=/usr/bin \
+	--sbindir=/usr/bin \
+	--libdir=/usr/lib \
+	--libexecdir=/usr/lib/${pkgname}
+
   make
 }
 
