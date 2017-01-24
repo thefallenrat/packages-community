@@ -4,7 +4,7 @@ post_install()
     grep -q 'uinput' /proc/modules
     if [ ! $? -eq 0 ]
         then
-            echo "modprobe uinput"
+            modprobe uinput
     fi
 }
 
