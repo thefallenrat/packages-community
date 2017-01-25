@@ -1,12 +1,12 @@
---- a/steam	2014-10-02 22:01:50.000000000 +0300
-+++ b/steam	2015-03-12 22:54:48.000000000 +0200
+--- ./steam	2016-12-21 23:39:05.000000000 +0100
++++ ./steam_b	2016-12-21 23:40:29.645090377 +0100
 @@ -3,6 +3,9 @@
  # This is the Steam script that typically resides in /usr/bin
  # It will create the Steam bootstrap if necessary and then launch steam.
- 
+
 +# Set fallback functionality environment variables
 +export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib"
-+export STEAM_FRAME_FORCE_CLOSE=1
- # Get the full name of this script
- export STEAMSCRIPT="$(cd "${0%/*}" && echo "$PWD")/${0##*/}"
- 
++
+ # Steam runtime settings
+ # if STEAM_RUNTIME=1, ignore this entirely
+ if ! [ "${STEAM_RUNTIME}" == "1" ]
