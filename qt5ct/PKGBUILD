@@ -12,9 +12,15 @@ url="http://qt5ct.sourceforge.net"
 license=(BSD)
 depends=(qt5-svg)
 makedepends=(qt5-tools)
-source=("http://downloads.sourceforge.net/project/$pkgname/$pkgname-$pkgver.tar.bz2")
-sha256sums=('d75216135c112657d10b1c87502ba8c9510340a7b868211770ccd85aa777f0ca')
+source=("http://downloads.sourceforge.net/project/$pkgname/$pkgname-$pkgver.tar.bz2"
+        "https://sourceforge.net/p/qt5ct/tickets/30/attachment/qt5ct-plugindir.patch")
+sha256sums=('d75216135c112657d10b1c87502ba8c9510340a7b868211770ccd85aa777f0ca'
+            '01077a4da1931e03b479a6c368c6bd1ee740817523acefeab69cd24a247061ac')
 
+prepare() {
+    cd $pkgname-$pkgver
+    patch -p1 -i "$srcdir"/qt5ct-plugindir.patch
+}
 build() {
     cd $pkgname-$pkgver
     qmake-qt5 $pkgname.pro 
@@ -26,8 +32,5 @@ package() {
     make INSTALL_ROOT="$pkgdir" install
 
     install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
-    
-    ## temporary hack until fixed upstream, https://bbs.archlinux.org/viewtopic.php?pid=1686145#p1686145
-    mv $pkgdir/usr/lib/qt/plugins/platformthemes/style $pkgdir/usr/lib/qt/plugins
 } 
 
