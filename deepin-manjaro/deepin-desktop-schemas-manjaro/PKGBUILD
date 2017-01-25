@@ -4,14 +4,14 @@
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
 pkgver=3.0.13
-pkgrel=2
+pkgrel=3
 pkgdesc='Manjaro Linux Deepin gschemas'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL3')
 groups=('deepin-manjaro')
 depends=('dconf'
-    'deepin-artwork-themes-manjaro'
+    'deepin-artwork-themes'
 	'deepin-iconthemes-manjaro'
 	'deepin-sound-theme'
 	'deepin-wallpapers'
