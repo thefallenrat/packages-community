@@ -12,7 +12,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170124
+pkgver=20170129
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -109,7 +109,7 @@ package_manjaro-gnome-settings() {
         'manjaro-base-skel'
 	'qt5-styleplugins'
         'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome' 'firefox-arc-maia-settings')
+    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
