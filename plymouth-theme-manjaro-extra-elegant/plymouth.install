@@ -1,14 +1,21 @@
+#Set theme name
+
+name="manjaro-extra-elegant"
+
 post_install() {
-  cat << _EOF 
+  echo 
+  echo "Set plymouth theme $name"
+  echo
 
-==> To activate plymouth-theme Manjaro-Redefined-Bsplash run: 
-==> sudo plymouth-set-default-theme -R Manjaro-Redefined-Bsplash
+  plymouth-set-default-theme -R $name
 
-_EOF
+  echo
+  echo "Done"
+  echo 
 }
 
 post_upgrade() {
-  if [ $(plymouth-set-default-theme) == "Manjaro-Redefined-Bsplash" ] ; then
+  if [ $(plymouth-set-default-theme) == "$name" ] ; then
     find /etc/mkinitcpio.d/ -name \*.preset  -a \! -name example.preset | while read p; do
     mkinitcpio -p $p
     done
@@ -18,7 +25,7 @@ post_upgrade() {
 }
 
 pre_remove() {
-  if [ $(plymouth-set-default-theme) == "Manjaro-Redefined-Bsplash" ] ; then
+  if [ $(plymouth-set-default-theme) == "$name" ] ; then
   cat << _EOF 
   
 ==> WARNING: You have removed your current plymouth-theme.

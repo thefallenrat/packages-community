@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-cinnamon
 pkgver=2.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Green Manjaro Plymouth theme"
 repo="plymouth-themes-manjaro"
 _commit=499339f76fdbf16af2d194d9c2c2178b48513090
@@ -10,7 +10,7 @@ arch=('any')
 url="https://github.com/oberon2007/$repo"
 license=('GPL')
 depends=('plymouth')
-install=$pkgname.install
+install=plymouth.install
 makedepends=('git')
 source=("$url/archive/$_commit.tar.gz")
 md5sums=('b8ec91b3b1c08646f54bdc37be0d6caf')

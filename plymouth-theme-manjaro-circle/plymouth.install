@@ -1,0 +1,38 @@
+#Set theme name
+
+name="manjaro-circle"
+
+post_install() {
+  echo 
+  echo "Set plymouth theme $name"
+  echo
+
+  plymouth-set-default-theme -R $name
+
+  echo
+  echo "Done"
+  echo 
+}
+
+post_upgrade() {
+  if [ $(plymouth-set-default-theme) == "$name" ] ; then
+    find /etc/mkinitcpio.d/ -name \*.preset  -a \! -name example.preset | while read p; do
+    mkinitcpio -p $p
+    done
+  else 
+    post_install
+  fi
+}
+
+pre_remove() {
+  if [ $(plymouth-set-default-theme) == "$name" ] ; then
+  cat << _EOF 
+  
+==> WARNING: You have removed your current plymouth-theme.
+==> Set a different theme with:
+==> sudo plymouth-set-default-theme -R <theme-name>
+==> or remove Plymouth properly!
+
+_EOF
+  fi
+}

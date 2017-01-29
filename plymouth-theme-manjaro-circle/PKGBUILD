@@ -2,14 +2,14 @@
 
 pkgname=plymouth-theme-manjaro-circle
 pkgver=1.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Green and grey theme with round icon"
 repo="plymouth-themes-manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$repo"
 license=('GPL')
 depends=('plymouth')
-install=$pkgname.install
+install=plymouth.install
 makedepends=('git')
 source="git+$url.git"
 md5sums=('SKIP')

@@ -5,14 +5,14 @@
 pkgname=plymouth-theme-manjaro-fancy-budgie
 _basename=manjaro-fancy-budgie
 pkgver=1.1.r1.g35aa85a
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro Plymouth theme for Budgie Desktop."
 arch=('any')
 license=('GPL')
 url="https://youtu.be/XFnqC13f7XI"
 depends=('plymouth')
 makedepends=('git')
-install=${_basename}.install
+install=plymouth.install
 source=("$_basename::git+https://github.com/Ste74/$pkgname.git"
         ''${_basename}'.install'
        )
