@@ -7,7 +7,7 @@ post_install() {
   echo "Set plymouth theme $name"
   echo
 
-  sudo plymouth-set-default-theme -R $name
+  plymouth-set-default-theme -R $name
 
   echo
   echo "Done"
