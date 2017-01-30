@@ -11,10 +11,8 @@ license=('GPL')
 url="http://kde-look.org/content/show.php?content=166301"
 depends=('plymouth')
 install=plymouth.install
-source=('http://kent.dl.sourceforge.net/project/manjaroredefined/Manjaro-Redefined-Bsplash.tar.gz'
-        'manjaro-redefined-bsplash.install'
-       )
-md5sums=('SKIP')
+source=("https://excellmedia.dl.sourceforge.net/project/manjaroredefined/Manjaro-Redefined-Bsplash.tar.gz")
+md5sums=('73580b364fdf6d5674aefb6867774a8d')
 
 package() {
   cd $srcdir/Manjaro-Redefined-Bsplash
