@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-deepin
 pkgver=1.6
-pkgrel=3
+pkgrel=4
 pkgdesc="Plymouth theme for Manjaro-Deepin"
 repo="plymouth-themes-manjaro"
 arch=('any')

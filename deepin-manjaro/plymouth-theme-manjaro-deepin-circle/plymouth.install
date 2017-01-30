@@ -7,6 +7,9 @@ post_install() {
   echo "Set plymouth theme $name"
   echo
 
+#Change theme name into plymouthd.conf
+  sed -i -e "s,.*Theme=.*,Theme=$name," /etc/plymouth/plymouthd.conf
+
   plymouth-set-default-theme -R $name
 
   echo
@@ -15,12 +18,10 @@ post_install() {
 }
 
 post_upgrade() {
-  if [ $(plymouth-set-default-theme) == "$name" ] ; then
-    find /etc/mkinitcpio.d/ -name \*.preset  -a \! -name example.preset | while read p; do
-    mkinitcpio -p $p
-    done
-  else 
-    post_install
+
+  grep "Theme=$name" /etc/plymouth/plymouthd.conf
+  if [ $? -eq 0 ] ; then
+       plymouth-set-default-theme -R $name
   fi
 }
 

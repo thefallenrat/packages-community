@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-cinnamon
 pkgver=2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Green Manjaro Plymouth theme"
 repo="plymouth-themes-manjaro"
 _commit=499339f76fdbf16af2d194d9c2c2178b48513090

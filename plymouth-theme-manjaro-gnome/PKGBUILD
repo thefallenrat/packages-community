@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-gnome
 pkgver=1.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Plymouth theme for Manjaro Gnome"
 repo="plymouth-themes-manjaro"
 arch=('any')

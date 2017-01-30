@@ -4,7 +4,7 @@
 pkgname=plymouth-theme-manjaro-redefined-bsplash
 basename=manjaro-redefined-bsplash
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Manjaro Redefined Plymouth theme."
 arch=('any')
 license=('GPL')
