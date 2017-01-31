@@ -4,7 +4,7 @@
 
 pkgname=plymouth-theme-manjaro-gnome-17.0
 pkgver=1.0
-pkgrel=3
+pkgrel=2
 pkgdesc="Plymouth theme for Manjaro Gnome with maia theme incursion"
 _repo=$pkgname
 arch=('any')
