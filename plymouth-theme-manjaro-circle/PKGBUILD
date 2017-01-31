@@ -2,7 +2,7 @@
 
 pkgname=plymouth-theme-manjaro-circle
 pkgver=1.4
-pkgrel=3
+pkgrel=4
 pkgdesc="Green and grey theme with round icon"
 repo="plymouth-themes-manjaro"
 arch=('any')

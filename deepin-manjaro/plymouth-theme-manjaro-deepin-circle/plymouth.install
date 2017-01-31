@@ -26,7 +26,8 @@ post_upgrade() {
 }
 
 pre_remove() {
-  if [ $(plymouth-set-default-theme) == "$name" ] ; then
+  grep "Theme=$name" /etc/plymouth/plymouthd.conf
+  if [ $? -eq 0 ] ; then
   cat << _EOF 
   
 ==> WARNING: You have removed your current plymouth-theme.
