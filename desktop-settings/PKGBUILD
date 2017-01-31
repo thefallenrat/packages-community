@@ -12,7 +12,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170129
+pkgver=20170131
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -134,7 +134,7 @@ package_manjaro-i3-settings() {
         'manjaro-base-skel'
         'nitrogen'
         'urxvt-perls'
-        'vertex-maia-themes'
+        'gtk-theme-breath'
         'xcursor-breeze')
     optdepends=('artwork-i3: Manjaro-i3 wallpapers'
         'manjaro-backgrounds: Collection of Manjaro wallpapers'
