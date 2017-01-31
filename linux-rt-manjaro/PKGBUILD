@@ -12,7 +12,7 @@ _kernelname=-MANJARO
 _basekernel=4.9
 _basever=49-rt
 #_aufs=20161219
-_bfq=v8r6
+_bfq=v8r7
 _pkgver=${_basekernel}.6
 _rtpatchver=rt4
 pkgver=${_pkgver}_${_rtpatchver}
@@ -23,6 +23,8 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils')
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.xz"
+        # upstream patch
+        "http://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
         # the main kernel config files
         'config.x86_64'
         'config.rt'
@@ -44,6 +46,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
+            'cd0d5ea27c487a7d1354ba3e80f85af4924b77ad1180f1fbfaf6844ae03c8728'
             'a4d4cda790847747136c55ea491dddd016316603387bfaa62700d08d9e445ae0'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
@@ -52,7 +55,7 @@ sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
             'ee2fb11cdeab92bd93fd80044b698ff7b2abf4573a35fd891864419b3c650b23'
             'edc0693cf16900c790a4bb25ab2f7482a4c5bb1f998e59b23dea486989abbe07'
             '2dd17bdf945b973b569c8614a1de943833d7e3e4d60921308d580d944f922fa7'
-            '7a761aa7cf64f329473a0294e447dd047d78e90f3cd9c2075a2e92c0b054dbd8'
+            '3c7b48abd0c5a123252278edcb671e4127dd075617ab862b275b693d456d5e0e'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             'bee3f78a9df6c13f376521f7456189db3d267b1352e0adacf3affb7d0b919cd7'
             'b1318441013e2fd4f411d2291ebfb87b990a740417611faa5e317fc37bb7e9a6'
@@ -68,22 +71,12 @@ prepare() {
   cd "${srcdir}/linux-${_basekernel}"
 
   # add upstream patch
-  #msg "applying patch-${_pkgver}"
-  #patch -p1 -i "${srcdir}/patch-${pkgver}"
+  msg "applying patch-${_pkgver}"
+  patch -p1 -i "${srcdir}/patch-${_pkgver}"
 
   # Add RT patch
   msg "applying patch-${_pkgver}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgver}-${_rtpatchver}.patch"
-  
-  # Fix issue with not able to boot, when modversions is enabled
-  # Still needed. Linus had it marked as 'broken', however now re-enabled in a different manner
-  # https://github.com/torvalds/linux/commit/faaae2a581435f32781a105dda3501df388fddcb
-  msg "applying enable-modversions-for-symbols-exported-from-asm.patch"
-  patch -Np1 -i "${srcdir}/enable-modversions-for-symbols-exported-from-asm.patch"
-
-  # Fix issue with 'hotplug: Allow modules to use the cpu hotplug notifiers even if !CONFIG_HOTPLUG_CPU")'
-  msg "applying hotplug-make-register-and-unregister-notifier-api-symmetric.patch"
-  patch -Np1 -i "${srcdir}/hotplug-make-register-and-unregister-notifier-api-symmetric.patch"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
