@@ -4,7 +4,7 @@
 pkgbase=desktop-settings
 pkgname=('manjaro-lxqt-settings'
         'manjaro-lxqt-minimal-settings')
-pkgver=20160922
+pkgver=20170202
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -37,9 +37,8 @@ package_manjaro-lxqt-minimal-settings() {
     pkgdesc='Manjaro Linux lxqt-minimal settings'
     depends=('manjaro-base-skel'
             'xcursor-breeze'
-            'andromeda-icon-theme'
-            'andromeda-wallpaper')
-    optdepends=('manjaro-openbox-settings: Manjaro Linux Openbox settings')
+            'breath-icon-theme'
+            'breath-wallpaper')
     provides=('manjaro-desktop-settings')
     conflicts=('manjaro-desktop-settings')
 
