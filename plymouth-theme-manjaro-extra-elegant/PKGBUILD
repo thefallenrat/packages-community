@@ -3,16 +3,16 @@
 
 pkgname=plymouth-theme-manjaro-extra-elegant
 pkgver=1.1
-pkgrel=1
+pkgrel=4
 pkgdesc="Green Manjaro Plymouth theme with round icon"
 repo="plymouth-themes-manjaro"
 arch=('any')
 url="https://github.com/oberon2007/$repo"
 license=('GPL')
 depends=('plymouth')
-install=$pkgname.install
+install=plymouth.install
 makedepends=('git')
-source="git+$url.git"
+source=("git+$url.git")
 md5sums=('SKIP')
 
 package() {

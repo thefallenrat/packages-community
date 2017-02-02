@@ -4,17 +4,15 @@
 pkgname=plymouth-theme-manjaro-redefined-bsplash
 basename=manjaro-redefined-bsplash
 pkgver=1.0
-pkgrel=2
+pkgrel=5
 pkgdesc="Manjaro Redefined Plymouth theme."
 arch=('any')
 license=('GPL')
 url="http://kde-look.org/content/show.php?content=166301"
 depends=('plymouth')
-install=$basename.install
-source=('http://kent.dl.sourceforge.net/project/manjaroredefined/Manjaro-Redefined-Bsplash.tar.gz'
-        'manjaro-redefined-bsplash.install'
-       )
-md5sums=('SKIP')
+install=plymouth.install
+source=("https://excellmedia.dl.sourceforge.net/project/manjaroredefined/Manjaro-Redefined-Bsplash.tar.gz")
+md5sums=('73580b364fdf6d5674aefb6867774a8d')
 
 package() {
   cd $srcdir/Manjaro-Redefined-Bsplash

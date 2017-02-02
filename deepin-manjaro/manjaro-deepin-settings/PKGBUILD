@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20161124
+pkgver=20170122
 pkgrel=1
 pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
@@ -12,9 +12,7 @@ depends=('deepin-desktop'
 	'deepin-desktop-schemas-manjaro'
 	'deepin-launcher'
 	'deepin-session-ui-manjaro'
-	'manjaro-base-skel'
-# currently still needed for control-panel mouse-widget: 
-	'xf86-input-synaptics')
+	'manjaro-base-skel')
 makedepends=('git')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
 	'manjaro-backgrounds')

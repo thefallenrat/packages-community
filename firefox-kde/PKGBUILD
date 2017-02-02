@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=50.1.0
+pkgver=51.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=(!emptydirs !makeflags)
-_patchrev=7f60766aae16
+_patchrev=3604ed712e16
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         mozconfig 
@@ -40,7 +40,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
 
-sha256sums=('54bb9bccbf9eed0c7715ae7f45330bf41ce24b756f5fdecb380e06709a6ac5a4'
+sha256sums=('30ba00ba716ea1eeda526e2ccc8642f8d18a836793fde50e87a4fcb9d9fccca9'
             '5dcc6ff06af95256d34a901ee1881400904e38665aa22ddf8e7d16e2ad76875c'
             '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
@@ -50,10 +50,10 @@ sha256sums=('54bb9bccbf9eed0c7715ae7f45330bf41ce24b756f5fdecb380e06709a6ac5a4'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
-            '621b93af8968d3c5bc3b8db4dc707e460ab6d245b279c076cb82d96a3301cd2e'
+            '87208beb79c5dbc73318f03c09398250affd1598924115187ca55e53ad92b4da'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            'd7cd27ea35289d3ec48d2083826f44a430f2661050bb5a3436cca86f7f29194b'
-            '71b5877ae375ba3a77b3fc7457829e4ef6b3b84f20abdf307533ebc18274ee89'
+            '014b03abb5cd39c3ea9037e8d5eea77e128c0aaab53831eb4a84b5b27a52a038'
+            '2720e418edaab7b305087b325604fe134dab1b743dae6e924aba7b4bd73ea389'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
 

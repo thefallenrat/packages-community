@@ -6,13 +6,12 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-budgie-settings'
         'manjaro-cinnamon-settings'
         'manjaro-gnome-settings'
-        'manjaro-i3-settings'
         'manjaro-jwm-settings'
         'manjaro-lxde-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170114
+pkgver=20170201
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -109,40 +108,11 @@ package_manjaro-gnome-settings() {
         'manjaro-base-skel'
 	'qt5-styleplugins'
         'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome' 'firefox-arc-maia-settings')
+    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
     _inst_dir 'community/gnome'
-}
-
-package_manjaro-i3-settings() {
-    pkgdesc='Manjaro Linux i3 settings'
-    groups=('i3-manjaro')
-    depends=('compton'
-        'conky-i3'
-        'dmenu-manjaro'
-        'dunst'
-        'gcc' # needed for .extend.Xresources
-        'i3-default-artwork'
-        'i3exit'
-        'i3-scripts'
-        'i3-scrot'
-        'i3-gaps'
-        'i3-help'
-        'i3status-manjaro'
-        'manjaro-base-skel'
-        'nitrogen'
-        'urxvt-perls'
-        'vertex-maia-themes'
-        'xcursor-breeze')
-    optdepends=('artwork-i3: Manjaro-i3 wallpapers'
-        'manjaro-backgrounds: Collection of Manjaro wallpapers'
-        'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
-    conflicts=('manjaro-desktop-settings')
-    provides=('manjaro-desktop-settings')
-
-    _inst_dir 'community/i3'
 }
 
 package_manjaro-jwm-settings() {

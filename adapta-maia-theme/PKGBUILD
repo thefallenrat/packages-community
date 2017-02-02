@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='4.0'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="3.89.2.88"
+pkgver="3.89.3.81"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -17,12 +17,13 @@ depends=("gtk2>=${_gtk2_min}"
          "gtk3>=${_gtk3_min}.9"
          #"gtk3<=${_gtk3_max}.99"
          'gtk-engines>=2.21.0'
-         'gtk-engine-murrine>=0.98.2')
+         'gtk-engine-murrine>=0.98.2'
+	 'cantarell-fonts')
 optdepends=('ttf-roboto: The recommended font'
             'noto-fonts: The recommended font for improved language support'
 	    "gnome-shell>=${_gtk3_min}.3: The GNOME Shell"
             "gnome-flashback>=${_gtk3_min}.2: The GNOME flashback shell"
-            'budgie-desktop>=10.2.5: The Budgie desktop'
+            'budgie-desktop>=10.2.7: The Budgie desktop'
             'cinnamon>=2.8.6: The Cinnamon desktop'
             'xfdesktop>=4.12.2: The Xfce desktop'
 	    'openbox>=3.6.1: The openbox window manager'
@@ -39,7 +40,7 @@ makedepends=('libxml2'
 	     'libcanberra'
 	     'parallel')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('938b55b11aa9f69ceac6a3836901d2889292e535b7776cb26b15200ff1773d79')
+sha256sums=('b78dff02b66deeb0ece451e98a30e66355948973a67e416f08f70c4fe0b16e3d')
 
 
 build() {
