@@ -1,0 +1,54 @@
+# Maintainer: Ramon Buldó <rbuldo@gmail.com>
+
+pkgbase=manjaro-gnome-settings
+pkgname=('manjaro-gnome-settings')
+#          'manjaro-gnome-minimal-settings')
+pkgver=20170205
+pkgrel=1
+pkgdesc="Manjaro Linux Gnome settings"
+arch=('any')
+url="https://github.com/manjaro/manjaro-gnome-settings"
+license=('GPL')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+_inst_dir(){
+	install -d $pkgdir/etc
+	cp -r $srcdir/$pkgbase/skel $pkgdir/etc
+
+	install -d $pkgdir/usr/share/glib-2.0/schemas
+	cp $srcdir/$pkgbase/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+}
+
+package_manjaro-gnome-settings() {
+	pkgdesc='Manjaro Linux gnome settings'
+	depends=('gnome-shell'
+        'gnome-shell-extension-taskbar'
+        'gnome-shell-extensions'
+        'gnome-shell-extension-openweather'
+        'gnome-shell-extension-gnomenu'
+        'gnome-shell-extension-dash-to-dock'
+        'gnome-wallpapers'
+        'arc-themes-maia'
+        'xcursor-breeze'
+        'manjaro-base-skel'
+        'qt5-styleplugins'
+        'qt5ct')
+    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings')
+	conflicts=('manjaro-desktop-settings')
+	provides=('manjaro-desktop-settings')
+
+	_inst_dir
+}
+
+# package_manjaro-gnome-minimal-settings() {
+# 	pkgdesc='Manjaro Linux gnome-minimal settings'
+# 	depends=()
+# 	provides=('manjaro-desktop-settings')
+#
+# 	_inst_dir '/minimal'
+# }

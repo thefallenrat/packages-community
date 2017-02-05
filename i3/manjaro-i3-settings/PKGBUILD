@@ -1,0 +1,46 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+_pkgbase=desktop-settings
+pkgname=manjaro-i3-settings
+pkgver=20170202
+pkgrel=3
+arch=('any')
+url="https://github.com/manjaro/$_pkgbase"
+license=('GPL')
+pkgdesc='Manjaro Linux i3 settings'
+groups=('i3-manjaro')
+depends=('compton'
+        'conky-i3'
+        'dmenu-manjaro'
+        'dunst'
+        'gcc' # needed for .extend.Xresources
+        'i3-default-artwork'
+        'i3exit'
+        'i3-scripts'
+        'i3-scrot'
+        'i3-gaps'
+        'i3-help'
+        'i3status-manjaro'
+        'manjaro-base-skel'
+        'nitrogen'
+        'urxvt-perls'
+        'gtk-theme-breath'
+        'xcursor-breeze')
+makedepends=('git')
+optdepends=('artwork-i3: Manjaro-i3 wallpapers'
+        'manjaro-backgrounds: Collection of Manjaro wallpapers'
+        'vertex-maia-icon-theme: Icons matching Vertex Maia themes, based on Menda Circle')
+conflicts=('manjaro-desktop-settings')
+provides=('manjaro-desktop-settings')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+    cd $_pkgbase
+    install -d $pkgdir/etc
+    cp -r community/i3/skel $pkgdir/etc
+}

@@ -10,10 +10,10 @@
 pkgbase=lightdm-webkit2-greeter-manjaro
 pkgname=('lightdm-webkit2-greeter-manjaro'
 	 'lightdm-webkit2-greeter-manjaro-dark')
-pkgver=1.3.0
+pkgver=1.3.1
 pkgrel=1
 _pkgname=lightdm-webkit2-greeter
-_pkgver=2.2.1
+_pkgver=2.2.2
 
 arch=('i686' 'x86_64')
 url="https://github.com/Ste74/lightdm-webkit2-greeter-manjaro"
@@ -28,7 +28,7 @@ optdepends=('manjaro-backgrounds' 'manjaro-artwork' 'gnome-backgrounds')
 provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 backup=("etc/lightdm/${_pkgname}.conf")
-md5sums=('368ad70f4fc749b499953e3ed4547175'
+md5sums=('c32a7a879b69d6217ee18afdf830f572'
          '168a0a818e886d1b1010f4dc431579a7'
          '1bf17235e845fc7bbcfe2882a453f13a'
          'cca66e1e81d452178a298c1b8a10edf0')

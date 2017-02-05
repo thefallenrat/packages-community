@@ -1,23 +1,19 @@
-#
 # Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Author : Stefano Capitani , based on original theme elementaryOSblueNature
 
 pkgname=plymouth-theme-manjaro-fancy-budgie
 _basename=manjaro-fancy-budgie
 pkgver=1.1.r1.g35aa85a
-pkgrel=1
+pkgrel=4
 pkgdesc="Manjaro Plymouth theme for Budgie Desktop."
 arch=('any')
 license=('GPL')
 url="https://youtu.be/XFnqC13f7XI"
 depends=('plymouth')
 makedepends=('git')
-install=${_basename}.install
-source=("$_basename::git+https://github.com/Ste74/$pkgname.git"
-        ''${_basename}'.install'
-       )
-md5sums=('SKIP'
-         '3ea23bac34516f532e47b3224f942e7e')
+install=plymouth.install
+source=("$_basename::git+https://github.com/Ste74/$pkgname.git")
+md5sums=('SKIP')
 
 pkgver() {
   cd "$_basename"

@@ -4,10 +4,10 @@
 
 _appname_=vlc
 pkgname=${_appname_}-nightly
-pkgver=3.0.0v20161031
+pkgver=3.0.0v20170204
 _pkgver=3.0.0
-_snapshot_=20161031
-_snapver_=0236
+_snapshot_=20170204
+_snapver_=0244
 _nightly_=${_snapshot_}-${_snapver_}
 pkgrel=1
 pkgdesc="A multi-platform MPEG, VCD/DVD, and DivX player - nightly snapshot"
@@ -18,13 +18,12 @@ depends=("a52dec" "libdvbpsi" "libxpm" "libdca" "qt5-x11extras" "libproxy"
          "sdl_image" "libdvdnav" "libtiger" "lua" "libmatroska"
          "zvbi" "taglib" "libmpcdec" "ffmpeg" "faad2" "libupnp"
          "libshout" "libmad" "directfb" "libmpeg2" "libmodplug" "libass"
-         "xcb-util-keysyms")
-makedepends=("live-media" "libnotify" "libbluray" "flac" "kdelibs4support"
-             "fluidsynth" "libdc1394" "libavc1394" "lirc-utils"
+         "xcb-util-keysyms" "libpthread-stubs")
+makedepends=("live-media" "libnotify" "libbluray" "flac" "fluidsynth" "libdc1394" "libavc1394" "lirc-utils"
              "libcaca" "librsvg" "portaudio" "libgme" "xosd"
              "projectm" "twolame" "aalib" "libmtp" "libdvdcss"
-             "gnome-vfs" "libgoom2" "libtar" "vcdimager" "opus" "libssh2"
-             "mesa")
+             "libgoom2" "libtar" "vcdimager" "opus" "libssh2"
+             "mesa" "wayland-protocols")
 optdepends=("avahi: for service discovery using bonjour protocol"
             "libnotify: for notification plugin"
             "ncurses: for ncurses interface support"
@@ -43,7 +42,6 @@ optdepends=("avahi: for service discovery using bonjour protocol"
             "libcaca: for colored ASCII art video output"
             "libgme: for libgme plugin"
             "librsvg: for SVG plugin"
-            "gnome-vfs: for GNOME Virtual File System support"
             "libgoom2: for libgoom plugin"
             "vcdimager: navigate VCD with libvcdinfo"
             "xosd: for xosd support"
@@ -55,15 +53,15 @@ optdepends=("avahi: for service discovery using bonjour protocol"
             "ttf-freefont: for subtitle font "
             "ttf-dejavu: for subtitle font"
             "opus: for opus support"
-            "libssh2: for sftp support")
+            "libssh2: for sftp support"
+            "wayland-protocols: for wayland support")
 conflicts=("${_appname_}-plugin" "${_appname_}")
 provides=("${_appname_}")
 replaces=("${_appname_}-plugin")
 #backup=("usr/share/${_appname_}/lua/http/.hosts"
 #        "usr/share/${_appname_}/lua/http/dialogs/.hosts")
-options=("!libtool" "!emptydirs")
-source=("http://nightlies.videolan.org/build/source/vlc-${_pkgver}-${_nightly_}-git.tar.xz"
-        "update-vlc-plugin-cache.hook")
+options=("!libtool" "!emptydirs" "debug")
+source=("http://nightlies.videolan.org/build/source/vlc-${_pkgver}-${_nightly_}-git.tar.xz"  "update-vlc-plugin-cache.hook" "https://git.archlinux.org/svntogit/packages.git/plain/trunk/lua53_compat.patch?h=packages/vlc")
 
 pkgver() {
  printf 3.0.0v$_snapshot_
@@ -73,10 +71,10 @@ build() {
 	cd "${_appname_}-3.0.0-git"
   RCC=/usr/bin/rcc-qt5
 	./bootstrap
-
+  patch -Np1 -i "${srcdir}/vlc"
 	# Patch
 	sed -i -e 's:truetype/ttf-dejavu:TTF:g' modules/visualization/projectm.cpp
-	sed -i -e 's:truetype/freefont:TTF:g' modules/text_renderer/freetype/freetype.c
+  sed -i -e 's:truetype/freefont:TTF:g' modules/text_renderer/freetype/freetype.c
 	# Config
 	[ ${CARCH} = 'x86_64' ] && CXXFLAGS="$CXXFLAGS -fPIC"
 
@@ -110,8 +108,9 @@ package() {
 		"${pkgdir}/usr/share/icons/hicolor/${res}x${res}/apps/${_appname_}.png"
 	done
 
-	install -Dm644 "$srcdir"/update-vlc-plugin-cache.hook "$pkgdir"/usr/share/libalpm/hooks/update-vlc-plugin-cache.hook
+  install -Dm644 "$srcdir"/update-vlc-plugin-cache.hook "$pkgdir"/usr/share/libalpm/hooks/update-vlc-plugin-cache.hook
 }
 
-sha1sums=('9b30b61b57b0f459660d97ed59601efc04c041a2'
-          'c3a35ba4dbd6c8e4e5b032664f50b9f0dcf579ee')
+sha1sums=('782dce2fc1955c63d31d641ccb592e7dda3be8b5'
+          'c3a35ba4dbd6c8e4e5b032664f50b9f0dcf579ee'
+          '5d7dba23756ff577a90b8631b187fbeac1f94e17')
