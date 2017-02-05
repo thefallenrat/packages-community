@@ -5,7 +5,6 @@ pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
         'manjaro-budgie-settings'
         'manjaro-cinnamon-settings'
-        'manjaro-gnome-settings'
         'manjaro-jwm-settings'
         'manjaro-lxde-settings'
         'manjaro-mate-settings'
@@ -94,27 +93,6 @@ package_manjaro-cinnamon-settings() {
     _inst_dir 'community/cinnamon'
 }
 
-package_manjaro-gnome-settings() {
-    pkgdesc='Manjaro Linux gnome settings'
-    depends=('gnome-shell'
-        'gnome-shell-extension-taskbar'
-        'gnome-shell-extensions'
-        'gnome-shell-extension-openweather'
-        'gnome-shell-extension-gnomenu'
-        'gnome-shell-extension-dash-to-dock'
-        'gnome-wallpapers'
-	'arc-themes-maia'
-        'xcursor-breeze'
-        'manjaro-base-skel'
-	'qt5-styleplugins'
-        'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings')
-    conflicts=('manjaro-desktop-settings')
-    provides=('manjaro-desktop-settings')
-
-    _inst_dir 'community/gnome'
-}
-
 package_manjaro-jwm-settings() {
     pkgdesc='Manjaro Linux jwm settings'
     depends=('cantarell-fonts'
@@ -151,7 +129,7 @@ package_manjaro-mate-settings() {
 		'mate-gtk3-manjaro'
 		'mate-polkit'
 		'mate-session-manager'
-		'mate-settings-daemon-gtk3'	
+		'mate-settings-daemon-gtk3'
 		'brisk-menu'
 		'manjaro-mate-panel-layout'
 		'mate-wallpapers'
@@ -165,7 +143,7 @@ package_manjaro-mate-settings() {
 		'gnome-icon-theme-symbolic'
                 'qt5-styleplugins'
                 'qt5ct')
-    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme' 
+    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme'
 'mate-icon-theme' 'mate-themes' 'mate-user-guide')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
