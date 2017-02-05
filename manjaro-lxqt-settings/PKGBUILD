@@ -2,8 +2,8 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgbase=manjaro-lxqt-settings
-pkgname=('manjaro-lxqt-minimal-settings')
-#         'manjaro-lxqt-settings')
+pkgname=('manjaro-lxqt-basic-settings'
+        'manjaro-lxqt-extra-settings')
 pkgver=20170205
 pkgrel=1
 arch=('any')
@@ -22,23 +22,30 @@ pkgver() {
     date +%Y%m%d
 }
 
-package_manjaro-lxqt-settings() {
-    pkgdesc='Manjaro Linux lxqt settings'
-    depends=('manjaro-base-skel')
+package_manjaro-lxqt-basic-settings() {
+    pkgdesc='Manjaro Linux lxqt basic settings'
+    depends=('manjaro-base-skel'
+            'xcursor-breeze'
+            'breath-icon-theme'
+            'breath-wallpaper')
+    conflicts=('manjaro-lxqt-minimal-settings')
+    replaces=('manjaro-lxqt-minimal-settings')
     provides=('manjaro-desktop-settings')
     conflicts=('manjaro-desktop-settings')
 
-    _inst_dir
+    _inst_dir 'basic'
 }
 
-# package_manjaro-lxqt-minimal-settings() {
-#     pkgdesc='Manjaro Linux lxqt-minimal settings'
-#     depends=('manjaro-base-skel'
-#             'xcursor-breeze'
-#             'breath-icon-theme'
-#             'breath-wallpaper')
-#     provides=('manjaro-desktop-settings')
-#     conflicts=('manjaro-desktop-settings')
-#
-#     _inst_dir '/minimal'
-# }
+package_manjaro-lxqt-extra-settings() {
+    pkgdesc='Manjaro Linux lxqt extra settings'
+    depends=('manjaro-base-skel'
+            'xcursor-breeze'
+            'breath-icon-theme'
+            'breath-wallpaper')
+    conflicts=('manjaro-lxqt-settings')
+    replaces=('manjaro-lxqt-settings')
+    provides=('manjaro-desktop-settings')
+    conflicts=('manjaro-desktop-settings')
+
+    _inst_dir 'extra'
+}
