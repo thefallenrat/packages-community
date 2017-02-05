@@ -2,12 +2,12 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgbase=desktop-settings
-pkgname=('manjaro-lxqt-settings'
-        'manjaro-lxqt-minimal-settings')
-pkgver=20170202
+pkgname=('manjaro-lxqt-minimal-settings')
+#         'manjaro-lxqt-settings')
+pkgver=20170205
 pkgrel=1
 arch=('any')
-url="https://github.com/manjaro/desktop-settings"
+url="https://github.com/manjaro/manjaro-lxqt-settings"
 license=('GPL')
 makedepends=('git')
 source=("git+$url.git")
@@ -33,14 +33,14 @@ package_manjaro-lxqt-settings() {
     _inst_dir 'community/lxqt'
 }
 
-package_manjaro-lxqt-minimal-settings() {
-    pkgdesc='Manjaro Linux lxqt-minimal settings'
-    depends=('manjaro-base-skel'
-            'xcursor-breeze'
-            'breath-icon-theme'
-            'breath-wallpaper')
-    provides=('manjaro-desktop-settings')
-    conflicts=('manjaro-desktop-settings')
-
-    _inst_dir 'minimal/lxqt'
-}
+# package_manjaro-lxqt-minimal-settings() {
+#     pkgdesc='Manjaro Linux lxqt-minimal settings'
+#     depends=('manjaro-base-skel'
+#             'xcursor-breeze'
+#             'breath-icon-theme'
+#             'breath-wallpaper')
+#     provides=('manjaro-desktop-settings')
+#     conflicts=('manjaro-desktop-settings')
+#
+#     _inst_dir 'minimal/lxqt'
+# }
