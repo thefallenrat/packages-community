@@ -1,7 +1,7 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 # Contributor: artoo <artoo@manjaro.org>
 
-pkgbase=desktop-settings
+pkgbase=manjaro-lxqt-settings
 pkgname=('manjaro-lxqt-minimal-settings')
 #         'manjaro-lxqt-settings')
 pkgver=20170205
@@ -14,10 +14,8 @@ source=("git+$url.git")
 sha256sums=('SKIP')
 
 _inst_dir(){
-    if [[ -d $srcdir/$pkgbase/$1/skel ]];then
-        install -d $pkgdir/etc
-        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
-    fi
+    install -d $pkgdir/etc
+    cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
 }
 
 pkgver() {
@@ -30,7 +28,7 @@ package_manjaro-lxqt-settings() {
     provides=('manjaro-desktop-settings')
     conflicts=('manjaro-desktop-settings')
 
-    _inst_dir 'community/lxqt'
+    _inst_dir
 }
 
 # package_manjaro-lxqt-minimal-settings() {
@@ -42,5 +40,5 @@ package_manjaro-lxqt-settings() {
 #     provides=('manjaro-desktop-settings')
 #     conflicts=('manjaro-desktop-settings')
 #
-#     _inst_dir 'minimal/lxqt'
+#     _inst_dir '/minimal'
 # }
