@@ -1,7 +1,7 @@
 # Maintainer: Alexandru Ianu <alexandru@manjaro.org>
 
 pkgname=xtitle
-pkgver=20141008
+pkgver=20170206
 pkgrel=1
 pkgdesc='Outputs X window titles'
 arch=('i686' 'x86_64')
@@ -13,8 +13,7 @@ source=("git://github.com/baskerville/${pkgname}.git")
 md5sums=('SKIP')
 
 pkgver() {
-    cd "$srcdir/$pkgname"
-    git rev-list --count HEAD
+    date +%Y%m%d
 }
 
 build() {
