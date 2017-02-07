@@ -2,7 +2,7 @@
 
 pkgname=manjaro-architect
 pkgver=0.7
-pkgrel=1
+pkgrel=2
 pkgdesc="A clone of architect installer modified for manjaro"
 arch=(any)
 url="https://github.com/Chrysostomus/aif-dev"
