@@ -5,7 +5,7 @@ pkgbase=manjaro-lxqt-settings
 pkgname=('manjaro-lxqt-basic-settings'
         'manjaro-lxqt-extra-settings')
 pkgver=20170208
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/manjaro-lxqt-settings"
 license=('GPL')
@@ -42,7 +42,6 @@ package_manjaro-lxqt-extra-settings() {
     depends=('manjaro-lxqt-basic-settings')
     conflicts=('manjaro-lxqt-settings')
     replaces=('manjaro-lxqt-settings')
-#     provides=('manjaro-desktop-settings')
 
     _inst_dir 'extra'
 }
