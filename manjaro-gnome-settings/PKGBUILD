@@ -4,7 +4,7 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170205
+pkgver=20170210
 pkgrel=1
 pkgdesc="Manjaro Linux Gnome settings"
 arch=('any')
@@ -34,13 +34,13 @@ package_manjaro-gnome-settings() {
         'gnome-shell-extension-gnomenu'
         'gnome-shell-extension-dash-to-dock'
         'gnome-wallpapers'
-        'arc-themes-maia
+        'arc-themes-maia'
 	'arc-maia-icon-theme'
         'xcursor-breeze'
         'manjaro-base-skel'
         'qt5-styleplugins'
         'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings' 'moka-icon-theme' )
+    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings' 'moka-icon-theme')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
