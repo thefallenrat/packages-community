@@ -2,7 +2,7 @@
 
 pkgname=gnome-shell-extension-taskbar
 pkgver=53.0
-pkgrel=3
+pkgrel=4
 _author=zpydr
 pkgdesc="GNOME Shell Extension TaskBar"
 arch=('any')
@@ -27,4 +27,8 @@ package() {
   rm README.md
   mkdir -p "$pkgdir/usr/share/gnome-shell/extensions/TaskBar@zpydr/"
   cp -a * "$pkgdir/usr/share/gnome-shell/extensions/TaskBar@zpydr/"
+  rm $pkgdir/usr/share/gnome-shell/extensions/TaskBar@zpydr/schemas/gschemas.compiled
+  glib-compile-schemas $pkgdir/usr/share/gnome-shell/extensions/TaskBar@zpydr/schemas
+
+
 }
