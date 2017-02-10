@@ -6,8 +6,7 @@ pkgver=0.7.2
 pkgrel=1
 pkgdesc="A clone of architect installer modified for manjaro"
 arch=(any)
-#url="https://github.com/Chrysostomus/$_pkgname"
-url="https://github.com/oberon2007/$pkgname"
+url="https://github.com/Chrysostomus/$_pkgname"
 license=(GPL2)
 depends=('bash'
 	'dialog'
@@ -25,8 +24,7 @@ source=("git+$url.git")
 md5sums=('SKIP')
 
 package () {
-#    cd $_pkgname 
-    cd $pkgname
+    cd $_pkgname
     install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname
     mkdir -p $pkgdir/usr/share/aif/{package-lists,translations}
     cp -r package-lists $pkgdir/usr/share/aif/
