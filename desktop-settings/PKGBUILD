@@ -4,7 +4,6 @@
 pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
         'manjaro-budgie-settings'
-        'manjaro-cinnamon-settings'
         'manjaro-jwm-settings'
         'manjaro-lxde-settings'
         'manjaro-mate-settings'
@@ -73,24 +72,6 @@ package_manjaro-budgie-settings() {
     provides=('manjaro-desktop-settings')
 
     _inst_dir 'community/budgie'
-}
-
-package_manjaro-cinnamon-settings() {
-    pkgdesc='Manjaro Linux cinnamon settings'
-    depends=('artwork-cinnamon-minimal'
-        'cantarell-fonts'
-        'cinnamon'
-        'maia-icon-theme'
-        'ttf-comfortaa'
-        'vertex-maia-themes'
-        'xcursor-breeze'
-        'manjaro-base-skel')
-    optdepends=('plymouth-theme-manjaro-cinnamon'
-                'cinnamon-sounds')
-    conflicts=('manjaro-desktop-settings')
-    provides=('manjaro-desktop-settings')
-
-    _inst_dir 'community/cinnamon'
 }
 
 package_manjaro-jwm-settings() {

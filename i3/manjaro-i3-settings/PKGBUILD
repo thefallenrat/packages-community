@@ -2,7 +2,7 @@
 
 _pkgbase=desktop-settings
 pkgname=manjaro-i3-settings
-pkgver=20170207
+pkgver=20170210
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/$_pkgbase"
@@ -43,5 +43,6 @@ package() {
     cd $_pkgbase
     install -d $pkgdir/etc
     cp -r community/i3/skel $pkgdir/etc
-    install -Dm644 community/i3/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+    install -d $pkgdir/usr/share/glib-2.0/schemas
+    cp community/i3/schemas/* $pkgdir/usr/share/glib-2.0/schemas
 }
