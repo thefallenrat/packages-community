@@ -13,8 +13,7 @@ _srcname=linux-${_basekernel}
 _basever=44-rt-lts
 _pkgver=${_basekernel}.47
 _pkgverrt=$_pkgver
-#_pkgverrt=${_basekernel}.27
-_rtpatchver=rt58
+_rtpatchver=rt59
 _bfq=v7r11
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
@@ -62,7 +61,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             'e7e824d6275073ddb9de10dd25afbfb0fe0a622d37afff7b7377e4882abc1c18'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'd3f95736b731334cc861b40dc9f9951bdef57b88aa82be52ceab15f1e1f82950'
+            '6ad926f1370aec5084f8b63e08e38a46672f534828d478c21e4993c0074b528e'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
