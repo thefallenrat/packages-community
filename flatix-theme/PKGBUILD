@@ -1,0 +1,26 @@
+# Maintainer : Stefano Capitani <stafanoatmanjarodotorg>
+# Author : edskeye <forumatmanjarodotorg> <https://github.com/edskeye>
+
+pkgname=flatix-theme
+_pkgname=MGE-Flatix-Theme
+pkgver=20170213
+pkgrel=1
+pkgdesc="Complete Shell and GTK theme for Gnome created and combined from two themes: Vimix Dark Theme and Vimix Aurora"
+arch=('any')
+url="https://github.com/edskeye"
+license=('GPL')
+depends=('gtk3' 'gtk-engine-murrine' 'gtk-engines')
+makedepends=('git')
+source=("git://github.com/edskeye/${_pkgname}")
+sha256sums=('SKIP')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+  mkdir -p "${pkgdir}/usr/share/themes/$pkgname"
+  cd $srcdir/$_pkgname
+  rm -f *.md LICENSE
+  cp -r * "${pkgdir}/usr/share/themes/$pkgname/"
+}
