@@ -11,10 +11,9 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _basekernel=4.4
 _srcname=linux-${_basekernel}
 _basever=44-rt-lts
-_pkgver=${_basekernel}.39
+_pkgver=${_basekernel}.47
 _pkgverrt=$_pkgver
-#_pkgverrt=${_basekernel}.27
-_rtpatchver=rt50
+_rtpatchver=rt59
 _bfq=v7r11
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
@@ -48,7 +47,7 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            'fc2b60d221aeaf3eafec4f36f299e4002be81da85117c3f59963fdcb6facb929'
+            '21fd72caa322800b4668b4464d6ac4d8d66faa0056e08a5925d5911dab438c18'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
@@ -62,7 +61,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             'e7e824d6275073ddb9de10dd25afbfb0fe0a622d37afff7b7377e4882abc1c18'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            '58ea58fc0807d4665909b66e6223eb3e94fe2aea8df4b7ff5956673198a6d0cc'
+            '6ad926f1370aec5084f8b63e08e38a46672f534828d478c21e4993c0074b528e'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')

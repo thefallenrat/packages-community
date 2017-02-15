@@ -4,8 +4,8 @@
 pkgbase=manjaro-lxqt-settings
 pkgname=('manjaro-lxqt-basic-settings'
         'manjaro-lxqt-extra-settings')
-pkgver=20170205
-pkgrel=1
+pkgver=20170208
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/manjaro-lxqt-settings"
 license=('GPL')
@@ -27,7 +27,8 @@ package_manjaro-lxqt-basic-settings() {
     depends=('manjaro-base-skel'
             'xcursor-breeze'
             'breath-icon-theme'
-            'breath-wallpaper')
+            'breath-wallpaper'
+            'gtk-theme-breath')
     conflicts=('manjaro-lxqt-minimal-settings')
     replaces=('manjaro-lxqt-minimal-settings')
     provides=('manjaro-desktop-settings')
@@ -38,14 +39,9 @@ package_manjaro-lxqt-basic-settings() {
 
 package_manjaro-lxqt-extra-settings() {
     pkgdesc='Manjaro Linux lxqt extra settings'
-    depends=('manjaro-base-skel'
-            'xcursor-breeze'
-            'breath-icon-theme'
-            'breath-wallpaper')
+    depends=('manjaro-lxqt-basic-settings')
     conflicts=('manjaro-lxqt-settings')
     replaces=('manjaro-lxqt-settings')
-    provides=('manjaro-desktop-settings')
-    conflicts=('manjaro-desktop-settings')
 
     _inst_dir 'extra'
 }
