@@ -6,10 +6,10 @@
 ### NOTE ### Forked sources have merged ALL major fixes from develop branch (https://github.com/Bumblebee-Project/Bumblebee/commits/develop)
 ### Reference: https://forum.manjaro.org/t/bumblebee-not-switching-back-to-igpu-after-quitting-optirun/1054/12?u=fademind
 
-_commit=c751fca79bfabf6e8cd7f33c68036b76ba0ef060 # lastest commit from 20170105
+_commit=029ddaca064756c0a54bc67a9d5e1ed9d0aeb676 # lastest commit from 20170217
 pkgname=bumblebee
 pkgver=3.2.1
-pkgrel=15
+pkgrel=16
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 depends=('kmod' 'primus' 'glib2' 'mesa-libgl')
@@ -29,7 +29,7 @@ backup=('etc/bumblebee/bumblebee.conf'
         'etc/bumblebee/xorg.conf.nvidia')
 install='bumblebee.install'
 source=("${pkgname}.zip::https://github.com/FadeMind/Bumblebee/archive/${_commit}.zip")
-sha256sums=('2053485c47ddaa1ce5256c4026cbb50b79a511a6e87b700f43caa898f50793a8')
+sha256sums=('709aabd1aff041e0b89cacc5a47083326f6c5ce22644e75d9a7ebfdd35c80fe2')
 
 build() {    
     cd "${srcdir}/Bumblebee-${_commit}"
@@ -59,4 +59,8 @@ package() {
     
     # Install udev rule to prevent GH-#144
     install -Dm644 "conf/99-bumblebee-nvidia-dev.rules" "${pkgdir}/usr/lib/udev/rules.d/99-bumblebee-nvidia-dev.rules"
+    
+    # Stop nvidia from loading on boot
+    mkdir -p "${pkgdir}/etc/modprobe.d"
+    echo "remove nvidia modprobe -r --ignore-remove nvidia-drm nvidia-modeset nvidia-uvm nvidia" > "${pkgdir}/etc/modprobe.d/bumblebee.conf"
 }
