@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="Zsh configuration for manjaro"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-_gitcommit=8b66c39658c9018b561408223ee8bb87ead814ce
+_gitcommit=df81ef27ab1a2eb3a70c53ca2afda7e5f48c67f8
 license=('MIT')
 depends=('zsh-autosuggestions'
 	'zsh-syntax-highlighting'
