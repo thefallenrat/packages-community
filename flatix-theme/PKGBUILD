@@ -3,9 +3,9 @@
 
 pkgname=flatix-theme
 _pkgname=MGE-Flatix-Theme
-pkgver=20170213
+pkgver=20170215
 pkgrel=1
-pkgdesc="Complete Shell and GTK theme for Gnome created and combined from two themes: Vimix Dark Theme and Vimix Aurora"
+pkgdesc="Complete Shell and GTK theme for Gnome,Cinnamon and Mate created and combined from two themes: Vimix Dark Theme and Vimix Aurora"
 arch=('any')
 url="https://github.com/edskeye"
 license=('GPL')
