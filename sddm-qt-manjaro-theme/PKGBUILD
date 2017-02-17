@@ -1,0 +1,20 @@
+pkgname=sddm-qt-manjaro-theme
+pkgver=$(date +%m%d)
+pkgrel=1
+pkgdesc="Manjaro qt theme for SDDM"
+arch=('any')
+url="http://manjaro.org"
+license=('GPL')
+makedepends=('git')
+depends=('sddm' 'breath-wallpaper')
+source=("git+https://github.com/manjaro/desktop-settings.git")
+sha256sums=('SKIP')
+
+package() {
+    cd ${srcdir}/desktop-settings
+
+    install -d ${pkgdir}/usr/share/sddm/themes/manjaro
+    cp shared/sddm-qt-manjaro/* ${pkgdir}/usr/share/sddm/themes/manjaro
+
+    sed -e "s|@name@|breath|" -i ${pkgdir}/usr/share/sddm/themes/manjaro/theme.conf
+}

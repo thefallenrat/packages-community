@@ -1,0 +1,12 @@
+diff -rupN --no-dereference a/common/gtk-3.0/3.20/gtk.css b/common/gtk-3.0/3.20/gtk.css
+--- a/common/gtk-3.0/3.20/gtk.css	2016-10-09 11:07:17.000000000 +0200
++++ b/common/gtk-3.0/3.20/gtk.css	2017-02-16 19:17:10.112207180 +0100
+@@ -4321,6 +4321,8 @@ ClockBox {
+       border-style: solid;
+       border-color: transparent;
+       border-radius: 0; }
++#xfce4-power-manager-plugin {
++  color: #f3f3f5; }
+ 
+ .nautilus-window .floating-bar {
+   padding: 0;

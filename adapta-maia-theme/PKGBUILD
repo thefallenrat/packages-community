@@ -18,40 +18,38 @@ depends=("gtk2>=${_gtk2_min}"
          #"gtk3<=${_gtk3_max}.99"
          'gtk-engines>=2.21.0'
          'gtk-engine-murrine>=0.98.2'
-	 'cantarell-fonts')
+	     'cantarell-fonts')
 optdepends=('ttf-roboto: The recommended font'
             'noto-fonts: The recommended font for improved language support'
-	    "gnome-shell>=${_gtk3_min}.3: The GNOME Shell"
+            "gnome-shell>=${_gtk3_min}.3: The GNOME Shell"
             "gnome-flashback>=${_gtk3_min}.2: The GNOME flashback shell"
             'budgie-desktop>=10.2.7: The Budgie desktop'
             'cinnamon>=2.8.6: The Cinnamon desktop'
             'xfdesktop>=4.12.2: The Xfce desktop'
-	    'openbox>=3.6.1: The openbox window manager'
-	    'marco-gtk3>=1.14.0: The Mate Desktop GTK3 version'
+	        'openbox>=3.6.1: The openbox window manager'
+	        'marco-gtk3>=1.14.0: The Mate Desktop GTK3 version'
             'paper-icon-theme: A fitting icon theme'
             'gnome-tweak-tool: A graphical tool to tweak gnome settings'
             'arc-firefox-theme-maia: Arc theme with maia color'
-  	    'adapta-backgrounds: The background of project')
+  	        'adapta-backgrounds: The background of project')
 makedepends=('libxml2'
-	     'libsass'
-	     'sassc'
-	     'librsvg'
+	         'libsass'
+	         'sassc'
+	         'librsvg'
              'inkscape'
-	     'libcanberra'
-	     'parallel')
+	         'libcanberra'
+	         'parallel')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
 sha256sums=('b78dff02b66deeb0ece451e98a30e66355948973a67e416f08f70c4fe0b16e3d')
-
 
 build() {
     cd "${_pkgname}-${pkgver}"
     ./autogen.sh --prefix "${pkgdir}/usr" \
-                 --enable-chrome \
-		 --enable-plank \
-	         --with-selection_color=#16A085 \
-		 --with-second_selection_color=#16A085 \
-		 --enable-parallel #--enable-gtk_next
-
+      --enable-chrome \
+      --enable-plank \
+      --with-selection_color=#16A085 \
+      --with-second_selection_color=#16A085 \
+      --enable-parallel #--enable-gtk_next
     make
 }
 
@@ -74,7 +72,6 @@ cd "$pkgdir/usr/share/themes"
 
 # New symlink
 cd "$pkgdir/usr/share/themes/Adapta-Nokto-Maia"
-
     ln -sf /usr/share/themes/Adapta-Maia/xfwm4 xfwm4
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
     ln -sf /usr/share/themes/Adapta-Maia/unity unity
@@ -101,6 +98,4 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
     ln -sf /usr/share/themes/Adapta-Maia/plank plank
     ln -sf /usr/share/themes/Adapta-Maia/unity unity
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
-
 }
-

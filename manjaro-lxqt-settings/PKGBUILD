@@ -1,47 +1,47 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 # Contributor: artoo <artoo@manjaro.org>
 
-pkgbase=desktop-settings
-pkgname=('manjaro-lxqt-settings'
-        'manjaro-lxqt-minimal-settings')
-pkgver=20160922
-pkgrel=1
+pkgbase=manjaro-lxqt-settings
+pkgname=('manjaro-lxqt-basic-settings'
+        'manjaro-lxqt-extra-settings')
+pkgver=20170208
+pkgrel=2
 arch=('any')
-url="https://github.com/manjaro/desktop-settings"
+url="https://github.com/manjaro/manjaro-lxqt-settings"
 license=('GPL')
 makedepends=('git')
 source=("git+$url.git")
 sha256sums=('SKIP')
 
 _inst_dir(){
-    if [[ -d $srcdir/$pkgbase/$1/skel ]];then
-        install -d $pkgdir/etc
-        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
-    fi
+    install -d $pkgdir/etc
+    cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
 }
 
 pkgver() {
     date +%Y%m%d
 }
 
-package_manjaro-lxqt-settings() {
-    pkgdesc='Manjaro Linux lxqt settings'
-    depends=('manjaro-base-skel')
-    provides=('manjaro-desktop-settings')
-    conflicts=('manjaro-desktop-settings')
-
-    _inst_dir 'community/lxqt'
-}
-
-package_manjaro-lxqt-minimal-settings() {
-    pkgdesc='Manjaro Linux lxqt-minimal settings'
+package_manjaro-lxqt-basic-settings() {
+    pkgdesc='Manjaro Linux lxqt basic settings'
     depends=('manjaro-base-skel'
             'xcursor-breeze'
-            'andromeda-icon-theme'
-            'andromeda-wallpaper')
-    optdepends=('manjaro-openbox-settings: Manjaro Linux Openbox settings')
+            'breath-icon-theme'
+            'breath-wallpaper'
+            'gtk-theme-breath')
+    conflicts=('manjaro-lxqt-minimal-settings')
+    replaces=('manjaro-lxqt-minimal-settings')
     provides=('manjaro-desktop-settings')
     conflicts=('manjaro-desktop-settings')
 
-    _inst_dir 'minimal/lxqt'
+    _inst_dir 'basic'
+}
+
+package_manjaro-lxqt-extra-settings() {
+    pkgdesc='Manjaro Linux lxqt extra settings'
+    depends=('manjaro-lxqt-basic-settings')
+    conflicts=('manjaro-lxqt-settings')
+    replaces=('manjaro-lxqt-settings')
+
+    _inst_dir 'extra'
 }
