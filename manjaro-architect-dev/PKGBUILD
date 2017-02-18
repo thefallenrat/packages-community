@@ -20,6 +20,8 @@ depends=('bash'
          'pacman-mirrorlist'
          'parted')
 makedepends=('git')
+conflicts=("$_pkgname")
+provides=("$_pkgname")
 source=("git+$url.git#branch=master")
 md5sums=('SKIP')
 
