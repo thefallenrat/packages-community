@@ -3,7 +3,7 @@
 
 _pkgname=manjaro-architect
 pkgname=$_pkgname-dev
-pkgver=0.7.4.r43.g571a455
+pkgver=0.7.4.r58.g4664f19
 pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
