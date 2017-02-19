@@ -41,7 +41,6 @@ prepare() {
   ## gtk3 fixes for xfce4-panel
   patch -p1 -i $srcdir/xfce_panel_gtk3.patch
   patch -p1 -i $srcdir/xfce4-pm-plugin_gtk3.patch
-  
 }
 
 pkgver() {
