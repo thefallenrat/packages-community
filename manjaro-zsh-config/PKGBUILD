@@ -15,7 +15,7 @@ depends=('zsh-autosuggestions'
 	'zsh-history-substring-search'
 	'zsh')
 source=("$pkgname.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('SKIP')
+md5sums=('b3d7c9f009079f560442b50712529bf2')
 
 package() {
 	cd ${srcdir}
