@@ -1,26 +1,41 @@
 # Maintainer : Stefano Capitani <stafanoatmanjarodotorg>
 # Author : edskeye <forumatmanjarodotorg> <https://github.com/edskeye>
 
-pkgname=flatix-theme
+pkgbase=flatix-theme
+pkgname=('flatix-theme' 'flatix-theme-dark')
 _pkgname=MGE-Flatix-Theme
-pkgver=20170215
+_pkgnamedark=MGE-Flatix-Theme-Dark
+pkgver=20170223
 pkgrel=1
-pkgdesc="Complete Shell and GTK theme for Gnome,Cinnamon and Mate created and combined from two themes: Vimix Dark Theme and Vimix Aurora"
 arch=('any')
 url="https://github.com/edskeye"
 license=('GPL')
+source=("git://github.com/edskeye/$_pkgname"
+	"git://github.com/edskeye/$_pkgnamedark")
 depends=('gtk3' 'gtk-engine-murrine' 'gtk-engines')
 makedepends=('git')
-source=("git://github.com/edskeye/${_pkgname}")
-sha256sums=('SKIP')
 
 pkgver() {
     date +%Y%m%d
 }
 
-package() {
+package_flatix-theme() {
+pkgdesc="Complete Shell and GTK theme for Gnome,Cinnamon and Mate created and combined from two themes: Vimix Dark Theme and Vimix Aurora"
+
   mkdir -p "${pkgdir}/usr/share/themes/$pkgname"
   cd $srcdir/$_pkgname
   rm -f *.md LICENSE
   cp -r * "${pkgdir}/usr/share/themes/$pkgname/"
 }
+
+package_flatix-theme-dark() {
+pkgdesc="Complete Shell and GTK theme for Gnome,Cinnamon and Mate created and combined from two themes: Vimix Dark Theme and Vimix Aurora Dark version"
+
+  mkdir -p "${pkgdir}/usr/share/themes/$pkgname"
+  cd $srcdir/$_pkgnamedark
+  rm -f *.md LICENSE
+  cp -r * "${pkgdir}/usr/share/themes/$pkgname/"
+}
+
+md5sums=('SKIP'
+         'SKIP')
