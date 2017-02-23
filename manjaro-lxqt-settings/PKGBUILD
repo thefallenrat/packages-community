@@ -4,7 +4,7 @@
 pkgbase=manjaro-lxqt-settings
 pkgname=('manjaro-lxqt-basic-settings'
         'manjaro-lxqt-extra-settings')
-pkgver=20170221
+pkgver=20170223
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-lxqt-settings"
