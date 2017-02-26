@@ -16,7 +16,7 @@ _bfq=v8r7
 _pkgver=${_basekernel}.11
 _rtpatchver=rt9
 pkgver=${_pkgver}_${_rtpatchver}
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -32,6 +32,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
         "${pkgname}.hook"
+        '0001-dccp-fix-freeing-skb-too-early-for-IPV6_RECVPKTINFO.patch::https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/patch/?id=5edabca9d4cff7f1f2b68f0bac55ef99d9798ba4'
         "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-v7r11-4.5.0.patch"
         "0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0002-block-introduce-the-BFQ-v7r11-I-O-sched-for-4.5.0.patch"
         "0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-v7r11-for.patch"
@@ -52,6 +53,7 @@ sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
+            '5286f57325cc742afd957466efe705859001295f23786fbf8aafe3f01dd580f4'
             'ee2fb11cdeab92bd93fd80044b698ff7b2abf4573a35fd891864419b3c650b23'
             'edc0693cf16900c790a4bb25ab2f7482a4c5bb1f998e59b23dea486989abbe07'
             '2dd17bdf945b973b569c8614a1de943833d7e3e4d60921308d580d944f922fa7'
@@ -82,6 +84,9 @@ prepare() {
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
   # enable only if you have "gen-stable-queue-patch.sh" executed before
   #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}`date +%Y%m%d`"
+  
+  # https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6074
+  patch -p1 -i "${srcdir}/0001-dccp-fix-freeing-skb-too-early-for-IPV6_RECVPKTINFO.patch"
 
   # set DEFAULT_CONSOLE_LOGLEVEL to 4 (same value as the 'quiet' kernel param)
   # remove this when a Kconfig knob is made available by upstream
