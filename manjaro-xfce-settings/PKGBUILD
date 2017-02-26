@@ -3,7 +3,7 @@
 pkgbase=manjaro-xfce-settings
 pkgname=('manjaro-xfce-settings'
          'manjaro-xfce-minimal-settings')
-pkgver=20170220
+pkgver=20170225
 pkgrel=1
 pkgdesc="Manjaro Linux Xfce settings"
 arch=('any')
@@ -29,11 +29,11 @@ package_manjaro-xfce-settings() {
 	depends=('breath-wallpaper'
 	         'manjaro-base-skel'
 	         'manjaro-icons'
-             'qt5ct'
-             'qt5-styleplugins'
+	         'qt5ct'
+	         'qt5-styleplugins'
 	         'vertex-maia-icon-theme'
 	         'vertex-maia-themes'
-             'xcursor-breeze')
+	         'xcursor-breeze')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 
