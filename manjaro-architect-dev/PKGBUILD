@@ -4,7 +4,8 @@
 pkgbase=manjaro-architect-dev
 pkgname=('manjaro-architect-dev' 'manjaro-architect-dev-launcher')
 _pkgname=manjaro-architect
-pkgver=0.7.4.r68.g3f0fba7
+_commit=1036002b2ee35be9b47aa27940f872b45a1644bf
+pkgver=0.7.4.r144.gce843e2
 pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
@@ -13,9 +14,8 @@ license=(GPL2)
 depends=('bash'
          'dialog')
 makedepends=('git')
-conflicts=("$_pkgname")
-provides=("$_pkgname")
 source=("git+$url.git#branch=master")
+#source=("git+$url.git#commit=$_commit")
 md5sums=('SKIP')
 
 prepare() {
@@ -42,11 +42,15 @@ package_manjaro-architect-dev() {
              'pacman'
              'pacman-mirrorlist'
              'parted')
+    conflicts=("$_pkgname")
+    provides=("$_pkgname")
     cd $_pkgname
 	make PREFIX=/usr DESTDIR=${pkgdir} install
 }
 
 package_manjaro-architect-dev-launcher() {
+    conflicts=("${_pkgname}-launcher")
+    provides=("${_pkgname}-launcher")
     cd $_pkgname
     install -Dm755 bin/setup $pkgdir/usr/bin/setup
 }
