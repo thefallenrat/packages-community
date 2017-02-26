@@ -2,7 +2,7 @@
 
 pkgname=i3-default-artwork
 _repo=artwork-i3
-pkgver=20170131
+pkgver=20170225
 pkgrel=1
 pkgdesc="icons, avatars, moc-theme and default wallpaper for manjaro-i3"
 arch=(any)
@@ -24,5 +24,5 @@ package() {
 	cp -r icons $pkgdir/usr/share
 	cp -r moc $pkgdir/usr/share
 	cp -r pixmaps $pkgdir/usr/share
-	install -Dm644 backgrounds/breath_i3.jpg $pkgdir/usr/share/backgrounds/default_background.jpg
+	install -Dm644 backgrounds/maia_i3.jpg $pkgdir/usr/share/backgrounds/i3_default_background.jpg
 }

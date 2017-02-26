@@ -2,7 +2,7 @@
 
 _pkgbase=desktop-settings
 pkgname=manjaro-i3-settings
-pkgver=20170210
+pkgver=20170225
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/$_pkgbase"
