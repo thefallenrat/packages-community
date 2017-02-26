@@ -2,11 +2,11 @@
 
 pkgname=manjaro-zsh-config
 pkgver=0.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Zsh configuration for manjaro"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
-_gitcommit=b049abc24c7ae0a9a01136424a5f0c82ea3f7bfc
+_gitcommit=b07f66d801e3e7798d4dad1e3970fe3072caaa58
 license=('MIT')
 conflicts=('grml-zsh-config')
 depends=('zsh-autosuggestions'
@@ -15,7 +15,7 @@ depends=('zsh-autosuggestions'
 	'zsh-history-substring-search'
 	'zsh')
 source=("$pkgname.tar.gz::$url/archive/$_gitcommit.tar.gz")
-md5sums=('b3d7c9f009079f560442b50712529bf2')
+md5sums=('189740813938051bc612baf0d81481b2')
 
 package() {
 	cd ${srcdir}
