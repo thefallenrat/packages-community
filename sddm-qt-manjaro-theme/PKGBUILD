@@ -7,6 +7,7 @@ url="http://manjaro.org"
 license=('GPL')
 makedepends=('git')
 depends=('sddm' 'breath-wallpaper')
+install=sddm-qt-manjaro-theme.install
 source=("git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP')
 
