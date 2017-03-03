@@ -3,19 +3,20 @@
 _pkgname=juffed
 pkgname=${_pkgname}-qt5
 pkgver=0.10.85.g5ba17f9
-pkgrel=1
+pkgrel=2
 pkgdesc='A lightweight cross-platform text editor. Development version.'
 arch=('i686' 'x86_64')
 url='http://juffed.com/'
 license=('GPL2')
-
 depends=('enca' 'qscintilla-qt5' 'desktop-file-utils')
 makedepends=('git' 'cmake' 'qt5-tools')
 provides=("${_pkgname}=${pkgver}" "${_pkgname}-plugins=${pkgver}")
 conflicts=("${_pkgname}-git")
 
-source=("git+https://github.com/Mezomish/${_pkgname}.git")
-sha512sums=('SKIP')
+source=("git+https://github.com/Mezomish/${_pkgname}.git"
+	"qscintilla2.patch")
+sha512sums=('SKIP'
+            '8d0481b187031ebede93c1e8ceb5a8e2fe9c494e9a5fcc6f8a5fb08fc88a207312c0e2cbd4c1ddcfaddd1db52da73bce2d7a2510ea941332b4d9bc37c6616a46')
 
 pkgver() {
 	# Updating package version
@@ -24,6 +25,8 @@ pkgver() {
 }
 
 prepare() {
+	cd $srcdir/$_pkgname/cmake/
+	patch -N -i $srcdir/qscintilla2.patch
 	# Make build directory
 	mkdir -p "${srcdir}"/build
 }
