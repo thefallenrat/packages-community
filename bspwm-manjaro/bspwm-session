@@ -21,7 +21,7 @@ trap on_exit EXIT SIGHUP SIGINT SIGTERM
 #Create example configs if configs are not present
 [[ ! -f /home/$(whoami)/.config/sxhkd/sxhkdrc ]] && cp /etc/skel/.config/sxhkd/sxhkdrc /home/$(whoami)/.config/sxhkd/sxhkdrc
 [[ ! -f /home/$(whoami)/.config/bspwm/bspwmrc ]] && cp /etc/skel/.config/bspwm/bspwmrc /home/$(whoami)/.config/bspwm/bspwmrc
-[[ ! -f /home/$(whoami)/.config/bspwm/bspwmrc ]] && touch /home/$(whoami)/.config/bspwm/autostart
+[[ ! -f /home/$(whoami)/.config/bspwm/autostart ]] && touch /home/$(whoami)/.config/bspwm/autostart
 # Environment and autostart:
 source_these=(
 	"/etc/profile"
