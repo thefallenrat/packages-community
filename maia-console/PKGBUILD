@@ -1,8 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=maia-console
-pkgver=1.0
-pkgrel=2
+pkgver=1.1
+pkgrel=1
 pkgdesc="Maia color scheme for the console and shell dialog"
 arch=('any')
 license=('GPL')
@@ -13,10 +13,10 @@ source=("$pkgname"
         "$pkgname.conf"
         "$pkgname@.service"
         'dialogrc')
-md5sums=('209741b396ca4f7b1477f264ab21d354'
+md5sums=('eeb6009449e015265da1bdf7270dddab'
          'faca86dd95445d265a14a9df698c619b'
          '07e13352758c402c39d20d7d30d610bc'
-         '9966da0933c5dfd8e96d964200ba44c3')
+         'd140b4a544fc681a7a738febe2495773')
 
 package() {
     install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname

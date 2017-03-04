@@ -6,27 +6,26 @@
 #
 #
 # colors used:
-# base00='232423' # BLACK   | dark grey
-# base08='282928'
-# base01='BA2922' # RED
-# base09='CC372C'
-# base02='138770' # GREEN   | Maia highlight
-# base10='16A085'
-# base03='7E807E' # YELLOW  | bright grey
-# base11='858785'
-# base04='333634' # BLUE    | grey
-# base12='373B38'
-# base05='3E4240' # MAGENTA | very bright grey
-# base13='434745'
-# base06='00CCCC' # CYAN
-# base14='00D1D1'
-# base07='E0E0E0' # WHITE
-# base15='E8E8E8'
+# color00='232423' # BLACK   | dark grey
+# color08='282928'
+# color01='BA2922' # RED
+# color09='CC372C'
+# color02='138770' # GREEN   | Maia highlight
+# color10='16A085'
+# color03='7E807E' # YELLOW  | bright grey
+# color11='858785'
+# color04='333634' # BLUE    | grey
+# color12='373B38'
+# color05='3E4240' # MAGENTA | very bright grey
+# color13='434745'
+# color06='00CCCC' # CYAN
+# color14='00D1D1'
+# color07='E0E0E0' # WHITE
+# color15='E8E8E8'
 
-screen_color = (yellow,blue,off)
-
-dialog_color = (green,magenta,off)
-title_color = (green,magenta,on)
+screen_color = (yellow,black,off)
+dialog_color = (cyan,blue,off)
+title_color = (yellow,blue,on)
 border_color = dialog_color
 shadow_color = (black,black,on)
 
@@ -34,9 +33,15 @@ button_inactive_color = dialog_color
 button_key_inactive_color = dialog_color
 button_label_inactive_color = dialog_color
 
-button_active_color = (white,magenta,off)
+button_active_color = (white,black,on)
 button_key_active_color = button_active_color
 button_label_active_color = (red,cyan,on)
+tag_key_selected_color = (white,blue,on)
+
+form_text_color = (white,magenta,on)
+form_item_readonly_color = (magenta,blue,on)
+
+itemhelp_color = (white,black,off)
 
 inputbox_color = dialog_color
 inputbox_border_color = dialog_color
@@ -50,16 +55,12 @@ item_color = dialog_color
 item_selected_color = button_active_color
 tag_color = title_color
 tag_selected_color = button_label_active_color
-tag_key_selected_color = (green,magenta,on)
 tag_key_color = button_key_inactive_color
 check_color = dialog_color
 check_selected_color = button_active_color
 uarrow_color = screen_color
 darrow_color = screen_color
-itemhelp_color = (white,black,OFF)
 form_active_text_color = button_active_color
-form_text_color = (white,magenta,on)
-form_item_readonly_color = (magenta,blue,on)
 gauge_color = title_color
 border2_color = dialog_color
 searchbox_border2_color = dialog_color
@@ -69,25 +70,6 @@ aspect = 0
 separate_widget = ""
 tab_len = 0
 visit_items = off
-use_shadow = on
+use_shadow = off
 use_colors = on
 
-# example settings for urxvt
-# to be configured in ~/.Xresources:
-#
-# *color0:  #2B2C2B
-# *color1:  #E33D31
-# *color2:  #16A085
-# *color3:  #808280
-# *color4:  #353836
-# *color5:  #434745
-# *color6:  #00FFFF
-# *color7:  #EFEFEF
-# *color8:  #555755
-# *color9:  #FF4537
-# *color10: #23FFD4
-# *color11: #FBFFFB
-# *color12: #6A706C
-# *color13: #878F8B
-# *color14: #00FFFF
-# *color15: #FFFFFF

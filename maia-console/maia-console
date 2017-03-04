@@ -6,36 +6,36 @@
 
 TERM=linux
 
-_base00='232423' # BLACK   | dark grey
-_base08='282928'
-_base01='BA2922' # RED
-_base09='CC372C'
-_base02='138770' # GREEN   | Maia highlight
-_base10='16A085'
-_base03='7E807E' # YELLOW  | bright grey
-_base11='858785'
-_base04='333634' # BLUE    | grey
-_base12='373B38'
-_base05='3E4240' # MAGENTA | very bright grey
-_base13='434745'
-_base06='00CCCC' # CYAN
-_base14='00D1D1'
-_base07='E0E0E0' # WHITE
-_base15='E8E8E8'
+_color00='232423' # BLACK   | dark grey
+_color08='282928'
+_color01='BA2922' # RED
+_color09='CC372C'
+_color02='138770' # GREEN   | Maia highlight
+_color10='16A085'
+_color03='7E807E' # YELLOW  | bright grey
+_color11='858785'
+_color04='333634' # BLUE    | grey
+_color12='373B38'
+_color05='3E4240' # MAGENTA | very bright grey
+_color13='434745'
+_color06='00CCCC' # CYAN
+_color14='00D1D1'
+_color07='E0E0E0' # WHITE
+_color15='E8E8E8'
 
-echo -en "\e]P0$_base00"
-echo -en "\e]P1$_base01"
-echo -en "\e]P2$_base02"
-echo -en "\e]P3$_base03"
-echo -en "\e]P4$_base04"
-echo -en "\e]P5$_base05"
-echo -en "\e]P6$_base06"
-echo -en "\e]P7$_base07"
-echo -en "\e]P8$_base08"
-echo -en "\e]P9$_base09"
-echo -en "\e]Pa$_base10"
-echo -en "\e]Pb$_base11"
-echo -en "\e]Pc$_base12"
-echo -en "\e]Pd$_base13"
-echo -en "\e]Pe$_base14"
-echo -en "\e]Pf$_base15"
+echo -en "\e]P0$_color00"
+echo -en "\e]P1$_color01"
+echo -en "\e]P2$_color02"
+echo -en "\e]P3$_color03"
+echo -en "\e]P4$_color04"
+echo -en "\e]P5$_color05"
+echo -en "\e]P6$_color06"
+echo -en "\e]P7$_color07"
+echo -en "\e]P8$_color08"
+echo -en "\e]P9$_color09"
+echo -en "\e]Pa$_color10"
+echo -en "\e]Pb$_color11"
+echo -en "\e]Pc$_color12"
+echo -en "\e]Pd$_color13"
+echo -en "\e]Pe$_color14"
+echo -en "\e]Pf$_color15"
