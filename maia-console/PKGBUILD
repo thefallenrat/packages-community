@@ -1,22 +1,22 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=ma-console-colors
-pkgver=0.7.4
+pkgname=maia-console
+pkgver=1.0
 pkgrel=1
-pkgdesc="Console color scheme for Manjaro-architect"
+pkgdesc="Maia color scheme for the console and shell dialog"
 arch=('any')
 license=('GPL')
 depends=('systemd')
-backup=('etc/systemd/system/getty@.service.d/ma-console.conf')
+backup=('etc/systemd/system/getty@.service.d/maia-console.conf')
 install="$pkgname.install"
 source=("$pkgname"
         "$pkgname.conf"
         "$pkgname@.service"
         'dialogrc')
-md5sums=('323804107d47aebbe05a0ccc0938538c'
-         'b7f8faff79c47c0a6103e8d5a8bbc073'
-         'b8eef353a20dc64945a0b9aff8731c73'
-         'a14f5f67982e1f80e32bd637fb03f763')
+md5sums=('c3e3e53a117b0116d27e3e6c0d38651d'
+         'faca86dd95445d265a14a9df698c619b'
+         '07e13352758c402c39d20d7d30d610bc'
+         'f6669ec82f1f065eef2c2b39485d568d')
 
 package() {
     install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname

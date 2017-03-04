@@ -1,0 +1,72 @@
+# dialog theme to work in combination with the 'maia-console' package
+# To achieve the same in the terminal you need to configure your terminal emulator.
+# An example for urxvt is at the end of this file.
+
+screen_color = (yellow,blue,off)
+
+dialog_color = (cyan,magenta,off)
+title_color = (green,magenta,on)
+border_color = dialog_color
+shadow_color = (black,black,on)
+
+button_inactive_color = dialog_color
+button_key_inactive_color = dialog_color
+button_label_inactive_color = dialog_color
+
+button_active_color = (white,magenta,on)
+button_key_active_color = button_active_color
+button_label_active_color = (red,cyan,on)
+
+inputbox_color = dialog_color
+inputbox_border_color = dialog_color
+searchbox_color = dialog_color
+searchbox_title_color = title_color
+searchbox_border_color = border_color
+position_indicator_color = title_color
+menubox_color = dialog_color
+menubox_border_color = border_color
+item_color = dialog_color
+item_selected_color = button_active_color
+tag_color = title_color
+tag_selected_color = button_label_active_color
+tag_key_selected_color = (green,magenta,on)
+tag_key_color = button_key_inactive_color
+check_color = dialog_color
+check_selected_color = button_active_color
+uarrow_color = screen_color
+darrow_color = screen_color
+itemhelp_color = (white,black,OFF)
+form_active_text_color = button_active_color
+form_text_color = (white,magenta,on)
+form_item_readonly_color = (magenta,blue,on)
+gauge_color = title_color
+border2_color = dialog_color
+searchbox_border2_color = dialog_color
+menubox_border2_color = dialog_color
+
+aspect = 0
+separate_widget = ""
+tab_len = 0
+visit_items = off
+use_shadow = on
+use_colors = on
+
+# example settings for urxvt
+# to be configured in ~/.Xresources:
+#
+# *color0:  #2B2C2B
+# *color1:  #E33D31
+# *color2:  #16A085
+# *color3:  #808280
+# *color4:  #353836
+# *color5:  #434745
+# *color6:  #00FFFF
+# *color7:  #EFEFEF
+# *color8:  #555755
+# *color9:  #FF4537
+# *color10: #23FFD4
+# *color11: #FBFFFB
+# *color12: #6A706C
+# *color13: #878F8B
+# *color14: #00FFFF
+# *color15: #FFFFFF

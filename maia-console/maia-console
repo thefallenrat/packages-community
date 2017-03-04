@@ -1,0 +1,39 @@
+#!/usr/bin/sh
+
+# maia color scheme for the console
+
+TERM=linux
+
+_base00='2B2C2B' # BLACK   | dark grey
+_base08='555755'
+_base01='E33D31' # RED
+_base09='FF4537'
+_base02='16A085' # GREEN   | Maia highlight
+_base10='23FFD4'
+_base03='808280' # YELLOW  | bright grey
+_base11='FBFFFB'
+_base04='353836' # BLUE    | grey
+_base12='6A706C'
+_base05='434745' # MAGENTA | very bright grey
+_base13='878F8B'
+_base06='00FFFF' # CYAN
+_base14='00FFFF'
+_base07='EFEFEF' # WHITE
+_base15='FFFFFF'
+
+echo -en "\e]P0$_base00"
+echo -en "\e]P1$_base01"
+echo -en "\e]P2$_base02"
+echo -en "\e]P3$_base03"
+echo -en "\e]P4$_base04"
+echo -en "\e]P5$_base05"
+echo -en "\e]P6$_base06"
+echo -en "\e]P7$_base07"
+echo -en "\e]P8$_base08"
+echo -en "\e]P9$_base09"
+echo -en "\e]Pa$_base10"
+echo -en "\e]Pb$_base11"
+echo -en "\e]Pc$_base12"
+echo -en "\e]Pd$_base13"
+echo -en "\e]Pe$_base14"
+echo -en "\e]Pf$_base15"
