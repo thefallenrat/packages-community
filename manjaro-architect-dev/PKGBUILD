@@ -4,8 +4,8 @@
 pkgbase=manjaro-architect-dev
 pkgname=('manjaro-architect-dev' 'manjaro-architect-dev-launcher')
 _pkgname=manjaro-architect
-_commit=1036002b2ee35be9b47aa27940f872b45a1644bf
-pkgver=0.7.4.r144.gce843e2
+#_commit=1036002b2ee35be9b47aa27940f872b45a1644bf
+pkgver=0.7.4.r312.gdcb30b7
 pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
@@ -21,6 +21,7 @@ md5sums=('SKIP')
 prepare() {
     cd $_pkgname
     sed -i "s/architect --/architect-dev --/" bin/setup
+    sed -i "s/architect)/architect-dev)/" lib/util.sh
 }
 
 pkgver() {
