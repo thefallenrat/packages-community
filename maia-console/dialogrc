@@ -1,10 +1,31 @@
-# dialog theme to work in combination with the 'maia-console' package
+# Provided under the GNU General Public License
+# as published by the Free Software Foundation.
+#
+# Shell dialog style by @oberon, designed to be used in combination with the 'maia-console' theme.
 # To achieve the same in the terminal you need to configure your terminal emulator.
-# An example for urxvt is at the end of this file.
+#
+#
+# colors used:
+# base00='232423' # BLACK   | dark grey
+# base08='282928'
+# base01='BA2922' # RED
+# base09='CC372C'
+# base02='138770' # GREEN   | Maia highlight
+# base10='16A085'
+# base03='7E807E' # YELLOW  | bright grey
+# base11='858785'
+# base04='333634' # BLUE    | grey
+# base12='373B38'
+# base05='3E4240' # MAGENTA | very bright grey
+# base13='434745'
+# base06='00CCCC' # CYAN
+# base14='00D1D1'
+# base07='E0E0E0' # WHITE
+# base15='E8E8E8'
 
 screen_color = (yellow,blue,off)
 
-dialog_color = (cyan,magenta,off)
+dialog_color = (green,magenta,off)
 title_color = (green,magenta,on)
 border_color = dialog_color
 shadow_color = (black,black,on)
@@ -13,7 +34,7 @@ button_inactive_color = dialog_color
 button_key_inactive_color = dialog_color
 button_label_inactive_color = dialog_color
 
-button_active_color = (white,magenta,on)
+button_active_color = (white,magenta,off)
 button_key_active_color = button_active_color
 button_label_active_color = (red,cyan,on)
 

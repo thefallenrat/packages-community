@@ -1,25 +1,27 @@
 #!/usr/bin/sh
-
-# maia color scheme for the console
+#
+# maia color scheme for the console by @oberon
+# Provided under the GNU General Public License
+# as published by the Free Software Foundation.
 
 TERM=linux
 
-_base00='2B2C2B' # BLACK   | dark grey
-_base08='555755'
-_base01='E33D31' # RED
-_base09='FF4537'
-_base02='16A085' # GREEN   | Maia highlight
-_base10='23FFD4'
-_base03='808280' # YELLOW  | bright grey
-_base11='FBFFFB'
-_base04='353836' # BLUE    | grey
-_base12='6A706C'
-_base05='434745' # MAGENTA | very bright grey
-_base13='878F8B'
-_base06='00FFFF' # CYAN
-_base14='00FFFF'
-_base07='EFEFEF' # WHITE
-_base15='FFFFFF'
+_base00='232423' # BLACK   | dark grey
+_base08='282928'
+_base01='BA2922' # RED
+_base09='CC372C'
+_base02='138770' # GREEN   | Maia highlight
+_base10='16A085'
+_base03='7E807E' # YELLOW  | bright grey
+_base11='858785'
+_base04='333634' # BLUE    | grey
+_base12='373B38'
+_base05='3E4240' # MAGENTA | very bright grey
+_base13='434745'
+_base06='00CCCC' # CYAN
+_base14='00D1D1'
+_base07='E0E0E0' # WHITE
+_base15='E8E8E8'
 
 echo -en "\e]P0$_base00"
 echo -en "\e]P1$_base01"
