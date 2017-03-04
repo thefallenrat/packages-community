@@ -1,0 +1,13 @@
+[Unit]
+Description=console colors for manjaro-architect
+After=getty@%i.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ma-console-colors
+StandardOutput=tty
+TTYPath=/dev/%i
+TTYVTDisallocate=yes
+
+[Install]
+WantedBy=getty@%i.service

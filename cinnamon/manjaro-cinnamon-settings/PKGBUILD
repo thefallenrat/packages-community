@@ -13,6 +13,7 @@ depends=('artwork-cinnamon-minimal'
         'cinnamon'
         'ttf-comfortaa'
         'vertex-maia-themes'
+        'vibrancy-colors'
         'xcursor-breeze'
         'manjaro-base-skel')
 makedepends=('git')
