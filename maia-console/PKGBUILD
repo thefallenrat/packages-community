@@ -2,7 +2,7 @@
 
 pkgname=maia-console
 pkgver=1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Maia color scheme for the console and shell dialog"
 arch=('any')
 license=('GPL')
@@ -13,7 +13,7 @@ source=("$pkgname"
         "$pkgname.conf"
         "$pkgname@.service"
         'dialogrc')
-md5sums=('eeb6009449e015265da1bdf7270dddab'
+md5sums=('01b8461d863958c110f46ab32dffdbf7'
          'faca86dd95445d265a14a9df698c619b'
          '07e13352758c402c39d20d7d30d610bc'
          'd140b4a544fc681a7a738febe2495773')
