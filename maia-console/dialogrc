@@ -10,22 +10,22 @@
 # color08='282928'
 # color01='BA2922' # RED
 # color09='CC372C'
-# color02='138770' # GREEN   | Maia highlight
-# color10='16A085'
-# color03='7E807E' # YELLOW  | bright grey
-# color11='858785'
-# color04='333634' # BLUE    | grey
-# color12='373B38'
-# color05='3E4240' # MAGENTA | very bright grey
-# color13='434745'
+# color02='7E807E' # GREEN   | very bright grey
+# color10='8D8F8D'
+# color03='4C4F4D' # YELLOW  | grey
+# color11='4E524F'
+# color04='16A085' # BLUE    | turquoise, maia highlight
+# color12='13BF9D'
+# color05='43746A' # MAGENTA | very bright grey
+# color13='487D72'
 # color06='00CCCC' # CYAN
 # color14='00D1D1'
 # color07='E0E0E0' # WHITE
 # color15='E8E8E8'
 
-screen_color = (yellow,black,off)
-dialog_color = (cyan,blue,off)
-title_color = (yellow,blue,on)
+screen_color = (green,black,off)
+dialog_color = (white,yellow,off)
+title_color = (green,yellow,on)
 border_color = dialog_color
 shadow_color = (black,black,on)
 
@@ -33,15 +33,15 @@ button_inactive_color = dialog_color
 button_key_inactive_color = dialog_color
 button_label_inactive_color = dialog_color
 
-button_active_color = (white,black,on)
+button_active_color = (white,blue,on)
 button_key_active_color = button_active_color
-button_label_active_color = (red,cyan,on)
-tag_key_selected_color = (white,blue,on)
+button_label_active_color = (black,blue,on)
+tag_key_selected_color = (white,black,on)
 
-form_text_color = (white,magenta,on)
-form_item_readonly_color = (magenta,blue,on)
+form_text_color = (yellow,green,on)
+form_item_readonly_color = (green,yellow,on)
 
-itemhelp_color = (white,black,off)
+itemhelp_color = (white,blue,off)
 
 inputbox_color = dialog_color
 inputbox_border_color = dialog_color
@@ -72,4 +72,3 @@ tab_len = 0
 visit_items = off
 use_shadow = off
 use_colors = on
-
