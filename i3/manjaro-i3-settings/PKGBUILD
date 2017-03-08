@@ -24,7 +24,7 @@ depends=('compton'
         'manjaro-base-skel'
         'nitrogen'
         'urxvt-perls'
-        'gtk-theme-breath'
+        'vertex-maia-themes'
         'xcursor-breeze')
 makedepends=('git')
 optdepends=('artwork-i3: Manjaro-i3 wallpapers'
