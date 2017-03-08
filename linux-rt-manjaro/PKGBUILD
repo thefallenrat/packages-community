@@ -14,7 +14,7 @@ _basever=49-rt
 #_aufs=20161219
 _bfq=v8r7
 _pkgver=${_basekernel}.13
-_rtpatchver=rt11
+_rtpatchver=rt12
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -59,7 +59,7 @@ sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             'bee3f78a9df6c13f376521f7456189db3d267b1352e0adacf3affb7d0b919cd7'
             'b1318441013e2fd4f411d2291ebfb87b990a740417611faa5e317fc37bb7e9a6'
-            'e43699e49b22dea7c7b8a2d5be41a5243206e50f4cc82f60e9b0441ac724f482'
+            '90dfb1397a12d39894265fdb092ca87037cc9f4d3f8417ca45e731d6b79b1ba1'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
