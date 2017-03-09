@@ -37,6 +37,7 @@ button_active_color = (white,blue,on)
 button_key_active_color = button_active_color
 button_label_active_color = (black,blue,on)
 tag_key_selected_color = (white,black,on)
+item_selected_color = tag_key_selected_color
 
 form_text_color = (yellow,green,on)
 form_item_readonly_color = (green,yellow,on)
@@ -52,7 +53,6 @@ position_indicator_color = title_color
 menubox_color = dialog_color
 menubox_border_color = border_color
 item_color = dialog_color
-item_selected_color = button_active_color
 tag_color = title_color
 tag_selected_color = button_label_active_color
 tag_key_color = button_key_inactive_color

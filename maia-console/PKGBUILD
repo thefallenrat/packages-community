@@ -2,7 +2,7 @@
 
 pkgname=maia-console
 pkgver=1.2
-pkgrel=4
+pkgrel=5
 pkgdesc="Maia color scheme for the console and shell dialog"
 arch=('any')
 license=('GPL')
@@ -16,7 +16,7 @@ source=("$pkgname"
 md5sums=('ad4f6c17447961ad82adca81c830a8af'
          'faca86dd95445d265a14a9df698c619b'
          '07e13352758c402c39d20d7d30d610bc'
-         'b3371579765fc312420f53039cda2dd8')
+         'e69c2f9641efff0f720146bfbe9573f7')
 
 package() {
     install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname
