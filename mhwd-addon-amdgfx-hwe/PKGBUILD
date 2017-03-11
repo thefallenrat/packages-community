@@ -1,35 +1,146 @@
 # Maintainer: Fabian Bornschein <plusfabi@gmail.com>
 pkgname=('mhwd-addon-amdgfx-hwe' 'amdgpu-experimental')
-pkgver=20161231 #date +%Y%m%d
+pkgver=20170310 #date +%Y%m%d
 pkgrel=1
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
 license=('GPL3')
+makedepends=('curl')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('amdgpu-experimental.install'
         'mhwd-addon-amdgfx-hwe.install'
+        '10-amdgpu-experimental.conf'
         'amdgfx-hwe-amdgpu.conf'
         'amdgfx-hwe-radeon_blacklist.conf'
         'amdgpu-exp_hw_support.conf'
-        'amdgpu-experimental-pci.ids'
         'amdgpu-experimental.hook'
-        'amdgpu-pci.ids'
         'MHWDCONFIG_video-amdgpu+'
         'MHWDCONFIG_video-amdgpu-experimental+'
         'MHWDCONFIG_video-radeon+'
-        'catalystuninstall')
-md5sums=('b3eaf63c766deaa863616d87d69fd712'
-         '2d42c040ccdc55159e78f78854a867f3'
-         '8eb145fd23b417694b36ef9e6113cb84'
-         '9ad03a78a863bc0b9f279b330669bd4c'
-         'af2fee339acad81dea161f93110c30ed'
-         '58eb8d0213f03cc19a5ed74f4831c7bb'
-         '5ea12c299007a61f7f2b866ea94f5b44'
-         '392be8d374439f6759f827cf8a1d1afc'
-         'eff72bfea4a63554e3d646be0216de52'
-         'ec6db4d4efbbbbeb14b6d717dc1e6bb4'
-         'c30858640e806b7abb54b4e6d5b322b8'
-         'dfa749c51d8fb44594450892b34246ef')
+        'MHWDCONFIG_video-intel+'
+        'https://raw.githubusercontent.com/pciutils/pciids/master/pci.ids')
+sha512sums=('d15f690fac33b1ed33677ff40bd998c137bb2b65b41c8c0c3a8634977aee83379ebf7e8d81951c4673b46f7fb810147936612f59360f3140100d8d2a147f8d9f'
+            'e9db80cddd6daec4352c08d062856f73ff9827a8c4069847c2b3ecf669cfb3355c26f418c491d1a2224b4ac71e119e16359b86b322d22c936639facfa3e96e50'
+            'ce6c1e475e7f06aea45d2ce7a2529a511484b2e06917873d1ea10cf820945a5a3d69853d49e8aba07fcb0d01466c66130887139b9ad9cd8b21b9e39a6a760486'
+            'f56b5293f88727bb4fcceb2a347527402dd0938e96403461b1e2a6821cc00a4e680f58770addd7ba1ded20a187f91ccfd6270bc8bd28c6eae75cc075952361ca'
+            '04ef02734903c5b13d1a808025f104ce324f30bafb6bd42c31abbbfc43fefdfff7a8d4f910590717f7ca4bae21d02062b54a15d2e47c2174c59ed975022cf0f7'
+            '770b812001ac43a0f06ebfb981cb076d0291f7da2ca6ffd469defae37c37f950659b59492c292cdf6b15597409796ecdcf65c3a168a47ea8b33dae0d49032f7d'
+            'fd6232320063d8e60cc5ef5475d4f24da3c49f0d5590d61ebb43282f28012356295e3a3c1167ffb63b62b9590aab35fbfd755df72f2ea9c63a217396bac23bc7'
+            '18caa26fa5339ba245f8238d5712406056d92ff450c499c3c7fb55277f46e7ba978f9f546ef1596d335b26dac97c7c8cbc87bb8c16654216e3e0abbc93ce38eb'
+            'db4ab79b8f5e8c53808c538530fb87f142d5a68f03e659d51fc9682cb29af28ecf0f87b12d456e9ce79464c0773578f05a4dfc640daba6ab8fb62dff63fce5d4'
+            'b7143707c16b28eb4560b3c6b49a913426b0a74f3a55aa16937e259041e6583d3135596c1b85b5021c63a82e8979aa2fac066e29c855d4523013a7691a26d9b3'
+            'c3fb61f8a7864324848c4141539bd077ffa6a0e3a1e5da04a28e9420894b004e897cbec18b9c0066833ca9055eb7b87eb9fff04783fd16651a92d4b2b9fd6537'
+            'SKIP')
+
+prepare() {
+    AMDGPUPCIFILE="amdgpu-pci.ids"
+    # Names of supported hardware generations
+    AMDGPUNAMES=("Bristol Ridge"
+                    "Raven Ridge"
+                    "Stoney Ridge"
+                    "Fiji"
+                    "Tonga"
+                    "Amethyst"
+                    "Polaris"
+                    "Polaris10"
+                    "Polaris11"
+                    "Polaris12"
+                    "Baffin"
+                    "Ellesmere")
+
+    XAMDGPUPCIFILE="amdgpu-experimental-pci.ids"
+    XAMDGPUNAMES=("Chelsea"
+                    "Cape Verde"
+                    "Heathrow"
+                    "Wimbledon"
+                    "Pitcairn"
+                    "Sun"
+                    "Oland"
+                    "Mars"
+                    "Venus"
+                    "Neptune"
+                    "Jet Pro"
+                    "Iceland"
+                    "Opal"
+                    "Topaz"
+                    "Exo Pro"
+                    "Meso"
+                    "Strato Pro"
+                    "Bonaire"
+                    "Saturn"
+                    "Strato"
+                    "Roland"
+                    "Tropo"
+                    "Hawaii"
+                    "Vesuvius"
+                    "Tahiti"
+                    "New Zealand"
+                    "Malta"
+                    "Kaveri"
+                    "Kabini"
+                    "Temash"
+                    "Beema"
+                    "Mullins"
+                    "Curacao"
+                    "Grenada")
+
+    # Check for file
+    if [ ! -f "${srcdir}/pci.ids" ] || ! grep "List of PCI ID's" "${srcdir}/pci.ids" > /dev/null
+        then
+            echo "Missing or wrong source PCIID-file"
+            exit 1
+        fi
+
+    ## Extract AMD part
+    # Remove everything before ^1002
+    sed -i -n '/^1002/,$p' "${srcdir}/pci.ids"
+    # Remove everything below ^1003
+    sed -i '/^1003/,$d' "${srcdir}/pci.ids"
+    # Remove comments
+    sed -i '/^#/ d' "${srcdir}/pci.ids"
+    # Leading tab
+    sed -i 's/^\t//g' "${srcdir}/pci.ids"
+    # Remove sub-IDs
+    sed -i '/^\t/ d' "${srcdir}/pci.ids"
+
+    # AMDGPU
+    # Create the final output file
+    echo -e "# List generated by mhwd. Do not edit manually." > "${srcdir}/${AMDGPUPCIFILE}"
+
+    # Loop this part for every Hardware generation
+    for (( i=0; i<${#AMDGPUNAMES[@]}; i++ ));
+    do
+        # Ignore generation without entry
+        if grep -wi " ${AMDGPUNAMES[i]}" "${srcdir}/pci.ids" > /dev/null
+            then
+                echo -e "\n\n# ${AMDGPUNAMES[i]}\n" >> "${srcdir}/${AMDGPUPCIFILE}"
+                # Add all the ID's
+                grep -wi " ${AMDGPUNAMES[i]}" "${srcdir}/pci.ids" | grep -vi "audio" | grep -v "#" | cut -d" " -f1 >> "${srcdir}/${AMDGPUPCIFILE}"
+        fi
+    done
+
+    # XAMDGPU
+    # Create the final output file
+    echo -e "# List generated by mhwd. Do not edit manually." > "${srcdir}/${XAMDGPUPCIFILE}"
+
+    # Loop this part for every Hardware generation
+    for (( i=0; i<${#XAMDGPUNAMES[@]}; i++ ));
+    do
+        # Ignore generation without entry
+        if grep -wi " ${XAMDGPUNAMES[i]}" "${srcdir}/pci.ids" > /dev/null
+            then
+                echo -e "\n\n# ${XAMDGPUNAMES[i]}\n" >> "${srcdir}/${XAMDGPUPCIFILE}"
+                # Add all the ID's
+                grep -wi " ${XAMDGPUNAMES[i]}" "${srcdir}/pci.ids" | grep -vi "audio" | grep -v "#" | cut -d" " -f1 >> "${srcdir}/${XAMDGPUPCIFILE}"
+        fi
+    done
+
+    # Cleanup
+    if [ -f "${srcdir}/pci.ids" ]
+        then
+            rm "${srcdir}/pci.ids"
+    fi
+}
 
 package_mhwd-addon-amdgfx-hwe()
 {
@@ -63,15 +174,16 @@ package_mhwd-addon-amdgfx-hwe()
     install -D -m644 "${srcdir}/MHWDCONFIG_video-radeon+" \
     "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-radeon+/MHWDCONFIG"
 
-    # install catalystuninstaller
-    install -D -m755 "${srcdir}/catalystuninstall" \
-    "${pkgdir}/usr/bin/catalystuninstall"
+    # Install Intel config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-intel+" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-intel+/MHWDCONFIG"
 }
 
 package_amdgpu-experimental()
 {
-    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)"
+    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)."
     depends=('linux>=4.9')
+    conflicts=('xf86-video-ati')
     install='amdgpu-experimental.install'
 
     cd "${srcdir}"
@@ -81,7 +193,8 @@ package_amdgpu-experimental()
     ## install module-load file,
     ## radeon blacklist,
     ## exp_hw_support,
-    ## pacman hook
+    ## pacman hook,
+    ## amdgpu-experimental xorg.config
     ##
     ##################################################
     install -D -m644 "${srcdir}/amdgfx-hwe-amdgpu.conf" \
@@ -92,4 +205,6 @@ package_amdgpu-experimental()
     "${pkgdir}/etc/modprobe.d/amdgpu-exp_hw_support.conf"
     install -D -m644 "${srcdir}/amdgpu-experimental.hook" \
     "${pkgdir}/usr/share/libalpm/hooks/98-amdgpu-experimental.hook"
+    install -D -m644 "${srcdir}/10-amdgpu-experimental.conf" \
+    "${pkgdir}/usr/share/X11/xorg.conf.d/10-amdgpu-experimental.conf"
 }

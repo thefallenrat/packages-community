@@ -9,7 +9,7 @@
 
 NAME="video-amdgpu+"
 INFO="Standard open source driver for AMD graphic cards"
-VERSION="2016.12.15"
+VERSION="2017.03.10"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -21,85 +21,26 @@ VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu-pci.ids"
 
 
+## DEPENDENCIES
+
+DEPENDS="xf86-video-amdgpu vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS_64="lib32-vulkan-radeon lib32-libva-vdpau-driver lib32-mesa-vdpau"
+
+
 ## MHWD AND PACMAN COMFLICTS
 
-MHWDCONFLICTS="video-amdgpu video-ati video-catalyst video-vesa video-radeon+"
+MHWDCONFLICTS="video-intel video-amdgpu video-ati video-catalyst video-vesa video-radeon+"
 CONFLICTS="opencl-catalyst catalyst-video catalyst-utils-openrc catalyst-utils catalyst-server catalyst-input"
-
-
-## ADDITIONAL FILES
-
-XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
-
-
-## FUNCTIONS / VARS
-# We dont want to use mhwd for install pacmanman stuff, because it removes everything on uninstallation
-PACMAN_S="xorg-server>=1.18 xf86-video-amdgpu vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
-PACMAN_S64="lib32-vulkan-radeon lib32-libva-vdpau-driver lib32-mesa-vdpau"
-
-
-PACMAN_R="xf86-video-amdgpu vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
-PACMAN_R64="lib32-vulkan-radeon lib32-libva-vdpau-driver lib32-mesa-vdpau"
-
-
-PACINST="pacman --noconfirm -Sy"
-PACREM="pacman --noconfirm -Rnc"
-
-fn_exitOnFail()
-{
-    ## mhwd seems to go on, even if some parts fail (like pacman)
-    ## this will force them to fail
-
-    if [ ! $? -eq 0 ]
-        then
-            echo "mhwd failed"
-            exit 1
-    fi
-}
-
-fn_pacman_install()
-{
-    if [ "$(uname -m)" = "x86_64" ]
-        then
-            ${PACINST} ${PACMAN_S} ${PACMAN_S64}
-        else
-            ${PACINST} ${PACMAN_S}
-    fi
-
-    fn_exitOnFail
-}
-
-fn_pacman_remove()
-{
-    if [ "$(uname -m)" = "x86_64" ]
-        then
-            ${PACREM} ${PACMAN_R} ${PACMAN_R64}
-        else
-            ${PACREM} ${PACMAN_R}
-    fi
-
-    fn_exitOnFail
-}
 
 
 ## MWHD FUNCTIONS / SCRIPS
 
-pre_install()
-{
-    fn_pacman_install
-}
-
 post_install()
 {
-    MHWD_HEADING "${XORGFILE}"
-    MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "amdgpu" "${XORGFILE}" 1002
-
-
-    mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+    mhwd-gpu --setgl mesa
 }
 
 post_remove()
 {
-    fn_pacman_remove
     mhwd-gpu --check
 }
