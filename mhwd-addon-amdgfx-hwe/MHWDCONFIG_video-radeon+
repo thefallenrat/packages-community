@@ -37,7 +37,7 @@ CONFLICTS="opencl-catalyst catalyst-video catalyst-utils-openrc catalyst-utils c
 
 post_install()
 {
-    mhwd-gpu --setgl mesa
+    mhwd-gpu --check
 }
 
 post_remove()

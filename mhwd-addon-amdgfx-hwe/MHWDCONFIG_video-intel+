@@ -30,7 +30,7 @@ DEPENDS_64="lib32-vulkan-intel lib32-libva-vdpau-driver lib32-mesa-vdpau"
 
 post_install()
 {
-    mhwd-gpu --setgl mesa
+    mhwd-gpu --check
 }
 
 post_remove()
