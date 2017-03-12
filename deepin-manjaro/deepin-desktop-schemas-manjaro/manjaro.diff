@@ -321,32 +321,3 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
      <key type="b" name="xft-antialias">
        <default>true</default>
        <summary>Xft antialias</summary>
-diff -ru --no-dereference a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml
---- a/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-09-04 19:06:09.922324228 +0200
-+++ b/schemas/wrap/com.deepin.wrap.gnome.desktop.interface.gschema.xml	2016-09-03 19:27:55.029712985 +0200
-@@ -83,14 +83,14 @@
-       </description>
-     </key>
-     <key name="icon-theme" type="s">
--      <default>'Adwaita'</default>
-+      <default>'deepin'</default>
-       <summary>Icon Theme</summary>
-       <description>
-         Icon theme to use for the panel, nautilus etc.
-       </description>
-     </key>
-     <key name="gtk-theme" type="s">
--      <default>'Adwaita'</default>
-+      <default>'deepin'</default>
-       <summary>Gtk+ Theme</summary>
-       <description>
-         Basename of the default theme used by gtk+.
-@@ -170,7 +170,7 @@
-       </description>
-     </key>
-     <key name="cursor-theme" type="s">
--      <default>'Adwaita'</default>
-+      <default>'Breeze'</default>
-       <summary>Cursor theme</summary>
-       <description>Cursor theme name. Used only by Xservers that support the Xcursor extension.</description>
-     </key>
