@@ -1,0 +1,35 @@
+# Maintainer: Philip Müller <philm@manjaro.org>
+# Contributor : Martin Wimpress <code@flexion.org>
+
+_ver=1.18
+pkgbase=mate-desktop
+pkgname=(${pkgbase})
+pkgver=${_ver}.0
+pkgrel=0.1
+pkgdesc="Library with common API for various MATE modules"
+url="http://mate-desktop.org"
+arch=('i686' 'x86_64')
+license=('GPL' 'LGPL')
+groups=('mate')
+depends=('dconf' 'gtk3' 'startup-notification')
+makedepends=('gobject-introspection' 'mate-common' 'yelp-tools')
+source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgname}-${pkgver}.tar.xz")
+conflicts=("${pkgbase}-gtk3")
+replaces=("${pkgbase}-gtk3")
+sha1sums=('df31ccabe87aa83746e088b43441ca7aac0e67ac')
+
+build() {
+    cd "${srcdir}/${pkgbase}-$pkgver"
+    ./configure \
+        --prefix=/usr \
+        --disable-static \
+        --disable-schemas-compile \
+        --enable-gtk-doc
+    make
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-$pkgver"
+    make DESTDIR="${pkgdir}" install
+}
+
