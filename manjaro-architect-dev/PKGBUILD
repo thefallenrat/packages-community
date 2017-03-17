@@ -4,8 +4,9 @@
 pkgbase=manjaro-architect-dev
 pkgname=('manjaro-architect-dev' 'manjaro-architect-dev-launcher')
 _pkgname=manjaro-architect
+_branch=master
 #_commit=1036002b2ee35be9b47aa27940f872b45a1644bf
-pkgver=0.8.0.r9.g5ae8513
+pkgver=0.8.1.r0.gf565608
 pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
@@ -14,7 +15,7 @@ license=(GPL2)
 depends=('bash'
          'dialog')
 makedepends=('git')
-source=("git+$url.git#branch=master")
+source=("git+$url.git#branch=$_branch")
 #source=("git+$url.git#commit=$_commit")
 md5sums=('SKIP')
 

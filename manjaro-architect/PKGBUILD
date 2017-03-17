@@ -3,16 +3,18 @@
 
 pkgbase=manjaro-architect
 pkgname=('manjaro-architect' 'manjaro-architect-launcher')
-pkgver=0.8.0
-pkgrel=2
+pkgver=0.8.1
+pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgbase"
 license=(GPL2)
 depends=('bash'
          'dialog')
-source=("$url/archive/$pkgver.tar.gz")
-md5sums=('81cf3f93afc3de60f2f3c53e2f2f1b71')
+source=("$url/archive/$pkgver.tar.gz"
+        'hungarian.trans')
+md5sums=('e20f7ed72a5bc69b7218f7366682fc96'
+         'c01a8b80e3ecc69f565fa5da437b20fd')
 
 build() {
     cd $pkgbase-$pkgver
