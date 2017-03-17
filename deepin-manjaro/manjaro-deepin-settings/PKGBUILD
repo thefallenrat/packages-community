@@ -1,7 +1,7 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20170122
+pkgver=20170316
 pkgrel=1
 pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
