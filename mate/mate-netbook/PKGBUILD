@@ -1,20 +1,22 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=mate-netbook
 pkgname=${_pkgbase}
 pkgver=${_ver}.0
-pkgrel=1
-pkgdesc="A simple window management tool (GTK2 version)"
+pkgrel=0.1
+pkgdesc="A simple window management tool"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
-depends=('gtk2' 'libfakekey' 'libwnck' 'libunique' 'mate-panel>=1.14')
+depends=('gtk3' 'libfakekey' 'libwnck' 'libunique' 'mate-panel>=1.14')
 makedepends=('mate-common')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
 conflicts=("${_pkgbase}-gtk3")
-sha1sums=('9a26877c8c2707f5c3a5744f9fb74a7cc6d49b55')
+replaces=("${_pkgbase}-gtk3")
+sha1sums=('3498fb639d9ce7d77e7a01520ce0b8d3ea840099')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -22,7 +24,6 @@ build() {
         --prefix=/usr \
         --libexec=/usr/lib/${_pkgbase} \
         --sysconfdir=/etc \
-        --with-gtk=2.0 \
         --disable-static
     make
 }

@@ -1,11 +1,12 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=python-caja
 pkgname=python2-caja
 pkgver=${_ver}.0
-pkgrel=1
+pkgrel=0.1
 pkgdesc="Python binding for Caja, to allow Caja property page and menu item extensions to be written in Python (GTK2 version)"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
@@ -13,8 +14,9 @@ license=('GPL')
 depends=('caja>=1.12' 'python2-gobject')
 makedepends=('mate-common')
 conflicts=('python2-caja-gtk3')
+replaces=('python2-caja-gtk3')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('6a550470db3069ba43ab57e8d4d55259237dba3c')
+sha1sums=('fb4e8b53694651bb606e5f9d361b9997d927875a')
 
 prepare() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"

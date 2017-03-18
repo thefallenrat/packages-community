@@ -1,10 +1,11 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 pkgname=mate-common
 pkgver=${_ver}.0
-pkgrel=1
+pkgrel=0.1
 pkgdesc="Common development macros for MATE"
 arch=('any')
 license=('GPL')
@@ -12,7 +13,7 @@ depends=('autoconf' 'automake' 'gettext' 'gtk-doc' 'intltool' 'libtool'
          'pkg-config')
 url="http://mate-desktop.org"
 source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgname}-${pkgver}.tar.xz")
-sha1sums=('e731a8ff17f84bcb0c8ba724b3c866af61a89e99')
+sha1sums=('e5853086fdce062ddd9443cfe72f3cb5c5a91331')
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"

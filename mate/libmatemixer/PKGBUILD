@@ -1,10 +1,11 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 pkgname=libmatemixer
 pkgver=${_ver}.0
-pkgrel=1
+pkgrel=0.1
 pkgdesc="Mixer library for MATE Desktop"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
@@ -12,7 +13,7 @@ license=('LGPL')
 depends=('alsa-lib' 'libpulse')
 makedepends=('mate-common')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgname}-${pkgver}.tar.xz")
-sha1sums=('c2537cce473225abacccd125e280cba5e61a3c93')
+sha1sums=('28ed174a4fd079fa6fa927d4b28634a9b9779601')
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"

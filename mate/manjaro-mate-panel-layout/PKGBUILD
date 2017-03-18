@@ -3,7 +3,7 @@
 
 _repo=desktop-settings
 pkgname=('manjaro-mate-panel-layout')
-pkgver=20170106
+pkgver=20170318
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -18,7 +18,7 @@ pkgver() {
 
 package() {
 	pkgdesc='Manjaro Linux mate-gtk3 panel layout'
-	depends=('mate-panel-gtk3')
+	depends=('mate-panel')
 
 	install -Dm 755 $srcdir/$_repo/community/mate/layouts/manjaro.layout $pkgdir/usr/share/mate-panel/layouts/manjaro.layout
 	chmod -x $pkgdir/usr/share/mate-panel/layouts/manjaro.layout
