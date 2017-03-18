@@ -4,7 +4,7 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=52.0
+pkgver=52.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=(i686 x86_64)
@@ -13,15 +13,14 @@ url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib ffmpeg
          libvpx libevent nss hunspell sqlite ttf-font icu kmozillahelper nspr)
 makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils xorg-server-xvfb
-             autoconf2.13 cargo jack)
+             autoconf2.13 cargo)
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'libnotify: Notification integration'
-            'upower: Battery API'
             'speech-dispatcher: Text-to-Speech')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
-options=(!emptydirs !makeflags)
-_patchrev=ce8a98f8d8d7
+options=(!emptydirs !makeflags !strip)
+_patchrev=7b1e775ff77a
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         firefox.desktop firefox-symbolic.svg
@@ -36,7 +35,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
-sha256sums=('494ec86875ea60043658e402b664ccd5af4709acc3a478de8729f7cbac9ea3c1'
+sha256sums=('2ea8659c787c6a9d2b1fdadbb3171b3a6d3ef3d61fbaaa8e40fa14cfd0b82dd9'
             'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
@@ -93,6 +92,9 @@ ac_add_options --enable-rust
 # Branding
 ac_add_options --enable-official-branding
 ac_add_options --enable-update-channel=release
+export MOZILLA_OFFICIAL=1
+export MOZ_TELEMETRY_REPORTING=1
+export MOZ_SOURCE_REPO=${_repo@Q}
 export MOZ_ADDON_SIGNING=1
 export MOZ_REQUIRE_SIGNING=1
 
@@ -116,8 +118,8 @@ ac_add_options --enable-system-pixman
 
 # Features
 ac_add_options --enable-startup-notification
+ac_add_options --enable-crashreporter
 ac_add_options --enable-alsa
-ac_add_options --disable-crashreporter
 ac_add_options --disable-updater
 
 STRIP_FLAGS="--strip-debug"
@@ -144,9 +146,6 @@ build() {
 
   # Hardening
   LDFLAGS+=" -Wl,-z,now"
-
-  # GCC 6
-  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-schedule-insns2"
 
   export PATH="$srcdir/path:$PATH"
 
