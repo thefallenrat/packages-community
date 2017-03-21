@@ -3,8 +3,8 @@
 
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
-pkgver=3.1.1
-pkgrel=2
+pkgver=3.1.4
+pkgrel=1
 pkgdesc='Manjaro Linux Deepin gschemas'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
@@ -25,7 +25,7 @@ provides=("$_pkgname")
 source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$_pkgver"
 	'manjaro.diff')
 sha256sums=('SKIP'
-            '3229f5c4c876107966038c9b87a6dfea044abb4b4fea6589776903ea8728b6bb')
+            '89b1d9f7e01dffe7f9bf5e36bf98ff37c7dd084f2bef5fb0cbafd0f368889c55')
 
 prepare() {
   cd $_pkgname
