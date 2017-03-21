@@ -11,9 +11,9 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _basekernel=4.4
 _srcname=linux-${_basekernel}
 _basever=44-rt-lts
-_pkgver=${_basekernel}.50
+_pkgver=${_basekernel}.53
 _pkgverrt=$_pkgver
-_rtpatchver=rt63
+_rtpatchver=rt66
 _bfq=v7r11
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
@@ -29,7 +29,6 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
         "${pkgname}.hook"
-        '0001-dccp-fix-freeing-skb-too-early-for-IPV6_RECVPKTINFO.patch::https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/patch/?id=5edabca9d4cff7f1f2b68f0bac55ef99d9798ba4'
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
         "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/${_basekernel}.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-${_basekernel}.0.patch"
@@ -48,11 +47,10 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            'c5756a4b7290092d875967c310b684dbd91cb57438a25a3603bce6b1d0f19b36'
+            '51e09e851c00f42e04f27a1848a06e93e9de9abd22da0408da4745b6d2edbbdb'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
-            '5286f57325cc742afd957466efe705859001295f23786fbf8aafe3f01dd580f4'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
             'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
             'd1cf14cc696b0f716454fe8eb9746383700889d5d22ad829611f0433cc77b4ce'
@@ -63,7 +61,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             'e7e824d6275073ddb9de10dd25afbfb0fe0a622d37afff7b7377e4882abc1c18'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'f6f5af2f790cdbe16bb5d1dc59521f3c01e235c9107dd180a3b0d38dfbc7a19a'
+            '5ae37454239a187f5abb3cdf375f7bd143478a31744ee17636ca42131ea74748'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
@@ -87,9 +85,6 @@ prepare() {
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
   # enable only if you have "gen-stable-queue-patch.sh" executed before
   #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}-20161029"
-  
-  # https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6074
-  patch -p1 -i "${srcdir}/0001-dccp-fix-freeing-skb-too-early-for-IPV6_RECVPKTINFO.patch"
 
   # revert http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=9faac7b95ea4f9e83b7a914084cc81ef1632fd91
   # fixes #47778 sdhci broken on some boards
