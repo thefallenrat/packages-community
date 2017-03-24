@@ -11,6 +11,8 @@ url="https://github.com/Chrysostomus/$pkgbase"
 license=(GPL2)
 depends=('bash'
          'dialog')
+optdepends=('maia-console'
+            'terminus-font')
 source=("$url/archive/$pkgver.tar.gz")
 md5sums=('0da5e5fc49db7973bd640173c3d1f639')
 
