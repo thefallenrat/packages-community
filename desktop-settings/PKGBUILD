@@ -9,7 +9,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170201
+pkgver=20170319
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -102,15 +102,14 @@ package_manjaro-lxde-settings() {
 package_manjaro-mate-settings() {
     pkgdesc='Manjaro Linux mate settings'
     depends=('manjaro-base-skel'
-		'mate-desktop-gtk3'
+		'mate-desktop'
 		'mate-menus'
-		'caja-gtk3'
-		'marco-gtk3'
-		'mate-control-center-gtk3'
-		'mate-gtk3-manjaro'
+		'caja'
+		'marco'
+		'mate-control-center'
 		'mate-polkit'
 		'mate-session-manager'
-		'mate-settings-daemon-gtk3'
+		'mate-settings-daemon'
 		'brisk-menu'
 		'manjaro-mate-panel-layout'
 		'mate-wallpapers'

@@ -1,61 +1,37 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 pkgbase=mate-notification-daemon
-pkgname=(${pkgbase} ${pkgbase}-gtk3)
-pkgver=${_ver}.1
-pkgrel=1
+pkgname=(${pkgbase})
+pkgver=${_ver}.0
+pkgrel=0.1
 provides=('notification-daemon')
 pkgdesc="Notification daemon for MATE"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL' 'LGPL')
-depends=('dconf' 'dbus-glib' 'gtk2' 'gtk3' 'libcanberra' 'libwnck' 'libwnck3' 'libnotify')
+groups=('mate')
+conflicts=("${pkgbase}-gtk3")
+replaces=("${pkgbase}-gtk3")
+depends=('dconf' 'dbus-glib' 'gtk3' 'libcanberra' 'libwnck' 'libwnck3' 'libnotify')
 makedepends=('mate-common')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgbase}-${pkgver}.tar.xz")
-sha1sums=('10e863c16112b45935d6d5e6e003088df43f87ab')
-
-prepare() {
-    cd "${srcdir}"
-    mv "${pkgname}-${pkgver}" "${pkgbase}-gtk2"
-    cp -a "${pkgbase}-gtk2" "${pkgbase}-gtk3"
-}
+sha1sums=('8e0dc5feb58a07d44d2f88057a2a238acd5c20b8')
 
 build() {
-    cd "${srcdir}/${pkgbase}-gtk2"
+    cd "${srcdir}/${pkgname}-${pkgver}"
     ./configure \
         --prefix=/usr \
         --libexecdir=/usr/lib/${pkgbase} \
-        --with-gtk=2.0 \
-        --disable-static
-    make
-
-    cd "${srcdir}/${pkgbase}-gtk3"
-    ./configure \
-        --prefix=/usr \
-        --libexecdir=/usr/lib/${pkgbase} \
-        --with-gtk=3.0 \
         --disable-static
     make
 }
 
-package_mate-notification-daemon() {
-    pkgdesc+=' (GTK2 version)'
-    groups=('mate')
-    conflicts=("${pkgbase}-gtk3")
-    depends=('dconf' 'dbus-glib' 'gtk2' 'libcanberra' 'libwnck' 'libnotify')
+package() {
 
-    cd "${srcdir}/${pkgbase}-gtk2"
+    cd "${srcdir}/${pkgbase}-$pkgver"
     make DESTDIR="${pkgdir}" install
 }
 
-package_mate-notification-daemon-gtk3() {
-    pkgdesc+=' (GTK3 version [EXPERIMENTAL])'
-    groups=('mate-gtk3')
-    conflicts=("${pkgbase}")
-    depends=('dconf' 'dbus-glib' 'gtk3' 'libcanberra' 'libwnck3' 'libnotify')
-
-    cd "${srcdir}/${pkgbase}-gtk3"
-    make DESTDIR="${pkgdir}" install
-}

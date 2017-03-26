@@ -1,19 +1,20 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=3.20
+_ver=3.22
 pkgname=mate-themes
 pkgver=${_ver}.7
-pkgrel=1
+pkgrel=0.1
 pkgdesc="Default themes for the MATE desktop"
 url="http://mate-desktop.org"
 arch=('any')
 license=('GPL')
 depends=('gtk-engines' 'gtk-engine-murrine' 'librsvg' 'mate-icon-theme')
 makedepends=('mate-common' 'icon-naming-utils')
-groups=('mate' 'mate-gtk3')
+groups=('mate')
 source=("http://pub.mate-desktop.org/releases/themes/${_ver}/${pkgname}-${pkgver}.tar.xz")
-sha1sums=('57f95f50cf9fccfbc96e90106c393285e46e0186')
+sha1sums=('e5c8b7a9fa1166c03bbbacbfcfc78254183a6152')
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"

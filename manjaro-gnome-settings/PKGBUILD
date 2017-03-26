@@ -4,7 +4,7 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170210
+pkgver=20170319
 pkgrel=1
 pkgdesc="Manjaro Linux Gnome settings"
 arch=('any')
@@ -40,7 +40,9 @@ package_manjaro-gnome-settings() {
         'manjaro-base-skel'
         'qt5-styleplugins'
         'qt5ct')
-    optdepends=('plymouth-theme-manjaro-gnome-17.0' 'firefox-arc-maia-settings' 'moka-icon-theme')
+    optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme' 			'firefox-arc-maia-settings: Firefox theme'
+	 	'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme'
+		'chrome-gnome-shell: Native connector for integration with extensions.gnome.org')
 	conflicts=('manjaro-desktop-settings')
 	provides=('manjaro-desktop-settings')
 

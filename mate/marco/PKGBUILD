@@ -1,12 +1,13 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=marco
 pkgname=(${_pkgbase})
-pkgver=${_ver}.2
+pkgver=${_ver}.0
 pkgrel=1.1
-pkgdesc="A window manager for MATE (GTK2 version)"
+pkgdesc="A window manager for MATE"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -14,8 +15,9 @@ depends=('libcanberra' 'libgtop' 'mate-desktop' 'zenity')
 makedepends=('intltool' 'itstool')
 groups=('mate')
 conflicts=("${_pkgbase}-gtk3")
+replaces=("${_pkgbase}-gtk3")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('dc4770dea2d09b046f027064329b94e6fd53367b')
+sha1sums=('f92f2bc841d9d0cab3d4d9a9649a9ed7771a3759')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -23,7 +25,6 @@ build() {
         --prefix=/usr \
         --sysconfdir=/etc \
         --localstatedir=/var \
-        --with-gtk=2.0 \
         --enable-startup-notification
 
     #https://bugzilla.gnome.org/show_bug.cgi?id=656231

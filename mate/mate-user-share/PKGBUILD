@@ -1,11 +1,12 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=mate-user-share
 pkgname=(${_pkgbase})
 pkgver=${_ver}.0
-pkgrel=1
+pkgrel=0.1
 pkgdesc="User level public file sharing via WebDAV for MATE."
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
@@ -15,8 +16,9 @@ makedepends=('caja>=1.14' 'libcanberra' 'libnotify' 'mate-common' 'yelp-tools')
 optdepends=('yelp: for reading MATE help documents')
 groups=('mate-extra')
 conflicts=("${_pkgbase}-gtk3")
+replaces=("${_pkgbase}-gtk3")
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('95491485a0769f252e068ed2256f1a3386330094')
+sha1sums=('1ae23e4e74fc1fffd8207fd15751092763c46ca4')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"

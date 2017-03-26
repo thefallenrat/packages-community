@@ -4,25 +4,24 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-session-ui-manjaro
-pkgver=3.0.23
+pkgver=4.0.2
 pkgrel=1
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url="https://github.com/oberon2007/$pkgname"
 license=('GPL3')
 depends=('deepin-control-center'
-	'deepin-daemon'
-        'deepin-qt-dbus-factory'
-	'deepin-tool-kit'
-	'gsettings-qt'
-	'gtk2'
-	'liblightdm-qt5'
-	'pam'
-	'qt5-svg'
-	'startdde'
-	'xorg-xrandr')
-makedepends=('git'
-	'qt5-tools')
+         'deepin-daemon'
+         'deepin-qt-dbus-factory'
+         'deepin-tool-kit'
+         'gsettings-qt'
+         'gtk2'
+         'liblightdm-qt5'
+         'pam'
+         'qt5-svg'
+         'startdde'
+         'xorg-xrandr')
+makedepends=('git' 'qt5-tools')
 groups=('deepin-manjaro')
 conflicts=('deepin-manjaro-workspace' 'lightdm-deepin-greeter' 'lightdm-deepin-greeter-manjaro')
 provides=('lightdm-deepin-greeter' 'deepin-session-ui')

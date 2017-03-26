@@ -7,7 +7,7 @@ pkgname=('arc-themes-solid-maia'
 	 'arc-themes-maia')
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
-pkgver=20161119
+pkgver=20170302
 pkgrel=1
 #_gnomever=3.22
 arch=('any')
@@ -16,7 +16,7 @@ license=('GPL3')
 depends=('gtk-engine-murrine' 'gtk3')
 makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'libcanberra')
 source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
-sha256sums=('a470ab33b1ad2b4ba280e61f0e1c4f8d4973ceccc84dc2db1e37fae66b5770cd')
+sha256sums=('9ca5c1d1ac267c4ae3725e84519d42bfb8c4c6934989839ebe3cb8699fbdfd45')
 
 #ALL arc color
 _blue=5294e2 

@@ -4,7 +4,7 @@
 
 pkgname=nautilus-admin
 pkgver=0.2.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Extension for Nautilus to do administrative operations"
 arch=('any')
 url="https://github.com/brunonova/$pkgname"

@@ -1,66 +1,37 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 pkgbase=mate-polkit
-pkgname=(${pkgbase} ${pkgbase}-gtk3)
+pkgname=(${pkgbase})
 pkgver=${_ver}.0
-pkgrel=1
+pkgrel=0.1
 pkgdesc="PolicyKit integration for the MATE desktop"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('LGPL')
-depends=('gtk2' 'gtk3' 'polkit' 'accountsservice')
+depends=('gtk3' 'polkit' 'accountsservice')
+groups=('mate')
 makedepends=('gobject-introspection' 'mate-common')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${pkgname}-${pkgver}.tar.xz")
-sha1sums=('da2b4cf7b905a24fa22dd14e8991a71814ad7777')
-
-prepare() {
-    cd "${srcdir}"
-    mv "${pkgname}-${pkgver}" "${pkgbase}-gtk2"
-    cp -a "${pkgbase}-gtk2" "${pkgbase}-gtk3"
-}
+sha1sums=('6605b950811dfae23947b0727a3c3b12ee0ce2db')
 
 build() {
-    cd "${srcdir}/${pkgbase}-gtk2"
+    cd "${srcdir}/${pkgname}-${pkgver}"
     ./configure \
         --prefix=/usr \
         --libexecdir=/usr/lib/${pkgbase} \
         --sysconfdir=/etc \
         --localstatedir=/var \
-        --with-gtk=2.0 \
-        --enable-introspection \
-        --disable-static
-    make
-
-    cd "${srcdir}/${pkgbase}-gtk3"
-    ./configure \
-        --prefix=/usr \
-        --libexecdir=/usr/lib/${pkgbase} \
-        --sysconfdir=/etc \
-        --localstatedir=/var \
-        --with-gtk=3.0 \
         --enable-introspection \
         --disable-static
     make
 }
 
-package_mate-polkit() {
-    pkgdesc+=' (GTK2 version)'
-    groups=('mate')
-    conflicts=("${pkgbase}-gtk3")
-    depends=('gtk2' 'polkit')
+package() {
 
-    cd "${srcdir}/${pkgbase}-gtk2"
+    cd "${srcdir}/${pkgbase}-$pkgver"
     make DESTDIR="${pkgdir}" install
 }
 
-package_mate-polkit-gtk3() {
-    pkgdesc+=' (GTK3 version [EXPERIMENTAL])'
-    groups=('mate-gtk3')
-    conflicts=("${pkgbase}")
-    depends=('gtk3' 'polkit')
-
-    cd "${srcdir}/${pkgbase}-gtk3"
-    make DESTDIR="${pkgdir}" install
-}

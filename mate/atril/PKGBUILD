@@ -1,12 +1,13 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 # Contributor : Martin Wimpress <code@flexion.org>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=atril
 pkgname=(${_pkgbase})
-pkgver=${_ver}.2
+pkgver=${_ver}.0
 pkgrel=0.1
-pkgdesc="MATE document viewer (GTK2 version)"
+pkgdesc="MATE document viewer"
 url="http://mate-desktop.org"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -16,8 +17,9 @@ optdepends=('caja: Document Properties extension'
             'texlive-bin: DVI support')
 groups=('mate-extra')
 conflicts=("${_pkgbase}-gtk3")
-source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('7eb2ba97290b9a8cba7b93f10efa0b00d1454488')
+replaces=("${_pkgbase}-gtk3")
+source=(http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz)
+sha1sums=('5cbcd69733bd5ba23c10a60b2a2350171d95ddf6')
 
 prepare() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -31,7 +33,6 @@ build() {
     ./configure \
         --prefix=/usr \
         --libexecdir=/usr/lib/${_pkgbase} \
-        --with-gtk=2.0 \
         --enable-djvu \
         --enable-dvi \
         --enable-epub \

@@ -1,12 +1,13 @@
 # Contributor: Martin Wimpress <code@flexion.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=mate-media
 pkgname=(${_pkgbase})
-pkgver=${_ver}.1
+pkgver=${_ver}.0
 pkgrel=0.1
 url="http://mate-desktop.org"
-pkgdesc="MATE Media Tools (GTK2 version)"
+pkgdesc="MATE Media Tools"
 arch=('i686' 'x86_64')
 license=('GPL')
 depends=('libcanberra' 'libmatemixer' 'libunique' 'mate-desktop')
@@ -14,7 +15,8 @@ makedepends=('intltool')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
 groups=('mate-extra')
 conflicts=("${_pkgbase}-gtk3")
-sha1sums=('e0465a03a03a49d229930ad40cad6fd966986ab9')
+replacess=("${_pkgbase}-gtk3")
+sha1sums=('c550f730f9b97ee5d744c822220cf4dc617dfb54')
 
 build() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -22,8 +24,7 @@ build() {
         --prefix=/usr \
         --sysconfdir=/etc \
         --libexecdir=/usr/lib/${_pkgbase} \
-        --localstatedir=/var \
-        --with-gtk=2.0
+        --localstatedir=/var 
     make
 }
 

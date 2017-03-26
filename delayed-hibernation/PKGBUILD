@@ -1,10 +1,10 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=delayed-hibernation
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="Systemd hook to hibernate suspended system after a delay"
-arch=any
+arch=('any')
 url="https://github.com/Chrysostomus/$pkgname"
 license=("MIT")
 depends=('systemd')

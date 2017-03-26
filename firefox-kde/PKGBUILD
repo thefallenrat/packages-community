@@ -4,31 +4,27 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=51.0.1
+pkgver=52.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
-arch=('i686' 'x86_64')
-license=('MPL' 'GPL' 'LGPL')
+arch=(i686 x86_64)
+license=(MPL GPL LGPL)
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib ffmpeg
          libvpx libevent nss hunspell sqlite ttf-font icu kmozillahelper nspr)
 makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils xorg-server-xvfb
-             autoconf2.13 cargo jack)
+             autoconf2.13 cargo)
 optdepends=('networkmanager: Location detection via available WiFi networks'
-            'upower: Battery API')
+            'libnotify: Notification integration'
+            'speech-dispatcher: Text-to-Speech')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
-options=(!emptydirs !makeflags)
-_patchrev=3604ed712e16
+options=(!emptydirs !makeflags !strip)
+_patchrev=7b1e775ff77a
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
-        mozconfig 
-        firefox.desktop 
-        firefox-install-dir.patch
-        rust-i686.patch
-        vendor.js
-        firefox-symbolic.svg
-        fix-wifi-scanner.diff
+        firefox.desktop firefox-symbolic.svg
+        firefox-install-dir.patch rust-i686.patch fix-wifi-scanner.diff
         kde.js
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -39,23 +35,21 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
-
-sha256sums=('30ba00ba716ea1eeda526e2ccc8642f8d18a836793fde50e87a4fcb9d9fccca9'
-            '5dcc6ff06af95256d34a901ee1881400904e38665aa22ddf8e7d16e2ad76875c'
-            '75c526e9669b91b4fe5dcea650a1e8419220abb2e9564184f0d984c71eae82e8'
+sha256sums=('2ea8659c787c6a9d2b1fdadbb3171b3a6d3ef3d61fbaaa8e40fa14cfd0b82dd9'
+            'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
+            'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
             'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
-            '93c5df00f409988bbfa890ac175103476ead3af68f7501973ee70bd11dc472f8'
-            'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'caace2c30a9a02dbe5ef5143c0661b2840be410a0bc34ea27a56e51386535f71'
-            '87208beb79c5dbc73318f03c09398250affd1598924115187ca55e53ad92b4da'
+            '4e1ee327f26e087bfb4343b154c9c6454d959640548ba4b394cc91bf100cd6bf'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            '014b03abb5cd39c3ea9037e8d5eea77e128c0aaab53831eb4a84b5b27a52a038'
+            'f8ee8e0c8ce30dbed7f42c26eb0c953ad91bea657973eb7c18aaf075ce330b04'
             '2720e418edaab7b305087b325604fe134dab1b743dae6e924aba7b4bd73ea389'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
+validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
 
 # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
 # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -71,11 +65,12 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 
 prepare() {
-  cd $_pkgname-$pkgver
+  mkdir path
+  ln -s /usr/bin/python2 path/python
 
-  cp "$srcdir/mozconfig" .mozconfig
-  patch -Np1 -i "$srcdir/firefox-install-dir.patch"
-  
+  cd $_pkgname-$pkgver
+  patch -Np1 -i ../firefox-install-dir.patch
+
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
   patch -Np1 -i ../fix-wifi-scanner.diff
 
@@ -83,10 +78,52 @@ prepare() {
   patch -Np1 -i ../rust-i686.patch
 
   echo -n "$_google_api_key" >google-api-key
-  echo "ac_add_options --with-google-api-keyfile=\"$PWD/google-api-key\"" >>.mozconfig
-
   echo -n "$_mozilla_api_key" >mozilla-api-key
-  echo "ac_add_options --with-mozilla-api-keyfile=\"$PWD/mozilla-api-key\"" >>.mozconfig
+
+  cat >.mozconfig <<END
+ac_add_options --enable-application=browser
+
+ac_add_options --prefix=/usr
+ac_add_options --enable-release
+ac_add_options --enable-gold
+ac_add_options --enable-pie
+ac_add_options --enable-rust
+
+# Branding
+ac_add_options --enable-official-branding
+ac_add_options --enable-update-channel=release
+export MOZILLA_OFFICIAL=1
+export MOZ_TELEMETRY_REPORTING=1
+export MOZ_SOURCE_REPO=${_repo@Q}
+export MOZ_ADDON_SIGNING=1
+export MOZ_REQUIRE_SIGNING=1
+
+# Keys
+ac_add_options --with-google-api-keyfile=${PWD@Q}/google-api-key
+ac_add_options --with-mozilla-api-keyfile=${PWD@Q}/mozilla-api-key
+
+# System libraries
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-icu
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-zlib
+ac_add_options --with-system-bz2
+ac_add_options --with-system-libevent
+ac_add_options --with-system-libvpx
+ac_add_options --enable-system-hunspell
+ac_add_options --enable-system-sqlite
+ac_add_options --enable-system-ffi
+ac_add_options --enable-system-pixman
+
+# Features
+ac_add_options --enable-startup-notification
+ac_add_options --enable-crashreporter
+ac_add_options --enable-alsa
+ac_add_options --disable-updater
+
+STRIP_FLAGS="--strip-debug"
+END
 
   msg "Patching for KDE"
   patch -Np1 -i "$srcdir/mozilla-nongnome-proxies.patch"
@@ -99,9 +136,6 @@ prepare() {
 
   #msg "Add missing file in Makefile for pgo builds"
   patch -Np1 -i "$srcdir/pgo_fix_missing_kdejs.patch"
-
-  mkdir "$srcdir/path"
-  ln -s /usr/bin/python2 "$srcdir/path/python"
 }
 
 build() {
@@ -113,17 +147,14 @@ build() {
   # Hardening
   LDFLAGS+=" -Wl,-z,now"
 
-  # GCC 6
-  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-schedule-insns2"
-
   export PATH="$srcdir/path:$PATH"
 
-  if [[ $CARCH == i686 ]]; then
+  #if [[ $CARCH == i686 ]]; then
     make -f client.mk build
-  else 
-    xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
-      make -f client.mk profiledbuild
-  fi
+  #else 
+  #  xvfb-run -a -n 95 -s "-extension GLX -screen 0 1280x1024x24" \
+  #    make -f client.mk profiledbuild
+  #fi
 }
 
 package() {
@@ -133,14 +164,28 @@ package() {
 
   make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
 
-  install -Dm644 "$srcdir/vendor.js" "$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
+  _vendorjs="$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
+  install -Dm644 /dev/stdin "$_vendorjs" <<END
+// Use LANG environment variable to choose locale
+pref("intl.locale.matchOS", true);
+
+// Disable default browser checking.
+pref("browser.shell.checkDefaultBrowser", false);
+
+// Don't disable our bundled extensions in the application directory
+pref("extensions.autoDisableScopes", 11);
+pref("extensions.shownSelectionUI", true);
+
+// Opt all of us into e10s, instead of just 50%
+pref("browser.tabs.remote.autostart", true);
+END
+
   install -Dm644 "$srcdir/kde.js" "$pkgdir/usr/lib/firefox/browser/defaults/preferences/kde.js"
 
   for i in 16 22 24 32 48 256; do
-      install -Dm644 browser/branding/official/default$i.png \
-        "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/firefox.png"
+    install -Dm644 browser/branding/official/default$i.png \
+      "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/firefox.png"
   done
-
   install -Dm644 browser/branding/official/content/icon64.png \
     "$pkgdir/usr/share/icons/hicolor/64x64/apps/firefox.png"
   install -Dm644 browser/branding/official/mozicon128.png \
@@ -152,14 +197,22 @@ package() {
   install -Dm644 ../firefox-symbolic.svg \
     "$pkgdir/usr/share/icons/hicolor/symbolic/apps/firefox-symbolic.svg"
 
-  install -Dm644 "$srcdir/firefox.desktop" "$pkgdir/usr/share/applications/firefox.desktop"
+  install -Dm644 ../firefox.desktop \
+    "$pkgdir/usr/share/applications/firefox.desktop"
 
   # Use system-provided dictionaries
-  rm -rf "$pkgdir"/usr/lib/firefox/{dictionaries,hyphenation}
-  ln -s /usr/share/hunspell "$pkgdir/usr/lib/firefox/dictionaries"
-  ln -s /usr/share/hyphen "$pkgdir/usr/lib/firefox/hyphenation"
+  rm -r "$pkgdir"/usr/lib/firefox/dictionaries
+  ln -Ts /usr/share/hunspell "$pkgdir/usr/lib/firefox/dictionaries"
+  ln -Ts /usr/share/hyphen "$pkgdir/usr/lib/firefox/hyphenation"
 
-  # Replace duplicate binary with symlink
+  # Install a wrapper to avoid confusion about binary path
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/firefox" <<END
+#!/bin/sh
+exec /usr/lib/firefox/firefox "\$@"
+END
+
+  # Replace duplicate binary with wrapper
   # https://bugzilla.mozilla.org/show_bug.cgi?id=658850
-  ln -sf firefox "$pkgdir/usr/lib/firefox/firefox-bin"
+  ln -srf "$pkgdir/usr/bin/firefox" \
+    "$pkgdir/usr/lib/firefox/firefox-bin"
 }

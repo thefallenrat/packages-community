@@ -1,48 +1,40 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
-pkgname=manjaro-architect
-_pkgname=aif-dev
-pkgver=0.7.4.r0.gdd4c62c
+pkgbase=manjaro-architect
+pkgname=('manjaro-architect' 'manjaro-architect-launcher')
+pkgver=0.8.2
 pkgrel=1
-pkgdesc="A clone of architect installer modified for manjaro"
+pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
-url="https://github.com/Chrysostomus/$_pkgname"
+url="https://github.com/Chrysostomus/$pkgbase"
 license=(GPL2)
 depends=('bash'
-	'dialog'
-	'f2fs-tools'
-	'gptfdisk'
-	'manjaro-tools-base'
-	'mhwd'
-	'nilfs-utils'
-    'pacman'
-	'pacman-mirrorlist'
-	'parted')
-makedepends=('git')
-source=("git+$url.git")
-md5sums=('SKIP')
+         'dialog')
+optdepends=('maia-console'
+            'terminus-font')
+source=("$url/archive/$pkgver.tar.gz")
+md5sums=('0da5e5fc49db7973bd640173c3d1f639')
 
-pkgver() {
-    cd $_pkgname
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+build() {
+    cd $pkgbase-$pkgver
+	make PREFIX=/usr
 }
 
-package () {
+package_manjaro-architect() {
+    depends+=('f2fs-tools'
+         'gptfdisk'
+         'manjaro-architect-launcher'
+         'manjaro-tools-base'
+         'mhwd'
+         'nilfs-utils'
+         'pacman-mirrorlist'
+         'parted')
+    cd $pkgbase-$pkgver
+	make PREFIX=/usr DESTDIR=${pkgdir} install
+}
 
-    _bindir=$pkgdir/usr/bin
-    _sharedir=$pkgdir/usr/share
-    _datadir=$_sharedir/aif
-    _launchdir=$pkgdir/usr/share
-    
-    cd $_pkgname
-    install -Dm755 $pkgname $_bindir/$pkgname
-    install -m755 setup $_bindir/setup
-    install -m755 ma-launcher $_bindir/ma-launcher
-    mkdir -p $_datadir/{package-lists,translations}
-    cp -r package-lists $_datadir
-    cp -r translations $_datadir
-    install -Dm644 $pkgname.desktop $_sharedir/applications/$pkgname.desktop
-    install -Dm644 $pkgname.png $_sharedir/icons/hicolor/48x48/apps/$pkgname.png
-    install -Dm644 ma-launcher.desktop $pkgdir/etc/skel/.config/autostart/ma-launcher.desktop
+package_manjaro-architect-launcher() {
+    cd $pkgbase-$pkgver
+    install -Dm755 bin/setup $pkgdir/usr/bin/setup
 }

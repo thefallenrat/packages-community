@@ -1,23 +1,24 @@
 # Contributor: Martin Wimpress <code@flexion.org>
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
-_ver=1.14
+_ver=1.18
 _pkgbase=mate-applets
 pkgname=(${_pkgbase})
-pkgver=${_ver}.1
+pkgver=${_ver}.0
 pkgrel=0.1
-pkgdesc="Applets for MATE panel (GTK2 version)"
+pkgdesc="Applets for MATE panel"
 arch=('i686' 'x86_64')
 url="http://mate-desktop.org"
 license=('GPL')
-depends=('gtksourceview2' 'libgtop' 'libnotify' 'mate-panel' 'polkit'
-         'python2-dbus' 'python2-gobject' 'upower' 'wireless_tools')
-makedepends=('intltool' 'itstool')
+depends=('glib2' 'gtksourceview3' 'gtk-update-icon-cache' 'libgtop' 'libnotify'
+         'mate-panel' 'polkit' 'python2-dbus' 'python2-gobject' 'upower')
+('docbook2x' 'docbook-xsl' 'mate-common' 'yelp-tools')
 optdepends=('fortune-mod: for displaying fortune cookies in the Wanda the Fish applet')
 groups=('mate-extra')
 conflicts=("${_pkgbase}-gtk3" 'mate-netspeed' 'mate-netspeed-gtk3')
-replaces=('mate-netspeed')
+replaces=('mate-netspeed' '${_pkgbase}-gtk3')
 source=("http://pub.mate-desktop.org/releases/${_ver}/${_pkgbase}-${pkgver}.tar.xz")
-sha1sums=('8f7f91c92661a61171e545b253d752bf2706c2fa')
+sha1sums=('9f9af431c6030bed92191fff167c5e8520196c2b')
 
 prepare() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
@@ -32,7 +33,8 @@ build() {
         --libexecdir=/usr/lib/${_pkgbase} \
         --enable-polkit \
         --enable-ipv6 \
-        --with-gtk=2.0
+	--disable-static
+
     make
 }
 
