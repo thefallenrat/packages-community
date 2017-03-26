@@ -3,8 +3,8 @@
 
 pkgname=plymouth-theme-manjaro-fancy-budgie
 _basename=manjaro-fancy-budgie
-pkgver=1.1.r1.g35aa85a
-pkgrel=4
+pkgver=1.1.r2.gca022e7
+pkgrel=1
 pkgdesc="Manjaro Plymouth theme for Budgie Desktop."
 arch=('any')
 license=('GPL')
