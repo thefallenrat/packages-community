@@ -1,7 +1,7 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgbase=palemoon-i18n
-pkgver=27.1.0
+pkgver=27.2.1
 pkgrel=1
 pkgdesc="Language pack for Palemoon"
 arch=('any')
@@ -70,17 +70,17 @@ _package() {
     "$pkgdir/usr/lib/palemoon/browser/extensions/langpack-$1@palemoon.org.xpi"
 }
 
-md5sums=('fa9e34faf16ec5956ff8250933fe37d5'
-         '8edacd8812aa53b987f622e1a237bd29'
-         '62db3ef798a2ad4bd7a09f60fb591894'
-         '0ba729ee4f7e32761f1cce5a6861862c'
-         '2fff91864f601eb4ad5d507a2969224a'
-         'ec05830eca50e72aad4cdca9c435d79d'
-         'e9e54c318e793e6dc63a3030d9763601'
-         'b2a47a4f2eb4e277b0c4d608094ec110'
-         '4d78e2ac755b06acde613555a7b4401a'
-         '69435c5e26ec0348013380b3b32fc602'
-         'b3ec5575c28dc624c9e2090acb5dc85d'
-         '00aea2f6dc88f0430315b91075b3b6a9'
-         '54734b90185851aa711fcc2a8328a121'
-         '88bd806012ccd0cc2ebad60f2422938d')
+md5sums=('66516407f07d6b597a7a9a7dbcf910be'
+         'c5bca0712e2a0497d612c0227e5d66e0'
+         'c7b605b580713215dfcdb5a3029afb78'
+         '490b8d99a66012af9d49f630ea6a048e'
+         'dbaddeb48bf97f04655fac268990e8ef'
+         'ce2b5bcb9562fe5779449e7ce860e97e'
+         '5a11d7756b41ad90c3402b44625c3607'
+         'a34e293111b296d82236e04f02e58829'
+         'eb00ec128e5bd639fa852b84dd4ff9bd'
+         'daa9b55badf30e8d6c1e6780d04719e3'
+         '47dbce672aa95acd0461d1b0aaf93360'
+         '4c3a50550761d9d6c547d6d206ce5d9e'
+         '284154e2c0e805057b9d90e35e117d46'
+         'c7a112c5ae1809b62006451e11fffd0e')
