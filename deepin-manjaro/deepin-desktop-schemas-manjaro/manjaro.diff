@@ -60,12 +60,3 @@ diff -ru --no-dereference a/schemas/com.deepin.xsettings.gschema.xml b/schemas/c
        <summary>Fallback icon theme</summary>
        <description>
          Name of a icon theme to fall back to.
-@@ -42,7 +42,7 @@
-       </description>
-     </key>
-     <key type="s" name="gtk-font-name">
--      <default>'sans-serif 10'</default>
-+      <default>'Noto Sans 10'</default>
-       <summary>Default font</summary>
-       <description>
-         Name of the default font used by gtk+.

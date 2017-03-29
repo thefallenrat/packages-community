@@ -1,8 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20170328
-pkgrel=2
+pkgver=20170329
+pkgrel=1
 pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
@@ -10,14 +10,13 @@ license=('GPL')
 groups=('deepin-manjaro')
 depends=('deepin-desktop'
 	'deepin-desktop-schemas-manjaro'
+	'deepin-dock'
 	'deepin-launcher'
 	'deepin-session-ui-manjaro'
 	'manjaro-base-skel')
 makedepends=('git')
 optdepends=('plymouth-theme-manjaro-deepin-circle'
-	'manjaro-backgrounds')
-provides=('manjaro-desktop-settings')
-conflicts=('manjaro-desktop-settings')
+	'manjaro-wallpapers-17.0')
 source=("git+https://github.com/manjaro/desktop-settings.git")
 sha256sums=('SKIP')
 

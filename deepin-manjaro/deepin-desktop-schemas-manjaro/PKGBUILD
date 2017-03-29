@@ -4,7 +4,7 @@
 _pkgname=deepin-desktop-schemas
 pkgname=$_pkgname-manjaro
 pkgver=3.1.4
-pkgrel=4
+pkgrel=5
 pkgdesc='Manjaro Linux Deepin gschemas'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
@@ -15,17 +15,14 @@ depends=('dconf'
 	'deepin-iconthemes-manjaro'
 	'deepin-sound-theme'
 	'deepin-wallpapers'
-	'noto-fonts'
-	'vertex-maia-icon-theme'
-	'vertex-maia-themes'
-	'xcursor-breeze')
+	'noto-fonts')
 makedepends=('git')
 conflicts=('dde-daemon<=2.92.1' "$_pkgname")
 provides=("$_pkgname")
 source=("git+https://cr.deepin.io/deepin-desktop-schemas.git#tag=$pkgver"
 	'manjaro.diff')
 sha256sums=('SKIP'
-            'b43324487aace19e735142374803c8e0b143adf9b134cc5692acbae3dd84f3d3')
+            'ba3bc195faac8fad0401089db9e93d77e73bea98302cec89fecb89f6925e3519')
 
 prepare() {
   cd $_pkgname
