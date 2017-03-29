@@ -1,27 +1,30 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname="deepin-wallpapers"
-pkgver=20170316
+pkgver=20170329
 pkgrel=1
-_snapshot=555fdb9e935b50b45f1c5b4dc2d0a576de32d2af
+_snapshot=140124ab416ba3625e5dd54640b4886f2c261f90
 pkgdesc="Wallpapers for manjaro-deepin"
 arch=('any')
 license=('GPL3')
 url=https://github.com/oberon2007/$pkgname
 groups=('deepin-manjaro')
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
-md5sums=('6f1f57f85ccb4dc56ec6e4f383c6a141')
+md5sums=('4cd0c3602360115294a5216fedd76803')
 
 pkgver() {
     date +%Y%m%d
 }
 
 package() {
-	cd $srcdir/$pkgname-$_snapshot
-	install -dm755 $pkgdir/usr/share/backgrounds/deepin
-	install -dm755 $pkgdir/var/cache
-	cp -r backgrounds $pkgdir/usr/share
-	cp -r image-blur $pkgdir/var/cache
-	ln -s abstract-gray.jpg $pkgdir/usr/share/backgrounds/default_background.jpg
-	ln -s ../abstract-gray.jpg $pkgdir/usr/share/backgrounds/deepin/desktop.jpg # normally installed by deepin-desktop-base
+    bg=$pkgdir/usr/share/backgrounds
+    bgd=$bg/deepin
+
+    cd $srcdir/$pkgname-$_snapshot
+    install -dm755 $bgd
+    install -dm755 $pkgdir/var/cache
+    cp -r backgrounds $pkgdir/usr/share
+    cp -r image-blur $pkgdir/var/cache
+    ln -s ../ant_man_deepin03.jpg $bgd/desktop.jpg   # upstream installs this via deepin-desktop-base
+    ln -s ../deep_sea.jpg $bg/default_background.jpg # greeter default
 }
