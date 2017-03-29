@@ -17,11 +17,10 @@ depends=('deepin-control-center'
          'gsettings-qt'
          'gtk2'
          'liblightdm-qt5'
-         'pam'
          'qt5-svg'
          'startdde'
          'xorg-xrandr')
-makedepends=('git' 'qt5-tools')
+makedepends=('qt5-tools')
 groups=('deepin-manjaro')
 conflicts=('deepin-manjaro-workspace' 'lightdm-deepin-greeter' 'lightdm-deepin-greeter-manjaro')
 provides=('lightdm-deepin-greeter' 'deepin-session-ui')
