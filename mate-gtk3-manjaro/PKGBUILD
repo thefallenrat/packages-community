@@ -1,9 +1,0 @@
-#Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
-
-pkgname=mate-gtk3-manjaro
-pkgver=2
-pkgrel=1
-pkgdesc="Manjaro meta packages to provide Mate GTK3"
-arch=('any')
-license=('GPL')
-	
