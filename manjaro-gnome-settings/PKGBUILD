@@ -4,13 +4,14 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170319
+pkgver=20170330
 pkgrel=1
 pkgdesc="Manjaro Linux Gnome settings"
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
 source=("git+$url.git")
+makedepends=('git')
 sha256sums=('SKIP')
 
 pkgver() {
