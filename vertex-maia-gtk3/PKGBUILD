@@ -17,19 +17,11 @@ url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 makedepends=('imagemagick')
 conflicts=('vertex-maia-themes')
-source=("vertex-$_vertex_commit.tar.gz::https://github.com/horst3180/Vertex-theme/archive/$_vertex_commit.tar.gz"
-	    "vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz"
-	    'cinnamon_3.2.patch::https://patch-diff.githubusercontent.com/raw/horst3180/vertex-theme/pull/237.patch')
+source=("vertex-$_vertex_commit.tar.gz::https://github.com/oberon2007/Vertex-theme/archive/$_vertex_commit.tar.gz"
+	    "vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz")
 sha256sums=('87c4c356fa10d7252270e6f3a8b0d459eedf5e4f9c9b904e3f5d8999c195638c'
-            'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71'
-            'caf272fe88a375d633b727ac6e9622c1e281142f3e1ade2e94aebf5f02a87f87')
+            'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71')
 options=('!strip')
-
-prepare() {
-  ## fix for menus in Cinnamon >=3.2
-  cd vertex-theme-$_vertex_commit
-  patch -p1 -i $srcdir/cinnamon_3.2.patch
-}
 
 build() {
   cd vertex-theme-$_vertex_commit
