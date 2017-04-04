@@ -94,7 +94,7 @@ package_manjaro-lxde-settings() {
     pkgdesc='Manjaro Linux lxde settings'
     depends=('manjaro-base-skel'
     	     'arc-maia-icon-theme'
-	     'vertex-maia-themes
+	     'vertex-maia-themes'
 	     'breath-wallpaper'
 	     'qt5ct'
 	     'qt5-styleplugins'
