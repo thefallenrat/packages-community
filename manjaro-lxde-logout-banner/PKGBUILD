@@ -1,0 +1,20 @@
+pkgname=manjaro-lxde-logout-banner
+pkgver=0.1
+pkgrel=1
+pkgdesc="Alternative logout-banner for lxde"
+url=" "
+arch=('any')
+license=('GPL3')
+depends=('lxde-common')
+source=(lxde-logout
+	manjaro-banner.png)
+md5sums=('a8193b735e3d9f642babe07f02a7def3'
+         '3c45ad032f175e109aa3f989b0d56301')
+         
+package() {
+	cd $srcdir
+	install -Dm755 lxde-logout $pkgdir/usr/local/bin/lxde-logout
+	
+	install -Dm644 manjaro-banner.png $pkgdir/usr/share/lxde/images/manjaro-banner.png
+}
+
