@@ -15,6 +15,6 @@ package() {
 	cd $srcdir
 	install -Dm755 lxde-logout $pkgdir/usr/local/bin/lxde-logout
 	
-	install -Dm644 manjaro-banner.png $pkgdir/usr/share/lxde/images
+	install -Dm644 manjaro-banner.png $pkgdir/usr/share/lxde/images/manjaro-banner.png
 }
 
