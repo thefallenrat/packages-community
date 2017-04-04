@@ -13,8 +13,7 @@ md5sums=('a8193b735e3d9f642babe07f02a7def3'
          
 package() {
 	cd $srcdir
-	mkdir -p $pkgdir/usr/local/bin
-	install -m755 lxde-logout $pkgdir/usr/local/bin
+	install -Dm755 lxde-logout $pkgdir/usr/local/bin/lxde-logout
 	
 	mkdir -p $pkgdir/usr/share/lxde/images
 	install -m644 manjaro-banner.png $pkgdir/usr/share/lxde/images
