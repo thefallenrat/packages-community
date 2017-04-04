@@ -92,7 +92,13 @@ package_manjaro-jwm-settings() {
 
 package_manjaro-lxde-settings() {
     pkgdesc='Manjaro Linux lxde settings'
-    depends=('manjaro-base-skel')
+    depends=('manjaro-base-skel'
+    	     'arc-maia-icon-theme'
+	     'vertex-maia-themes'
+	     'breath-wallpaper'
+	     'qt5ct'
+	     'qt5-styleplugins'
+	     'manjaro-lxde-logout-banner')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
