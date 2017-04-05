@@ -85,8 +85,4 @@ package()
     install -dm 755 "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     ln -s "/usr/share/doc/steam/steam_install_agreement.txt" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-
-    # Workaround for KDE Plasma task managers
-    ## https://bugs.kde.org/show_bug.cgi?id=375598
-    mv "${pkgdir}/usr/share/applications/steam.desktop" "${pkgdir}/usr/share/applications/steam-valve.desktop"
 }
