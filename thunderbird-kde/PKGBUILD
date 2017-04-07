@@ -6,36 +6,35 @@
 # Contributor: Anders Bostrom <anders.bostrom@home.se>
 
 pkgname=thunderbird-kde
-pkgver=45.8.0
-pkgrel=2
+pkgver=52.0
+pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
 arch=(i686 x86_64)
 license=(MPL GPL LGPL)
 url="https://www.mozilla.org/thunderbird/"
-depends=(gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib
+depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib ffmpeg
          libvpx libevent nss hunspell sqlite ttf-font icu nspr libnotify)
-makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils)
-optdepends=('libcanberra: for sound support')
+makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils xorg-server-xvfb
+             autoconf2.13 cargo)
+optdepends=('libcanberra: sound support')
 conflicts=('thunderbird' 'thunderbird-kde-opensuse')
 options=(!emptydirs !makeflags)
 # For patch look here: https://build.opensuse.org/package/show/mozilla:Factory/MozillaThunderbird
 source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.xz
         thunderbird.desktop
         thunderbird-install-dir.patch fix-wifi-scanner.diff
-        firefox-gcc-6.0.patch mozilla-1228540.patch mozilla-1228540-1.patch
+        rust-i686.patch
         mozilla-kde.patch
         mozilla-language.patch
         mozilla-nongnome-proxies.patch
         kde.js)
-sha256sums=('743cbf4856ad460a791f6b17bff175053fccec2af1edd8e8295ac6fda2634c28'
+sha256sums=('44e148b1ebd4135a6923a5403792035cf170745e7e99c4ec85142988dd6b26c6'
             '44c52e9d135bab6d107fab67d279612a4d2750996fa45f4530d8ede6a2fb031c'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
-            '4d1e1ddabc9e975ed39f49e134559a29e01cd49439e358233f1ede43bf5a52bf'
-            '3a3e84c702ee31450a3e84698441aceb11cf44e64c9fedcaddb8cb50db759417'
-            'd1ccbaf0973615c57f7893355e5cd3a89efb4e91071d0ec376e429b50cf6ed19'
-            '3e7d8d65b481c03eb1da37b2e211f018e6fc9de381433205398e5ddaaff1c44a'
+            'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
+            '50f5a58f65f1dd5585b145dbfe9486dae120ba5b9bfbda7bb0f1f3baa647faca'
             'b9feb66a33dc1644d7d277dc3fc166c655735de7100bc4e93f1fe44567f35345'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '0850a8a8dea9003c67a8ee1fa5eb19a6599eaad9f2ad09db753b74dc5048fdbc')
@@ -63,10 +62,8 @@ prepare() {
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
   patch -d mozilla -Np1 < ../fix-wifi-scanner.diff
 
-  # Required for GCC 6
-  patch -d mozilla -Np1 < ../firefox-gcc-6.0.patch
-  patch -d mozilla -Np1 < ../mozilla-1228540.patch
-  patch -d mozilla -Np1 < ../mozilla-1228540-1.patch
+  # Build with the rust targets we actually ship
+  patch -d mozilla -Np1 < ../rust-i686.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo -n "$_mozilla_api_key" >mozilla-api-key
@@ -78,9 +75,12 @@ ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-gold
 ac_add_options --enable-pie
+ac_add_options --enable-rust
 
 # Branding
 ac_add_options --enable-official-branding
+ac_add_options --enable-update-channel=release
+ac_add_options --with-distribution-id=org.manjaro
 
 # Keys
 ac_add_options --with-google-api-keyfile=${PWD@Q}/google-api-key
@@ -102,8 +102,8 @@ ac_add_options --enable-system-pixman
 
 # Features
 ac_add_options --enable-startup-notification
-ac_add_options --disable-gstreamer
 ac_add_options --disable-crashreporter
+ac_add_options --enable-alsa
 ac_add_options --disable-updater
 
 STRIP_FLAGS="--strip-debug"
@@ -124,11 +124,11 @@ build() {
   # Hardening
   LDFLAGS+=" -Wl,-z,now"
 
-  # GCC 6
-  CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
-
   export PATH="$srcdir/path:$PATH"
 
+  # Do PGO
+  #xvfb-run -a -n 95 -s "-extension GLX -screen 0 1280x1024x24" \
+  #  make -f client.mk build MOZ_PGO=1
   make -f client.mk build
 }
 
@@ -147,6 +147,14 @@ pref("mail.shell.checkDefaultMail", false);
 // Don't disable our bundled extensions in the application directory
 pref("extensions.autoDisableScopes", 11);
 pref("extensions.shownSelectionUI", true);
+END
+
+  _distini="$pkgdir/usr/lib/thunderbird/distribution/distribution.ini"
+  install -Dm644 /dev/stdin "$_distini" <<END
+[Global]
+id=manjaro
+version=Rolling
+about=Mozilla Thunderbird for Manjaro Linux
 END
 
   install -Dm644 "$srcdir"/kde.js "$pkgdir/usr/lib/thunderbird/defaults/preferences/kde.js"
