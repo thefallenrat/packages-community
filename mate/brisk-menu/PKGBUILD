@@ -2,8 +2,8 @@
 # Maintainer: Philip Müller (manjaro)
 
 pkgname=brisk-menu
-pkgver=0.3.0
-pkgrel=2
+pkgver=0.3.5
+pkgrel=1
 #_commit=8a4e5f7f440a7cb62921dda823888d5bf3dcd132
 pkgdesc="An efficient menu for the MATE Desktop"
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ depends=('mate-panel')
 makedepends=('gnome-common')
 #source=("$pkgname-$pkgver-$pkgrel.tar.gz::${url}/archive/${_commit}.tar.gz")
 source=("${url}/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz")
-sha256sums=('376d7df2ce221fb49280d07c00f66178f98c2261b5fafb2a17715fad4d572109')
+sha256sums=('6648b67c60f395bc72d5a74cd7bae4826ea038814e2947c90e319564ce1381d7')
 
 build() {
   cd $srcdir/${pkgname}-${pkgver}
