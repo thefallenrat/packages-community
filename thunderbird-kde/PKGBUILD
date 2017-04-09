@@ -35,7 +35,7 @@ sha256sums=('44e148b1ebd4135a6923a5403792035cf170745e7e99c4ec85142988dd6b26c6'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             'f61ea706ce6905f568b9bdafd1b044b58f20737426f0aa5019ddb9b64031a269'
             '50f5a58f65f1dd5585b145dbfe9486dae120ba5b9bfbda7bb0f1f3baa647faca'
-            'b9feb66a33dc1644d7d277dc3fc166c655735de7100bc4e93f1fe44567f35345'
+            '34df7ba917c69cb6d3c214e41ff3d5d414eece9d7d061a83e564393e71efb282'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '0850a8a8dea9003c67a8ee1fa5eb19a6599eaad9f2ad09db753b74dc5048fdbc')
 
@@ -105,6 +105,7 @@ ac_add_options --enable-startup-notification
 ac_add_options --disable-crashreporter
 ac_add_options --enable-alsa
 ac_add_options --disable-updater
+ac_add_options --enable-calendar
 
 STRIP_FLAGS="--strip-debug"
 END
