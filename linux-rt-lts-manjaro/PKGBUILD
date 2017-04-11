@@ -11,10 +11,11 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _basekernel=4.4
 _srcname=linux-${_basekernel}
 _basever=44-rt-lts
-_pkgver=${_basekernel}.53
+_sub=60
+_pkgver=${_basekernel}.${_sub}
 _pkgverrt=$_pkgver
-_rtpatchver=rt66
-_bfq=v7r11
+_rtpatchver=rt73
+_bfq=v8r9
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -31,14 +32,11 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         "${pkgname}.hook"
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
-        "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/${_basekernel}.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}-${_basekernel}.0.patch"
-        "0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch::ftp://teambelgium.net/bfq/patches/${_basekernel}.0-${_bfq}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched-for-${_basekernel}.0.patch"
-        "0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch::ftp://teambelgium.net/bfq/patches/${_basekernel}.0-${_bfq}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}-for.patch"
+        "0001-BFQ-${_bfq}-v${pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a8e0574...85e3b1a.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
         # MANJARO Patches
         'nvidia-304xx-mtrr-unknown-symbol.patch'
-        "0004-block-bfq-update-migration-methods-attach-for-${_basekernel}-rc5-v7r8.patch"
         '0001-sdhci-revert.patch'
         'i8042-asus-notebook.patch::https://bugzilla.kernel.org/attachment.cgi?id=242001&action=diff&context=patch&collapsed=&headers=1&format=raw'
         # RT Patch
@@ -47,21 +45,18 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            '51e09e851c00f42e04f27a1848a06e93e9de9abd22da0408da4745b6d2edbbdb'
+            '095571965d607c9406b2003ac14c28c03de4a57af8d21dd7743042409bc9aec5'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
             'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
-            'd1cf14cc696b0f716454fe8eb9746383700889d5d22ad829611f0433cc77b4ce'
-            'b17c3fb18c5b8c20a45a38198f293679ca6aef08d16f12cd816a5cfafac4b2c4'
-            '69a21bc286a628128cfc4723558829cb6ff6c2d7c4dfd4468457898674187b25'
+            '6741991b126b906b838e9327e4df2d1ac02ad2617645d08c786b2b3f52a48a98'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
-            'e7e824d6275073ddb9de10dd25afbfb0fe0a622d37afff7b7377e4882abc1c18'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            '5ae37454239a187f5abb3cdf375f7bd143478a31744ee17636ca42131ea74748'
+            'cbe77f8db27bae1d018b786bead3996c753f0e45fdec6dab088fbe2cffd0f890'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
@@ -113,14 +108,11 @@ prepare() {
   # Add RT patch
   msg2 "applying patch-${_pkgverrt}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_rtpatchver}.patch"
-  
+
   msg2 "add BFQ scheduler"
-  sed -i -e 's|__GFP_WAIT|__GFP_DIRECT_RECLAIM|g' "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
-  sed -i -e 's|__GFP_WAIT|__GFP_DIRECT_RECLAIM|g' "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  patch -Np1 -i "${srcdir}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch"
-  patch -Np1 -i "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
-  patch -Np1 -i "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  #patch -Np1 -i "${srcdir}/0004-block-bfq-update-migration-methods-attach-for-4.4-rc5-v7r8.patch"
+  # fix patch
+  sed -i "s|SUBLEVEL = 0|SUBLEVEL = ${_sub}|" $srcdir/0001-BFQ-${_bfq}-v${pkgver}.patch
+  patch -Np1 -i "${srcdir}/0001-BFQ-${_bfq}-v${pkgver}.patch"
 
   # Fix Nvidia 304xx issue
   # https://bugs.archlinux.org/task/47092
