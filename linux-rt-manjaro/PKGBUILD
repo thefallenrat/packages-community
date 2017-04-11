@@ -11,10 +11,11 @@ pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _kernelname=-MANJARO
 _basekernel=4.9
 _basever=49-rt
-#_aufs=20161219
-_bfq=v8r7
-_pkgver=${_basekernel}.18
-_rtpatchver=rt14
+#_aufs=20170327
+_bfq=v8r9
+_sub=20
+_pkgver=${_basekernel}.${_sub}
+_rtpatchver=rt16
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -32,10 +33,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
         "${pkgname}.hook"
-        "0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0001-block-cgroups-kconfig-build-bits-for-BFQ-v7r11-4.5.0.patch"
-        "0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0002-block-introduce-the-BFQ-v7r11-I-O-sched-for-4.5.0.patch"
-        "0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch::http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-v7r11-for.patch"
-        "http://algo.ing.unimo.it/people/paolo/disk_sched/patches/${_basekernel}.0-${_bfq}/0004-Turn-into-BFQ-${_bfq}-for-${_basekernel}.0.patch"
+        "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/69973b8...8d4b2de.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
         # MANJARO Patches
@@ -46,20 +44,17 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
-            'a645964a5fa458cc989f329f330810affbcfdf6fbee0ab44f65c4c07eb8bfc00'
+            'fb856acd9195e7d83ef9971ec7be55eca0d6fdf0fbfbe9a8f3bb04590d44b51f'
             'a4d4cda790847747136c55ea491dddd016316603387bfaa62700d08d9e445ae0'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
-            'ee2fb11cdeab92bd93fd80044b698ff7b2abf4573a35fd891864419b3c650b23'
-            'edc0693cf16900c790a4bb25ab2f7482a4c5bb1f998e59b23dea486989abbe07'
-            '2dd17bdf945b973b569c8614a1de943833d7e3e4d60921308d580d944f922fa7'
-            '3c7b48abd0c5a123252278edcb671e4127dd075617ab862b275b693d456d5e0e'
+            '4a4074e32bfba196020e57d57af31f9fa222a8502e10861e545964f82f352b57'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             'bee3f78a9df6c13f376521f7456189db3d267b1352e0adacf3affb7d0b919cd7'
             'b1318441013e2fd4f411d2291ebfb87b990a740417611faa5e317fc37bb7e9a6'
-            '8247e554ee7b9060b42340939c77b07216c89daaa93bc971fa632579d5b72573'
+            '14473bfbf91aae9a998d96267a3b575e3eae9f9dcbb9caef1ba0f0a5b5109442'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
@@ -95,11 +90,10 @@ prepare() {
   patch -p1 -i "${srcdir}/fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
   
   # add BFQ scheduler
-  msg "BFQ scheduler patches"
-  patch -Np1 -i "${srcdir}/0001-block-cgroups-kconfig-build-bits-for-BFQ-${_bfq}.patch"
-  patch -Np1 -i "${srcdir}/0002-block-introduce-the-BFQ-${_bfq}-I-O-sched.patch"
-  patch -Np1 -i "${srcdir}/0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-${_bfq}.patch"
-  patch -Np1 -i "${srcdir}/0004-Turn-into-BFQ-${_bfq}-for-${_basekernel}.0.patch"
+  # fix patch
+  sed -i "s|SUBLEVEL = 0|SUBLEVEL = ${_sub}|" $srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch
+  msg "BFQ scheduler patch"
+  patch -Np1 -i "$srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch"
 
   msg "All patches have successfully been applied"
   
