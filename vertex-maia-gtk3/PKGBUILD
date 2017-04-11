@@ -6,11 +6,11 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20170401
+pkgver=20170406
 pkgrel=1
 pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.22
-_vertex_commit=6c8f2d7ad4693347b7183dfb529552c86705d067
+_vertex_commit=2454813f09c6bf9aaaa5aa13ae6c5ab0e61bde11
 _manjaro_commit=084cd9576d280e306c00d58528375ed9743fa6fb
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
@@ -19,7 +19,7 @@ makedepends=('imagemagick')
 conflicts=('vertex-maia-themes')
 source=("vertex-$_vertex_commit.tar.gz::https://github.com/oberon2007/Vertex-theme/archive/$_vertex_commit.tar.gz"
 	    "vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz")
-sha256sums=('2fa04052a41dcd17ad73e17afdda4cefedfeb5d7ce6e4ae6dfe6e64438af946b'
+sha256sums=('e5fbaba875167b9b9a7e5373c345f39f57481e57ed46812832a2c6315ced4aa1'
             'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71')
 options=('!strip')
 
