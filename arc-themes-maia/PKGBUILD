@@ -8,7 +8,7 @@ pkgname=('arc-themes-solid-maia'
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
 pkgver=20170302
-pkgrel=1
+pkgrel=2
 #_gnomever=3.22
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
@@ -230,10 +230,22 @@ echo
 package_arc-themes-solid-maia() {
 pkgdesc="A flat theme without transparent elements Manjaro variant"
 optdepends=('arc-firefox-theme: Firefox theme to complete arc-theme experience')
-conflicts=('arc-themes-maia')
 cd $srcdir/$_pkgbase-$pkgver
   ./configure --prefix=/usr --disable-transparency
   make DESTDIR="${pkgdir}" install
+
+#Change folder name for solid version
+
+cd $pkgdir/usr/share/themes
+mv Arc-Maia Arc-Maia-Solid
+mv Arc-Maia-Dark Arc-Dark-Maia-Solid
+mv Arc-Maia-Darker Arc-Darker-Maia-Solid
+
+#Add Maia-Solid suffix (don't change this order)
+find . -type f -name '*.*' -exec sed -i \
+   "s/Arc-Maia/Arc-Maia-Solid/g;\
+   s/Arc-Darker-Maia/Arc-Darker-Maia-Solid/g;\
+  s/Arc-Dark-Maia/Arc-Dark-Maia-Solid/g" {} \;
 }
 
 package_arc-themes-maia() {
