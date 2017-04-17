@@ -1,0 +1,16 @@
+pkgname=lxde-wallpapers
+pkgver=20170417
+pkgrel=1
+pkgdesc="Wallpapers for Manjaro LXDE"
+url="https://github.com/ThanosApostolou/$pkgname"
+arch=('any')
+_snapshot=7cdaaa292a00b4e45cb5b5eab3ac265606b264e7
+source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
+sha256sums=('f8c44d263ff405f2dd04a960fae2bc225632082f81dad66d24f589c98e221f84')
+         
+package() {
+	cd $srcdir/$pkgname-$_snapshot
+	install -dm755 $pkgdir/usr/share/backgrounds
+	rm README.md
+	cp * $pkgdir/usr/share/backgrounds/
+}
