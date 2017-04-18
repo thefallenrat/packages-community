@@ -95,7 +95,7 @@ package_manjaro-lxde-settings() {
     depends=('manjaro-base-skel'
     	     'arc-maia-icon-theme'
 	     'vertex-maia-themes'
-	     'breath-wallpaper'
+	     'lxde-wallpapers'
 	     'qt5ct'
 	     'qt5-styleplugins'
 	     'manjaro-lxde-logout-banner')
