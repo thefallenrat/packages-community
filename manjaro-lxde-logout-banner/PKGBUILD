@@ -1,3 +1,6 @@
+# Maintainer: Stefano Capitani <stefano_at_manjaro_dot_org>
+# Mainatiner: ThanosApostolou <forum@manjaro.org>
+
 pkgname=manjaro-lxde-logout-banner
 pkgver=0.1
 pkgrel=1
