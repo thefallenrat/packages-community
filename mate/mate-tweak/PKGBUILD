@@ -22,7 +22,7 @@ optdepends=('mate-applet-dock: for Mutiny panel layout'
 source=("$pkgname-$pkgver.tar.gz::https://bitbucket.org/ubuntu-mate/$pkgname/get/$pkgver.tar.gz"
         "https://launchpad.net/ubuntu/+archive/primary/+files/ubuntu-mate-settings_$_umsver.tar.xz")
 sha256sums=('28531cb84a66ec04dc40d32c6dcab334c78b4b3dced396781b5ba7c6b6bfdcf2'
-			'd3951b6e47711ae865e530b9a58672c4f2832db28e338314f061bd8ae4132dee')
+	    'd3951b6e47711ae865e530b9a58672c4f2832db28e338314f061bd8ae4132dee')
 
 
 package() {
