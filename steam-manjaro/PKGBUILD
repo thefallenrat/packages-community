@@ -79,7 +79,7 @@ package()
 
     # start uinput at boot
     install -Dm 644 "${srcdir}/steam-uinput.conf" \
-    "${pkgdir}/etc/modules-load.d/steam-uinput.conf"
+    "${pkgdir}/usr/lib/modules-load.d/steam-uinput.conf"
 
     # License
     install -dm 755 "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
