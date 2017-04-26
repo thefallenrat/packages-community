@@ -98,7 +98,8 @@ package_manjaro-lxde-settings() {
 	     'lxde-wallpapers'
 	     'qt5ct'
 	     'qt5-styleplugins'
-	     'manjaro-lxde-logout-banner')
+	     'manjaro-lxde-logout-banner'
+	     'xfce4-notifyd')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
