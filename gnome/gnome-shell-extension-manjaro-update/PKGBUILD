@@ -19,5 +19,5 @@ package() {
   _install_dir="${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}"
 
   install -dm655 $_install_dir
-  cp -r "$srcdir"/arch_update/* $_install_dir
+  cp -r "$srcdir"/arch-update/* $_install_dir
 }
