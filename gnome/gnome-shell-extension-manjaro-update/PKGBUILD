@@ -2,17 +2,16 @@
 
 pkgname=gnome-shell-extension-manjaro-update
 pkgver=1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Convenient indicator for Manjaro updates in GNOME Shell."
 arch=('any')
 url="https://github.com/Chrysostomus/arch-update"
 license=('GPL3')
 depends=('gnome-shell>=3.18' 'update-notifier>=0.6' 'dunstify' 'pamac' 'mhwd')
 makedepends=('git')
-conflicts=('gnome-shell-extensions-git')
+install=manjaro-update.install
 source=("git://github.com/Chrysostomus/arch-update")
 sha512sums=('SKIP')
-
 
 package() {
   _uuid='manjaro-update@Chrysostomus'
