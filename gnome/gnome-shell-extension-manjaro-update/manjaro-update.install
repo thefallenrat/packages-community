@@ -12,6 +12,11 @@ post_install() {
     cp -a /etc/xdg/autostart/msm_notifier.desktop /etc/xdg/autostart/msm_notifier.desktop.old
     echo "X-GNOME-Autostart-enabled=false" >> /etc/xdg/autostart/msm_notifier.desktop
   fi
+
+#Rebuild the gsettings schemas
+rm -f /usr/share/gnome-shell/extensions/manjaro-update@Chrysostomus/schemas/gschemas.compiled
+glib-compile-schemas /usr/share/gnome-shell/extensions/manjaro-update@Chrysostomus/schemas/
+
 }
 
 # This re enable all 

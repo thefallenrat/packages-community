@@ -2,7 +2,7 @@
 
 pkgname=gnome-shell-extension-manjaro-update
 pkgver=1.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Convenient indicator for Manjaro updates in GNOME Shell."
 arch=('any')
 url="https://github.com/Chrysostomus/arch-update"
