@@ -1,5 +1,4 @@
 # This disable pamac-tray and manjaro-settings-manager autostart
-
 post_install() {
   if [ -f "/etc/xdg/autostart/pamac-tray.desktop" ] ; then
     echo "Disable pamac-tray autostart in /etc/xdg/autostart/pamac-tray.desktop and manjaro-settings-manager in /etc/xdg/autostart/msm_notifier.desktop"
@@ -19,8 +18,12 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/manjaro-update@Chrysostom
 
 }
 
-# This re enable all 
+post_upgrade() {
+rm -f /usr/share/gnome-shell/extensions/manjaro-update@Chrysostomus/schemas/gschemas.compiled
+glib-compile-schemas /usr/share/gnome-shell/extensions/manjaro-update@Chrysostomus/schemas/
+}
 
+# This re enable all 
 post_remove() {
   if [ -f "/etc/xdg/autostart/pamac-tray.desktop.old" ] ; then
     echo "Enable autostart for pamac-tray in /etc/xdg/autostart/pamac-tray.desktop and for manjaro-settings-manager in /etc/xdg/autostart/msm_notifier.desktop"
