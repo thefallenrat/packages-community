@@ -6,7 +6,7 @@ _branch=devel
 pkgname=$pkgbase-dev
 #          'manjaro-gnome-minimal-settings')
 pkgver=20170501
-pkgrel=3
+pkgrel=4
 pkgdesc="Manjaro Linux Gnome settings (Development branch)"
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
