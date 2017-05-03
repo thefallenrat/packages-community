@@ -27,8 +27,9 @@ source=(http://repo.steampowered.com/${_package}/pool/${_package}/s/${_package}/
         '0003-alsa-sdl-audiodriver.patch'
         '0004-dbus_fatal_warning.patch'
         '0005-manjaro-steam-native.patch'
-        '0006-ld_library_path_fallback_x86.patch'
-        '0006-ld_library_path_fallback_x86_64.patch'
+# 20170503 (date +%Y%m%d) disable ld_library_path_fallback for now.
+#        '0006-ld_library_path_fallback_x86.patch'
+#        '0006-ld_library_path_fallback_x86_64.patch'
         )
 sha512sums=('1820f596359d829a4e119f1f916a741ecb7973d36684916cdbbfa435fcdc9c288852491fd6d0b064e8154a43c60d8dcce3c7ed9275aed8f5f116c2782489bf32'
             '8f3a781077bba4a1d5d06943060e01a21800d5cfba91262502c47810499c5b9367c10d1c319bb9ba006b143ddc5159f2826c8f3229322bc9fe28c1fcf66ea103'
@@ -37,9 +38,7 @@ sha512sums=('1820f596359d829a4e119f1f916a741ecb7973d36684916cdbbfa435fcdc9c28885
             '4f9e92268f6624e36ae9a987118af0e38bf51b73a4493863a80a558e0807171fc0343131dc197f8fc5bc48452978428092d69a306a2cf2710520baba564a5aaa'
             'ec57f189fbc25633799c553b0eb30bd074f02befd9c7e7ca1c052be0a66ca3745b511b0fccb21ddb57885d60a23c8d40eaa8d63f8da2fc2fff3b8e7f5d23b091'
             '12d8b5786e2a375ec03131ff5c246c64793acc24cf42e74b40cd77a031c17543da05f7dd33b1f17f63524710f5d96636f35908e1953292f44e949f84fb753c27'
-            'fec7a63231c502debaa8ccdac73270e47ad42dd85e420eee44100ed0e4e4678e9ad70e36a3df02cc9ebe9936b710737d0867532a9b319bc1bee141c420db5900'
-            '3af21fdb01828150d5f83412317cb3ddb0119ec67deed3c8ab2aaf77da541358c12e84d6b2edc5cc06f7db32bc4e230d67f7bc8c5dc09b58da70cbc13bc64656'
-            '0994e9ae1e9c8a2a4a37c757572dbbbdf8f5d5350a4f64784d4cc066d79bb80d602fee67c93759f22451248c16f18f1cc51c5b181db1817625859d5c6203db72')
+            'fec7a63231c502debaa8ccdac73270e47ad42dd85e420eee44100ed0e4e4678e9ad70e36a3df02cc9ebe9936b710737d0867532a9b319bc1bee141c420db5900')
 
 prepare()
 {
@@ -49,12 +48,12 @@ prepare()
     patch -Np1 < "${srcdir}/0003-alsa-sdl-audiodriver.patch"
     patch -Np1 < "${srcdir}/0004-dbus_fatal_warning.patch"
     patch -Np1 < "${srcdir}/0005-manjaro-steam-native.patch"
-    if [[ "$CARCH" == "x86_64" ]]
-        then
-            patch -Np1 < "${srcdir}/0006-ld_library_path_fallback_x86_64.patch"
-        else
-            patch -Np1 < "${srcdir}/0006-ld_library_path_fallback_x86.patch"
-    fi
+#    if [[ "$CARCH" == "x86_64" ]]
+#        then
+#            patch -Np1 < "${srcdir}/0006-ld_library_path_fallback_x86_64.patch"
+#        else
+#            patch -Np1 < "${srcdir}/0006-ld_library_path_fallback_x86.patch"
+#    fi
 }
 
 package()
