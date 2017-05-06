@@ -15,7 +15,7 @@ depends=('gtk3' 'freetype2' 'gnome-common' 'lightdm' 'cairo' 'libcanberra' 'libx
 makedepends=('intltool' 'vala')
 backup=('etc/lightdm/$_pkgname.conf')
 sha256sums=('3144afeeb7a5edb3d1a13b480fb0050dd3a57bb708a3a7f428731a7010efe0d0'
-            'e72ec25921607da937a2a45864518073f2d92e04d95cee259136b6a25eaa2dad')
+            '65049a7fe68d8adce0b1f288be4e769ec07cdbef2d8952ec7827f818aa54d839')
 
 build() {
     cd ${_pkgname}-${pkgver}
