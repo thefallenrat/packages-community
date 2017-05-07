@@ -3,11 +3,11 @@
 
 pkgbase=manjaro-gnome-settings
 _branch=devel
-pkgname=$pkgbase-dev
+pkgname=("$pkgbase-dev" "manjaro-gnome-extension-settings")
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170501
-pkgrel=4
-pkgdesc="Manjaro Linux Gnome settings (Development branch)"
+pkgver=20170507
+pkgrel=1
+_ext=yes # use this switch if is needed rebuild also the extensions settings
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
@@ -24,7 +24,16 @@ _inst_dir(){
 	cp -r $srcdir/$pkgbase/skel $pkgdir/etc
 
 	install -d $pkgdir/usr/share/glib-2.0/schemas
-	cp $srcdir/$pkgbase/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+	cp $srcdir/$pkgbase/schemas/99_manjaro-settings.gschema.override $pkgdir/usr/share/glib-2.0/schemas
+}
+
+_inst_dir-extension(){
+
+#add here extensions : for any extension repeat the follow schemas
+
+	install -d $pkgdir/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas
+	cp $srcdir/$pkgbase/schemas/10_dash-to-dock.gschema.override $pkgdir/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas
+		
 }
 
 package_manjaro-gnome-settings-dev() {
@@ -51,6 +60,18 @@ package_manjaro-gnome-settings-dev() {
 
 	_inst_dir
 }
+
+#For an extension add a package
+if [ "$_ext" == "yes" ]; then
+package_manjaro-gnome-extension-settings() {
+
+pkgdesc='Manjaro Linux Gnome extensions settings'
+depends=('manjaro-gnome-settings-dev')
+install=dash-to-dock.install
+	_inst_dir-extension
+	
+}
+fi
 
 # package_manjaro-gnome-minimal-settings() {
 # 	pkgdesc='Manjaro Linux gnome-minimal settings'
