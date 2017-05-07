@@ -6,8 +6,7 @@ _branch=devel
 pkgname=("$pkgbase-dev" "manjaro-gnome-extension-settings")
 #          'manjaro-gnome-minimal-settings')
 pkgver=20170507
-pkgrel=2
-_ext=yes # use this switch if is needed rebuild also the extensions settings
+pkgrel=3
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
@@ -62,17 +61,13 @@ package_manjaro-gnome-settings-dev() {
 	_inst_dir
 }
 
-#For an extension add a package
-if [ "$_ext" == "yes" ]; then
 package_manjaro-gnome-extension-settings() {
 
 pkgdesc='Manjaro Linux Gnome extensions settings'
 depends=('manjaro-gnome-settings-dev')
 install=dash-to-dock.install
-	_inst_dir-extension
-	
+	_inst_dir-extension	
 }
-fi
 
 # package_manjaro-gnome-minimal-settings() {
 # 	pkgdesc='Manjaro Linux gnome-minimal settings'
