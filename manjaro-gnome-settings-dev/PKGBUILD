@@ -6,7 +6,7 @@ _branch=devel
 pkgname=("$pkgbase-dev" "manjaro-gnome-extension-settings")
 #          'manjaro-gnome-minimal-settings')
 pkgver=20170507
-pkgrel=1
+pkgrel=2
 _ext=yes # use this switch if is needed rebuild also the extensions settings
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
@@ -44,6 +44,7 @@ package_manjaro-gnome-settings-dev() {
         'gnome-shell-extension-dash-to-dock'
 		'gnome-shell-extension-manjaro-update'
 		'gnome-shell-extension-topicons-plus'
+		'manjaro-gnome-extension-settings'
         'gnome-wallpapers'
         'arc-themes-maia'
 		'arc-maia-icon-theme'
