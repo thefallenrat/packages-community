@@ -14,7 +14,7 @@ source=("${url}/archive/${pkgver}.tar.gz"
 		"manjaro.patch")
 depends=('gtk3' 'freetype2' 'gnome-common' 'lightdm' 'cairo' 'libcanberra' 'libxext' 'pixman' 'manjaro-wallpapers-17.0')
 makedepends=('intltool' 'vala')
-backup=('etc/lightdm/$_pkgname.conf')
+backup=('etc/lightdm/slick-greeter.conf')
 sha256sums=('3144afeeb7a5edb3d1a13b480fb0050dd3a57bb708a3a7f428731a7010efe0d0'
             '65049a7fe68d8adce0b1f288be4e769ec07cdbef2d8952ec7827f818aa54d839'
             'dd1f9691a33ef728bc0e51df471c2d34b965dc3befecc85152fc215bf5cada94')
