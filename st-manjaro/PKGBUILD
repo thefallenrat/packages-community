@@ -4,14 +4,15 @@
 
 pkgname=st-manjaro
 _pkgname=st
-pkgver=0.7.r16.ge448324
+pkgver=0.7.r24.g5a10aca
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://st.suckless.org/'
 arch=('i686' 'x86_64')
 license=('MIT')
 options=('zipman')
-depends=('libxft')
+depends=('libxft'
+		 'sterm')
 makedepends=('ncurses' 'libxext' 'git')
 # include config.h and any patches you want to have applied here
 source=('git://git.suckless.org/st'
