@@ -4,6 +4,7 @@
 pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
         'manjaro-budgie-settings'
+        'manjaro-awesome-settings'
         'manjaro-jwm-settings'
         'manjaro-lxde-settings'
         'manjaro-mate-settings'
@@ -55,6 +56,24 @@ package_manjaro-bspwm-settings() {
         'sxhkd'
         'manjaro-base-skel')
     _inst_dir 'community/bspwm'
+}
+
+package_manjaro-awesome-settings() {
+    pkgdesc='Manjaro Linux awesome settings'
+    conflicts=('manjaro-desktop-settings')
+    provides=('manjaro-desktop-settings')
+    depends=('bspwm-wallpapers'
+        'xcursor-breeze'
+        'awesome'
+        'gcc' # needed for .extend.Xresources
+        'lain'
+        'awesome-freedesktop'
+        'dmenu-manjaro'
+        'st-manjaro'
+        'arc-maia-icon-theme'
+        'arc-themes-maia'
+        'manjaro-base-skel')
+    _inst_dir 'community/awesome'
 }
 
 package_manjaro-budgie-settings() {
