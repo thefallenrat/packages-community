@@ -65,9 +65,9 @@ package_manjaro-awesome-settings() {
     depends=('bspwm-wallpapers'
         'xcursor-breeze'
         'awesome'
-        'gcc' # needed for .extend.Xresources
         'lain'
         'awesome-freedesktop'
+        'cesious-theme'
         'dmenu-manjaro'
         'st-manjaro'
         'arc-maia-icon-theme'

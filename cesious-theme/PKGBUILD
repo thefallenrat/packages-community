@@ -1,0 +1,24 @@
+# Maintainer: Chrysostomus @forum.manjaro.org
+
+pkgname=cesious-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Cesious theme for awesome wm"
+arch=(any)
+url="https://github.com/Chrysostomus/$pkgname"
+license=(MIT)
+depends=('manjaro-wallpapers'
+	'awesome'
+	'awesome-freedesktop'
+	'lain'
+	'arc-maia-icon-theme'
+	'arc-themes-maia')
+makedepends=('git')
+source=("git://github.com/Chrysostomus/$pkgname")
+md5sums=('SKIP')
+
+package () {
+	cd "$srcdir"
+	install -dm644 $pkgdir/usr/share/awesome
+	cp -r $srcdir/$pkgname/cesious $pkgdir/awesome
+}
