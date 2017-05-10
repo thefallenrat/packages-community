@@ -11,10 +11,10 @@ pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
 _basekernel=4.4
 _srcname=linux-${_basekernel}
 _basever=44-rt-lts
-_sub=60
+_sub=66
 _pkgver=${_basekernel}.${_sub}
 _pkgverrt=$_pkgver
-_rtpatchver=rt73
+_rtpatchver=rt79
 _bfq=v8r9
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
@@ -45,7 +45,7 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
         'config.diff')
 sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            '095571965d607c9406b2003ac14c28c03de4a57af8d21dd7743042409bc9aec5'
+            'ecb99a1731914a93cde9d49d4bad35f32f7fa6d57de110c2e12ee9ad9e44f5fb'
             '4aba669ec026c2546a5c36432cb33a69994be141ead32b4e2aaa7c579970f3d4'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
@@ -56,7 +56,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
             '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'cbe77f8db27bae1d018b786bead3996c753f0e45fdec6dab088fbe2cffd0f890'
+            '2e9fea6206dac9e8a5fb08579b6a2c15606d8175f7dfdd4521dd1afd2ad2aa14'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
             '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')

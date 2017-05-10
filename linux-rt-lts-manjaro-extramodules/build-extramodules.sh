@@ -20,7 +20,7 @@ cd ${pwd}/*nvidia-304xx && makepkg -d --noconfirm
 #cd ${pwd}/*nvidia-340xx && makepkg -d --noconfirm
 cd ${pwd}/*nvidiabl && makepkg -sf --noconfirm
 cd ${pwd}/*open-vm-tools-modules && makepkg -sf --noconfirm
-#cd ${pwd}/*spl_zfs && makepkg -sf --noconfirm
+cd ${pwd}/*spl_zfs && makepkg -sf --noconfirm
 cd ${pwd}/*r8168 && makepkg -sf --noconfirm
 cd ${pwd}/*rt3562sta && makepkg -sf --noconfirm
 cd ${pwd}/*tp_smapi && makepkg -sf --noconfirm
@@ -29,5 +29,5 @@ cd ${pwd}/*virtualbox-modules && makepkg -sf --noconfirm
 
 echo '  -> cleaning up ...'
 rm -R ${pwd}/*/{src,pkg} -f
-pacman -R nvidia-304xx-utils --noconfirm
+sudo pacman -R nvidia-304xx-utils --noconfirm
 echo 'done.'
