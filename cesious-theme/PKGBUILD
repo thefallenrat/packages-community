@@ -19,6 +19,6 @@ md5sums=('SKIP')
 
 package () {
 	cd "$srcdir"
-	install -dm644 $pkgdir/usr/share/awesome
+	install -dm755 $pkgdir/usr/share/awesome
 	cp -r $srcdir/$pkgname/cesious $pkgdir/usr/share/awesome
 }
