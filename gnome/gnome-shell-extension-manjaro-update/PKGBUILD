@@ -5,7 +5,7 @@ pkgname=gnome-shell-extension-manjaro-update
 _pkgname=arch-update
 pkgver=1.2
 _pkgver=21
-pkgrel=1
+pkgrel=2
 pkgdesc="Convenient indicator for Manjaro updates in GNOME Shell."
 arch=('any')
 url="https://github.com/Chrysostomus/arch-update"
@@ -15,10 +15,14 @@ makedepends=('git')
 install=manjaro-update.install
 source=("git://github.com/Chrysostomus/arch-update" 
         "https://github.com/RaphaelRochet/$_pkgname/archive/v$_pkgver.tar.gz" 
-        'manjaro.patch')
+        'manjaro.patch'
+        'no-tray-icon'
+        'no-tray-icon.service')
 sha512sums=('SKIP'
             '1f2f4809429d51893fe3a8ba46e168efbae9c0ab94581c08b29b4cbbe41870d0ff58c4d8939b85b400a3dbf082e64fc45a8cfa612aa78ed77a6fd0e62626b0d3'
-            '5e83cccde7cf341e0ada4166b53cf2aaffc49135482876a84f587b62d21cc93fc13ab0efd3940a8f940c7190bdc753ec0e00e0a6b838444ebe242a54990a3bf3')
+            '5e83cccde7cf341e0ada4166b53cf2aaffc49135482876a84f587b62d21cc93fc13ab0efd3940a8f940c7190bdc753ec0e00e0a6b838444ebe242a54990a3bf3'
+            '998a11b0b6afda9e034203403f5ff3dff1a229e1dca7abe800960bf2853ff9703b11ad5e8c61b9b5e88b4b7ecfc3f82cf531fdcff6ab7deae9118452af34a897'
+            '3e3cef442219cd9a00cf654679c9426a9b97a1c65833c5948e6f996ec366f0139848bfad1a934756ed57767c256adb19b1c4c6cfe23e87d8986f36386618afc5')
 
 prepare(){
 # Patch and merge the upstream repo with Chrysostomus repo
@@ -39,4 +43,9 @@ package() {
 
   install -dm655 $_install_dir
   cp -rf "$srcdir"/arch-update/* $_install_dir
+  
+  cd $startdir
+  install -Dm755 no-tray-icon $pkgdir/usr/bin/no-tray-icon
+  install -Dm644 no-tray-icon.service $pkgdir/etc/systemd/system/no-tray-icon.service
+    
 }
