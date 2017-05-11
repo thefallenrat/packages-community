@@ -1,9 +1,7 @@
 # Maintainer: luke bonham <dada [at] archlinux [dot] info>
 
 pkgname=awesome-freedesktop
-pkgcom=91
-pkgsha=01b60f4
-pkgver=$pkgcom.$pkgsha
+pkgver=r91.01b60f4
 pkgrel=1
 pkgdesc="Freedesktop.org menu and desktop icons support for Awesome WM"
 arch=('any')
@@ -15,6 +13,11 @@ provides=('awesome-freedesktop')
 conflicts=('awesome-freedesktop')
 source=("git://github.com/copycat-killer/awesome-freedesktop.git")
 md5sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 package() {
     # check if awesome is stable or git
