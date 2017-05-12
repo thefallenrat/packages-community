@@ -1,13 +1,15 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20170425
+pkgver=20170512
 pkgrel=1
 pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
 url="https://github.com/linuxdeepin/$_pkgname"
 license=('GPL')
 groups=('deepin-manjaro')
+conflicts=('manjaro-desktop-settings')
+provides=('manjaro-desktop-settings')
 depends=('deepin-desktop'
 	'deepin-desktop-schemas-manjaro'
 	'deepin-dock'
