@@ -10,10 +10,11 @@
 pkgbase=lightdm-webkit2-greeter-manjaro
 pkgname=('lightdm-webkit2-greeter-manjaro'
 	 'lightdm-webkit2-greeter-manjaro-dark')
-pkgver=1.3.1
+pkgver=1.3.2
 pkgrel=1
 _pkgname=lightdm-webkit2-greeter
-_pkgver=2.2.2
+_pkgver=2.2.5
+_newname=web-greeter
 
 arch=('i686' 'x86_64')
 url="https://github.com/Ste74/lightdm-webkit2-greeter-manjaro"
@@ -22,19 +23,19 @@ source=("${_pkgname}-${_pkgver}.zip::https://github.com/antergos/${_pkgname}/arc
 	'manjaro.png'
 	'manjaro-logo-user.png'
 	'manjaro.patch')
-makedepends=('meson' 'gobject-introspection' 'git')
-depends=('lightdm' 'webkit2gtk>=2.12' 'accountsservice')
+makedepends=('meson' 'gobject-introspection')
+depends=('lightdm' 'webkit2gtk>=2.12' 'accountsservice' 'dbus-glib')
 optdepends=('manjaro-backgrounds' 'manjaro-artwork' 'gnome-backgrounds')
 provides=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 #replaces=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 backup=("etc/lightdm/${_pkgname}.conf")
-md5sums=('c32a7a879b69d6217ee18afdf830f572'
+md5sums=('634c6080144169c7529291bf1c8a1429'
          '168a0a818e886d1b1010f4dc431579a7'
          '1bf17235e845fc7bbcfe2882a453f13a'
          'cca66e1e81d452178a298c1b8a10edf0')
 
 build() {
-	cd "${srcdir}/${_pkgname}-${_pkgver}"
+	cd "${srcdir}/${_newname}-${_pkgver}"
 	
 	_pixmaps='/usr/share/pixmaps'
 
@@ -42,7 +43,7 @@ build() {
 		"s@\/usr.+antergos\.png@${_pixmaps}/manjaro.png@g;
 		 s@\/usr.+logo-user\.png@${_pixmaps}/manjaro-logo-user.png@g" "data/${_pkgname}.conf"
 	
-	cd "${srcdir}/${_pkgname}-${_pkgver}/build"
+	cd "${srcdir}/${_newname}-${_pkgver}/build"
 	meson --prefix=/usr --libdir=lib ..
 	ninja
 }
@@ -51,7 +52,7 @@ package_lightdm-webkit2-greeter-manjaro() {
 pkgdesc="A webkit2 greeter for LightDM build for Manjaro"
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 
-        cd "${srcdir}/${_pkgname}-${_pkgver}/build"
+        cd "${srcdir}/${_newname}-${_pkgver}/build"
 
 	DESTDIR=${pkgdir} ninja install
 
@@ -101,7 +102,7 @@ conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos')
 package_lightdm-webkit2-greeter-manjaro-dark() {
 pkgdesc="A webkit2 greeter for LightDM build for Manjaro Dark version"
 conflicts=('lightdm-webkit-greeter' 'lightdm-webkit-theme-antergos' 'lightdm-webkit2-greeter-manjaro')
-        cd "${srcdir}/${_pkgname}-${_pkgver}/build"
+        cd "${srcdir}/${_newname}-${_pkgver}/build"
 
 	DESTDIR=${pkgdir} ninja install
 	
