@@ -1,16 +1,16 @@
 #Maintainer: Xyne <ac xunilhcra enyx, backwards>
 pkgname=pm2ml
-pkgver=2016.8
-pkgrel=2
+pkgver=2017.3
+pkgrel=1
 pkgdesc='Generate metalinks for downloading Pacman packages and databases.'
 arch=(any)
 license=(GPL)
-url="http://xyne.archlinux.ca/projects/pm2ml"
+url="http://xyne.archlinux.ca/projects/$pkgname"
 depends=(python3 pyalpm python3-xcpf python3-xcgf)
 optdepends=('reflector: Reflector support' 'python3-aur: AUR support' 'aria2: ppl script support.')
 backup=(etc/ppl.conf)
 source=($url/src/$pkgname-${pkgver}.tar.xz)
-md5sums=('a8f118a749fcba8edbb79fba3cae6dd7')
+md5sums=('33d3c0ba38bdcee0beb73b3cab7eb1c8')
 
 package () {
   cd "$srcdir/$pkgname-$pkgver"
