@@ -27,5 +27,5 @@ cd ${pwd}/*virtualbox-modules && makepkg -sf --noconfirm
 
 echo '  -> cleaning up ...'
 rm -R ${pwd}/*/{src,pkg} -f
-pacman -R nvidia-304xx-utils --noconfirm
+sudo pacman -R nvidia-304xx-utils --noconfirm
 echo 'done.'
