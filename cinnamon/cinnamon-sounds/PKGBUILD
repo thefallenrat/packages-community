@@ -2,7 +2,7 @@
 
 pkgname=cinnamon-sounds
 _pkgname=mint-artwork-cinnamon
-pkgver=5.0.1
+pkgver=5.4
 _cpkg=mint-artwork-common
 _cver=2.1.6
 pkgrel=2
