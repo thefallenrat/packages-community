@@ -14,20 +14,11 @@ depends=('cinnamon-desktop' 'libcanberra-pulse' 'librsvg' 'nss'
 makedepends=('autoconf-archive' 'intltool' 'docbook-xsl' 'xf86-input-wacom')
 options=('!emptydirs')
 url="https://github.com/linuxmint/$pkgname"
-source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz"
-        "csd-background-manager.patch")
-sha256sums=('7541b85934d8b632dda0f6ef48dc17f10163501560d95e9f2e23e3d1dfdadea8'
-            'a44f8ea45db3431c8abdf6167179c0b6e4c4a0025822c6f207b905b630017366')
-
-prepare() {
-  cd $pkgname-$pkgver
-}
+source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
+sha256sums=('3792a3ec3950cedfcf7edc64bb865d01ac5a9fa14158c96efba482fcb53579e8')
 
 build() {
   cd $pkgname-$pkgver
-
-  # https://github.com/linuxmint/Cinnamon/issues/5569#issuecomment-252537458
-  patch -Np1 -i ../csd-background-manager.patch
 
   ./autogen.sh \
         --prefix=/usr \

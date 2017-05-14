@@ -3,7 +3,7 @@
 # Contributor: Ner0
 
 pkgname=nemo
-pkgver=3.2.2
+pkgver=3.4.1
 pkgrel=0.1
 pkgdesc="Cinnamon file manager (Nautilus fork)"
 arch=('i686' 'x86_64')
@@ -16,7 +16,7 @@ makedepends=('gtk-doc' 'gobject-introspection' 'intltool' 'gnome-common'
       'python-gobject' 'python-polib' 'python2-gobject')
 options=('!emptydirs')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/nemo/tarball/$pkgver")
-sha256sums=('5f04fe37112d15d55d0fe1783252a8d03df70897fb5349ef6d28dbdbcf226407')
+sha256sums=('674232ddeb393a8568b9a6ebcf4b1fda277f44c74699b1b0e599205463f42e30')
 
 prepare() {
   cd linuxmint-nemo-*

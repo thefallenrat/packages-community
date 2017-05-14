@@ -5,19 +5,19 @@
 # Jan de Groot <jgc@archlinux.org>
 
 pkgname=cinnamon-control-center
-pkgver=3.2.1
+pkgver=3.4.0
 pkgrel=0.1
 pkgdesc="The Control Center for Cinnamon"
 arch=('i686' 'x86_64')
 depends=('cinnamon-settings-daemon' 'cinnamon-translations' 'cinnamon-menus'
-         'libgnomekbd' 'network-manager-applet' 'colord')
+         'libgnomekbd'  'libmm-glib' 'nm-connection-editor' 'colord')
 optdepends=('gnome-color-manager: for color management tasks')
 makedepends=('intltool' 'gnome-common' 'docbook-xsl')
-url="https://github.com/linuxmint/cinnamon-control-center"
+url="https://github.com/linuxmint/$pkgname"
 license=('GPL')
 options=('!emptydirs')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/cinnamon-control-center/archive/$pkgver.tar.gz")
-sha256sums=('12a29a3293cde58ae6fd6fdbab7eef4a2119ac8f515ca9218e75cccc3aacd15c')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
+sha256sums=('0f5ee2ae66f38de327a0758339d833aa7edf3866a078ba3e9c79b28eb183f979')
 
 build() {
   cd $pkgname-$pkgver
@@ -33,15 +33,6 @@ build() {
 
 package() {
   cd $pkgname-$pkgver
-
   make DESTDIR="$pkgdir" install
-
-  # Remove unused stuff
-  #make -C panels/sound DESTDIR="$pkgdir" uninstall
-  #make -C panels/sound/data DESTDIR="$pkgdir" install
-  #make -C shell DESTDIR="$pkgdir" uninstall-binPROGRAMS uninstall-directoryDATA uninstall-uiDATA
-  #rm "$pkgdir"/usr/share/applications/cinnamon-{control-center,datetime-panel,region-panel,sound-panel}.desktop
-  #rm -R "$pkgdir/etc"
-
   install -d -o root -g 102 -m 750 "$pkgdir/usr/share/polkit-1/rules.d"
 }

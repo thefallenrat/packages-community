@@ -1,19 +1,19 @@
 # $Id$
 # Maintainer: Alexandre Filgueria <alexfilgueira@antergos.com>
-# Contributor:  Jan de Groot <jan@archlinux.org>
+# Contributor: Jan de Groot <jan@archlinux.org>
 
 pkgname=cinnamon-desktop
-pkgver=3.2.4
+pkgver=3.4.0
 pkgrel=0.1
 pkgdesc="Library with common API for various Cinnamon modules"
 arch=(i686 x86_64)
 license=(GPL LGPL)
 depends=(gtk3 libxkbfile python2 glib2 libgsystem libpulse)
 makedepends=(intltool gobject-introspection gnome-common python2)
-url="https://github.com/linuxmint/cinnamon-desktop"
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-desktop/archive/${pkgver}.tar.gz"
+url="https://github.com/linuxmint/$pkgname"
+source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz"
         "config.patch")
-sha256sums=('f9920082b299c85d11cfdb6747026f5f044eabf3a09c0164873fa2850561abad'
+sha256sums=('cbce46b469b75aa448fbf891f66bb845bb923de1d04756ce4b5b9784e1e0721f'
             'e2c20c35df78aaedcd2d2e4965369bc519f51072ab88d4ac9b01be9a48cf8cfd')
             
 prepare() {
