@@ -34,7 +34,8 @@ build() {
       --disable-update-mimedb \
       --disable-tracker \
       --disable-gtk-doc-html \
-      --disable-schemas-compile
+      --disable-schemas-compile \
+      --enable-selinux=no
 
   #https://bugzilla.gnome.org/show_bug.cgi?id=656231
   sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
