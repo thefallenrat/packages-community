@@ -6,13 +6,14 @@ pkgname=('manjaro-architect-dev' 'manjaro-architect-dev-launcher')
 _pkgname=manjaro-architect
 _branch=master
 #_commit=1036002b2ee35be9b47aa27940f872b45a1644bf
-pkgver=0.8.2.r17.g4b944fd
+pkgver=0.8.10.r17.g4b944fd
 pkgrel=1
 pkgdesc="Manjaro CLI net-installer, forked from the Archlinux Architect"
 arch=(any)
 url="https://github.com/Chrysostomus/$_pkgname"
 license=(GPL2)
 depends=('bash'
+	 'fzf'
          'dialog')
 makedepends=('git')
 optdepends=('maia-console'
