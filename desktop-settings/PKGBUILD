@@ -10,7 +10,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170511
+pkgver=20170514
 pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -119,7 +119,8 @@ package_manjaro-lxde-settings() {
 	     'qt5-styleplugins'
 	     'manjaro-lxde-logout-banner'
 	     'manjaro-lxde-xfce4-notifyd'
-	     'i3-scrot')
+	     'i3-scrot'
+	     'xcursor-breeze')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 

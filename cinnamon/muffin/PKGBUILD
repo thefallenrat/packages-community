@@ -4,23 +4,18 @@
 # Contributor: Ner0
 
 pkgname=muffin
-pkgver=3.2.1
+pkgver=3.4.0
 pkgrel=0.1
 pkgdesc="Cinnamon window manager based on Mutter"
 arch=('i686' 'x86_64')
-url="https://github.com/linuxmint/muffin"
+url="https://github.com/linuxmint/$pkgname"
 license=('GPL')
 depends=('clutter' 'gobject-introspection-runtime' 'cinnamon-desktop' 'libcanberra' 'libsm'
          'startup-notification' 'zenity' 'dconf')
 makedepends=('intltool' 'gnome-doc-utils' 'gnome-common' 'gobject-introspection' 'gtk-doc') 
 options=('!emptydirs')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/muffin/archive/$pkgver.tar.gz")
-sha256sums=('84af1e49c2765cb219bc09b8c863c524464a297b40cc595da13d49f70550e8a4')
-
-prepare() {
-  cd ${pkgname}-${pkgver}
-
-}
+source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
+sha256sums=('bbfd8997ad0f03d029f804c4927f464e89276ce384aef5aa6787dddc04e6ef85')
 
 build() {
   cd ${pkgname}-${pkgver}
@@ -45,5 +40,3 @@ package() {
   make -C src/compositor/plugins DESTDIR="$pkgdir" uninstall
   make -C doc/man DESTDIR="$pkgdir" uninstall
 }
-
-# vim:set ts=2 sw=2 et:

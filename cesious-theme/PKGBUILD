@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=cesious-theme
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Cesious theme for awesome wm"
 arch=(any)
