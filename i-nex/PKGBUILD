@@ -3,9 +3,9 @@
 
 pkgname=i-nex
 _gitname=I-Nex
-_gitcommit=c307f07
+_gitcommit=5555110
 pkgver=7.6.0
-pkgrel=2
+pkgrel=3
 pkgdesc="System information tool like hardinfo, sysinfo"
 arch=('i686' 'x86_64')
 url="http://i-nex.linux.pl/"
@@ -18,13 +18,12 @@ depends=('gambas3-runtime'
 	'gambas3-gb-desktop-x11'
 	'python2'
 	'libcpuid'
-	'xorg-server-utils'
 	'lsb-release'
 	'curl'
 	'pastebinit'
 	'procps-ng')
 makedepends=('gambas3-devel' 'gcc' 'imagemagick' 'git')
-source=("git+https://github.com/eloaders/${_gitname}.git#commit=${_gitcommit}")
+source=("git+https://github.com/${pkgname}/${_gitname}.git#commit=${_gitcommit}")
 md5sums=('SKIP')
 provides=('i-nex-git' 'i-nex-bzr' 'i-nex-dev')
 conflicts=('i-nex-git' 'i-nex-bzr' 'i-nex-dev')

@@ -3,9 +3,9 @@
 
 pkgbase=manjaro-gnome-settings
 _branch=devel
-pkgname=("$pkgbase-dev" "manjaro-gnome-extension-settings")
-#          'manjaro-gnome-minimal-settings')
-pkgver=20170512
+pkgname=("$pkgbase-dev" "manjaro-gnome-extension-settings-dev")
+#          'manjaro-gnome-minimal-settings-dev')
+pkgver=20170519
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
@@ -61,16 +61,17 @@ package_manjaro-gnome-settings-dev() {
 	_inst_dir
 }
 
-package_manjaro-gnome-extension-settings() {
+package_manjaro-gnome-extension-settings-dev() {
 
-pkgdesc='Manjaro Linux Gnome extensions settings'
+pkgdesc='Manjaro Linux Gnome extensions settings (Development branch)'
 depends=('manjaro-gnome-settings-dev')
+provides=('manjaro-gnome-extension-settings')
 install=dash-to-dock.install
 	_inst_dir-extension	
 }
 
-# package_manjaro-gnome-minimal-settings() {
-# 	pkgdesc='Manjaro Linux gnome-minimal settings'
+# package_manjaro-gnome-minimal-settings-dev() {
+# 	pkgdesc='Manjaro Linux gnome-minimal settings (Development branch)'
 # 	depends=()
 # 	provides=('manjaro-desktop-settings')
 #

@@ -3,7 +3,7 @@
 # Contributor: eloaders <eloaders at linux dot pl>
 
 pkgname=libcpuid
-pkgver=0.4.0
+pkgver=0.4.0.r38.g57298c6
 pkgrel=1
 pkgdesc="Provides CPU identification for x86 (and x86_64)"
 arch=('i686' 'x86_64')
@@ -12,18 +12,19 @@ license=('BSD-2-Clause')
 depends=('glibc')
 makedepends=('git' 'libtool' 'autoconf')
 conflicts=('libcpuid-git')
-#source=("git+${url}.git")
-source=("$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('8442320b3a9562bc8fd64068ae111bd7')
+source=("git+${url}.git")
+md5sums=('SKIP')
+#source=("$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
+#md5sums=('8442320b3a9562bc8fd64068ae111bd7')
 
-#pkgver() {
-#    cd ${pkgname}
-#    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-#}
+pkgver() {
+    cd ${pkgname}
+    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 build() {
-#    cd ${pkgname}
-    cd $pkgname-$pkgver
+    cd ${pkgname}
+    #cd $pkgname-$pkgver
     msg2 "Run 'libtoolize'..."
     libtoolize
 
@@ -38,8 +39,8 @@ build() {
 }
 
 package() {
-#    cd ${pkgname}
-    cd $pkgname-$pkgver
+    cd ${pkgname}
+    #cd $pkgname-$pkgver
     make DESTDIR="$pkgdir" install
 
     msg2 "Install license..."
