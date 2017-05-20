@@ -6,11 +6,11 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20170406
+pkgver=20170520
 pkgrel=1
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon, Openbox and GNOME Shell themes, based on Vertex'
 _gnomever=3.22
-_vertex_commit=2454813f09c6bf9aaaa5aa13ae6c5ab0e61bde11
+_vertex_commit=7f954cdfd6c3c7e28a4d0f587bfeac71d06cbdc6
 _manjaro_commit=084cd9576d280e306c00d58528375ed9743fa6fb
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
@@ -23,7 +23,7 @@ source=("vertex-$_vertex_commit.tar.gz::https://github.com/oberon2007/vertex-the
 	"vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz"
 	'whiskermenu-rabideau.patch')
 install=$pkgname.install
-sha256sums=('e5fbaba875167b9b9a7e5373c345f39f57481e57ed46812832a2c6315ced4aa1'
+sha256sums=('720c9d517107b5c9d8ed4bd4cdbb8f414c05bf7b72f892d5d8ed34a3d59185e0'
             'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71'
             '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
 options=('!strip')
@@ -213,7 +213,7 @@ package() {
 	s/60, 60, 62/60, 62, 60/g;\
 	s/60, 62, 64/60, 64, 62/g;\
 	s/64, 124, 188/64, 188, 124/g;\
-	s/64, 128, 251/64, 251, 128/g;\
+	s/64, 128, 251/143, 168, 118/g;\
 	s/65, 65, 67/65, 67, 65/g;\
 	s/70, 70, 72/70, 72, 70/g;\
 	s/82, 82, 85/82, 85, 82/g;\
