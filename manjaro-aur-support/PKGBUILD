@@ -24,11 +24,11 @@ depends=('autoconf'
          'subversion'
          'yaourt')
 sha256sums=('785cd69eb33b15ebefa0b082c84d5d92d5a56fa349cdbad3580eec5aaa175fc3'
-            'bbc5708d58524cb91bf0767ebf00d5254a28690d8c82b35609477086315ca690')
+            'cc0a929cda9367eb19d664a9260eb3dd7a045ebc7211866c7db640f241dd948b')
          
 package() {
 install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
-install -D ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
+install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
 }
          
          

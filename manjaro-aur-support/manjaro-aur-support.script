@@ -2,8 +2,8 @@
 
 #Open a window to inform user we open a browser
 
-nohup zenity --warning --title="\bWARNING" --text="Full access to AUR installed,\nwe open wiki page" &> /dev/null ;
+nohup zenity --warning --title="WARNING" --text="Full access to AUR installed,\nwe open wiki page" &> /dev/null ;
 
 if [ $? == 0 ] ; then
-   xdg-open https://wiki.manjaro.org/index.php?title=AUR
+   xdg-open https://wiki.manjaro.org/index.php?title=AUR &
 fi 
