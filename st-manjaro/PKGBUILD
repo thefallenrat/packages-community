@@ -4,7 +4,7 @@
 
 pkgname=st-manjaro
 _pkgname=st
-pkgver=0.7.24.g5a10aca
+pkgver=0.7.r24.g5a10aca
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://st.suckless.org/'
@@ -14,7 +14,6 @@ options=('zipman')
 depends=('libxft'
 		 'sterminal')
 makedepends=('ncurses' 'libxext' 'git')
-epoch=1
 # include config.h and any patches you want to have applied here
 source=('git://git.suckless.org/st'
         'config.h')
@@ -26,7 +25,7 @@ conflicts=("${_pkgname}")
 
 pkgver() {
 	cd "${_pkgname}"
-	git describe --tags |sed 's/-/./g'
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
