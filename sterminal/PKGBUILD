@@ -12,15 +12,18 @@ depends=('terminus-font'
 	'tmux'
 	'dash')
 makedepends=('git')
-source=("git://github.com/Chrysostomus/$pkgname")
-md5sums=('SKIP')
+source=("git://github.com/Chrysostomus/sterm"
+		sterminal.desktop)
+md5sums=('SKIP'
+		'SKIP')
 
 package () {
 	cd "$srcdir"
 	install -dm755 $pkgdir/usr/share/tmux
-	cp -r $srcdir/$pkgname/tmux-better-mouse-mode $pkgdir/usr/share/tmux
+	cp -r $srcdir/sterm/tmux-better-mouse-mode $pkgdir/usr/share/tmux
 	chmod +x $pkgdir/usr/share/tmux/tmux-better-mouse-mode/scroll_copy_mode.tmux
 	chmod +x $pkgdir/usr/share/tmux/tmux-better-mouse-mode/only_scroll_sometimes.sh
-    install -Dm755 "$srcdir/$pkgname/sterm" "$pkgdir/usr/bin/sterminal"
-    install -Dm644 "$srcdir/$pkgname/tmux.conf" "$pkgdir/etc/skel/.tmux.conf"
+    install -Dm755 "$srcdir/sterm/sterm" "$pkgdir/usr/bin/sterminal"
+    install -Dm644 "$srcdir/sterm/tmux.conf" "$pkgdir/etc/skel/.tmux.conf"
+    install -Dm644 $srcdir/sterminal.desktop "$pkgdir"/usr/share/applications/sterminal.desktop
 }
