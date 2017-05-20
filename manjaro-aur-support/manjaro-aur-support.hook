@@ -1,0 +1,10 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Target = manjaro-aur-support
+
+[Action]
+Description = Manjaro AUR Support metapackage
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/manjaro-aur-support

@@ -1,0 +1,34 @@
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+
+pkgname=manjaro-aur-support
+pkgver=0.1
+pkgrel=1
+pkgdesc="Manjaro AUR support packages"
+arch=(any)
+source=("$pkgname.hook" "$pkgname.script")
+install=$pkgname.install
+depends=('autoconf'
+		 'automake'
+		 'binutils'
+		 'bison'
+		 'fakeroot'
+		 'flex'
+		 'gcc'
+		 'libtool'
+		 'm4'
+		 'make'
+		 'patch'
+		 'pkg-config'
+		 'git'
+         'patchutils'
+         'subversion'
+         'yaourt')
+sha256sums=('785cd69eb33b15ebefa0b082c84d5d92d5a56fa349cdbad3580eec5aaa175fc3'
+            'bbc5708d58524cb91bf0767ebf00d5254a28690d8c82b35609477086315ca690')
+         
+package() {
+install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
+install -D ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
+}
+         
+         
