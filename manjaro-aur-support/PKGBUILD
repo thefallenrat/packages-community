@@ -3,9 +3,9 @@
 pkgname=manjaro-aur-support
 pkgver=0.1
 pkgrel=1
-pkgdesc="Manjaro AUR support packages"
+pkgdesc="Manjaro AUR support (meta)packages"
 arch=(any)
-source=("$pkgname.hook" "$pkgname.script")
+#source=("$pkgname.hook" "$pkgname.script")
 install=$pkgname.install
 depends=('autoconf'
 		 'automake'
@@ -23,12 +23,11 @@ depends=('autoconf'
          'patchutils'
          'subversion'
          'yaourt')
-sha256sums=('785cd69eb33b15ebefa0b082c84d5d92d5a56fa349cdbad3580eec5aaa175fc3'
-            'cc0a929cda9367eb19d664a9260eb3dd7a045ebc7211866c7db640f241dd948b')
+
          
-package() {
-install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
-install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
-}
+#package() {
+#install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
+#install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
+#}
          
          
