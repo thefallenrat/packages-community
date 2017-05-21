@@ -15,7 +15,7 @@ _sub=66
 _pkgver=${_basekernel}.${_sub}
 _pkgverrt=$_pkgver
 _rtpatchver=rt79
-_bfq=v8r9
+_bfq=v8r10
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -32,7 +32,7 @@ source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
         "${pkgname}.hook"
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
 		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
-        "0001-BFQ-${_bfq}-v${pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a8e0574...85e3b1a.patch"
+        "0001-BFQ-${_bfq}-v${pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a8e0574...4611251.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
         # MANJARO Patches
@@ -51,7 +51,7 @@ sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
             'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
-            '6741991b126b906b838e9327e4df2d1ac02ad2617645d08c786b2b3f52a48a98'
+            '97eecfe1ff21bfcb3029cee3bf95a60a4a4008382423e3c51decf51c76f70c17'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
             '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
             '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
