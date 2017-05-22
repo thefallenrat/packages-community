@@ -7,11 +7,11 @@
 
 pkgname=vertex-maia-themes
 pkgver=20170521
-pkgrel=1
+pkgrel=2
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon, Openbox and GNOME Shell themes, based on Vertex'
 _gnomever=3.22
-_vertex_commit=7f954cdfd6c3c7e28a4d0f587bfeac71d06cbdc6
-_manjaro_commit=084cd9576d280e306c00d58528375ed9743fa6fb
+_vertex_commit=e94a8c7235f182e114e8a90b00f4997d35e8e792
+_manjaro_commit=90f0c210f458e9e610f8dc1699470a808bbc2577
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
@@ -23,8 +23,8 @@ source=("vertex-$_vertex_commit.tar.gz::https://github.com/oberon2007/vertex-the
 	"vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz"
 	'whiskermenu-rabideau.patch')
 install=$pkgname.install
-sha256sums=('720c9d517107b5c9d8ed4bd4cdbb8f414c05bf7b72f892d5d8ed34a3d59185e0'
-            'a8f7e3234dffd6492e8d3d5efd925da2b3ff1a167ac60ba57646763dd7dc9b71'
+sha256sums=('a911e09ff064419c5c3cbcfe38b0a2e08f8c34bf5d68248a23dca0e6bbf33710'
+            'e965fea1ad35bc76e02a5a6e8fbd69a99600f1a4fbfc203e3df57264e6e83b07'
             '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
 options=('!strip')
 
@@ -41,7 +41,7 @@ package() {
   cd vertex-theme-$_vertex_commit
   make DESTDIR="$pkgdir" install
 
-cd extra
+  cd extra
   for name in "Firefox"; do
     find "$name" -type f -not -name *~ -exec install -Dm644 '{}' "$pkgdir/usr/share/themes/{}" \;
   done
