@@ -6,11 +6,11 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-themes
-pkgver=20170521
-pkgrel=2
+pkgver=20170522
+pkgrel=1
 pkgdesc='Official Manjaro Gtk2/3, Metacity, Xfwm, Cinnamon, Openbox and GNOME Shell themes, based on Vertex'
 _gnomever=3.22
-_vertex_commit=e94a8c7235f182e114e8a90b00f4997d35e8e792
+_vertex_commit=b814f289738164bd35b0f1a7cf4bdbc1600299bd
 _manjaro_commit=90f0c210f458e9e610f8dc1699470a808bbc2577
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
@@ -23,7 +23,7 @@ source=("vertex-$_vertex_commit.tar.gz::https://github.com/oberon2007/vertex-the
 	"vertex-manjaro-$_manjaro_commit.tar.gz::https://github.com/manjaro/vertex-manjaro/archive/$_manjaro_commit.tar.gz"
 	'whiskermenu-rabideau.patch')
 install=$pkgname.install
-sha256sums=('a911e09ff064419c5c3cbcfe38b0a2e08f8c34bf5d68248a23dca0e6bbf33710'
+sha256sums=('faaeb996cd529a59fd556ced4f14e41d60c03d2668fc7aa0490d34e1a753032a'
             'e965fea1ad35bc76e02a5a6e8fbd69a99600f1a4fbfc203e3df57264e6e83b07'
             '7ea204b5f3f57faa24cf7c7bd96cd0a4a7c6836539a24fb3001731e2c5f26eb2')
 options=('!strip')
@@ -45,8 +45,9 @@ package() {
   for name in "Firefox"; do
     find "$name" -type f -not -name *~ -exec install -Dm644 '{}' "$pkgdir/usr/share/themes/{}" \;
   done
-cd ..
-
+  install -Dm644 Vertex-Plank/dock.theme $pkgdir/usr/share/plank/themes/Vertex-Maia/dock.theme
+  
+  cd ..
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
 
   ### Manjarification ###
@@ -329,6 +330,11 @@ cd ..
 	s/45474A/454A47/g;\
 	s/F3F3F5/F3F5F3/g;\
 	s/ythickness = 0/xthickness = 1\\n  ythickness = 1/" panel.rc
+
+  cd ../../../plank/themes/Vertex-Maia
+  sed -i "s/74\;\;78/78\;\;74/;\
+    s/57\;\;59/59\;\;57/;\
+    s/154\;\;158/158\;\;154/" dock.theme
 
   ## add custom items and Square variant
   cd "$srcdir/vertex-manjaro-$_manjaro_commit"

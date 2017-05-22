@@ -3,16 +3,16 @@
 
 pkgname=vertex-themes
 pkgver=20170522
-pkgrel=1
+pkgrel=2
 pkgdesc='Vertex Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes.'
 _gnomever=3.22
-_commit=e94a8c7235f182e114e8a90b00f4997d35e8e792
+_commit=b814f289738164bd35b0f1a7cf4bdbc1600299bd
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 source=("vertex-$_commit.tar.gz::https://github.com/oberon2007/Vertex-theme/archive/$_commit.tar.gz")
-sha256sums=('a911e09ff064419c5c3cbcfe38b0a2e08f8c34bf5d68248a23dca0e6bbf33710')
+sha256sums=('faaeb996cd529a59fd556ced4f14e41d60c03d2668fc7aa0490d34e1a753032a')
 
 pkgver() {
     date +%Y%m%d
@@ -27,10 +27,11 @@ package() {
 
   make DESTDIR="$pkgdir" install
   cd extra
-  for name in "Chrome" "Firefox" "Vertex-Plank" "Vertex_alt_metacity"; do
+  for name in "Chrome" "Firefox" "Vertex_alt_metacity"; do
     find "$name" -type f -not -name *~ -exec install -Dm644 '{}' "$pkgdir/usr/share/themes/{}" \;
   done
-
+  install -Dm644 Vertex-Plank/dock.theme $pkgdir/usr/share/plank/themes/Vertex/dock.theme
+  
   cd ..
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
   install -Dm644 README.md "$pkgdir/usr/share/themes/Vertex/README"
