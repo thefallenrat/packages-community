@@ -4,10 +4,11 @@
 
 pkgname=nemo
 pkgver=3.4.1
-pkgrel=0.1
+pkgrel=1.1
 pkgdesc="Cinnamon file manager (Nautilus fork)"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/nemo"
+_snapshot=77ff741db809455251cb2a3fce6716e6dffb5f2f
 license=('GPL')
 depends=('libexif' 'gvfs' 'dconf' 'desktop-file-utils' 'exempi' 'python'
          'cinnamon-desktop' 'libnotify' 'libxml2' 'cinnamon-translations')
@@ -15,18 +16,21 @@ optdepends=('ffmpegthumbnailer: support for video thumbnails')
 makedepends=('gtk-doc' 'gobject-introspection' 'intltool' 'gnome-common'
       'python-gobject' 'python-polib' 'python2-gobject')
 options=('!emptydirs')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/nemo/tarball/$pkgver")
-sha256sums=('674232ddeb393a8568b9a6ebcf4b1fda277f44c74699b1b0e599205463f42e30')
+#source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/nemo/tarball/$pkgver"
+source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz"
+)
+sha256sums=('81ea18de58fb67e8aabd1a76d7394ab9d1d3cdf0cecef137d0dadf10002d2af1')
 
 prepare() {
-  cd linuxmint-nemo-*
-
+#  cd linuxmint-nemo-*
+  cd nemo-$_snapshot
   # Rename 'Files' app name to avoid having the same as nautilus
   sed -i 's/^Name\(.*\)=.*/Name\1=Nemo/' data/nemo.desktop.in.in
 }
 
 build() {
-  cd linuxmint-nemo-*
+#  cd linuxmint-nemo-*
+  cd nemo-$_snapshot
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc \
       --localstatedir=/var --disable-static \
@@ -44,8 +48,8 @@ build() {
 }
 
 package() {
-  cd linuxmint-nemo-*
-
+#  cd linuxmint-nemo-*
+  cd nemo-$_snapshot
   make DESTDIR="$pkgdir" install
 
   # Remove D-Bus activation file to avoid conflict with nautilus-desktop
