@@ -1,33 +1,18 @@
 # Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
 pkgname=manjaro-aur-support
-pkgver=0.1
-pkgrel=1
-pkgdesc="Manjaro AUR support (meta)packages"
+pkgver=0.2
+pkgrel=
+pkgdesc="Manjaro AUR support packages"
 arch=(any)
-#source=("$pkgname.hook" "$pkgname.script")
-install=$pkgname.install
-depends=('autoconf'
-		 'automake'
-		 'binutils'
-		 'bison'
-		 'fakeroot'
-		 'flex'
-		 'gcc'
-		 'libtool'
-		 'm4'
-		 'make'
-		 'patch'
-		 'pkg-config'
-		 'git'
-         'patchutils'
-         'subversion'
-         'yaourt')
+source=("$pkgname.hook" "$pkgname.script")
+depends=('zenity')
+groups=('base-devel')
+md5sums=('05621c3ad7e92aa16497bb985311182b'
+         'ec00e4d28ed69f829ac426a8ec2eb899')
+         
+package() {
+install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
+install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
+}
 
-         
-#package() {
-#install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
-#install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
-#}
-         
-         

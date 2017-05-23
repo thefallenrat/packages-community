@@ -1,9 +1,13 @@
 #!/bin/bash
 
-#Open a window to inform user we open a browser
+if [ -f "/usr/bin/yaourt" ] ; then
+   
+   nohup zenity --warning --title="WARNING" --text="Full access to AUR installed,\nwe open wiki page" &> /dev/null ;
+   
+   if [ $? == 0 ] ; then
+     
+      xdg-open https://wiki.manjaro.org/index.php?title=AUR &
+   
+   fi 
 
-nohup zenity --warning --title="WARNING" --text="Full access to AUR installed,\nwe open wiki page" &> /dev/null ;
-
-if [ $? == 0 ] ; then
-   xdg-open https://wiki.manjaro.org/index.php?title=AUR &
-fi 
+fi
