@@ -4,22 +4,25 @@
 
 pkgname=cinnamon-settings-daemon
 pkgver=3.4.0
-pkgrel=0.1
+pkgrel=1.1
 pkgdesc="The Cinnamon Settings daemon"
 arch=('i686' 'x86_64')
+url="https://github.com/linuxmint/$pkgname"
+_snapshot=486035ad6bd6f05549b9327f4c0117471c32081f
 license=('GPL')
 depends=('cinnamon-desktop' 'libcanberra-pulse' 'librsvg' 'nss'
          'pulseaudio-alsa' 'upower' 'libnotify' 'libgnomekbd' 'libwacom'
          'libgudev' 'dbus-glib' 'colord' 'libcups' 'polkit')
 makedepends=('autoconf-archive' 'intltool' 'docbook-xsl' 'xf86-input-wacom')
 options=('!emptydirs')
-url="https://github.com/linuxmint/$pkgname"
-source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
-sha256sums=('3792a3ec3950cedfcf7edc64bb865d01ac5a9fa14158c96efba482fcb53579e8')
+#source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
+sha256sums=('8745a84751741c40d995aa67d77c9357c97fa699d19b20524df7a6141ba9c780')
+source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz"
+)
 
 build() {
-  cd $pkgname-$pkgver
-
+#  cd $pkgname-$pkgver
+  cd $pkgname-$_snapshot
   ./autogen.sh \
         --prefix=/usr \
         --sysconfdir=/etc \
@@ -35,6 +38,7 @@ build() {
 }
 
 package() {
-  cd $pkgname-$pkgver
+#  cd $pkgname-$pkgver
+  cd $pkgname-$_snapshot
   make DESTDIR="$pkgdir" install
 }
