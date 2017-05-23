@@ -3,7 +3,7 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=cjs
-pkgver=3.4.0
+pkgver=3.4.1
 pkgrel=0.1
 pkgdesc="Javascript Bindings for Cinnamon"
 arch=(i686 x86_64)
@@ -13,7 +13,7 @@ depends=(gtk3 gobject-introspection-runtime js js38 dbus-glib)
 makedepends=(gnome-common python2 gobject-introspection)
 source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
 options=(!emptydirs)
-sha256sums=('5d89febe8374dc189dc3dcc1b4bec798e604d82c89bd5d6b1ffeb7e152d46523')
+sha256sums=('83254b01984452cc234891768e746f688924fe2904b6c1c76e214528ff44c060')
 
 build() {
   cd $pkgname-$pkgver
