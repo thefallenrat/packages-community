@@ -2,17 +2,22 @@
 # AUR-Maintainer: Nate Simon <aurpkg (at natesimon.net)>
 
 pkgname=xed
-pkgver=1.4.1
+pkgver=1.4.2
 pkgrel=1
 pkgdesc="A small and lightweight text editor. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
 groups=('x-apps')
-depends=('gtksourceview3' 'enchant' 'desktop-file-utils' 'libsm')
-makedepends=('gnome-common' 'iso-codes')
+depends=('desktop-file-utils'
+    'enchant'
+    'gtksourceview3'
+    'libpeas'
+    'libsm')
+makedepends=('gnome-common'
+    'iso-codes')
 url="https://github.com/linuxmint/${pkgname}"
 source=("${url}/archive/${pkgver}.tar.gz")
-md5sums=('949be51888f0f7805b201c722a835e93')
+md5sums=('8c4c48616044f4dc285871b05040a650')
 
 build() {
     cd ${srcdir}/${pkgname}-${pkgver}
