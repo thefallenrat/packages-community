@@ -120,6 +120,7 @@ package_manjaro-lxde-settings() {
 	     'manjaro-lxde-logout-banner'
 	     'manjaro-lxde-xfce4-notifyd'
 	     'i3-scrot'
+	     'pulseaudio-ctl'
 	     'xcursor-breeze')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
