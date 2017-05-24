@@ -1,7 +1,8 @@
 [Trigger]
 Operation = Install
-Type = File
-Target = usr/share/libalpm/scripts/manjaro-aur-support
+Operation = Upgrade
+Type = Package
+Target = yaourt
 
 [Action]
 Description = Manjaro AUR Support metapackage
