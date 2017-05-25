@@ -1,0 +1,17 @@
+# Mainatiner: ThanosApostolou <forum@manjaro.org>
+
+pkgname=manjaro-lxde-xfce4-volumed-pulse
+pkgver=0.1
+pkgrel=1
+pkgdesc="desktop entry to autostart xfce4-volumed-pulse under Lxde"
+url=" "
+arch=('any')
+license=('GPL2')
+depends=('xfce4-volumed-pulse')
+source=('manjaro-lxde-xfce4-volumed-pulse.desktop')
+sha256sums=('54df2ff49eacc59578428779e438bf07dc2b61d87d09666276b90780fde14d56')
+
+package() {
+	cd $srcdir
+	install -Dm644 manjaro-lxde-xfce4-volumed-pulse.desktop $pkgdir/etc/xdg/autostart/manjaro-lxde-xfce4-volumed-pulse.desktop
+}
