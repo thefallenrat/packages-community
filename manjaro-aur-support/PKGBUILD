@@ -2,15 +2,13 @@
 
 pkgname=manjaro-aur-support
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro AUR support packages"
 arch=(any)
 source=("$pkgname.hook" "$pkgname.script")
-depends=('zenity')
 optdepends=('yaourt')
-groups=('base-devel')
 md5sums=('6cf64b65f93b8ea99ae4b108df267936'
-         'b8d4dab82ce739cfd1f9915dc9f0cdd5')
+         '5210cad4c721923faa425dbe400413c0')
          
 package() {
 install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
