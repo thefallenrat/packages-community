@@ -19,6 +19,6 @@ echo
      
 sleep 3 ;
 
-xdg-open https://wiki.manjaro.org/index.php?title=AUR 
+sudo -u$SUDO_USER xdg-open https://wiki.manjaro.org/index.php?title=AUR
 
 exit 0
