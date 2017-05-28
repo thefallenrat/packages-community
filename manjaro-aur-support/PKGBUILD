@@ -2,16 +2,13 @@
 
 pkgname=manjaro-aur-support
 pkgver=0.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Manjaro AUR support packages"
 arch=(any)
 source=("$pkgname.hook" "$pkgname.script")
-# this could be the alternative to optdepends, we let the user decide what manjaro-aur provider package should be installed
-# we would need to add 'provides=('manjaro-aur') to the yaourt, pacaur packages
-# depends=('manjaro-aur')
-optdepends=('yaourt')
-md5sums=('6cf64b65f93b8ea99ae4b108df267936'
-         '5210cad4c721923faa425dbe400413c0')
+depends=('manjaro-aur')
+md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
+         '7eb61805a584b2518d6a5c7d2fd76e11')
 
 package() {
 install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook

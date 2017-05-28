@@ -14,15 +14,7 @@ ${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
 echo
 msg "Warning
 -> full access to AUR installed
--> redirect you to our wiki page" ;
-echo
-     
-sleep 3 ;
+-> please open this link
+-> https://wiki.manjaro.org/index.php?title=AUR
+-> and read carefull our wiki page"
 
-if [ -n "$SUDO_USER" ]; then
-     sudo -u"$SUDO_USER" xdg-open https://wiki.manjaro.org/index.php?title=AUR
-else
-     xdg-open https://wiki.manjaro.org/index.php?title=AUR
-fi
-
-exit 0
