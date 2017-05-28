@@ -3,7 +3,7 @@
 
 pkgname=xplayer
 pkgver=1.4.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple media player. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -44,7 +44,7 @@ build() {
     ./autogen.sh --prefix="/usr" \
         --localstatedir="/var" \
         --libexecdir="/usr/lib/${pkgname}" \
-        --enable-browser-plugins=yes
+        --enable-browser-plugins=no
     make
 }
 

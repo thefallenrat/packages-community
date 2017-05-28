@@ -2,16 +2,17 @@
 
 pkgname=manjaro-aur-support
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Manjaro AUR support packages"
 arch=(any)
 source=("$pkgname.hook" "$pkgname.script")
-depends=('zenity')
+# this could be the alternative to optdepends, we let the user decide what manjaro-aur provider package should be installed
+# we would need to add 'provides=('manjaro-aur') to the yaourt, pacaur packages
+# depends=('manjaro-aur')
 optdepends=('yaourt')
-groups=('base-devel')
 md5sums=('6cf64b65f93b8ea99ae4b108df267936'
-         'b8d4dab82ce739cfd1f9915dc9f0cdd5')
-         
+         '5210cad4c721923faa425dbe400413c0')
+
 package() {
 install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
 install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support

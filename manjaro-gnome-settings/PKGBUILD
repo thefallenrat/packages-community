@@ -4,7 +4,7 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170519
+pkgver=20170526
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
@@ -42,7 +42,6 @@ depends=('gnome-shell'
 	     'gnome-shell-extension-openweather'
 	     'gnome-shell-extension-gnomenu'
 		 'gnome-shell-extension-dash-to-dock'
-		 'gnome-shell-extension-manjaro-update'
 		 'gnome-shell-extension-topicons-plus'
 		 'manjaro-gnome-extension-settings'
          'gnome-wallpapers'

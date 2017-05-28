@@ -1,17 +1,24 @@
 #!/bin/bash
 
-##This create a notify pop-up to warning the user
+#Message for user
 
-#This condition is not needed with alpm-hook we can run directly the advice
+msg() {
+ALL_OFF="\e[1;0m"
+BOLD="\e[1;1m"
+GREEN="${BOLD}\e[1;32m"
+local mesg=$1; shift
+printf "
+${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
+}
 
-if [ -f "/usr/bin/yaourt" ] ; then
-   
-   nohup zenity --warning --title="WARNING" --text="Full access to AUR installed,\nwe open wiki page" &> /dev/null ;
-   
-   if [ $? == 0 ] ; then
+echo
+msg "Warning
+-> full access to AUR installed
+-> redirect you to our wiki page" ;
+echo
      
-      xdg-open https://wiki.manjaro.org/index.php?title=AUR &
-   
-   fi 
+sleep 3 ;
 
-fi
+sudo -u$SUDO_USER xdg-open https://wiki.manjaro.org/index.php?title=AUR
+
+exit 0
