@@ -38,7 +38,6 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         'change-default-console-loglevel.patch'
         # MANJARO Patches
         "enable-modversions-for-symbols-exported-from-asm.patch::https://github.com/torvalds/linux/commit/334bb773.patch"
-        "https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/plain/queue-4.9/hotplug-make-register-and-unregister-notifier-api-symmetric.patch"
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
