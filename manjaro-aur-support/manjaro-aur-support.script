@@ -19,6 +19,10 @@ echo
      
 sleep 3 ;
 
-sudo -u$SUDO_USER xdg-open https://wiki.manjaro.org/index.php?title=AUR
+if [ -n "$SUDO_USER" ]; then
+     sudo -u"$SUDO_USER" xdg-open https://wiki.manjaro.org/index.php?title=AUR
+else
+     xdg-open https://wiki.manjaro.org/index.php?title=AUR
+fi
 
 exit 0
