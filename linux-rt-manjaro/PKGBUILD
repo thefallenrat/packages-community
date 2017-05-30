@@ -36,8 +36,11 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/69973b8...d231bcc.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
-        # MANJARO Patches
-        "enable-modversions-for-symbols-exported-from-asm.patch::https://github.com/torvalds/linux/commit/334bb773.patch"
+        # Manjaro Patches
+        '0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch::https://github.com/torvalds/linux/commit/2ae3986b84e9d325bc92a1efbcf0c6b0f5016b35.patch'
+        '0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/4fed0231994b27b3896bc63885ac66d02fff625b.patch'
+        '0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/66e5c5ffc7a5e4d36d136ce4fd8bdb4e92ecec7b.patch'
+        '0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/0a76ac80e84d0be0aba24ab60ac3bc14bc49bbc9.patch'
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
@@ -51,8 +54,10 @@ sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             '30f5e70efe6a6cd274a5160d8fcf8557c9da2084db39ec98c4f1789071f96226'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
-            'bee3f78a9df6c13f376521f7456189db3d267b1352e0adacf3affb7d0b919cd7'
-            'b1318441013e2fd4f411d2291ebfb87b990a740417611faa5e317fc37bb7e9a6'
+            'c317b35c5661b96445b05ea7a1a7564c10650f94fb273a2cbf6d21eaa41e7a06'
+            '3aaca014f7e4768965dfe5e9740f2007d49f2319db6b6cf566ac7b8b869a6506'
+            'dc464866c4b773644b729803ec3e99c0cdd9781727db35337ac6b06ccd3f458b'
+            '555b6a27b3a34a81e422f0ac935ee72ae8bfd798799aea443f8036518bdaea00'
             'a9d223a67cd9ec952f9df2f23e3c93cd26247d1f60fe9d53538dfe4f0aff4435'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
@@ -82,6 +87,12 @@ prepare() {
   # (relevant patch sent upstream: https://lkml.org/lkml/2011/7/26/227)
   msg "change-default-console-loglevel.patch"
   patch -p1 -i "${srcdir}/change-default-console-loglevel.patch"
+
+  # extend Microsoft Surface support
+  patch -p1 -i "${srcdir}/0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch"
+  patch -p1 -i "${srcdir}/0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch"
+  patch -p1 -i "${srcdir}/0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch"
+  patch -p1 -i "${srcdir}/0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch"
 
   # A patch to fix a problem that ought to be fixed in the NVIDIA source code.
   # Stops X from hanging on certain NVIDIA cards
@@ -186,7 +197,7 @@ package_linux-rt-manjaro() {
 
   # install pacman hook for initramfs regeneration
   sed "s|%PKGNAME%|${pkgname}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.hook" |
-  install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/98-${pkgname}.hook"
+  install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgname}.hook"
 
   # remove build and source links
   rm -f "${pkgdir}"/lib/modules/${_kernver}/{source,build}
