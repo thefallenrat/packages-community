@@ -3,7 +3,7 @@
 
 pkgname=xed
 pkgver=1.4.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A small and lightweight text editor. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -14,10 +14,17 @@ depends=('desktop-file-utils'
     'libpeas'
     'libsm')
 makedepends=('gnome-common'
+    'gobject-introspection'
     'iso-codes')
 url="https://github.com/linuxmint/${pkgname}"
 source=("${url}/archive/${pkgver}.tar.gz")
 md5sums=('8c4c48616044f4dc285871b05040a650')
+
+prepare() {
+    cd ${srcdir}/${pkgname}-${pkgver}
+    # make launcher distinguishable from gedit
+    sed -i 's/Text Editor/Xed Text Editor/' data/xed.desktop.in.in
+}
 
 build() {
     cd ${srcdir}/${pkgname}-${pkgver}
