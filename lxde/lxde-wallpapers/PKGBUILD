@@ -2,14 +2,14 @@
 # Mainatiner: ThanosApostolou <forum@manjaro.org>
 
 pkgname=lxde-wallpapers
-pkgver=20170528
+pkgver=20170601
 pkgrel=1
 pkgdesc="Wallpapers for Manjaro LXDE"
 url="https://github.com/ThanosApostolou/$pkgname"
 arch=('any')
-_snapshot=1ee001aa4a856d6660d9da735f4fc8b621df1b84
+_snapshot=64b087ee9cb33be65c129ece0922bc71e3bf63d2
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('4cfa045172121878ebe5dc4d730d87df58be1fbc654c0198d10c7aef6b8b5a2f')
+sha256sums=('46bb4f804c88c8855460ae9067225915e14542bc429ade82e486cda1eef8d900')
          
 package() {
 	cd $srcdir/$pkgname-$_snapshot
