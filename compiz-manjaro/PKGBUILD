@@ -6,7 +6,7 @@ _name=compiz
 pkgname=compiz-manjaro
 _series=0.9.13
 pkgver=${_series}.1
-pkgrel=3
+pkgrel=5
 _greybirdver=1.6.2
 pkgdesc="OpenGL compositing window manager. Includes friendly defaults, GWD theme selector and autostart for Xfce & MATE."
 arch=('i686' 'x86_64')
@@ -25,6 +25,7 @@ provides=("${_name}=${pkgver}")
 source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
         "focus-prevention-disable.patch"
         "gtk-extents.patch"
+        "screenshot-launch-fix.patch"
         "${pkgname}-defaults.patch"
         "${pkgname}.gschema.override"
         "compiz-gtk-decorator-theme-selector"
@@ -37,6 +38,7 @@ source=("${url}/${_series}/${pkgver}/+download/${_name}-${pkgver}.tar.bz2"
 sha256sums=('9854802ba2a072a497552a55cc03cce1e947ff68ed3755b484c218f688222cbf'
             'f4897590b0f677ba34767a29822f8f922a750daf66e8adf47be89f7c2550cf4b'
             '16ddb6311ce42d958505e21ca28faae5deeddce02cb558d55e648380274ba4d9'
+            '89ee91a8ea6b1424ef76661ea9a2db43412366aacddc12d24a7adf5e04bfbc61'
             'b635bfbefd558cd255d6cb119378b01d9b3815b8f5f6b3a03dfe736c0cd5746b'
             '149213e0b29e34744b6e8e51cdaccc4011fd29c5f9475c59aa7482f3fe4a68af'
             '28d14e5ec0694b4a451540f35210eac5699e9daf1b00020bf59d8b0296d7d9bf'
@@ -66,6 +68,9 @@ prepare() {
   
   # Fix incorrect extents for GTK+ tooltips, csd etc
   patch -p1 -i "${srcdir}/gtk-extents.patch"
+
+  # Fix application launching for the screenshot plugin
+  patch -p1 -i "${srcdir}/screenshot-launch-fix.patch"
   
   # Manjaro defaults
   patch -p1 -i "${srcdir}/${pkgname}-defaults.patch"
