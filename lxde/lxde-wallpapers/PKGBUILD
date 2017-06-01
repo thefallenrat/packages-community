@@ -7,9 +7,9 @@ pkgrel=1
 pkgdesc="Wallpapers for Manjaro LXDE"
 url="https://github.com/ThanosApostolou/$pkgname"
 arch=('any')
-_snapshot=64b087ee9cb33be65c129ece0922bc71e3bf63d2
+_snapshot=2cb0b83c3cf249953dd0e399b00b43b5434bfa99
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('46bb4f804c88c8855460ae9067225915e14542bc429ade82e486cda1eef8d900')
+sha256sums=('ea76e6c04fed908c05ac6d77c8517694461bbb4f07c939f2e9bca32e6ba4147e')
          
 package() {
 	cd $srcdir/$pkgname-$_snapshot
