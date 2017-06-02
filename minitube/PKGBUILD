@@ -1,8 +1,8 @@
 # Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
 pkgname=minitube
-pkgver=2.5.2
-pkgrel=2.1
+pkgver=2.7.0
+pkgrel=1
 pkgdesc='A native YouTube client in Qt. Watch YouTube videos without Flash Player'
 arch=('i686' 'x86_64')
 url=http://flavio.tordini.org/minitube
@@ -10,20 +10,11 @@ license=('gpl3')
 depends=('phonon-qt5' 
 	 'qt5-script' 
 	 'hicolor-icon-theme')
-  source_i686=("http://flavio.tordini.org/files/minitube/minitube.deb")
-  source_x86_64=("http://flavio.tordini.org/files/minitube/minitube64.deb")
+source_i686=("http://flavio.tordini.org/files/minitube/minitube.deb")
+source_x86_64=("http://flavio.tordini.org/files/minitube/minitube64.deb")
 
-# Source file and execute 'checksum' for both checksums
-checksum()
-{
-	wget ${source_x86_64} -O "${pkgname}64.deb"
-	wget ${source_i686} -O "${pkgname}.deb"
-	echo "md5sums_x86_64=('$(md5sum ${pkgname}-x86_64.rpm | cut -d' ' -f 1)')"
-	echo "md5sums_i686=('$(md5sum ${pkgname}-i686.rpm | cut -d' ' -f 1)')"
-}
-
-md5sums_i686=('604ccef7620a42ea4f69f96f35a57bca')
-md5sums_x86_64=('d2f79afd213c9ac53b7137c832403fbe')
+md5sums_i686=('4dc1d22e7dfcb003320df1dfae46c060')
+md5sums_x86_64=('4dc1d22e7dfcb003320df1dfae46c060')
 
 prepare() {
   cd "$srcdir"

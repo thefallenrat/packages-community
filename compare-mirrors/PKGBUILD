@@ -1,20 +1,20 @@
 # Maintainer: Joshua Strot <johsua@manjaro.org>
 
 pkgname=compare-mirrors
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="A program to compare package differences between Manjaro and Arch mirrors."
 arch=('any')
 url="https://github.com/joshuastrot/compare-mirrors.git"
 license=('GPL')
-depends=('python')
+depends=('python-yaml')
 makedepends=('git')
 source=("git+$url")
 sha1sums=('SKIP')
 
 prepare() {
-  sed -i -e 's|http://mirror.solarvps.com/manjaro/|https://mirror.netzspielplatz.de/manjaro/packages/|g' ${srcdir}/compare-mirrors/compare-mirrors.conf
-  sed -i -e 's|http://mirror.lty.me/archlinux/|http://mirror.23media.de/archlinux/|g' ${srcdir}/compare-mirrors/compare-mirrors.conf
+  sed -i -e 's|http://mirror.solarvps.com/manjaro/|https://mirror.netzspielplatz.de/manjaro/packages/|g' ${srcdir}/compare-mirrors/compare-mirrors.yaml
+  sed -i -e 's|http://mirror.lty.me/archlinux/|http://mirror.23media.de/archlinux/|g' ${srcdir}/compare-mirrors/compare-mirrors.yaml
 }
 
 package() {
@@ -22,14 +22,13 @@ package() {
   mkdir -p ${pkgdir}/usr/bin
 
   msg "Copying data to compare-mirrors directory."
-  cp ${srcdir}/compare-mirrors/sort-repositories.py ${pkgdir}/usr/share/compare-mirrors
-  cp ${srcdir}/compare-mirrors/compare-mirrors.conf ${pkgdir}/usr/share/compare-mirrors
-  cp ${srcdir}/compare-mirrors/README.md ${pkgdir}/usr/share/compare-mirrors
+  cp -r ${srcdir}/compare-mirrors/utilities_ ${pkgdir}/usr/share/compare-mirrors
+  cp ${srcdir}/compare-mirrors/compare-mirrors.{yaml,py} ${pkgdir}/usr/share/compare-mirrors
 
   msg "Copying the compare-mirrors executable"
   cp ${srcdir}/compare-mirrors/compare-mirrors ${pkgdir}/usr/bin
 
   msg "Making executable"
   chmod +x ${pkgdir}/usr/bin/compare-mirrors
-  chmod +x ${pkgdir}/usr/share/compare-mirrors/sort-repositories.py
+  chmod +x ${pkgdir}/usr/share/compare-mirrors/compare-mirrors.py
 }
