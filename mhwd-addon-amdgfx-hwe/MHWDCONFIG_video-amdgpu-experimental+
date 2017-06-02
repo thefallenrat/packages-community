@@ -8,10 +8,10 @@
 ## SCRIPT INFO
 
 NAME="video-amdgpu-experimental+"
-INFO="Standard open source driver for AMD graphic cards"
-VERSION="2017.03.10"
+INFO="Experiemtal AMDGPU support for GCN Gen 1 and Gen 2"
+VERSION="2017.06.02"
 FREEDRIVER="true"
-PRIORITY="2"
+PRIORITY="1"
 
 
 ## HARDWARE SUPPORT
@@ -29,7 +29,7 @@ DEPENDS_64="lib32-vulkan-radeon lib32-libva-vdpau-driver lib32-mesa-vdpau"
 
 ## MHWD AND PACMAN COMFLICTS
 
-MHWDCONFLICTS="video-intel video-amdgpu video-ati video-catalyst video-vesa video-radeon+"
+MHWDCONFLICTS="video-intel video-amdgpu video-ati video-catalyst video-vesa"
 CONFLICTS="opencl-catalyst catalyst-video catalyst-utils-openrc catalyst-utils catalyst-server catalyst-input"
 
 
