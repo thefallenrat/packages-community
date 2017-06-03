@@ -10,7 +10,7 @@ source=("$pkgname.hook" "$pkgname.script" "$_check" "$_check.desktop")
 depends=('manjaro-aur' 'zenity')
 md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
          '521fffb3ad188258cb99efc8d5843c70'
-         'd61bc7c82a8aab2e3a78424ec527f071'
+         'a3e8eafe7d305ebba74e6ca8593531a6'
          '249dd27f70320eafa60be46cd8028c47')
 
 package() {
