@@ -7,7 +7,7 @@ pkgdesc="Manjaro AUR support packages"
 _check=check-aur
 arch=(any)
 source=("$pkgname.hook" "$pkgname.script" "$_check" "$_check.desktop")
-depends=('manjaro-aur')
+depends=('manjaro-aur' 'zenity')
 md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
          '521fffb3ad188258cb99efc8d5843c70'
          'd61bc7c82a8aab2e3a78424ec527f071'
