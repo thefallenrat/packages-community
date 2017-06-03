@@ -1,0 +1,19 @@
+# Maintainer: Chrysostomus @forum.manjaro.org
+
+pkgname=disable-tracker
+pkgver=0.1
+pkgrel=1
+pkgdesc="Scripts for controlling bspwm"
+arch=(any)
+url="https://github.com/Chrysostomus/$pkgname"
+license=(MIT)
+makedepends=('git')
+source=("git://github.com/Chrysostomus/$pkgname")
+md5sums=('SKIP')
+
+package () {
+	cd "$srcdir"
+	install -dm755 $pkgdir/etc/skel/.config/
+	cp -r $srcdir/$pkgname/autostart $pkgdir/etc/skel/.config/
+    install -Dm755 "$srcdir/$pkgname/disable-tracker.sh" "$pkgdir/usr/bin/disable-tracker.sh"
+}

@@ -1,0 +1,18 @@
+# Maintainer: Chrysostomus @forum.manjaro.org
+
+pkgname=lighter-gnome
+pkgver=0.1
+pkgrel=1
+pkgdesc="Desktop files to disable some gnome-settings-daemon components"
+arch=(any)
+url="https://github.com/Chrysostomus/$pkgname"
+license=(MIT)
+makedepends=('git')
+source=("git://github.com/Chrysostomus/$pkgname")
+md5sums=('SKIP')
+
+package () {
+	cd "$srcdir"
+	install -dm755 $pkgdir/etc/skel/.config/
+	cp -r $srcdir/$pkgname/autostart $pkgdir/etc/skel/.config/
+}
