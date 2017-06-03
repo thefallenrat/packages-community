@@ -4,7 +4,7 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170526
+pkgver=20170603
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
@@ -60,6 +60,10 @@ replaces=('$pkgbase-dev')
 provides=('manjaro-desktop-settings')
 
 	_inst_dir
+	
+#Add Postlogin script here (remove in future)
+	
+	install -Dm755 ${srcdir}/$pkgbase/PostLogin/Default ${pkgdir}/etc/gdm/PostLogin/Default		
 }
 
 package_manjaro-gnome-extension-settings() {
