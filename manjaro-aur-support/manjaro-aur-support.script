@@ -17,4 +17,7 @@ msg "Warning
 -> please open this link
 -> https://wiki.manjaro.org/index.php?title=AUR
 -> and read carefull our wiki page"
+echo
+
+touch /.check-aur
 

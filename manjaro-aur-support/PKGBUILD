@@ -1,17 +1,22 @@
 # Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
 
 pkgname=manjaro-aur-support
-pkgver=0.2
-pkgrel=3
+pkgver=0.3
+pkgrel=1
 pkgdesc="Manjaro AUR support packages"
+_check=check-aur
 arch=(any)
-source=("$pkgname.hook" "$pkgname.script")
+source=("$pkgname.hook" "$pkgname.script" "$_check" "$_check.desktop")
 depends=('manjaro-aur')
 md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
-         '7eb61805a584b2518d6a5c7d2fd76e11')
+         '521fffb3ad188258cb99efc8d5843c70'
+         'd61bc7c82a8aab2e3a78424ec527f071'
+         '249dd27f70320eafa60be46cd8028c47')
 
 package() {
 install -Dm644 ${srcdir}/manjaro-aur-support.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-aur-support.hook
 install -Dm755 ${srcdir}/manjaro-aur-support.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-aur-support
+install -Dm755 ${srcdir}/$_check ${pkgdir}/usr/bin/$_check
+install -Dm644 ${srcdir}/$_check.desktop ${pkgdir}/etc/skel/.config/autostart/$_check.desktop
 }
 
