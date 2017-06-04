@@ -4,7 +4,7 @@
 
 while [ ! -f /.check-aur ]; do
 
-	sleep 300
+	sleep 120
 
 done
 
@@ -14,7 +14,7 @@ done
 
 sleep 300
 
-zenity --question --title="WARNING" --window-icon=warning.ico --text="\nFull access to AUR detected!\nIf you would like to learn more about AUR features and risks (!) press OK and you will be redirected to the Wiki page.\n\nIf you already know what AUR is press Cancel" --cancel-label="Cancel" --ok-label="Ok"  ;
+yad --title="WARNING" --window-icon=/usr/share/icons/manjaro/maia/maia.svg --on-top --image=/usr/share/icons/Adwaita/24x24/status/dialog-warning.png --text="\nFull access to AUR detected\nIf you would like to learn more about AUR features and risks (!)\n press OK and you will be redirected to the Wiki page.\nIf you already know what AUR is press Cancel" --text-align=center --cancel-label="Cancel" --ok-label="Ok";
 
     if [ $? == 1 ] ; then
          rm ~/.config/autostart/check-aur.desktop
@@ -27,7 +27,7 @@ xdg-open https://wiki.manjaro.org/index.php/Arch_User_Repository
 
 #Inform user to read the page
 
-zenity --question --text="Read this pages carefully before install AUR programs\nPress Yes to confirm that you have been informed about the risks of yaourt and AUR." ;
+yad --title="WARNING" --window-icon=/usr/share/icons/manjaro/maia/maia.svg --on-top --image=/usr/share/icons/Adwaita/24x24/status/dialog-warning.png --text="Read this pages carefully before install AUR programs\nPress Yes to confirm that you have been informed about the risks of yaourt and AUR." --text-align=center;
        
     if [ $? == 1 ] ; then
          exit 0
@@ -36,5 +36,4 @@ zenity --question --text="Read this pages carefully before install AUR programs\
 #Remove check-aur
 
 rm ~/.config/autostart/check-aur.desktop
-
 

@@ -2,12 +2,13 @@
 
 pkgname=manjaro-aur-support
 pkgver=0.3
-pkgrel=2
+pkgrel=3
 pkgdesc="Manjaro AUR support packages"
 _check=check-aur
 arch=(any)
+url=https://github.com/manjaro/packages-community
 source=("$pkgname.hook" "$pkgname.script" "$_check" "$_check.desktop")
-depends=('zenity')
+depends=('yad' 'adwaita-icon-theme')
 md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
          '521fffb3ad188258cb99efc8d5843c70'
          'a3e8eafe7d305ebba74e6ca8593531a6'
