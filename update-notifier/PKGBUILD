@@ -2,14 +2,17 @@
 
 pkgname=update-notifier
 pkgver=0.6.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A simple pacman update notifier"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=('MIT')
 depends=('awk'
-	'pacman'
-        'yaourt')
+        'gnome-terminal'
+        'pamac'
+        'manjaro-settings-manager'
+        'mhwd')
+optdepends=('yaourt: for AUR support')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
