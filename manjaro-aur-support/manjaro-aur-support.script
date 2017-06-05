@@ -12,11 +12,11 @@ ${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
 }
 
 echo
-msg "Warning
--> full access to AUR installed
--> please open this link
+msg "Warning:
+-> Full access to the AUR installed.
+-> Please open this link
 -> https://wiki.manjaro.org/index.php?title=AUR
--> and read carefull our wiki page"
+-> and read our wiki page carefully!"
 echo
 
 touch /.check-aur
