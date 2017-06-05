@@ -1,5 +1,10 @@
 #!/bin/sh
 
+##Common fields
+
+manjaro=/usr/share/icons/manjaro/maia/maia.svg
+warning=/usr/share/icons/Adwaita/24x24/status/dialog-warning.png
+
 ##Monitor if wrapper is installed
 
 while [ ! -f /.check-aur ]; do
@@ -14,20 +19,20 @@ done
 
 sleep 300
 
-yad --title="WARNING" --window-icon=/usr/share/icons/manjaro/maia/maia.svg --on-top --image=/usr/share/icons/Adwaita/24x24/status/dialog-warning.png --text="\nFull access to AUR detected\nIf you would like to learn more about AUR features and risks (!)\n press OK and you will be redirected to the Wiki page.\nIf you already know what AUR is press Cancel" --text-align=center --cancel-label="Cancel" --ok-label="Ok";
+yad --title="WARNING" --window-icon=$manjaro --on-top --image=$warning --text="\nFull access to AUR detected\nIf you would like to learn more about AUR features and risks (!)\n press OK and you will be redirected to the Wiki page.\nIf you already know what AUR is press Cancel" --text-align=center --cancel-label="Cancel" --ok-label="Ok";
 
     if [ $? == 1 ] ; then
          rm ~/.config/autostart/check-aur.desktop
          exit 0
     fi  
 
-#Firefox open links in a tabs
+#Firefox open links in a tabs if need add other link
       
 xdg-open https://wiki.manjaro.org/index.php/Arch_User_Repository
 
 #Inform user to read the page
 
-yad --title="WARNING" --window-icon=/usr/share/icons/manjaro/maia/maia.svg --on-top --image=/usr/share/icons/Adwaita/24x24/status/dialog-warning.png --text="Read this pages carefully before install AUR programs\nPress Yes to confirm that you have been informed about the risks of yaourt and AUR." --text-align=center;
+yad --title="WARNING" --window-icon=$manjaro --on-top --image=$warning --text="Read this pages carefully before install AUR programs\nPress Yes to confirm that you have been informed about the risks of pacaur/yaourt and AUR." --text-align=center;
        
     if [ $? == 1 ] ; then
          exit 0

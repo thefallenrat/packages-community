@@ -3,7 +3,7 @@
 
 pkgname='lightdm-slick-greeter'
 _pkgname='slick-greeter'
-pkgver=1.0.5
+pkgver=1.0.6
 pkgrel=1
 pkgdesc='A slick-looking LightDM greeter'
 arch=(i686 x86_64)
@@ -14,7 +14,7 @@ source=("${url}/archive/${pkgver}.tar.gz"
 depends=('gtk3' 'freetype2' 'gnome-common' 'lightdm' 'cairo' 'libcanberra' 'libxext' 'pixman' 'manjaro-wallpapers-17.0')
 makedepends=('intltool' 'vala')
 backup=('etc/lightdm/slick-greeter.conf')
-sha256sums=('d291a58c5493eefac08103e743d80359d7920bf446da7ac038e5f442ca7446f1'
+sha256sums=('d31f04c04aeafd51c49ed930b0afdc85d4ac845cb44e5dd9b87655e819f472e7'
             '65049a7fe68d8adce0b1f288be4e769ec07cdbef2d8952ec7827f818aa54d839')
 
 #prepare() {
