@@ -19,7 +19,8 @@ done
 
 sleep 300
 
-yad --title="WARNING" --window-icon=$manjaro --on-top --image=$warning --text="\nFull access to AUR detected\nIf you would like to learn more about AUR features and risks (!)\n press OK and you will be redirected to the Wiki page.\nIf you already know what AUR is press Cancel" --text-align=center --cancel-label="Cancel" --ok-label="Ok";
+yad --title="WARNING" --window-icon=$manjaro --on-top --center --image=$warning --width=450 --fixed \
+  --text="\n\nAUR access detected.\n\nIf you would like to learn more about AUR features and risks (\!)\npress \'OK\' to be redirected to the Wiki page.\nIf you already know what the AUR is, press \'Cancel\'.\n" --text-align=left --cancel-label="Cancel" --ok-label="Ok";
 
     if [ $? == 1 ] ; then
          rm ~/.config/autostart/check-aur.desktop
@@ -32,8 +33,9 @@ xdg-open https://wiki.manjaro.org/index.php/Arch_User_Repository
 
 #Inform user to read the page
 
-yad --title="WARNING" --window-icon=$manjaro --on-top --image=$warning --text="Read this pages carefully before install AUR programs\nPress Yes to confirm that you have been informed about the risks of pacaur/yaourt and AUR." --text-align=center;
-       
+yad --title="WARNING" --window-icon=$manjaro --on-top --center --image=$warning --width=480 --fixed \
+  --text="\n\nRead these pages carefully before installing programs from the AUR\!\n\nPress \'OK\' to confirm that you have been informed\nabout the risks of yaourt/pacaur and the AUR.\n" --text-align=left --button=gtk-ok:0;
+
     if [ $? == 1 ] ; then
          exit 0
     fi  
