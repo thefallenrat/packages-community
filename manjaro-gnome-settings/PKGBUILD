@@ -58,6 +58,7 @@ optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme'
 conflicts=('manjaro-desktop-settings' '$pkgbase-dev')
 replaces=('$pkgbase-dev')
 provides=('manjaro-desktop-settings')
+backup=('etc/gdm/PostLogin/Default')
 
 	_inst_dir
 	
