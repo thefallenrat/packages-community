@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='4.0'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="3.90.0.161"
+pkgver="3.91.0.59"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -26,22 +26,23 @@ optdepends=('ttf-roboto: The recommended font'
             'budgie-desktop>=10.2.7: The Budgie desktop'
             'cinnamon>=2.8.6: The Cinnamon desktop'
             'xfdesktop>=4.12.2: The Xfce desktop'
-	    'openbox>=3.6.1: The openbox window manager'
-	    'marco-gtk3>=1.14.0: The Mate Desktop GTK3 version'
+	        'openbox>=3.6.1: The openbox window manager'
+	        'marco-gtk3>=1.14.0: The Mate Desktop GTK3 version'
             'paper-icon-theme: A fitting icon theme'
             'gnome-tweak-tool: A graphical tool to tweak gnome settings'
             'arc-firefox-theme-maia: Arc theme with maia color'
-  	    'adapta-backgrounds: The background of project'
+  	        'adapta-backgrounds: The background of project'
             'telegram-desktop>=1.0.0: The Telegram desktop client')
 makedepends=('libxml2'
-	     'libsass'
-	     'sassc'
-	     'librsvg'
+	         'libsass'
+	         'sassc'
+	         'librsvg'
              'inkscape'
-	     'libcanberra'
-	     'parallel')
+	         'libcanberra'
+	         'parallel'
+	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('bffa4bcd77b686100a79fbb7049167236910317bcf92484b0aceacd3f540b60a')
+sha256sums=('92dfd9a7af05dd7448fd149a8532f45f3150b24b32bd5398e7c69d4e09f1fad5')
 
 build() {
     cd "${_pkgname}-${pkgver}"
