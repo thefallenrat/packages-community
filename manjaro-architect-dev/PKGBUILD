@@ -13,7 +13,7 @@ arch=(any)
 url="https://github.com/Chrysostomus/$_pkgname"
 license=(GPL2)
 depends=('bash'
-	 'fzf'
+         'fzf'
          'dialog')
 makedepends=('git')
 optdepends=('maia-console'
@@ -41,6 +41,7 @@ build() {
 package_manjaro-architect-dev() {
     depends+=('f2fs-tools'
              'gptfdisk'
+             'manjaro-architect-dev-launcher'
              'manjaro-tools-base'
              'mhwd'
              'nilfs-utils'
