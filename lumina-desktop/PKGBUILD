@@ -5,7 +5,7 @@
 pkgname=lumina-desktop
 _patch=p1
 pkgver=1.2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A Lightweight QT5 Desktop for FreeBSD"
 arch=('x86_64' 'i686')
 url="https://github.com/trueos/lumina"
