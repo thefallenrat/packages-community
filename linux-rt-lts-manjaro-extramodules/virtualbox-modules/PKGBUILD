@@ -8,7 +8,7 @@
 pkgbase=linux-rt-lts-manjaro-virtualbox-modules
 pkgname=('linux-rt-lts-manjaro-virtualbox-host-modules' 'linux-rt-lts-manjaro-virtualbox-guest-modules')
 pkgver=5.1.22
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url='http://virtualbox.org'
 license=('GPL')
