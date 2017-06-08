@@ -15,25 +15,44 @@ url="https://github.com/brndnmtthws/$_pkgname"
 license=('GPL3' 'BSD')
 conflicts=('conky' 'conky-lua')
 provides=("conky=$pkgver" 'conky-lua')
-depends=('alsa-lib' 'libxml2' 'curl' 'cairo' 'wireless_tools'
-	'libxft' 'libxnvctrl' 'glib2' 'libxdamage' 'libxinerama' 'imlib2' 'lua51' 'librsvg' 'tolua++')
-makedepends=('cmake' 'docbook2x' 'docbook-xml' 'docbook-xsl' 'libxnvctrl'
-	'man-db' 'perl-xml-libxml')
+makedepends=('cmake'
+    'docbook2x'
+    'docbook-xml'
+    'docbook-xsl'
+    'librsvg'
+    'libxinerama'
+    'libxml2'
+    'man-db'
+    'perl-xml-libxml')
+depends=('alsa-lib'
+    'cairo'
+    'curl'
+    'glib2'
+    'imlib2'
+    'libxdamage'
+    'libxft'
+    'libxnvctrl'
+    'lua51'
+    'tolua++'
+    'wireless_tools')
 optdepends=('nvidia: for GT4xx and newer GPUs',
 	'nvidia-340xx: for G8x, G9x, GT2xx GPUS',
 	'nvidia-304xx: for GeForce 6/7 GPUs')
-source=(https://github.com/brndnmtthws/$_pkgname/archive/v$pkgver.tar.gz
-        ascii.patch
-        fix_build.patch)
+source=("https://github.com/brndnmtthws/$_pkgname/archive/v$pkgver.tar.gz"
+        'ascii.patch'
+        'fix_build.patch'
+        'include_functional.patch')
 sha1sums=('54cb3322dc3a969f1fda03383012c61d57261345'
           '96cdbc38e8706c8a3120601983df5c7265716128'
-          '2ca9d68c6421f9f602bd85cc7b920faa68ae8fec')
+          '2ca9d68c6421f9f602bd85cc7b920faa68ae8fec'
+          '5111076229ddfa778d60af15a8a13d3f703567ba')
 options=('!strip' 'debug')
 
 prepare() {
   cd "$srcdir/$_pkgname-$pkgver"
   patch -p1 -i ../ascii.patch
   patch -p1 -i ../fix_build.patch
+  patch -p1 -i ../include_functional.patch
 
   cd cmake
 }
