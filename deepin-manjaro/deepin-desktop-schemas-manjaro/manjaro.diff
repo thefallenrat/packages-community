@@ -5,7 +5,7 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.dde.dock.override b/overrid
  [com.deepin.dde.dock]
 -docked-apps=['deepin-toggle-desktop', 'deepin-wm-multitaskingview','dde-file-manager','deepin-appstore','deepin-music','deepin-movie','google-chrome','dde-control-center']
 -hide-mode='keep-showing'
-+docked-apps=['dde-file-manager','chromium','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
++docked-apps=['dde-file-manager','firefox','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
 diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/com.deepin.wrap.gnome.desktop.override
 --- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2017-03-28 16:43:57.969120397 +0200

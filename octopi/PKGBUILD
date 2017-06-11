@@ -12,10 +12,10 @@
 pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt5' 'octopi-notifier-frameworks')
-pkgver=0.8.8
+pkgver=0.8.8.2
 pkgrel=1
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="19eb70e425e57f10e32c120965ebdecf6d9cb684"
+_gitcommit="604ab88b0968550711da495fca6353c284fd165b"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
@@ -27,7 +27,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('699dfb05351d98a4bea94b0339df915fa6ae170a9e53308c69c9cc2241a4c6ee')
+sha256sums=('bf21dee47f73c3fa1fd9fd252bba160cf43f0cd3ac078c77d21ae1af6d3b4772')
 
 
 prepare() {
@@ -38,7 +38,7 @@ prepare() {
   fi
 
   # sed version
-  sed -i -e "s|0.9.0 (dev)|${pkgver}-${pkgrel}|g" src/strconstants.h
+  sed -i -e "s|0.9.0 (dev)|${pkgver}-${pkgrel}|g" src/strconstants.cpp
 
   # fix searchline
   sed -i 's|sansserif|Sans Serif|g' src/searchlineedit.cpp 
