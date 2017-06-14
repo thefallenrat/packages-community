@@ -1,0 +1,76 @@
+# Maintainer: Stefano Capitani <stefano@manjaro.org>
+
+pkgbase=desktop-settings
+pkgname=('manjaro-budgie-basic-settings' 'manjaro-budgie-extra-settings')
+pkgver=20170615
+pkgrel=1
+arch=('any')
+url="https://github.com/manjaro/desktop-settings"
+license=('GPL')
+source=("git+$url.git#branch=devel"
+        'budgie-prefs.js')
+md5sums=('SKIP'
+         '1c84eccb0c9bdfaacf3fb4c6c6734594')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+_inst_dir(){
+    if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
+        install -d $pkgdir/etc
+        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/scripts ]]; then
+        install -d $pkgdir/usr/bin
+        cp $srcdir/$pkgbase/$1/scripts/* $pkgdir/usr/bin
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/schemas ]]; then
+        install -d $pkgdir/usr/share/glib-2.0/schemas
+        cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/bashrc.d ]]; then
+        install -d $pkgdir/etc/bash/bashrc.d
+        cp $srcdir/$pkgbase/$1/bashrc.d/* $pkgdir/etc/bash/bashrc.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/profile.d ]]; then
+        install -d $pkgdir/etc/profile.d
+        cp $srcdir/$pkgbase/$1/profile.d/* $pkgdir/etc/profile.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/xinitrc.d ]]; then
+        install -d $pkgdir/etc/X11/xinit/xinitrc.d
+        cp $srcdir/$pkgbase/$1/xinitrc.d/* $pkgdir/etc/X11/xinit/xinitrc.d
+    fi
+}
+
+package_manjaro-budgie-basic-settings() {
+    pkgdesc='Manjaro Linux budgie basic settings'
+    depends=('budgie-desktop'
+            'arc-themes-maia'
+            'vertex-maia-icon-theme'
+            'budgie-wallpapers'
+            'xcursor-breeze'
+            'qt5-styleplugins'
+            'qt5ct')
+    provides=('manjaro-desktop-settings')
+    conflicts=('manjaro-budgie-settings' 'manjaro-desktop-settings')
+    replaces=('manjaro-budgie-settings')
+
+    _inst_dir 'community/budgie'
+}
+
+package_manjaro-budgie-extra-settings() {
+    pkgdesc="Manjaro Linux budgie extra settings"
+    depends=('manjaro-budgie-basic-settings' 'firefox' 'arc-firefox-theme')
+    optdepends=('plymouth-theme-manjaro-fancy-budgie' 'firefox-arc-maia-settings')
+    conflicts=('manjaro-budgie-settings-extra')
+    replaces=('manjaro-budgie-settings-extra')
+
+    install -dm755 "$pkgdir/usr/lib/firefox/browser/defaults/preferences/"
+    install -m644 ${srcdir}/budgie-prefs.js "$pkgdir/usr/lib/firefox/browser/defaults/preferences/"
+}

@@ -4,7 +4,7 @@
 _pkgbase=desktop-settings
 
 pkgname=manjaro-fluxbox-settings
-pkgver=20160921
+pkgver=20170615
 pkgrel=1
 pkgdesc='Manjaro Linux fluxbox settings'
 arch=('any')
@@ -24,7 +24,7 @@ depends=('manjaro-base-skel'
 makedepends=('git')
 optdepends=('plymouth-theme-manjaro-circle')
 conflicts=('manjaro-desktop-settings')
-source=("git+$url.git")
+source=("git+$url.git#branch=devel")
 sha256sums=('SKIP')
 
 _inst_dir(){

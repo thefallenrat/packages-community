@@ -3,7 +3,6 @@
 
 pkgbase=desktop-settings
 pkgname=('manjaro-bspwm-settings'
-        'manjaro-budgie-settings'
         'manjaro-awesome-settings'
         'manjaro-jwm-settings'
         'manjaro-lxde-settings'
@@ -87,22 +86,6 @@ package_manjaro-awesome-settings() {
         'arc-maia-icon-theme'
         'arc-themes-maia')
     _inst_dir 'community/awesome'
-}
-
-package_manjaro-budgie-settings() {
-    pkgdesc='Manjaro Linux budgie settings'
-    depends=('budgie-desktop'
-        'arc-themes-maia'
-        'vertex-maia-icon-theme'
-        'budgie-wallpapers'
-        'xcursor-breeze'
-	'qt5-styleplugins'
-        'qt5ct')
-    optdepends=('plymouth-theme-manjaro-fancy-budgie' 'firefox-arc-maia-settings')
-    conflicts=('manjaro-desktop-settings')
-    provides=('manjaro-desktop-settings')
-
-    _inst_dir 'community/budgie'
 }
 
 package_manjaro-jwm-settings() {

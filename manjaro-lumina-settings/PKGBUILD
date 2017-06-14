@@ -4,7 +4,7 @@
 _pkgbase=desktop-settings
 
 pkgname=manjaro-lumina-settings
-pkgver=20160922
+pkgver=20170615
 pkgrel=1
 pkgdesc='Manjaro Linux lumina settings'
 arch=('any')
@@ -18,7 +18,7 @@ makedepends=('git')
 optdepends=('manjaro-fluxbox-settings: Manjaro Linux Fluxbox settings')
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-desktop-settings')
-source=("git+$url.git")
+source=("git+$url.git#branch=devel")
 sha256sums=('SKIP')
 
 pkgver() {

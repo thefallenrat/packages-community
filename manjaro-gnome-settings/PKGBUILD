@@ -3,7 +3,7 @@
 
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-basic-settings' 'manjaro-gnome-extra-settings')
-pkgver=20170614
+pkgver=20170615
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
