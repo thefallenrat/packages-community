@@ -1,16 +1,16 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgname=budgie-wallpapers
-pkgver=20170102
+pkgver=20170614
 pkgrel=1
-_snapshot=709936f1728189a6ef6f39a254955856eb3f25fc
+_snapshot=69c927473a1bd804336dbeca6bc3168774f43ad0
 _repo=Budgie-Artwork
 pkgdesc='Manjaro Linux Budgie wallpapers'
 arch=('any')
 url="https://github.com/Ste74/$_repo"
 license=('GPL')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('74d154d327c78ea123356f9f10dbd9cc35d06d869fe6b3826ef1d9e05873dab8')
+sha256sums=('367630ed33b0195b214882f2625c0c0e300ca0604a504446a963cb4488b48eb3')
 
 pkgver() {
 	date +%Y%m%d
@@ -18,8 +18,10 @@ pkgver() {
 
 package() {
 	cd $srcdir
-	install -dm755 $pkgdir/usr/share/backgrounds
+	install -dm755 $pkgdir/usr/share/backgrounds/manjaro-budgie
+	install -dm755 $pkgdir/usr/share/gnome-background-properties
 	cd $_repo-$_snapshot
-	rm README.md
-	cp * $pkgdir/usr/share/backgrounds/
+	rm *.md *.sh
+	mv manjaro-budgie.xml $pkgdir/usr/share/gnome-background-properties/
+	cp * $pkgdir/usr/share/backgrounds/manjaro-budgie/
 }

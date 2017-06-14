@@ -2,15 +2,15 @@
 
 pkgname=gnome-wallpapers
 _repo=Gnome-Artwork
-pkgver=20170214
+pkgver=20170614
 pkgrel=1
-_snapshot=a7a76349a1f8040f07cb646e735219cb0899f7c4
+_snapshot=17a0f395bd7002f7c208ae43e296ee38acc04708
 pkgdesc='Manjaro Linux Gnome wallpapers'
 arch=('any')
 url="https://github.com/Ste74/$_repo"
 license=('GPL')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('997f4a6e2fff49f7a1c418716c1c6b70cb8fc4e9fa3063d32f146969a68a2e57')
+sha256sums=('526f5ac64e4e3ef423fcd5d9266fad5a6cbdd7e676a53e4dda0f86288e50f5a9')
 
 pkgver() {
 	date +%Y%m%d
@@ -18,8 +18,10 @@ pkgver() {
 
 package() {
 	cd $srcdir
-	install -dm755 $pkgdir/usr/share/backgrounds
+	install -dm755 $pkgdir/usr/share/backgrounds/manjaro-gnome
+	install -dm755 $pkgdir/usr/share/gnome-background-properties
 	cd $_repo-$_snapshot
-	rm README.md
-	cp * $pkgdir/usr/share/backgrounds/
+	rm *.md *.sh
+	mv manjaro-gnome.xml $pkgdir/usr/share/gnome-background-properties/
+	cp * $pkgdir/usr/share/backgrounds/manjaro-gnome/
 }
