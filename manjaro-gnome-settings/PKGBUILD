@@ -2,83 +2,91 @@
 # Maintainer: Stefano Capitani  <stefanoatmanjarodotorg>
 
 pkgbase=manjaro-gnome-settings
-pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
-#          'manjaro-gnome-minimal-settings')
-pkgver=20170606
+pkgname=('manjaro-gnome-basic-settings' 'manjaro-gnome-extra-settings')
+pkgver=20170614
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
-source=("git+$url.git")
+source=("git+$url.git#branch=devel"
+        'PostLogin.Default')
 makedepends=('git')
-sha256sums=('SKIP')
+sha256sums=('SKIP'
+            '8584bd4c4b8830720210c8938dec715987f4f6a38417fe602ff5181947a497aa')
 
 pkgver() {
 	date +%Y%m%d
 }
 
 _inst_dir(){
-	install -d $pkgdir/etc
-	cp -r $srcdir/$pkgbase/skel $pkgdir/etc
+    if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
+        install -d $pkgdir/etc
+        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
+    fi
 
-	install -d $pkgdir/usr/share/glib-2.0/schemas
-	cp $srcdir/$pkgbase/schemas/99_manjaro-settings.gschema.override $pkgdir/usr/share/glib-2.0/schemas
+    if [[ -d $srcdir/$pkgbase/$1/scripts ]]; then
+        install -d $pkgdir/usr/bin
+        cp $srcdir/$pkgbase/$1/scripts/* $pkgdir/usr/bin
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/schemas ]]; then
+        install -d $pkgdir/usr/share/glib-2.0/schemas
+        cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/bashrc.d ]]; then
+        install -d $pkgdir/etc/bash/bashrc.d
+        cp $srcdir/$pkgbase/$1/bashrc.d/* $pkgdir/etc/bash/bashrc.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/profile.d ]]; then
+        install -d $pkgdir/etc/profile.d
+        cp $srcdir/$pkgbase/$1/profile.d/* $pkgdir/etc/profile.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/xinitrc.d ]]; then
+        install -d $pkgdir/etc/X11/xinit/xinitrc.d
+        cp $srcdir/$pkgbase/$1/xinitrc.d/* $pkgdir/etc/X11/xinit/xinitrc.d
+    fi
 }
 
-_inst_dir-extension(){
+package_manjaro-gnome-basic-settings() {
+    pkgdesc='Manjaro Linux Gnome basic settings'
+    depends=('gnome-shell'
+            'manjaro-gnome-extension-settings'
+            'gnome-wallpapers'
+            'arc-themes-maia'
+            'arc-maia-icon-theme'
+            'xcursor-breeze'
+            'qt5-styleplugins'
+            'qt5ct')
+    optdepends=('moka-icon-theme: Fallback icon theme for Arc Maia Icon theme')
+    provides=('manjaro-desktop-settings')
+    conflicts=('manjaro-gnome-settings' 'manjaro-desktop-settings')
+    replaces=('manjaro-gnome-settings')
+    backup=('etc/gdm/PostLogin/Default')
 
-#add here extensions : for any extension repeat the follow schemas
+    _inst_dir 'basic'
 
-	install -d $pkgdir/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas
-	cp $srcdir/$pkgbase/schemas/10_dash-to-dock.gschema.override $pkgdir/usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas
-		
+    install -dm755 ${pkgdir}/etc/gdm/PostLogin
+    install -m644 ${srcdir}/PostLogin.Default ${pkgdir}/etc/gdm/PostLogin/Default
 }
 
-package_manjaro-gnome-settings() {
-pkgdesc='Manjaro Linux Gnome settings'
-depends=('gnome-shell'
-     	 'gnome-shell-extension-taskbar'
-       	 'gnome-shell-extensions'
-	     'gnome-shell-extension-openweather'
-	     'gnome-shell-extension-gnomenu'
-		 'gnome-shell-extension-dash-to-dock'
-		 'gnome-shell-extension-topicons-plus'
-		 'manjaro-gnome-extension-settings'
-         'gnome-wallpapers'
-         'arc-themes-maia'
-		 'arc-maia-icon-theme'
-         'xcursor-breeze'
-         'manjaro-base-skel'
-         'qt5-styleplugins'
-         'qt5ct')
-optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme' 
-			'firefox-arc-maia-settings: Firefox theme'
-		 	'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme'
-			'chrome-gnome-shell: Native connector for integration with extensions.gnome.org')
-conflicts=('manjaro-desktop-settings' '$pkgbase-dev')
-replaces=('$pkgbase-dev')
-provides=('manjaro-desktop-settings')
-backup=('etc/gdm/PostLogin/Default')
+package_manjaro-gnome-extra-settings() {
+    pkgdesc='Manjaro Linux Gnome extra settings'
+    depends=('manjaro-gnome-basic-settings'
+            'gnome-shell-extension-taskbar'
+            'gnome-shell-extensions'
+            'gnome-shell-extension-openweather'
+            'gnome-shell-extension-gnomenu'
+            'gnome-shell-extension-dash-to-dock'
+            'gnome-shell-extension-topicons-plus')
+    optdepends=('firefox-arc-maia-settings: Firefox theme'
+            'plymouth-theme-manjaro-gnome-17.0: Plymouth theme'
+            'chrome-gnome-shell: Native connector for integration with extensions.gnome.org')
+    conflicts=('manjaro-gnome-extension-settings')
+    replaces=('manjaro-gnome-extension-settings')
+    install=dash-to-dock.install
 
-	_inst_dir
-	
-#Add Postlogin script here (remove in future)
-	
-	install -Dm755 ${srcdir}/$pkgbase/PostLogin/Default ${pkgdir}/etc/gdm/PostLogin/Default		
+    _inst_dir 'extra'
 }
-
-package_manjaro-gnome-extension-settings() {
-
-pkgdesc='Manjaro Linux Gnome extensions settings'
-depends=('manjaro-gnome-settings')
-install=dash-to-dock.install
-	_inst_dir-extension	
-}
-
-# package_manjaro-gnome-minimal-settings() {
-# 	pkgdesc='Manjaro Linux gnome-minimal settings'
-# 	depends=()
-# 	provides=('manjaro-desktop-settings')
-#
-# 	_inst_dir '/minimal'
-# }
