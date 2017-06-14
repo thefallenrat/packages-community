@@ -29,10 +29,9 @@ package_manjaro-lxqt-basic-settings() {
             'breath-icon-theme'
             'breath-wallpaper'
             'gtk-theme-breath')
-    conflicts=('manjaro-lxqt-minimal-settings')
-    replaces=('manjaro-lxqt-minimal-settings')
     provides=('manjaro-desktop-settings')
-    conflicts=('manjaro-desktop-settings')
+    conflicts=('manjaro-lxqt-minimal-settings' 'manjaro-desktop-settings')
+    replaces=('manjaro-lxqt-minimal-settings')
 
     _inst_dir 'basic'
 }
