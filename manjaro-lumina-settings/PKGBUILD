@@ -25,7 +25,38 @@ pkgver() {
     date +%Y%m%d
 }
 
+_inst_dir(){
+    if [[ -d $srcdir/$pkgbase/$1/skel ]]; then
+        install -d $pkgdir/etc
+        cp -r $srcdir/$pkgbase/$1/skel $pkgdir/etc
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/scripts ]]; then
+        install -d $pkgdir/usr/bin
+        cp $srcdir/$pkgbase/$1/scripts/* $pkgdir/usr/bin
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/schemas ]]; then
+        install -d $pkgdir/usr/share/glib-2.0/schemas
+        cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/bashrc.d ]]; then
+        install -d $pkgdir/etc/bash/bashrc.d
+        cp $srcdir/$pkgbase/$1/bashrc.d/* $pkgdir/etc/bash/bashrc.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/profile.d ]]; then
+        install -d $pkgdir/etc/profile.d
+        cp $srcdir/$pkgbase/$1/profile.d/* $pkgdir/etc/profile.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/xinitrc.d ]]; then
+        install -d $pkgdir/etc/X11/xinit/xinitrc.d
+        cp $srcdir/$pkgbase/$1/xinitrc.d/* $pkgdir/etc/X11/xinit/xinitrc.d
+    fi
+}
+
 package() {
-    install -d $pkgdir/etc
-    cp -r $srcdir/desktop-settings/community/lumina/skel $pkgdir/etc
+    _inst_dir 'community/lumina'
 }
