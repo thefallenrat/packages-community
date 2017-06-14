@@ -34,6 +34,21 @@ _inst_dir(){
         install -d $pkgdir/usr/share/glib-2.0/schemas
         cp $srcdir/$pkgbase/$1/schemas/* $pkgdir/usr/share/glib-2.0/schemas
     fi
+
+    if [[ -d $srcdir/$pkgbase/$1/bashrc.d ]]; then
+        install -d $pkgdir/etc/bash/bashrc.d
+        cp $srcdir/$pkgbase/$1/bashrc.d/* $pkgdir/etc/bash/bashrc.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/profile.d ]]; then
+        install -d $pkgdir/etc/profile.d
+        cp $srcdir/$pkgbase/$1/profile.d/* $pkgdir/etc/profile.d
+    fi
+
+    if [[ -d $srcdir/$pkgbase/$1/xinitrc.d ]]; then
+        install -d $pkgdir/etc/X11/xinit/xinitrc.d
+        cp $srcdir/$pkgbase/$1/xinitrc.d/* $pkgdir/etc/X11/xinit/xinitrc.d
+    fi
 }
 
 pkgver() {
@@ -53,8 +68,7 @@ package_manjaro-bspwm-settings() {
         'limepanel'
         'bspwm-manjaro'
         'bspwm-scripts'
-        'sxhkd'
-        'manjaro-base-skel')
+        'sxhkd')
     _inst_dir 'community/bspwm'
 }
 
@@ -71,8 +85,7 @@ package_manjaro-awesome-settings() {
         'dmenu-manjaro'
         'st-manjaro'
         'arc-maia-icon-theme'
-        'arc-themes-maia'
-        'manjaro-base-skel')
+        'arc-themes-maia')
     _inst_dir 'community/awesome'
 }
 
@@ -84,8 +97,7 @@ package_manjaro-budgie-settings() {
         'budgie-wallpapers'
         'xcursor-breeze'
 	'qt5-styleplugins'
-        'qt5ct'
-        'manjaro-base-skel')
+        'qt5ct')
     optdepends=('plymouth-theme-manjaro-fancy-budgie' 'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
@@ -101,8 +113,7 @@ package_manjaro-jwm-settings() {
         'jwm-artwork'
         'jwm-wallpapers'
         'ultraflatorange-icon-theme'
-        'xcursor-rezowhite'
-        'manjaro-base-skel')
+        'xcursor-rezowhite')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
@@ -111,8 +122,7 @@ package_manjaro-jwm-settings() {
 
 package_manjaro-lxde-settings() {
     pkgdesc='Manjaro Linux lxde settings'
-    depends=('manjaro-base-skel'
-    	     'arc-maia-icon-theme'
+    depends=('arc-maia-icon-theme'
 	     'vertex-maia-themes'
 	     'lxde-wallpapers'
 	     'qt5ct'
@@ -130,8 +140,7 @@ package_manjaro-lxde-settings() {
 
 package_manjaro-mate-settings() {
     pkgdesc='Manjaro Linux mate settings'
-    depends=('manjaro-base-skel'
-		'mate-desktop'
+    depends=('mate-desktop'
 		'mate-menus'
 		'caja'
 		'marco'
@@ -162,7 +171,7 @@ package_manjaro-mate-settings() {
 
 package_manjaro-netbook-settings() {
     pkgdesc='Manjaro Linux netbook settings'
-    depends=('manjaro-base-skel')
+    #depends=('manjaro-base-skel')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
@@ -171,7 +180,7 @@ package_manjaro-netbook-settings() {
 
 package_manjaro-pantheon-settings() {
     pkgdesc='Manjaro Linux pantheon settings'
-    depends=('manjaro-base-skel')
+    #depends=('manjaro-base-skel')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
