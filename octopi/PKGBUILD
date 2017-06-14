@@ -13,13 +13,13 @@ pkgbase=octopi
 pkgname=('octopi' 'octopi-repoeditor' 'octopi-pacmanhelper' 'octopi-cachecleaner'
          'octopi-notifier-qt5' 'octopi-notifier-frameworks')
 pkgver=0.8.8.4
-pkgrel=1
+pkgrel=4
 # This is the release package so the below _gitcommit variable should (usually) be commented out.
-_gitcommit="bab0aa8ebc8d87aee6f47140f71ba9f63e1a961e"
+_gitcommit="989617366a40c84425398e381aeca056090e3569"
 arch=('i686' 'x86_64')
 url="http://octopiproject.wordpress.com"
 license=('GPL2')
-makedepends=('qt5-declarative' 'knotifications' 'libnotify' 'alpm-octopi-utils')
+makedepends=('qt5-declarative' 'knotifications' 'libnotify') # 'alpm-octopi-utils')
 
 if [ "${_gitcommit}" != "" ]; then
   source=("octopi-${pkgver}-${pkgrel}.tar.gz::https://github.com/aarnt/octopi/archive/${_gitcommit}.tar.gz")
@@ -27,7 +27,7 @@ else
   source=("octopi-${pkgver}.tar.gz::https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 fi
 
-sha256sums=('7d59498e3313ac896521381f9ba00ec1b5af47112ebf66c671b1bdfcca3cbe29')
+sha256sums=('1a01e02b29a1ab0f211134a8cf86224701c6190745430c681b1aabf359a213e2')
 
 
 prepare() {
@@ -46,6 +46,13 @@ prepare() {
   cp -r notifier notifier-qt5
   cp -r notifier notifier-frameworks
   sed -i 's|#KSTATUS|KSTATUS|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+
+  # disable ALPM-Backend for now: https://github.com/aarnt/octopi/issues/238
+  sed -i 's| ALPM_BACKEND| #ALPM_BACKEND|' octopi.pro
+  sed -i 's| ALPM_BACKEND| #ALPM_BACKEND|' notifier/octopi-notifier/octopi-notifier.pro
+  sed -i 's| ALPM_BACKEND| #ALPM_BACKEND|' notifier-qt5/octopi-notifier/octopi-notifier.pro
+  sed -i 's| ALPM_BACKEND| #ALPM_BACKEND|' notifier-frameworks/octopi-notifier/octopi-notifier.pro
+  sed -i 's|    rbAlpm->setChecked(true);|    rbAlpm->setChecked(true);\n  rbAlpm->setEnabled(false);\n  if (rbAlpm->isChecked())\n    rbPacman->setChecked(true);|g' src/optionsdialog.cpp
 }
 
 build() {
@@ -90,7 +97,7 @@ build() {
 
 package_octopi() {
   pkgdesc="A powerful Pacman frontend using Qt5 libs"
-  depends=('qt5-base' 'qt5-declarative' 'xterm' 'pacman' 'alpm-octopi-utils')
+  depends=('qt5-base' 'qt5-declarative' 'xterm' 'pacman') # 'alpm-octopi-utils>=1.0.0-2')
   optdepends=('kdesu: for KDE'
               'gksu: for XFCE, Gnome, LXDE, Cinnamon'
               'lxqt-sudo: for LXQT'
@@ -168,7 +175,7 @@ package_octopi-cachecleaner() {
 
 package_octopi-notifier-qt5() {
   pkgdesc="Notifier for Octopi using Qt5 libs"
-  depends=('octopi-pacmanhelper' 'libnotify' 'qt5-base' 'alpm-octopi-utils')
+  depends=('octopi-pacmanhelper' 'libnotify' 'qt5-base') # 'alpm-octopi-utils>=1.0.0-2')
   optdepends=('octopi: launch graphical package manager from tray'
               'xfce4-notifyd: for notifications in XFCE')
   conflicts=('octopi-notifier')
@@ -188,7 +195,7 @@ package_octopi-notifier-qt5() {
 
 package_octopi-notifier-frameworks() {
   pkgdesc="Notifier for Octopi with Knotifications support"
-  depends=('octopi-pacmanhelper' 'knotifications' 'qt5-base' 'alpm-octopi-utils')
+  depends=('octopi-pacmanhelper' 'knotifications' 'qt5-base') # 'alpm-octopi-utils>=1.0.0-2')
   optdepends=('octopi: launch graphical package manager from tray')
   conflicts=('octopi-notifier')
   provides=("octopi-notifier=${pkgver}")
