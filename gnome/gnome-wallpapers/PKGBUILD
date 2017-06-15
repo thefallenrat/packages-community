@@ -2,15 +2,15 @@
 
 pkgname=gnome-wallpapers
 _repo=Gnome-Artwork
-pkgver=20170614
+pkgver=20170615
 pkgrel=1
-_snapshot=17a0f395bd7002f7c208ae43e296ee38acc04708
+_snapshot=3412ff4e7ce2f61125c8d9f08dd40683a8e1225b
 pkgdesc='Manjaro Linux Gnome wallpapers'
 arch=('any')
 url="https://github.com/Ste74/$_repo"
 license=('GPL')
 source=("$_repo-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('526f5ac64e4e3ef423fcd5d9266fad5a6cbdd7e676a53e4dda0f86288e50f5a9')
+sha256sums=('3d2454a2d0b3869c016c33df045683b8f6ce16af4f518d392238e93908840044')
 
 pkgver() {
 	date +%Y%m%d
