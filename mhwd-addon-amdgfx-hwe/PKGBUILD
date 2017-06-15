@@ -5,7 +5,6 @@ pkgrel=1
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
 license=('GPL3')
-makedepends=('curl')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('amdgpu-experimental.install'
         'mhwd-addon-amdgfx-hwe.install'
