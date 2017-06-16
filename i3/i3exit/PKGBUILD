@@ -14,7 +14,7 @@ optdepends=('lightdm-gtk-greeter: switch user with lightdm')
 source=("$pkgname"
     'blurlock')
 md5sums=('cf20f699b2cdc2fb7d22075866e54a9f'
-         '5dd0c44c9b53a9f1ba327b819d655262')
+         '4938c18bce4dbba9ae949d1a5fe87f4b')
 
 pkgver() {
 	date +'%Y%m%d'
