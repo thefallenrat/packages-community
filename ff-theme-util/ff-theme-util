@@ -1,0 +1,50 @@
+#! /bin/sh
+# /usr/bin/ff-theme-util
+
+config="$HOME/.gtkrc-2.0"
+
+# check if current themes ṕrovides chrome dir
+has_chrome() {
+    chromedir="$themesdir/$current_theme/chrome"
+    [[ -e "$chromedir" ]] && return 0 || return 1
+}
+
+# create symlinks to chrome dir for each profile
+set_theme() {
+    for p in $(grep Path "$profiledir/profiles.ini" | cut -d'=' -f2); do
+        ln -sfd "$1" "$profiledir/$p"
+    done
+}
+
+# watch for gtk2 theme changes
+while inotifywait -e attrib $config; do
+    current_theme=$(grep "gtk-theme-name" $config | cut -d'"' -f2)
+
+    # Firefox
+    profiledir="$HOME/.mozilla/firefox"
+    themesdir="/usr/share/themes/Firefox"
+    if has_chrome; then
+        # in case we also need to use it for Palemoon
+        has_ff=true
+        ff_chromedir=$chromedir
+        if [[ -e $profiledir ]]; then
+            set_theme $chromedir
+        fi
+    else
+        has_ff=false
+    fi
+
+    # Palemoon
+    profiledir="$HOME/.moonchild productions/pale moon"
+    themesdir="/usr/share/themes/Palemoon"
+    if [[ -e $profiledir ]]; then
+        if has_chrome; then
+           set_theme $chromedir
+        # fallback to Firefox theme if available
+        elif [[ $has_ff == "true" ]]; then
+           set_theme $ff_chromedir
+        fi
+    fi
+done
+
+exit 0

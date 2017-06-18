@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/ff-theme-util
+Name=Firefox Theme Utility
+Comment=Autocreate matching Firefox-theme symlinks 
+Type=Application
+Icon=applications-system
