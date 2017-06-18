@@ -4,28 +4,28 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=53.0.3
+pkgver=54.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=(i686 x86_64)
 license=(MPL GPL LGPL)
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib alsa-lib ffmpeg
-         libvpx libevent nss hunspell sqlite ttf-font icu kmozillahelper nspr)
-makedepends=(unzip zip diffutils python2 yasm mesa imake gconf libpulse inetutils xorg-server-xvfb
+         nss hunspell sqlite ttf-font libpulse icu libvpx kmozillahelper)
+makedepends=(unzip zip diffutils python2 yasm mesa imake gconf inetutils xorg-server-xvfb
              autoconf2.13 cargo)
 optdepends=('networkmanager: Location detection via available WiFi networks'
             'libnotify: Notification integration'
+            'pulseaudio: Audio support'
             'speech-dispatcher: Text-to-Speech')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=(!emptydirs !makeflags !strip)
-_patchrev=188c3f40f0da
+_patchrev=f82a374a310d
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         firefox.desktop firefox-symbolic.svg
-        firefox-install-dir.patch fix-wifi-scanner.diff
-        0001-Bug-1338655-Don-t-try-to-build-mp4parse-bindings.-r-.patch
+        firefox-install-dir.patch no-crmf.diff fix-wifi-scanner.diff
         kde.js
         # Firefox patchset
         $_patchurl/firefox-branded-icons.patch
@@ -36,17 +36,17 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
-sha256sums=('78cc89650b6d8baacaf55f1a486de06bf3bb5b8a3082fd044e70225e2816e348'
+sha256sums=('08a9ff6870d904a2af1d03c17c6c44f67413608efb66bb280894d7b92c336a77'
             'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
+            'fb85a538044c15471c12cf561d6aa74570f8de7b054a7063ef88ee1bdfc1ccbb'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
-            '413cd6d366d78f325d80ebebccfd0afa0d266b40b2e54b66ba2fa03c15f3ea67'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'c85a37e71f2bd511fac88d41ca0618ee375c49fc86bc2beddf6dc17c3f17508d'
-            '02299760bae1d8bfc3d1d11b8867d8d5b9f44ee0101dc2a1d3277ba6ab4132bd'
+            'becab1ec6a7c9adb1f2bbf0b3f74a65587dcb9dec1d7e65e25b407cce4abc7bc'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            'ee2e0032ae522911691bc13fe790772dfa7b5004ae1e8a79075ba43fa298a725'
+            '6f042dc14db444738448cd151655b4fae766905e709cb5ca48b2150718bb525d'
             '2720e418edaab7b305087b325604fe134dab1b743dae6e924aba7b4bd73ea389'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
@@ -72,11 +72,11 @@ prepare() {
   cd $_pkgname-$pkgver
   patch -Np1 -i ../firefox-install-dir.patch
 
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1371991
+  patch -Np1 -i ../no-crmf.diff
+
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
   patch -Np1 -i ../fix-wifi-scanner.diff
-
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1338655
-  patch -Np1 -i ../0001-Bug-1338655-Don-t-try-to-build-mp4parse-bindings.-r-.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo -n "$_mozilla_api_key" >mozilla-api-key
@@ -88,6 +88,7 @@ ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-gold
 ac_add_options --enable-pie
+ac_add_options --enable-optimize="-O2"
 
 # Branding
 ac_add_options --enable-official-branding
@@ -109,7 +110,6 @@ ac_add_options --with-system-icu
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-zlib
 ac_add_options --with-system-bz2
-ac_add_options --with-system-libevent
 ac_add_options --with-system-libvpx
 ac_add_options --enable-system-hunspell
 ac_add_options --enable-system-sqlite
@@ -119,7 +119,6 @@ ac_add_options --enable-system-pixman
 # Features
 ac_add_options --enable-startup-notification
 ac_add_options --enable-crashreporter
-ac_add_options --enable-alsa
 ac_add_options --disable-updater
 
 STRIP_FLAGS="--strip-debug"
