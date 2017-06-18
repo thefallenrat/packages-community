@@ -1,6 +1,6 @@
 # Maintainer: Fabian Bornschein <plusfabi@gmail.com>
 pkgname=('mhwd-addon-amdgfx-hwe' 'amdgpu-experimental')
-pkgver=20161231 #date +%Y%m%d
+pkgver=20170617 #date +%Y%m%d
 pkgrel=1
 arch=('any')
 url="https://github.com/Tids/mhwd-addon-amdgfx-hwe"
@@ -8,28 +8,22 @@ license=('GPL3')
 conflicts=('mhwd-addon-amdgpu-hwe')
 source=('amdgpu-experimental.install'
         'mhwd-addon-amdgfx-hwe.install'
-        'amdgfx-hwe-amdgpu.conf'
-        'amdgfx-hwe-radeon_blacklist.conf'
+        '10-amdgpu-experimental.conf'
+        'amdgpu.conf'
+        'radeon_blacklist.conf'
         'amdgpu-exp_hw_support.conf'
-        'amdgpu-experimental-pci.ids'
         'amdgpu-experimental.hook'
-        'amdgpu-pci.ids'
-        'MHWDCONFIG_video-amdgpu+'
-        'MHWDCONFIG_video-amdgpu-experimental+'
-        'MHWDCONFIG_video-radeon+'
-        'catalystuninstall')
-md5sums=('b3eaf63c766deaa863616d87d69fd712'
-         '2d42c040ccdc55159e78f78854a867f3'
-         '8eb145fd23b417694b36ef9e6113cb84'
-         '9ad03a78a863bc0b9f279b330669bd4c'
-         'af2fee339acad81dea161f93110c30ed'
-         '58eb8d0213f03cc19a5ed74f4831c7bb'
-         '5ea12c299007a61f7f2b866ea94f5b44'
-         '392be8d374439f6759f827cf8a1d1afc'
-         'eff72bfea4a63554e3d646be0216de52'
-         'ec6db4d4efbbbbeb14b6d717dc1e6bb4'
-         'c30858640e806b7abb54b4e6d5b322b8'
-         'dfa749c51d8fb44594450892b34246ef')
+        'MHWDCONFIG_video-amdgpu-experimental'
+        'MHWDCONFIG_video-hybrid-intel-amdgpu-experimental-prime')
+sha512sums=('d15f690fac33b1ed33677ff40bd998c137bb2b65b41c8c0c3a8634977aee83379ebf7e8d81951c4673b46f7fb810147936612f59360f3140100d8d2a147f8d9f'
+            'e9db80cddd6daec4352c08d062856f73ff9827a8c4069847c2b3ecf669cfb3355c26f418c491d1a2224b4ac71e119e16359b86b322d22c936639facfa3e96e50'
+            'cafa0fbb4f965bf3eef450d0192fd038aefad75c1a6c6ec239088aaec2575eed99b3aad65797ed6c705a427528142cdd7d04cf1f01d3fed839574c800be06a04'
+            '5a02d330aec5f6a5aa7876b4d0ce768409284afda996ad310ec3811ebc862f78501fb1e35621b7e216b4e972b772a4f72d1f31c47a791604b7963981feff2ee8'
+            'f409269608148c8c420be5584e8bf47fdc87c8861ea6847ec1431c2a1441fba6f06577f85878f01fad3c3fba51d23256eed4bcada48db44d27b834fb628408fe'
+            'ca4643ab1a189f62eff027d472af431b1e3767c5fad948b99b3e11f480a464836f95d8122e574b37da495b0f653b90f2bfcbadb88e3c88073e5423d1006681f0'
+            '42106abe5bfedd63f7c2e06e2e362ab75060ced6f1e3a86502870ff0248a40d404fd415742f2a0bbfa1c55c479af9dee4c08c9191793b86bd7a99d06f518abc3'
+            '25660c9a2dc6a25d05685732033893f519f10448740f64b43b5e0ca7a701d7c468d2185f425189427118c5db2141a8cd04ce028cf51d45b99f884466f8b89f76'
+            '81727fd894cbbce650e17ecb20a3e54c06bf38ad56028ad1627c6b774bc925b45d344b2d470e02071570e0dbfb2bfd67a05e5e15fe9b00ce9aac1ec80fce6de2')
 
 package_mhwd-addon-amdgfx-hwe()
 {
@@ -42,36 +36,19 @@ package_mhwd-addon-amdgfx-hwe()
     cd "${srcdir}"
 
     # Install AMDGPU-experimental config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu-experimental+" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu-experimental+/MHWDCONFIG"
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu-experimental" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu-experimental/MHWDCONFIG"
 
-    # Install PCI-ID file for AMDGPU-experimental Cards
-    install -D -m644 "${srcdir}/amdgpu-experimental-pci.ids" \
-    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-experimental-pci.ids"
-
-
-    # Install AMDGPU config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_video-amdgpu+" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-amdgpu+/MHWDCONFIG"
-
-    # Install PCI-ID file for AMDGPU Cards
-    install -D -m644 "${srcdir}/amdgpu-pci.ids" \
-    "${pkgdir}/var/lib/mhwd/ids/pci/amdgpu-pci.ids"
-
-
-    # Install ATI/Radeon config file
-    install -D -m644 "${srcdir}/MHWDCONFIG_video-radeon+" \
-    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-radeon+/MHWDCONFIG"
-
-    # install catalystuninstaller
-    install -D -m755 "${srcdir}/catalystuninstall" \
-    "${pkgdir}/usr/bin/catalystuninstall"
+    # Install intel-AMDGPU-experimental Prime config file
+    install -D -m644 "${srcdir}/MHWDCONFIG_video-hybrid-intel-amdgpu-experimental-prime" \
+    "${pkgdir}/var/lib/mhwd/db/pci/graphic_drivers/video-hybrid-intel-amdgpu-experimental-prime/MHWDCONFIG"
 }
 
 package_amdgpu-experimental()
 {
-    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)"
+    pkgdesc="Enables experimental AMDGPU support for Sea Islands(GCN1.1) and Southern Islands(GCN 1.0)."
     depends=('linux>=4.9')
+    conflicts=('xf86-video-ati')
     install='amdgpu-experimental.install'
 
     cd "${srcdir}"
@@ -81,15 +58,18 @@ package_amdgpu-experimental()
     ## install module-load file,
     ## radeon blacklist,
     ## exp_hw_support,
-    ## pacman hook
+    ## pacman hook,
+    ## amdgpu-experimental xorg.config
     ##
     ##################################################
-    install -D -m644 "${srcdir}/amdgfx-hwe-amdgpu.conf" \
-    "${pkgdir}/etc/modules-load.d/amdgfx-hwe-amdgpu.conf"
-    install -D -m644 "${srcdir}/amdgfx-hwe-radeon_blacklist.conf" \
-    "${pkgdir}/etc/modprobe.d/amdgfx-hwe-radeon_blacklist.conf"
+    install -D -m644 "${srcdir}/amdgpu.conf" \
+    "${pkgdir}/usr/lib/modules-load.d/amdgpu.conf"
+    install -D -m644 "${srcdir}/radeon_blacklist.conf" \
+    "${pkgdir}/usr/lib/modprobe.d/radeon_blacklist.conf"
     install -D -m644 "${srcdir}/amdgpu-exp_hw_support.conf" \
-    "${pkgdir}/etc/modprobe.d/amdgpu-exp_hw_support.conf"
+    "${pkgdir}/usr/lib/modprobe.d/amdgpu-exp_hw_support.conf"
     install -D -m644 "${srcdir}/amdgpu-experimental.hook" \
     "${pkgdir}/usr/share/libalpm/hooks/98-amdgpu-experimental.hook"
+    install -D -m644 "${srcdir}/10-amdgpu-experimental.conf" \
+    "${pkgdir}/usr/share/X11/xorg.conf.d/10-amdgpu-experimental.conf"
 }
