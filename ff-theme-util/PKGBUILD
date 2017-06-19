@@ -1,14 +1,14 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=ff-theme-util
-pkgver=1.0
-pkgrel=2
+pkgver=1.1
+pkgrel=1
 pkgdesc="Utility to autocreate matching Firefox-theme symlinks"
 arch=('any')
 depends=('inotify-tools')
 source=('ff-theme-util'
     'ff-theme-util.desktop')
-md5sums=('92f42c72104f7545c800c1ea055182de'
+md5sums=('fe2b63554b30f795a009acf914d8968c'
          'edded55fe9b76bf695885c1372fbcbf6')
 
 package() {

@@ -11,7 +11,7 @@ get_config() {
         gnome) current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
             ;;
         xfce) config="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml"
-            current_theme=$(xfconf-query -lvc xsettings -p /Net/ThemeName| cut -d' ' -f3)
+            current_theme=$(xfconf-query -lvc xsettings -p /Net/ThemeName | cut -d' ' -f3)
             ;;
         *)  if [[ $gtk3_conf -nt $config ]]; then
                 config=$gtk3_conf
@@ -29,10 +29,22 @@ has_chrome() {
     [[ -e "$chromedir" ]] && return 0 || return 1
 }
 
+# list Firefor and Palemoon userprofiles
+profiles() {
+    grep Path "$profiledir/profiles.ini" | cut -d'=' -f2
+}
+
 # create symlinks to chrome dir for each profile
 set_theme() {
-    for p in $(grep Path "$profiledir/profiles.ini" | cut -d'=' -f2); do
+    for p in $(profiles); do
         ln -sfd "$1" "$profiledir/$p"
+    done
+}
+
+unset_theme() {
+    for p in $(profiles); do
+    userchrome="$profiledir/$p/chrome"
+        [[ -L "$userchrome" ]] && rm -f "$userchrome"
     done
 }
 
@@ -51,6 +63,7 @@ update_theme() {
         fi
     else
         has_ff=false
+        unset_theme
     fi
 
     # Palemoon
@@ -62,6 +75,8 @@ update_theme() {
         # fallback to Firefox theme if available
         elif [[ $has_ff == "true" ]]; then
            set_theme $ff_chromedir
+        else
+            unset_theme
         fi
     fi
 }
