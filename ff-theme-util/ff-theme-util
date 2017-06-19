@@ -1,7 +1,27 @@
 #! /bin/sh
 # /usr/bin/ff-theme-util
 
-config="$HOME/.gtkrc-2.0"
+# determine config to watch and method to query current gtk theme
+get_config() {
+    config="$HOME/.gtkrc-2.0"
+    gtk3_conf="$HOME/.config/gtk-3.0/settings.ini"
+    case $DESKTOP_SESSION in
+        cinnamon) current_theme=$(gsettings get org.cinnamon.desktop.interface gtk-theme | tr -d \')
+            ;;
+        gnome) current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
+            ;;
+        xfce) config="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml"
+            current_theme=$(xfconf-query -lvc xsettings -p /Net/ThemeName| cut -d' ' -f3)
+            ;;
+        *)  if [[ $gtk3_conf -nt $config ]]; then
+                config=$gtk3_conf
+                current_theme=$(grep "gtk-theme-name" $config | cut -d'=' -f2)
+            else
+                current_theme=$(grep "gtk-theme-name" $config | cut -d'"' -f2)
+            fi
+            ;;
+    esac
+}
 
 # check if current theme provides chrome dir
 has_chrome() {
@@ -17,8 +37,7 @@ set_theme() {
 }
 
 update_theme() {
-    current_theme=$(grep "gtk-theme-name" $config | cut -d'"' -f2)
-    [[ ! -e $config ]] && current_theme=
+    get_config
 
     # Firefox
     profiledir="$HOME/.mozilla/firefox"
@@ -47,6 +66,7 @@ update_theme() {
     fi
 }
 
+get_config
 update_theme
 
 # watch for gtk2 theme changes
