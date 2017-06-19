@@ -3,7 +3,7 @@
 
 config="$HOME/.gtkrc-2.0"
 
-# check if current themes ṕrovides chrome dir
+# check if current theme provides chrome dir
 has_chrome() {
     chromedir="$themesdir/$current_theme/chrome"
     [[ -e "$chromedir" ]] && return 0 || return 1
@@ -16,9 +16,9 @@ set_theme() {
     done
 }
 
-# watch for gtk2 theme changes
-while inotifywait -e attrib $config; do
+update_theme() {
     current_theme=$(grep "gtk-theme-name" $config | cut -d'"' -f2)
+    [[ ! -e $config ]] && current_theme=
 
     # Firefox
     profiledir="$HOME/.mozilla/firefox"
@@ -45,6 +45,13 @@ while inotifywait -e attrib $config; do
            set_theme $ff_chromedir
         fi
     fi
+}
+
+update_theme
+
+# watch for gtk2 theme changes
+while inotifywait -e attrib $config; do
+    update_theme
 done
 
 exit 0
