@@ -8,7 +8,9 @@ get_config() {
     case $DESKTOP_SESSION in
         cinnamon) current_theme=$(gsettings get org.cinnamon.desktop.interface gtk-theme | tr -d \')
             ;;
-        gnome) current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
+        deepin) current_theme=$(gsettings get com.deepin.wrap.gnome.desktop gtk-theme | tr -d \')
+            ;;
+        gnome|budgie|pantheon) current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
             ;;
         xfce) config="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml"
             current_theme=$(xfconf-query -lvc xsettings -p /Net/ThemeName | cut -d' ' -f3)

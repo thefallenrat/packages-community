@@ -8,7 +8,7 @@ arch=('any')
 depends=('inotify-tools')
 source=('ff-theme-util'
     'ff-theme-util.desktop')
-md5sums=('fe2b63554b30f795a009acf914d8968c'
+md5sums=('1df48d3b7e1ef40ae95f79ea3d8ef0e1'
          'edded55fe9b76bf695885c1372fbcbf6')
 
 package() {
