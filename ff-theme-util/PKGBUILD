@@ -1,17 +1,21 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=ff-theme-util
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
-pkgdesc="Utility to autocreate matching Firefox-theme symlinks"
+pkgdesc="Utility to autocreate matching Firefox and Palemoon theme symlinks"
 arch=('any')
+license=('GPL3')
 depends=('inotify-tools')
 source=('ff-theme-util'
-    'ff-theme-util.desktop')
-md5sums=('1df48d3b7e1ef40ae95f79ea3d8ef0e1'
-         'edded55fe9b76bf695885c1372fbcbf6')
+    'ff-theme-util.desktop'
+    'profiles.ini')
+md5sums=('a38da3e8c3c58f73f9b3349d497b2103'
+         'edded55fe9b76bf695885c1372fbcbf6'
+         '794751c52b1922d4c9be995cff48547d')
 
 package() {
     install -Dm755 ff-theme-util $pkgdir/usr/bin/ff-theme-util
+    install -Dm644 profiles.ini $pkgdir/etc/ff-theme-util/profiles.ini
     install -Dm644 ff-theme-util.desktop $pkgdir/etc/skel/.config/autostart/ff-theme-util.desktop
 }
