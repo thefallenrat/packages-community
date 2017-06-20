@@ -107,7 +107,7 @@ update_theme() {
     fi
 
     # Palemoon
-    profiledir="pm_profiledir"
+    profiledir="$pm_profiledir"
     themesdir=/usr/share/themes/Palemoon
     if [[ -e "$profiledir" ]]; then
         if has_chrome; then
