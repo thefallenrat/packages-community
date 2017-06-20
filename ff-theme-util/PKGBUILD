@@ -10,7 +10,7 @@ depends=('inotify-tools')
 source=('ff-theme-util'
     'ff-theme-util.desktop'
     'profiles.ini')
-md5sums=('a38da3e8c3c58f73f9b3349d497b2103'
+md5sums=('a31cf45cf2b7ad42b219be728036a0ca'
          'edded55fe9b76bf695885c1372fbcbf6'
          '794751c52b1922d4c9be995cff48547d')
 
