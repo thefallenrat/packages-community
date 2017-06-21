@@ -3,7 +3,7 @@
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgname=cinnamon-settings-daemon
-pkgver=3.4.1
+pkgver=3.4.2
 pkgrel=0.1
 pkgdesc="The Cinnamon Settings daemon"
 arch=('i686' 'x86_64')
@@ -17,7 +17,7 @@ makedepends=('autoconf-archive' 'intltool' 'docbook-xsl' 'xf86-input-wacom')
 options=('!emptydirs')
 source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
 #source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('5065a61be4d8fa16a043acda882b7c00d23100a3de7cfd87e9b8f4f0036fa5b9')
+sha256sums=('b30a3b64e4263e4dbe2678c0cff5cef97944282fabb8f4b6fa3ca6c65c8f1522')
 
 build() {
   cd $pkgname-$pkgver

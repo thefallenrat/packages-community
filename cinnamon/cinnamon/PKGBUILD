@@ -5,7 +5,7 @@
 # Contributor: CReimer
 
 pkgname=cinnamon
-pkgver=3.4.1
+pkgver=3.4.2
 pkgrel=1.1
 pkgdesc="Linux desktop which provides advanced innovative features and a traditional user experience"
 arch=('i686' 'x86_64')
@@ -19,12 +19,14 @@ depends=('accountsservice'
     'cjs'
     'clutter-gtk'
     'gnome-backgrounds'
+    'gnome-panel'
     'gnome-themes-standard'
     'gstreamer'
     'iso-flag-png'
     'libgnome-keyring'
     'libkeybinder3'
     'librsvg'
+    'metacity'
     'muffin'
     'python2-cairo'
     'python-dbus'
@@ -41,6 +43,7 @@ depends=('accountsservice'
     'network-manager-applet'
     'nemo'
     'polkit-gnome'
+    'tint2'
     'xapps'
     'python2-gobject')
 makedepends=('autoconf-archive'
@@ -55,7 +58,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/
         "set_wheel.patch"
         "default-theme.patch"
         'add-msm.patch')
-sha256sums=('775af47504a5f1acfb512e45d915d0301baab5a9eb945e204cc79d5867cfd598'
+sha256sums=('182ed619f92831b83e9bfd89803bbd750c6cb0ee9d097120cdd40eb19d41e302'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
             '6bd365915fc400be2e245104659744a038c61fe618c47d96977d750ba3e4e3d7')

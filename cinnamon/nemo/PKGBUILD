@@ -1,14 +1,12 @@
-# $Id$
 # Maintainer: Alexandre Filgueira <alexfilgueira@cinnarch.com>
 # Contributor: Ner0
 
 pkgname=nemo
-pkgver=3.4.2
+pkgver=3.4.3
 pkgrel=0.1
 pkgdesc="Cinnamon file manager (Nautilus fork)"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/nemo"
-#_snapshot=77ff741db809455251cb2a3fce6716e6dffb5f2f
 license=('GPL')
 depends=('cinnamon-desktop'
     'cinnamon-translations'
@@ -31,18 +29,16 @@ makedepends=('gnome-common'
 options=('!emptydirs')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/nemo/tarball/$pkgver")
 #source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('a76a3bc9ccffda4aed30fdf02b51e2da0388de8511c1c4c12e856af8555fca0f')
+sha256sums=('5a8d701d35ad9329e591bc612f97aa584255581ea685725b49a27d8319e27129')
 
 prepare() {
   cd linuxmint-nemo-*
-#  cd nemo-$_snapshot
   # Rename 'Files' app name to avoid having the same as nautilus
   sed -i 's/^Name\(.*\)=.*/Name\1=Nemo/' data/nemo.desktop.in.in
 }
 
 build() {
   cd linuxmint-nemo-*
-#  cd nemo-$_snapshot
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc \
       --localstatedir=/var --disable-static \
@@ -61,7 +57,6 @@ build() {
 
 package() {
   cd linuxmint-nemo-*
-#  cd nemo-$_snapshot
   make DESTDIR="$pkgdir" install
 
   # Remove D-Bus activation file to avoid conflict with nautilus-desktop

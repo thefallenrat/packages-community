@@ -4,19 +4,29 @@
 # Jan de Groot <jgc@archlinux.org>
 
 pkgname=cinnamon-screensaver
-pkgver=3.4.0
-pkgrel=0.1
+pkgver=3.4.1
+pkgrel=0.2
 pkgdesc="Screensaver designed to integrate well with the Cinnamon desktop."
 arch=('i686' 'x86_64')
 license=('GPL')
 url="https://github.com/linuxmint/$pkgname"
 backup=(etc/pam.d/cinnamon-screensaver)
-depends=('cinnamon-desktop' 'cinnamon-translations' 'dbus-glib' 'libgnomekbd' 'python-cairo'
-         'python-gobject' 'python-setproctitle' 'xapps' 'webkit2gtk')
-makedepends=('intltool' 'gnome-common' 'gobject-introspection')
+depends=('cinnamon-desktop'
+    'cinnamon-translations'
+    'dbus-glib'
+    'libgnomekbd'
+    'python-cairo'
+    'python-gobject'
+    'python-setproctitle'
+    'python-xapp'
+    'webkit2gtk'
+    'xapps')
+makedepends=('gnome-common'
+    'gobject-introspection'
+    'intltool')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz"
        'cinnamon-screensaver.pam')
-sha256sums=('473a475ad6d324e59596b2dd5361043875acbc6b5961ae29515466f9629147e6'
+sha256sums=('e25b68c74d7307eb0db30cf31d2f819981e25cf7371b339a08895c0506d55341'
             '7148b3b1773fa312d6cd14798338cc70cffb6df7504ff1787687edd0363138d2')
 
 build() {
