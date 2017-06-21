@@ -43,8 +43,8 @@ package() {
 	cd ${_pkgname}-${pkgver}
     make DESTDIR="${pkgdir}" install
 # adjust launcher name
-    mv $pkgdir/usr/share/applications/slick-greeter.desktop \
-      $pkgdir/usr/share/applications/lightdm-slick-greeter.desktop
+    mv $pkgdir/usr/share/xgreeters/slick-greeter.desktop \
+      $pkgdir/usr/share/xgreeters/lightdm-slick-greeter.desktop
 # Install default conf 
     install -Dm644 $srcdir/$_pkgname.conf $pkgdir/etc/lightdm/$_pkgname.conf
 }
