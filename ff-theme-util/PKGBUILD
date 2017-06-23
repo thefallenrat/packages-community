@@ -2,7 +2,7 @@
 
 pkgname=ff-theme-util
 pkgver=1.3
-pkgrel=1
+pkgrel=3
 pkgdesc="Utility to autocreate matching Firefox and Palemoon theme symlinks"
 arch=('any')
 url="https://github.com/oberon2007/$pkgname"
@@ -15,6 +15,5 @@ package() {
     cd $pkgname
     install -Dm755 ff-theme-util $pkgdir/usr/bin/ff-theme-util
     install -Dm644 profiles.ini $pkgdir/etc/ff-theme-util/profiles.ini
-    install -Dm644 ff-theme-util.desktop $pkgdir/usr/share/applications/ff-theme-util.desktop
     install -Dm755 ff-theme-util.desktop $pkgdir/etc/skel/.config/autostart/ff-theme-util.desktop
 }
