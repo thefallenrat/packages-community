@@ -2,7 +2,7 @@
 
 pkgname=compare-mirrors
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A program to compare package differences between Manjaro and Arch mirrors."
 arch=('any')
 url="https://github.com/joshuastrot/compare-mirrors.git"
