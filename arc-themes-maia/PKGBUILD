@@ -8,15 +8,17 @@ pkgname=('arc-themes-solid-maia'
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
 pkgver=20170302
-pkgrel=2
+pkgrel=3
+_commit=4b75f33ff2cfedb6ba0809cf877deb2d2831e6c3
 #_gnomever=3.22
 arch=('any')
 url='https://github.com/horst3180/arc-theme'
 license=('GPL3')
 depends=('gtk-engine-murrine' 'gtk3')
 makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'libcanberra')
-source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
-sha256sums=('9ca5c1d1ac267c4ae3725e84519d42bfb8c4c6934989839ebe3cb8699fbdfd45')
+#source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
+source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${_commit}.tar.gz")
+sha256sums=('09b701a2e5a94a3e6431b8d27ffdacd7ba9eff56e5e4d0d5a56040ca9bfdc1b6')
 
 #ALL arc color
 _blue=5294e2 
@@ -75,6 +77,9 @@ _maia18='22, 160, 133, 0.9'
 
 build() {
 cd $srcdir
+
+cp -R "$_pkgname-$_commit" "$_pkgname-$pkgver" #add only for git commit
+
 cp -R "$_pkgname-$pkgver" "$_pkgbase-$pkgver"
 cd $srcdir/$_pkgbase-$pkgver
 msg "Build arc-themes-maia" 
