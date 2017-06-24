@@ -5,15 +5,14 @@
 pkgname=arc-maia-icon-theme
 _pkgname=arc-icon-theme
 pkgver=20161122
-pkgrel=1
+pkgrel=2
 pkgdesc='Arc icon theme Manjaro variant.'
 arch=('any')
 url="https://github.com/horst3180/arc-icon-theme"
 license=('GPL3')
-depends=('gtk-update-icon-cache' 'hicolor-icon-theme')
-makedepends=('inkscape' 'optipng' 'libcanberra')
-optdepends=( #'moka-icon-theme-git: Arc icon theme was built to be used on top of Moka icon theme'
-             #'faba-icon-theme: Smaller version of moka with no application icons'
+depends=('gtk-update-icon-cache' 'hicolor-icon-theme' 'moka-icon-theme')
+makedepends=('inkscape' 'optipng' 'libcanberra') 
+optdepends=('faba-icon-theme: Smaller version of moka with no application icons'
             'elementary-icon-theme: Secondary icon theme fallback'
             'arc-themes-maia: gtk theme of arc-maia')
 options=('!emptydirs' '!strip')
