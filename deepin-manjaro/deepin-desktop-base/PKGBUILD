@@ -1,0 +1,27 @@
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
+
+pkgname=deepin-desktop-base
+pkgver=2016.11.30
+pkgrel=1.2
+pkgdesc='Base component for Deepin'
+arch=('any')
+url="https://github.com/oberon2007/deepin-desktop-base"
+license=('GPL3')
+depends=('deepin-wallpapers')
+makedepends=('git')
+groups=('deepin')
+source=("git+$url.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+build() {
+  cd $pkgname
+  make
+}
+
+package() {
+  cd $pkgname
+  make DESTDIR="$pkgdir" install
+}
