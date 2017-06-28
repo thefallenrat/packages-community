@@ -8,34 +8,39 @@
 
 pkgname=dmenu-manjaro
 _pkgname=dmenu
-pkgver=4.6
-pkgrel=12
+pkgver=4.7
+pkgrel=1
 pkgdesc="customized recency-aware dmenu for manjaro-i3 with xft- and mouse-support"
 arch=('i686' 'x86_64')
 groups=('i3-manjaro')
 license=('MIT')
-depends=('sh' 'libxinerama' 'libxft' 'noto-fonts')
+depends=('freetype2'
+    'libxft'
+    'libxinerama'
+    'noto-fonts'
+    'sh')
 conflicts=('dmenu' 'dmenu-xft')
 provides=('dmenu' 'dmenu-xft')
 install=$pkgname.install
-source=(http://dl.suckless.org/tools/$_pkgname-$pkgver.tar.gz
-	dmenu-4.6-line-height-manjaro.diff
-	dmenu-4.6-xyw-manjaro.diff
-	dmenu-4.6-mouse-support-msel-manjaro.diff
+source=("http://dl.suckless.org/tools/$_pkgname-$pkgver.tar.gz"
+    http://tools.suckless.org/dmenu/patches/dmenu-mousesupport-4.7.diff
+    #dmenu-4.7-line-height.diff
+    #dmenu-4.6-xyw-manjaro.diff
 	dmenu_recency
 	dmenurc)
-md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
-         '0e7946b11aba7e445fb0f97431a332da'
-         '90ace6ce00d5eca669cb6039583413fe'
-         '75ce132d2f30208b7cdef0d70339bae2'
+md5sums=('57b5c28f7e3de908f5e5c2a65cd72e16'
+         '274972c3f6de489dd00543a6d653b960'
          'dbae2dd8b406d0635af7a7037ae81e79'
          '328cae6ab0094d2c7efb5ea4d77e5597')
 
 prepare() {
 	cd $srcdir/$_pkgname-$pkgver
-	patch -p1 < ../dmenu-4.6-line-height-manjaro.diff
-	patch -p1 < ../dmenu-4.6-xyw-manjaro.diff
-	patch -p1 < ../dmenu-4.6-mouse-support-msel-manjaro.diff
+	msg "mouse"
+	patch -p1 < ../dmenu-mousesupport-4.7.diff
+	#msg "line-height"
+	#patch -p1 < ../dmenu-4.6-line-height-manjaro.diff
+	#msg "xyw"
+	#patch -p1 < ../dmenu-4.6-xyw-manjaro.diff
 }
 build() {
 	cd $_pkgname-$pkgver
@@ -47,5 +52,5 @@ package() {
 	make PREFIX=/usr DESTDIR="$pkgdir" install
 	install -Dm755 "$srcdir/dmenu_recency" "$pkgdir/usr/bin/dmenu_recency"
 	install -Dm755 "$srcdir/dmenurc" "$pkgdir/usr/share/$_pkgname/dmenurc"
-	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+    install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
