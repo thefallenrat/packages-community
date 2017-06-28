@@ -5,8 +5,8 @@
 # Contributor: CReimer
 
 pkgname=cinnamon
-pkgver=3.4.2
-pkgrel=2
+pkgver=3.4.3
+pkgrel=1
 pkgdesc="Linux desktop which provides advanced innovative features and a traditional user experience"
 arch=('i686' 'x86_64')
 url="https://github.com/linuxmint/Cinnamon"
@@ -19,7 +19,6 @@ depends=('accountsservice'
     'cjs'
     'clutter-gtk'
     'gnome-backgrounds'
-    'gnome-panel'
     'gnome-themes-standard'
     'gstreamer'
     'iso-flag-png'
@@ -59,7 +58,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/
         "set_wheel.patch"
         "default-theme.patch"
         'add-msm.patch')
-sha256sums=('182ed619f92831b83e9bfd89803bbd750c6cb0ee9d097120cdd40eb19d41e302'
+sha256sums=('1a56afcf40e0713057d99cd7aae281a07c8fe21a93f5b40e1f23394b227c4ac1'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
             '6bd365915fc400be2e245104659744a038c61fe618c47d96977d750ba3e4e3d7')
