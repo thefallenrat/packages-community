@@ -3,20 +3,24 @@
 # SpepS <dreamspepser at yahoo dot it>
 # Tobias Powalowski <tpowa@archlinux.org>
 
-# Maintainer: Philip Müller <philm[at]manjaro[dot]org
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 
-pkgname=('linux-rt-lts-manjaro-ndiswrapper')
+_linuxprefix=linux-rt-lts-manjaro
+_extramodules=extramodules-4.9-rt-lts-MANJARO
+pkgname="$_linuxprefix-ndiswrapper"
 _pkgname=ndiswrapper
-groups=('linux-rt-lts-manjaro-extramodules')
+groups=("$_linuxprefix-extramodules")
 pkgver=1.61
-pkgrel=9
+pkgrel=10
 pkgdesc="Module for NDIS (Windows Network Drivers) drivers supplied by vendors."
 license=('GPL')
 arch=('x86_64')
 url="http://ndiswrapper.sourceforge.net"
-depends=('linux-rt-lts-manjaro' 'wireless_tools' 'perl' "$_pkgname-utils")
-makedepends=('linux-rt-lts-manjaro-headers')
+depends=("$_linuxprefix" 'wireless_tools' 'perl' "$_pkgname-utils")
+makedepends=("$_linuxprefix-headers")
+provides=("$_pkgname=$pkgver")
+install=ndiswrapper.install
 source=("http://downloads.sourceforge.net/sourceforge/$_pkgname/$_pkgname-$pkgver.tar.gz"
         "kernel-4.0.patch"
         "kernel-4.2.patch")
@@ -32,29 +36,26 @@ prepare() {
 }
 
 build() {
-  _extramodules=extramodules-4.4-rt-lts-MANJARO
-  _kver="$(cat /usr/lib/modules/${_extramodules}/version)"
+  _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
+
   cd "$srcdir/$_pkgname-$pkgver"
 
   # modinfo path fix
   sed -i "/modinfo/s/s/usr\//" driver/Makefile
 
   # make sure we point to the right build directory
-  sed -i "/^KBUILD/ s,.*,KBUILD = $(readlink -f /usr/lib/modules/$_kver/build)," driver/Makefile
+  sed -i "/^KBUILD/ s,.*,KBUILD = $(readlink -f /usr/lib/modules/$_kernver/build)," driver/Makefile
 
-  make KVERS=$_kver
+  make KVERS=$_kernver
 }
 
 package() {
-  _extramodules=extramodules-4.4-rt-lts-MANJARO
-  _kver="$(cat /usr/lib/modules/${_extramodules}/version)"
-  provides=("$_pkgname=$pkgver")
-  groups=('linux-rt-lts-manjaro-extramodules')
-  install=ndiswrapper.install
+  _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
+  
   cd "$srcdir/$_pkgname-$pkgver"
 
   make INST_DIR="usr/lib/modules/$_extramodules" \
-    KVERS=$_kver DESTDIR="$pkgdir/" sbindir=/usr/bin usrsbindir=/usr/bin install
+    KVERS=$_kernver DESTDIR="$pkgdir/" sbindir=/usr/bin usrsbindir=/usr/bin install
 
   # set the kernel we've built for inside the install script
   sed -i -e "s/EXTRAMODULES=.*/EXTRAMODULES=${_extramodules}/g" "${startdir}/${_pkgname}.install"

@@ -1,15 +1,15 @@
 # Based on the file created for Arch Linux by:
-# Thomas Baechler <thomas@archlinux.org>
+# Maintainer : Thomas Baechler <thomas@archlinux.org>
 
+# Maintainer: Bernhard Landauer
 # Maintainer: Philip Müller <philm@manjaro.org>
-# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 _linuxprefix=linux-rt-lts-manjaro
-_extramodules=extramodules-4.4-rt-lts-MANJARO
+_extramodules=extramodules-4.9-rt-lts-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=375.66
-pkgrel=3
+pkgrel=4
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
@@ -23,11 +23,9 @@ license=('custom')
 install=nvidia.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
-#source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}.run")
-source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-md5sums_x86_64=('361843d4b714a9876b3599fd8dca2412')
+source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
+sha256sums=('26f3133dd053835c35fb27b04fccd3a3bb4f18bbbacb5e4bf89c40d142cab397')
 
-#_pkg="NVIDIA-Linux-x86_64-${pkgver}"
 _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
 prepare() {

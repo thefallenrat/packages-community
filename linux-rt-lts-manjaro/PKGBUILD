@@ -1,145 +1,138 @@
-# Maintainer: Budiman JoJo <budimanjojo@gmail.com>
-# Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Contributor: Joakim Hernberg <jbh@alchemy.lu>
-# Contributor: Ray Rashif <schiv@archlinux.org>
-# Contributor: timbosa <tinny_tim@dodo.com.au>
-# Contributor: Tobias Powalowski <tpowa@archlinux.org>
-# Contributor: Thomas Baechler <thomas@archlinux.org>
+# Based on the file created for Arch Linux by:
+# Tobias Powalowski <tpowa@archlinux.org>
+# Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux-rt-lts         # Build kernel with a different name
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Budiman JoJo <budimanjojo@gmail.com>
+# Maintainer: Philip Müller <philm@manjaro.org>
+
+pkgbase=linux-rt-lts
 pkgname=('linux-rt-lts-manjaro' 'linux-rt-lts-manjaro-headers')
-_basekernel=4.4
-_srcname=linux-${_basekernel}
-_basever=44-rt-lts
-_sub=70
+_kernelname=-MANJARO
+_basekernel=4.9
+_basever=49-rt-lts
+#_aufs=20170327
+_bfq=v8r11
+_sub=33
 _pkgver=${_basekernel}.${_sub}
-_pkgverrt=$_pkgver
-_rtpatchver=rt83
-_bfq=v8r10
+_rtpatchver=rt23
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils')
 options=('!strip')
-source=("https://github.com/torvalds/linux/archive/v${_basekernel}.tar.gz"
+source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.xz"
+        # upstream patch
         "http://www.kernel.org/pub/linux/kernel/v4.x/patch-${_pkgver}.xz"
-        # the main kernel config file
+        # the main kernel config files
         'config.x86_64'
+        'config.rt'
+        'config.no_hz'
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
         "${pkgname}.hook"
-		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/1700_enable-thinkpad-micled.patch'
-		'http://dev.gentoo.org/~mpagano/genpatches/trunk/3.15/2700_ThinkPad-30-brightness-control-fix.patch'
-        "0001-BFQ-${_bfq}-v${pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a8e0574...4611251.patch"
+        "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/69973b8...d231bcc.patch"
         # ARCH Patches
         'change-default-console-loglevel.patch'
-        # MANJARO Patches
-        'nvidia-304xx-mtrr-unknown-symbol.patch'
-        '0001-sdhci-revert.patch'
-        'i8042-asus-notebook.patch::https://bugzilla.kernel.org/attachment.cgi?id=242001&action=diff&context=patch&collapsed=&headers=1&format=raw'
+        # Manjaro Patches
+        '0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch::https://github.com/torvalds/linux/commit/2ae3986b84e9d325bc92a1efbcf0c6b0f5016b35.patch'
+        '0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/4fed0231994b27b3896bc63885ac66d02fff625b.patch'
+        '0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/66e5c5ffc7a5e4d36d136ce4fd8bdb4e92ecec7b.patch'
+        '0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/0a76ac80e84d0be0aba24ab60ac3bc14bc49bbc9.patch'
         # RT Patch
-        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.xz"
-        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgverrt}-${_rtpatchver}.patch.sign"
-        'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch'
-        'config.diff')
-sha256sums=('5b8fc6519a737a5c809171e08225f050bf794f1f369c4c387ed3c8a89b1e995b'
-            'd9f80f6d2f65a6a188f516ddd95fa304b52ae8cd3ba0cbd6616455d40dc0046b'
-            '4093305430a6c02c9ddf52a42bb79874cc85ea89f08ef0285f08ac6e46efe1fa'
+        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
+        "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
+        'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
+sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
+            '939006459d6bd9ac4374956353b795a746bd4a6b357eea1e349cd84638713ad2'
+            'eaa482628b60b3420dcd72a0017195d39c0c52d60e848f549bfe4b6f20137973'
+            '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
+            'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
-            '461aa0da7de8bda9474797339532304894b55825be34f8c009244da8c00c5b41'
-            'a3f85c3c35ee478fd174f8aaa6ca15e5fad8612b42ca4d90cc3ef79b49a99989'
-            '97eecfe1ff21bfcb3029cee3bf95a60a4a4008382423e3c51decf51c76f70c17'
+            '30f5e70efe6a6cd274a5160d8fcf8557c9da2084db39ec98c4f1789071f96226'
             '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
-            '3c158ebe93e3710d9a669015f0868f89c5170efdc36cb7cf5f46cc85df61ad3e'
-            '5313df7cb5b4d005422bd4cd0dae956b2dadba8f3db904275aaf99ac53894375'
-            '6f836c7ede51db88504fee33e228af368b1b6cb08f3dc7536849945f595a6758'
-            'dc27fecd9570a6453df08ecf2768e7f7357d95af2444c8549b9e41d461b456cd'
+            'c317b35c5661b96445b05ea7a1a7564c10650f94fb273a2cbf6d21eaa41e7a06'
+            '3aaca014f7e4768965dfe5e9740f2007d49f2319db6b6cf566ac7b8b869a6506'
+            'dc464866c4b773644b729803ec3e99c0cdd9781727db35337ac6b06ccd3f458b'
+            '555b6a27b3a34a81e422f0ac935ee72ae8bfd798799aea443f8036518bdaea00'
+            '9263b1b83300695168dd0892f46b847544c82aba7ae33de3e800323fed31bd55'
             'SKIP'
-            '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06'
-            '2f82667c5a3bdc4ae54e765c54071ef5cc8edbbc8cb71ef1474e82258b82bcb2')
-            
-validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
-            '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
-            '64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
-            '5ED9A48FC54C0A22D1D0804CEBC26CDB5A56DE73' # Steven Rostedt
-            'E644E2F1D45FA0B2EAA02F33109F098506FF0B14' # Thomas Gleixner
-			)
+            '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
+validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
+            '4FE5E3262872E4CC')
 
 _kernelname=${pkgbase#linux}
 
 prepare() {
-  cd "${srcdir}/${_srcname}"
+  cd "${srcdir}/linux-${_basekernel}"
 
-  msg2 "add upstream patch"
+  # add upstream patch
+  msg "applying patch-${_pkgver}"
   patch -p1 -i "${srcdir}/patch-${_pkgver}"
+
+  # Add RT patch
+  msg "applying patch-${_pkgver}-${_rtpatchver}.patch"
+  patch -p1 -i "${srcdir}/patch-${_pkgver}-${_rtpatchver}.patch"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
   # enable only if you have "gen-stable-queue-patch.sh" executed before
-  #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}-20161029"
-
-  # revert http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=9faac7b95ea4f9e83b7a914084cc81ef1632fd91
-  # fixes #47778 sdhci broken on some boards
-  # https://bugzilla.kernel.org/show_bug.cgi?id=106541
-  # https://github.com/manjaro/packages-core/issues/27
-  msg2 "...sdhci patch"
-  patch -Rp1 -i "${srcdir}/0001-sdhci-revert.patch"
+  #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}`date +%Y%m%d`"
 
   # set DEFAULT_CONSOLE_LOGLEVEL to 4 (same value as the 'quiet' kernel param)
   # remove this when a Kconfig knob is made available by upstream
   # (relevant patch sent upstream: https://lkml.org/lkml/2011/7/26/227)
-  msg2 "...default console level 4"
+  msg "change-default-console-loglevel.patch"
   patch -p1 -i "${srcdir}/change-default-console-loglevel.patch"
 
-  # fix X455LB touchpad issue
-  # https://github.com/manjaro/packages-core/pull/39
-  msg2 "...X455LB touchpad patch"
-  patch -p1 -i "${srcdir}/i8042-asus-notebook.patch"
-
-  # add Gentoo patches
-  msg2 "...thinkpad-micled patch"
-  patch -Np1 -i "${srcdir}/1700_enable-thinkpad-micled.patch"
-  msg2 "...ThinkPad-30 brightness-control patch"
-  patch -Np1 -i "${srcdir}/2700_ThinkPad-30-brightness-control-fix.patch"
-
-  # Add RT patch
-  msg2 "applying patch-${_pkgverrt}-${_rtpatchver}.patch"
-  patch -p1 -i "${srcdir}/patch-${_pkgverrt}-${_rtpatchver}.patch"
-
-  msg2 "add BFQ scheduler"
-  # fix patch
-  sed -i "s|SUBLEVEL = 0|SUBLEVEL = ${_sub}|" $srcdir/0001-BFQ-${_bfq}-v${pkgver}.patch
-  patch -Np1 -i "${srcdir}/0001-BFQ-${_bfq}-v${pkgver}.patch"
-
-  # Fix Nvidia 304xx issue
-  # https://bugs.archlinux.org/task/47092
-  msg2 "...Nvidia 304xx patch"
-  patch -Np1 -i "${srcdir}/nvidia-304xx-mtrr-unknown-symbol.patch"
+  # extend Microsoft Surface support
+  patch -p1 -i "${srcdir}/0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch"
+  patch -p1 -i "${srcdir}/0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch"
+  patch -p1 -i "${srcdir}/0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch"
+  patch -p1 -i "${srcdir}/0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch"
 
   # A patch to fix a problem that ought to be fixed in the NVIDIA source code.
   # Stops X from hanging on certain NVIDIA cards
-  msg2 "fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
+  msg "fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
   patch -p1 -i "${srcdir}/fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
+  
+  # add BFQ scheduler
+  # fix patch
+  sed -i "s|SUBLEVEL = 0|SUBLEVEL = ${_sub}|" $srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch
+  msg "BFQ scheduler patch"
+  patch -Np1 -i "$srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch"
 
-  msg2 "All patches have successfully been applied"
-
-  # kernel configuration
+  msg "All patches have successfully been applied"
+  
   cat "${srcdir}/config.x86_64" > ./.config
-  msg2 "adjust config for rt-patch"
-  patch -Np1 -i "${srcdir}/config.diff"
+  cat "${srcdir}/config.rt" >> ./.config
+
   # Set processor interupt frequency to 1000Hz
   sed -i "s|CONFIG_HZ_300=y|# CONFIG_HZ_300 is not set|g" ./.config
   sed -i "s|# CONFIG_HZ_1000 is not set|CONFIG_HZ_1000=y|g" ./.config
   sed -i "s|CONFIG_HZ=300|CONFIG_HZ=1000|g" ./.config
 
-  if [ "${_kernelname}" != "" ]; then
-    sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"-MANJARO\"|g" ./.config
-    sed -i "s|CONFIG_LOCALVERSION_AUTO=.*|CONFIG_LOCALVERSION_AUTO=n|" ./.config
-  fi
+  # Add support for latencytop to test latency
+  sed -i "s|# CONFIG_LATENCYTOP is not set|CONFIG_LATENCYTOP=y|g" ./.config
 
+  # Match linux-rt config
+  sed -i "/CONFIG_UNINLINE_SPIN_UNLOCK=y/d" ./.config
+  sed -i "/CONFIG_MUTEX_SPIN_ON_OWNER=y/d" ./.config
+  sed -i "/CONFIG_RWSEM_SPIN_ON_OWNER=y/d" ./.config
+  sed -i "/CONFIG_LOCK_SPIN_ON_OWNER=y/d" ./.config
+  
+  # Reducing Scheduling-Clock Ticks, configure NO_HZ
+  sed -i "s|CONFIG_NO_HZ_IDLE=y|# CONFIG_NO_HZ_IDLE is not set|g" ./.config
+  sed -i "s|# CONFIG_NO_HZ_FULL is not set|CONFIG_NO_HZ_FULL=y|g" ./.config
+  sed -i "/CONFIG_TICK_CPU_ACCOUNTING=y/d" ./.config
+  sed -i "s|# CONFIG_VIRT_CPU_ACCOUNTING_GEN is not set|CONFIG_VIRT_CPU_ACCOUNTING_GEN=y|g" ./.config
+  sed -i "s|# CONFIG_IRQ_TIME_ACCOUNTING is not set|CONFIG_VIRT_CPU_ACCOUNTING=y|g" ./.config
+
+  cat "${srcdir}/config.no_hz" >> ./.config
+  
   # set extraversion to pkgrel
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
 
@@ -148,16 +141,24 @@ prepare() {
 
   # normally not needed
   make clean
-  
+
   # get kernel version
   make prepare
+
+  # load configuration
+  # Configure the kernel. Replace the line below with one of your choice.
+  #make menuconfig # CLI menu for configuration
+  #make nconfig # new CLI menu for configuration
+  #make xconfig # X-based configuration
+  #make oldconfig # using old config from previous kernel version
+  # ... or manually edit .config
 
   # rewrite configuration
   yes "" | make config >/dev/null
 }
 
 build() {
-  cd "${srcdir}/${_srcname}"
+  cd "${srcdir}/linux-${_basekernel}"
 
   # build!
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -170,7 +171,7 @@ package_linux-rt-lts-manjaro() {
   provides=("linux=${pkgver}")
   install=${pkgname}.install
 
-  cd "${srcdir}/${_srcname}"
+  cd "${srcdir}/linux-${_basekernel}"
 
   KARCH=x86
 
@@ -189,13 +190,14 @@ package_linux-rt-lts-manjaro() {
   "${startdir}/${install}" > "${startdir}/${install}.pkg"
   true && install=${install}.pkg
 
+
   # install mkinitcpio preset file for kernel
   sed "s|%PKGNAME%|${pkgname}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.preset" |
   install -D -m644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgname}.preset"
 
   # install pacman hook for initramfs regeneration
   sed "s|%PKGNAME%|${pkgname}|g;s|%BASEKERNEL%|${_basekernel}|g;s|%KERNELNAME%|${_kernelname}|g;s|%ARCH%|${CARCH}|g" "${srcdir}/${pkgname}.hook" |
-  install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/98-${pkgname}.hook"
+  install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgname}.hook"
 
   # remove build and source links
   rm -f "${pkgdir}"/lib/modules/${_kernver}/{source,build}
@@ -217,7 +219,7 @@ package_linux-rt-lts-manjaro() {
   mv "${pkgdir}/lib" "${pkgdir}/usr/"
 
   # add vmlinux
-  install -D -m644 vmlinux "${pkgdir}/usr/lib/modules/${_kernver}/build/vmlinux"
+  install -D -m644 vmlinux "${pkgdir}/usr/lib/modules/${_kernver}/build/vmlinux" 
 }
 
 package_linux-rt-lts-manjaro-headers() {
@@ -226,7 +228,7 @@ package_linux-rt-lts-manjaro-headers() {
 
   install -dm755 "${pkgdir}/usr/lib/modules/${_kernver}"
 
-  cd "${srcdir}/${_srcname}"
+  cd "${srcdir}/linux-${_basekernel}"
   install -D -m644 Makefile \
     "${pkgdir}/usr/lib/modules/${_kernver}/build/Makefile"
   install -D -m644 kernel/Makefile \
@@ -303,12 +305,6 @@ package_linux-rt-lts-manjaro-headers() {
   mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/tuners"
   cp drivers/media/tuners/*.h "${pkgdir}/usr/lib/modules/${_kernver}/build/drivers/media/tuners/"
 
-  # add xfs and shmem for aufs building
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/fs/xfs"
-  mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/mm"
-  # removed in 3.17 series
-  # cp fs/xfs/xfs_sb.h "${pkgdir}/usr/lib/modules/${_kernver}/build/fs/xfs/xfs_sb.h"
-
   # copy in Kconfig files
   for i in $(find . -name "Kconfig*"); do
     mkdir -p "${pkgdir}"/usr/lib/modules/${_kernver}/build/`echo ${i} | sed 's|/Kconfig.*||'`
@@ -338,7 +334,7 @@ package_linux-rt-lts-manjaro-headers() {
 
   # remove unneeded architectures
   rm -rf "${pkgdir}"/usr/lib/modules/${_kernver}/build/arch/{alpha,arc,arm,arm26,arm64,avr32,blackfin,c6x,cris,frv,h8300,hexagon,ia64,m32r,m68k,m68knommu,metag,mips,microblaze,mn10300,openrisc,parisc,powerpc,ppc,s390,score,sh,sh64,sparc,sparc64,tile,unicore32,um,v850,xtensa}
-  
+
   # remove a files already in linux-docs package
   rm -f "${pkgdir}/usr/lib/modules/${_kernver}/build/Documentation/kbuild/Kconfig.recursion-issue-01"
   rm -f "${pkgdir}/usr/lib/modules/${_kernver}/build/Documentation/kbuild/Kconfig.recursion-issue-02"

@@ -1,11 +1,11 @@
 # Based on the file created for Arch Linux by:
-# Thomas Baechler <thomas@archlinux.org>
+# Maintainer : Thomas Baechler <thomas@archlinux.org>
 
-# Maintainer: Philip Müller <philm@manjaro.org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Philip Müller <philm@manjaro.org>
 
 _linuxprefix=linux-rt-lts-manjaro
-_extramodules=extramodules-4.4-rt-lts-MANJARO
+_extramodules=extramodules-4.9-rt-lts-MANJARO
 pkgname=$_linuxprefix-nvidia-304xx
 _pkgname=nvidia
 pkgver=304.134
@@ -23,12 +23,12 @@ conflicts=('nvidia-96xx' 'nvidia-173xx' "$_linuxprefix-nvidia")
 license=('custom')
 install=nvidia.install
 options=(!strip)
-source=('nvidia-3.18.patch'
-		'disable-mtrr.patch'
-		"http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-md5sums=('79671a27131da619a33eb02ed0c2c031'
+source=("http://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
+        'nvidia-3.18.patch' 'disable-mtrr.patch' 'linux49.patch')
+md5sums=('2ecfa6bd145f673264f7977e0366e259'
+         '79671a27131da619a33eb02ed0c2c031'
          'c4becf1145a139cc0121be9ad340bcd8'
-         '2ecfa6bd145f673264f7977e0366e259')
+         'f1003d21dcadde47d532a27bdfc79b55')
 
 _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
@@ -36,13 +36,13 @@ prepare() {
   cd "$srcdir"
   sh "$_pkg.run" --extract-only
   cd "${_pkg}"
-  
   # patches here
   # https://devtalk.nvidia.com/default/topic/783364/343-22-driver-incompatible-with-linux-3-18-/
-  patch -Np0 --no-backup-if-mismatch -i ${srcdir}/nvidia-3.18.patch
-  
+  patch -p0 --no-backup-if-mismatch -i ${srcdir}/nvidia-3.18.patch
   # FS#47092
   (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/disable-mtrr.patch)
+  # Fix "already registered" problem with 4.9
+  (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/linux49.patch)
 }
 
 build() {

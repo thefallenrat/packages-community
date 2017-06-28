@@ -1,15 +1,12 @@
-post_install()
-{
-  post_upgrade
-}
-
-post_upgrade()
-{
-  EXTRAMODULES=extramodules-4.9-rt-MANJARO
+post_install() {
+  EXTRAMODULES=extramodules-4.11-rt-MANJARO
   depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
 }
 
-post_remove()
-{
-  post_upgrade
+post_upgrade() {
+  post_install
+}
+
+post_remove() {
+  post_install
 }
