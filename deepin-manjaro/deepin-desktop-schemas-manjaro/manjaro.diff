@@ -7,9 +7,9 @@ diff -ru --no-dereference a/overrides/x86/com.deepin.dde.dock.override b/overrid
 -hide-mode='keep-showing'
 +docked-apps=['dde-file-manager','firefox','deepin-terminal','deepin-toggle-desktop','deepin-wm-multitaskingview','dde-control-center']
 +hide-mode='smart-hide'
-diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/x86/com.deepin.wrap.gnome.desktop.override
---- a/overrides/x86/com.deepin.wrap.gnome.desktop.override	2017-03-28 16:43:57.969120397 +0200
-+++ b/overrides/x86/com.deepin.wrap.gnome.desktop.override	2017-03-28 16:44:48.903922793 +0200
+diff -ru --no-dereference a/overrides/x86/com.deepin.wrap.gnome.desktop.override b/overrides/common/com.deepin.wrap.gnome.desktop.override
+--- a/overrides/common/com.deepin.wrap.gnome.desktop.override	2017-03-28 16:43:57.969120397 +0200
++++ b/overrides/common/com.deepin.wrap.gnome.desktop.override	2017-03-28 16:44:48.903922793 +0200
 @@ -16,7 +16,7 @@
  cursor-theme='deepin'
  gtk-key-theme='Default'

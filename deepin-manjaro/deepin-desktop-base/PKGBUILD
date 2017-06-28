@@ -4,8 +4,8 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-desktop-base
-pkgver=2016.11.30
-pkgrel=1.2
+pkgver=2016.12.1
+pkgrel=1
 pkgdesc='Base component for Deepin'
 arch=('any')
 url="https://github.com/oberon2007/deepin-desktop-base"
