@@ -22,37 +22,39 @@ conflicts=('catalyst-legacy' "$_linuxprefix-catalyst-legacy")
 install=catalyst.install
 
 source=(http://www2.ati.com/drivers/linux/amd-catalyst-${_tarball}-x86.x86_64.zip
-    ati_make.sh
-	cold-fglrx-3.14-current_euid.patch
-    gentoo_fglrx_4.3_mtrr.patch
-    kolasa_fglrx_312.patch
-    kolasa_fglrx_4.1.patch
-    lano1106_fglrx_intel_iommu.patch
-    lano1106_kcl_agp_13_4.patch
-    linux-4.9-rc2.patch
-    makefile_compat.patch
-	manjaro_fglrx_40.patch
-    manjaro_fglrx_4.2.patch
-    manjaro_fglrx_4.3.patch
-    manjaro_fglrx_4.5.patch
-    linux411.patch
-	LICENSE.TXT)
+        ati_make.sh
+        lano1106_fglrx_intel_iommu.patch
+        lano1106_kcl_agp_13_4.patch
+        makefile_compat.patch
+        kolasa_fglrx_312.patch
+        cold-fglrx-3.14-current_euid.patch
+        manjaro_fglrx_40.patch
+        kolasa_fglrx_4.1.patch
+        manjaro_fglrx_4.2.patch
+        manjaro_fglrx_4.3.patch
+        gentoo_fglrx_4.3_mtrr.patch
+        manjaro_fglrx_4.5.patch
+        linux-4.9-rc2.patch
+        linux410-rc1.patch
+        linux411.patch
+        LICENSE.TXT)
 
 sha256sums=('bf3e6e7d5c51db3d075410a3f116f865b82823debc1d66698d187249feec6a91'
             '8b2adf804c2691d075bb75fbb626be59f3769a2f4f1418554fc3de91a65451ab'
-            '8095031ee68edbb67323a562b54c9cf46aade7c91738950467b91eda68e434ee'
-            '2881026d607f242efc4569bd39d647eae4f2e402da06de5b90476a57c349777c'
-            '8fe103d8c0ae676d68ea518337024126bcdda7fc7befd57d5d2545e4f160736d'
-            'e2c51ca60a452b78854a7e7c739dc9ccce4650cde882026cf5e01dd4afb9340c'
             'd7ab220204976b5802dbfa7cbd05ec0c5a9ff3524a2020b1b8deff4f601a05fa'
             '37344e6949b391a54491bcba68c2239393e442a00114ee36fe25d775d9656520'
-            'f846b24a56179abbae694f3f3379dc4e2883e13719d23e9c9125f353e9babfe8'
             'd344df75ffbe9bd899e288862f41983c2e24b5eff3e7e8cf02d4891eeb137fff'
+            '8fe103d8c0ae676d68ea518337024126bcdda7fc7befd57d5d2545e4f160736d'
+            '8095031ee68edbb67323a562b54c9cf46aade7c91738950467b91eda68e434ee'
             '72e06fc755f40cb7697c37c4045cca909075e6eccb6260924b94508ec77744f6'
+            'e2c51ca60a452b78854a7e7c739dc9ccce4650cde882026cf5e01dd4afb9340c'
             '2bc280abeddef92832997433f3182063a51cd2e580426727e97f887ae8af485f'
             'a7cebf78578c68e6b765c5b821d5c0d4bc716ad8d97456478b60beecd35a7602'
-            'f846b24a56179abbae694f3f3379dc4e2883e13719d23e9c9125f353e9babfe8'
+            '2881026d607f242efc4569bd39d647eae4f2e402da06de5b90476a57c349777c'
             'b60a04538f55e77b58351face25f2e12b55a2b1bc5be89e17b9b35e65f78cda8'
+            'f846b24a56179abbae694f3f3379dc4e2883e13719d23e9c9125f353e9babfe8'
+            'fe6cd988c1492c350fd87f6885e5b01ea1ee20a88bbf8830d1727deaa021b3c4'
+            '50cf50dced85d267c3a9df997219f75bef1fc19755041f83931eddafd713051b'
             '4f7530540f6e1ea032746e94bd164160abdf93c15509bfb8bdbecd23bcea5c47')
 
 prepare() {
@@ -93,6 +95,8 @@ build() {
     patch -Np6 -i ${srcdir}/gentoo_fglrx_4.3_mtrr.patch
     patch -Np1 -i ${srcdir}/manjaro_fglrx_4.5.patch
     patch -Np7 -i ${srcdir}/linux-4.9-rc2.patch
+    patch -Np7 -i ${srcdir}/linux410-rc1.patch
+    patch -Np6 -i ${srcdir}/linux411.patch
 
 	## fix linux44 build
 	sed -i -e s'|XSTATE_FP|XFEATURE_MASK_FP|g' firegl_public.c
