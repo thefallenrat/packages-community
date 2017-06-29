@@ -1,0 +1,10 @@
+--- slick-greeter.vala	2017-06-29 19:36:29.964013818 +0200
++++ slick-greeter.vala.new	2017-06-29 19:34:44.794419106 +0200
+@@ -184,6 +184,7 @@ public class SlickGreeter
+         sessions.append ("kde-plasma");
+         sessions.append ("kde");
+         sessions.append ("gnome");
++        sessions.append ("budgie");
+ 
+         foreach (string session in sessions) {
+             var path = Path.build_filename  ("/usr/share/xsessions/", session.concat(".desktop"), null);
