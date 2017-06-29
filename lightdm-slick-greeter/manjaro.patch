@@ -3,8 +3,8 @@
 @@ -184,6 +184,7 @@ public class SlickGreeter
          sessions.append ("kde-plasma");
          sessions.append ("kde");
-         sessions.append ("gnome");
-+        sessions.append ("budgie");
+         sessions.append ("budgie-desktop");
++        sessions.append ("gnome");
  
          foreach (string session in sessions) {
              var path = Path.build_filename  ("/usr/share/xsessions/", session.concat(".desktop"), null);
