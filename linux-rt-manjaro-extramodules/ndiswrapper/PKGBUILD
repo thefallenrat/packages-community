@@ -36,6 +36,8 @@ prepare() {
   patch -Np1 -i $srcdir/kernel-4.0.patch
   patch -Np1 -i $srcdir/kernel-4.2.patch
   patch -Np1 -i $srcdir/kernel-4.11.patch
+  
+  sed -i 's/(&(tsk)->cpus_allowed)/((tsk)->cpus_ptr)/' driver/ntoskernel.h
 }
 
 build() {
