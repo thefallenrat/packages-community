@@ -6,7 +6,7 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-maia-gtk3
-pkgver=20170621
+pkgver=20170702
 pkgrel=1
 pkgdesc='gtk3-only version of the official Manjaro theme'
 _gnomever=3.22
@@ -332,6 +332,10 @@ cd ..
   ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/userContent.css $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/userContent.css
   ln -s /usr/share/themes/Firefox/Vertex-Maia/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia/chrome/images
   ln -s /usr/share/themes/Firefox/Vertex-Maia-Dark/chrome/images $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/images
+
+  ## add links for ff-theme-util
+  ln -s /usr/share/themes/Firefox/Vertex-Maia $pkgdir/usr/share/themes/Firefox/Vertex-Maia-Square
+  ln -s /usr/share/themes/Firefox/Vertex-Maia $pkgdir/usr/share/themes/Palemoon/Vertex-Maia-Square
 
   ## fix corrupt metacity thumbnail
   tee $pkgdir/usr/share/themes/Vertex-Maia{,-Dark}/metacity-1/thumbnail.png < $srcdir/vertex-theme-$_vertex_commit/common/metacity-1/thumbnail.png >/dev/null
