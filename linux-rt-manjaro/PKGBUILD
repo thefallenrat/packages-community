@@ -11,9 +11,9 @@ _kernelname=-MANJARO
 _basekernel=4.11
 _basever=411-rt
 _bfq=v8r11
-_sub=7
+_sub=8
 _pkgver=${_basekernel}.${_sub}
-_rtpatchver=rt3
+_rtpatchver=rt5
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -40,7 +40,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
-            '7d767998aa6a69df36f76d6343c03a45f190c7e8ddf9322c02493ceaa96a1aba'
+            'c390540524e9647efa3752550cb04b02f47a60a5d45f26d56a07cd8a67501929'
             '4c5a9ccd6fb070dc60d732571580223426db941704e60a10db63547ff965a3ab'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
@@ -48,7 +48,7 @@ sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             'ef617021d3a6d6b030c9ea4bd20e12551dace147a5cb909f87ddbaf316474add'
             '7a4cd8994129e0cf6058c191a55e9cd235f0276fe77b5f96bce8a921dfe6de14'
-            '1b4f8604d65f91eb724c05f0856dc7462464c1628a747a599886c956d9c3d071'
+            'ea625011bc491e9483de45ae97c45223c1887f71dfffe732c9d13c132fdd4157'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
