@@ -8,7 +8,7 @@ pkgname=('arc-themes-solid-maia'
 _pkgname=arc-theme
 _pkgbase=arc-themes-maia
 pkgver=20170302
-pkgrel=4
+pkgrel=3
 _commit=4b75f33ff2cfedb6ba0809cf877deb2d2831e6c3
 #_gnomever=3.22
 arch=('any')
@@ -17,10 +17,8 @@ license=('GPL3')
 depends=('gtk-engine-murrine' 'gtk3')
 makedepends=('optipng' 'inkscape' 'autoconf' 'automake' 'pkg-config' 'libcanberra')
 #source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${pkgver}.tar.gz")
-source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${_commit}.tar.gz"
-		'dashline.patch')
-sha256sums=('09b701a2e5a94a3e6431b8d27ffdacd7ba9eff56e5e4d0d5a56040ca9bfdc1b6'
-            '930697cc1637ac47404c535c18589b757b92b70f405816a826cc5239602b0a03')
+source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/horst3180/${_pkgname}/archive/${_commit}.tar.gz")
+sha256sums=('09b701a2e5a94a3e6431b8d27ffdacd7ba9eff56e5e4d0d5a56040ca9bfdc1b6')
 
 #ALL arc color
 _blue=5294e2 
@@ -76,12 +74,6 @@ _maia15=2BC18D
 _maia16='11, 103, 57, 0.95'
 _maia17='11, 103, 57, 0.8'
 _maia18='22, 160, 133, 0.9'
-
-prepare() {
-#correction for dashline in the theme : https://github.com/horst3180/arc-theme/issues/617
-cd "$srcdir/$_pkgname-$_commit/common/"
-patch -Np1 -i "$srcdir/dashline.patch"
-}
 
 build() {
 cd $srcdir
