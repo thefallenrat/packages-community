@@ -7,7 +7,7 @@ _gtk3_min='3.18'
 _gtk3_max='4.0'
 _theme_name=Adapta
 _gtk2_min='2.24.30'
-pkgver="3.91.0.59"
+pkgver="3.91.0.176"
 pkgrel=1
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro maia color"
 arch=(any)
@@ -16,8 +16,7 @@ license=('GPL2' 'CCPL')
 depends=("gtk2>=${_gtk2_min}"
          "gtk3>=${_gtk3_min}.9"
          #"gtk3<=${_gtk3_max}.99"
-         'gtk-engines>=2.21.0'
-         'gtk-engine-murrine>=0.98.2'
+         'gtk-engine-murrine'
 	     'cantarell-fonts')
 optdepends=('ttf-roboto: The recommended font'
             'noto-fonts: The recommended font for improved language support'
@@ -42,7 +41,7 @@ makedepends=('libxml2'
 	         'parallel'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('92dfd9a7af05dd7448fd149a8532f45f3150b24b32bd5398e7c69d4e09f1fad5')
+sha256sums=('9081c7c9dd5258d06442869b253bf95469fbb76f016b15c2eb21641f26688337')
 
 build() {
     cd "${_pkgname}-${pkgver}"
@@ -50,6 +49,7 @@ build() {
       --enable-chrome \
       --enable-plank \
       --enable-telegram \
+      --disable-unity \
       --with-selection_color=#16A085 \
       --with-second_selection_color=#16A085 \
       --enable-parallel #--enable-gtk_next
@@ -58,7 +58,7 @@ build() {
 
 package() {
     cd "${_pkgname}-${pkgver}"
-    make install -j 8
+    make install
 
 # Move the file into another folder to match with name
 cd "$pkgdir/usr/share/themes"
