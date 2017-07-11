@@ -17,10 +17,12 @@ source=("$_pkgname"::"git+$url.git")
 md5sums=('SKIP')
 
 pkgver() {
+
 	cd "$_pkgname/jade/"
 	local v_ver=$(awk '/"version"/ {print $2}' application-settings.json | cut -d '"' -f2 )
 
 	printf "$v_ver.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+
 }
 
 package() {
