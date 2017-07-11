@@ -2,7 +2,7 @@
 
 _pkgname=jade-menu-data
 pkgname="$_pkgname-git"
-pkgver=r22.7cbecdf
+pkgver=r26.2f69bf5
 pkgrel=1
 pkgdesc="freedesktop.org application menu definition files for JADE"
 arch=('any')
