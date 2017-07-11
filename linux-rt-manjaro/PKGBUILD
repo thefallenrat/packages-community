@@ -11,9 +11,9 @@ _kernelname=-MANJARO
 _basekernel=4.11
 _basever=411-rt
 _bfq=v8r12
-_sub=8
+_sub=9
 _pkgver=${_basekernel}.${_sub}
-_rtpatchver=rt5
+_rtpatchver=rt7
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -34,21 +34,21 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a351e9b...2024487.patch"
         # ARCH Patches
         # Manjaro Patches
-        '0005-bfq-wb-4.11-disable-WBT-for-non-root-cgroup.patch::https://github.com/pfactum/pf-kernel/commit/a120abb64129162e81373a8ba404e8e87edcf1c4.patch'
+        '0005-bfq-wb-4.11-disable-WBT-for-non-root-cgroup.patch'
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
 sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
-            'c390540524e9647efa3752550cb04b02f47a60a5d45f26d56a07cd8a67501929'
+            'a112d1330817bac401dbbd1e2c8aacb1b725bc28239e2ca58281ea3754deceb5'
             '4c5a9ccd6fb070dc60d732571580223426db941704e60a10db63547ff965a3ab'
             '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
             '01de23d85818d0dba0c97a2c34c60fd9885805e2d40c3a632cf66f20dd837cb5'
-            '7a4cd8994129e0cf6058c191a55e9cd235f0276fe77b5f96bce8a921dfe6de14'
-            'ea625011bc491e9483de45ae97c45223c1887f71dfffe732c9d13c132fdd4157'
+            'c726b1a360012171e983ed06f14e7748dbc4892164f818a3c2ad856fecf17b1a'
+            '1685392f12a696007c91888ad071c6e0e5f87f051e80d9d12b4177c2068b1b76'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
