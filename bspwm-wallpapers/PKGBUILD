@@ -1,8 +1,8 @@
 # Maintainer: Chrysostomus
 
-_snapshot=f64d5fa79787c007491cf5bfd552ac4227d8e350
+_snapshot=a43c404262bd6f3a69721782aba205343348aa24
 pkgname=bspwm-wallpapers
-pkgver=20160413
+pkgver=20170714
 pkgrel=1
 pkgdesc="Wallpapers for bspwm"
 arch=('any')
@@ -10,7 +10,7 @@ license=('GPL3')
 url="https://github.com/Chrysostomus/$pkgname"
 source=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/archive/$_snapshot.tar.gz")
 
-md5sums=('a9845da703d33d7925f0b9fef1f78f2a')
+md5sums=('ea4e5bb73d70498881064a65083e65cc')
 
 package() {
 	cd $srcdir/$pkgname-$_snapshot

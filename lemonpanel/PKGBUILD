@@ -4,7 +4,7 @@
 pkgname=lemonpanel
 _ver=0.24
 pkgver=0.24.r183.eacbcbf
-pkgrel=1
+pkgrel=2
 pkgdesc="Panel script for bspwm using patched dmenu and lemonbar"
 arch=('any')
 url=https://github.com/Chrysostomus/lemonpanel
@@ -25,7 +25,8 @@ optdepends=('pulseaudio-ctl'
 	'rxvt-unicode'
 	'zenity'
 	'networkmanager-dmenu'
-	'conky-cli')
+	'conky-cli'
+	'wireless_tools')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/lemonpanel")
 md5sums=('SKIP')
