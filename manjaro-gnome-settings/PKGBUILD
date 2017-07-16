@@ -4,7 +4,7 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170625
+pkgver=20170716
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
@@ -44,6 +44,7 @@ depends=('gnome-shell'
 		 'gnome-shell-extension-dash-to-dock'
 		 'gnome-shell-extension-topicons-plus'
 		 'manjaro-gnome-extension-settings'
+		 'chrome-gnome-shell'
          'gnome-wallpapers'
          'arc-themes-maia'
 		 'arc-maia-icon-theme'
@@ -55,8 +56,7 @@ depends=('gnome-shell'
          'noto-fonts')
 optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme' 
 			'firefox-arc-maia-settings: Firefox theme'
-		 	'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme'
-			'chrome-gnome-shell: Native connector for integration with extensions.gnome.org')
+		 	'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme')
 conflicts=('manjaro-desktop-settings' '$pkgbase-dev')
 replaces=('$pkgbase-dev')
 provides=('manjaro-desktop-settings')
