@@ -5,8 +5,8 @@
 
 pkgname=deepin-session-ui
 _pkgname=$pkgname-manjaro
-pkgver=4.0.10
-pkgrel=1
+pkgver=4.0.13
+pkgrel=2
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url='https://github.com/oberon2007/deepin-session-ui-manjaro'
@@ -27,7 +27,7 @@ provides=('lightdm-deepin-greeter')
 conflicts=('dde-workspace' 'dde-session-ui')
 replaces=('dde-workspace' 'dde-session-ui')
 source=("$url/archive/$pkgver.tar.gz")
-sha512sums=('80287a3c660fa445353e215d9e0da4dcd2bb57f6bf8165c1fd6f0d591d689b8fb3c6aa515aca4918bae79be7ab24aca0cb2f8d64132654ce18f4b80ddd324dca')
+sha512sums=('421306ca2ffef9d61d449dc2fe778e311b563102c5d663276130d03848994cb5202678c4614c3ddb5769c1c1d1f88ff7b27ecde36095460426b84c93a9c09897')
 
 build() {
   cd $_pkgname-$pkgver
