@@ -2,7 +2,7 @@
 
 _pkgname=jade-dashboard
 pkgname="$_pkgname-git"
-pkgver=0.3.34.r176.2b3fd97
+pkgver=0.3.36.r181.1c76ec7
 pkgrel=1
 pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
