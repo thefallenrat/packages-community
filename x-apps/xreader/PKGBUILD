@@ -2,7 +2,7 @@
 # AUR-Maintainer: Nate Simon <aurpkg (at natesimon.net)>
 
 pkgname=xreader
-pkgver=1.4.3
+pkgver=1.4.4
 pkgrel=1
 pkgdesc="Document viewer for files like PDF and Postscript. X-Apps Project"
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ optdepends=('nemo: nemo extension (must be enabled at compile time)'
     'caja-extensions-common: caja extension (must be enabled at compile time)'
     'texlive-bin: support for dvi files')
 source=("${url}/archive/${pkgver}.tar.gz")
-md5sums=('687581e2973ac9ec1fb63c50b493cb54')
+md5sums=('f528263d7d491e976d819e65cf3930f9')
 
 build() {
     cd ${srcdir}/${pkgname}-${pkgver}
