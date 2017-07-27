@@ -54,11 +54,10 @@ depends=('gnome-shell'
          'qt5ct'
          'ttf-hack'
          'noto-fonts')
-optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme' 
-			'firefox-arc-maia-settings: Firefox theme'
-		 	'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme')
-conflicts=('manjaro-desktop-settings' '$pkgbase-dev')
-replaces=('$pkgbase-dev')
+optdepends=('plymouth-theme-manjaro-gnome-17.0: Plymouth theme')
+			#'firefox-arc-maia-settings: Firefox theme'
+		 	#'moka-icon-theme: Fallback icon theme for Arc Maia Icon theme')
+conflicts=('manjaro-desktop-settings')
 provides=('manjaro-desktop-settings')
 backup=('etc/gdm/PostLogin/Default')
 
@@ -66,8 +65,12 @@ backup=('etc/gdm/PostLogin/Default')
 	
 #Add Postlogin script here (remove in future)
 	
-	install -Dm755 ${srcdir}/$pkgbase/PostLogin/Default ${pkgdir}/etc/gdm/PostLogin/Default		
+	install -Dm755 ${srcdir}/$pkgbase/PostLogin/Default ${pkgdir}/etc/gdm/PostLogin/Default
 	
+#Add Hook to infor user about night-light bug into GDM (https://bugzilla.gnome.org/show_bug.cgi?id=785273)
+	
+	install -Dm644 ${srcdir}/disable-gdm-night-light.hook ${pkgdir}/usr/share/libalpm/hooks/disable-gdm-night-light.hook
+	install -Dm755 ${srcdir}/disable-gdm-night-light.script ${pkgdir}/usr/share/libalpm/scripts/disable-gdm-night-light
 }
 
 
