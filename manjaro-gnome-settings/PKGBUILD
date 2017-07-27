@@ -4,14 +4,18 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170723
+pkgver=20170727
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
-source=("git+$url.git")
+source=("git+$url.git"
+		'disable-gdm-night-light.hook'
+		'disable-gdm-night-light.script')
 makedepends=('git')
-sha256sums=('SKIP')
+sha256sums=('SKIP'
+            '430c34abc34b7016eb649dafb4580223bc48d3131a01dd1b1c017dcb8b9d290c'
+            '780a8f11232bdabbad25fe302384f90ce6320c552543cea0104d9077e3dea62d')
 
 pkgver() {
 	date +%Y%m%d
@@ -67,7 +71,7 @@ backup=('etc/gdm/PostLogin/Default')
 	
 	install -Dm755 ${srcdir}/$pkgbase/PostLogin/Default ${pkgdir}/etc/gdm/PostLogin/Default
 	
-#Add Hook to infor user about night-light bug into GDM (https://bugzilla.gnome.org/show_bug.cgi?id=785273)
+#Add Hook to inform user about night-light bug into GDM (https://bugzilla.gnome.org/show_bug.cgi?id=785273)
 	
 	install -Dm644 ${srcdir}/disable-gdm-night-light.hook ${pkgdir}/usr/share/libalpm/hooks/disable-gdm-night-light.hook
 	install -Dm755 ${srcdir}/disable-gdm-night-light.script ${pkgdir}/usr/share/libalpm/scripts/disable-gdm-night-light
