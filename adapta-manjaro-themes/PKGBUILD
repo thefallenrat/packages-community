@@ -5,8 +5,8 @@
 pkgname=('adapta-maia-theme'
 		 'adapta-breath-theme')
 _pkgname=adapta-gtk-theme
-pkgver="3.91.0.229"
-pkgrel=2
+pkgver="3.91.1.26"
+pkgrel=1
 arch=(any)
 url="https://github.com/adapta-project/${_pkgname}"
 license=('GPL2' 'CCPL')
@@ -22,7 +22,7 @@ makedepends=('libxml2'
 	         'parallel'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('dd06a8fba3b967d74d61f762cb55904865717afde145ce18ae601fd71abc9542')
+sha256sums=('caf9c81b52bb261dd13554252cdf4f16270101c64786935925c28565434a18c7')
 
 prepare() {
 	for theme in adapta-maia-theme adapta-breath-theme; do
@@ -81,26 +81,29 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Maia"
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
     #ln -sf /usr/share/themes/Adapta-Maia/unity unity
     ln -sf /usr/share/themes/Adapta-Maia/plank plank
+    ln -sf /usr/share/themes/Adapta-Maia/gedit gedit
     ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
     ln -sf /usr/share/themes/Adapta-Maia/gtk-3.22 gtk-3.22 
-    ln -sf /usr/share/themes/Adapta-Maia/gtk-3.20 gtk-3.20
+    #ln -sf /usr/share/themes/Adapta-Maia/gtk-3.20 gtk-3.20
     ln -sf /usr/share/themes/Adapta-Maia/gtk-3.0 gtk-3.0
-    ln -sf /usr/share/themes/Adapta-Maia/gtk-4.0 gtk-4.0
+    #ln -sf /usr/share/themes/Adapta-Maia/gtk-4.0 gtk-4.0
 
 cd "$pkgdir/usr/share/themes/Adapta-Eta-Maia"
-    ln -sf /usr/share/themes/Adapta-Maia/chrome chrome
+    #ln -sf /usr/share/themes/Adapta-Maia/chrome chrome
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
-    ln -sf /usr/share/themes/Adapta-Maia/plank plank   
+    ln -sf /usr/share/themes/Adapta-Maia/plank plank 
+    ln -sf /usr/share/themes/Adapta-Maia/telegram telegram     
     ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
     #ln -sf /usr/share/themes/Adapta-Maia/unity unity
 
 cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
-    ln -sf /usr/share/themes/Adapta-Nokto-Maia/chrome chrome
-    ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-3.20 gtk-3.20
+    #ln -sf /usr/share/themes/Adapta-Nokto-Maia/chrome chrome
+    #ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-3.20 gtk-3.20
     ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-3.22 gtk-3.22 
-    ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-4.0 gtk-4.0 
+    #ln -sf /usr/share/themes/Adapta-Eta-Maia/gtk-4.0 gtk-4.0 
     ln -sf /usr/share/themes/Adapta-Maia/metacity-1 metacity-1
     ln -sf /usr/share/themes/Adapta-Maia/plank plank
+    ln -sf /usr/share/themes/Adapta-Nokto-Maia/telegram telegram 
     #ln -sf /usr/share/themes/Adapta-Maia/unity unity
     ln -sf /usr/share/themes/Adapta-Maia/xfce-notify-4.0 xfce-notify-4.0
 }
@@ -130,26 +133,29 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Breath"
     ln -sf /usr/share/themes/Adapta-Breath/xfce-notify-4.0 xfce-notify-4.0
     #ln -sf /usr/share/themes/Adapta-Breath/unity unity
     ln -sf /usr/share/themes/Adapta-Breath/plank plank
+    ln -sf /usr/share/themes/Adapta-Breath/gedit gedit
     ln -sf /usr/share/themes/Adapta-Breath/metacity-1 metacity-1
     ln -sf /usr/share/themes/Adapta-Breath/gtk-3.22 gtk-3.22 
-    ln -sf /usr/share/themes/Adapta-Breath/gtk-3.20 gtk-3.20
+    #ln -sf /usr/share/themes/Adapta-Breath/gtk-3.20 gtk-3.20
     ln -sf /usr/share/themes/Adapta-Breath/gtk-3.0 gtk-3.0
-    ln -sf /usr/share/themes/Adapta-Breath/gtk-4.0 gtk-4.0
+    #ln -sf /usr/share/themes/Adapta-Breath/gtk-4.0 gtk-4.0
 
 cd "$pkgdir/usr/share/themes/Adapta-Eta-Breath"
-    ln -sf /usr/share/themes/Adapta-Breath/chrome chrome
+    #ln -sf /usr/share/themes/Adapta-Breath/chrome chrome
     ln -sf /usr/share/themes/Adapta-Breath/xfce-notify-4.0 xfce-notify-4.0
-    ln -sf /usr/share/themes/Adapta-Breath/plank plank   
+    ln -sf /usr/share/themes/Adapta-Breath/plank plank 
+    ln -sf /usr/share/themes/Adapta-Breath/telegram telegram    
     ln -sf /usr/share/themes/Adapta-Breath/metacity-1 metacity-1
     #ln -sf /usr/share/themes/Adapta-Breath/unity unity
 
 cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Breath"
-    ln -sf /usr/share/themes/Adapta-Nokto-Breath/chrome chrome
-    ln -sf /usr/share/themes/Adapta-Eta-Breath/gtk-3.20 gtk-3.20
+    #ln -sf /usr/share/themes/Adapta-Nokto-Breath/chrome chrome
+    #ln -sf /usr/share/themes/Adapta-Eta-Breath/gtk-3.20 gtk-3.20
     ln -sf /usr/share/themes/Adapta-Eta-Breath/gtk-3.22 gtk-3.22 
-    ln -sf /usr/share/themes/Adapta-Eta-Breath/gtk-4.0 gtk-4.0 
+    #ln -sf /usr/share/themes/Adapta-Eta-Breath/gtk-4.0 gtk-4.0 
     ln -sf /usr/share/themes/Adapta-Breath/metacity-1 metacity-1
     ln -sf /usr/share/themes/Adapta-Breath/plank plank
+    ln -sf /usr/share/themes/Adapta-Nokto-Breath/telegram telegram    
     #ln -sf /usr/share/themes/Adapta-Breath/unity unity
     ln -sf /usr/share/themes/Adapta-Breath/xfce-notify-4.0 xfce-notify-4.0
 }
