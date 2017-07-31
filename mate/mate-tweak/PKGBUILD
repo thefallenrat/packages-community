@@ -5,28 +5,30 @@
 
 pkgname=mate-tweak
 pkgver=17.10.9
-_umsver=17.10.17
-pkgrel=1
+pkgrel=2
 pkgdesc="Tweak tool for MATE, a fork of MintDesktop."
 arch=('any')
 url="https://github.com/ubuntu-mate/mate-tweak"
 license=('GPL')
 depends=('gtk3' 'libnotify' 'mate-applets' 'python-configobj' 'python-gobject' 'python-psutil' 'python-setproctitle')
 makedepends=('python-distutils-extra' 'python-setuptools')
-optdepends=('mate-applet-dock: for Mutiny panel layout'
+optdepends=('brisk-menu: for Manjaro panel layout'
+            'mate-applet-dock: for Mutiny panel layout'
             'mate-menu: to enable advanced menu'
             'mate-netbook: for Netbook panel layout'
             'plank: for Cupertino panel layout'
-            'synapse: to enable launcher'
             'tilda: to enable pull-down terminal')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archive/$pkgver.tar.gz"
-        "https://launchpad.net/ubuntu/+archive/primary/+files/ubuntu-mate-settings_$_umsver.tar.xz")
+        "mate-tweak.patch")
 sha256sums=('e4fcf699cccdb01f7bd8b00b5f4ba25ab943c59b254c3ac36d2622ea1820b352'
-            'ab83f825f35daa00bf05488400c741ef38d4d0a0c58e1f0494fbceecb6fdcd60')
+            'bd2b39db22d7ca4f00bed78857820831b9b8f96f605f182eed4ebf40b582cc34')
 
+prepare() {
+	cd $pkgname-$pkgver
+	patch -Np0 -i "${srcdir}/mate-tweak.patch"
+}
 
 package() {
   cd "$pkgname-$pkgver"
   python3 setup.py install --root="$pkgdir" --optimize=1
-  cp -r "$srcdir"/ubuntu-mate-settings/usr/share/mate-panel "$pkgdir/usr/share"
 }
