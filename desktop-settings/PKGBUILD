@@ -10,7 +10,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170710
+pkgver=20170731
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -152,8 +152,7 @@ package_manjaro-mate-settings() {
 		'gnome-icon-theme-symbolic'
         'qt5-styleplugins'
         'qt5ct')
-    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme'
-'mate-icon-theme' 'mate-themes' 'mate-user-guide')
+    optdepends=('mate-icon-theme' 'mate-themes' 'mate-user-guide')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
