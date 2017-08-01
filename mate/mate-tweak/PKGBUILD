@@ -13,16 +13,16 @@ license=('GPL')
 depends=('gtk3' 'libnotify' 'mate-applets' 'python-configobj' 'python-gobject' 'python-psutil' 'python-setproctitle')
 makedepends=('python-distutils-extra' 'python-setuptools')
 optdepends=('brisk-menu: for Manjaro panel layout'
-			'mate-applet-dock: for Mutiny panel layout'
+            'mate-applet-dock: for Mutiny panel layout'
             'mate-menu: to enable advanced menu'
             'mate-netbook: for Netbook panel layout'
             'plank: for Cupertino panel layout'
             'vala-panel-appmenu-mate-git: for Mutiny,Cupertino'
             'tilda: to enable pull-down terminal')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archive/$pkgver.tar.gz"
-		"mate-tweak.patch")
+        "mate-tweak.patch")
 sha256sums=('e4fcf699cccdb01f7bd8b00b5f4ba25ab943c59b254c3ac36d2622ea1820b352'
-			'6743f9731d66ffdad3a7b84d87a8710e9188accbe5bf5cf99578458f3857e280')
+            '6743f9731d66ffdad3a7b84d87a8710e9188accbe5bf5cf99578458f3857e280')
 
 prepare() {
 	cd $pkgname-$pkgver
