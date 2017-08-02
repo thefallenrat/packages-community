@@ -17,7 +17,7 @@ optdepends=('brisk-menu: for Manjaro panel layout'
             'mate-menu: to enable advanced menu'
             'mate-netbook: for Netbook panel layout'
             'plank: for Cupertino panel layout'
-            'vala-panel-appmenu-mate-git: for Mutiny,Cupertino'
+            'vala-panel-appmenu-mate: for Mutiny,Cupertino'
             'tilda: to enable pull-down terminal')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archive/$pkgver.tar.gz"
         "mate-tweak.patch")
