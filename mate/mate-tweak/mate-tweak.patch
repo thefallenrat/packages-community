@@ -1,5 +1,5 @@
 --- mate-tweak	2017-07-20 00:25:42.000000000 +0300
-+++ mate-tweak.new	2017-07-31 20:49:36.753695000 +0300
++++ mate-tweak.new	2017-08-01 16:46:58.363141000 +0300
 @@ -480,15 +480,6 @@
              if metacity_schema:
                  self.set_string('org.gnome.metacity.theme', None, 'name', mate_theme)
@@ -42,7 +42,7 @@
  
          if os.path.exists('/usr/lib/mate-panel/appmenu-mate') and \
              os.path.exists('/usr/share/mate-panel/applets/org.vala-panel.appmenu.mate-panel-applet'):
-@@ -1181,6 +1168,19 @@
+@@ -1181,6 +1168,32 @@
          if self.panel_layout_exists('ubuntu-mate'):
              panels.append([_("Traditional"), "ubuntu-mate"])
  
@@ -58,6 +58,19 @@
 +           self.maximus_available and \
 +           not self.indicators_available:
 +            panels.append([_("Netbook (no indicators)"), "netbook-no-indicators"])
++
++        if self.panel_layout_exists('mutiny-no-indicators') and \
++           self.mate_dock_available and \
++           self.appmenu_applet_available and \
++           not self.indicators_available:
++            panels.append([_("Mutiny (no indicators)"), "mutiny-no-indicators"])
++
++        if self.dock is not None and \
++           self.appmenu_applet_available and \
++           self.brisk_menu_available and \
++           not self.indicators_available:
++            if self.panel_layout_exists('eleven-no-indicators'):
++                panels.append([_("Cupertino (no indicators)"), "eleven-no-indicators"])
 +
          self.builder.get_object("combobox_panels").set_model(panels)
  
