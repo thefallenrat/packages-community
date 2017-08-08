@@ -165,6 +165,8 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Breath"
 package_manjaro-gdm-breath-theme-dev() {
 pkgdesc="Manjaro Breath GDM theme"
 backup=("usr/share/gnome-shell/gnome-shell-theme.gresource")
+depends=('adapta-breath-theme-dev')
+conflicts=('manjaro-gdm-maia-theme-dev')
 
 install -dm755 $pkgdir/usr/share/gnome-shell
 install -dm755 $pkgdir/etc/skel
@@ -176,6 +178,8 @@ cp $srcdir/$_theme-$_commit/common/.face $pkgdir/etc/skel/.face
 package_manjaro-gdm-maia-theme-dev() {
 pkgdesc="Manjaro Maia GDM theme"
 backup=("usr/share/gnome-shell/gnome-shell-theme.gresource")
+depends=('adapta-maia-theme-dev')
+conflicts=('manjaro-gdm-breath-theme-dev')
 
 install -dm755 $pkgdir/usr/share/gnome-shell
 install -dm755 $pkgdir/etc/skel
