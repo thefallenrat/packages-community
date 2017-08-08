@@ -1,9 +1,12 @@
 # Maintainer: Stefano Capitani <stefanoatmanjarodot.org>
-# This override the classic mate panel with brisk-menu
+# Contributor: Thanos Apostolou <forumatmanjarodotorg>
+# This override the classic mate panel
 
 _repo=desktop-settings
 pkgname=('manjaro-mate-panel-layout')
-pkgver=20170318
+pkgdesc='Manjaro Linux mate-gtk3 panel layouts set.'
+depends=('mate-panel')
+pkgver=20170802
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -17,9 +20,9 @@ pkgver() {
 }
 
 package() {
-	pkgdesc='Manjaro Linux mate-gtk3 panel layout'
-	depends=('mate-panel')
-
-	install -Dm 755 $srcdir/$_repo/community/mate/layouts/manjaro.layout $pkgdir/usr/share/mate-panel/layouts/manjaro.layout
-	chmod -x $pkgdir/usr/share/mate-panel/layouts/manjaro.layout
+	for a in $(ls $srcdir/$_repo/community/mate/layouts/); do
+		install -Dm 755 $srcdir/$_repo/community/mate/layouts/$a $pkgdir/usr/share/mate-panel/layouts/$a
+		chmod -x $pkgdir/usr/share/mate-panel/layouts/$a
+	done
 }
+

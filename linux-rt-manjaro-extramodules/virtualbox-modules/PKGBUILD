@@ -6,12 +6,12 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.9-rt-MANJARO
+_extramodules=extramodules-4.11-rt-MANJARO
 pkgbase=$_linuxprefix-virtualbox-modules
 pkgname=("$_linuxprefix-virtualbox-host-modules" "$_linuxprefix-virtualbox-guest-modules")
-pkgver=5.1.22
+pkgver=5.1.26
 _pkgver="${pkgver}_OSE"
-pkgrel=5
+pkgrel=2
 arch=('x86_64')
 url='http://virtualbox.org'
 license=('GPL')

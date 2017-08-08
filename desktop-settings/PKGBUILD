@@ -10,7 +10,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170614
+pkgver=20170802
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -79,14 +79,14 @@ package_manjaro-awesome-settings() {
 package_manjaro-budgie-settings() {
     pkgdesc='Manjaro Linux budgie settings'
     depends=('budgie-desktop'
-        'arc-themes-maia'
+        'vertex-maia-themes'
         'vertex-maia-icon-theme'
         'budgie-wallpapers'
         'xcursor-breeze'
-	'qt5-styleplugins'
+		'qt5-styleplugins'
         'qt5ct'
         'manjaro-base-skel')
-    optdepends=('plymouth-theme-manjaro-fancy-budgie' 'firefox-arc-maia-settings')
+    optdepends=('plymouth-theme-manjaro-fancy-budgie' 					'firefox-arc-maia-settings')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 
@@ -112,7 +112,7 @@ package_manjaro-jwm-settings() {
 package_manjaro-lxde-settings() {
     pkgdesc='Manjaro Linux lxde settings'
     depends=('manjaro-base-skel'
-    	     'arc-maia-icon-theme'
+    	 'arc-maia-icon-theme'
 	     'vertex-maia-themes'
 	     'lxde-wallpapers'
 	     'qt5ct'
@@ -143,17 +143,16 @@ package_manjaro-mate-settings() {
 		'manjaro-mate-panel-layout'
 		'mate-wallpapers'
 		'mate-notification-theme-slate'
-                'xcursor-breeze'
-                'arc-themes-maia'
+        'xcursor-breeze'
+        'arc-themes-maia'
 		'arc-maia-icon-theme'
-                'maia-wallpaper'
+        'maia-wallpaper'
 		'gnome-icon-theme'
 		'gnome-icon-theme-extras'
 		'gnome-icon-theme-symbolic'
-                'qt5-styleplugins'
-                'qt5ct')
-    optdepends=('firefox-arc-maia-settings' 'moka-icon-theme'
-'mate-icon-theme' 'mate-themes' 'mate-user-guide')
+        'qt5-styleplugins'
+        'qt5ct')
+    optdepends=('mate-icon-theme' 'mate-themes' 'mate-user-guide')
     conflicts=('manjaro-desktop-settings')
     provides=('manjaro-desktop-settings')
 

@@ -3,7 +3,7 @@
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgname=cinnamon-session
-pkgver=3.4.0
+pkgver=3.4.1
 pkgrel=0.1
 pkgdesc="The Cinnamon Session Handler"
 arch=(i686 x86_64)
@@ -12,16 +12,8 @@ depends=(dbus-glib cinnamon-desktop libsm libcanberra)
 makedepends=(intltool mesa json-glib xtrans gnome-common)
 options=('!emptydirs')
 url="https://github.com/linuxmint/cinnamon-session"
-source=(${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-session/archive/${pkgver}.tar.gz
-        blacklist_g-s-d.patch)
-sha256sums=('5cc4b9f2292951de9261d88aba503edb09ce34d666301384e5e7cdf93250036c'
-            '9f8da8b4a3ddb43196e4848ca5138e901c6b2e21096a5cf2899a13447d5e61f4')
-
-prepare() {
-  cd $pkgname-$pkgver
-  # blacklist gnome-settings-daemon plugins from auto starting (from Fedora)
-  patch -Np1 -i ../blacklist_g-s-d.patch
-}
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-session/archive/${pkgver}.tar.gz")
+sha256sums=('20426fe91347193b13ede47d2b2f14af4321f95274267304dc9844e2a5178948')
 
 build() {
   cd $pkgname-$pkgver

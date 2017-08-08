@@ -1,7 +1,7 @@
 # Maintainer: Chrysostomus @forum.manjaro.org
 
 pkgname=sterminal
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Wrapper for st-manjaro and tmux"
 arch=(any)
@@ -10,7 +10,8 @@ license=(MIT)
 depends=('terminus-font'
 	'xsel'
 	'tmux'
-	'dash')
+	'dash'
+	'fzf')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/sterm"
 		sterminal.desktop)
@@ -24,6 +25,8 @@ package () {
 	chmod +x $pkgdir/usr/share/tmux/tmux-better-mouse-mode/scroll_copy_mode.tmux
 	chmod +x $pkgdir/usr/share/tmux/tmux-better-mouse-mode/only_scroll_sometimes.sh
     install -Dm755 "$srcdir/sterm/sterm" "$pkgdir/usr/bin/sterminal"
+    install -Dm755 "$srcdir/sterm/stmux" "$pkgdir/usr/bin/stmux"
+    install -Dm755 "$srcdir/sterm/tmuxa" "$pkgdir/usr/bin/tmuxa"
     install -Dm644 "$srcdir/sterm/tmux.conf" "$pkgdir/etc/skel/.tmux.conf"
     install -Dm644 $srcdir/sterminal.desktop "$pkgdir"/usr/share/applications/sterminal.desktop
 }

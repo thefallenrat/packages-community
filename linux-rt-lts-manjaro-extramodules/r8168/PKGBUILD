@@ -3,28 +3,38 @@
 # Bob Fanger < bfanger(at)gmail >
 # Filip <fila pruda com>, Det < nimetonmaili(at)gmail >
 
-# Maintainer: Philip Müller <philm@manjaro.org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Philip Müller <philm@manjaro.org>
 
-pkgname=linux-rt-lts-manjaro-r8168
+_linuxprefix=linux-rt-lts-manjaro
+_extramodules=extramodules-4.9-rt-lts-MANJARO
+pkgname=$_linuxprefix-r8168
 _pkgname=r8168
 pkgver=8.044.02
-pkgrel=3
+pkgrel=6
 pkgdesc="A kernel module for Realtek 8168 network cards"
 url="http://www.realtek.com.tw"
 license=("GPL")
 arch=('x86_64')
-depends=('glibc' 'linux-rt-lts-manjaro')
-makedepends=('linux-rt-lts-manjaro-headers')
+depends=('glibc' "$_linuxprefix")
+makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
-groups=('linux-rt-lts-manjaro-extramodules')
-source=("https://github.com/mtorromeo/$_pkgname/archive/$pkgver/$pkgver.tar.gz")
-sha256sums=('aad7bccc4f625c35abe0455b2a6271e9938b76b46e11b24b4f138eb5c95db6d3')
+groups=("$_linuxprefix-extramodules")
+source=("https://github.com/mtorromeo/$_pkgname/archive/$pkgver/$pkgver.tar.gz" kernel-47.patch)
+sha256sums=('aad7bccc4f625c35abe0455b2a6271e9938b76b46e11b24b4f138eb5c95db6d3'
+            'ab9bda30f23cb1fa932c637b67e987de3a981a82cbcc71eccbd212b26d293dd3')
 install=$_pkgname.install
 
+prepare() {
+	# https://github.com/torvalds/linux/commit/a188222b6ed29404ac2d4232d35d1fe0e77af370
+	sed -i 's|NETIF_F_ALL_CSUM|NETIF_F_CSUM_MASK|g' "$_pkgname-$pkgver"/src/r8168_n.c
+	cd "$_pkgname-$pkgver"
+	patch -p1 -i "${srcdir}/kernel-47.patch"
+}
+
 build() {
-	_extramodules=extramodules-4.4-rt-lts-MANJARO
 	_kernver="$(cat /usr/lib/modules/$_extramodules/version || true)"
+
 	cd "$_pkgname-$pkgver"
 
 	# avoid using the Makefile directly -- it doesn't understand
@@ -36,7 +46,6 @@ build() {
 }
 
 package() {
-	_extramodules=extramodules-4.4-rt-lts-MANJARO
 	cd "$srcdir/$_pkgname-$pkgver/src"
 	install -D -m644 $_pkgname.ko "$pkgdir/usr/lib/modules/$_extramodules/$_pkgname.ko"
 

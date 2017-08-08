@@ -1,19 +1,22 @@
-EXTRAMODULES='extramodules-4.9-rt-MANJARO'
+EXTRAMODULES='extramodules-4.11-rt-MANJARO'
 
+run_depmode() {
+    depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
+}
 
 post_install() {
 cat << EOF
 ===> You must load vboxdrv module before starting VirtualBox:
 ===> # modprobe vboxdrv
 EOF
-    depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
+    run_depmode
 }
 
 post_upgrade() {
-    depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
+    run_depmode
     echo 'In order to use the new version, reload all virtualbox modules manually.'
 }
 
 post_remove() {
-    depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
+    run_depmode
 }

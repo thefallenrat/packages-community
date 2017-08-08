@@ -1,8 +1,8 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=manjaro-deepin-settings
-pkgver=20170512
-pkgrel=1
+pkgver=20170625
+pkgrel=3
 pkgdesc='Manjaro Linux deepin settings'
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -24,11 +24,12 @@ source=("git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  printf "$(date +%Y%m%d)"
+    printf "$(date +%Y%m%d)"
 }
 
 package() {
-  cd $_pkgname
-  install -d $pkgdir/etc
-  cp -r $srcdir/desktop-settings/community/deepin/skel $pkgdir/etc
+    cd $_pkgname
+    install -dm755 $pkgdir/etc
+    cp -r $srcdir/desktop-settings/community/deepin/skel $pkgdir/etc
+    mkdir -p $pkgdir/etc/skel/.mozilla/firefox/manjaro.default
 }

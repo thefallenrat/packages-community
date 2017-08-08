@@ -3,7 +3,7 @@
 # Contributor: Jan de Groot <jan@archlinux.org>
 
 pkgname=cinnamon-desktop
-pkgver=3.4.1
+pkgver=3.4.2
 pkgrel=0.1
 pkgdesc="Library with common API for various Cinnamon modules"
 arch=(i686 x86_64)
@@ -13,7 +13,7 @@ makedepends=(intltool gobject-introspection gnome-common python2)
 url="https://github.com/linuxmint/$pkgname"
 source=("${pkgname}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz"
         "config.patch")
-sha256sums=('1a7b5b4a1b0dcc807a79e69c9d221a27d7d34806161b541139faa3e7b125eb1d'
+sha256sums=('58d594a896f2ce843b8dbc4430e1e538caa5f795e0bca07e5429ba953523c2c9'
             'e2c20c35df78aaedcd2d2e4965369bc519f51072ab88d4ac9b01be9a48cf8cfd')
             
 prepare() {

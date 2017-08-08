@@ -3,22 +3,23 @@
 # Mateusz Herych <heniekk@gmail.com>
 # Charles Lindsay <charles@chaoslizard.org>
 
-# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
+# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 
-pkgname=linux-rt-lts-manjaro-vhba-module
+_linuxprefix=linux-rt-lts-manjaro
+_extramodules=extramodules-4.9-rt-lts-MANJARO
+pkgname=$_linuxprefix-vhba-module
 _pkgname=vhba-module
 pkgver=20161009
-_extramodules=extramodules-4.4-rt-lts-MANJARO
-pkgrel=9
+pkgrel=12
 pkgdesc="Kernel module that emulates SCSI devices"
 arch=('x86_64')
 url="http://cdemu.sourceforge.net/"
 license=('GPL')
-depends=('linux-rt-lts-manjaro')
-makedepends=('linux-rt-lts-manjaro-headers')
+depends=("$_linuxprefix")
+makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
-groups=('linux-rt-lts-manjaro-extramodules')
+groups=("$_linuxprefix-extramodules")
 install=$_pkgname.install
 source=("http://downloads.sourceforge.net/cdemu/$_pkgname-$pkgver.tar.bz2"
         '60-vhba.rules')
@@ -42,5 +43,5 @@ package() {
   find "$pkgdir" -name '*.ko' -exec gzip -9 {} \;
 
   install -Dm644 "$srcdir/60-vhba.rules" \
-    "$pkgdir/usr/lib/udev/rules.d/60-linux-rt-lts-manjaro-vhba.rules"
+    "$pkgdir/usr/lib/udev/rules.d/60-$_linuxprefix-vhba.rules"
 }

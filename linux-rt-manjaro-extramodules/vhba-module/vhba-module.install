@@ -1,4 +1,4 @@
-EXTRAMODULES=extramodules-4.9-rt-MANJARO
+EXTRAMODULES=extramodules-4.11-rt-MANJARO
 
 _updatemod() {
   echo "  > Updating module dependencies..."
@@ -6,12 +6,12 @@ _updatemod() {
 }
 
 post_install() {
-  post_upgrade
+  getent group cdemu &>/dev/null || groupadd -r cdemu
+  _updatemod
 }
 
 post_upgrade() {
-  getent group cdemu &>/dev/null || groupadd -r cdemu
-  _updatemod
+  post_install
 }
 
 post_remove() {

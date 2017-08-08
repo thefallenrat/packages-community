@@ -1,7 +1,7 @@
 # Maintainer: Stefano Capitani <stefano@manjaro.org>
 
 pkgbase=palemoon-i18n
-pkgver=27.2.1
+pkgver=27.4.1
 pkgrel=1
 pkgdesc="Language pack for Palemoon"
 arch=('any')
@@ -30,17 +30,17 @@ _languages=(
 'ja    "Japanese"'
 #'kn    "Kannada (India)"'
 'ko    "Korean"'
-#'nl    "Dutch"'
+'nl    "Dutch"'
 'pl    "Polish"'
-#'pt-BR "Portuguese (Brazil)"'
-#'pt-PT "Portuguese (Portugal)"'
+'pt-BR "Portuguese (Brazil)"'
+'pt-PT "Portuguese (Portugal)"'
 #'ro    "Romanian/Moldavian"'
 'ru    "Russian"'
 #'sk    "Slovak"'
 #'sl    "Slovenian"'
 #'sr    "Serbian"'
-#'sv-SE "Swedish"'
-#'tr    "Turkish"'
+'sv-SE "Swedish"'
+'tr    "Turkish"'
 #'vi    "Vietnamese"'
 'zh-CN "Chinese (Simplified)"'
 #'zh-TW "Chinese (Traditional)"'
@@ -70,17 +70,22 @@ _package() {
     "$pkgdir/usr/lib/palemoon/browser/extensions/langpack-$1@palemoon.org.xpi"
 }
 
-md5sums=('66516407f07d6b597a7a9a7dbcf910be'
-         'c5bca0712e2a0497d612c0227e5d66e0'
-         'c7b605b580713215dfcdb5a3029afb78'
-         '490b8d99a66012af9d49f630ea6a048e'
-         'dbaddeb48bf97f04655fac268990e8ef'
-         'ce2b5bcb9562fe5779449e7ce860e97e'
-         '5a11d7756b41ad90c3402b44625c3607'
-         'a34e293111b296d82236e04f02e58829'
-         'eb00ec128e5bd639fa852b84dd4ff9bd'
-         'daa9b55badf30e8d6c1e6780d04719e3'
-         '47dbce672aa95acd0461d1b0aaf93360'
-         '4c3a50550761d9d6c547d6d206ce5d9e'
-         '284154e2c0e805057b9d90e35e117d46'
-         'c7a112c5ae1809b62006451e11fffd0e')
+md5sums=('4c59abdbc26ec7747bfa44e5b215dbca'
+         '3e51c6ff1927f2361db37c32d30eaab0'
+         '2aab79afc916e91c0ff2a03a76b9d628'
+         '87072fed7050e7dafb7b0fd8fe23e736'
+         '941351650854a2e463d7177ce26c763e'
+         '94d327f39977ddd889da0e0f6ccabe57'
+         'e92cb92a76907b0a69be5d2e3d33a246'
+         '1ba1c9ff5677afd09f49c29793c898e9'
+         'e76f5c998871f1ddb9920ae4548cbdc2'
+         '38aa0ddbabaac5e267ad8bc962fae4b0'
+         'b064766c658ebd536ed8ca809a84b0cb'
+         '8d9f334f4247a93e753b508aec26dac5'
+         '9d8efa7f9aa4e3e0bd120b8780643762'
+         'e1be1e7421d0567ae7f6a5cb1557cb4f'
+         '64463a6f99c5cee1b2dda0a416b10a94'
+         '7f8a18988e6127b9e1d89e9dc18d1b9b'
+         '30e60beab2ba868e6c92b3a76cc55d62'
+         '3601ac14b8ebfe0b4394195a0381ad8b'
+         'b032c102c791124d2b726672b69597b0')

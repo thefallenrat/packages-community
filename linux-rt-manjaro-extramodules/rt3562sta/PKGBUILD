@@ -6,12 +6,12 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 
 _linuxprefix=linux-rt-manjaro
-_extramodules=extramodules-4.9-rt-MANJARO
+_extramodules=extramodules-4.11-rt-MANJARO
 pkgbase=rt3562sta
 pkgname="$_linuxprefix-$pkgbase"
 pkgver=2.4.1.1_r4
 _patchrel=${pkgver/*_r/}
-pkgrel=13
+pkgrel=18
 pkgdesc="Ralink RT3562 PCI WLAN adaptors kernel module"
 arch=('x86_64')
 url="http://www.mediatek.com/en/Products/support.php?sn=501"

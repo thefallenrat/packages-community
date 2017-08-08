@@ -3,19 +3,17 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
-# Maintainer: Budiman JoJo <budimanjojo@gmail.com>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-rt
 pkgname=('linux-rt-manjaro' 'linux-rt-manjaro-headers')
 _kernelname=-MANJARO
-_basekernel=4.9
-_basever=49-rt
-#_aufs=20170327
-_bfq=v8r11
-_sub=30
+_basekernel=4.11
+_basever=411-rt
+_bfq=v8r12
+_sub=12
 _pkgver=${_basekernel}.${_sub}
-_rtpatchver=rt21
+_rtpatchver=rt9
 pkgver=${_pkgver}_${_rtpatchver}
 pkgrel=1
 arch=('x86_64')
@@ -33,32 +31,24 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_basekernel}.tar.x
         # standard config files for mkinitcpio ramdisk
         "${pkgname}.preset"
         "${pkgname}.hook"
-        "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/69973b8...d231bcc.patch"
+        "0001-BFQ-${_bfq}-v${_pkgver}.patch::https://github.com/linusw/linux-bfq/compare/a351e9b...2024487.patch"
         # ARCH Patches
-        'change-default-console-loglevel.patch'
         # Manjaro Patches
-        '0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch::https://github.com/torvalds/linux/commit/2ae3986b84e9d325bc92a1efbcf0c6b0f5016b35.patch'
-        '0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/4fed0231994b27b3896bc63885ac66d02fff625b.patch'
-        '0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/66e5c5ffc7a5e4d36d136ce4fd8bdb4e92ecec7b.patch'
-        '0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch::https://github.com/torvalds/linux/commit/0a76ac80e84d0be0aba24ab60ac3bc14bc49bbc9.patch'
+        '0005-bfq-wb-4.11-disable-WBT-for-non-root-cgroup.patch'
         # RT Patch
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.xz"
         "https://www.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/older/patch-${_pkgver}-${_rtpatchver}.patch.sign"
         'fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch')
-sha256sums=('029098dcffab74875e086ae970e3828456838da6e0ba22ce3f64ef764f3d7f1a'
-            '363c6135ce997f105a61e8207b8e7553b0f59cf36cbc8950968286a8a9d521b3'
-            'eaa482628b60b3420dcd72a0017195d39c0c52d60e848f549bfe4b6f20137973'
-            '99750417273c71b9b03b16c4bef4ba8f68cf18c50994a4fcc21f2d380c66eb6c'
+sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
+            '707c5f18dfb795761b0b7ac6f946f03774f9f99317306fd54d8724d17d9c7729'
+            '4c5a9ccd6fb070dc60d732571580223426db941704e60a10db63547ff965a3ab'
+            '7b4bb4b54f70001455326e606d408ec9d1dcd6fa49dd729c3392acb5179131ba'
             'ca4712f892ec934e660a0423bd5198f5a02fcb81557f608df8318247cc2f28ba'
             '6e9abeac955d9136d7aceb64a813f9c7aa3720fb4d76d5656b6ca9c284029360'
             'b83cf8b611d18a0f59a3081da7077d5040936a46040e522557c29aec9337a6ad'
-            '30f5e70efe6a6cd274a5160d8fcf8557c9da2084db39ec98c4f1789071f96226'
-            '44e7e15c95af9676f715569e72688fd64304a70d2854b0f804c156d4961c72c0'
-            'c317b35c5661b96445b05ea7a1a7564c10650f94fb273a2cbf6d21eaa41e7a06'
-            '3aaca014f7e4768965dfe5e9740f2007d49f2319db6b6cf566ac7b8b869a6506'
-            'dc464866c4b773644b729803ec3e99c0cdd9781727db35337ac6b06ccd3f458b'
-            '555b6a27b3a34a81e422f0ac935ee72ae8bfd798799aea443f8036518bdaea00'
-            '2aea951471b2c4f8f7d36bd011c5acdf5f1d6947f94e578bcde1ee96253c526a'
+            '01de23d85818d0dba0c97a2c34c60fd9885805e2d40c3a632cf66f20dd837cb5'
+            'c726b1a360012171e983ed06f14e7748dbc4892164f818a3c2ad856fecf17b1a'
+            '6e6112ec9c076c9a7a6ee6fe623d5059e2944622062307ecaca8a874e8908a0e'
             'SKIP'
             '85f7612edfa129210343d6a4fe4ba2a4ac3542d98b7e28c8896738e7e6541c06')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
@@ -77,25 +67,7 @@ prepare() {
   msg "applying patch-${_pkgver}-${_rtpatchver}.patch"
   patch -p1 -i "${srcdir}/patch-${_pkgver}-${_rtpatchver}.patch"
 
-  # add latest fixes from stable queue, if needed
-  # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
-  # enable only if you have "gen-stable-queue-patch.sh" executed before
-  #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}`date +%Y%m%d`"
-
-  # set DEFAULT_CONSOLE_LOGLEVEL to 4 (same value as the 'quiet' kernel param)
-  # remove this when a Kconfig knob is made available by upstream
-  # (relevant patch sent upstream: https://lkml.org/lkml/2011/7/26/227)
-  msg "change-default-console-loglevel.patch"
-  patch -p1 -i "${srcdir}/change-default-console-loglevel.patch"
-
-  # extend Microsoft Surface support
-  patch -p1 -i "${srcdir}/0001-HID-microsoft-Add-Surface-4-type-cover-pro-4-not-JP-versions.patch"
-  patch -p1 -i "${srcdir}/0002-HID-multitouch-enable-the-Surface-4-Type-Cover-Pro-JP-to-report-multitouch-data.patch"
-  patch -p1 -i "${srcdir}/0003-HID-multitouch-enable-Surface-4-Type-Cover-Pro-non-JP-to-report-multitouch-data.patch"
-  patch -p1 -i "${srcdir}/0004-HID-multitouch-enable-Surface-3-Type-Cover-Pro-to-report-multitouch-data.patch"
-
-  # A patch to fix a problem that ought to be fixed in the NVIDIA source code.
-  # Stops X from hanging on certain NVIDIA cards
+  # fix X hanging on certain NVIDIA cards
   msg "fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
   patch -p1 -i "${srcdir}/fix-race-in-PRT-wait-for-completion-simple-wait-code_Nvidia-RT-160319.patch"
   
@@ -104,6 +76,9 @@ prepare() {
   sed -i "s|SUBLEVEL = 0|SUBLEVEL = ${_sub}|" $srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch
   msg "BFQ scheduler patch"
   patch -Np1 -i "$srcdir/0001-BFQ-${_bfq}-v${_pkgver}.patch"
+  
+  msg "disable non root WBT patch"
+  patch -Np1 -i "$srcdir/0005-bfq-wb-4.11-disable-WBT-for-non-root-cgroup.patch"
 
   msg "All patches have successfully been applied"
   

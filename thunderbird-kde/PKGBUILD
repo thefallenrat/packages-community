@@ -6,7 +6,7 @@
 # Contributor: Anders Bostrom <anders.bostrom@home.se>
 
 pkgname=thunderbird-kde
-pkgver=52.2.0
+pkgver=52.2.1
 pkgrel=1
 provides=(thunderbird=${pkgver})
 pkgdesc="Standalone mail and news reader from mozilla.org"
@@ -29,7 +29,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/$pkgver/sou
         mozilla-language.patch
         mozilla-nongnome-proxies.patch
         kde.js)
-sha256sums=('c65c66244ac113996002bcfa9e387f14291163cfb7009a9126e3a8d4a970e72d'
+sha256sums=('8b9e4b787f9059973bb3cae41c3957d6907e13e5f0b2310f3730d59ce7d8779a'
             '44c52e9d135bab6d107fab67d279612a4d2750996fa45f4530d8ede6a2fb031c'
             '24599eab8862476744fe1619a9a53a5b8cdcab30b3fc5767512f31d3529bd05d'
             'a7317caba56e89932bd9e3b9352d94701dd9a419685057f238b1ded8dc0adcd7'

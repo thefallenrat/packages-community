@@ -13,13 +13,13 @@
 arch=$(uname -m)
 
 if [ -e rt-kernel-modules.sum ]; then
-	timestamp=$(stat -c %y rt-kernel-modules.sum | sed s'~ ~-~'g | cut -d. -f1)
-	mv rt-kernel-modules.sum rt-kernel-modules-$timestamp.sum
+    timestamp=$(stat -c %y rt-kernel-modules.sum | sed s'~ ~-~'g | cut -d. -f1)
+    mv rt-kernel-modules.sum rt-kernel-modules-$timestamp.sum
 fi
 md5sum /usr/lib/modules/*rt*/build/Module.symvers | sed s'~/usr/lib/modules/~Kernel: ~'g | sed s'~/build/Module.symvers~~'g > rt-kernel-modules.sum
 if [ -e rt-kernel-modules-$timestamp.sum ]; then
-	echo "Possible ABI-change detected. Please check:"
-	echo " "
-	diff -Npur rt-kernel-modules-$timestamp.sum rt-kernel-modules.sum > abi-change-rt-since-$timestamp.abi
-	cat abi-change-rt-since-$timestamp.abi
+    echo "Possible ABI-change detected. Please check:"
+    echo " "
+    diff -Npur rt-kernel-modules-$timestamp.sum rt-kernel-modules.sum > abi-change-rt-since-$timestamp.abi
+    cat abi-change-rt-since-$timestamp.abi
 fi

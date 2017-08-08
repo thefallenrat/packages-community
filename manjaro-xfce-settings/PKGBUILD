@@ -3,12 +3,13 @@
 pkgbase=manjaro-xfce-settings
 pkgname=('manjaro-xfce-settings'
          'manjaro-xfce-minimal-settings')
-pkgver=20170225
+pkgver=20170624
 pkgrel=1
 pkgdesc="Manjaro Linux Xfce settings"
 arch=('any')
 url="https://github.com/manjaro/manjaro-xfce-settings"
 license=('GPL')
+makedepends=('git')
 source=("git+$url.git")
 sha256sums=('SKIP')
 
@@ -19,7 +20,7 @@ pkgver() {
 _inst_dir(){
 	install -d $pkgdir/etc
 	cp -r $srcdir/$pkgbase/skel $pkgdir/etc
-	
+
 	install -d $pkgdir/usr/share/glib-2.0/schemas
 	cp $srcdir/$pkgbase/schemas/* $pkgdir/usr/share/glib-2.0/schemas
 }
