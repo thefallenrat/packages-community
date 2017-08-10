@@ -8,9 +8,9 @@ pkgname=('adapta-maia-theme-dev'
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
 pkgver="3.91.1.53"
-pkgrel=1
+pkgrel=2
 arch=(any)
-_commit=79620af99072d468ee6447f0b621105a40380ee8
+_commit=a6ff879542ced60946a5dc3f58347cd524d06534
 url="https://github.com/adapta-project/${_pkgname}"
 _url="https://github.com/Ste74/$_theme"
 license=('GPL2' 'CCPL')
@@ -28,7 +28,7 @@ makedepends=('libxml2'
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
 sha256sums=('7210113ca63d47311d70f906d96f6b74b584496c228e73d76c6afa13dba23ab0'
-            'cff4bdafba03d545ec14f7f9f00da505894020762fee6aa7324827c3727e910e')
+            'c811d8d8a7b98c810cca112ae8a39b0dbdd97c36d259dd74347fa14e4c3d2766')
 
 prepare() {
 
@@ -163,28 +163,38 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Breath"
 }
 
 package_manjaro-gdm-breath-theme-dev() {
+_hook=gdm-theme-breath
 pkgdesc="Manjaro Breath GDM theme"
-backup=("usr/share/gnome-shell/gnome-shell-theme.gresource")
 depends=('adapta-breath-theme-dev')
 conflicts=('manjaro-gdm-maia-theme-dev')
 
 install -dm755 $pkgdir/usr/share/gnome-shell
 install -dm755 $pkgdir/etc/skel
-cd $srcdir/adapta-breath-theme-$pkgver/shell/gnome-shell
-cp gnome-shell-theme.gresource $pkgdir/usr/share/gnome-shell/
 cp $srcdir/$_theme-$_commit/common/.face $pkgdir/etc/skel/.face
+
+#Hook
+install -Dm644 $srcdir/$_theme-$_commit/$_hook-install.hook $pkgdir/usr/share/libalpm/hooks/$_hook-install.hook
+install -Dm755 $srcdir/$_theme-$_commit/$_hook-install.script $pkgdir/usr/share/libalpm/scripts/$_hook-install
+install -Dm644 $srcdir/$_theme-$_commit/$_hook-remove.hook $pkgdir/usr/share/libalpm/hooks/$_hook-remove.hook
+install -Dm755 $srcdir/$_theme-$_commit/$_hook-remove.script $pkgdir/usr/share/libalpm/scripts/$_hook-remove
+
 }
 
 package_manjaro-gdm-maia-theme-dev() {
+_hook=gdm-theme-maia
 pkgdesc="Manjaro Maia GDM theme"
-backup=("usr/share/gnome-shell/gnome-shell-theme.gresource")
 depends=('adapta-maia-theme-dev')
 conflicts=('manjaro-gdm-breath-theme-dev')
 
 install -dm755 $pkgdir/usr/share/gnome-shell
 install -dm755 $pkgdir/etc/skel
-cd $srcdir/adapta-maia-theme-$pkgver/shell/gnome-shell
-cp gnome-shell-theme.gresource $pkgdir/usr/share/gnome-shell/
 cp $srcdir/$_theme-$_commit/common/.face $pkgdir/etc/skel/.face
+
+#Hook
+install -Dm644 $srcdir/$_theme-$_commit/$_hook-install.hook $pkgdir/usr/share/libalpm/hooks/$_hook-install.hook
+install -Dm755 $srcdir/$_theme-$_commit/$_hook-install.script $pkgdir/usr/share/libalpm/scripts/$_hook-install
+install -Dm644 $srcdir/$_theme-$_commit/$_hook-remove.hook $pkgdir/usr/share/libalpm/hooks/$_hook-remove.hook
+install -Dm755 $srcdir/$_theme-$_commit/$_hook-remove.script $pkgdir/usr/share/libalpm/scripts/$_hook-remove
+
 }
 
