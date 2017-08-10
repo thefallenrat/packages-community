@@ -1,5 +1,6 @@
 # Maintainer: Stefano Capitani <stefano_at_manjaro_dot_org>
 # Contributor: ceyhunnabiyev for Breath color <https://github.com/ceyhunnabiyev>
+# This pkgbuild provide adapta theme and gdm theme https://github.com/Ste74/manjaro-gnome-theme
 
 pkgname=('adapta-maia-theme-dev'
 		 'adapta-breath-theme-dev'
@@ -7,10 +8,10 @@ pkgname=('adapta-maia-theme-dev'
 		 'manjaro-gdm-maia-theme-dev')
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
-pkgver="3.91.1.53"
-pkgrel=2
+pkgver="3.91.2.4"
+pkgrel=1
 arch=(any)
-_commit=a6ff879542ced60946a5dc3f58347cd524d06534
+_commit=7dd9f91c7e50866199d8ea216ae9901b831f3d09
 url="https://github.com/adapta-project/${_pkgname}"
 _url="https://github.com/Ste74/$_theme"
 license=('GPL2' 'CCPL')
@@ -27,8 +28,8 @@ makedepends=('libxml2'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
-sha256sums=('7210113ca63d47311d70f906d96f6b74b584496c228e73d76c6afa13dba23ab0'
-            'c811d8d8a7b98c810cca112ae8a39b0dbdd97c36d259dd74347fa14e4c3d2766')
+sha256sums=('bac04daea4e6b954e898fa0add7175271d42f63f5013ae1bbfaf156a28b1af60'
+            '450bd1eb08275a02111faeb3158b6448a8ff591e2a3b794a74bd0ead5c78fa7e')
 
 prepare() {
 
