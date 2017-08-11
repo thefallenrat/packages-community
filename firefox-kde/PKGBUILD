@@ -4,14 +4,14 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=55.0
+pkgver=55.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=(i686 x86_64)
 license=(MPL GPL LGPL)
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib ffmpeg
-         nss hunspell sqlite ttf-font libpulse kmozillahelper)
+         nss hunspell sqlite ttf-font libpulse icu kmozillahelper)
 makedepends=(unzip zip diffutils python2 yasm mesa imake gconf inetutils xorg-server-xvfb
              autoconf2.13 cargo)
 optdepends=('networkmanager: Location detection via available WiFi networks'
@@ -20,7 +20,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
             'speech-dispatcher: Text-to-Speech')
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
-options=(!emptydirs !makeflags)
+options=(!emptydirs !makeflags !strip)
 _patchrev=74bc4d049531
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
@@ -36,7 +36,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
-sha256sums=('0db9f315ca67c65e36b4298465af4d08c4245eedeccf04040051c2fdc9f4576f'
+sha256sums=('827c26ed1940ce22aeeec98120cbe1a415365929a9186a0bc3c4c17726a9a9d3'
             'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
@@ -105,6 +105,7 @@ ac_add_options --with-mozilla-api-keyfile=${PWD@Q}/mozilla-api-key
 # System libraries
 ac_add_options --with-system-nspr
 ac_add_options --with-system-nss
+ac_add_options --with-system-icu
 ac_add_options --with-system-zlib
 ac_add_options --with-system-bz2
 ac_add_options --enable-system-hunspell
