@@ -4,8 +4,8 @@
 # Contributor: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=mate-tweak
-pkgver=17.10.9
-pkgrel=4
+pkgver=17.10.10
+pkgrel=1
 pkgdesc="Tweak tool for MATE, a fork of MintDesktop."
 arch=('any')
 url="https://github.com/ubuntu-mate/mate-tweak"
@@ -19,15 +19,8 @@ optdepends=('brisk-menu: for Manjaro panel layout'
             'plank: for Cupertino panel layout'
             'vala-panel-appmenu-mate: for Mutiny,Cupertino'
             'tilda: to enable pull-down terminal')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archive/$pkgver.tar.gz"
-        "mate-tweak.patch")
-sha256sums=('e4fcf699cccdb01f7bd8b00b5f4ba25ab943c59b254c3ac36d2622ea1820b352'
-            '6743f9731d66ffdad3a7b84d87a8710e9188accbe5bf5cf99578458f3857e280')
-
-prepare() {
-	cd $pkgname-$pkgver
-	patch -Np0 -i "${srcdir}/mate-tweak.patch"
-}
+source=("$pkgname-$pkgver.tar.gz::https://github.com/ubuntu-mate/$pkgname/archive/$pkgver.tar.gz")
+sha256sums=('dc60a0f00811315aec420a4c34e33e975308c13269aad84541c365fea63e66ec')
 
 package() {
   cd "$pkgname-$pkgver"
