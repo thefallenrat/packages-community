@@ -5,7 +5,7 @@
 
 pkgname=mate-tweak
 pkgver=17.10.9
-pkgrel=3
+pkgrel=4
 pkgdesc="Tweak tool for MATE, a fork of MintDesktop."
 arch=('any')
 url="https://github.com/ubuntu-mate/mate-tweak"
@@ -32,4 +32,5 @@ prepare() {
 package() {
   cd "$pkgname-$pkgver"
   python3 setup.py install --root="$pkgdir" --optimize=1
+  cp -r "$pkgdir"/usr/share/mate/applications/* "$pkgdir"/usr/share/applications/
 }
