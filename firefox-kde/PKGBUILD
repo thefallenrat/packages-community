@@ -4,14 +4,14 @@
 
 pkgname=firefox-kde
 _pkgname=firefox
-pkgver=54.0.1
+pkgver=55.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org with OpenSUSE patch, integrate better with KDE"
 arch=(i686 x86_64)
 license=(MPL GPL LGPL)
 url="https://build.opensuse.org/package/show/mozilla:Factory/MozillaFirefox"
 depends=(gtk3 gtk2 mozilla-common libxt startup-notification mime-types dbus-glib ffmpeg
-         nss hunspell sqlite ttf-font libpulse icu libvpx kmozillahelper)
+         nss hunspell sqlite ttf-font libpulse icu kmozillahelper)
 makedepends=(unzip zip diffutils python2 yasm mesa imake gconf inetutils xorg-server-xvfb
              autoconf2.13 cargo)
 optdepends=('networkmanager: Location detection via available WiFi networks'
@@ -21,7 +21,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
 provides=("firefox=${pkgver}")
 conflicts=('firefox' 'firefox-kde-opensuse')
 options=(!emptydirs !makeflags !strip)
-_patchrev=53443ffb496a
+_patchrev=74bc4d049531
 _patchurl=http://www.rosenauer.org/hg/mozilla/raw-file/$_patchrev
 source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
         firefox.desktop firefox-symbolic.svg
@@ -36,7 +36,7 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         $_patchurl/mozilla-language.patch
         $_patchurl/mozilla-nongnome-proxies.patch
         pgo_fix_missing_kdejs.patch)
-sha256sums=('07843e68f2f64842bb230b7fe821e45c82944e64dc3f2a3a90d3ea9f1efa7f77'
+sha256sums=('827c26ed1940ce22aeeec98120cbe1a415365929a9186a0bc3c4c17726a9a9d3'
             'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
             'a2474b32b9b2d7e0fb53a4c89715507ad1c194bef77713d798fa39d507def9e9'
             'd86e41d87363656ee62e12543e2f5181aadcff448e406ef3218e91865ae775cd'
@@ -44,9 +44,9 @@ sha256sums=('07843e68f2f64842bb230b7fe821e45c82944e64dc3f2a3a90d3ea9f1efa7f77'
             '9765bca5d63fb5525bbd0520b7ab1d27cabaed697e2fc7791400abc3fa4f13b8'
             '1ca0debb89d1d2f0becf21bac2d5e87857d58b37b16d9b6cf559607e5a993238'
             'c85a37e71f2bd511fac88d41ca0618ee375c49fc86bc2beddf6dc17c3f17508d'
-            'a8b49c56f4dfe371af6c3e1b214fb8274258823d702d334dbdec55e5a43671cd'
+            'a3af6d55c07fd4cd06c044bc1bf289caf16f40d8eb150bc505e035e37696bfa2'
             'b941790009bb9eda46c2d96fb0d1c83b0fe2d1acf74754ab08e6b18c1e0c6b16'
-            '193f7a6e0f422e24b1a3c1f02fa445c088e3c0665841a689511a95e923c1db29'
+            '512d9a06acdb30b023a0601ecf2f7b5104e2838d4431957b97910f24d98b5bef'
             '2720e418edaab7b305087b325604fe134dab1b743dae6e924aba7b4bd73ea389'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
@@ -95,7 +95,6 @@ ac_add_options --enable-official-branding
 ac_add_options --enable-update-channel=release
 export MOZILLA_OFFICIAL=1
 export MOZ_TELEMETRY_REPORTING=1
-export MOZ_SOURCE_REPO=${_repo@Q}
 export MOZ_ADDON_SIGNING=1
 export MOZ_REQUIRE_SIGNING=1
 
@@ -107,10 +106,8 @@ ac_add_options --with-mozilla-api-keyfile=${PWD@Q}/mozilla-api-key
 ac_add_options --with-system-nspr
 ac_add_options --with-system-nss
 ac_add_options --with-system-icu
-ac_add_options --with-system-jpeg
 ac_add_options --with-system-zlib
 ac_add_options --with-system-bz2
-ac_add_options --with-system-libvpx
 ac_add_options --enable-system-hunspell
 ac_add_options --enable-system-sqlite
 ac_add_options --enable-system-ffi
@@ -120,8 +117,6 @@ ac_add_options --enable-system-pixman
 ac_add_options --enable-startup-notification
 ac_add_options --enable-crashreporter
 ac_add_options --disable-updater
-
-STRIP_FLAGS="--strip-debug"
 END
 
   msg "Patching for KDE"
@@ -143,17 +138,14 @@ build() {
   # _FORTIFY_SOURCE causes configure failures
   CPPFLAGS+=" -O2"
 
-  # Hardening
-  LDFLAGS+=" -Wl,-z,now"
-
   export PATH="$srcdir/path:$PATH"
+  export MOZ_SOURCE_REPO="$_repo"
 
-  #if [[ $CARCH == i686 ]]; then
-    make -f client.mk build
-  #else 
-  #  xvfb-run -a -n 95 -s "-extension GLX -screen 0 1280x1024x24" \
-  #    make -f client.mk profiledbuild
-  #fi
+  # Do PGO
+  #xvfb-run -a -n 95 -s "-extension GLX -screen 0 1280x1024x24" \
+  #  MOZ_PGO=1 ./mach build
+  ./mach build
+  ./mach buildsymbols
 }
 
 package() {
@@ -161,7 +153,8 @@ package() {
 
   cp "$srcdir/kde.js" obj-$CARCH-pc-linux-gnu/dist/bin/defaults/pref
 
-  make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
+  DESTDIR="$pkgdir" ./mach install
+  find . -name '*crashreporter-symbols.zip' -exec cp -fvt "$startdir" {} +
 
   _vendorjs="$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
   install -Dm644 /dev/stdin "$_vendorjs" <<END
