@@ -1,0 +1,23 @@
+# Maintainer: Chrysostomus @forum.manjaro.org
+
+pkgname=zensu
+pkgver=0.1
+pkgrel=1
+pkgdesc="A simple gksu replacement using zenity, yad or spacefm"
+arch=(any)
+url="https://github.com/Chrysostomus/$pkgname"
+license=(MIT)
+optdepends=('spacefm: Used for displaying dialog window'
+	'yad: Alternative for displaying dialog window'
+	'zenity: Alternative for displaying dialog window')
+makedepends=('git')
+conflicts=('gksu')
+provides=('gksu')
+source=("git+$url.git")
+md5sums=('SKIP')
+
+package() {
+	cd "$pkgname"
+    install -Dm755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+    install -Dm755 "$pkgname" "$pkgdir/usr/bin/gksu"
+}

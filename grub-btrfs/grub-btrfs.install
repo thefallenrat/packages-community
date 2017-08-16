@@ -1,0 +1,9 @@
+#!/bin/bash
+
+post_install() {
+	 grep -q 'GRUB_BTRFS_SUBMENUNAME=' /etc/default/grub || echo 'GRUB_BTRFS_SUBMENUNAME="Manjaro Snapshots"' >> /etc/default/grub
+}
+
+post_upgrade() {
+	 grep -q 'GRUB_BTRFS_SUBMENUNAME=' /etc/default/grub || echo 'GRUB_BTRFS_SUBMENUNAME="Manjaro Snapshots"' >> /etc/default/grub
+}
