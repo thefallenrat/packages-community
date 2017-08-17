@@ -3,31 +3,31 @@
 # Contributor: ceyhunnabiyev for Breath color <https://github.com/ceyhunnabiyev>
 
 pkgname=('adapta-maia-theme'
-		 'adapta-breath-theme')
+    'adapta-breath-theme')
 _pkgname=adapta-gtk-theme
-pkgver="3.91.1.26"
+pkgver="3.91.2.35"
 pkgrel=1
 arch=(any)
 url="https://github.com/adapta-project/${_pkgname}"
 license=('GPL2' 'CCPL')
 optdepends=('ttf-roboto: The recommended font'
-            'noto-fonts: The recommended font for improved language support'
-            'gtk-engine-murrine: for gtk2 themes')
+    'noto-fonts: The recommended font for improved language support'
+    'gtk-engine-murrine: for gtk2 themes')
 makedepends=('libxml2'
-	         'libsass'
-	         'sassc'
-	         'librsvg'
-             'inkscape'
-	         'libcanberra'
-	         'parallel'
-	         'gnome-shell')
+     'libsass'
+     'sassc'
+     'librsvg'
+     'inkscape'
+     'libcanberra'
+     'parallel'
+     'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('caf9c81b52bb261dd13554252cdf4f16270101c64786935925c28565434a18c7')
+sha256sums=('4a8215258e5c632c4d57304c2376fae05da67607a2e5e65e8cd36b376f9f48da')
 
 prepare() {
-	for theme in adapta-maia-theme adapta-breath-theme; do
-		cp -r $_pkgname-$pkgver $theme-$pkgver
-	done
+    for theme in adapta-maia-theme adapta-breath-theme; do
+    cp -r $_pkgname-$pkgver $theme-$pkgver
+    done
 } 
 
 build_maia-theme() {
@@ -58,9 +58,9 @@ build_breath-theme() {
 
 package_adapta-maia-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Maia color"
-	build_maia-theme
+    build_maia-theme
     #cd "adapta-maia-theme-${pkgver}"
-        make install
+    make install
 
 # Move the file into another folder to match with name
 cd "$pkgdir/usr/share/themes"
@@ -110,9 +110,9 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
 
 package_adapta-breath-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Breath color"
-	build_breath-theme
+    build_breath-theme
     #cd "adapta-breath-theme-${pkgver}"
-        make install
+    make install
 
 # Move the file into another folder to match with name
 cd "$pkgdir/usr/share/themes"
