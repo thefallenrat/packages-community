@@ -5,11 +5,12 @@
 
 pkgname=deepin-session-ui
 _pkgname=$pkgname-manjaro
-pkgver=4.0.13
-pkgrel=3
+pkgver=4.0.13.1
+pkgrel=2
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url='https://github.com/oberon2007/deepin-session-ui-manjaro'
+_commit=935f020f9b9f5b69c1c322863732e2897ab183d4
 license=('GPL3')
 groups=('deepin')
 depends=('deepin-control-center'
@@ -22,20 +23,27 @@ depends=('deepin-control-center'
     'qt5-svg'
     'startdde'
     'xorg-xrandr')
-makedepends=('qt5-tools' 'deepin-gettext-tools')
+makedepends=('git' 'qt5-tools' 'deepin-gettext-tools')
 provides=('lightdm-deepin-greeter')
 conflicts=('dde-workspace' 'dde-session-ui')
 replaces=('dde-workspace' 'dde-session-ui')
-source=("$url/archive/$pkgver.tar.gz")
-sha512sums=('6bb75fe13d58713bf643f393f496d1702f3567a9443fd36d448d257748b4763883d3a7d57f4dceadcdd1760c10e3b044e6fb2f86bfd38ceb1bfa04bec97724d1')
+source=("git+$url.git#commit=$_commit"
+    compatible_dtk.patch::https://github.com/linuxdeepin/dde-session-ui/commit/e078009ae5152b28d7f051ac1340561c7dba04d6.patch)
+sha512sums=('SKIP'
+            'fd0a415c450dbd42124edd99e421b351e9f83f2e6ff292e46b406b1bc0df78bc3493572e879c567aad654b0ab22efce8443e17572af406016eee803044cce7f4')
+
+prepare() {
+    cd $_pkgname
+    patch -p1 -i $srcdir/compatible_dtk.patch
+}
 
 build() {
-  cd $_pkgname-$pkgver
-  qmake-qt5 PREFIX=/usr
-  make
+    cd $_pkgname
+    qmake-qt5 PREFIX=/usr
+    make
 }
 
 package() {
-  cd $_pkgname-$pkgver
-  make INSTALL_ROOT="$pkgdir" install
+    cd $_pkgname
+    make INSTALL_ROOT="$pkgdir" install
 }
