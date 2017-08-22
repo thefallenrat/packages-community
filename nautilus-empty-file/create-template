@@ -1,3 +1,10 @@
 #!/bin/sh
 
+##Template script for generate some empty file
+
+#create a empty file in template directory
 touch $(xdg-user-dir TEMPLATES)/Empty\ File
+
+#create a empty file in template directory for bash script
+touch $(xdg-user-dir TEMPLATES)/Empty\ Bash
+echo "#!/bin/bash" > $(xdg-user-dir TEMPLATES)/Empty\ Bash
