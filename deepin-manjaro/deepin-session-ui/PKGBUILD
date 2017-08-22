@@ -6,7 +6,7 @@
 pkgname=deepin-session-ui
 _pkgname=$pkgname-manjaro
 pkgver=4.0.13.1
-pkgrel=2
+pkgrel=3
 pkgdesc='Deepin desktop-environment - Session UI module'
 arch=('i686' 'x86_64')
 url='https://github.com/oberon2007/deepin-session-ui-manjaro'
@@ -16,9 +16,8 @@ groups=('deepin')
 depends=('deepin-control-center'
     'deepin-daemon'
     'deepin-qt-dbus-factory'
-    'deepin-tool-kit'
+    'dtkwidget'
     'gsettings-qt'
-    'gtk2'
     'liblightdm-qt5'
     'qt5-svg'
     'startdde'
