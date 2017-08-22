@@ -4,18 +4,22 @@
 pkgbase=manjaro-gnome-settings
 pkgname=('manjaro-gnome-settings' 'manjaro-gnome-extension-settings')
 #          'manjaro-gnome-minimal-settings')
-pkgver=20170727
+pkgver=20170822
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-gnome-settings"
 license=('GPL')
 source=("git+$url.git"
 		'disable-gdm-night-light.hook'
-		'disable-gdm-night-light.script')
+		'disable-gdm-night-light.script'
+		'manjaro-gnome-messages.hook'
+		'manjaro-gnome-messages.script')
 makedepends=('git')
 sha256sums=('SKIP'
             '430c34abc34b7016eb649dafb4580223bc48d3131a01dd1b1c017dcb8b9d290c'
-            '780a8f11232bdabbad25fe302384f90ce6320c552543cea0104d9077e3dea62d')
+            '1c28a52ef30e4c88508cdd3b878b84a3ec29fe034107c621011b5cc6dc146e98'
+            '89fce95f80bb8277042d8610850e5c8163696ca94099a0b7442ed74c82cef3fd'
+            '6df4edea2bf18c7f7ebf79318c5c0c2f107bc7ccc69b6b9281eb33d5a48b61f8')
 
 pkgver() {
 	date +%Y%m%d
@@ -75,6 +79,9 @@ backup=('etc/gdm/PostLogin/Default')
 	
 	install -Dm644 ${srcdir}/disable-gdm-night-light.hook ${pkgdir}/usr/share/libalpm/hooks/disable-gdm-night-light.hook
 	install -Dm755 ${srcdir}/disable-gdm-night-light.script ${pkgdir}/usr/share/libalpm/scripts/disable-gdm-night-light
+	
+	install -Dm644 ${srcdir}/manjaro-gnome-messages.hook ${pkgdir}/usr/share/libalpm/hooks/manjaro-gnome-messages.hook
+	install -Dm755 ${srcdir}/manjaro-gnome-messages.script ${pkgdir}/usr/share/libalpm/scripts/manjaro-gnome-messages
 }
 
 
