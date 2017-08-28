@@ -5,7 +5,7 @@
 pkgname=('adapta-maia-theme'
     'adapta-breath-theme')
 _pkgname=adapta-gtk-theme
-pkgver="3.91.2.35"
+pkgver="3.91.2.109"
 pkgrel=1
 arch=(any)
 url="https://github.com/adapta-project/${_pkgname}"
@@ -22,7 +22,7 @@ makedepends=('libxml2'
      'parallel'
      'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('4a8215258e5c632c4d57304c2376fae05da67607a2e5e65e8cd36b376f9f48da')
+sha256sums=('07a4090274c0e488d256488315ff7c929a1471434592b0f933196ba2efcabef1')
 
 prepare() {
     for theme in adapta-maia-theme adapta-breath-theme; do
