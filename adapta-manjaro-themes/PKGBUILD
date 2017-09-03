@@ -104,7 +104,8 @@ cd $srcdir
 
 package_adapta-maia-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Maia color"
-conflicts=('adapta-maia-theme')
+conflicts=('adapta-maia-theme-dev')
+replaces=('adapta-maia-theme-dev')
 	build_maia-theme
     #cd "adapta-maia-theme-${pkgver}"
     make install
@@ -152,7 +153,8 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
 
 package_adapta-breath-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Breath color"
-conflicts=('adapta-breath-theme')
+conflicts=('adapta-breath-theme-dev')
+replaces=('adapta-breath-theme-dev')
 	build_breath-theme
     #cd "adapta-breath-theme-${pkgver}"
     make install
