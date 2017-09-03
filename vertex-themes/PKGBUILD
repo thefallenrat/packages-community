@@ -2,18 +2,18 @@
 # Author: horst3180 @ deviantart
 
 pkgname=vertex-themes
-pkgver=20170621
+pkgver=20170827
 pkgrel=1
 pkgdesc='Vertex Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes.'
 _gnomever=3.22
-_commit=b814f289738164bd35b0f1a7cf4bdbc1600299bd
+_commit=82cff0c4780f59ebbb5f2445d071869d30111b5a
 arch=('any')
 url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
 license=('GPL3')
 depends=('gtk-engine-murrine')
 optdepends=('ff-theme-util: set Firefox and Palemoon themes automatically')
 source=("vertex-$_commit.tar.gz::https://github.com/oberon2007/Vertex-theme/archive/$_commit.tar.gz")
-sha256sums=('faaeb996cd529a59fd556ced4f14e41d60c03d2668fc7aa0490d34e1a753032a')
+sha256sums=('74a4663b78c178d2f1f296a52cd227680ca1d8b606316922c80da816dd0f1738')
 
 pkgver() {
     date +%Y%m%d
