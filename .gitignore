@@ -14,3 +14,4 @@ pkg
 .lock
 *apng.patch.gz
 *.xpi
+post
