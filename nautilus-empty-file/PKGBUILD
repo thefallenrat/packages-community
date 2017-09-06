@@ -1,14 +1,14 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=nautilus-empty-file
-pkgver=1.0
-pkgrel=2
-pkgdesc="provides context menu 'New Document' functionality for nautilus"
+pkgver=1.2
+pkgrel=1
+pkgdesc="Provides context menu 'New Document' functionality for nautilus"
 arch=('any')
 depends=('nautilus')
 source=('create-template'
 	'create-template.desktop')
-md5sums=('2cb892d2b271d951af5d3b3fb9c5dbc0'
+md5sums=('a3ca2ae97d7126df7c22b3063c2b3f25'
          'df110a933d9dfaafe3d39b112ffd8150')
 
 package() {
