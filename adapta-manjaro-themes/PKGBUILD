@@ -10,7 +10,7 @@ pkgname=('adapta-maia-theme'
 		 'manjaro-gnome-maia-theme')
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
-pkgver="3.91.2.129"
+pkgver="3.91.2.132"
 pkgrel=1
 arch=(any)
 _commit=932e6facaad495aa366615953f665d796539529a
@@ -30,8 +30,8 @@ makedepends=('libxml2'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
-sha256sums=('3afcbb705744edeb102f86d35ec71aa164eeccc37a53fd0bc06c665fb02918f0'
-            '450bd1eb08275a02111faeb3158b6448a8ff591e2a3b794a74bd0ead5c78fa7e')
+sha256sums=('f53387f3589954af121709c59e0da7f81856453d0703eb625cbbf7e4bafc800e'
+            '11c6ee7b0ff6777ba39746b5d7fb33b7d584e97f93f7c7b8ce5aaee3740840a2')
 
 prepare() {
 
@@ -104,7 +104,8 @@ cd $srcdir
 
 package_adapta-maia-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Maia color"
-conflicts=('adapta-maia-theme')
+conflicts=('adapta-maia-theme-dev')
+replaces=('adapta-maia-theme-dev')
 	build_maia-theme
     #cd "adapta-maia-theme-${pkgver}"
     make install
@@ -152,7 +153,8 @@ cd "$pkgdir/usr/share/themes/Adapta-Nokto-Eta-Maia"
 
 package_adapta-breath-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Breath color"
-conflicts=('adapta-breath-theme')
+conflicts=('adapta-breath-theme-dev')
+replaces=('adapta-breath-theme-dev')
 	build_breath-theme
     #cd "adapta-breath-theme-${pkgver}"
     make install
