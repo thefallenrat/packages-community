@@ -3,7 +3,7 @@
 # Contributor: darkcoder <mario_vazq@hotmail.com>
 
 pkgname=os-prober
-pkgver=1.75
+pkgver=1.76
 pkgrel=1
 pkgdesc="Utility to detect other OSes on a set of drives"
 url="http://joey.kitenet.net/code/os-prober/"
@@ -12,9 +12,9 @@ license=('GPL3')
 depends=('sh')
 source=(http://http.debian.net/debian/pool/main/o/${pkgname}/${pkgname}_${pkgver}.tar.xz
 	intel-ucode.patch)
-md5sums=('acf4f8818af3cee051aa6f927a451e55'
+md5sums=('c4579128b997b4b6927f7c6793f5133e'
          '843e32f3c266fc4d3e5bea03f4a8cb4e')
-sha256sums=('f4ef620455c5ffc3545daf4f32861640a48b0b3b6edda72491eecc1818653446'
+sha256sums=('d3a580610e0148ee1fea98de993b27b856870fb0a31e9ce1a33be2654e2c64ed'
             'd65213e30c571d31186af7cd521d2712dbc2f7fe90ca34cdfbed6178194eedee')
 
 prepare() {
