@@ -5,7 +5,7 @@
 # Contributor: CReimer
 
 pkgname=cinnamon
-pkgver=3.4.4
+pkgver=3.4.6
 pkgrel=1
 pkgdesc="Linux desktop which provides advanced innovative features and a traditional user experience"
 arch=('i686' 'x86_64')
@@ -46,7 +46,6 @@ depends=('accountsservice'
 makedepends=('autoconf-archive'
     'gnome-common'
     'intltool'
-    'gtk-doc'
     'gobject-introspection')
 optdepends=('blueberry: Bluetooth support'
      'gnome-panel: fallback mode'
@@ -58,7 +57,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/Cinnamon/archive/
         "set_wheel.patch"
         "default-theme.patch"
         'add-msm.patch')
-sha256sums=('94ae97470216ba2d78e05f46cd11612fbe6d1d7e72fbf683a34089cac3114924'
+sha256sums=('857cd68ca4744332e9b20456ae3a0d63ee8a3eacd108ec82dd26b124765a45b4'
             '97542a424fa83c18c8c8a6d27c089129f30b6fb4cc128c662ac0da3aebf42dcc'
             '566585873f38a79ec248b916645a2e081abec3c6d4df2c34339cde1f35375cc5'
             '6bd365915fc400be2e245104659744a038c61fe618c47d96977d750ba3e4e3d7')
@@ -105,12 +104,13 @@ build() {
   cd ${srcdir}/Cinnamon*
 
   ./autogen.sh --prefix=/usr \
-               --sysconfdir=/etc \
-               --libexecdir=/usr/lib/cinnamon \
-               --localstatedir=/var \
-               --disable-static \
-               --disable-schemas-compile \
-               --enable-compile-warnings=yes
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib/cinnamon \
+    --localstatedir=/var \
+    --disable-static \
+    --disable-schemas-compile \
+    --disable-gtk-doc \
+    --enable-compile-warnings=yes
 
   #https://bugzilla.gnome.org/show_bug.cgi?id=656231
   sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool

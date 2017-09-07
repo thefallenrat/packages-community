@@ -1,10 +1,10 @@
-# $Id$
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Alexandre Filgueira <alexfilgueira@antergos.com>
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgname=cinnamon-session
-pkgver=3.4.1
-pkgrel=0.1
+pkgver=3.4.2
+pkgrel=1
 pkgdesc="The Cinnamon Session Handler"
 arch=(i686 x86_64)
 license=(GPL LGPL)
@@ -12,8 +12,8 @@ depends=(dbus-glib cinnamon-desktop libsm libcanberra)
 makedepends=(intltool mesa json-glib xtrans gnome-common)
 options=('!emptydirs')
 url="https://github.com/linuxmint/cinnamon-session"
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-session/archive/${pkgver}.tar.gz")
-sha256sums=('20426fe91347193b13ede47d2b2f14af4321f95274267304dc9844e2a5178948')
+source=(${pkgname}-${pkgver}.tar.gz::https://github.com/linuxmint/cinnamon-session/archive/${pkgver}.tar.gz)
+sha256sums=('bfeb8a73cc8c7d9dfd728d34df0f578bd2ad8ed88f7de9d7cd5d3ae08f454530')
 
 build() {
   cd $pkgname-$pkgver
