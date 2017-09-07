@@ -10,7 +10,7 @@ pkgname=('manjaro-bspwm-settings'
         'manjaro-mate-settings'
         'manjaro-netbook-settings'
         'manjaro-pantheon-settings')
-pkgver=20170802
+pkgver=20170829
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/desktop-settings"
@@ -113,12 +113,11 @@ package_manjaro-lxde-settings() {
     pkgdesc='Manjaro Linux lxde settings'
     depends=('manjaro-base-skel'
     	 'arc-maia-icon-theme'
-	     'vertex-maia-themes'
+	     'adapta-maia-theme'
 	     'lxde-wallpapers'
 	     'qt5ct'
 	     'qt5-styleplugins'
 	     'manjaro-lxde-logout-banner'
-	     'manjaro-lxde-xfce4-notifyd'
 	     'i3-scrot'
 	     'manjaro-lxde-xfce4-volumed-pulse'
 	     'xcursor-breeze')

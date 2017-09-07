@@ -10,7 +10,7 @@ light_status=$(sudo -u gdm dbus-launch --exit-with-session gsettings get org.gno
 
 if [ $light_status == true ] ; then
 	echo
-	echo "Night-light feature is enabled, also in GDM screen: see"
+	echo "Night-light feature is enabled also in GDM screen, see"
 	echo "here : https://bugzilla.gnome.org/show_bug.cgi?id=785273"
 	echo "for more info."
 	echo "If you want to disable it please type this command:"
