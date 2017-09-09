@@ -15,7 +15,7 @@ arch=('i686' 'x86_64')
 license=('GPL2')
 url="https://github.com/linuxmint/$pkgbase"
 _snapshot=e4c0f5f9b3e58e31bf3b0acf97045a63ade47a70
-depends=(nemo file-roller cjs clutter-gtk clutter-gst gst-plugins-good libmusicbrainz5
+depends=(nemo file-roller cjs clutter-gst clutter-gtk gst-plugins-good libmusicbrainz5
          gtksourceview3 webkit2gtk python2-gobject seahorse-nautilus samba)
 makedepends=(gnome-common gtk-doc intltool gobject-introspection libgnome-keyring)
 options=('!emptydirs')
@@ -32,6 +32,9 @@ prepare() {
 
   # Fix path for nemo-python
   sed -i 's|libdirsuffix="/i386-linux-gnu/"|libdirsuffix=""|' nemo-python/m4/python.m4
+
+  # Fix gnupg version check
+  sed -i 's|2.0 2.1|2.0 2.1 2.2|' nemo-seahorse/configure.ac
 }
 
 build() {
@@ -72,7 +75,7 @@ package_nemo-fileroller() {
 
 package_nemo-preview() {
   pkgdesc="GtkClutter and Javascript-based quick previewer for Nemo"
-  depends=(nemo cjs clutter-gtk clutter-gst libmusicbrainz5 evince gtksourceview3 webkit2gtk)
+  depends=(nemo cjs clutter-gtk libmusicbrainz5 gtksourceview3 webkit2gtk xreader)
 
 #  cd ${pkgbase}-${pkgver}/nemo-preview
   cd $pkgbase-$_snapshot/nemo-preview
