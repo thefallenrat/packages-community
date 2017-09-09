@@ -8,20 +8,20 @@ pkgname=(
 #	'nemo-share'
 #	'nemo-seahorse'
 	)
-pkgver=3.4.1
-pkgrel=0.1
+pkgver=3.4.2
+pkgrel=1
 pkgdesc="Various extensions for Nemo"
 arch=('i686' 'x86_64')
 license=('GPL2')
 url="https://github.com/linuxmint/$pkgbase"
-_snapshot=16525a78514fe6e69af784cbb496595b2198a116
+_snapshot=e4c0f5f9b3e58e31bf3b0acf97045a63ade47a70
 depends=(nemo file-roller cjs clutter-gtk clutter-gst gst-plugins-good libmusicbrainz5
-         evince gtksourceview3 webkit2gtk python2-gobject seahorse-nautilus samba)
+         gtksourceview3 webkit2gtk python2-gobject seahorse-nautilus samba)
 makedepends=(gnome-common gtk-doc intltool gobject-introspection libgnome-keyring)
 options=('!emptydirs')
 #source=("${pkgbase}-${pkgver}.tar.gz::$url/archive/${pkgver}.tar.gz")
 source=("$pkgname-$_snapshot.tar.gz::$url/archive/$_snapshot.tar.gz")
-sha256sums=('13ea41a6921483610b63855e7894e3d3533fb9521a01ea1d98fd32b9a5e8d8af')
+sha256sums=('3eeff529035b3d626a0cc569b9781b4ae591f5aade4a728214ed8366ba8547e2')
 
 prepare() {
 #  cd ${pkgbase}-${pkgver}
