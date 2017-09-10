@@ -4,7 +4,7 @@
 # Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
 
 pkgname=deepin-desktop-base
-pkgver=20170903
+pkgver=20170908
 pkgrel=1
 epoch=1
 pkgdesc='Base component for Deepin'

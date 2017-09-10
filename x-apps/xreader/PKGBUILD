@@ -3,7 +3,8 @@
 
 pkgname=xreader
 pkgver=1.4.4
-pkgrel=1
+pkgrel=2
+_commit=dfbbd774021b2c0c0161b47d8237997c81ded30b
 pkgdesc="Document viewer for files like PDF and Postscript. X-Apps Project"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -20,24 +21,26 @@ depends=('desktop-file-utils'
          'libspectre'
          'poppler-glib'
          'webkit2gtk')
-makedepends=('mate-common' 'yelp-tools')
+makedepends=('git' 'gobject-introspection' 'mate-common' 'nemo' 'yelp-tools')
 optdepends=('nemo: nemo extension (must be enabled at compile time)'
     'caja-extensions-common: caja extension (must be enabled at compile time)'
     'texlive-bin: support for dvi files')
-source=("${url}/archive/${pkgver}.tar.gz")
-md5sums=('f528263d7d491e976d819e65cf3930f9')
+source=("git+$url.git#commit=$_commit")
+#source=("${url}/archive/${pkgver}.tar.gz")
+md5sums=('SKIP')
 
 build() {
-    cd ${srcdir}/${pkgname}-${pkgver}
+    cd $pkgname
     ./autogen.sh --prefix="/usr" \
         --localstatedir="/var" \
         --libexecdir="/usr/lib/${pkgname}" \
-        --disable-caja --disable-nemo \
+        --disable-caja \
+        --enable-introspection \
         --enable-epub
     make
 }
 
 package(){
-    cd ${srcdir}/${pkgname}-${pkgver}
+    cd $pkgname
     make DESTDIR="$pkgdir/" install
 }

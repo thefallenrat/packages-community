@@ -1,28 +1,39 @@
-# $Id$
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
 # Maintainer: Alexandre Filgueira <alexfilgueira@antergos.com>
 # Contributor: Adam Hani Schakaki <adam@schakaki.net>
 # Contributor: Ner0
 
 pkgname=muffin
-pkgver=3.4.0
-pkgrel=0.1
+pkgver=3.4.1
+pkgrel=1
 pkgdesc="Cinnamon window manager based on Mutter"
 arch=('i686' 'x86_64')
-url="https://github.com/linuxmint/$pkgname"
+url="https://github.com/linuxmint/muffin"
 license=('GPL')
 depends=('clutter' 'gobject-introspection-runtime' 'cinnamon-desktop' 'libcanberra' 'libsm'
          'startup-notification' 'zenity' 'dconf')
-makedepends=('intltool' 'gnome-doc-utils' 'gnome-common' 'gobject-introspection' 'gtk-doc') 
+makedepends=('intltool' 'gnome-doc-utils' 'gnome-common' 'gobject-introspection') 
 options=('!emptydirs')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
-sha256sums=('bbfd8997ad0f03d029f804c4927f464e89276ce384aef5aa6787dddc04e6ef85')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxmint/muffin/archive/$pkgver.tar.gz")
+sha256sums=('f051c9bb1291381c9e32bf06ef829cb2ee894e8d6293a4d2738c8655d3643c26')
+
+prepare() {
+  cd ${pkgname}-${pkgver}
+
+}
 
 build() {
   cd ${pkgname}-${pkgver}
 
-  PYTHON=python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/muffin \
-  				 			 --localstatedir=/var --disable-static --disable-schemas-compile \
-                 --enable-compile-warnings=minimum
+  PYTHON=python2 ./autogen.sh \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib/muffin \
+    --localstatedir=/var \
+    --disable-static \
+    --disable-schemas-compile \
+    --disable-gtk-doc \
+    --enable-compile-warnings=minimum
 
   #https://bugzilla.gnome.org/show_bug.cgi?id=656231
   sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
@@ -40,3 +51,4 @@ package() {
   make -C src/compositor/plugins DESTDIR="$pkgdir" uninstall
   make -C doc/man DESTDIR="$pkgdir" uninstall
 }
+
