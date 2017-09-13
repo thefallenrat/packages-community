@@ -13,9 +13,9 @@ source=("$pkgname.hook"
     "$_check"
     "$_check.desktop"
     'aur-warning.png')
-md5sums=('a0a6e492c083be59ec3a0fc90ffde304'
-         '109f36dc6f804cd566107c6f4c87ad5f'
-         '52e4b65c411dea8a1977a27894ae6860'
+md5sums=('60f0c1fdd75b452573f13fe70b9a3e56'
+         '67c814ff1d3c10a1358e24bef9043ba8'
+         '1ecac4ec59b60cfb663cc0a05fed7cf5'
          'b06f747debd88e456e63ae0b1f4a046b'
          '9ba5e40b801da994a909ae5fc1a36d24')
 
