@@ -12,7 +12,7 @@ printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
 
 echo
 msg "Warning:
- -> Full access to the AUR installed.
+ -> Access to the AUR installed.
  -> Please open this link
  -> https://wiki.manjaro.org/index.php?title=AUR
  -> and read our wiki page carefully!
