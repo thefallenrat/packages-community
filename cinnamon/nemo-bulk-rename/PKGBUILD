@@ -2,12 +2,12 @@
 
 pkgname=nemo-bulk-rename
 pkgver=20170913
-pkgrel=1
+pkgrel=2
 pkgdesc="configure nemo bulk-rename-tool"
 arch=('any')
 depends=('gprename' 'nemo')
 source=("$pkgname" "$pkgname.desktop")
-md5sums=('3fda7ca088321407d2f9651155566f24'
+md5sums=('98c29304a2fae54d3dd452afd8225803'
          '57877fcbe760a2f3ff866f008dddff07')
 
 pkgver() {
