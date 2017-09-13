@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+lock="$HOME/.nemo-bulk-rename"
+
+if [[ ! -f $lock ]]; then
+    gsettings set org.nemo.preferences bulk-rename-tool "b'gprename'"
+    touch $lock
+fi
+
+exit 0

@@ -1,0 +1,20 @@
+# Maintainer: Bernhard Landauer <oberon@manjaro.org>
+
+pkgname=nemo-bulk-rename
+pkgver=20170913
+pkgrel=1
+pkgdesc="configure nemo bulk-rename-tool"
+arch=('any')
+depends=('gprename' 'nemo')
+source=("$pkgname" "$pkgname.desktop")
+md5sums=('3fda7ca088321407d2f9651155566f24'
+         '57877fcbe760a2f3ff866f008dddff07')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+    install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname
+    install -Dm644 $pkgname.desktop $pkgdir/etc/skel/.config/autostart/$pkgname.desktop
+}
