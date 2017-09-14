@@ -5,8 +5,8 @@
 
 pkgname=deepin-control-center
 _pkgname=dde-control-center
-pkgver=4.2.5.4
-pkgrel=6
+pkgver=4.2.5.8
+pkgrel=1
 pkgdesc='New control center for linux deepin'
 arch=('i686' 'x86_64')
 url="https://github.com/linuxdeepin/dde-control-center"
@@ -31,7 +31,7 @@ source=("$pkgname-$pkgver.tar.gz::http://github.com/linuxdeepin/$_pkgname/archiv
     'keyboard_shortcuts_title.patch'
     'rm_edition_version.patch'
     'window_effects_label.patch')
-sha512sums=('db74882bc1b8cdc9c4177219add1cbbd460bab5af1fe9808bac3d03094cda6a86cc7edfb33d9b28502564bfe6e8865b96e5d1b6b96e3bae735973d373c1c188a'
+sha512sums=('121b3e15d1d574af07263b00de684c8ae4fc40ed9ffd37bc0c672cfb06e986392c9fb3627df139feffbf329900e3ff5b074923ebff350fca630302c3da0a1c5b'
             'bdf28ef3ce4cd8aa92b58f2b77c53c65852c65e49df86886dc27872e0b2c00b721179f803bd419cbaa45e3e671fd904ef51927ef570bea7fbd645bafd27ee6a6'
             'ab5d2ebacfe3c47e1d2c27fab5b6df551d6c5cf995609488ada0e47ded58bce17aed532faf9ff7cc3c700fb94428a51c5636ce322deea0b50ba7d19b740b6f41'
             '360f0c4bf77edc85c7d27a75a01ae994732e28a44204a6f8d3704d8718b56c869e56a3cd9767ecbfbbbcf37cb3bea2683f0ea7a4267bd90866c16cca305555dc'
