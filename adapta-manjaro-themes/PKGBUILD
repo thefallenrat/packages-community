@@ -12,7 +12,7 @@ pkgname=('adapta-maia-theme'
 		 'manjaro-gnome-maia-theme')
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
-pkgver="3.91.2.132"
+pkgver="3.91.2.163"
 pkgrel=1
 arch=(any)
 _commit=932e6facaad495aa366615953f665d796539529a
@@ -32,7 +32,7 @@ makedepends=('libxml2'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
-sha256sums=('f53387f3589954af121709c59e0da7f81856453d0703eb625cbbf7e4bafc800e'
+sha256sums=('937acee92443d2c6c8f8ccab4c5942f1f804178ff44fb38781230273de2e8f34'
             '11c6ee7b0ff6777ba39746b5d7fb33b7d584e97f93f7c7b8ce5aaee3740840a2')
 
 prepare() {
