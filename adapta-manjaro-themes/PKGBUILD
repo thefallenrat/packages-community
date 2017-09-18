@@ -13,7 +13,7 @@ pkgname=('adapta-maia-theme'
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
 pkgver="3.91.2.163"
-pkgrel=1
+pkgrel=2
 arch=(any)
 _commit=932e6facaad495aa366615953f665d796539529a
 url="https://github.com/adapta-project/${_pkgname}"
@@ -103,10 +103,8 @@ cd $srcdir
   make
 }
 
-build_adapta-black-maia-theme() {
-cd $srcdir
-    cd "adapta-black-maia-theme-${pkgver}"
-    find ./extra/gedit/adapta.xml \
+_adapta-black-maia() {
+	    find ./extra/gedit/adapta.xml \
 	./extra/plank/dock.theme \
 	./extra/telegram/dark/colors.tdesktop-theme \
 	./extra/telegram/light/colors.tdesktop-theme \
@@ -134,7 +132,7 @@ cd $srcdir
 	./wm/metacity-1/metacity-theme-2.xml \
 	./wm/openbox-3/themerc \
 	./wm/openbox-3/themerc-nokto \
-	./wm/xfwm4/themerc -type f -print | time xargs sed -i -e \
+	./wm/xfwm4/themerc -type f -print | xargs sed -i -e \
 	's/#00BCD4/#16a085/Ig'  -e \
 	's/#009688/#009688/Ig'  -e \
 	's/#4DD0E1/#16a085/Ig'  -e \
@@ -217,18 +215,10 @@ cd $srcdir
 	's/19;;25;;28;;/2;;14;;12;;/Ig'  -e \
 	's/28;;36;;41;;/2;;18;;16;;/Ig'  -e \
 	's/mix(0.8, @accent_color, @fg_color)/mix(0.5, @accent_color, @fg_color)/Ig'
-	./autogen.sh --prefix "${pkgdir}/usr" \
-      --enable-plank \
-      --enable-telegram \
-      --disable-unity \
-      --enable-parallel #--enable-gtk_next
-    make
 }
 
-build_adapta-black-breath-theme() {
-cd $srcdir
-    cd "adapta-black-breath-theme-${pkgver}"
-    find ./extra/gedit/adapta.xml \
+_adapta-black-breath() {
+	    find ./extra/gedit/adapta.xml \
 	./extra/plank/dock.theme \
 	./extra/telegram/dark/colors.tdesktop-theme \
 	./extra/telegram/light/colors.tdesktop-theme \
@@ -256,7 +246,7 @@ cd $srcdir
 	./wm/metacity-1/metacity-theme-2.xml \
 	./wm/openbox-3/themerc \
 	./wm/openbox-3/themerc-nokto \
-	./wm/xfwm4/themerc -type f -print | time xargs sed -i -e \
+	./wm/xfwm4/themerc -type f -print | xargs sed -i -e \
 	's/#00BCD4/#1abc9c/Ig'  -e \
 	's/#009688/#1abc9c/Ig'  -e \
 	's/#4DD0E1/#2fe2bf/Ig'  -e \
@@ -339,6 +329,29 @@ cd $srcdir
 	's/19;;25;;28;;/2;;14;;12;;/Ig'  -e \
 	's/28;;36;;41;;/2;;18;;16;;/Ig'  -e \
 	's/mix(0.8, @accent_color, @fg_color)/mix(0.5, @accent_color, @fg_color)/Ig'
+}
+
+
+build_black-maia-theme() {
+cd $srcdir
+    cd "adapta-black-maia-theme-${pkgver}"
+    msg "Apply black theme"
+    _adapta-black-maia
+		
+	./autogen.sh --prefix "${pkgdir}/usr" \
+      --enable-plank \
+      --enable-telegram \
+      --disable-unity \
+      --enable-parallel #--enable-gtk_next
+    make
+}
+
+build_black-breath-theme() {
+cd $srcdir
+    cd "adapta-black-breath-theme-${pkgver}"
+    msg "Apply Black theme"
+	_adapta-black-breath
+	
 	./autogen.sh --prefix "${pkgdir}/usr" \
       --enable-plank \
       --enable-telegram \
@@ -461,7 +474,7 @@ pkgdesc='An adaptive Gtk+ theme based on Material Design Guidelines'
 
 package_adapta-black-maia-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Maia color Black version"
-	build_maia-theme
+	build_black-maia-theme
     #cd "adapta-maia-theme-${pkgver}"
     make install
     install -dm 755 "${pkgdir}"/usr/share/plank/themes
@@ -508,7 +521,7 @@ cd "$pkgdir/usr/share/themes/Adapta-Black-Nokto-Eta-Maia"
 
 package_adapta-black-breath-theme() {
 pkgdesc="An adaptive Gtk+ theme based on Material Design Guidelines.Build with Manjaro Breath color Black version"
-	build_breath-theme
+	build_black-breath-theme
     #cd "adapta-breath-theme-${pkgver}"
     make install
 	
