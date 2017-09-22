@@ -1,17 +1,17 @@
 # Maintainer: @fhdk <fh[at]manjaro[dot]org>
 
-pkgname=manjaro-openbox-settings
+pkgname=manjaro-hexagon-settings
 pkgver=0.1
 pkgrel=1
-pkgdesc='Manjaro Linux openbox settings'
+pkgdesc='Manjaro Linux openbox hexagon settings'
 arch=('any')
-url="https://github.com/fhdk/uex-desktop-settings"
+url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
 depends=('compton' 'conky' 'epdfview' 'geany' 'i3lock' 'lxappearance-obconf-gtk3'
          'mc' 'nitrogen' 'numlockx' 'obconf' 'oblogout'
          'scrot' 'skippy-xd' 'termite' 'thunar-gtk3' 'tint2'
          'ttf-ubuntu-font-family' 'viewnior' 
-         'xfce4-app-finder-gtk3' 'xfce4-power-manager-gtk3' 'xfce4-settings-gtk3' 
+         'xfce4-appfinder-gtk3' 'xfce4-power-manager-gtk3' 'xfce4-settings-gtk3' 
          'xtrlock')
 makedepends=('git')
 optdepends=('compton-conf: A graphical configuration tool for Compton composite manager'
@@ -34,5 +34,5 @@ sha256sums=('SKIP')
 package() {
     install -d $pkgdir/etc
     cp -r $srcdir/desktop-settings/shared/skel $pkgdir/etc
-    cp -r $srcdir/desktop-settings/hexagon $pkgdir/
+    cp -r $srcdir/desktop-settings/community/hexagon $pkgdir/
 }
