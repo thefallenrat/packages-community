@@ -5,7 +5,7 @@ pkgver=0.1
 pkgrel=1
 pkgdesc='Manjaro Linux openbox hexagon settings'
 arch=('any')
-url="https://github.com/fhdk/uex-desktop-settings"
+url="https://github.com/manjaro/desktop-settings"
 license=('GPL')
 depends=('compton' 'conky' 'epdfview' 'geany' 'i3lock' 'lxappearance-obconf-gtk3'
          'mc' 'nitrogen' 'numlockx' 'obconf' 'oblogout'
