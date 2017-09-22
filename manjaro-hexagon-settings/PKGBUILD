@@ -33,6 +33,6 @@ sha256sums=('SKIP')
 
 package() {
     install -d $pkgdir/etc
-    cp -r $srcdir/uex-desktop-settings/shared/skel $pkgdir/etc
-    cp -r $srcdir/uex-desktop-settings/community/hexagon $pkgdir/
+    cp -r $srcdir/desktop-settings/shared/skel $pkgdir/etc
+    cp -r $srcdir/desktop-settings/community/hexagon $pkgdir/
 }
