@@ -5,24 +5,30 @@ pkgname=gnome-shell-extension-manjaro-update
 _pkgname=arch-update
 pkgver=1.2
 _pkgver=21
-pkgrel=2
+pkgrel=3
+_notray=no-tray-icon
 pkgdesc="Convenient indicator for Manjaro updates in GNOME Shell."
 arch=('any')
 url="https://github.com/Chrysostomus/arch-update"
 license=('GPL3')
 depends=('gnome-shell>=3.18' 'update-notifier>=0.6' 'dunstify' 'pamac' 'mhwd')
 makedepends=('git')
-install=manjaro-update.install
+#install=manjaro-update.install
 source=("git://github.com/Chrysostomus/arch-update" 
         "https://github.com/RaphaelRochet/$_pkgname/archive/v$_pkgver.tar.gz" 
         'manjaro.patch'
-        'no-tray-icon'
-        'no-tray-icon.service')
+        "$_notray-install.hook"
+        "$_notray-install.script"
+        "$_notray-remove.hook"
+        "$_notray-remove.script")
+        
 sha512sums=('SKIP'
             '1f2f4809429d51893fe3a8ba46e168efbae9c0ab94581c08b29b4cbbe41870d0ff58c4d8939b85b400a3dbf082e64fc45a8cfa612aa78ed77a6fd0e62626b0d3'
             '5e83cccde7cf341e0ada4166b53cf2aaffc49135482876a84f587b62d21cc93fc13ab0efd3940a8f940c7190bdc753ec0e00e0a6b838444ebe242a54990a3bf3'
-            '35a3ac019dcf692dd91d52ef3282e5912ba6613949194baec190629700e149de389a738423ce45f7f25c07c3ec2d04861f4b3881658b8e355baf082d2d4fa36b'
-            '3e3cef442219cd9a00cf654679c9426a9b97a1c65833c5948e6f996ec366f0139848bfad1a934756ed57767c256adb19b1c4c6cfe23e87d8986f36386618afc5')
+            '98e66a892fb17faa038c5f75debfc7fe239b97444ee454112d18c87d20715371bf6fc78f6e4e820bcfe1a42fc552c324a91559a5ae7f7c4a79bfa7343993c4a3'
+            '1becc32627fcb63186e3c37a7a0c5387b189e7a20a1cc57f4291c2f1606943f0d904faf9a4a8e857d9bc4876a2ee2d5033eea32f8ef65453f145d791a5e44280'
+            '0673fb49025c9665c091f2246d3cb7e979d968c53dfe0dd8abcb6184997448f0712046ee0e0ffab80f04f13fbb080133e38de86237db403e63737c70765b9607'
+            'b715b963aa9eb0b54a7efc31a9ed01e77c789c97adbbcab75877b58cefa5b9033772b082f326b7a29911195b48bdc87c4baa117fb5d3a4be0c76a81a46d141f6')
 
 prepare(){
 # Patch and merge the upstream repo with Chrysostomus repo
@@ -45,7 +51,12 @@ package() {
   cp -rf "$srcdir"/arch-update/* $_install_dir
   
   cd $startdir
-  install -Dm755 no-tray-icon $pkgdir/usr/bin/no-tray-icon
-  install -Dm644 no-tray-icon.service $pkgdir/etc/systemd/system/no-tray-icon.service
-    
+  
+  #install hook and script	
+	install -Dm644 $_notray-install.hook ${pkgdir}/usr/share/libalpm/hooks/$_notray-install.hook
+	install -Dm644 $_notray-remove.hook ${pkgdir}/usr/share/libalpm/hooks/$_notray-remove.hook
+	
+	install -Dm755 $_notray-remove.script ${pkgdir}/usr/share/libalpm/scripts/$_notray-remove
+	install -Dm755 $_notray-install.script ${pkgdir}/usr/share/libalpm/scripts/$_notray-install
 }
+
