@@ -12,8 +12,8 @@ pkgname=('adapta-maia-theme'
 		 'manjaro-gnome-maia-theme')
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
-pkgver="3.91.2.163"
-pkgrel=3
+pkgver="3.91.2.189"
+pkgrel=1
 arch=(any)
 _commit=932e6facaad495aa366615953f665d796539529a
 url="https://github.com/adapta-project/${_pkgname}"
@@ -32,7 +32,7 @@ makedepends=('libxml2'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
-sha256sums=('937acee92443d2c6c8f8ccab4c5942f1f804178ff44fb38781230273de2e8f34'
+sha256sums=('9efe047ed413ea7ebba17fd6de20eb20b94689d4e0bac2c0d54fa6aa6ca65c07'
             '11c6ee7b0ff6777ba39746b5d7fb33b7d584e97f93f7c7b8ce5aaee3740840a2')
 
 prepare() {
@@ -104,7 +104,7 @@ cd $srcdir
 }
 
 _adapta-black() {
-	    find ./extra/gedit/adapta.xml \
+   find ./extra/gedit/adapta.xml \
 	./extra/plank/dock.theme \
 	./extra/telegram/dark/colors.tdesktop-theme \
 	./extra/telegram/light/colors.tdesktop-theme \
@@ -141,75 +141,83 @@ _adapta-black() {
 	's/#03A9F4/#299984/Ig'  -e \
 	's/#0B9BAF/#21977f/Ig'  -e \
 	's/#13191C/#020e0c/Ig'  -e \
-	's/#2196F3/#38a8a3/Ig'  -e \
 	's/#212B30/#031c17/Ig'  -e \
+	's/#2196F3/#38a8a3/Ig'  -e \
 	's/#222D32/#031b17/Ig'  -e \
 	's/#243035/#04201a/Ig'  -e \
+	's/#283237/#062823/Ig'  -e \
 	's/#28343A/#052922/Ig'  -e \
 	's/#29343a/#052923/Ig'  -e \
 	's/#29353B/#062d27/Ig'  -e \
-	's/#2A353A/#062d26/Ig'  -e \
+	's/#2A393E/#052e24/Ig'  -e \
+	's/#2A4145/#053826/Ig'  -e \
+	's/#2c383e/#06322a/Ig'  -e \
 	's/#2d383f/#06322d/Ig'  -e \
 	's/#2D4348/#063d2b/Ig'  -e \
-	's/#2e3a40/#07362e/Ig'  -e \
 	's/#2f3d44/#073b32/Ig'  -e \
+	's/#2F5254/#054d2c/Ig'  -e \
 	's/#315054/#31544d/Ig'  -e \
 	's/#323D42/#093a31/Ig'  -e \
+	's/#364146/#0a3e34/Ig'  -e \
 	's/#364249/#0a433b/Ig'  -e \
 	's/#374248/#0a423a/Ig'  -e \
 	's/#37474F/#09493e/Ig'  -e \
 	's/#384449/#0a4237/Ig'  -e \
 	's/#39444a/#0b473e/Ig'  -e \
-	's/#3b4c54/#0b5144/Ig'  -e \
 	's/#3B464B/#0b463b/Ig'  -e \
 	's/#3f4d53/#0d5446/Ig'  -e \
-	's/#3F5A62/#0a664e/Ig'  -e \
-	's/#41656A/#426c63/Ig'  -e \
-	's/#444F54/#0f574a/Ig'  -e \
+	's/#404b51/#0d4f45/Ig'  -e \
+	's/#414c51/#0e5346/Ig'  -e \
 	's/#455A64/#0d6858/Ig'  -e \
-	's/#49545A/#115f54/Ig'  -e \
+	's/#4C575C/#126455/Ig'  -e \
 	's/#4a555b/#115f54/Ig'  -e \
 	's/#4d5a60/#126959/Ig'  -e \
+	's/#4F5B60/#126857/Ig'  -e \
 	's/#5099d0/#31b9b0/Ig'  -e \
 	's/#5294c4/#3baba2/Ig'  -e \
 	's/#546e7a/#118872/Ig'  -e \
 	's/#555F64/#156f60/Ig'  -e \
+	's/#566067/#15746c/Ig'  -e \
 	's/#56707d/#118d78/Ig'  -e \
-	's/#59646A/#16796a/Ig'  -e \
-	's/#5B6469/#187769/Ig'  -e \
 	's/#5c9ece/#38bcb1/Ig'  -e \
 	's/#65aadd/#3ad4ca/Ig'  -e \
 	's/#677176/#1c8d7a/Ig'  -e \
 	's/#6ec9cb/#47bd9a/Ig'  -e \
-	's/#78909C/#1cc4a8/Ig'  -e \
 	's/#72b1df/#48d5ca/Ig'  -e \
 	's/#788286/#23a98c/Ig'  -e \
-	's/#A3ADB1/#47dcbc/Ig'  -e \
-	's/#A5AAAD/#46d8c7/Ig'  -e \
-	's/#A5AEB3/#47dcc6/Ig'  -e \
-	's/#A7ABAE/#4bd8ce/Ig'  -e \
-	's/#C3C6C8/#c0fcd8/Ig'  -e \
+	's/#78909C/#1cc4a8/Ig'  -e \
+	's/#979D9F/#32d29f/Ig'  -e \
+	's/#B8C1C6/#a6f7ca/Ig'  -e \
+	's/#B9C2C7/#a6f7ca/Ig'  -e \
+	's/#BEC2C3/#a2fbc6/Ig'  -e \
+	's/#C1C4C6/#acfbcc/Ig'  -e \
+	's/#C5C9CB/#b1fbd4/Ig'  -e \
 	's/#cbd8dc/#c7fadd/Ig'  -e \
-	's/#d4d6d7/#c9fce1/Ig'  -e \
-	's/#E4E7E8/#d4fce6/Ig'  -e \
+	's/#cdd6da/#cdf9e3/Ig'  -e \
+	's/#CFE9E8/#e0f1f0/Ig'  -e \
+	's/#d4d6d7/#b6fcd6/Ig'  -e \
+	's/#daddde/#d4fce6/Ig'  -e \
+	's/#E1E3E4/#d3fde7/Ig'  -e \
+	's/#e5e6e7/#d3fde0/Ig'  -e \
 	's/#E5E9EC/#dafbe6/Ig'  -e \
+	's/#E5F2F2/#dcfee3/Ig'  -e \
 	's/#e6e7e8/#d3fde0/Ig'  -e \
 	's/#E7E9EA/#d9fde9/Ig'  -e \
 	's/#E9EAEC/#ddfde2/Ig'  -e \
-	's/#E9F4F4/#e6feeb/Ig'  -e \
 	's/#e9ebeb/#ddfde4/Ig'  -e \
 	's/#e9ebec/#ddfdec/Ig'  -e \
 	's/#eaebec/#ddfde7/Ig'  -e \
 	's/#eceff1/#e8fcf0/Ig'  -e \
-	's/#eff1f2/#e7fdf2/Ig'  -e \
 	's/#F0F2F3/#ecfdf4/Ig'  -e \
 	's/#f1f3f4/#ecfdf4/Ig'  -e \
+	's/#f2f4f5/#ecfdf4/Ig'  -e \
 	's/#F7F9F9/#f1fef4/Ig'  -e \
 	's/#FAFBFC/#f5fef8/Ig'  -e \
 	's/#fdfdfe/#fbfffa/Ig'  -e \
 	's/rgba(19, 25, 28,/rgba(2, 14, 12,/Ig'  -e \
 	's/19;;25;;28;;/2;;14;;12;;/Ig'  -e \
 	's/28;;36;;41;;/2;;18;;16;;/Ig'  -e \
+	's/stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;/stroke-width:1;stroke-miterlimit:2;stroke-dasharray:none;/Ig'  -e \
 	's/mix(0.8, @accent_color, @fg_color)/mix(0.5, @accent_color, @fg_color)/Ig'
 }
 
