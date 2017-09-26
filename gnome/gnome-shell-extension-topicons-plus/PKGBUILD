@@ -2,7 +2,7 @@
 # Maintainer: Chrysostomus
 
 pkgname=gnome-shell-extension-topicons-plus
-pkgver=20
+pkgver=21
 pkgrel=1
 pkgdesc="Moves legacy tray icons to the top panel"
 arch=('any')
