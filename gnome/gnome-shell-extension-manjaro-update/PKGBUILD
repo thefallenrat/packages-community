@@ -5,7 +5,7 @@ pkgname=gnome-shell-extension-manjaro-update
 _pkgname=arch-update
 pkgver=1.2
 _pkgver=21
-pkgrel=3
+pkgrel=4
 _notray=no-tray-icon
 pkgdesc="Convenient indicator for Manjaro updates in GNOME Shell."
 arch=('any')
@@ -34,7 +34,7 @@ prepare(){
 # Patch and merge the upstream repo with Chrysostomus repo
 cd $srcdir
 rm -f $_pkgname-$_pkgver/icons/*
-mv $_pkgname/icons/* $_pkgname-$_pkgver/icons/
+mv $_pkgname/icons/* $_pkgname-$_pkgver/icons
 rm -rf $_pkgname
 mv $_pkgname-$_pkgver $_pkgname
 cd $srcdir/$_pkgname
