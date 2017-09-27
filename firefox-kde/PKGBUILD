@@ -38,8 +38,8 @@ source=(https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$pkgver/source/
         mozilla-kde-$_patchrev.patch::$_patchurl/mozilla-kde.patch
         mozilla-language-$_patchrev.patch::$_patchurl/mozilla-language.patch
         mozilla-nongnome-proxies-$_patchrev.patch::$_patchurl/mozilla-nongnome-proxies.patch
-        #mozilla-ucontext-$_patchrev.patch::$_patchurl/mozilla-ucontext.patch
-        glibc-2.26-fix.diff
+        mozilla-ucontext-$_patchrev.patch::$_patchurl/mozilla-ucontext.patch
+        fixformach.diff
         pgo_fix_missing_kdejs.patch)
 sha256sums=('891836df85f8798c49f7b25661820f64d1311d59703c716eda471819b93ccda2'
             'ada313750e6fb14558b37c764409a17c1672a351a46c73b350aa1fe4ea9220ef'
@@ -57,7 +57,8 @@ sha256sums=('891836df85f8798c49f7b25661820f64d1311d59703c716eda471819b93ccda2'
             '512d9a06acdb30b023a0601ecf2f7b5104e2838d4431957b97910f24d98b5bef'
             '2720e418edaab7b305087b325604fe134dab1b743dae6e924aba7b4bd73ea389'
             'e8289ea4c1f8191e1e23661312ceee2128b8e790501b9a589d0d7bfc4384553f'
-            'cd7ff441da66a287f8712e60cdc9e216c30355d521051e2eaae28a66d81915e8'
+            '96d9accb74e19f640e356572b3c0914c6be867cbdf351392b0cb5c00161ee012'
+            '9a354afad0042e2fa4bf29cb32f6c179669ad26f1764325443d1339a23f245f0'
             '55c4d93761ad46326c511246cef05abc09407d8f8f7131c9dad865b35cbcfad2')
 validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
 
@@ -86,9 +87,10 @@ prepare() {
 
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1385667
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1394149
-  #patch -Np1 -i ../mozilla-ucontext-$_patchrev.patch
+  patch -Np1 -i ../mozilla-ucontext-$_patchrev.patch
 
-  patch -Np1 -i ../glibc-2.26-fix.diff
+  # Fix build with latest Python
+  patch -Np1 -i ../fixformach.diff
 
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
   patch -Np1 -i ../wifi-disentangle.patch
@@ -137,7 +139,7 @@ ac_add_options --enable-system-pixman
 
 # Features
 ac_add_options --enable-startup-notification
-ac_add_options --disable-crashreporter
+ac_add_options --enable-crashreporter
 ac_add_options --disable-updater
 END
 
