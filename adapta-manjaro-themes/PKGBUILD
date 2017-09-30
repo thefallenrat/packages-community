@@ -12,10 +12,10 @@ pkgname=('adapta-maia-theme'
 		 'manjaro-gnome-maia-theme')
 _pkgname=adapta-gtk-theme
 _theme=manjaro-gnome-theme
-pkgver="3.91.2.198"
-pkgrel=1
+pkgver="3.91.2.200"
+pkgrel=2
 arch=(any)
-_commit=0343acf4e574296754408090caa6c3ee49588290
+_commit=bb72d8518a630cea79fdaace3f9eac52fcd212c1
 url="https://github.com/adapta-project/${_pkgname}"
 _url="https://github.com/Ste74/$_theme"
 license=('GPL2' 'CCPL')
@@ -32,8 +32,8 @@ makedepends=('libxml2'
 	         'gnome-shell')
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
-sha256sums=('571395397bbd9480ed78c31d0dbca9f398724c86f993fb263f7596d799291513'
-            'a9154c757212b6a62aec37c358f69e2a80a4eb011dafb8eb17cb08b1bb4ab2c8')
+sha256sums=('67d53212669e3a93c5194feadf46bd2f6014a9c9591788dd97831dcfe38730a3'
+            '5d357750ed867c879f6f840dd937406a356e2a65aeaa8e96acfc791ce9b6c300')
 
 prepare() {
 
@@ -477,12 +477,13 @@ conflicts=('manjaro-gnome-maia-theme' 'manjaro-gdm-breath-theme-dev')
 replace=('manjaro-gdm-breath-theme-dev')
 
 install -dm755 $pkgdir/etc/skel
-install -dm755 $pkgdir/usr/share/themes/Adapta-Breath/gnome-shell/assets
+install -dm755 $pkgdir/usr/share/themes/manjaro-gnome-theme
+
 cp $srcdir/$_theme-$_commit/common/.face $pkgdir/etc/skel/.face
 
 cd $srcdir/$_theme-$_commit/common
 for i in $(ls *.svg); do
-	cp $i $pkgdir/usr/share/themes/Adapta-Breath/gnome-shell/assets/$i.new
+	cp $i $pkgdir/usr/share/themes/manjaro-gnome-theme
 done
 
 #Hook
@@ -500,12 +501,14 @@ conflicts=('manjaro-gnome-breath-theme' 'manjaro-gdm-maia-theme-dev')
 replace=('manjaro-gdm-maia-theme-dev')
 
 install -dm755 $pkgdir/etc/skel
-install -dm755 $pkgdir/usr/share/themes/Adapta-Maia/gnome-shell/assets
+
+install -dm755 $pkgdir/usr/share/themes/manjaro-gnome-theme
+
 cp $srcdir/$_theme-$_commit/common/.face $pkgdir/etc/skel/.face
 
 cd $srcdir/$_theme-$_commit/common
 for i in $(ls *.svg); do
-	cp $i $pkgdir/usr/share/themes/Adapta-Maia/gnome-shell/assets/$i.new
+	cp $i $pkgdir/usr/share/themes/manjaro-gnome-theme
 done
 	
 #Hook
