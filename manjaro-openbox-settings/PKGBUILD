@@ -1,28 +1,39 @@
-# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
+# Maintainer: fhdk <fh[t]manjaro[t]org>
+# Contributor: Philip Müller <philm[at]manjaro[dog]org>
 # Contributor: artoo <artoo@manjaro.org>
 
-pkgname=manjaro-openbox-settings
-pkgver=20160922
+pkgbase='mjro-box-settings'
+pkgname='manjaro-openbox-settings'
+pkgver=20171001
 pkgrel=1
-pkgdesc='Manjaro Linux openbox settings'
 arch=('any')
-url="https://github.com/manjaro/desktop-settings"
+url="https://github.com/fhdk/mjro-box-settings"
 license=('GPL')
-depends=('manjaro-base-skel' 'obmenu-generator' 'tint2' 'feh' 'openbox-themes'
-        'vertex-maia-themes' 'andromeda-icon-theme' 'andromeda-wallpaper')
 makedepends=('git')
-optdepends=('pcmanfm-qt: Lightweight file manager'
-            'network-manager-applet: Applet for managing network connections')
-conflicts=('manjaro-bspwm-settings' 'manjaro-fluxbox-settings'
-            'manjaro-i3-settings' 'manjaro-jwm-settings')
 source=("git+$url.git")
 sha256sums=('SKIP')
 
-pkgver() {
-	date +%Y%m%d
+_inst_dir(){
+    install -d $pkgdir/etc
+    cp -r $srcdir/$pkgbase/skel $pkgdir/etc
+    install -d $pkgdir/usr/share
+    cp -r $srcdir/$pkgbase/backgrounds $pkgdir/usr/share
 }
 
-package() {
-    install -d $pkgdir/etc
-    cp -r $srcdir/desktop-settings/minimal/openbox/skel $pkgdir/etc
+pkgver() {
+    date +%Y%m%d
+}
+
+package_manjaro-openbox-settings() {
+    pkgdesc='Manjaro Linux openbox settings'
+#    depends=('manjaro-base-skel'
+#             'xcursor-breeze'
+#             'breath-icon-theme'
+#             'breath-wallpaper'
+#             'gtk-theme-breath')
+    conflicts=('manjaro-openbox-settings')
+    replaces=('manjaro-openbox-settings')
+    provides=('manjaro-desktop-settings')
+    conflicts=('manjaro-desktop-settings')
+    _inst_dir
 }
