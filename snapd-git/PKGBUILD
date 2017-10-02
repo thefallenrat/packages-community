@@ -4,8 +4,8 @@
 
 pkgbase=snapd
 pkgname=snapd-git
-_commit=0723493179a3e5018fb71b7fd355eb14a025d037
-pkgver=2.28dev+170922+g0723493
+_commit=6650575af8d006a8ed09477419d050735e0d8fe7
+pkgver=2.28dev+170927+g6650575
 pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/snapcore/snapd"
@@ -19,7 +19,7 @@ source=("$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/snapcore/snapd/arch
         'snapd.sh'
         '0001-cmd-snap-seccomp-link-to-libseccomp-dynamically.patch'
         '0002-fix-core.patch::https://github.com/snapcore/snapd/commit/8c821c13bb62703c5119a1b0b1edbd53ce7f48aa.patch')
-sha256sums=('add8b9daaa88e44ed5df5c8af96aaef5f189224f812b2cc3de419529fd155504'
+sha256sums=('f6ca6421993de75545f79f3dcd19dcd555d44ace87297dba9b70bf48813229dd'
             'a86620433eccb32a35b5a71e1809e3dd1a0399b421d91b4043cb2c1cc02ec24e'
             'ee3c9584426e9ef237ceca94c2ddeb495bf04a5e2a303b05c36b189e0c6a16e9'
             '4391395969fd75df79ae12ed733f1377013b5017724b75c1a001e8792241a74c')
