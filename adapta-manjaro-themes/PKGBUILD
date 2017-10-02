@@ -15,7 +15,7 @@ _theme=manjaro-gnome-theme
 pkgver="3.91.2.209"
 pkgrel=1
 arch=(any)
-_commit=6a89e167ff3b8ea433fdf2bb7c7486eb06cab993
+_commit=e6553e2f0a95654c3daae797e22764ece4af7b9e
 url="https://github.com/adapta-project/${_pkgname}"
 _url="https://github.com/Ste74/$_theme"
 license=('GPL2' 'CCPL')
@@ -33,7 +33,7 @@ makedepends=('libxml2'
 source=("${_pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         "$_theme-$pkgver.tar.gz::$_url/archive/$_commit.tar.gz")
 sha256sums=('1f67c22a8d10a3cd5cd5eb8877dffec9fd16caddc6f0f99a47c2ff8dd4ef5475'
-            '8b16bbf5704c7198045e68c43fa21e161e7e5023cb832f486fdebd83fa8f12fa')
+            'b4fb5fc36def1a2f3868e3a45fb782511d0f2807f387e953bea1ddb3122831d3')
 
 prepare() {
 
