@@ -2,11 +2,12 @@
 # Maintainer: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=i3-gaps
-pkgver=4.14
+_pkgsourcename=i3
+pkgver=4.14.1
 pkgrel=1
 pkgdesc='A fork of i3wm tiling window manager with more features, including gaps'
-url=https://github.com/Airblader/i3
 arch=('i686' 'x86_64')
+url='https://github.com/Airblader/i3'
 license=('BSD')
 provides=('i3-wm')
 conflicts=('i3-wm' 'i3bar' 'i3bar-git' 'i3-git' 'i3-gaps-git' 'i3-gaps-next-git')
@@ -15,19 +16,18 @@ depends=('xcb-util-keysyms' 'xcb-util-wm' 'libev' 'yajl'
          'startup-notification' 'pango' 'perl' 'xcb-util-cursor' 'xcb-util-xrm'
          'libxkbcommon-x11')
 makedepends=('asciidoc' 'docbook-xsl' 'pkgconfig')
-optdepends=('dmenu: As menu.'
-	'i3lock: For locking your screen.'
-	'i3status: To display system information with a bar.'
-	'perl-anyevent-i3: For i3-save-tree'
-	'perl-json-xs: For i3-save-tree'
-	'rxvt-unicode: The terminal emulator used in the default config.')
-	
+optdepends=('rxvt-unicode: The terminal emulator used in the default config.'
+            'dmenu: As menu.'
+            'i3lock: For locking your screen.'
+            'i3status: To display system information with a bar.'
+            'perl-json-xs: For i3-save-tree'
+            'perl-anyevent-i3: For i3-save-tree')
 options=('docs' '!strip')
 source=("$url/archive/$pkgver.tar.gz")
-sha1sums=('7457b0d650373b7bede45e0dcc3a633743af17ae')
+sha1sums=('0df480d25f915f312813d9223e9b2025d20e2d56')
 
 build() {
-  cd i3-$pkgver
+  cd "${srcdir}/${_pkgsourcename}-${pkgver}"
 
   autoreconf --force --install
 
@@ -44,11 +44,11 @@ build() {
 }
 
 package() {
-  cd i3-$pkgver
+  cd "${srcdir}/${_pkgsourcename}-${pkgver}"
   cd build/
 
-  make DESTDIR=$pkgdir/ install
+  make DESTDIR="${pkgdir}/" install
 
   install -Dm644 ../LICENSE \
-    $pkgdir/usr/share/licenses/$pkgname/LICENSE
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
